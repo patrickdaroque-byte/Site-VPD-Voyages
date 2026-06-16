@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colombie - Patrick Daroque - Travel Planner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; width: 100%; background: #2563eb; }
+    body { padding-top: 80px; margin: 0; }
+    html { scroll-padding-top: 80px; }
+    .nav-menu { display: flex; }
+    .nav-toggle { display: none; }
+    .dropdown-menu { display: none; }
+    .dropdown-menu.active { display: block; }
+    .description { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .description.expanded { -webkit-line-clamp: unset; }
+    .read-more {
+      width: 40px; height: 40px; border-radius: 50%; border: none;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; color: white; background: #2563eb; padding: 0;
+    }
+    .read-more:hover { background: #1e40af; color: white; text-decoration: none; }
+    .pdf-button {
+      width: 40px; height: 40px; border-radius: 50%; background: #16a34a; color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; text-align: center; text-decoration: none;
+    }
+    .pdf-button:hover { background: #15803d; text-decoration: none; }
+    .card-content { position: relative; min-height: 280px; }
+    #colombie { min-height: calc(100vh - 80px - 60px); display: flex; flex-direction: column; justify-content: flex-start; padding-bottom: 4px; }
+
+    .info-badge {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin: 0 auto 2rem auto;
+      max-width: 90%;
+      display: inline-block;
+    }
+    .info-badge::before { content: "ℹ️ "; margin-right: 0.25rem; }
+
+    @media (max-width: 640px) {
+      .nav-menu {
+        display: none; flex-direction: column; position: absolute; top: 80px; right: 10px;
+        background: #2563eb; padding: 10px; border-radius: 5px; z-index: 50;
+      }
+      .nav-menu.active { display: flex; }
+      .nav-toggle { display: block; cursor: pointer; }
+      .dropdown-menu {
+        position: absolute; top: 80px; left: 10px;
+        background: #2563eb; padding: 10px; border-radius: 5px; z-index: 50;
+      }
+      .read-more { width: 32px; height: 32px; font-size: 0.65rem; }
+      .pdf-button { width: 32px; height: 32px; font-size: 0.6rem; }
+      .card-content { min-height: 240px; }
+      a[href="index.html#decouvrez"] { display: none; }
+      .info-badge { font-size: 0.8rem; padding: 0.4rem 0.8rem; max-width: 95%; }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+  <!-- HEADER -->
+  <header class="bg-blue-600 text-white py-4">
+    <div class="container mx-auto px-4 flex justify-between items-center flex-wrap">
+      <div class="flex items-center space-x-4">
+        <img src="Images/logo.jpg" alt="Logo Patrick Daroque - Travel Planner" class="h-12 w-12 object-contain image-check">
+        <div class="flex flex-col">
+          <h1 class="text-xl md:text-2xl font-bold">Patrick Daroque</h1>
+          <span class="text-sm md:text-base font-medium">Travel Planner</span>
+        </div>
+      </div>
+      <div class="flex items-center space-x-4">
+        <button class="nav-toggle md:hidden text-white focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+        <button class="dropdown-toggle md:flex text-white focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path></svg>
+        </button>
+      </div>
+      <nav class="nav-menu md:flex md:space-x-6">
+        <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
+          <li><a href="index.html#home">Accueil</a></li>
+          <li><a href="index.html#destinations">Les destinations</a></li>
+          <li><a href="index.html#about">Qui suis-je ?</a></li>
+          <li><a href="index.html#reviews">Avis des voyageurs</a></li>
+          <li><a href="index.html#travel-planner">Qu'est-ce qu'un Travel Planner ?</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="dropdown-menu md:flex md:space-x-6">
+        <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
+          <li><a href="espagne.html">Espagne</a></li>
+          <li><a href="cuba.html">Cuba</a></li>
+          <li><a href="argentine.html">Argentine</a></li>
+          <li><a href="uruguay.html">Uruguay</a></li>
+          <li><a href="colombie.html">Colombie</a></li>
+        </ul>
+      </div>
+      <a href="index.html#home" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 text-sm md:text-base">Retour</a>
+    </div>
+  </header>
+
+  <!-- SECTION COLOMBIE -->
+  <section id="colombie" class="py-12">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-6">Voyages en Colombie</h2>
+
+      <div class="info-badge">
+        Tarif indicatif : Vols internationaux non inclus - Guide accompagnateur en option
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <!-- V1 Triangle magique -->
+        <div class="bg-white rounded shadow-lg">
+          <img src="Images/Colombie Triangle magique.jpg" class="w-full h-48 object-cover rounded">
+          <div class="p-4 card-content">
+            <h3 class="text-xl font-semibold">Le Triangle magique</h3>
+            <p class="text-gray-600 mt-2 description">Découvrez Bogotá, Medellín, la Piedra del Peñol, Barichara, Guane via le Camino Real, Villa de Leyva et Girón.</p>
+            <div class="flex justify-center space-x-2 mt-2">
+              <button class="read-more">+</button>
+              <a href="#" class="pdf-button triangle-pdf" target="_blank">voir pgm</a>
+            </div>
+            <p class="text-gray-600 mt-2">1 390 € (18 jours / 16 nuits)*</p>
+          </div>
+        </div>
+
+        <!-- V2 Magie réaliste -->
+        <div class="bg-white rounded shadow-lg">
+          <img src="Images/Colombie.jpg" class="w-full h-48 object-cover rounded">
+          <div class="p-4 card-content">
+            <h3 class="text-xl font-semibold">La Magie réaliste</h3>
+            <p class="text-gray-600 mt-2 description">Découvrez Bogotá, Zipaquirá, Medellín, Carthagène. Expériences authentiques et paysages époustouflants.</p>
+            <div class="flex justify-center space-x-2 mt-2">
+              <button class="read-more">+</button>
+              <a href="#" class="pdf-button magie-pdf" target="_blank">voir pgm</a>
+            </div>
+            <p class="text-gray-600 mt-2">1 350 € (17 jours / 16 nuits)*</p>
+          </div>
+        </div>
+
+        <!-- Festival Tango Medellín 2026 -->
+        <div class="bg-white rounded shadow-lg">
+          <img src="Images/Tango Medellin.jpeg" class="w-full h-48 object-cover rounded">
+          <div class="p-4 card-content">
+            <h3 class="text-xl font-semibold">Festival international de Tango Medellín 2026</h3>
+            <p class="text-gray-600 mt-2 description">Vivez l'émotion du Festival Internacional de Tango de Medellín, hommage à Carlos Gardel avec concerts, compétitions de danse, spectacles et ateliers dans toute la ville (du 27 mai au 10 juin 2026).</p>
+            <div class="flex justify-center space-x-2 mt-2">
+              <button class="read-more">+</button>
+              <a href="#" class="pdf-button tango-pdf" target="_blank">voir pgm</a>
+            </div>
+            <p class="text-gray-600 mt-2">1 475 € (16 jours / 15 nuits)*</p>
+          </div>
+        </div>
+
+        <!-- Cali Salsa 2026 -->
+        <div class="bg-white rounded shadow-lg">
+          <img src="Images/cali.jpg" class="w-full h-48 object-cover rounded">
+          <div class="p-4 card-content">
+            <h3 class="text-xl font-semibold">Cali - Capitale mondiale de la Salsa 2026</h3>
+            <p class="text-gray-600 mt-2 description">Vivez l'énergie explosive du Festival Mundial de Salsa à Cali, avec une édition spéciale en septembre 2026 incluant la Gran Cumbre Mundial de la Salsa (alliance internationale). Danse, concerts et ambiance unique ! <a href="https://mundialdesalsa.com" target="_blank" class="text-blue-600 hover:underline">Site officiel</a>.</p>
+            <div class="flex justify-center space-x-2 mt-2">
+              <button class="read-more">+</button>
+            </div>
+            <p class="text-gray-600 text-center text-sm mt-2">Programme détaillé en préparation — Édition spéciale septembre 2026</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-blue-600 text-white py-4">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-white text-sm mt-2 italic">*Prix indicatif de base (hors vols internationaux). Guide exclusif et permanent en option.</p>
+      <p style="color: white; font-size: 1rem;">&copy; 2026 Patrick Daroque - Travel Planner. Tous droits réservés. | n° siret : 525343687000222 | <a href="cgv.html" style="color: white; text-decoration: underline;">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;">Mentions légales</a></p>
+    </div>
+  </footer>
+
+  <script>
+    function setPdfLinks() {
+      const isMobile = window.innerWidth <= 640;
+      const folder = isMobile ? 'PDF_mobile/' : 'PDF/';
+
+      document.querySelector('.triangle-pdf').href = folder + 'Colombie - Le triangle magique.pdf';
+      document.querySelector('.magie-pdf').href = folder + 'Colombie - La Magie réaliste.pdf';
+      document.querySelector('.tango-pdf').href = folder + 'Colombie - Festival de tango à Medellín.pdf';
+    }
+
+    window.addEventListener('load', setPdfLinks);
+    window.addEventListener('resize', setPdfLinks);
+
+    document.querySelectorAll('.read-more').forEach(btn=>{
+      btn.addEventListener('click',function(){
+        const desc=this.closest('.card-content').querySelector('.description');
+        desc.classList.toggle('expanded');
+        this.textContent=desc.classList.contains('expanded')?'−':'+';
+      });
+    });
+    document.querySelector('.nav-toggle').addEventListener('click',()=>document.querySelector('.nav-menu').classList.toggle('active'));
+    document.querySelector('.dropdown-toggle').addEventListener('click',()=>document.querySelector('.dropdown-menu').classList.toggle('active'));
+  </script>
+</body>
+</html>

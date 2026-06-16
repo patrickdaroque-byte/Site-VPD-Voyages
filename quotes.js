@@ -1,0 +1,20 @@
+window.travelQuotes = [
+  "Chaque pas est une aventure.",
+  "Partir, c’est grandir.",
+  "Les souvenirs sont des richesses.",
+  "Voyager, c’est s’enrichir sans se ruiner. – Inconnu",
+  "Le vrai voyageur ne sait pas où il va. – Proverbe chinois",
+  "Chaque voyage commence par un pas. – Lao Tseu",
+  "Voyager, c’est découvrir que tout le monde a tort sur les autres pays. – Aldous Huxley",
+  "Le voyage est un retour vers l’essentiel. – Proverbe tibétain",
+  "Là où tu vas, va avec tout ton cœur. – Confucius",
+  "Le monde est un livre et ceux qui ne voyagent pas n’en lisent qu’une page. – Saint Augustin",
+  "Voyager, c’est vivre. – Hans Christian Andersen",
+  "Il n’y a pas de chemin vers le bonheur, le bonheur est le chemin. – Proverbe oriental",
+  "Le voyage est la seule chose qu’on achète qui nous rend plus riche. – Inconnu",
+  "Le voyage est la seule chose que vous achetez qui vous rend plus riche.",
+  "Partir, c'est voir un monde nouveau à chaque horizon.",
+  "Chaque voyage commence par un pas vers l'inconnu.",
+  "Les plus belles découvertes se font hors des sentiers battus.",
+  "Voyager, c'est apprendre une nouvelle façon de voir la vie."
+];

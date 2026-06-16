@@ -1,0 +1,215 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patrick Daroque - Promo Video</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #000;
+    }
+    canvas {
+      border: 2px solid #2563eb;
+    }
+    #errorMessage {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: red;
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="errorMessage"></div>
+  <canvas id="videoCanvas" width="1920" height="1080"></canvas>
+  <script>
+    const canvas = document.getElementById('videoCanvas');
+    const ctx = canvas.getContext('2d');
+    const errorMessage = document.getElementById('errorMessage');
+    
+    // Configuration des slides
+    const slides = [
+      {
+        image: 'Images/logo.jpg',
+        text: 'Patrick Daroque\nTravel Planner',
+        duration: 5000 // 5 secondes
+      },
+      {
+        image: 'Images/Tango Bodegas.jpg',
+        text: 'Argentine\nTango & Vins',
+        duration: 5000
+      },
+      {
+        image: 'Images/BsAs Mza Andes.jpg',
+        text: 'Argentine\nMendoza & Les Andes',
+        duration: 5000
+      },
+      {
+        image: 'Images/logrono.jpg',
+        text: 'Espagne\nLa Rioja & Gastronomie',
+        duration: 5000
+      },
+      {
+        image: 'Images/Salamanque.jpg',
+        text: 'Espagne\nCulture & Histoire',
+        duration: 5000
+      },
+      {
+        image: 'Images/cuba-havana.jpg',
+        text: 'Cuba\nSalsa & La Havane',
+        duration: 5000
+      },
+      {
+        image: 'Images/Montevideo.jpg',
+        text: 'Uruguay\nTango & Montevideo',
+        duration: 5000
+      },
+      {
+        image: 'Images/colombia-landscape.jpg',
+        text: 'Colombie\nPaysages & Vibrance',
+        duration: 5000
+      },
+      {
+        image: 'Images/Tango Bodegas.jpg',
+        text: 'Votre aventure commence ici !\nhttps://patrickdaroque-travel.netlify.app/',
+        duration: 7000 // 7 secondes
+      }
+    ];
+    
+    let currentSlide = 0;
+    let slideStartTime = 0;
+    const images = [];
+    
+    // Charger les images
+    let loadedImages = 0;
+    let failedImages = [];
+    
+    slides.forEach((slide, index) => {
+      if (slide.image) {
+        const img = new Image();
+        img.src = slide.image;
+        images[index] = img;
+        img.onload = () => {
+          loadedImages++;
+          checkImagesLoaded();
+        };
+        img.onerror = () => {
+          console.error('Erreur de chargement de l\'image:', slide.image);
+          failedImages.push(slide.image);
+          loadedImages++;
+          checkImagesLoaded();
+        };
+      } else {
+        images[index] = null;
+        loadedImages++;
+        checkImagesLoaded();
+      }
+    });
+    
+    function checkImagesLoaded() {
+      if (loadedImages === slides.length) {
+        if (failedImages.length > 0) {
+          errorMessage.style.display = 'block';
+          errorMessage.textContent = `Erreur : ${failedImages.length} image(s) manquante(s): ${failedImages.join(', ')}`;
+          console.warn('Certaines images n\'ont pas chargé, mais l\'animation continue.');
+        }
+        console.log('Toutes les images sont prêtes, démarrage de l\'animation.');
+        requestAnimationFrame(drawSlide);
+      }
+    }
+    
+    // Animation
+    function drawSlide(timestamp) {
+      if (!slideStartTime) slideStartTime = timestamp;
+      const elapsed = timestamp - slideStartTime;
+      const slide = slides[currentSlide];
+      
+      // Effacer le canvas
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Dessiner l'image avec fondu
+      if (images[currentSlide] && images[currentSlide].complete) {
+        const opacity = Math.min(elapsed / 1000, 1); // Fondu sur 1 seconde
+        ctx.globalAlpha = opacity;
+        const imgWidth = canvas.width;
+        const imgHeight = (images[currentSlide].height / images[currentSlide].width) * imgWidth;
+        ctx.drawImage(images[currentSlide], 0, (canvas.height - imgHeight) / 2, imgWidth, imgHeight);
+        ctx.globalAlpha = 1;
+      }
+      
+      // Dessiner le texte
+      ctx.fillStyle = 'white';
+      ctx.font = 'bold 60px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      const lines = slide.text.split('\n');
+      lines.forEach((line, i) => {
+        ctx.fillText(line, canvas.width / 2, canvas.height / 2 + i * 80);
+      });
+      
+      // Passer au slide suivant
+      if (elapsed > slide.duration) {
+        currentSlide = (currentSlide + 1) % slides.length;
+        slideStartTime = timestamp;
+      }
+      
+      requestAnimationFrame(drawSlide);
+    }
+    
+    // Vérifier si le script est exécuté localement
+    if (window.location.protocol === 'file:') {
+      errorMessage.style.display = 'block';
+      errorMessage.textContent = 'Erreur : Exécutez ce fichier via un serveur (http://localhost) pour charger les images correctement.';
+      console.warn('Exécution en mode file:// détectée. Utilisez un serveur local (ex. : python -m http.server) pour tester.');
+    }
+  </script>
+</body>
+</html>

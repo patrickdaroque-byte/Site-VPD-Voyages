@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espagne - Patrick Daroque - Travel Planner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            width: 100%;
+            background: #2563eb;
+        }
+        body {
+            padding-top: 80px;
+        }
+        html {
+            scroll-padding-top: 80px;
+        }
+        .nav-menu {
+            display: flex;
+        }
+        .nav-toggle {
+            display: none;
+        }
+        .dropdown-menu {
+            display: none;
+        }
+        .dropdown-menu.active {
+            display: block;
+        }
+        .description {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .description.expanded {
+            -webkit-line-clamp: unset;
+        }
+        .read-more {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: white;
+            background: #2563eb;
+            padding: 0;
+        }
+        .read-more:hover {
+            background: #1e40af;
+            color: white;
+            text-decoration: none;
+        }
+        .pdf-button {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #16a34a;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            padding-left: 4px;
+            padding-bottom: 4px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .pdf-button:hover {
+            background: #15803d;
+            text-decoration: none;
+        }
+        .card-content {
+            position: relative;
+            min-height: 220px;
+        }
+        .grid {
+            overflow: visible;
+        }
+        .info-badge {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 0 auto 2rem auto;
+            max-width: 90%;
+            display: inline-block;
+        }
+        .info-badge::before {
+            content: "ℹ️ ";
+            margin-right: 0.25rem;
+        }
+        @media (max-width: 640px) {
+            .info-badge {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+                max-width: 95%;
+            }
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                right: 10px;
+                background: #2563eb;
+                padding: 10px;
+                border-radius: 5px;
+                z-index: 50;
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .nav-toggle {
+                display: block;
+                cursor: pointer;
+            }
+            .dropdown-menu {
+                position: absolute;
+                top: 80px;
+                left: 10px;
+                background: #2563eb;
+                padding: 10px;
+                border-radius: 5px;
+                z-index: 50;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                max-width: 100%;
+            }
+            .pdf-button {
+                display: inline-flex;
+            }
+            .pdf-button-mobile {
+                display: none;
+            }
+        }
+        @media (min-width: 641px) {
+            .pdf-button-mobile {
+                display: none;
+            }
+        }
+        @media (min-width: 640px) and (max-width: 767px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center flex-wrap">
+            <div class="flex items-center space-x-4">
+                <img src="Images/logo.jpg" alt="Logo Patrick Daroque - Travel Planner" class="h-12 w-12 object-contain image-check">
+                <div class="flex flex-col">
+                    <h1 class="text-xl md:text-2xl font-bold">Patrick Daroque</h1>
+                    <span class="text-sm md:text-base font-medium">Travel Planner</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="nav-toggle md:hidden text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <button class="dropdown-toggle md:flex text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <nav class="nav-menu md:flex md:space-x-6">
+                <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
+                    <li><a href="index.html#home" class="hover:underline text-sm md:text-base">Accueil</a></li>
+                    <li><a href="index.html#destinations" class="hover:underline text-sm md:text-base">Les destinations</a></li>
+                    <li><a href="index.html#about" class="hover:underline text-sm md:text-base">Qui suis-je ?</a></li>
+                    <li><a href="index.html#reviews" class="hover:underline text-sm md:text-base">Avis des voyageurs</a></li>
+                    <li><a href="index.html#travel-planner" class="hover:underline text-sm md:text-base">Qu'est-ce qu'un Travel Planner ?</a></li>
+                    <li><a href="index.html#contact" class="hover:underline text-sm md:text-base">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="dropdown-menu md:flex md:space-x-6">
+                <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
+                    <li><a href="argentine.html" class="hover:underline text-sm md:text-base">Argentine</a></li>
+                    <li><a href="colombie.html" class="hover:underline text-sm md:text-base">Colombie</a></li>
+                    <li><a href="cuba.html" class="hover:underline text-sm md:text-base">Cuba</a></li>
+                    <li><a href="espagne.html" class="hover:underline text-sm md:text-base">Espagne</a></li>
+                    <li><a href="uruguay.html" class="hover:underline text-sm md:text-base">Uruguay</a></li>
+                </ul>
+            </div>
+            <a href="index.html#destinations" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 text-sm md:text-base">Retour</a>
+        </div>
+    </header>
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-6">Voyages en Espagne</h2>
+          
+            <div class="info-badge">
+                Tarif indicatif : transport France A/R et/ou guide en option
+            </div>
+          
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <!-- La Rioja -->
+                <div class="bg-white rounded shadow-lg overflow-hidden">
+                    <div class="bg-gray-200">
+                        <a href="PDF/Espagne - La Rioja - Histoire Vin et Architecture.pdf" target="_blank" class="cursor-pointer block pdf-link" id="rioja-image-link">
+                            <img src="Images/logrono.jpg" alt="La Rioja - Histoire, Vin et Architecture" class="w-full h-48 object-cover rounded image-check">
+                        </a>
+                    </div>
+                    <div class="p-4 card-content">
+                        <h3 class="text-xl font-semibold">La Rioja - Histoire, Vin et Architecture</h3>
+                        <p class="text-gray-600 mt-2 description">Partez 4 jours dans La Rioja depuis Logroño, ville vibrante. Découvrez des bodegas prestigieuses, dégustez des vins rioja, flânez dans les ruelles historiques, savourez des pintxos et visitez les monastères UNESCO de San Millán. Entre villages médiévaux, gastronomie et paysages, vivez une immersion culturelle et gourmande inoubliable.</p>
+                        <div class="flex justify-center space-x-2 mt-2">
+                            <button class="read-more">+</button>
+                            <a href="PDF/Espagne - La Rioja - Histoire Vin et Architecture.pdf" class="pdf-button" target="_blank" id="rioja-pdf-button">voir pgm</a>
+                        </div>
+                        <p class="mt-2 font-bold">720 € (4 jours / 3 nuits)*</p>
+                    </div>
+                </div>
+                <!-- Valencia -->
+                <div class="bg-white rounded shadow-lg overflow-hidden">
+                    <div class="bg-gray-200">
+                        <a href="PDF/Valencia - Entre nature et modernité.pdf" target="_blank" class="cursor-pointer block pdf-link">
+                            <img src="Images/valencia.jpg" alt="Valencia - Entre nature et modernité" class="w-full h-48 object-cover rounded image-check">
+                        </a>
+                    </div>
+                    <div class="p-4 card-content">
+                        <h3 class="text-xl font-semibold">Valencia - Entre nature et modernité</h3>
+                        <p class="text-gray-600 mt-2 description">Découvrez Valence en 4 jours, mêlant plages, patrimoine et gastronomie. Explorez la cathédrale, la Lonja de la Seda (UNESCO) et le marché central. Savourez une paella authentique, flânez à Ruzafa, détendez-vous à Malvarrosa et naviguez sur la lagune de l'Albufera. Une escapade culturelle et méditerranéenne pour des souvenirs inoubliables</p>
+                        <div class="flex justify-center space-x-2 mt-2">
+                            <button class="read-more">+</button>
+                            <a href="PDF/Valencia - Entre nature et modernité.pdf" class="pdf-button" target="_blank">voir pgm</a>
+                        </div>
+                        <p class="mt-2 font-bold">650 € (4 jours / 3 nuits)*</p>
+                    </div>
+                </div>
+                <!-- Pics d'Europe -->
+                <div class="bg-white rounded shadow-lg overflow-hidden">
+                    <div class="bg-gray-200">
+                        <a href="PDF/Espagne - Les Pics d'Europe.pdf" target="_blank" class="cursor-pointer block pdf-link">
+                            <img src="Images/Pics_europe.jpg" alt="Espagne - Les Pics d'Europe" class="w-full h-48 object-cover rounded image-check">
+                        </a>
+                    </div>
+                    <div class="p-4 card-content">
+                        <h3 class="text-xl font-semibold">Les Pics d'Europe - De la Cantabrie aux Asturies</h3>
+                        <p class="text-gray-600 mt-2 description">Parcourez les majestueux Pics d'Europe, un paradis pour les amoureux de la nature. Profitez de belles balades, de villages pittoresques dans des paysages grandioses.</p>
+                        <div class="flex justify-center space-x-2 mt-2">
+                            <button class="read-more">+</button>
+                            <a href="PDF/Espagne - Les Pics d'Europe.pdf" class="pdf-button" target="_blank">voir pgm</a>
+                        </div>
+                        <p class="mt-2 font-bold">598 € (4 jours / 3 nuits)*</p>
+                    </div>
+                </div>
+                <!-- Salamanque -->
+                <div class="bg-white rounded shadow-lg overflow-hidden">
+                    <div class="bg-gray-200">
+                        <a href="PDF/Espagne - Salamanque.pdf" target="_blank" class="cursor-pointer block pdf-link">
+                            <img src="Images/Salamanque.jpg" alt="Espagne - Salamanque et la Route des Reines" class="w-full h-48 object-cover rounded image-check">
+                        </a>
+                    </div>
+                    <div class="p-4 card-content">
+                        <h3 class="text-xl font-semibold">Salamanque et la Route des Reines</h3>
+                        <p class="text-gray-600 mt-2 description">Découvrez Salamanque, joyau de Castille-et-León, en 4 jours. Explorez la Plaza Mayor, l'université historique et la cathédrale. Admirez la Casa de las Conchas et savourez hornazo et jamón ibérico. Visitez Tordesillas, liée au Traité de 1494. Une escapade culturelle mêlant patrimoine, gastronomie et ambiance étudiante vibrante.</p>
+                        <div class="flex justify-center space-x-2 mt-2">
+                            <button class="read-more">+</button>
+                            <a href="PDF/Espagne - Salamanque.pdf" class="pdf-button" target="_blank">voir pgm</a>
+                        </div>
+                        <p class="mt-2 font-bold">675 € (4 jours / 3 nuits)*</p>
+                    </div>
+                </div>
+                <!-- Ribera del Duero -->
+                <div class="bg-white rounded shadow-lg overflow-hidden">
+                    <div class="bg-gray-200">
+                        <a href="PDF/Espagne - Ribera del Duero.pdf" target="_blank" class="cursor-pointer block pdf-link">
+                            <img src="Images/Ribera del Duero.jpeg" alt="Espagne - Ribera del Duero, une histoire millénaire !" class="w-full h-48 object-cover rounded image-check">
+                        </a>
+                    </div>
+                    <div class="p-4 card-content">
+                        <h3 class="text-xl font-semibold">Ribera del Duero, une histoire millénaire !</h3>
+                        <p class="text-gray-600 mt-2 description">Découvrez la Ribera del Duero en 4 jours depuis Aranda de Duero. Dégustez des vins rouges exceptionnels dans des bodegas renommées, explorez des villages historiques comme Peñafiel, savourez la cuisine castillane et admirez des paysages viticoles. Une escapade mêlant patrimoine, gastronomie et traditions pour des souvenirs inoubliables.</p>
+                        <div class="flex justify-center space-x-2 mt-2">
+                            <button class="read-more">+</button>
+                            <a href="PDF/Espagne - Ribera del Duero.pdf" class="pdf-button" target="_blank">voir pgm</a>
+                        </div>
+                        <p class="mt-2 font-bold">720 € (4 jours / 3 nuits)*</p>
+                    </div>
+                </div>
+                <!-- Matarraña -->
+                <div class="bg-white rounded shadow-lg overflow-hidden">
+                    <div class="bg-gray-200">
+                        <a href="PDF/Espagne - Matarraña.pdf" target="_blank" class="cursor-pointer block pdf-link" id="matarrana-image-link">
+                            <img src="Images/Matarraña.jpeg" alt="Espagne - Matarraña, la Toscane espagnole" class="w-full h-48 object-cover rounded image-check">
+                        </a>
+                    </div>
+                    <div class="p-4 card-content">
+                        <h3 class="text-xl font-semibold">Matarraña, la Toscane espagnole</h3>
+                        <p class="text-gray-600 mt-2 description">Plongez dans le Matarraña, la « Toscane espagnole », pour 4 jours d'escapade depuis Valderrobres ou Calaceite. Découvrez villages médiévaux, oliveraies, gorges spectaculaires et cuisine authentique à base d'huile d'olive et de truffes. Entre patrimoine, nature et détente, ce coin préservé d'Aragon offre une expérience ressourçante inoubliable. <a href="https://lanagarcia.com/comarca-del-matarrana/" class="text-blue-600 hover:underline">En savoir plus.</a></p>
+                        <div class="flex justify-center space-x-2 mt-2">
+                            <button class="read-more">+</button>
+                            <a href="PDF/Espagne - Matarraña.pdf" class="pdf-button" target="_blank" id="matarrana-pdf-button">voir pgm</a>
+                        </div>
+                        <p class="text-red-600 font-bold text-center mt-2">Prochainement !</p>
+                    </div>
+                </div>
+                <!-- Bilbao -->
+                <div class="bg-white rounded shadow-lg overflow-hidden">
+                    <div class="bg-gray-200">
+                        <a href="PDF/Espagne - Bilbao.pdf" target="_blank" class="cursor-pointer block pdf-link">
+                            <img src="Images/Bilbao.jpg" alt="Espagne - Bilbao, el Botxo !" class="w-full h-48 object-cover rounded image-check">
+                        </a>
+                    </div>
+                    <div class="p-4 card-content">
+                        <h3 class="text-xl font-semibold">Bilbao, el Botxo !</h3>
+                        <p class="text-gray-600 mt-2 description">Découvrez Bilbao en 4 jours, entre modernité et traditions basques. Découvrez l'architecture du musée Guggenheim, flânez dans le casco viejo, savourez des pintxos et explorez Guernica, son histoire et l'Arbre de Guernica. Avec le pont de Bizkaia et la côte basque, Bilbao offre une escapade vibrante, culturelle et gastronomique inoubliable.</p>
+                        <div class="flex justify-center space-x-2 mt-2">
+                            <button class="read-more">+</button>
+                            <a href="PDF/Espagne - Bilbao.pdf" class="pdf-button" target="_blank">voir pgm</a>
+                        </div>
+                        <p class="text-red-600 font-bold text-center mt-2">Prochainement !</p>
+                    </div>
+                </div>
+                <!-- Barcelone -->
+                <div class="bg-white rounded shadow-lg overflow-hidden">
+                    <div class="bg-gray-200">
+                        <a href="PDF/Espagne - Barcelone.pdf" target="_blank" class="cursor-pointer block pdf-link">
+                            <img src="Images/barcelone.jpg" alt="Barcelone, regards croisés !" class="w-full h-48 object-cover rounded image-check">
+                        </a>
+                    </div>
+                    <div class="p-4 card-content">
+                        <h3 class="text-xl font-semibold">Barcelone, regards croisés !</h3>
+                        <p class="text-gray-600 mt-2 description">Venez découvrir Barcelone, une ville où l'architecture moderne rencontre l'histoire médiévale. Flânez sur les Ramblas, explorez la Sagrada Familia et laissez-vous emporter par l'ambiance vibrante des quartiers. Entre tapas et culture, chaque coin de rue vous racontera une histoire. Profitez de ses plages et de sa vie nocturne animée. Une escapade inoubliable vous attend !</p>
+                        <div class="flex justify-center space-x-2 mt-2">
+                            <button class="read-more">+</button>
+                            <a href="PDF/Espagne - Barcelone.pdf" class="pdf-button" target="_blank">voir pgm</a>
+                        </div>
+                        <p class="text-red-600 font-bold text-center mt-2">Prochainement !</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-center text-white text-sm mt-2 italic">*Prix de base indicatif (hors transport France A/R). Guide exclusif et permanent en option.</p>
+            <p style="color: white; font-size: 1rem;">&copy; 2026 Patrick Daroque - Travel Planner. Tous droits réservés. | n° siret : 525343687000222 | <a href="cgv.html" style="color: white; text-decoration: underline;">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;">Mentions légales</a></p>
+        </div>
+    </footer>
+    <script>
+        document.querySelector('.nav-toggle').addEventListener('click', function () {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+        document.querySelector('.dropdown-toggle').addEventListener('click', function () {
+            document.querySelector('.dropdown-menu').classList.toggle('active');
+        });
+        document.querySelectorAll('.read-more').forEach(button => {
+            button.addEventListener('click', function () {
+                const description = this.closest('.p-4').querySelector('.description');
+                if (description) {
+                    description.classList.toggle('expanded');
+                    this.textContent = description.classList.contains('expanded') ? '−' : '+';
+                }
+            });
+        });
+        
+        function updateRiojaLinks() {
+            const isMobile = window.innerWidth <= 640;
+            const imageLink = document.getElementById('rioja-image-link');
+            const pdfButton = document.getElementById('rioja-pdf-button');
+            if (imageLink && pdfButton) {
+                if (isMobile) {
+                    imageLink.href = 'PDF_mobile/La Rioja - Histoire, Vin et Architecture.pdf';
+                    pdfButton.href = 'PDF_mobile/La Rioja - Histoire, Vin et Architecture.pdf';
+                } else {
+                    imageLink.href = 'PDF/Espagne - La Rioja - Histoire Vin et Architecture.pdf';
+                    pdfButton.href = 'PDF/Espagne - La Rioja - Histoire Vin et Architecture.pdf';
+                }
+            }
+        }
+        
+        function updateMatarranaLinks() {
+            const isMobile = window.innerWidth <= 640;
+            const imageLink = document.getElementById('matarrana-image-link');
+            const pdfButton = document.getElementById('matarrana-pdf-button');
+            if (imageLink && pdfButton) {
+                if (isMobile) {
+                    imageLink.href = 'PDF_mobile/Espagne - Matarraña.pdf';
+                    pdfButton.href = 'PDF_mobile/Espagne - Matarraña.pdf';
+                } else {
+                    imageLink.href = 'PDF/Espagne - Matarraña.pdf';
+                    pdfButton.href = 'PDF/Espagne - Matarraña.pdf';
+                }
+            }
+        }
+        
+        window.addEventListener('load', updateRiojaLinks);
+        window.addEventListener('resize', updateRiojaLinks);
+        window.addEventListener('load', updateMatarranaLinks);
+        window.addEventListener('resize', updateMatarranaLinks);
+        
+        document.querySelectorAll('.nav-menu a, .dropdown-menu a').forEach(anchor => {
+            anchor.addEventListener('click', function () {
+                if (window.innerWidth <= 640) {
+                    document.querySelector('.nav-menu')?.classList.remove('active');
+                    document.querySelector('.dropdown-menu')?.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
