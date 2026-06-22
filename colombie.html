@@ -63,7 +63,6 @@
   </style>
 </head>
 <body class="bg-gray-100 font-sans">
-  <!-- HEADER -->
   <header class="bg-blue-600 text-white py-4">
     <div class="container mx-auto px-4 flex justify-between items-center flex-wrap">
       <div class="flex items-center space-x-4">
@@ -104,7 +103,6 @@
     </div>
   </header>
 
-  <!-- SECTION COLOMBIE -->
   <section id="colombie" class="py-12">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold text-center mb-6">Voyages en Colombie</h2>
@@ -112,7 +110,6 @@
         Tarif indicatif : Vols internationaux non inclus - Guide accompagnateur en option
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-        <!-- V1 Triangle magique -->
         <div class="bg-white rounded shadow-lg">
           <img src="Images/Colombie Triangle magique.jpg" class="w-full h-48 object-cover rounded">
           <div class="p-4 card-content">
@@ -125,7 +122,6 @@
             <p class="text-gray-600 mt-2">1 390 € (18 jours / 16 nuits)*</p>
           </div>
         </div>
-        <!-- V2 Magie réaliste -->
         <div class="bg-white rounded shadow-lg">
           <img src="Images/Colombie.jpg" class="w-full h-48 object-cover rounded">
           <div class="p-4 card-content">
@@ -138,7 +134,6 @@
             <p class="text-gray-600 mt-2">1 350 € (17 jours / 16 nuits)*</p>
           </div>
         </div>
-        <!-- Festival Tango Medellín 2027 -->
         <div class="bg-white rounded shadow-lg">
           <img src="Images/Tango Medellin.jpeg" class="w-full h-48 object-cover rounded">
           <div class="p-4 card-content">
@@ -151,7 +146,6 @@
             <p class="text-gray-600 mt-2">1 475 € (16 jours / 15 nuits)*</p>
           </div>
         </div>
-        <!-- Cali Salsa 2026 -->
         <div class="bg-white rounded shadow-lg">
           <img src="Images/cali.jpg" class="w-full h-48 object-cover rounded">
           <div class="p-4 card-content">
@@ -167,11 +161,10 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="bg-blue-600 text-white py-4">
     <div class="container mx-auto px-4 text-center">
       <p class="text-white text-sm mt-2 italic">*Prix indicatif de base (hors vols internationaux). Guide exclusif et permanent en option.</p>
-      <p style="color: white; font-size: 1rem;">© 2026 Patrick Daroque - Travel Planner. Tous droits réservés. | n° siret : 525343687000222 | <a href="cgv.html" style="color: white; text-decoration: underline;">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;">Mentions légales</a></p>
+      <p style="color: white; font-size: 1rem;">© 2026 Patrick Daroque - Travel Planner. Tous droits réservés. | n° siret : 52534368700022 | <a href="cgv.html" style="color: white; text-decoration: underline;">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;">Mentions légales</a></p>
     </div>
   </footer>
 
@@ -179,23 +172,27 @@
     function setPdfLinks() {
       const isMobile = window.innerWidth <= 640;
       const folder = isMobile ? 'PDF_mobile/' : 'PDF/';
+      
+      // Clé unique de rafraîchissement basée sur la milliseconde actuelle
+      const antiCache = Date.now();
 
-      // Mise à jour sécurisée des liens
+      // Récupération des éléments
       const triangle = document.querySelector('.triangle-pdf');
       const magie = document.querySelector('.magie-pdf');
       const tango = document.querySelector('.tango-pdf');
 
-      if (triangle) triangle.href = folder + 'Colombie - Le triangle magique.pdf';
-      if (magie) magie.href = folder + 'Colombie - La Magie réaliste.pdf';
-      if (tango) tango.href = folder + 'Colombie - Festival de tango à Medellín.pdf';
+      // Attribution des liens mis à jour en temps réel avec l'anti-cache
+      if (triangle) triangle.href = folder + 'Colombie - Le triangle magique.pdf?v=' + antiCache;
+      if (magie) magie.href = folder + 'Colombie - La Magie réaliste.pdf?v=' + antiCache;
+      if (tango) tango.href = folder + 'Colombie - Festival de tango à Medellín.pdf?v=' + antiCache;
     }
 
-    // Exécution du script
+    // Chargement initial et ajustements d'écran
     document.addEventListener('DOMContentLoaded', setPdfLinks);
     window.addEventListener('load', setPdfLinks);
     window.addEventListener('resize', setPdfLinks);
 
-    // Le reste de tes scripts (read-more, menu, etc.)
+    // Système d'affichage "Lire plus / Moins"
     document.querySelectorAll('.read-more').forEach(btn => {
       btn.addEventListener('click', function(){
         const desc = this.closest('.card-content').querySelector('.description');
@@ -204,6 +201,7 @@
       });
     });
 
+    // Menus responsives et menus déroulants
     document.querySelector('.nav-toggle').addEventListener('click', () => 
       document.querySelector('.nav-menu').classList.toggle('active')
     );
