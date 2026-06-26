@@ -213,9 +213,7 @@
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-6">Voyages en Espagne</h2>
           
-            <div class="info-badge">
-                Tarif indicatif : transport France A/R et/ou guide en option
-            </div>
+            <div id="bandeau-orange" class="info-badge"></div>
           
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
                 <!-- La Rioja -->
@@ -232,7 +230,7 @@
                             <button class="read-more">+</button>
                             <a href="PDF/Espagne - La Rioja - Histoire Vin et Architecture.pdf" class="pdf-button" target="_blank" id="rioja-pdf-button">voir pgm</a>
                         </div>
-                        <p class="mt-2 font-bold">720 € (4 jours / 3 nuits)*</p>
+                        <p class="mt-2 font-bold">541 € (4 jours / 3 nuits)*</p>
                     </div>
                 </div>
                 <!-- Valencia -->
@@ -317,7 +315,7 @@
                             <button class="read-more">+</button>
                             <a href="PDF/Espagne - Matarraña.pdf" class="pdf-button" target="_blank" id="matarrana-pdf-button">voir pgm</a>
                         </div>
-                        <p class="mt-2 font-bold">720 € (4 jours / 3 nuits)*</p>
+                        <p class="mt-2 font-bold">574 € (4 jours / 3 nuits)*</p>
                     </div>
                 </div>
                 <!-- Bilbao -->
@@ -424,5 +422,11 @@
             });
         });
     </script>
+// ... vos codes de fenêtres redimensionnables existants ...
+        window.addEventListener('resize', updateMatarranaLinks);
+    </script>
+    
+    <!-- APPEL DU SCRIPT ICI TOUT EN BAS -->
+    <script src="bandeau.js"></script>
 </body>
 </html>
