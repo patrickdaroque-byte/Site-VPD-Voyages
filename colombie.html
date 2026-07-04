@@ -43,6 +43,14 @@
       display: inline-block;
     }
     .info-badge::before { content: "ℹ️ "; margin-right: 0.25rem; }
+    .transition-line {
+      text-align: center;
+      font-style: italic;
+      color: #4b5563;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      margin: 0 auto 2rem auto;
+    }
     @media (max-width: 640px) {
       .nav-menu {
         display: none; flex-direction: column; position: absolute; top: 80px; right: 10px;
@@ -59,6 +67,7 @@
       .card-content { min-height: 240px; }
       a[href="index.html#decouvrez"] { display: none; }
       .info-badge { font-size: 0.8rem; padding: 0.4rem 0.8rem; max-width: 95%; }
+      .transition-line { white-space: normal; font-size: 0.8rem; }
     }
   </style>
 </head>
@@ -107,6 +116,7 @@
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold text-center mb-6">Voyages en Colombie</h2>
       <div id="bandeau-orange" class="info-badge"></div>
+      <p class="transition-line">Ces exemples de séjours sont des bases de travail, ajustées ensuite à vos dates, votre rythme et vos envies.</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
         <div class="bg-white rounded shadow-lg">
           <img src="Images/Colombie Triangle magique.jpg" class="w-full h-48 object-cover rounded">

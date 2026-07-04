@@ -103,6 +103,20 @@
             content: "ℹ️ ";
             margin-right: 0.25rem;
         }
+        .transition-line {
+            text-align: center;
+            font-style: italic;
+            color: #4b5563;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            margin: 0 auto 2rem auto;
+        }
+        @media (max-width: 640px) {
+            .transition-line {
+                white-space: normal;
+                font-size: 0.8rem;
+            }
+        }
         @media (max-width: 640px) {
             .info-badge {
                 font-size: 0.8rem;
@@ -214,6 +228,8 @@
             <h2 class="text-3xl font-bold text-center mb-6">Voyages en Espagne</h2>
           
             <div id="bandeau-orange" class="info-badge"></div>
+
+            <p class="transition-line">Ces exemples de séjours sont des bases de travail, ajustées ensuite à vos dates, votre rythme et vos envies.</p>
           
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
                 <!-- La Rioja -->
@@ -358,7 +374,7 @@
     <footer class="bg-blue-600 text-white py-4">
         <div class="container mx-auto px-4 text-center">
             <p class="text-center text-white text-sm mt-2 italic">*Prix de base indicatif (hors transport France A/R). Guide exclusif et permanent en option.</p>
-            <p style="color: white; font-size: 1rem;">&copy; 2026 Patrick Daroque - Travel Planner. Tous droits réservés. | n° siret : 525343687000222 | <a href="cgv.html" style="color: white; text-decoration: underline;">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;">Mentions légales</a></p>
+            <p style="color: white; font-size: 1rem;">&copy; 2026 Patrick Daroque - Travel Planner. Tous droits réservés. | n° siret : 52534368700022 | <a href="cgv.html" style="color: white; text-decoration: underline;">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;">Mentions légales</a></p>
         </div>
     </footer>
     <script>
@@ -422,11 +438,6 @@
             });
         });
     </script>
-// ... vos codes de fenêtres redimensionnables existants ...
-        window.addEventListener('resize', updateMatarranaLinks);
-    </script>
-    
-    <!-- APPEL DU SCRIPT ICI TOUT EN BAS -->
     <script src="bandeau.js"></script>
 </body>
 </html>
