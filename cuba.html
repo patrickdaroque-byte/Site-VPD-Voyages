@@ -20,7 +20,7 @@
     }
     .read-more:hover { background: #1e40af; cursor: pointer; }
     .pdf-button {
-      padding: 0 10px; height: 40px; border-radius: 20px; background: #16a34a; color: white;
+      padding: 0 12px; height: 40px; border-radius: 20px; background: #16a34a; color: white;
       display: flex; align-items: center; justify-content: center; font-size: 0.75rem; text-align: center;
       text-decoration: none; white-space: nowrap;
     }
@@ -48,7 +48,6 @@
       text-decoration: underline;
       cursor: pointer;
     }
-    .desktop-only { }
     .info-badge {
       background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
       color: white;
@@ -194,7 +193,8 @@
         
         <!-- Voyage 2 - Festival de Tango à La Havane -->
         <div class="bg-white rounded shadow-lg">
-          <a href="PDF/Cuba - Festival de Tango à La Havane.pdf" target="_blank" class="cursor-pointer block pdf-link" id="cuba-tango-image-link">
+          <!-- Par défaut, pointe vers la page HTML sur mobile -->
+          <a href="Cuba - Festival de Tango à La Havane.html" class="cursor-pointer block pdf-link" id="cuba-tango-image-link">
             <img src="Images/cuba tango.jpg" alt="Cuba - Festival de Tango à La Havane" class="w-full h-48 object-cover rounded image-check">
           </a>
           <div class="p-4 card-content">
@@ -202,7 +202,8 @@
             <p class="text-gray-600 mt-2 description">Du 23 au 25 octobre 2026, vivez le Festival de Tango à La Havane. Découvrez spectacles, ateliers avec maestros et milongas sous les étoiles. Explorez les quartiers historiques vibrants de culture cubaine. Un voyage mêlant l'élégance du tango et la chaleur de Cuba pour une expérience inoubliables.</p>
             <div class="flex justify-center space-x-3 mt-2">
               <button class="read-more" aria-label="Lire plus">+</button>
-              <a href="PDF/Cuba - Festival de Tango à La Havane.pdf" class="pdf-button" target="_blank" rel="noopener" id="cuba-tango-pdf-button">voir pgm</a>
+              <!-- Par défaut, pointe vers la page HTML sur mobile -->
+              <a href="Cuba - Festival de Tango à La Havane.html" class="pdf-button" id="cuba-tango-pdf-button">voir pgm</a>
               <div class="photo-button-container ml-8">
                 <a href="https://www.youtube.com/watch?v=OXXh9TQV5ps" class="photo-button" target="_blank" rel="noopener">
                   <img src="Images/emoji photographe.jpeg" alt="Voir photos" class="image-check">
@@ -309,68 +310,53 @@
       });
     });
     
-    // Script de bascule dynamique
+    // Bascule dynamique des liens
     function updateLinks() {
       const isMobile = window.innerWidth <= 640;
-      const links = {
+
+      // Gestion spécifique Tango
+      const tangoImg = document.getElementById('cuba-tango-image-link');
+      const tangoBtn = document.getElementById('cuba-tango-pdf-button');
+
+      if (isMobile) {
+        // SUR MOBILE : Redirection stricte vers la page HTML
+        if (tangoImg) { tangoImg.href = 'Cuba - Festival de Tango à La Havane.html'; tangoImg.target = '_self'; }
+        if (tangoBtn) { tangoBtn.href = 'Cuba - Festival de Tango à La Havane.html'; tangoBtn.target = '_self'; }
+      } else {
+        // SUR PC : Ouverture du PDF
+        if (tangoImg) { tangoImg.href = 'PDF/Cuba - Festival de Tango à La Havane.pdf'; tangoImg.target = '_blank'; }
+        if (tangoBtn) { tangoBtn.href = 'PDF/Cuba - Festival de Tango à La Havane.pdf'; tangoBtn.target = '_blank'; }
+      }
+
+      // Gestion des autres cartes
+      const otherLinks = {
         'cuba-decouverte': 'Cuba - Découverte, patrimoine et traditions.pdf',
-        'cuba-tango': 'Cuba - Festival de Tango à La Havane.pdf',
         'cuba-velo': 'Cuba - Traversée à vélo.pdf',
         'cuba-randonnee': 'Cuba - Randonnée Vinales Trinidad.pdf',
         'cuba-stagephoto': 'Cuba - Stage photo.pdf'
       };
-      
-      Object.keys(links).forEach(id => {
-        let path = '';
-        let target = '_blank';
 
-        if (id === 'cuba-tango' && isMobile) {
-          path = 'Cuba - Festival de Tango à La Havane.html';
-          target = '_self';
-        } else {
-          const folder = isMobile ? 'PDF_mobile' : 'PDF';
-          path = `${folder}/${links[id]}`;
-        }
-        
-        const imageLink = document.getElementById(`${id}-image-link`);
-        const pdfButton = document.getElementById(`${id}-pdf-button`);
-        
-        if (imageLink) {
-          imageLink.href = path;
-          imageLink.target = target;
-        }
-        if (pdfButton) {
-          pdfButton.href = path;
-          pdfButton.target = target;
-          
-          // Ajuste le texte du bouton si c'est la page web
-          if (id === 'cuba-tango' && isMobile) {
-            pdfButton.textContent = 'voir pgm';
-          } else {
-            pdfButton.textContent = 'voir pgm';
-          }
-        }
+      Object.keys(otherLinks).forEach(id => {
+        const folder = isMobile ? 'PDF_mobile' : 'PDF';
+        const path = `${folder}/${otherLinks[id]}`;
+        const img = document.getElementById(`${id}-image-link`);
+        const btn = document.getElementById(`${id}-pdf-button`);
+        if (img) img.href = path;
+        if (btn) btn.href = path;
       });
     }
     
-    window.addEventListener('DOMContentLoaded', updateLinks);
-    window.addEventListener('load', updateLinks);
+    // Exécution immédiate
+    updateLinks();
     window.addEventListener('resize', updateLinks);
     
-    // Fermer les menus mobiles lors d'un clic sur un lien
+    // Fermer les menus mobiles
     document.querySelectorAll('.nav-menu a, .dropdown-menu a').forEach(anchor => {
       anchor.addEventListener('click', function () {
         if (window.innerWidth <= 640) {
           document.querySelector('.nav-menu')?.classList.remove('active');
           document.querySelector('.dropdown-menu')?.classList.remove('active');
         }
-      });
-    });
-    
-    // Gestion des images manquantes
-    document.querySelectorAll('.image-check').forEach(img => {
-      img.addEventListener('error', function () {
-        console.error('Erreur : Image manquante -', this.alt, ':', this.src);
       });
     });
   </script>
