@@ -20,17 +20,11 @@
     }
     .read-more:hover { background: #1e40af; cursor: pointer; }
     .pdf-button {
-      width: 40px; height: 40px; border-radius: 50%; background: #16a34a; color: white;
+      padding: 0 10px; height: 40px; border-radius: 20px; background: #16a34a; color: white;
       display: flex; align-items: center; justify-content: center; font-size: 0.75rem; text-align: center;
-      text-decoration: none;
+      text-decoration: none; white-space: nowrap;
     }
     .pdf-button:hover { background: #15803d; }
-    .pdf-button-mobile {
-      width: 40px; height: 40px; border-radius: 50%; background: #16a34a; color: white;
-      display: flex; align-items: center; justify-content: center; font-size: 0.75rem; text-align: center;
-      text-decoration: none;
-    }
-    .pdf-button-mobile:hover { background: #15803d; }
     .photo-button {
       width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
       overflow: hidden; position: relative;
@@ -104,12 +98,10 @@
         z-index: 50;
       }
       .read-more { width: 32px; height: 32px; font-size: 0.65rem; }
-      .pdf-button { width: 32px; height: 32px; font-size: 0.6rem; }
-      .pdf-button-mobile { width: 32px; height: 32px; font-size: 0.6rem; }
+      .pdf-button { height: 32px; font-size: 0.65rem; padding: 0 8px; }
       .photo-button { width: 60px; height: 60px; }
       .card-content { min-height: 240px; }
       .text { font-size: 10px; }
-      .pdf-button-mobile { display: none; }
       .desktop-only { display: none; }
       .info-badge {
         font-size: 0.8rem;
@@ -117,9 +109,6 @@
         max-width: 95%;
       }
       .transition-line { white-space: normal; font-size: 0.8rem; }
-    }
-    @media (min-width: 641px) {
-      .pdf-button-mobile { display: none; }
     }
   </style>
 </head>
@@ -192,12 +181,11 @@
             <div class="flex justify-center space-x-3 mt-2">
               <button class="read-more" aria-label="Lire plus">+</button>
               <a href="PDF/Cuba - Découverte, patrimoine et traditions.pdf" class="pdf-button" target="_blank" rel="noopener" id="cuba-decouverte-pdf-button">voir pgm</a>
-              <a href="PDF/Cuba - Découverte, patrimoine et traditions.pdf" class="pdf-button-mobile" target="_blank" rel="noopener" id="cuba-decouverte-pdf-button-mobile"></a>
               <div class="photo-button-container ml-8">
-                  <a href="https://www.youtube.com/watch?v=ntxbIsLMolg"   class="photo-button" target="_blank" rel="noopener">
+                  <a href="https://www.youtube.com/watch?v=ntxbIsLMolg" class="photo-button" target="_blank" rel="noopener">
                   <img src="Images/emoji photographe.jpeg" alt="Voir photos" class="image-check">
                 </a>
-                  <a href="https://www.youtube.com/watch?v=ntxbIsLMolg"   class="text text-link" target="_blank" rel="noopener">Voir photos</a>
+                  <a href="https://www.youtube.com/watch?v=ntxbIsLMolg" class="text text-link" target="_blank" rel="noopener">Voir photos</a>
               </div>
             </div>
             <p class="text-gray-600 mt-4">1 290 € (17 jours / 16 nuits)*</p>
@@ -215,7 +203,6 @@
             <div class="flex justify-center space-x-3 mt-2">
               <button class="read-more" aria-label="Lire plus">+</button>
               <a href="PDF/Cuba - Festival de Tango à La Havane.pdf" class="pdf-button" target="_blank" rel="noopener" id="cuba-tango-pdf-button">voir pgm</a>
-              <a href="PDF/Cuba - Festival de Tango à La Havane.pdf" class="pdf-button-mobile" target="_blank" rel="noopener" id="cuba-tango-pdf-button-mobile"></a>
               <div class="photo-button-container ml-8">
                 <a href="https://www.youtube.com/watch?v=OXXh9TQV5ps" class="photo-button" target="_blank" rel="noopener">
                   <img src="Images/emoji photographe.jpeg" alt="Voir photos" class="image-check">
@@ -238,7 +225,6 @@
             <div class="flex justify-center space-x-3 mt-2">
               <button class="read-more" aria-label="Lire plus">+</button>
               <a href="PDF/Cuba - Traversée à vélo.pdf" class="pdf-button" target="_blank" rel="noopener" id="cuba-velo-pdf-button">voir pgm</a>
-              <a href="PDF/Cuba - Traversée à vélo.pdf" class="pdf-button-mobile" target="_blank" rel="noopener" id="cuba-velo-pdf-button-mobile"></a>
             </div>
             <p class="text-red-600 mt-4 font-bold text-center">Renseignements sur demande</p>
           </div>
@@ -255,7 +241,6 @@
             <div class="flex justify-center space-x-3 mt-2">
               <button class="read-more" aria-label="Lire plus">+</button>
               <a href="PDF/Cuba - Randonnée Vinales Trinidad.pdf" class="pdf-button" target="_blank" rel="noopener" id="cuba-randonnee-pdf-button">voir pgm</a>
-              <a href="PDF/Cuba - Randonnée Vinales Trinidad.pdf" class="pdf-button-mobile" target="_blank" rel="noopener" id="cuba-randonnee-pdf-button-mobile"></a>
             </div>
             <p class="text-red-600 mt-4 font-bold text-center">Renseignements sur demande</p>
           </div>
@@ -272,12 +257,11 @@
             <div class="flex justify-center space-x-3 mt-2">
               <button class="read-more" aria-label="Lire plus">+</button>
               <a href="PDF/Cuba - Stage photo.pdf" class="pdf-button" target="_blank" rel="noopener" id="cuba-stagephoto-pdf-button">voir pgm</a>
-              <a href="PDF/Cuba - Stage photo.pdf" class="pdf-button-mobile" target="_blank" rel="noopener" id="cuba-stagephoto-pdf-button-mobile"></a>
               <div class="photo-button-container ml-8">
-                  <a href="https://www.youtube.com/watch?v=ntxbIsLMolg"   class="photo-button" target="_blank" rel="noopener">
+                  <a href="https://www.youtube.com/watch?v=ntxbIsLMolg" class="photo-button" target="_blank" rel="noopener">
                   <img src="Images/emoji photographe.jpeg" alt="Voir photos" class="image-check">
                 </a>
-                  <a href="https://www.youtube.com/watch?v=ntxbIsLMolg"   class="text text-link" target="_blank" rel="noopener">Voir photos</a>
+                  <a href="https://www.youtube.com/watch?v=ntxbIsLMolg" class="text text-link" target="_blank" rel="noopener">Voir photos</a>
               </div>
             </div>
             <p class="text-red-600 mt-4 font-bold text-center">Renseignements sur demande</p>
@@ -297,10 +281,6 @@
   </footer>
   
   <script>
-    window.addEventListener('load', function () {
-      console.log('Page cuba.html chargée avec succès');
-    });
-    
     // Toggle mobile menu
     const navToggle = document.querySelector('.nav-toggle');
     if (navToggle) {
@@ -329,7 +309,7 @@
       });
     });
     
-    // Script pour basculer les liens mobiles/desktop
+    // Script de bascule dynamique
     function updateLinks() {
       const isMobile = window.innerWidth <= 640;
       const links = {
@@ -346,7 +326,7 @@
 
         if (id === 'cuba-tango' && isMobile) {
           path = 'Cuba - Festival de Tango à La Havane.html';
-          target = '_self'; // Ouvre dans la même fenêtre sur mobile
+          target = '_self';
         } else {
           const folder = isMobile ? 'PDF_mobile' : 'PDF';
           path = `${folder}/${links[id]}`;
@@ -354,7 +334,6 @@
         
         const imageLink = document.getElementById(`${id}-image-link`);
         const pdfButton = document.getElementById(`${id}-pdf-button`);
-        const pdfButtonMobile = document.getElementById(`${id}-pdf-button-mobile`);
         
         if (imageLink) {
           imageLink.href = path;
@@ -363,14 +342,18 @@
         if (pdfButton) {
           pdfButton.href = path;
           pdfButton.target = target;
-        }
-        if (pdfButtonMobile) {
-          pdfButtonMobile.href = path;
-          pdfButtonMobile.target = target;
+          
+          // Ajuste le texte du bouton si c'est la page web
+          if (id === 'cuba-tango' && isMobile) {
+            pdfButton.textContent = 'voir pgm';
+          } else {
+            pdfButton.textContent = 'voir pgm';
+          }
         }
       });
     }
     
+    window.addEventListener('DOMContentLoaded', updateLinks);
     window.addEventListener('load', updateLinks);
     window.addEventListener('resize', updateLinks);
     
