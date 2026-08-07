@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cuba - Festival de Tango &agrave; La Havane</title>
+<style>
+:root{
+  --bg:#FFFFFF;
+  --cream:#F3ECE2;
+  --paleteal:#E7EFEE;
+  --text:#2A211C;
+  --soft:#6B5E54;
+  --accent:#C1502E;
+  --accentdark:#9C2B2B;
+  --teal:#0F5C56;
+  --gold:#C9A24B;
+  --font-head:Georgia,'Liberation Serif','Times New Roman',serif;
+  --font-body:Arial,'Liberation Sans',Helvetica,sans-serif;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:var(--font-body);
+  color:var(--text);
+  background:var(--bg);
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.section{
+  padding:26px 22px 20px 22px;
+  page-break-before:always;
+  position:relative;
+  min-height: 90vh;
+}
+.section:first-child{page-break-before:auto;}
+.eyebrow{
+  font-family:var(--font-body);
+  font-weight:bold;
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin:0 0 6px 0;
+}
+h1.title{
+  font-family:var(--font-head);
+  font-weight:normal;
+  font-size:26px;
+  line-height:1.2;
+  color:var(--text);
+  margin:0 0 14px 0;
+}
+p.lead{
+  font-size:15.5px;
+  color:var(--soft);
+  margin:0 0 18px 0;
+}
+.hero{
+  width:100%;
+  border-radius:4px;
+  display:block;
+  margin:0 0 16px 0;
+}
+.photo-row{
+  display:flex;
+  gap:8px;
+  margin:0 0 14px 0;
+}
+.photo-row img{
+  width:100%;
+  border-radius:3px;
+  display:block;
+  object-fit:cover;
+}
+.photo-row.two img{height:150px;}
+.photo-row.three img{height:120px;}
+.photo-row.four img{height:105px;}
+.caption{
+  font-family:var(--font-head);
+  font-style:italic;
+  font-size:13.5px;
+  color:var(--soft);
+  margin:0 0 16px 0;
+  text-align:center;
+}
+.item{margin:0 0 16px 0;}
+.item .item-title{
+  font-family:var(--font-head);
+  font-size:17px;
+  color:var(--accent);
+  margin:0 0 3px 0;
+}
+.item .item-desc{
+  font-size:14.5px;
+  color:var(--text);
+}
+.card{
+  background:var(--cream);
+  border-radius:6px;
+  padding:14px 16px;
+  margin:0 0 14px 0;
+}
+.card.teal{background:var(--paleteal);}
+.card .card-title{
+  font-family:var(--font-head);
+  font-size:16px;
+  color:var(--teal);
+  margin:0 0 4px 0;
+  font-weight:bold;
+}
+.card .card-body{font-size:14.5px;}
+ul.bullets{margin:6px 0 0 0;padding-left:18px;}
+ul.bullets li{margin-bottom:6px;font-size:14.5px;}
+.stat-row{
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+  padding:10px 0;
+  border-bottom:1px solid var(--paleteal);
+}
+.stat-row .stat-num{
+  font-family:var(--font-head);
+  font-size:22px;
+  color:var(--accent);
+  min-width:82px;
+}
+.stat-row .stat-label{font-size:14px;color:var(--soft);}
+.day{
+  display:flex;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid var(--paleteal);
+}
+.day:last-child{border-bottom:none;}
+.day .day-num{
+  font-family:var(--font-head);
+  font-size:14px;
+  font-weight:bold;
+  color:#FFFFFF;
+  background:var(--accent);
+  border-radius:50%;
+  width:38px;height:38px;
+  min-width:38px;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;
+  line-height:1.1;
+}
+.day .day-body{font-size:14.5px;padding-top:3px;}
+.day .day-body .day-title{font-weight:bold;color:var(--text);display:block;margin-bottom:2px;}
+.two-col{display:flex;gap:18px;margin-top:10px;}
+.two-col .col{flex:1;}
+.subhead{
+  font-family:var(--font-head);
+  font-size:15px;
+  color:var(--teal);
+  font-weight:bold;
+  margin:12px 0 4px 0;
+}
+.pill-list li{list-style:none;padding-left:16px;position:relative;margin-bottom:8px;font-size:14px;}
+.pill-list.do li:before{content:"✓";color:var(--teal);position:absolute;left:0;font-weight:bold;}
+.pill-list.dont li:before{content:"–";color:var(--accentdark);position:absolute;left:0;font-weight:bold;}
+.footer-bar{
+  margin-top:24px;
+  padding-top:10px;
+  border-top:1px solid var(--gold);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.footer-bar .brand{
+  font-size:9.5px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--soft);
+  font-weight:bold;
+}
+.footer-bar .pagenum{
+  font-size:9.5px;
+  color:var(--soft);
+}
+.watermark{
+  position:absolute;
+  right:14px;
+  bottom:44px;
+  width:34px;
+  opacity:.55;
+}
+/* Cover */
+.cover-hero{width:100%;display:block;}
+.cover-body{padding:22px;}
+.cover-eyebrow{
+  font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold);font-weight:bold;margin-bottom:6px;
+}
+.cover-title{
+  font-family:var(--font-head);
+  font-size:40px;color:var(--text);margin:0;line-height:1;
+}
+.cover-sub{
+  font-family:var(--font-head);
+  font-style:italic;
+  font-size:20px;color:var(--accent);margin:4px 0 10px 0;
+}
+.cover-dates{
+  font-size:15px;color:var(--soft);margin-bottom:16px;
+  font-weight:bold;
+}
+.cover-intro{font-size:14.5px;color:var(--text);margin-bottom:8px;}
+.cover-list{margin:6px 0 22px 0;padding-left:18px;}
+.cover-list li{font-size:14.5px;margin-bottom:6px;}
+.cover-logo-row{
+  display:flex;align-items:center;gap:10px;
+  border-top:1px solid var(--paleteal);
+  padding-top:14px;
+}
+.cover-logo-row img{width:40px;height:40px;}
+.cover-logo-row .site{font-size:13px;color:var(--teal);font-weight:bold;}
+/* Back cover */
+.back{
+  text-align:center;
+  padding:60px 24px;
+}
+.back img.back-photo{width:100%;border-radius:4px;margin-bottom:22px;}
+.back .back-msg{
+  font-family:var(--font-head);
+  font-size:22px;
+  color:var(--text);
+  line-height:1.35;
+  margin-bottom:26px;
+}
+.back img.back-logo{width:56px;height:56px;margin-bottom:8px;}
+.back .site{font-size:13px;color:var(--teal);font-weight:bold;}
+
+/* Loading overlay for mobile latency */
+#loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+#loading-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.loading-clock {
+  width: 64px;
+  height: 64px;
+  border: 4px solid #E7EFEE;
+  border-top: 4px solid #C1502E;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.loading-msg {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: #2A211C;
+  text-align: center;
+  max-width: 280px;
+  line-height: 1.4;
+  padding: 0 16px;
+}
+.loading-msg strong {
+  color: #C1502E;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+</style>
+</head>
+<body>
+
+<div id="loading-overlay">
+  <div class="loading-clock"></div>
+  <div class="loading-msg">
+    <strong>Chargement en cours…</strong>
+    Veuillez patienter quelques instants.<br>
+    Le document contient de nombreuses images.
+  </div>
+</div>
+
+
+<div class="section" style="padding:0;">
+  <img class="cover-hero" src="images/photo01.jpg"/>
+  <div class="cover-body">
+    <div class="cover-eyebrow">Idée voyage en petit groupe !</div>
+    <h1 class="cover-title">Cuba</h1>
+    <div class="cover-sub">Tango à La Havane</div>
+    <div class="cover-dates">19 octobre&nbsp;–&nbsp;4 novembre 2026</div>
+    <p class="cover-intro">17 jours au cœur des Caraïbes :</p>
+    <ul class="cover-list">
+      <li>le 7<sup>ème</sup> Festival de Tango de La Havane</li>
+      <li>la Vieille Havane</li>
+      <li>la Baie des Cochons</li>
+      <li>Trinidad et la Vallée des Ingenios</li>
+      <li>les Cours de salsa</li>
+    </ul>
+    <div class="cover-logo-row">
+      <img src="images/photo02.png"/>
+      <div class="site">vpdvoyages.com</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">Présentation</div>
+  <h1 class="title">Le voyage en un coup d'œil</h1>
+  <p class="lead">Du 19 octobre au 4 novembre 2026, vibrez au rythme du tango lors du 7&egrave;me Festival de Tango de La Havane &mdash; un &eacute;v&eacute;nement unique m&ecirc;lant passion et culture cubaine &mdash; puis prolongez l'aventure &agrave; la d&eacute;couverte des tr&eacute;sors de l'&icirc;le.</p>
+  <img class="hero" src="images/photo03.jpg"/>
+  <div class="item">
+    <div class="item-title">La Havane</div>
+    <div class="item-desc">La Vieille ville coloniale, le Vedado</div>
+  </div>
+  <div class="item">
+    <div class="item-title">Le Festival de Tango</div>
+    <div class="item-desc">Spectacles, cours avec des maestros, milongas sous les &eacute;toiles</div>
+  </div>
+  <div class="photo-row two">
+    <img src="images/photo04.jpg"/>
+    <img src="images/photo05.jpg"/>
+  </div>
+  <div class="item">
+    <div class="item-title">Trinidad</div>
+    <div class="item-desc">Joyau colonial class&eacute; &agrave; l'UNESCO, ruelles pav&eacute;es, Manaca Iznaga</div>
+  </div>
+  <div class="item">
+    <div class="item-title">La Baie des Cochons</div>
+    <div class="item-desc">Playa Larga et la Ci&eacute;naga de Zapata</div>
+  </div>
+  <img class="watermark" src="images/photo06.png"/>
+  <div class="footer-bar">
+      <div class="brand">Cuba · Festival de Tango</div>
+      <div class="pagenum">01</div>
+    </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">Avant le d&eacute;part</div>
+  <h1 class="title">Passeport, carte de tourisme &amp; D'Viajeros</h1>
+  <div class="item">
+    <div class="item-title">Passeport</div>
+    <div class="item-desc">Valable 6 mois apr&egrave;s la date de retour. Pr&eacute;voir une num&eacute;risation et une photocopie &agrave; conserver s&eacute;par&eacute;ment.</div>
+  </div>
+  <div class="item">
+    <div class="item-title">Carte de tourisme (visa)</div>
+    <div class="item-desc">Obligatoire pour tout s&eacute;jour &agrave; Cuba, &agrave; obtenir avant le d&eacute;part.</div>
+  </div>
+  <div class="item">
+    <div class="item-title">Formulaire &laquo;&nbsp;D'Viajeros&nbsp;&raquo;</div>
+    <div class="item-desc">D&eacute;claration num&eacute;rique de voyageur &agrave; compl&eacute;ter avant l'arriv&eacute;e sur le territoire cubain.</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Assurance sant&eacute; &ndash; obligatoire</div>
+    <div class="card-body">
+      Une attestation d'assistance associ&eacute;e &agrave; votre carte Visa est requise&nbsp;: www.votre-assistance.fr<br/>
+      Saisir les 9 premiers chiffres de la carte bancaire pour g&eacute;n&eacute;rer l'attestation (Mondial Assistance). Assistance 24h/24 &ndash; 7j/7 pendant toute la dur&eacute;e du s&eacute;jour.
+      <ul class="bullets">
+        <li>Frais m&eacute;dicaux&nbsp;: 155&nbsp;000&nbsp;&euro;</li>
+        <li>Rapatriement / transport sanitaire</li>
+      </ul>
+    </div>
+  </div>
+  <img class="watermark" src="images/photo07.png"/>
+  <div class="footer-bar">
+      <div class="brand">Cuba · Festival de Tango</div>
+      <div class="pagenum">02</div>
+    </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">Le pays</div>
+  <h1 class="title">Cuba, perle des Antilles</h1>
+  <img class="hero" src="images/photo08.jpg"/>
+  <div class="stat-row"><div class="stat-num">1 250 km</div><div class="stat-label">d'Ouest en Est</div></div><div class="stat-row"><div class="stat-num">200 km</div><div class="stat-label">du Nord au Sud</div></div><div class="stat-row"><div class="stat-num">148 km</div><div class="stat-label">au sud de Key West (Floride)</div></div><div class="stat-row"><div class="stat-num">1 600</div><div class="stat-label">&laquo;&nbsp;cayos&nbsp;&raquo; tout autour de l'&icirc;le</div></div><div class="stat-row"><div class="stat-num">9,5 M</div><div class="stat-label">d'habitants, dont 1,7 M &agrave; La Havane</div></div>
+  <img class="watermark" src="images/photo09.png"/>
+  <div class="footer-bar">
+      <div class="brand">Cuba · Festival de Tango</div>
+      <div class="pagenum">03</div>
+    </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">La Havane</div>
+  <h1 class="title">La Vieille Havane, quartier historique</h1>
+  <p class="lead">Ruelles pav&eacute;es, fa&ccedil;ades coloniales et places anim&eacute;es&nbsp;: le c&oelig;ur battant de la capitale, class&eacute; au patrimoine mondial de l'UNESCO.</p>
+  <div class="photo-row three">
+    <img src="images/photo10.jpg"/>
+    <img src="images/photo11.jpg"/>
+    <img src="images/photo12.jpg"/>
+  </div>
+  <p class="caption">&laquo;&nbsp;&Ecirc;tre Havanais, c'est vivre La Havane&nbsp;!&nbsp;&raquo; &mdash; Le Capitole, le Parc Central, le Palais des Capitaines G&eacute;n&eacute;raux et la Place d'Armes rythment la d&eacute;couverte du centre historique.</p>
+  <img class="watermark" src="images/photo13.png"/>
+  <div class="footer-bar">
+      <div class="brand">Cuba · Festival de Tango</div>
+      <div class="pagenum">04</div>
+    </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">La Havane</div>
+  <h1 class="title">Le Vedado</h1>
+  <p class="lead">Quartier r&eacute;sidentiel et culturel, entre avenues arbor&eacute;es, mus&eacute;es et th&eacute;&acirc;tres&nbsp;: le Mus&eacute;e Napol&eacute;onien, le Mus&eacute;e des Arts D&eacute;coratifs et l'effervescence de la 23&egrave;me avenue.</p>
+  <div class="photo-row four">
+    <img src="images/photo14.jpg"/>
+    <img src="images/photo15.jpg"/>
+    <img src="images/photo16.jpg"/>
+    <img src="images/photo17.jpg"/>
+  </div>
+  <img class="watermark" src="images/photo18.png"/>
+  <div class="footer-bar">
+      <div class="brand">Cuba · Festival de Tango</div>
+      <div class="pagenum">05</div>
+    </div>
+</div>
+
+<div class="section" style="padding-top:0;">
+  <img class="hero" style="margin-top:0;" src="images/photo19.jpg"/>
+  <div class="eyebrow">7&egrave;me Festival de Tango de La Havane</div>
+  <h1 class="title">TangueArte</h1>
+  <p class="lead">Spectacles de tango-th&eacute;&acirc;tre, tango-fusion et tango v&eacute;lo, milongas en plein air, concours &laquo;&nbsp;Isla Tango&nbsp;&raquo;, feria d'artisans et musique en direct&nbsp;: trois jours d&eacute;di&eacute;s &agrave; la passion argentine, revisit&eacute;e dans une ambiance cubaine.</p>
+  <div class="card teal">
+    <div class="card-title">Au programme</div>
+    <ul class="bullets">
+      <li>Initiation &amp; techniques de base</li>
+      <li>Cours avec TangueArte, en amont du festival</li>
+      <li>Rueda de Milonga</li>
+      <li>Tango-th&eacute;rapie</li>
+    </ul>
+  </div>
+  <div class="item">
+    <div class="item-title">23 au 25 Oct. 2026</div>
+    <div class="item-desc">El Ojo del Cicl&oacute;n dans la Vieille Havane&hellip; le C&oelig;ur battant du festival&nbsp;!</div>
+  </div>
+  <img class="watermark" src="images/photo20.png"/>
+  <div class="footer-bar">
+      <div class="brand">Cuba · Festival de Tango</div>
+      <div class="pagenum">06</div>
+    </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">Immersion culturelle</div>
+  <h1 class="title">Danses et musique cubaines</h1>
+  <div class="photo-row two">
+    <img src="images/photo21.jpg" style="height:220px;"/>
+    <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+      <img src="images/photo22.jpg" style="height:106px;width:100%;object-fit:cover;border-radius:3px;"/>
+      <div style="display:flex;gap:8px;">
+        <img src="images/photo23.jpg" style="height:106px;width:100%;object-fit:cover;border-radius:3px;"/>
+        <img src="images/photo24.jpg" style="height:106px;width:100%;object-fit:cover;border-radius:3px;"/>
+      </div>
+    </div>
+  </div>
+  <p class="caption">Salsa, chachacha, rumba&hellip; &agrave; la d&eacute;couverte des danses cubaines</p>
+  <img class="watermark" src="images/photo25.png"/>
+  <div class="footer-bar">
+      <div class="brand">Cuba · Festival de Tango</div>
+      <div class="pagenum">08</div>
+    </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">Rencontres &amp; traditions</div>
+  <h1 class="title">Hemingway et la Santer&iacute;a</h1>
+  <div class="photo-row two">
+    <img src="images/photo26.jpg" style="height:210px;"/>
+    <img src="images/photo27.jpg" style="height:210px;"/>
+  </div>
+  <div class="item">
+    <div class="item-title">Hemingway &agrave; La Havane</div>
+    <div class="item-desc">Sur les traces de l'&eacute;crivain, entre la Bodeguita del Medio et sa villa Finca Vig&iacute;a.</div>
+  </div>
+  <div class="photo-row two" style="margin-top:14px;">
+    <img src="images/photo28.jpg" style="height:210px;"/>
+    <img src="images/photo29.jpg" style="height:210px;"/>
+  </div>
+  <div class="item">
+    <div class="item-title">La Santer&iacute;a, syncr&eacute;tisme religieux</div>
+    <div class="item-desc">Immersion dans une v&eacute;ritable c&eacute;r&eacute;monie religieuse, &agrave; la rencontre des traditions afro-cubaines.</div>
+  </div>
+  <img class="watermark" src="images/photo30.png"/>
+  <div class="footer-bar">
+      <div class="brand">Cuba · Festival de Tango</div>
+      <div class="pagenum">09</div>
+    </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">Nature &amp; littoral</div>
+  <h1 class="title">La Baie des Cochons et les Playas del Este</h1>
+  <div class="photo-row four">
+    <img src="images/photo31.jpg"/>
+    <img src="images/photo32.jpg"/>
+    <img src="images/photo33.jpg"/>
+    <img src="images/photo34.jpg"/>
+  </div>
+  <div class="item">
+    <div class="item-title">Playa Larga &middot; Ci&eacute;naga de Zapata &middot; Playa Santa Mar&iacute;a</div>
+    <div class="item-desc">Eaux turquoise, mangroves pr&eacute;serv&eacute;es et farniente&nbsp;: deux visages de la c&ocirc;te cubaine, entre plong&eacute;e dans l'histoire de la Baie des Cochons et d&eacute;tente baln&eacute;aire sur les plages de l'Est.</div>
+  </div>
+  <img class="watermark" src="images/photo35.png"/>
+  <div class="footer-bar">
+      <div class="brand">Cuba · Festival de Tango</div>
+      <div class="pagenum">10</div>
+    </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">Patrimoine mondial</div>
+  <h1 class="title">Trinidad, joyau de l'UNESCO</h1>
+  <p class="lead">Ruelles pav&eacute;es, fa&ccedil;ades pastel et ambiance intemporelle&nbsp;: la ville coloniale la mieux pr&eacute;serv&eacute;e de Cuba, entre Palacio Cantero et Casa de la Trova.</p>
+  <div class="photo-row three">
+    <img src="images/photo36.jpg"/>
+    <img src="images/photo37.jpg"/>
+    <img src="images/photo38.jpg"/>
+  </div>
+  <img class="watermark" src="images/photo39.png"/>
+  <div class="footer-bar">
+      <div class="brand">Cuba · Festival de Tango</div>
+      <div class="pagenum">11</div>
+    </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">Sur la route</div>
+  <h1 class="title">Transferts en voiture am&eacute;ricaine 1950</h1>
+  <p class="lead">Le charme r&eacute;tro des voitures am&eacute;ricaines pour sillonner l'&icirc;le, entre La Havane et Trinidad.</p>
+  <div class="photo-row three">
+    <img src="images/photo40.jpg" style="height:200px;"/>
+    <img src="images/photo41.jpg" style="height:200px;"/>
+    <img src="images/photo42.jpg" style="height:200px;"/>
+  </div>
+  <img class="watermark" src="images/photo43.png"/>
+  <div class="footer-bar">
+      <div class="brand">Cuba · Festival de Tango</div>
+      <div class="pagenum">12</div>
+    </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">Itin&eacute;raire</div>
+  <h1 class="title">Programme d&eacute;taill&eacute; &ndash; 1&egrave;re semaine</h1>
+  <div class="day"><div class="day-num">2</div><div class="day-body"><span class="day-title">Jour 2</span>Formalit&eacute;s</div></div><div class="day"><div class="day-num">3</div><div class="day-body"><span class="day-title">Jour 3</span>Le Vedado &ndash; d&eacute;couverte du quartier<br/><span style="color:var(--soft);">Vieille Havane, Capitole, Parc Central, Palais des Capitaines G&eacute;n&eacute;raux, Place d'Armes</span></div></div><div class="day"><div class="day-num">4</div><div class="day-body"><span class="day-title">Jour 4</span>Cours de salsa (2h)<br/><span style="color:var(--soft);">Plages de l'Est &ndash; Tarar&aacute; / Santa Mar&iacute;a</span></div></div><div class="day"><div class="day-num">5</div><div class="day-body"><span class="day-title">Jour 5</span>Visite panoramique &mdash; Place de la R&eacute;volution, Bois de La Havane, 5&egrave;me avenue<br/><span style="color:var(--soft);">D&icirc;ner &ndash; Restaurant El Bodeg&oacute;n</span></div></div><div class="day"><div class="day-num">6</div><div class="day-body"><span class="day-title">Jour 6</span>TangueArte &mdash; 7&egrave;me Festival de Tango<br/><span style="color:var(--soft);">Cours de salsa (2h/j)</span></div></div><div class="day"><div class="day-num">7</div><div class="day-body"><span class="day-title">Jour 7</span>Festival &ndash; cours &amp; milongas (2h/j)*</div></div><div class="day"><div class="day-num">8</div><div class="day-body"><span class="day-title">Jour 8</span>Inauguration &amp; spectacle artistique &mdash; Ojo del Cicl&oacute;n<br/><span style="color:var(--soft);">Temps libre</span></div></div>
+  <p style="font-size:12px;color:var(--soft);font-style:italic;margin-top:10px;">*Programme indicatif, ajust&eacute; selon le calendrier d&eacute;finitif communiqu&eacute; par le festival.</p>
+  <img class="watermark" src="images/photo44.png"/>
+  <div class="footer-bar">
+      <div class="brand">Cuba · Festival de Tango</div>
+      <div class="pagenum">13</div>
+    </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">Itin&eacute;raire</div>
+  <h1 class="title">Programme d&eacute;taill&eacute; &ndash; 2&egrave;me semaine</h1>
+  <div class="day"><div class="day-num">9</div><div class="day-body"><span class="day-title">Jour 9</span>Route vers la Ci&eacute;naga de Zapata<br/><span style="color:var(--soft);">Piscine naturelle Caleta Buena</span></div></div><div class="day"><div class="day-num">10</div><div class="day-body"><span class="day-title">Jour 10</span>Cienfuegos &ndash; Punta Gorda<br/><span style="color:var(--soft);">Playa Larga &middot; Baie des Cochons</span></div></div><div class="day"><div class="day-num">11</div><div class="day-body"><span class="day-title">Jour 11</span>Vall&eacute;e de los Ingenios (Torre Iznaga)<br/><span style="color:var(--soft);">Trinidad &ndash; visite de la ville, Palacio Cantero</span></div></div><div class="day"><div class="day-num">12</div><div class="day-body"><span class="day-title">Jour 12</span>D&eacute;jeuner Guajiro &agrave; Manaca Iznaga, balade &agrave; cheval, baignade<br/><span style="color:var(--soft);">Casa de la Trova</span></div></div><div class="day"><div class="day-num">13</div><div class="day-body"><span class="day-title">Jour 13</span>Retour &agrave; La Havane<br/><span style="color:var(--soft);">La Havane bucolique &ndash; Capdevila</span></div></div><div class="day"><div class="day-num">14</div><div class="day-body"><span class="day-title">Jour 14</span>Cours de salsa (2h)<br/><span style="color:var(--soft);">Callej&oacute;n de Hamel</span></div></div><div class="day"><div class="day-num">15</div><div class="day-body"><span class="day-title">Jour 15</span>Cours de salsa (2h)<br/><span style="color:var(--soft);">C&eacute;r&eacute;monie santera &mdash; Centro Habana / Temps libre</span></div></div><div class="day"><div class="day-num">16</div><div class="day-body"><span class="day-title">Jour 16</span>Foire artisanale de San Jos&eacute;</div></div>
+  <img class="watermark" src="images/photo45.png"/>
+  <div class="footer-bar">
+      <div class="brand">Cuba · Festival de Tango</div>
+      <div class="pagenum">15</div>
+    </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">H&eacute;bergement</div>
+  <h1 class="title">Logement &agrave; la Vieille Havane</h1>
+  <div class="photo-row four">
+    <img src="images/photo46.jpg"/>
+    <img src="images/photo47.jpg"/>
+    <img src="images/photo48.jpg"/>
+    <img src="images/photo49.jpg"/>
+  </div>
+  <div class="item">
+    <div class="item-title">Casa particular</div>
+    <div class="item-desc">H&eacute;bergement chez l'habitant en plein c&oelig;ur du quartier historique, &agrave; quelques minutes &agrave; pied des principaux monuments et des lieux du festival.</div>
+  </div>
+  <img class="watermark" src="images/photo50.png"/>
+  <div class="footer-bar">
+      <div class="brand">Cuba · Festival de Tango</div>
+      <div class="pagenum">16</div>
+    </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">Informations pratiques</div>
+  <h1 class="title">&Agrave; savoir avant de partir</h1>
+  <ul class="bullets">
+    <li>Pas de vaccin obligatoire</li>
+    <li>Langue officielle&nbsp;: l'espagnol</li>
+    <li>D&eacute;calage horaire&nbsp;: &ndash; 6 heures (12h &agrave; Paris = 6h &agrave; La Havane)</li>
+    <li>Eau du robinet potable et propre &agrave; la consommation</li>
+    <li>D&eacute;jeuners pris ensemble&nbsp;; d&icirc;ners libres (sauf 3 soir&eacute;es&nbsp;: cubaine, cocktails, Trinidad)</li>
+  </ul>
+  <div class="card">
+    <div class="card-title">Argent</div>
+    <ul class="bullets">
+      <li>Monnaie&nbsp;: peso cubain (CUP) &ndash; 1&nbsp;&euro; &asymp; 134&nbsp;CUP (taux indicatif, change en banque ou Cadeca)</li>
+      <li>Distributeurs automatiques&nbsp;: commission de 3&nbsp;% sur le montant en $US&nbsp;; cartes de cr&eacute;dit US non accept&eacute;es</li>
+      <li>Change &euro;/$US&nbsp;: banques et CADECAs uniquement</li>
+      <li>Conseil&nbsp;: ne jamais changer &agrave; l'a&eacute;roport ni dans la rue</li>
+    </ul>
+  </div>
+  <div class="subhead">Quelques prix rep&egrave;res</div>
+  <p style="font-size:14px;">Restaurant / paladar&nbsp;: 10&ndash;35&nbsp;&euro; &middot; Cabaret ou ballet/op&eacute;ra&nbsp;: ~30&nbsp;&euro; &middot; Cocktail (mojito, da&iuml;quiri&hellip;)&nbsp;: ~4&nbsp;&euro; &middot; Pr&eacute;f&eacute;rer l'app &laquo;&nbsp;La Nave&nbsp;&raquo; aux Cubataxis, plus on&eacute;reux.</p>
+  <img class="watermark" src="images/photo51.png"/>
+  <div class="footer-bar">
+      <div class="brand">Cuba · Festival de Tango</div>
+      <div class="pagenum">17</div>
+    </div>
+</div>
+
+<div class="section">
+  <div class="eyebrow">S&eacute;curit&eacute; &amp; bon sens</div>
+  <h1 class="title">Quelques pr&eacute;cautions</h1>
+  <p class="lead">De tous les pays d'Am&eacute;rique latine, Cuba est l'un des plus s&ucirc;rs. Quelques r&egrave;gles simples permettent d'aborder le s&eacute;jour en toute s&eacute;r&eacute;nit&eacute;.</p>
+  <ul class="bullets pill-list dont"><li>&Eacute;viter de marcher seul(e) le soir, surtout dans les rues peu &eacute;clair&eacute;es</li><li>D&eacute;cliner poliment mais fermement les sollicitations des &laquo;&nbsp;jinetero(a)s&nbsp;&raquo;</li><li>Marcher au milieu de la rue dans les vieux quartiers</li><li>Ne pas acheter de cigares dans la rue (50 maximum autoris&eacute;s &agrave; la sortie de Cuba)</li></ul>
+  <ul class="bullets pill-list do"><li>Ne sortir qu'avec une copie du passeport et du visa, sans bijoux ni argent superflu</li><li>V&eacute;rifier les additions manuscrites au restaurant et la monnaie rendue</li><li>Pr&eacute;voir une pochette &eacute;tanche pour ses papiers en cas de forte pluie</li><li>Bonnes chaussures indispensables&nbsp;; prises &eacute;lectriques 110V/220V au format am&eacute;ricain</li></ul>
+  <div class="card teal">
+    <div class="card-body">Ambassade de France &ndash; Calle 14, n&deg;312 entre 5ta y 3ra, Miramar (Playa)</div>
+  </div>
+  <img class="watermark" src="images/photo52.png"/>
+  <div class="footer-bar">
+      <div class="brand">Cuba · Festival de Tango</div>
+      <div class="pagenum">18</div>
+    </div>
+</div>
+
+<div class="section back" style="padding:0;">
+  <img class="back-photo" style="border-radius:2px;width:140px;height:auto;display:block;margin:0 auto 22px auto;box-shadow:0 1px 4px rgba(0,0,0,.25);" src="images/photo53.jpg"/>
+  <div style="padding:0 24px;">
+    <div class="back-msg">Bon s&eacute;jour &agrave; Cuba,<br/>au c&oelig;ur des Cara&iuml;bes&nbsp;!</div>
+    <img class="back-logo" src="images/photo54.png"/>
+    <div class="site">vpdvoyages.com</div>
+  </div>
+</div>
+
+
+<script>
+(function() {
+  function hideLoader() {
+    var el = document.getElementById('loading-overlay');
+    if (el) {
+      el.classList.add('hidden');
+      setTimeout(function() { el.style.display = 'none'; }, 600);
+    }
+  }
+  if (document.readyState === 'complete') {
+    hideLoader();
+  } else {
+    window.addEventListener('load', hideLoader);
+    setTimeout(hideLoader, 15000);
+  }
+})();
+</script>
+
+</body>
+</html>
