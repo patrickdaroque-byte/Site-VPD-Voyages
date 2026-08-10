@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voyage solo en petit groupe | VPDVOYAGES</title>
+  <meta name="description" content="Voyagez seul(e) en groupe intime de 3-5 personnes avec VPDVOYAGES. Tango, salsa, randonnée, œnologie – sans supplément single. Découvrez nos départs.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <style>
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      width: 100%;
+      background: #2563eb;
+    }
+    body {
+      padding-top: 80px;
+      font-size: 16px;
+      background-color: white;
+    }
+    html {
+      scroll-padding-top: 80px;
+    }
+    .btn-orange {
+      background: #E67E22;
+      color: #FFFFFF;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 2px solid #E67E22;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    .btn-orange:hover {
+      background: #FFFFFF;
+      color: #E67E22;
+      transform: scale(1.02);
+    }
+    .btn-blue {
+      background: #2563eb;
+      color: #FFFFFF;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 2px solid #2563eb;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    .btn-blue:hover {
+      background: #FFFFFF;
+      color: #2563eb;
+      transform: scale(1.02);
+    }
+    .testimonial-card {
+      background: #f8fafc;
+      border-left: 4px solid #E67E22;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-card .author {
+      font-weight: 600;
+      color: #1e293b;
+      margin-top: 0.5rem;
+    }
+    .testimonial-card .status {
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    th {
+      background: #2563eb;
+      color: white;
+      padding: 10px 12px;
+      text-align: left;
+    }
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    tr:hover {
+      background: #f1f5f9;
+    }
+    .badge-solo {
+      background: rgba(0, 0, 0, 0.25);
+      padding: 0.25rem 1rem;
+      border-radius: 12px;
+      font-style: italic;
+      display: inline-block;
+    }
+
+    /* ===== AMÉLIORATIONS MOBILE ===== */
+    @media (max-width: 640px) {
+      table {
+        font-size: 0.7rem;
+      }
+      th, td {
+        padding: 6px 4px;
+      }
+      .btn-orange, .btn-blue {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 0.6rem 1rem;
+        font-size: 0.95rem;
+      }
+      .hero-content {
+        padding: 1.5rem 1rem !important;
+      }
+      .hero-content h1 {
+        font-size: 1.8rem !important;
+      }
+      .hero-content p {
+        font-size: 1rem !important;
+      }
+      .badge-solo {
+        font-size: 0.9rem;
+        padding: 0.2rem 0.8rem;
+        max-width: 90%;
+        white-space: nowrap;
+      }
+    }
+
+    @media (max-width: 480px) {
+      table {
+        font-size: 0.6rem !important;
+      }
+      th, td {
+        padding: 3px 4px !important;
+      }
+      .testimonial-card p {
+        font-size: 0.95rem !important;
+      }
+      .testimonial-card {
+        padding: 1rem !important;
+      }
+      .promise-grid {
+        gap: 0.75rem !important;
+      }
+      .promise-grid > div {
+        padding: 1rem !important;
+      }
+      .badge-solo {
+        font-size: 0.8rem;
+        padding: 0.15rem 0.6rem;
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="bg-blue-600 text-white py-2">
+    <div class="container mx-auto px-4 flex justify-between items-center flex-wrap">
+      <div class="flex items-center space-x-4">
+        <img src="Images/logo.jpg" alt="Logo VPDVOYAGES" class="h-12 w-12 object-contain">
+        <div class="flex flex-col">
+          <h1 class="text-2xl font-bold">VPDVOYAGES</h1>
+          <span class="text-base font-medium">Patrick Daroque - Travel Planner</span>
+        </div>
+      </div>
+      <nav class="hidden md:flex space-x-4">
+        <a href="index.html#home" class="hover:underline text-base md:text-lg">Accueil</a>
+        <a href="index.html#destinations" class="hover:underline text-base md:text-lg">Les destinations</a>
+        <a href="index.html#about" class="hover:underline text-base md:text-lg">Mon approche</a>
+        <a href="index.html#reviews" class="hover:underline text-base md:text-lg">Ce que disent nos clients</a>
+        <a href="index.html#travel-planner" class="hover:underline text-base md:text-lg">Qu'est-ce qu'un Travel Planner ?</a>
+        <a href="index.html#contact" class="hover:underline text-base md:text-lg">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="bg-cover bg-center py-16 flex items-center justify-center" style="background-image: url('https://vpdvoyages.com/Voyages de rêve/Images/hero-image.jpg');">
+    <div class="hero-content text-center text-white bg-gradient-to-r from-orange-500 via-rose-500 to-purple-600 p-8 rounded-lg mx-4 shadow-lg max-w-4xl">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">👤 Voyage solo en petit groupe</h1>
+      <p class="text-xl md:text-2xl mb-4 max-w-2xl mx-auto"><span class="badge-solo">Seul(e) mais pas isolé(e)</span></p>
+      <p class="text-lg max-w-3xl mx-auto">Partez en groupe intime de 3 à 5 personnes pour découvrir l'Espagne ou l'Amérique latine.</p>
+    </div>
+  </section>
+
+  <!-- SECTION : NOTRE PROMESSE -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <h2 class="text-3xl font-bold text-center mb-8">Notre promesse pour les voyageurs solos</h2>
+      <div class="promise-grid grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-gray-50 p-6 rounded-lg text-center shadow-sm">
+          <div class="text-4xl mb-3">👥</div>
+          <h3 class="font-bold text-lg mb-2">Groupe intime</h3>
+          <p class="text-gray-600 text-sm">3 à 5 personnes maximum – assez pour créer des liens, pas trop pour préserver l'authenticité.</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg text-center shadow-sm">
+          <div class="text-4xl mb-3">💰</div>
+          <h3 class="font-bold text-lg mb-2">Pas de supplément single</h3>
+          <p class="text-gray-600 text-sm">Nous ne vous punissons pas d'être seul(e). Jumelage inclus sans surcoût.</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg text-center shadow-sm">
+          <div class="text-4xl mb-3">🗺️</div>
+          <h3 class="font-bold text-lg mb-2">Deux formules</h3>
+          <p class="text-gray-600 text-sm"><strong>Autonomie</strong> (vous gérez) ou <strong>Sérénité</strong> (guide Français + vols internationaux inclus).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION : TÉMOIGNAGES -->
+  <section class="py-12 bg-gray-100">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h2 class="text-3xl font-bold text-center mb-8">Ils ont osé le voyage solo avec VPDVOYAGES</h2>
+
+      <div class="testimonial-card">
+        <p class="text-gray-700 italic text-lg">"Je suis partie seule en Argentine. 18 jours à danser le tango, déguster du Malbec, chevaucher dans la Pampa. J'ai rencontré 4 femmes formidables. On s'est quittées en promettant de se revoir. Je ne me suis jamais sentie seule une seconde."</p>
+        <div class="author">Catherine, 62 ans <span class="status">– veuve</span></div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="text-gray-700 italic text-lg">"J'avais peur de voyager seule après mon divorce. Patrick m'a écoutée, m'a proposé un groupe de 5 personnes en Colombie. On a ri, on a dansé la salsa, on a partagé des émotions fortes. Un voyage qui m'a réconciliée avec la vie."</p>
+        <div class="author">Sophie, 51 ans <span class="status">– divorcée</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION : PROPOSITIONS SÉJOURS ET ESCAPADES SOLO -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <h2 class="text-3xl font-bold text-center mb-8">Propositions Séjours et Escapades Solo</h2>
+      <p class="text-center text-gray-600 mb-2">Tous nos voyages durent <strong>17 à 18 jours</strong> et sont limités à <strong>3-5 personnes</strong>.</p>
+      <p class="text-center text-sm text-gray-400 mb-8">(Propositions non exhaustives – d'autres destinations et thématiques sont disponibles sur demande)</p>
+
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Destination</th>
+              <th>Thématique</th>
+              <th>Autonomie</th>
+              <th>Sérénité</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Argentine</strong></td>
+              <td>Tango & Bodegas</td>
+              <td>1 540 €</td>
+              <td>3 640 €</td>
+            </tr>
+            <tr>
+              <td><strong>Cuba</strong></td>
+              <td>Salsa & Patrimoine</td>
+              <td>1 490 €</td>
+              <td>3 490 €</td>
+            </tr>
+            <tr>
+              <td><strong>Colombie</strong></td>
+              <td>Salsa, Café & Nature</td>
+              <td>1 590 €</td>
+              <td>3 690 €</td>
+            </tr>
+            <tr>
+              <td><strong>Espagne</strong></td>
+              <td>Œnologie & Rando</td>
+              <td>1 690 €</td>
+              <td>3 790 €</td>
+            </tr>
+            <tr>
+              <td><strong>Uruguay</strong></td>
+              <td>Détente & Patrimoine</td>
+              <td>1 590 €</td>
+              <td>3 590 €</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="text-center mt-4 text-sm text-gray-500">
+        * Les prix sont indicatifs et peuvent varier selon la saison et le nombre de participant(es).
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="index.html#contact" class="btn-orange">📞 Je veux réserver ou poser une question</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION : FAQ -->
+  <section class="py-12 bg-gray-100">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <h2 class="text-3xl font-bold text-center mb-8">❓ Questions fréquentes</h2>
+
+      <div class="bg-white p-6 rounded-lg shadow-sm mb-4">
+        <h3 class="font-bold text-lg mb-2">Que se passe-t-il si je suis le/la seul(e) inscrit(e) ?</h3>
+        <p class="text-gray-700">Les deux formules sont maintenues à partir de <strong>2 personnes</strong> (selon le tarif). S'il n'y a qu'une seule personne, seule la formule <strong>Autonomie</strong> est proposée, avec road book, assistance téléphonique et tous nos contacts d'urgence.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-sm mb-4">
+        <h3 class="font-bold text-lg mb-2">Puis-je choisir mon(ma) partenaire de chambre ?</h3>
+        <p class="text-gray-700">Oui, si vous venez avec une personne connue. Sinon, nous vous attribuons une personne du même sexe, après vous avoir présenté brièvement.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-sm mb-4">
+        <h3 class="font-bold text-lg mb-2">Y a-t-il des moments de solitude ?</h3>
+        <p class="text-gray-700">Vous êtes libre de vous isoler quand vous voulez. Mais le format 3-5 personnes crée naturellement une cohésion.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-sm mb-4">
+        <h3 class="font-bold text-lg mb-2">Et la sécurité ?</h3>
+        <p class="text-gray-700">En formule <strong>Sérénité</strong>, un guide Français est avec vous 24h/24. En formule <strong>Autonomie</strong>, nous vous fournissons un road book détaillé avec tous nos contacts d'urgence.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-sm mb-4">
+        <h3 class="font-bold text-lg mb-2">Je ne parle pas espagnol, c'est gênant ?</h3>
+        <p class="text-gray-700">Non, nos guides sont Français. Et un sourire, ça suffit pour commander un verre !</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION : POURQUOI VPDVOYAGES -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h2 class="text-3xl font-bold text-center mb-8">Pourquoi choisir VPDVOYAGES ?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">🌍</span>
+          <div>
+            <h3 class="font-bold">Je connais mes destinations</h3>
+            <p class="text-gray-600 text-sm">Je vis et travaille entre la France, l'Espagne et l'Amérique latine. Je ne vends que ce que j'ai testé.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">🤝</span>
+          <div>
+            <h3 class="font-bold">Un vrai voyageur, pas un tour-opérateur</h3>
+            <p class="text-gray-600 text-sm">Je construis chaque séjour avec des partenaires locaux de confiance.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">❤️</span>
+          <div>
+            <h3 class="font-bold">Une communauté</h3>
+            <p class="text-gray-600 text-sm">Nos clients repartent avec des amitiés solides, et certains refont des voyages ensemble.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">📋</span>
+          <div>
+            <h3 class="font-bold">La transparence</h3>
+            <p class="text-gray-600 text-sm">Pas de frais cachés. Le prix affiché est le prix payé (hors options).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION : CONTACT -->
+  <section class="py-12 bg-gray-100">
+    <div class="container mx-auto px-4 max-w-2xl text-center">
+      <h2 class="text-3xl font-bold mb-4">📞 Parlons de votre projet</h2>
+      <p class="text-gray-600 mb-6">Une question ? Une envie particulière ? Je vous rappelle le plus tôt possible pour échanger sur votre projet et trouver le voyage qui vous correspond vraiment.</p>
+      <a href="index.html#contact" class="btn-blue text-lg px-8 py-3">Me contacter</a>
+      <p class="text-sm text-gray-400 mt-4">Ou appelez-moi directement : <strong><a href="tel:+33610950984" class="text-blue-600">06 10 95 09 84</a></strong></p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-blue-600 py-4">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-white text-sm">&copy; 2026 - VPDVOYAGES - Patrick Daroque - Travel Planner. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
