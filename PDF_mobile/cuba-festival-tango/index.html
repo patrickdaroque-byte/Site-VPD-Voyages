@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Cuba - Festival de Tango à La Havane</title>
+<title>Cuba - Festival de Tango &agrave; La Havane</title>
 <style>
 :root{
   --bg:#FFFFFF;
@@ -233,7 +233,7 @@ ul.bullets li{margin-bottom:6px;font-size:14.5px;}
 .back img.back-logo{width:56px;height:56px;margin-bottom:8px;}
 .back .site{font-size:13px;color:var(--teal);font-weight:bold;}
 
-/* Loading overlay - version simplifiée et plus rapide */
+/* Loading overlay for mobile latency */
 #loading-overlay {
   position: fixed;
   top: 0;
@@ -246,7 +246,7 @@ ul.bullets li{margin-bottom:6px;font-size:14.5px;}
   align-items: center;
   justify-content: center;
   z-index: 99999;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 #loading-overlay.hidden {
   opacity: 0;
@@ -254,13 +254,13 @@ ul.bullets li{margin-bottom:6px;font-size:14.5px;}
   pointer-events: none;
 }
 .loading-clock {
-  width: 48px;
-  height: 48px;
-  border: 3px solid #E7EFEE;
-  border-top: 3px solid #C1502E;
+  width: 64px;
+  height: 64px;
+  border: 4px solid #E7EFEE;
+  border-top: 4px solid #C1502E;
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  margin-bottom: 16px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
 }
 @keyframes spin {
   0% { transform: rotate(0deg); }
@@ -268,36 +268,36 @@ ul.bullets li{margin-bottom:6px;font-size:14.5px;}
 }
 .loading-msg {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   color: #2A211C;
   text-align: center;
-  max-width: 260px;
+  max-width: 280px;
   line-height: 1.4;
   padding: 0 16px;
 }
 .loading-msg strong {
   color: #C1502E;
   display: block;
-  margin-bottom: 4px;
-  font-size: 16px;
+  margin-bottom: 8px;
+  font-size: 18px;
 }
+
 </style>
 </head>
 <body>
 
-<!-- LOADING OVERLAY - disparaît après 3 secondes ou au chargement -->
 <div id="loading-overlay">
   <div class="loading-clock"></div>
   <div class="loading-msg">
-    <strong>Chargement…</strong>
-    Veuillez patienter
+    <strong>Chargement en cours…</strong>
+    Veuillez patienter quelques instants.<br>
+    Le document contient de nombreuses images.
   </div>
 </div>
 
 
-<!-- ==================== PAGE 1 : COUVERTURE ==================== -->
 <div class="section" style="padding:0;">
-  <img class="cover-hero" src="images/photo01.jpg" alt="Cuba - Vue aérienne de La Havane" width="800" height="400" loading="eager" decoding="async"/>
+  <img class="cover-hero" src="images/photo01.jpg"/>
   <div class="cover-body">
     <div class="cover-eyebrow">Idée voyage en petit groupe !</div>
     <h1 class="cover-title">Cuba</h1>
@@ -312,406 +312,358 @@ ul.bullets li{margin-bottom:6px;font-size:14.5px;}
       <li>les Cours de salsa</li>
     </ul>
     <div class="cover-logo-row">
-      <img src="images/photo02.png" alt="Logo VPD Voyages" width="40" height="40" loading="lazy" decoding="async"/>
+      <img src="images/photo02.png"/>
       <div class="site">vpdvoyages.com</div>
     </div>
   </div>
 </div>
 
-<!-- ==================== PAGE 2 ==================== -->
 <div class="section">
   <div class="eyebrow">Présentation</div>
   <h1 class="title">Le voyage en un coup d'œil</h1>
-  <p class="lead">Du 19 octobre au 4 novembre 2026, vibrez au rythme du tango lors du 7<sup>ème</sup> Festival de Tango de La Havane — un événement unique mêlant passion et culture cubaine — puis prolongez l'aventure à la découverte des trésors de l'île.</p>
-  <img class="hero" src="images/photo03.jpg" alt="Cuba - Vue de La Havane" width="800" height="400" loading="lazy" decoding="async"/>
+  <p class="lead">Du 19 octobre au 4 novembre 2026, vibrez au rythme du tango lors du 7&egrave;me Festival de Tango de La Havane &mdash; un &eacute;v&eacute;nement unique m&ecirc;lant passion et culture cubaine &mdash; puis prolongez l'aventure &agrave; la d&eacute;couverte des tr&eacute;sors de l'&icirc;le.</p>
+  <img class="hero" src="images/photo03.jpg"/>
   <div class="item">
     <div class="item-title">La Havane</div>
     <div class="item-desc">La Vieille ville coloniale, le Vedado</div>
   </div>
   <div class="item">
     <div class="item-title">Le Festival de Tango</div>
-    <div class="item-desc">Spectacles, cours avec des maestros, milongas sous les étoiles</div>
+    <div class="item-desc">Spectacles, cours avec des maestros, milongas sous les &eacute;toiles</div>
   </div>
   <div class="photo-row two">
-    <img src="images/photo04.jpg" alt="Cuba - Rue de La Havane" width="400" height="300" loading="lazy" decoding="async"/>
-    <img src="images/photo05.jpg" alt="Cuba - Place coloniale" width="400" height="300" loading="lazy" decoding="async"/>
+    <img src="images/photo04.jpg"/>
+    <img src="images/photo05.jpg"/>
   </div>
   <div class="item">
     <div class="item-title">Trinidad</div>
-    <div class="item-desc">Joyau colonial classé à l'UNESCO, ruelles pavées, Manaca Iznaga</div>
+    <div class="item-desc">Joyau colonial class&eacute; &agrave; l'UNESCO, ruelles pav&eacute;es, Manaca Iznaga</div>
   </div>
   <div class="item">
     <div class="item-title">La Baie des Cochons</div>
-    <div class="item-desc">Playa Larga et la Ciénega de Zapata</div>
+    <div class="item-desc">Playa Larga et la Ci&eacute;naga de Zapata</div>
   </div>
-  <img class="watermark" src="images/photo06.png" alt="Watermark" width="34" height="34" loading="lazy" decoding="async"/>
+  <img class="watermark" src="images/photo06.png"/>
   <div class="footer-bar">
       <div class="brand">Cuba · Festival de Tango</div>
       <div class="pagenum">01</div>
     </div>
 </div>
 
-<!-- ==================== PAGE 3 ==================== -->
 <div class="section">
-  <div class="eyebrow">Avant le départ</div>
+  <div class="eyebrow">Avant le d&eacute;part</div>
   <h1 class="title">Passeport, carte de tourisme &amp; D'Viajeros</h1>
   <div class="item">
     <div class="item-title">Passeport</div>
-    <div class="item-desc">Valable 6 mois après la date de retour. Prévoir une numérisation et une photocopie à conserver séparément.</div>
+    <div class="item-desc">Valable 6 mois apr&egrave;s la date de retour. Pr&eacute;voir une num&eacute;risation et une photocopie &agrave; conserver s&eacute;par&eacute;ment.</div>
   </div>
   <div class="item">
     <div class="item-title">Carte de tourisme (visa)</div>
-    <div class="item-desc">Obligatoire pour tout séjour à Cuba, à obtenir avant le départ.</div>
+    <div class="item-desc">Obligatoire pour tout s&eacute;jour &agrave; Cuba, &agrave; obtenir avant le d&eacute;part.</div>
   </div>
   <div class="item">
-    <div class="item-title">Formulaire «&nbsp;D'Viajeros&nbsp;»</div>
-    <div class="item-desc">Déclaration numérique de voyageur à compléter avant l'arrivée sur le territoire cubain.</div>
+    <div class="item-title">Formulaire &laquo;&nbsp;D'Viajeros&nbsp;&raquo;</div>
+    <div class="item-desc">D&eacute;claration num&eacute;rique de voyageur &agrave; compl&eacute;ter avant l'arriv&eacute;e sur le territoire cubain.</div>
   </div>
   <div class="card">
-    <div class="card-title">Assurance santé – obligatoire</div>
+    <div class="card-title">Assurance sant&eacute; &ndash; obligatoire</div>
     <div class="card-body">
-      Une attestation d'assistance associée à votre carte Visa est requise&nbsp;: www.votre-assistance.fr<br/>
-      Saisir les 9 premiers chiffres de la carte bancaire pour générer l'attestation (Mondial Assistance). Assistance 24h/24 – 7j/7 pendant toute la durée du séjour.
+      Une attestation d'assistance associ&eacute;e &agrave; votre carte Visa est requise&nbsp;: www.votre-assistance.fr<br/>
+      Saisir les 9 premiers chiffres de la carte bancaire pour g&eacute;n&eacute;rer l'attestation (Mondial Assistance). Assistance 24h/24 &ndash; 7j/7 pendant toute la dur&eacute;e du s&eacute;jour.
       <ul class="bullets">
-        <li>Frais médicaux&nbsp;: 155&nbsp;000&nbsp;€</li>
+        <li>Frais m&eacute;dicaux&nbsp;: 155&nbsp;000&nbsp;&euro;</li>
         <li>Rapatriement / transport sanitaire</li>
       </ul>
     </div>
   </div>
-  <img class="watermark" src="images/photo07.png" alt="Watermark" width="34" height="34" loading="lazy" decoding="async"/>
+  <img class="watermark" src="images/photo07.png"/>
   <div class="footer-bar">
       <div class="brand">Cuba · Festival de Tango</div>
       <div class="pagenum">02</div>
     </div>
 </div>
 
-<!-- ==================== PAGE 4 ==================== -->
 <div class="section">
   <div class="eyebrow">Le pays</div>
   <h1 class="title">Cuba, perle des Antilles</h1>
-  <img class="hero" src="images/photo08.jpg" alt="Cuba - Carte et paysage" width="800" height="400" loading="lazy" decoding="async"/>
-  <div class="stat-row"><div class="stat-num">1 250 km</div><div class="stat-label">d'Ouest en Est</div></div>
-  <div class="stat-row"><div class="stat-num">200 km</div><div class="stat-label">du Nord au Sud</div></div>
-  <div class="stat-row"><div class="stat-num">148 km</div><div class="stat-label">au sud de Key West (Floride)</div></div>
-  <div class="stat-row"><div class="stat-num">1 600</div><div class="stat-label">«&nbsp;cayos&nbsp;» tout autour de l'île</div></div>
-  <div class="stat-row"><div class="stat-num">9,5 M</div><div class="stat-label">d'habitants, dont 1,7 M à La Havane</div></div>
-  <img class="watermark" src="images/photo09.png" alt="Watermark" width="34" height="34" loading="lazy" decoding="async"/>
+  <img class="hero" src="images/photo08.jpg"/>
+  <div class="stat-row"><div class="stat-num">1 250 km</div><div class="stat-label">d'Ouest en Est</div></div><div class="stat-row"><div class="stat-num">200 km</div><div class="stat-label">du Nord au Sud</div></div><div class="stat-row"><div class="stat-num">148 km</div><div class="stat-label">au sud de Key West (Floride)</div></div><div class="stat-row"><div class="stat-num">1 600</div><div class="stat-label">&laquo;&nbsp;cayos&nbsp;&raquo; tout autour de l'&icirc;le</div></div><div class="stat-row"><div class="stat-num">9,5 M</div><div class="stat-label">d'habitants, dont 1,7 M &agrave; La Havane</div></div>
+  <img class="watermark" src="images/photo09.png"/>
   <div class="footer-bar">
       <div class="brand">Cuba · Festival de Tango</div>
       <div class="pagenum">03</div>
     </div>
 </div>
 
-<!-- ==================== PAGE 5 ==================== -->
 <div class="section">
   <div class="eyebrow">La Havane</div>
   <h1 class="title">La Vieille Havane, quartier historique</h1>
-  <p class="lead">Ruelles pavées, façades coloniales et places animées&nbsp;: le cœur battant de la capitale, classé au patrimoine mondial de l'UNESCO.</p>
+  <p class="lead">Ruelles pav&eacute;es, fa&ccedil;ades coloniales et places anim&eacute;es&nbsp;: le c&oelig;ur battant de la capitale, class&eacute; au patrimoine mondial de l'UNESCO.</p>
   <div class="photo-row three">
-    <img src="images/photo10.jpg" alt="La Havane - Rue typique" width="350" height="200" loading="lazy" decoding="async"/>
-    <img src="images/photo11.jpg" alt="La Havane - Place" width="350" height="200" loading="lazy" decoding="async"/>
-    <img src="images/photo12.jpg" alt="La Havane - Architecture coloniale" width="350" height="200" loading="lazy" decoding="async"/>
+    <img src="images/photo10.jpg"/>
+    <img src="images/photo11.jpg"/>
+    <img src="images/photo12.jpg"/>
   </div>
-  <p class="caption">«&nbsp;Être Havanais, c'est vivre La Havane&nbsp;!&nbsp;» — Le Capitole, le Parc Central, le Palais des Capitaines Généraux et la Place d'Armes rythment la découverte du centre historique.</p>
-  <img class="watermark" src="images/photo13.png" alt="Watermark" width="34" height="34" loading="lazy" decoding="async"/>
+  <p class="caption">&laquo;&nbsp;&Ecirc;tre Havanais, c'est vivre La Havane&nbsp;!&nbsp;&raquo; &mdash; Le Capitole, le Parc Central, le Palais des Capitaines G&eacute;n&eacute;raux et la Place d'Armes rythment la d&eacute;couverte du centre historique.</p>
+  <img class="watermark" src="images/photo13.png"/>
   <div class="footer-bar">
       <div class="brand">Cuba · Festival de Tango</div>
       <div class="pagenum">04</div>
     </div>
 </div>
 
-<!-- ==================== PAGE 6 ==================== -->
 <div class="section">
   <div class="eyebrow">La Havane</div>
   <h1 class="title">Le Vedado</h1>
-  <p class="lead">Quartier résidentiel et culturel, entre avenues arborées, musées et théâtres&nbsp;: le Musée Napoléonien, le Musée des Arts Décoratifs et l'effervescence de la 23<sup>ème</sup> avenue.</p>
+  <p class="lead">Quartier r&eacute;sidentiel et culturel, entre avenues arbor&eacute;es, mus&eacute;es et th&eacute;&acirc;tres&nbsp;: le Mus&eacute;e Napol&eacute;onien, le Mus&eacute;e des Arts D&eacute;coratifs et l'effervescence de la 23&egrave;me avenue.</p>
   <div class="photo-row four">
-    <img src="images/photo14.jpg" alt="Vedado - Avenue" width="200" height="150" loading="lazy" decoding="async"/>
-    <img src="images/photo15.jpg" alt="Vedado - Musée" width="200" height="150" loading="lazy" decoding="async"/>
-    <img src="images/photo16.jpg" alt="Vedado - Architecture" width="200" height="150" loading="lazy" decoding="async"/>
-    <img src="images/photo17.jpg" alt="Vedado - Rue" width="200" height="150" loading="lazy" decoding="async"/>
+    <img src="images/photo14.jpg"/>
+    <img src="images/photo15.jpg"/>
+    <img src="images/photo16.jpg"/>
+    <img src="images/photo17.jpg"/>
   </div>
-  <img class="watermark" src="images/photo18.png" alt="Watermark" width="34" height="34" loading="lazy" decoding="async"/>
+  <img class="watermark" src="images/photo18.png"/>
   <div class="footer-bar">
       <div class="brand">Cuba · Festival de Tango</div>
       <div class="pagenum">05</div>
     </div>
 </div>
 
-<!-- ==================== PAGE 7 ==================== -->
 <div class="section" style="padding-top:0;">
-  <img class="hero" style="margin-top:0;" src="images/photo19.jpg" alt="Festival de Tango de La Havane" width="800" height="400" loading="lazy" decoding="async"/>
-  <div class="eyebrow">7<sup>ème</sup> Festival de Tango de La Havane</div>
+  <img class="hero" style="margin-top:0;" src="images/photo19.jpg"/>
+  <div class="eyebrow">7&egrave;me Festival de Tango de La Havane</div>
   <h1 class="title">TangueArte</h1>
-  <p class="lead">Spectacles de tango-théâtre, tango-fusion et tango vélo, milongas en plein air, concours «&nbsp;Isla Tango&nbsp;», feria d'artisans et musique en direct&nbsp;: trois jours dédiés à la passion argentine, revisitée dans une ambiance cubaine.</p>
+  <p class="lead">Spectacles de tango-th&eacute;&acirc;tre, tango-fusion et tango v&eacute;lo, milongas en plein air, concours &laquo;&nbsp;Isla Tango&nbsp;&raquo;, feria d'artisans et musique en direct&nbsp;: trois jours d&eacute;di&eacute;s &agrave; la passion argentine, revisit&eacute;e dans une ambiance cubaine.</p>
   <div class="card teal">
     <div class="card-title">Au programme</div>
     <ul class="bullets">
       <li>Initiation &amp; techniques de base</li>
       <li>Cours avec TangueArte, en amont du festival</li>
       <li>Rueda de Milonga</li>
-      <li>Tango-thérapie</li>
+      <li>Tango-th&eacute;rapie</li>
     </ul>
   </div>
   <div class="item">
     <div class="item-title">23 au 25 Oct. 2026</div>
-    <div class="item-desc">El Ojo del Ciclón dans la Vieille Havane… le Cœur battant du festival&nbsp;!</div>
+    <div class="item-desc">El Ojo del Cicl&oacute;n dans la Vieille Havane&hellip; le C&oelig;ur battant du festival&nbsp;!</div>
   </div>
-  <img class="watermark" src="images/photo20.png" alt="Watermark" width="34" height="34" loading="lazy" decoding="async"/>
+  <img class="watermark" src="images/photo20.png"/>
   <div class="footer-bar">
       <div class="brand">Cuba · Festival de Tango</div>
       <div class="pagenum">06</div>
     </div>
 </div>
 
-<!-- ==================== PAGE 8 ==================== -->
 <div class="section">
   <div class="eyebrow">Immersion culturelle</div>
   <h1 class="title">Danses et musique cubaines</h1>
   <div class="photo-row two">
-    <img src="images/photo21.jpg" alt="Danse cubaine" width="400" height="450" style="height:220px;object-fit:cover;" loading="lazy" decoding="async"/>
+    <img src="images/photo21.jpg" style="height:220px;"/>
     <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
-      <img src="images/photo22.jpg" alt="Musique cubaine" width="400" height="200" style="height:106px;width:100%;object-fit:cover;border-radius:3px;" loading="lazy" decoding="async"/>
+      <img src="images/photo22.jpg" style="height:106px;width:100%;object-fit:cover;border-radius:3px;"/>
       <div style="display:flex;gap:8px;">
-        <img src="images/photo23.jpg" alt="Danse - Salsa" width="200" height="200" style="height:106px;width:100%;object-fit:cover;border-radius:3px;" loading="lazy" decoding="async"/>
-        <img src="images/photo24.jpg" alt="Danse - Rumba" width="200" height="200" style="height:106px;width:100%;object-fit:cover;border-radius:3px;" loading="lazy" decoding="async"/>
+        <img src="images/photo23.jpg" style="height:106px;width:100%;object-fit:cover;border-radius:3px;"/>
+        <img src="images/photo24.jpg" style="height:106px;width:100%;object-fit:cover;border-radius:3px;"/>
       </div>
     </div>
   </div>
-  <p class="caption">Salsa, chachacha, rumba… à la découverte des danses cubaines</p>
-  <img class="watermark" src="images/photo25.png" alt="Watermark" width="34" height="34" loading="lazy" decoding="async"/>
+  <p class="caption">Salsa, chachacha, rumba&hellip; &agrave; la d&eacute;couverte des danses cubaines</p>
+  <img class="watermark" src="images/photo25.png"/>
   <div class="footer-bar">
       <div class="brand">Cuba · Festival de Tango</div>
       <div class="pagenum">08</div>
     </div>
 </div>
 
-<!-- ==================== PAGE 9 ==================== -->
 <div class="section">
   <div class="eyebrow">Rencontres &amp; traditions</div>
-  <h1 class="title">Hemingway et la Santería</h1>
+  <h1 class="title">Hemingway et la Santer&iacute;a</h1>
   <div class="photo-row two">
-    <img src="images/photo26.jpg" alt="Hemingway à La Havane" width="400" height="400" style="height:210px;object-fit:cover;" loading="lazy" decoding="async"/>
-    <img src="images/photo27.jpg" alt="Santería cubaine" width="400" height="400" style="height:210px;object-fit:cover;" loading="lazy" decoding="async"/>
+    <img src="images/photo26.jpg" style="height:210px;"/>
+    <img src="images/photo27.jpg" style="height:210px;"/>
   </div>
   <div class="item">
-    <div class="item-title">Hemingway à La Havane</div>
-    <div class="item-desc">Sur les traces de l'écrivain, entre la Bodeguita del Medio et sa villa Finca Vigía.</div>
+    <div class="item-title">Hemingway &agrave; La Havane</div>
+    <div class="item-desc">Sur les traces de l'&eacute;crivain, entre la Bodeguita del Medio et sa villa Finca Vig&iacute;a.</div>
   </div>
   <div class="photo-row two" style="margin-top:14px;">
-    <img src="images/photo28.jpg" alt="Bodeguita del Medio" width="400" height="400" style="height:210px;object-fit:cover;" loading="lazy" decoding="async"/>
-    <img src="images/photo29.jpg" alt="Cérémonie santera" width="400" height="400" style="height:210px;object-fit:cover;" loading="lazy" decoding="async"/>
+    <img src="images/photo28.jpg" style="height:210px;"/>
+    <img src="images/photo29.jpg" style="height:210px;"/>
   </div>
   <div class="item">
-    <div class="item-title">La Santería, syncrétisme religieux</div>
-    <div class="item-desc">Immersion dans une véritable cérémonie religieuse, à la rencontre des traditions afro-cubaines.</div>
+    <div class="item-title">La Santer&iacute;a, syncr&eacute;tisme religieux</div>
+    <div class="item-desc">Immersion dans une v&eacute;ritable c&eacute;r&eacute;monie religieuse, &agrave; la rencontre des traditions afro-cubaines.</div>
   </div>
-  <img class="watermark" src="images/photo30.png" alt="Watermark" width="34" height="34" loading="lazy" decoding="async"/>
+  <img class="watermark" src="images/photo30.png"/>
   <div class="footer-bar">
       <div class="brand">Cuba · Festival de Tango</div>
       <div class="pagenum">09</div>
     </div>
 </div>
 
-<!-- ==================== PAGE 10 ==================== -->
 <div class="section">
   <div class="eyebrow">Nature &amp; littoral</div>
   <h1 class="title">La Baie des Cochons et les Playas del Este</h1>
   <div class="photo-row four">
-    <img src="images/photo31.jpg" alt="Baie des Cochons - Playa Larga" width="200" height="150" loading="lazy" decoding="async"/>
-    <img src="images/photo32.jpg" alt="Ciénega de Zapata" width="200" height="150" loading="lazy" decoding="async"/>
-    <img src="images/photo33.jpg" alt="Playas del Este - Santa María" width="200" height="150" loading="lazy" decoding="async"/>
-    <img src="images/photo34.jpg" alt="Plage cubaine" width="200" height="150" loading="lazy" decoding="async"/>
+    <img src="images/photo31.jpg"/>
+    <img src="images/photo32.jpg"/>
+    <img src="images/photo33.jpg"/>
+    <img src="images/photo34.jpg"/>
   </div>
   <div class="item">
-    <div class="item-title">Playa Larga · Ciénega de Zapata · Playa Santa María</div>
-    <div class="item-desc">Eaux turquoise, mangroves préservées et farniente&nbsp;: deux visages de la côte cubaine, entre plongée dans l'histoire de la Baie des Cochons et détente balnéaire sur les plages de l'Est.</div>
+    <div class="item-title">Playa Larga &middot; Ci&eacute;naga de Zapata &middot; Playa Santa Mar&iacute;a</div>
+    <div class="item-desc">Eaux turquoise, mangroves pr&eacute;serv&eacute;es et farniente&nbsp;: deux visages de la c&ocirc;te cubaine, entre plong&eacute;e dans l'histoire de la Baie des Cochons et d&eacute;tente baln&eacute;aire sur les plages de l'Est.</div>
   </div>
-  <img class="watermark" src="images/photo35.png" alt="Watermark" width="34" height="34" loading="lazy" decoding="async"/>
+  <img class="watermark" src="images/photo35.png"/>
   <div class="footer-bar">
       <div class="brand">Cuba · Festival de Tango</div>
       <div class="pagenum">10</div>
     </div>
 </div>
 
-<!-- ==================== PAGE 11 ==================== -->
 <div class="section">
   <div class="eyebrow">Patrimoine mondial</div>
   <h1 class="title">Trinidad, joyau de l'UNESCO</h1>
-  <p class="lead">Ruelles pavées, façades pastel et ambiance intemporelle&nbsp;: la ville coloniale la mieux préservée de Cuba, entre Palacio Cantero et Casa de la Trova.</p>
+  <p class="lead">Ruelles pav&eacute;es, fa&ccedil;ades pastel et ambiance intemporelle&nbsp;: la ville coloniale la mieux pr&eacute;serv&eacute;e de Cuba, entre Palacio Cantero et Casa de la Trova.</p>
   <div class="photo-row three">
-    <img src="images/photo36.jpg" alt="Trinidad - Rue pavée" width="350" height="200" loading="lazy" decoding="async"/>
-    <img src="images/photo37.jpg" alt="Trinidad - Façades colorées" width="350" height="200" loading="lazy" decoding="async"/>
-    <img src="images/photo38.jpg" alt="Trinidad - Palacio Cantero" width="350" height="200" loading="lazy" decoding="async"/>
+    <img src="images/photo36.jpg"/>
+    <img src="images/photo37.jpg"/>
+    <img src="images/photo38.jpg"/>
   </div>
-  <img class="watermark" src="images/photo39.png" alt="Watermark" width="34" height="34" loading="lazy" decoding="async"/>
+  <img class="watermark" src="images/photo39.png"/>
   <div class="footer-bar">
       <div class="brand">Cuba · Festival de Tango</div>
       <div class="pagenum">11</div>
     </div>
 </div>
 
-<!-- ==================== PAGE 12 ==================== -->
 <div class="section">
   <div class="eyebrow">Sur la route</div>
-  <h1 class="title">Transferts en voiture américaine 1950</h1>
-  <p class="lead">Le charme rétro des voitures américaines pour sillonner l'île, entre La Havane et Trinidad.</p>
+  <h1 class="title">Transferts en voiture am&eacute;ricaine 1950</h1>
+  <p class="lead">Le charme r&eacute;tro des voitures am&eacute;ricaines pour sillonner l'&icirc;le, entre La Havane et Trinidad.</p>
   <div class="photo-row three">
-    <img src="images/photo40.jpg" alt="Voiture américaine 1950" width="350" height="350" style="height:200px;object-fit:cover;" loading="lazy" decoding="async"/>
-    <img src="images/photo41.jpg" alt="Voiture classique cubaine" width="350" height="350" style="height:200px;object-fit:cover;" loading="lazy" decoding="async"/>
-    <img src="images/photo42.jpg" alt="Conduite à Cuba" width="350" height="350" style="height:200px;object-fit:cover;" loading="lazy" decoding="async"/>
+    <img src="images/photo40.jpg" style="height:200px;"/>
+    <img src="images/photo41.jpg" style="height:200px;"/>
+    <img src="images/photo42.jpg" style="height:200px;"/>
   </div>
-  <img class="watermark" src="images/photo43.png" alt="Watermark" width="34" height="34" loading="lazy" decoding="async"/>
+  <img class="watermark" src="images/photo43.png"/>
   <div class="footer-bar">
       <div class="brand">Cuba · Festival de Tango</div>
       <div class="pagenum">12</div>
     </div>
 </div>
 
-<!-- ==================== PAGE 13 ==================== -->
 <div class="section">
-  <div class="eyebrow">Itinéraire</div>
-  <h1 class="title">Programme détaillé – 1<sup>ère</sup> semaine</h1>
-  <div class="day"><div class="day-num">2</div><div class="day-body"><span class="day-title">Jour 2</span>Formalités</div></div>
-  <div class="day"><div class="day-num">3</div><div class="day-body"><span class="day-title">Jour 3</span>Le Vedado – découverte du quartier<br/><span style="color:var(--soft);">Vieille Havane, Capitole, Parc Central, Palais des Capitaines Généraux, Place d'Armes</span></div></div>
-  <div class="day"><div class="day-num">4</div><div class="day-body"><span class="day-title">Jour 4</span>Cours de salsa (2h)<br/><span style="color:var(--soft);">Plages de l'Est – Tarará / Santa María</span></div></div>
-  <div class="day"><div class="day-num">5</div><div class="day-body"><span class="day-title">Jour 5</span>Visite panoramique — Place de la Révolution, Bois de La Havane, 5<sup>ème</sup> avenue<br/><span style="color:var(--soft);">Dîner – Restaurant El Bodegón</span></div></div>
-  <div class="day"><div class="day-num">6</div><div class="day-body"><span class="day-title">Jour 6</span>TangueArte — 7<sup>ème</sup> Festival de Tango<br/><span style="color:var(--soft);">Cours de salsa (2h/j)</span></div></div>
-  <div class="day"><div class="day-num">7</div><div class="day-body"><span class="day-title">Jour 7</span>Festival – cours &amp; milongas (2h/j)*</div></div>
-  <div class="day"><div class="day-num">8</div><div class="day-body"><span class="day-title">Jour 8</span>Inauguration &amp; spectacle artistique — Ojo del Ciclón<br/><span style="color:var(--soft);">Temps libre</span></div></div>
-  <p style="font-size:12px;color:var(--soft);font-style:italic;margin-top:10px;">*Programme indicatif, ajusté selon le calendrier définitif communiqué par le festival.</p>
-  <img class="watermark" src="images/photo44.png" alt="Watermark" width="34" height="34" loading="lazy" decoding="async"/>
+  <div class="eyebrow">Itin&eacute;raire</div>
+  <h1 class="title">Programme d&eacute;taill&eacute; &ndash; 1&egrave;re semaine</h1>
+  <div class="day"><div class="day-num">2</div><div class="day-body"><span class="day-title">Jour 2</span>Formalit&eacute;s</div></div><div class="day"><div class="day-num">3</div><div class="day-body"><span class="day-title">Jour 3</span>Le Vedado &ndash; d&eacute;couverte du quartier<br/><span style="color:var(--soft);">Vieille Havane, Capitole, Parc Central, Palais des Capitaines G&eacute;n&eacute;raux, Place d'Armes</span></div></div><div class="day"><div class="day-num">4</div><div class="day-body"><span class="day-title">Jour 4</span>Cours de salsa (2h)<br/><span style="color:var(--soft);">Plages de l'Est &ndash; Tarar&aacute; / Santa Mar&iacute;a</span></div></div><div class="day"><div class="day-num">5</div><div class="day-body"><span class="day-title">Jour 5</span>Visite panoramique &mdash; Place de la R&eacute;volution, Bois de La Havane, 5&egrave;me avenue<br/><span style="color:var(--soft);">D&icirc;ner &ndash; Restaurant El Bodeg&oacute;n</span></div></div><div class="day"><div class="day-num">6</div><div class="day-body"><span class="day-title">Jour 6</span>TangueArte &mdash; 7&egrave;me Festival de Tango<br/><span style="color:var(--soft);">Cours de salsa (2h/j)</span></div></div><div class="day"><div class="day-num">7</div><div class="day-body"><span class="day-title">Jour 7</span>Festival &ndash; cours &amp; milongas (2h/j)*</div></div><div class="day"><div class="day-num">8</div><div class="day-body"><span class="day-title">Jour 8</span>Inauguration &amp; spectacle artistique &mdash; Ojo del Cicl&oacute;n<br/><span style="color:var(--soft);">Temps libre</span></div></div>
+  <p style="font-size:12px;color:var(--soft);font-style:italic;margin-top:10px;">*Programme indicatif, ajust&eacute; selon le calendrier d&eacute;finitif communiqu&eacute; par le festival.</p>
+  <img class="watermark" src="images/photo44.png"/>
   <div class="footer-bar">
       <div class="brand">Cuba · Festival de Tango</div>
       <div class="pagenum">13</div>
     </div>
 </div>
 
-<!-- ==================== PAGE 14 ==================== -->
 <div class="section">
-  <div class="eyebrow">Itinéraire</div>
-  <h1 class="title">Programme détaillé – 2<sup>ème</sup> semaine</h1>
-  <div class="day"><div class="day-num">9</div><div class="day-body"><span class="day-title">Jour 9</span>Route vers la Ciénega de Zapata<br/><span style="color:var(--soft);">Piscine naturelle Caleta Buena</span></div></div>
-  <div class="day"><div class="day-num">10</div><div class="day-body"><span class="day-title">Jour 10</span>Cienfuegos – Punta Gorda<br/><span style="color:var(--soft);">Playa Larga · Baie des Cochons</span></div></div>
-  <div class="day"><div class="day-num">11</div><div class="day-body"><span class="day-title">Jour 11</span>Vallée de los Ingenios (Torre Iznaga)<br/><span style="color:var(--soft);">Trinidad – visite de la ville, Palacio Cantero</span></div></div>
-  <div class="day"><div class="day-num">12</div><div class="day-body"><span class="day-title">Jour 12</span>Déjeuner Guajiro à Manaca Iznaga, balade à cheval, baignade<br/><span style="color:var(--soft);">Casa de la Trova</span></div></div>
-  <div class="day"><div class="day-num">13</div><div class="day-body"><span class="day-title">Jour 13</span>Retour à La Havane<br/><span style="color:var(--soft);">La Havane bucolique – Capdevila</span></div></div>
-  <div class="day"><div class="day-num">14</div><div class="day-body"><span class="day-title">Jour 14</span>Cours de salsa (2h)<br/><span style="color:var(--soft);">Callejón de Hamel</span></div></div>
-  <div class="day"><div class="day-num">15</div><div class="day-body"><span class="day-title">Jour 15</span>Cours de salsa (2h)<br/><span style="color:var(--soft);">Cérémonie santera — Centro Habana / Temps libre</span></div></div>
-  <div class="day"><div class="day-num">16</div><div class="day-body"><span class="day-title">Jour 16</span>Foire artisanale de San José</div></div>
-  <img class="watermark" src="images/photo45.png" alt="Watermark" width="34" height="34" loading="lazy" decoding="async"/>
+  <div class="eyebrow">Itin&eacute;raire</div>
+  <h1 class="title">Programme d&eacute;taill&eacute; &ndash; 2&egrave;me semaine</h1>
+  <div class="day"><div class="day-num">9</div><div class="day-body"><span class="day-title">Jour 9</span>Route vers la Ci&eacute;naga de Zapata<br/><span style="color:var(--soft);">Piscine naturelle Caleta Buena</span></div></div><div class="day"><div class="day-num">10</div><div class="day-body"><span class="day-title">Jour 10</span>Cienfuegos &ndash; Punta Gorda<br/><span style="color:var(--soft);">Playa Larga &middot; Baie des Cochons</span></div></div><div class="day"><div class="day-num">11</div><div class="day-body"><span class="day-title">Jour 11</span>Vall&eacute;e de los Ingenios (Torre Iznaga)<br/><span style="color:var(--soft);">Trinidad &ndash; visite de la ville, Palacio Cantero</span></div></div><div class="day"><div class="day-num">12</div><div class="day-body"><span class="day-title">Jour 12</span>D&eacute;jeuner Guajiro &agrave; Manaca Iznaga, balade &agrave; cheval, baignade<br/><span style="color:var(--soft);">Casa de la Trova</span></div></div><div class="day"><div class="day-num">13</div><div class="day-body"><span class="day-title">Jour 13</span>Retour &agrave; La Havane<br/><span style="color:var(--soft);">La Havane bucolique &ndash; Capdevila</span></div></div><div class="day"><div class="day-num">14</div><div class="day-body"><span class="day-title">Jour 14</span>Cours de salsa (2h)<br/><span style="color:var(--soft);">Callej&oacute;n de Hamel</span></div></div><div class="day"><div class="day-num">15</div><div class="day-body"><span class="day-title">Jour 15</span>Cours de salsa (2h)<br/><span style="color:var(--soft);">C&eacute;r&eacute;monie santera &mdash; Centro Habana / Temps libre</span></div></div><div class="day"><div class="day-num">16</div><div class="day-body"><span class="day-title">Jour 16</span>Foire artisanale de San Jos&eacute;</div></div>
+  <img class="watermark" src="images/photo45.png"/>
   <div class="footer-bar">
       <div class="brand">Cuba · Festival de Tango</div>
       <div class="pagenum">15</div>
     </div>
 </div>
 
-<!-- ==================== PAGE 15 ==================== -->
 <div class="section">
-  <div class="eyebrow">Hébergement</div>
-  <h1 class="title">Logement à la Vieille Havane</h1>
+  <div class="eyebrow">H&eacute;bergement</div>
+  <h1 class="title">Logement &agrave; la Vieille Havane</h1>
   <div class="photo-row four">
-    <img src="images/photo46.jpg" alt="Casa particular - chambre" width="200" height="150" loading="lazy" decoding="async"/>
-    <img src="images/photo47.jpg" alt="Casa particular - cour intérieure" width="200" height="150" loading="lazy" decoding="async"/>
-    <img src="images/photo48.jpg" alt="Casa particular - salon" width="200" height="150" loading="lazy" decoding="async"/>
-    <img src="images/photo49.jpg" alt="Casa particular - façade" width="200" height="150" loading="lazy" decoding="async"/>
+    <img src="images/photo46.jpg"/>
+    <img src="images/photo47.jpg"/>
+    <img src="images/photo48.jpg"/>
+    <img src="images/photo49.jpg"/>
   </div>
   <div class="item">
     <div class="item-title">Casa particular</div>
-    <div class="item-desc">Hébergement chez l'habitant en plein cœur du quartier historique, à quelques minutes à pied des principaux monuments et des lieux du festival.</div>
+    <div class="item-desc">H&eacute;bergement chez l'habitant en plein c&oelig;ur du quartier historique, &agrave; quelques minutes &agrave; pied des principaux monuments et des lieux du festival.</div>
   </div>
-  <img class="watermark" src="images/photo50.png" alt="Watermark" width="34" height="34" loading="lazy" decoding="async"/>
+  <img class="watermark" src="images/photo50.png"/>
   <div class="footer-bar">
       <div class="brand">Cuba · Festival de Tango</div>
       <div class="pagenum">16</div>
     </div>
 </div>
 
-<!-- ==================== PAGE 16 ==================== -->
 <div class="section">
   <div class="eyebrow">Informations pratiques</div>
-  <h1 class="title">À savoir avant de partir</h1>
+  <h1 class="title">&Agrave; savoir avant de partir</h1>
   <ul class="bullets">
     <li>Pas de vaccin obligatoire</li>
     <li>Langue officielle&nbsp;: l'espagnol</li>
-    <li>Décalage horaire&nbsp;: – 6 heures (12h à Paris = 6h à La Havane)</li>
-    <li>Eau du robinet potable et propre à la consommation</li>
-    <li>Déjeuners pris ensemble&nbsp;; dîners libres (sauf 3 soirées&nbsp;: cubaine, cocktails, Trinidad)</li>
+    <li>D&eacute;calage horaire&nbsp;: &ndash; 6 heures (12h &agrave; Paris = 6h &agrave; La Havane)</li>
+    <li>Eau du robinet potable et propre &agrave; la consommation</li>
+    <li>D&eacute;jeuners pris ensemble&nbsp;; d&icirc;ners libres (sauf 3 soir&eacute;es&nbsp;: cubaine, cocktails, Trinidad)</li>
   </ul>
   <div class="card">
     <div class="card-title">Argent</div>
     <ul class="bullets">
-      <li>Monnaie&nbsp;: peso cubain (CUP) – 1&nbsp;€ ≈ 134&nbsp;CUP (taux indicatif, change en banque ou Cadeca)</li>
-      <li>Distributeurs automatiques&nbsp;: commission de 3&nbsp;% sur le montant en $US&nbsp;; cartes de crédit US non acceptées</li>
-      <li>Change €/$US&nbsp;: banques et CADECAs uniquement</li>
-      <li>Conseil&nbsp;: ne jamais changer à l'aéroport ni dans la rue</li>
+      <li>Monnaie&nbsp;: peso cubain (CUP) &ndash; 1&nbsp;&euro; &asymp; 134&nbsp;CUP (taux indicatif, change en banque ou Cadeca)</li>
+      <li>Distributeurs automatiques&nbsp;: commission de 3&nbsp;% sur le montant en $US&nbsp;; cartes de cr&eacute;dit US non accept&eacute;es</li>
+      <li>Change &euro;/$US&nbsp;: banques et CADECAs uniquement</li>
+      <li>Conseil&nbsp;: ne jamais changer &agrave; l'a&eacute;roport ni dans la rue</li>
     </ul>
   </div>
-  <div class="subhead">Quelques prix repères</div>
-  <p style="font-size:14px;">Restaurant / paladar&nbsp;: 10–35&nbsp;€ · Cabaret ou ballet/opéra&nbsp;: ~30&nbsp;€ · Cocktail (mojito, daïquiri…)&nbsp;: ~4&nbsp;€ · Préférer l'app «&nbsp;La Nave&nbsp;» aux Cubataxis, plus onéreux.</p>
-  <img class="watermark" src="images/photo51.png" alt="Watermark" width="34" height="34" loading="lazy" decoding="async"/>
+  <div class="subhead">Quelques prix rep&egrave;res</div>
+  <p style="font-size:14px;">Restaurant / paladar&nbsp;: 10&ndash;35&nbsp;&euro; &middot; Cabaret ou ballet/op&eacute;ra&nbsp;: ~30&nbsp;&euro; &middot; Cocktail (mojito, da&iuml;quiri&hellip;)&nbsp;: ~4&nbsp;&euro; &middot; Pr&eacute;f&eacute;rer l'app &laquo;&nbsp;La Nave&nbsp;&raquo; aux Cubataxis, plus on&eacute;reux.</p>
+  <img class="watermark" src="images/photo51.png"/>
   <div class="footer-bar">
       <div class="brand">Cuba · Festival de Tango</div>
       <div class="pagenum">17</div>
     </div>
 </div>
 
-<!-- ==================== PAGE 17 ==================== -->
 <div class="section">
-  <div class="eyebrow">Sécurité &amp; bon sens</div>
-  <h1 class="title">Quelques précautions</h1>
-  <p class="lead">De tous les pays d'Amérique latine, Cuba est l'un des plus sûrs. Quelques règles simples permettent d'aborder le séjour en toute sérénité.</p>
-  <ul class="bullets pill-list dont"><li>Éviter de marcher seul(e) le soir, surtout dans les rues peu éclairées</li><li>Décliner poliment mais fermement les sollicitations des «&nbsp;jinetero(a)s&nbsp;»</li><li>Marcher au milieu de la rue dans les vieux quartiers</li><li>Ne pas acheter de cigares dans la rue (50 maximum autorisés à la sortie de Cuba)</li></ul>
-  <ul class="bullets pill-list do"><li>Ne sortir qu'avec une copie du passeport et du visa, sans bijoux ni argent superflu</li><li>Vérifier les additions manuscrites au restaurant et la monnaie rendue</li><li>Prévoir une pochette étanche pour ses papiers en cas de forte pluie</li><li>Bonnes chaussures indispensables&nbsp;; prises électriques 110V/220V au format américain</li></ul>
+  <div class="eyebrow">S&eacute;curit&eacute; &amp; bon sens</div>
+  <h1 class="title">Quelques pr&eacute;cautions</h1>
+  <p class="lead">De tous les pays d'Am&eacute;rique latine, Cuba est l'un des plus s&ucirc;rs. Quelques r&egrave;gles simples permettent d'aborder le s&eacute;jour en toute s&eacute;r&eacute;nit&eacute;.</p>
+  <ul class="bullets pill-list dont"><li>&Eacute;viter de marcher seul(e) le soir, surtout dans les rues peu &eacute;clair&eacute;es</li><li>D&eacute;cliner poliment mais fermement les sollicitations des &laquo;&nbsp;jinetero(a)s&nbsp;&raquo;</li><li>Marcher au milieu de la rue dans les vieux quartiers</li><li>Ne pas acheter de cigares dans la rue (50 maximum autoris&eacute;s &agrave; la sortie de Cuba)</li></ul>
+  <ul class="bullets pill-list do"><li>Ne sortir qu'avec une copie du passeport et du visa, sans bijoux ni argent superflu</li><li>V&eacute;rifier les additions manuscrites au restaurant et la monnaie rendue</li><li>Pr&eacute;voir une pochette &eacute;tanche pour ses papiers en cas de forte pluie</li><li>Bonnes chaussures indispensables&nbsp;; prises &eacute;lectriques 110V/220V au format am&eacute;ricain</li></ul>
   <div class="card teal">
-    <div class="card-body">Ambassade de France – Calle 14, n°312 entre 5ta y 3ra, Miramar (Playa)</div>
+    <div class="card-body">Ambassade de France &ndash; Calle 14, n&deg;312 entre 5ta y 3ra, Miramar (Playa)</div>
   </div>
-  <img class="watermark" src="images/photo52.png" alt="Watermark" width="34" height="34" loading="lazy" decoding="async"/>
+  <img class="watermark" src="images/photo52.png"/>
   <div class="footer-bar">
       <div class="brand">Cuba · Festival de Tango</div>
       <div class="pagenum">18</div>
     </div>
 </div>
 
-<!-- ==================== PAGE 18 : DOSSIER ARRIÈRE ==================== -->
 <div class="section back" style="padding:0;">
-  <img class="back-photo" style="border-radius:2px;width:140px;height:auto;display:block;margin:0 auto 22px auto;box-shadow:0 1px 4px rgba(0,0,0,.25);" src="images/photo53.jpg" alt="Cuba - Souvenir" width="140" height="140" loading="lazy" decoding="async"/>
+  <img class="back-photo" style="border-radius:2px;width:140px;height:auto;display:block;margin:0 auto 22px auto;box-shadow:0 1px 4px rgba(0,0,0,.25);" src="images/photo53.jpg"/>
   <div style="padding:0 24px;">
-    <div class="back-msg">Bon séjour à Cuba,<br/>au cœur des Caraïbes&nbsp;!</div>
-    <img class="back-logo" src="images/photo54.png" alt="Logo VPD Voyages" width="56" height="56" loading="lazy" decoding="async"/>
+    <div class="back-msg">Bon s&eacute;jour &agrave; Cuba,<br/>au c&oelig;ur des Cara&iuml;bes&nbsp;!</div>
+    <img class="back-logo" src="images/photo54.png"/>
     <div class="site">vpdvoyages.com</div>
   </div>
 </div>
 
 
-<!-- ==================== SCRIPT OPTIMISÉ ==================== -->
 <script>
 (function() {
   function hideLoader() {
     var el = document.getElementById('loading-overlay');
     if (el) {
       el.classList.add('hidden');
-      setTimeout(function() { 
-        if (el.parentNode) el.style.display = 'none'; 
-      }, 400);
+      setTimeout(function() { el.style.display = 'none'; }, 600);
     }
   }
-
-  // Si la page est déjà chargée, on cache immédiatement
   if (document.readyState === 'complete') {
     hideLoader();
   } else {
-    // On écoute l'événement load
     window.addEventListener('load', hideLoader);
-    // Mais on ne dépasse pas 3 secondes maximum
-    setTimeout(hideLoader, 3000);
-  }
-
-  // Petit plus : on observe le premier affichage pour accélérer
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(function() {
-      // Les images en lazy loading vont se charger tranquillement
-    }, { timeout: 2000 });
+    setTimeout(hideLoader, 15000);
   }
 })();
 </script>
