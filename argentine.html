@@ -303,22 +303,40 @@
         }
       });
     });
+
+    // ============================================================
+    // GESTION DES BOUTONS "voir pgm" SELON PC ou MOBILE
+    // ============================================================
     (function () {
+      // Détection mobile : largeur d'écran <= 640px
       var isMobile = window.innerWidth <= 640;
 
-      // Carte 1 : Tango et Bodegas
+      // --- Carte 1 : Tango et Bodegas ---
       var tangoBtn = document.getElementById('arg-tango-pdf-button');
-      if (isMobile && tangoBtn) {
-        tangoBtn.href = 'PDF_mobile/argentine-tango-bodegas/';
-        tangoBtn.target = '_self';
+      if (tangoBtn) {
+        if (isMobile) {
+          tangoBtn.href = 'PDF_mobile/argentine-tango-bodegas/';
+          tangoBtn.target = '_self';
+        } else {
+          tangoBtn.href = 'PDF/Argentine_Tango_&_Bodegas.pdf';
+          tangoBtn.target = '_blank';
+        }
       }
 
-      // Carte 4 : Buenos Aires, Mendoza et les Andes
+      // --- Carte 4 : Buenos Aires, Mendoza et les Andes ---
       var andesBtn = document.getElementById('arg-andes-pdf-button');
-      if (isMobile && andesBtn) {
-        andesBtn.href = 'PDF_mobile/Argentine_Passion_Vin_Altitude/';
-        andesBtn.target = '_self';
+      if (andesBtn) {
+        if (isMobile) {
+          andesBtn.href = 'PDF_mobile/Argentine_Passion_Vin_Altitude/';
+          andesBtn.target = '_self';
+        } else {
+          andesBtn.href = 'PDF/Argentine_Passion_Vin_Altitude.pdf';
+          andesBtn.target = '_blank';
+        }
       }
+
+      // Affichage dans la console pour vérification (optionnel)
+      console.log('Mode mobile ?', isMobile);
     })();
   </script>
 <script src="bandeau.js"></script>
