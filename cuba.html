@@ -206,7 +206,7 @@
             <p class="text-gray-600 mt-2 description">Du 23 au 25 octobre 2026, vivez le Festival de Tango à La Havane. Découvrez spectacles, ateliers avec maestros et milongas sous les étoiles. Explorez les quartiers historiques vibrants de culture cubaine. Un voyage mêlant l'élégance du tango et la chaleur de Cuba pour une expérience inoubliables.</p>
             <div class="flex justify-center space-x-3 mt-2">
               <button class="read-more" aria-label="Lire plus">+</button>
-              <a href="Cuba_Festival_Tango_La_Havane.html" class="pdf-button" id="cuba-tango-pdf-button">voir pgm</a>
+              <a href="Cuba - Festival de Tango à La Havane.html" class="pdf-button" id="cuba-tango-pdf-button">voir pgm</a>
               <div class="photo-button-container ml-8">
                 <a href="https://www.youtube.com/watch?v=OXXh9TQV5ps" class="photo-button" target="_blank" rel="noopener">
                   <img src="Images/emoji photographe.jpeg" alt="Voir photos" class="image-check">
@@ -329,7 +329,7 @@
         if (tangoBtn) { tangoBtn.href = 'PDF/Cuba_Festival_Tango_La_Havane.pdf'; tangoBtn.target = '_blank'; }
       }
 
-      // Autres cartes : PDF_mobile ou PDF
+      // Autres cartes : toujours le dossier PDF (même sur mobile)
       const otherLinks = {
         'cuba-decouverte': 'Cuba_Decouverte_Patrimoine_Traditions.pdf',
         'cuba-velo': 'Cuba_a_Velo_Santiago_Havane.pdf',
@@ -338,7 +338,7 @@
       };
 
       Object.keys(otherLinks).forEach(id => {
-        const folder = isMobile ? 'PDF_mobile' : 'PDF';
+        const folder = 'PDF'; // même dossier que sur PC
         const path = `${folder}/${otherLinks[id]}`;
         const img = document.getElementById(`${id}-image-link`);
         const btn = document.getElementById(`${id}-pdf-button`);
@@ -347,16 +347,19 @@
       });
     }
     
-    updateLinks();
-    window.addEventListener('resize', updateLinks);
-    
-    // Fermer les menus mobiles
-    document.querySelectorAll('.nav-menu a, .dropdown-menu a').forEach(anchor => {
-      anchor.addEventListener('click', function () {
-        if (window.innerWidth <= 640) {
-          document.querySelector('.nav-menu')?.classList.remove('active');
-          document.querySelector('.dropdown-menu')?.classList.remove('active');
-        }
+    // Attendre le chargement complet du DOM avant d'exécuter updateLinks
+    document.addEventListener('DOMContentLoaded', function () {
+      updateLinks();
+      window.addEventListener('resize', updateLinks);
+      
+      // Fermer les menus mobiles lors des clics sur les liens
+      document.querySelectorAll('.nav-menu a, .dropdown-menu a').forEach(anchor => {
+        anchor.addEventListener('click', function () {
+          if (window.innerWidth <= 640) {
+            document.querySelector('.nav-menu')?.classList.remove('active');
+            document.querySelector('.dropdown-menu')?.classList.remove('active');
+          }
+        });
       });
     });
   </script>
