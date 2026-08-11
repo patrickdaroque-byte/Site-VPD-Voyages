@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Voyage solo en petit groupe | VPDVOYAGES</title>
-  <meta name="description" content="Voyagez seul(e) en groupe intime de 3-5 personnes avec VPDVOYAGES. Tango, salsa, randonnée, œnologie – sans supplément single. Découvrez nos départs.">
+  <meta name="description" content="Voyagez seul(e) en groupe intime de 2-5 personnes avec VPDVOYAGES. Tango, salsa, randonnée, œnologie – sans supplément single. Découvrez nos départs.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
   <style>
@@ -64,7 +64,10 @@
       border-left: 4px solid #E67E22;
       padding: 1.5rem;
       border-radius: 8px;
-      margin-bottom: 1.5rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .testimonial-card .author {
       font-weight: 600;
@@ -94,11 +97,15 @@
       background: #f1f5f9;
     }
     .badge-solo {
-      background: rgba(0, 0, 0, 0.25);
-      padding: 0.25rem 1rem;
-      border-radius: 12px;
+      background: rgba(230, 126, 34, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #ffffff;
+      padding: 0.3rem 1.2rem;
+      border-radius: 20px;
       font-style: italic;
+      font-weight: 500;
       display: inline-block;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     /* ===== AMÉLIORATIONS MOBILE ===== */
@@ -117,7 +124,7 @@
         font-size: 0.95rem;
       }
       .hero-content {
-        padding: 1.5rem 1rem !important;
+        padding: 1.25rem 1rem !important;
       }
       .hero-content h1 {
         font-size: 1.8rem !important;
@@ -183,24 +190,31 @@
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="bg-cover bg-center py-16 flex items-center justify-center" style="background-image: url('https://vpdvoyages.com/Voyages de rêve/Images/hero-image.jpg');">
-    <div class="hero-content text-center text-white bg-gradient-to-r from-orange-500 via-rose-500 to-purple-600 p-8 rounded-lg mx-4 shadow-lg max-w-4xl">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">👤 Voyage solo en petit groupe</h1>
+  <!-- HERO (Avenant, coloré & icône bien visible) -->
+  <section class="bg-cover bg-center py-6 flex items-center justify-center" style="background-image: url('https://vpdvoyages.com/Voyages de rêve/Images/hero-image.jpg');">
+    <div class="hero-content text-center text-white bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-800 p-6 md:p-8 rounded-2xl mx-4 shadow-2xl max-w-4xl border border-amber-400/30">
+      <div class="flex items-center justify-center gap-3 mb-3">
+        <div class="bg-white/20 p-2 rounded-full flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-bold tracking-tight">Voyage solo en petit groupe</h1>
+      </div>
       <p class="text-xl md:text-2xl mb-4 max-w-2xl mx-auto"><span class="badge-solo">Seul(e) mais pas isolé(e)</span></p>
-      <p class="text-lg max-w-3xl mx-auto">Partez en groupe intime de 3 à 5 personnes pour découvrir l'Espagne ou l'Amérique latine.</p>
+      <p class="text-lg text-blue-100 max-w-3xl mx-auto font-medium">Partez en groupe intime de 2 à 5 personnes pour découvrir l'Espagne ou l'Amérique latine.</p>
     </div>
   </section>
 
   <!-- SECTION : NOTRE PROMESSE -->
-  <section class="py-12 bg-white">
+  <section class="pt-4 pb-8 bg-white">
     <div class="container mx-auto px-4 max-w-5xl">
-      <h2 class="text-3xl font-bold text-center mb-8">Notre promesse pour les voyageurs solos</h2>
+      <h2 class="text-3xl font-bold text-center mb-6">Notre promesse pour les voyageurs solos</h2>
       <div class="promise-grid grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-gray-50 p-6 rounded-lg text-center shadow-sm">
           <div class="text-4xl mb-3">👥</div>
           <h3 class="font-bold text-lg mb-2">Groupe intime</h3>
-          <p class="text-gray-600 text-sm">3 à 5 personnes maximum – assez pour créer des liens, pas trop pour préserver l'authenticité.</p>
+          <p class="text-gray-600 text-sm">2 à 5 personnes maximum – assez pour créer des liens, pas trop pour préserver l'authenticité.</p>
         </div>
         <div class="bg-gray-50 p-6 rounded-lg text-center shadow-sm">
           <div class="text-4xl mb-3">💰</div>
@@ -216,19 +230,36 @@
     </div>
   </section>
 
-  <!-- SECTION : TÉMOIGNAGES -->
+  <!-- SECTION : EXPÉRIENCES SOLOS -->
   <section class="py-12 bg-gray-100">
-    <div class="container mx-auto px-4 max-w-4xl">
-      <h2 class="text-3xl font-bold text-center mb-8">Ils ont osé le voyage solo avec VPDVOYAGES</h2>
+    <div class="container mx-auto px-4 max-w-5xl">
+      <h2 class="text-3xl font-bold text-center mb-8">Expériences solos : ce qu'ils sont venus chercher chez VPDVOYAGES</h2>
 
-      <div class="testimonial-card">
-        <p class="text-gray-700 italic text-lg">"Je suis partie seule en Argentine. 18 jours à danser le tango, déguster du Malbec, chevaucher dans la Pampa. J'ai rencontré 4 femmes formidables. On s'est quittées en promettant de se revoir. Je ne me suis jamais sentie seule une seconde."</p>
-        <div class="author">Catherine, 62 ans <span class="status">– veuve</span></div>
-      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="testimonial-card">
+          <p class="text-gray-700 italic text-base">"Je suis partie seule en Argentine. 18 jours à danser le tango, déguster du Malbec, chevaucher dans la Pampa. J'ai rencontré 4 femmes formidables. On s'est quittées en promettant de se revoir. Je ne me suis jamais sentie seule une seconde."</p>
+          <div class="author">Catherine, 62 ans <span class="status">– veuve</span></div>
+        </div>
 
-      <div class="testimonial-card">
-        <p class="text-gray-700 italic text-lg">"J'avais peur de voyager seule après mon divorce. Patrick m'a écoutée, m'a proposé un groupe de 5 personnes en Colombie. On a ri, on a dansé la salsa, on a partagé des émotions fortes. Un voyage qui m'a réconciliée avec la vie."</p>
-        <div class="author">Sophie, 51 ans <span class="status">– divorcée</span></div>
+        <div class="testimonial-card">
+          <p class="text-gray-700 italic text-base">"J'avais peur de voyager seule après mon divorce. Patrick m'a écoutée, m'a proposé un groupe de 5 personnes en Colombie. On a ri, on a dansé la salsa, on a partagé des émotions fortes. Un voyage qui m'a réconciliée avec la vie."</p>
+          <div class="author">Sophie, 51 ans <span class="status">– divorcée</span></div>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="text-gray-700 italic text-base">"Une escapade de 4 jours en Espagne tout simplement mémorable ! Le format à 4 personnes était parfait pour échanger et profiter des domaines viticoles sans l'effet usine des grands tours."</p>
+          <div class="author">Marc, 48 ans <span class="status">– célibataire</span></div>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="text-gray-700 italic text-base">"Partir seule à Cuba m'intimidait beaucoup. Grâce à la formule Sérénité et notre super groupe, je me suis sentie en parfaite sécurité du début à la fin. Une immersion incroyable !"</p>
+          <div class="author">Isabelle, 57 ans <span class="status">– célibataire</span></div>
+        </div>
+
+        <div class="testimonial-card md:col-span-2 md:w-1/2 md:mx-auto">
+          <p class="text-gray-700 italic text-base">"Un parcours en Uruguay parfaitement calibré. L'organisation de Patrick est irréprochable et le fait d'être en petit comité crée de vraies complicités dès le premier soir."</p>
+          <div class="author">Pierre, 64 ans <span class="status">– retraité</span></div>
+        </div>
       </div>
 
     </div>
@@ -238,7 +269,8 @@
   <section class="py-12 bg-white">
     <div class="container mx-auto px-4 max-w-5xl">
       <h2 class="text-3xl font-bold text-center mb-8">Propositions Séjours et Escapades Solo</h2>
-      <p class="text-center text-gray-600 mb-2">Tous nos voyages durent <strong>17 à 18 jours</strong> et sont limités à <strong>3-5 personnes</strong>.</p>
+      <p class="text-center text-gray-600 mb-1">Tous nos voyages en Amérique latine durent <strong>17 à 18 jours</strong> (groupes de 2 à 5 personnes).</p>
+      <p class="text-center text-gray-600 mb-2">En Espagne, nous vous proposons des escapades de <strong>4 jours</strong> (groupes de 2 à 5 personnes).</p>
       <p class="text-center text-sm text-gray-400 mb-8">(Propositions non exhaustives – d'autres destinations et thématiques sont disponibles sur demande)</p>
 
       <div class="overflow-x-auto">
@@ -313,7 +345,7 @@
 
       <div class="bg-white p-6 rounded-lg shadow-sm mb-4">
         <h3 class="font-bold text-lg mb-2">Y a-t-il des moments de solitude ?</h3>
-        <p class="text-gray-700">Vous êtes libre de vous isoler quand vous voulez. Mais le format 3-5 personnes crée naturellement une cohésion.</p>
+        <p class="text-gray-700">Vous êtes libre de vous isoler quand vous voulez. Mais le format petit groupe crée naturellement une cohésion.</p>
       </div>
 
       <div class="bg-white p-6 rounded-lg shadow-sm mb-4">
