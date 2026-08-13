@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Argentine - Ville et Nature en Mouvement</title>
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --cream: #F3ECE2;
+      --paleteal: #E7EFEE;
+      --text: #2A211C;
+      --soft: #6B5E54;
+      --accent: #C1502E;
+      --accentdark: #9C2B2B;
+      --teal: #0F5C56;
+      --gold: #C9A24B;
+      --font-head: Georgia, "Liberation Serif", "Times New Roman", serif;
+      --font-body: Arial, "Liberation Sans", Helvetica, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--bg);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .section {
+      padding: 20px 18px 14px 18px;
+      position: relative;
+      min-height: auto;
+      page-break-before: always;
+    }
+
+    .section:first-child { page-break-before: auto; }
+
+    .eyebrow {
+      font-weight: bold;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 4px 0;
+    }
+
+    h1.title {
+      font-family: var(--font-head);
+      font-weight: normal;
+      font-size: 26px;
+      line-height: 1.1;
+      color: var(--text);
+      margin: 0 0 10px 0;
+    }
+
+    p.lead {
+      font-size: 15px;
+      color: var(--soft);
+      margin: 0 0 12px 0;
+    }
+
+    .hero {
+      width: 100%;
+      border-radius: 4px;
+      display: block;
+      margin: 0 0 12px 0;
+    }
+
+    .photo-row {
+      display: flex;
+      gap: 8px;
+      margin: 0 0 10px 0;
+    }
+
+    .photo-row img {
+      width: 100%;
+      border-radius: 3px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .photo-row.two img { height: 195px; }
+    .photo-row.three img { height: 156px; }
+    .photo-row.four img { height: 137px; }
+
+    .caption {
+      font-family: var(--font-head);
+      font-style: italic;
+      font-size: 13.5px;
+      color: var(--soft);
+      margin: 0 0 12px 0;
+      text-align: center;
+    }
+
+    .item { margin: 0 0 12px 0; }
+
+    .item .item-title {
+      font-family: var(--font-head);
+      font-size: 17px;
+      color: var(--accent);
+      margin: 0 0 3px 0;
+    }
+
+    .item .item-desc { font-size: 14.5px; }
+
+    .card {
+      background: var(--cream);
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin: 0 0 12px 0;
+    }
+
+    .card.teal { background: var(--paleteal); }
+
+    .card .card-title {
+      font-family: var(--font-head);
+      font-size: 16px;
+      color: var(--teal);
+      margin: 0 0 4px 0;
+      font-weight: bold;
+    }
+
+    .card .card-body { font-size: 14.5px; }
+
+    ul.bullets {
+      margin: 6px 0 0 0;
+      padding-left: 18px;
+    }
+
+    ul.bullets li {
+      margin-bottom: 6px;
+      font-size: 14.5px;
+    }
+
+    .stat-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--paleteal);
+    }
+
+    .stat-row .stat-num {
+      font-family: var(--font-head);
+      font-size: 22px;
+      color: var(--accent);
+      min-width: 82px;
+    }
+
+    .stat-row .stat-label {
+      font-size: 14px;
+      color: var(--soft);
+    }
+
+    .day {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--paleteal);
+    }
+
+    .day:last-child { border-bottom: none; }
+
+    .day .day-num {
+      font-family: var(--font-head);
+      font-size: 14px;
+      font-weight: bold;
+      color: #FFFFFF;
+      background: var(--accent);
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    .day .day-body {
+      font-size: 14.5px;
+      padding-top: 3px;
+    }
+
+    .day .day-body .day-title {
+      font-weight: bold;
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .subhead {
+      font-family: var(--font-head);
+      font-size: 15px;
+      color: var(--teal);
+      font-weight: bold;
+      margin: 12px 0 4px 0;
+    }
+
+    .footer-bar {
+      margin-top: 18px;
+      padding-top: 10px;
+      border-top: 1px solid var(--gold);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bar .brand {
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--soft);
+      font-weight: bold;
+    }
+
+    .footer-bar .pagenum {
+      font-size: 9.5px;
+      color: var(--soft);
+    }
+
+    .cover-hero {
+      width: 100%;
+      display: block;
+    }
+
+    .cover-body {
+      padding: 12px 18px 6px 18px;
+      min-height: auto;
+    }
+
+    .cover-eyebrow {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: bold;
+      margin: 0 0 4px 0;
+    }
+
+    .cover-title {
+      font-family: var(--font-head);
+      font-size: 40px;
+      color: var(--text);
+      margin: 0;
+      line-height: 1;
+    }
+
+    .cover-title-spacer {
+      display: block;
+      height: 8px;
+    }
+
+    .cover-sub {
+      font-family: var(--font-head);
+      font-style: italic;
+      font-size: 20px;
+      color: var(--accent);
+      margin: 0;
+      line-height: 1;
+    }
+
+    .cover-intro {
+      font-size: 14.5px;
+      color: var(--text);
+      margin: 4px 0 6px 0;
+    }
+
+    .cover-list {
+      margin: 0 0 8px 0;
+      padding-left: 18px;
+    }
+
+    .cover-list li {
+      font-size: 14.5px;
+      margin-bottom: 4px;
+    }
+
+    .cover-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid var(--paleteal);
+      padding-top: 8px;
+      margin-top: 0;
+    }
+
+    .cover-logo-row img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .back {
+      text-align: center;
+      padding: 60px 24px;
+    }
+
+    .back .back-msg {
+      font-family: var(--font-head);
+      font-size: 22px;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 16px;
+    }
+
+    .back .back-logo {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 8px;
+      border-radius: 2px;
+    }
+
+    .back .site {
+      font-size: 13px;
+      color: var(--teal);
+      font-weight: bold;
+    }
+
+    .item, .card, .photo-row, .day, .stat-row, .cover-logo-row, .footer-bar, h1.title, .eyebrow, .subhead, .caption {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .eyebrow, h1.title {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        padding: 16px 18px 12px 18px;
+        min-height: auto;
+      }
+      .cover-body {
+        padding: 10px 18px 6px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== COVER ==================== -->
+  <div class="section" style="padding:0;">
+    <img class="cover-hero" src="images/cover-argentine.jpg" alt="Argentine - Ville et Nature en Mouvement" />
+    <div class="cover-body">
+      <div class="cover-eyebrow">Idée voyage en petit groupe !</div>
+      <h1 class="cover-title">Argentine</h1>
+      <span class="cover-title-spacer"></span>
+      <div class="cover-sub">Ville &amp; Nature en Mouvement</div>
+      <p class="cover-intro">20 jours au cœur de l'Argentine :</p>
+      <ul class="cover-list">
+        <li>Buenos Aires &amp; le tango argentin</li>
+        <li>Les Chutes d'Iguazú</li>
+        <li>Le Delta du Tigre</li>
+        <li>Une journée dans la Pampa</li>
+        <li>Les missions jésuites de Misiones</li>
+        <li>Les Saltos del Moconá</li>
+      </ul>
+      <div class="cover-logo-row">
+        <img src="images/logo-vpd.jpg" alt="vpdvoyages" />
+        <div class="site">vpdvoyages.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PRÉSENTATION ==================== -->
+  <div class="section">
+    <div class="eyebrow">Présentation</div>
+    <h1 class="title">Le voyage en un coup d'œil</h1>
+    <p class="lead">Plongez dans l'effervescence de Buenos Aires, capitale cosmopolite où chaque quartier raconte une histoire. Flânez dans les ruelles colorées de La Boca, admirez l'élégance de Recoleta, et laissez-vous envoûter par le tango. À seulement quelques heures, les Chutes d'Iguazú vous offriront des panoramas à couper le souffle au cœur de la jungle de Misiones.</p>
+    <div class="photo-row two">
+      <img src="images/obelisque.jpg" alt="Buenos Aires" />
+      <img src="images/iguazu-chutes-1.jpg" alt="Chutes d'Iguazú" />
+    </div>
+    <div class="item">
+      <div class="item-title">Buenos Aires</div>
+      <div class="item-desc">Quartiers emblématiques, tango, gastronomie, Delta du Tigre et Pampa</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Les Chutes d'Iguazú</div>
+      <div class="item-desc">Garganta del Diablo, passerelles, brume et rugissement des eaux</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Misiones</div>
+      <div class="item-desc">Missions jésuites, Saltos del Moconá, nature tropicale</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Immersion</div>
+      <div class="item-desc">Initiation tango 2h, dîner-spectacle, hébergements confortables</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Argentine · Ville &amp; Nature</div>
+      <div class="pagenum">01</div>
+    </div>
+  </div>
+
+  <!-- ==================== LES AXES DU SÉJOUR ==================== -->
+  <div class="section">
+    <div class="eyebrow">Les axes du séjour</div>
+    <h1 class="title">20 jours / 18 nuits</h1>
+    <img class="hero" src="images/iguazu-chutes-2.jpg" alt="Chutes d'Iguazú" style="max-width:70%; margin:0 auto 16px auto;" />
+    <div class="item">
+      <div class="item-title">Buenos Aires</div>
+      <div class="item-desc">Logement en Hôtel ★★★ · Petits-déjeuners et déjeuners · Un dîner-spectacle (tango show) · Initiation Tango argentin : 2 heures · Visite des différents quartiers · Une journée nature dans le delta du Tigre · Une journée dans la Pampa</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Misiones (Iguazú, Posadas…)</div>
+      <div class="item-desc">Logement en Hostals / Posadas · Petits-déjeuners et déjeuners + 1 dîner de gala · Visite des missions jésuites près de Posadas · Journée aux Chutes d'Iguazú · Balades autour des Saltos del Moconá · Immersion jungle et nature tropicale · Garganta del Diablo</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Argentine · Ville &amp; Nature</div>
+      <div class="pagenum">03</div>
+    </div>
+  </div>
+
+  <!-- ==================== BUENOS AIRES ==================== -->
+  <div class="section">
+    <div class="eyebrow">Buenos Aires</div>
+    <h1 class="title">Capitale cosmopolite et passionnée</h1>
+    <p class="lead">Chaque quartier raconte une histoire : les ruelles colorées de La Boca, l'élégance de Recoleta, le dynamisme de Palermo, le charme colonial de San Telmo. Buenos Aires ne dort jamais, entre culture, musique et passion latine.</p>
+    <div class="photo-row two">
+      <img src="images/obelisque.jpg" alt="Obélisque de Buenos Aires" />
+      <img src="images/buenos-aires-la-boca.jpg" alt="La Boca - Buenos Aires" />
+    </div>
+    <ul class="bullets">
+      <li>La Boca &amp; Caminito</li>
+      <li>Quartier de la Recoleta &amp; Cimetière</li>
+      <li>Plaza de Mayo &amp; Casa Rosada</li>
+      <li>Puerto Madero</li>
+      <li>San Telmo le Dimanche</li>
+      <li>Delta du Tigre</li>
+    </ul>
+    <div class="footer-bar">
+      <div class="brand">Argentine · Ville &amp; Nature</div>
+      <div class="pagenum">04</div>
+    </div>
+  </div>
+
+  <!-- ==================== IMMERSION CULTURELLE ==================== -->
+  <div class="section">
+    <div class="eyebrow">Immersion culturelle</div>
+    <h1 class="title">Découverte du Tango argentin</h1>
+    <p class="lead">2 heures d'initiation au Tango argentin + dîner-spectacle</p>
+    <!-- ✅ UNE SEULE PHOTO ICI (la 2ème a été supprimée) -->
+    <img class="hero" src="images/danseurs-tango01.jpg" alt="Danseurs de tango" style="max-width:70%; margin:0 auto 16px auto;" />
+    <p class="lead">Le tango, l'âme de Buenos Aires. Né dans les faubourgs de Buenos Aires à la fin du 19ème siècle, le tango est bien plus qu'une danse : c'est une émotion, un langage, une façon d'être.</p>
+    <ul class="bullets">
+      <li>Une initiation de 2 heures avec un professeur expérimenté</li>
+      <li>Un dîner-spectacle dans un établissement mythique</li>
+      <li>L'ambiance d'une milonga traditionnelle et des cafés</li>
+    </ul>
+    <p class="lead">Laissez-vous envoûter par la mélancolie et la passion du bandoneón…</p>
+    <div class="footer-bar">
+      <div class="brand">Argentine · Ville &amp; Nature</div>
+      <div class="pagenum">05</div>
+    </div>
+  </div>
+
+  <!-- ==================== NATURE AUTOUR DE BUENOS AIRES ==================== -->
+  <div class="section">
+    <div class="eyebrow">Nature autour de Buenos Aires</div>
+    <h1 class="title">Le Delta du Tigre &amp; la Pampa</h1>
+    <!-- ✅ UNE SEULE PHOTO POUR LE DELTA (la 2ème supprimée) -->
+    <img class="hero" src="images/tigre01.jpg" alt="Delta du Tigre" style="max-width:70%; margin:0 auto 16px auto;" />
+    <div class="item">
+      <div class="item-title">Le Delta du Tigre</div>
+      <div class="item-desc">Journée aquatique au nord de la capitale. Navigation entre les îles, maisons sur pilotis, végétation luxuriante et calme absolu. Une parenthèse de fraîcheur à seulement une heure de Buenos Aires.</div>
+    </div>
+    <!-- ✅ UNE SEULE PHOTO POUR LA PAMPA (la 2ème supprimée) -->
+    <img class="hero" src="images/campo-pampa.jpg" alt="Pampa argentine" style="max-width:70%; margin:0 auto 16px auto;" />
+    <div class="item">
+      <div class="item-title">Une journée dans la Pampa</div>
+      <div class="item-desc">Immersion dans la campagne argentine, terre des gauchos et des estancias. Découverte des traditions rurales, paysages à perte de vue et, souvent, un asado authentique sous les ombrages.</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Argentine · Ville &amp; Nature</div>
+      <div class="pagenum">06</div>
+    </div>
+  </div>
+
+  <!-- ==================== LA RÉGION DE MISIONES ==================== -->
+  <div class="section">
+    <div class="eyebrow">La région de Misiones</div>
+    <h1 class="title">Les Chutes d'Iguazú</h1>
+    <p class="lead">Garganta del Diablo. L'un des spectacles naturels les plus impressionnants du monde, au cœur de la jungle tropicale.</p>
+    <!-- ✅ UNE SEULE PHOTO ICI (la 2ème a été supprimée) -->
+    <img class="hero" src="images/iguazu-chutes-1.jpg" alt="Chutes d'Iguazú" style="max-width:70%; margin:0 auto 16px auto;" />
+    <div class="stat-row">
+      <div class="stat-num">700 m</div>
+      <div class="stat-label">de long</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-num">150 m</div>
+      <div class="stat-label">de large</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-num">82 m</div>
+      <div class="stat-label">de hauteur</div>
+    </div>
+    <p class="lead">Passerelles surplombant les chutes, brume rafraîchissante et rugissement des eaux…</p>
+    <div class="card teal">
+      <div class="card-title">Conseil</div>
+      <div class="card-body">Prévoyez des sacs plastiques ou étanches pour protéger smartphones et appareils photos !</div>
+    </div>
+    <p class="lead">Journée complète aux chutes + balades autour des Saltos del Moconá. Cascades de près de 15 m de hauteur (lorsque le fleuve est bas) sur un front de 3 km – un spectacle plus confidentiel et tout aussi saisissant.</p>
+    <img class="hero" src="images/salto-mocona.jpg" alt="Saltos del Moconá" style="max-width:70%; margin:0 auto 16px auto;" />
+    <div class="footer-bar">
+      <div class="brand">Argentine · Ville &amp; Nature</div>
+      <div class="pagenum">07</div>
+    </div>
+  </div>
+
+  <!-- ==================== PATRIMOINE & HÉBERGEMENTS ==================== -->
+  <div class="section">
+    <div class="eyebrow">Patrimoine &amp; hébergements</div>
+    <h1 class="title">Missions jésuites &amp; lieux de séjour</h1>
+    <div class="item">
+      <div class="item-title">Les missions jésuites près de Posadas</div>
+      <div class="item-desc">Découverte du patrimoine jésuite de Misiones, classé au patrimoine mondial de l'UNESCO. Ruines majestueuses, histoire coloniale et ambiance unique au cœur de la forêt. Un moment culturel fort du séjour.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Hébergements</div>
+      <div class="item-desc">Posada Puerto Iguazú · Ecolodge Puerto Paraíso · Adventure Hostel</div>
+    </div>
+    <img class="hero" src="images/Mocona.jpg" alt="Saltos del Moconá" style="max-width:70%; margin:0 auto 16px auto;" />
+    <div class="item">
+      <div class="item-title">Hébergement à Buenos Aires - Hôtel ★★★</div>
+      <div class="item-desc">Logement confortable en centre-ville, proche des points d'intérêt. Chambres doubles ou twin, petits-déjeuners inclus. Idéalement situé pour explorer les quartiers à pied ou en métro.</div>
+    </div>
+    <img class="hero" src="images/chambre-double-bsas.jpg" alt="Chambre d'hôtel à Buenos Aires" style="max-width:70%; margin:0 auto 16px auto;" />
+    <div class="footer-bar">
+      <div class="brand">Argentine · Ville &amp; Nature</div>
+      <div class="pagenum">08</div>
+    </div>
+  </div>
+
+  <!-- ==================== GASTRONOMIE ==================== -->
+  <div class="section">
+    <div class="eyebrow">Gastronomie</div>
+    <h1 class="title">Vous dégusterez !</h1>
+    <div class="photo-row two">
+      <img src="images/asado01.jpg" alt="Asado argentin" />
+      <img src="images/asado02.jpg" alt="Asado argentin" />
+    </div>
+    <img class="hero" src="images/boeuf.jpg" alt="Bœuf argentin" style="max-width:70%; margin:0 auto 16px auto;" />
+    <div class="item">
+      <div class="item-title">Le bœuf argentin</div>
+      <div class="item-desc">Bife de lomo (filet très épais et tendre), Bife de chorizo. Cuissons : Arrebatada, Jugoso, Blue, A punto.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Chimichurri</div>
+      <div class="item-desc">Sauce emblématique qui accompagne toutes les viandes grillées (condiments, huile de maïs).</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Locro</div>
+      <div class="item-desc">Plat traditionnel à base de maïs, pois chiches, lentilles, chorizo, panceta, oignon…</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Provoleta</div>
+      <div class="item-desc">Fromage grillé au barbecue, accompagnement classique de l'Asado Argentino.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Empanadas</div>
+      <div class="item-desc">Petits chaussons farcis de viande hachée (ou poisson), raisins, olives, oignons, paprika et cumin.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">L'Asado, rituel national</div>
+      <div class="item-desc">Plus qu'un barbecue, l'asado est un moment de partage et de convivialité. Viandes cuites lentement sur la braise, accompagnées de salades, de pain et de bons vins de Mendoza.</div>
+    </div>
+    <p class="lead">Lors de votre journée dans la Pampa, vous aurez l'occasion de goûter à un asado authentique, préparé selon la tradition des gauchos.</p>
+    <p class="lead">Et pour les amateurs de vin : Malbec, Torrontés, Cabernet… l'Argentine est aussi une grande terre viticole à découvrir !</p>
+    <div class="footer-bar">
+      <div class="brand">Argentine · Ville &amp; Nature</div>
+      <div class="pagenum">09</div>
+    </div>
+  </div>
+
+  <!-- ==================== INFORMATIONS PRATIQUES ==================== -->
+  <div class="section">
+    <div class="eyebrow">Informations pratiques</div>
+    <h1 class="title">À savoir avant de partir</h1>
+    <div class="item">
+      <div class="item-title">Passeport</div>
+      <div class="item-desc">Toujours une photocopie en poche.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Chaussures</div>
+      <div class="item-desc">Buenos Aires se visite beaucoup à pied. Bonnes chaussures indispensables.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Électricité</div>
+      <div class="item-desc">Prises norme européenne (double ou triple rond, 220 V).</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Bagages</div>
+      <div class="item-desc">Sac à dos pour Iguazú + sac léger pour les sorties en ville.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Métro</div>
+      <div class="item-desc">5h–22h (Lu–Sa), 8h le dimanche.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Banques</div>
+      <div class="item-desc">Lun–Ven 10h–15h.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Sécurité</div>
+      <div class="item-desc">Ne pas laisser sacs à vue. Ne jamais rester seul(e) le soir.</div>
+    </div>
+    <ul class="bullets">
+      <li>La Boca : rester dans les rues touristiques</li>
+      <li>Constitución / Once : quartiers à éviter</li>
+      <li>Bijoux : ne pas porter de bijoux de façon ostentatoire</li>
+      <li>Transports : attention aux pickpockets dans bus et métro</li>
+      <li>Monnaie : contrôler systématiquement le rendu de monnaie</li>
+    </ul>
+    <div class="footer-bar">
+      <div class="brand">Argentine · Ville &amp; Nature</div>
+      <div class="pagenum">10</div>
+    </div>
+  </div>
+
+  <!-- ==================== SÉCURITÉ ==================== -->
+  <div class="section">
+    <div class="eyebrow">Sécurité &amp; bon sens</div>
+    <h1 class="title">Quelques précautions</h1>
+    <p class="lead">Comme dans toute grande ville d'Amérique latine, quelques règles simples permettent d'aborder le séjour en toute sérénité.</p>
+    <ul class="bullets">
+      <li>Éviter de marcher seul(e) le soir, surtout dans les rues peu éclairées</li>
+      <li>À La Boca, ne pas s'éloigner des rues « touristiques »</li>
+      <li>Ne jamais indiquer où vous habitez à des inconnus</li>
+      <li>Attention aux « émules de Fangio » : conduite sportive des bus et taxis</li>
+      <li>Faire une photocopie du passeport et la conserver séparément</li>
+      <li>Contrôler le rendu de monnaie systématiquement</li>
+    </ul>
+    <div class="card teal">
+      <div class="card-title">Ambassade de France à Buenos Aires</div>
+      <div class="card-body">Cerrito 1399 – CP 1010<br />Tél. (00 54 11) 45 15 29 67<br />Urgences consulaires : 15 4470 3202</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Argentine · Ville &amp; Nature</div>
+      <div class="pagenum">11</div>
+    </div>
+  </div>
+
+  <!-- ==================== ITINÉRAIRE ==================== -->
+  <div class="section">
+    <div class="eyebrow">Itinéraire</div>
+    <h1 class="title">Programme indicatif</h1>
+    <div class="day">
+      <div class="day-num">J1-8</div>
+      <div class="day-body">
+        <span class="day-title">Buenos Aires</span>
+        Arrivée, installation hôtel ★★★.<br />Visite des quartiers (La Boca, Recoleta, San Telmo, Puerto Madero…).<br />Initiation tango 2h + dîner-spectacle.<br />Journée Delta du Tigre.<br />Journée Pampa &amp; asado.
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-num">J9-12</div>
+      <div class="day-body">
+        <span class="day-title">Misiones / Iguazú</span>
+        Vol ou transfert vers Puerto Iguazú.<br />Journée complète aux Chutes d'Iguazú (Garganta del Diablo).<br />Balades Saltos del Moconá.<br />Hébergement en posada / ecolodge.
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-num">J13-16</div>
+      <div class="day-body">
+        <span class="day-title">Posadas &amp; missions</span>
+        Visite des missions jésuites.<br />Découverte de la région de Misiones.<br />Nature et patrimoine UNESCO.<br />Temps libre et détente.
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-num">J17-20</div>
+      <div class="day-body">
+        <span class="day-title">Retour BA &amp; départ</span>
+        Retour à Buenos Aires.<br />Temps libre, shopping, derniers tangos.<br />Transfert aéroport et vol retour.
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Argentine · Ville &amp; Nature</div>
+      <div class="pagenum">12</div>
+    </div>
+  </div>
+
+  <!-- ✅ BLOC PASSEPORT DÉPLACÉ AVANT LE DRAPEAU -->
+  <div class="section">
+    <div class="eyebrow">Avant le départ</div>
+    <h1 class="title">Passeport, formalités &amp; infos pratiques</h1>
+    <div class="item">
+      <div class="item-title">Passeport</div>
+      <div class="item-desc">Valable 6 mois après la date de retour. Prévoir une numérisation et une photocopie à conserver séparément.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Visa</div>
+      <div class="item-desc">Aucun visa n'est nécessaire pour les ressortissants français pour un séjour touristique.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Décalage horaire</div>
+      <div class="item-desc">- 5 heures par rapport à Paris (été : du 21 décembre au 20 mars).</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Assistance &amp; Urgences</div>
+      <div class="item-desc">Numéro d'urgence d'assistance aux touristes : 0800 999 5000 (gratuit – 7j/24h)</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Ambassade de France</div>
+      <div class="card-body">Cerrito 1399 – CP 1010 – Buenos Aires<br />Tél. : (00 54 11) 45 15 29 67<br />Urgences consulaires : 15 4470 3202</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Infos complémentaires</div>
+      <div class="item-desc">Langue officielle : espagnol · Prises électriques : norme européenne (220 V)<br />Conseils aux voyageurs : diplomatie.gouv.fr → Argentine</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Argentine · Ville &amp; Nature</div>
+      <div class="pagenum">13</div>
+    </div>
+  </div>
+
+  <!-- ==================== DRAPEAU ARGENTINE ==================== -->
+  <div class="section" style="text-align:center; padding:10px 18px 20px 18px;">
+    <img src="images/drapeau-argentine.jpg" alt="Drapeau de l'Argentine" style="max-width:35%; margin:0 auto; border-radius:4px; display:block;" />
+  </div>
+
+  <!-- ==================== BACK ==================== -->
+  <div class="section back">
+    <div class="back-msg">Bon séjour en Argentine !</div>
+    <div style="font-size:18px; font-family:var(--font-head); color:var(--accent); margin-bottom:12px;">Ville et Nature en Mouvement</div>
+    <div style="font-size:14px; color:var(--soft); margin-bottom:16px;">20 jours / 18 nuits · Buenos Aires &amp; Iguazú</div>
+    <img class="back-logo" src="images/logo-vpd.jpg" alt="Logo vpdvoyages" />
+    <div class="site">vpdvoyages.com</div>
+  </div>
+
+</body>
+</html>
