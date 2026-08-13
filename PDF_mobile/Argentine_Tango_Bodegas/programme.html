@@ -291,6 +291,11 @@
       line-height: 1;
     }
 
+    .cover-title-spacer {
+      display: block;
+      height: 8px;
+    }
+
     .cover-sub {
       font-family: var(--font-head);
       font-style: italic;
@@ -318,8 +323,9 @@
 
     .cover-logo-row {
       display: flex;
+      flex-direction: column; /* Changé pour centrer l'un sous l'autre */
       align-items: center;
-      gap: 10px;
+      gap: 6px;
       border-top: 1px solid var(--paleteal);
       padding-top: 8px;
       margin-top: 0;
@@ -390,6 +396,7 @@
     <div class="cover-body">
       <div class="cover-eyebrow">Idée voyage en petit groupe !</div>
       <h1 class="cover-title">Argentine</h1>
+      <span class="cover-title-spacer"></span>
       <div class="cover-sub">Tango &amp; Bodegas</div>
       <p class="cover-intro">18 jours au cœur de l'Amérique latine :</p>
       <ul class="cover-list">
@@ -410,10 +417,8 @@
     <div class="eyebrow">Présentation</div>
     <h1 class="title">Le voyage en un coup d’œil</h1>
     <p class="lead">Direction l'Argentine pour un circuit qui marie passion et authenticité : 18 jours entre les milongas historiques de Buenos Aires, le grand air de la Pampa et les vignobles réputés de Mendoza, au pied de la Cordillère des Andes.</p>
-    <div class="photo-row two">
-      <img src="images/photo03.jpg" alt="Buenos Aires" />
-      <img src="images/photo04.jpg" alt="Argentine" />
-    </div>
+    <!-- ✅ Une seule photo ici (celle de gauche) -->
+    <img class="hero" src="images/photo03.jpg" alt="Buenos Aires" style="max-width:70%; margin:0 auto 16px auto;" />
     <div class="item">
       <div class="item-title">Buenos Aires</div>
       <div class="item-desc">La ville qui a vu naître le tango, entre Microcentro animé et milongas légendaires.</div>
@@ -545,10 +550,8 @@
     <div class="eyebrow">Nature & littoral</div>
     <h1 class="title">Le Delta du Tigre</h1>
     <p class="lead">À une heure de Buenos Aires, le Delta du Tigre offre une parenthèse nature bienvenue : canaux paisibles, villas centenaires et balade en bateau composent le décor d'une journée aquatique au fil de l'eau.</p>
-    <div class="photo-row two">
-      <img src="images/photo12.jpg" alt="Delta 1" />
-      <img src="images/photo13.jpg" alt="Delta 2" />
-    </div>
+    <!-- ✅ Photo remplacée par tigre01.jpg en image seule -->
+    <img class="hero" src="images/tigre01.jpg" alt="Delta du Tigre" style="max-width:70%; margin:0 auto 16px auto;" />
     <div class="footer-bar">
       <div class="brand">Argentine · Tango &amp; Bodegas</div>
       <div class="pagenum">06</div>
