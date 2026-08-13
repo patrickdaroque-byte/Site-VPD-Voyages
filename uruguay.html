@@ -139,7 +139,7 @@
           </div>
         </div>
         
-        <!-- Voyage 2 -->
+        <!-- Voyage 2 : Río de la Plata -->
         <div class="bg-white rounded shadow-lg overflow-hidden">
           <img src="Images/Montevideo.jpg" alt="Uruguay - Rio de la Plata - Le berceau du tango" class="w-full h-48 object-cover rounded image-check">
           <div class="p-4 card-content">
@@ -147,7 +147,8 @@
             <p class="text-gray-600 mt-2 description">Voyage exclusif pour danseurs confirmés : perfectionnez votre tango à Buenos Aires, vivez l'intensité des milongas, traversez le Río de la Plata et découvrez Montevideo intime.</p>
             <div class="flex justify-center space-x-4 mt-2">
               <button class="read-more">+</button>
-              <a href="PDF/Rio_de_la_Plata_Berceau_du_Tango.pdf" class="pdf-button pdf-link" target="_blank">voir pgm</a>
+              <!-- ✅ Ajout de l'ID ici pour le cibler dans le script -->
+              <a href="PDF/Rio_de_la_Plata_Berceau_du_Tango.pdf" class="pdf-button pdf-link" id="uruguay-rio-pdf-button" target="_blank">voir pgm</a>
             </div>
             <p class="mt-2 font-bold">1 290 € (17 jours / 16 nuits)*</p>
           </div>
@@ -166,6 +167,7 @@
   </footer>
   
   <script>
+    // Bouton Lire la suite
     document.querySelectorAll('.read-more').forEach(btn=>{
       btn.addEventListener('click',function(){
         const desc=this.closest('.card-content').querySelector('.description');
@@ -174,24 +176,11 @@
       });
     });
     
+    // Menus mobiles
     document.querySelector('.nav-toggle').addEventListener('click',()=>document.querySelector('.nav-menu').classList.toggle('active'));
     document.querySelector('.dropdown-toggle').addEventListener('click',()=>document.querySelector('.dropdown-menu').classList.toggle('active'));
     
-    function updateMontevideoLinks() {
-      const isMobile = window.innerWidth <= 640;
-      const pdfButton = document.querySelector('#uruguay a.pdf-button[href*="Uruguay_Montevideo_Gauchos_Bodegas.pdf"]');
-      if (pdfButton) {
-        if (isMobile) {
-          pdfButton.href = 'PDF/Uruguay_Montevideo_Gauchos_Bodegas.pdf';
-        } else {
-          pdfButton.href = 'PDF/Uruguay_Montevideo_Gauchos_Bodegas.pdf';
-        }
-      }
-    }
-    
-    window.addEventListener('load', updateMontevideoLinks);
-    window.addEventListener('resize', updateMontevideoLinks);
-    
+    // Fermeture des menus sur mobile
     document.querySelectorAll('.nav-menu a, .dropdown-menu a').forEach(anchor => {
       anchor.addEventListener('click', function () {
         if (window.innerWidth <= 640) {
@@ -200,6 +189,25 @@
         }
       });
     });
+
+    // ✅ GESTION PC / MOBILE POUR LE BOUTON RIO DE LA PLATA
+    (function () {
+      var isMobile = window.innerWidth <= 640;
+      var rioBtn = document.getElementById('uruguay-rio-pdf-button');
+      
+      if (rioBtn) {
+        if (isMobile) {
+          // Version mobile : lien vers le DOSSIER et le fichier programme.html
+          rioBtn.href = 'PDF_mobile/Rio_de_la_Plata_Berceau_du_Tango/programme.html';
+          rioBtn.target = '_self';
+        } else {
+          // Version PC : lien vers le PDF
+          rioBtn.href = 'PDF/Rio_de_la_Plata_Berceau_du_Tango.pdf';
+          rioBtn.target = '_blank';
+        }
+      }
+    })();
+
   </script>
 <script src="bandeau.js"></script>
 </body>
