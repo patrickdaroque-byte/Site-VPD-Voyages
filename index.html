@@ -1,792 +1,550 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Argentine - Tango & Bodegas</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Balise Title (s'affiche dans Google) -->
+  <title>VPDVOYAGES | Travel Planner – Voyages sur mesure en Espagne et en Amérique latine</title>
+  <!-- Meta Description (résumé Google) -->
+  <meta name="description" content="Découvrez VPDVOYAGES avec Patrick Daroque, expert des voyages sur mesure en Espagne et en Amérique latine. Séjours personnalisés, expériences authentiques et accompagnement unique.">
+  <!-- Mots-clés (moins utilisés par Google mais utiles pour d'autres moteurs) -->
+  <meta name="keywords" content="Patrick Daroque, VPDVOYAGES, voyages Espagne, voyages Amérique latine, séjour personnalisé, travel planner">
+  <!-- Auteur -->
+  <meta name="author" content="Patrick Daroque">
+  <!-- Balises Open Graph pour réseaux sociaux -->
+  <meta property="og:title" content="Patrick Daroque - Voyages sur mesure Espagne & Amérique latine">
+  <meta property="og:description" content="Voyagez différemment avec VPDVOYAGES. Séjours personnalisés en Espagne et Amérique latine avec Patrick Daroque.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vpdvoyages.com">
+  <meta property="og:image" content="https://vpdvoyages.com/Images/hero-image.jpg">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Patrick Daroque - Voyages sur mesure Espagne & Amérique latine">
+  <meta name="twitter:description" content="VPDVOYAGES - Vos séjours personnalisés avec Patrick Daroque en Espagne et Amérique latine.">
+  <meta name="twitter:image" content="https://vpdvoyages.com/Images/hero-image.jpg">
+  <!-- Google Site Verification -->
+  <meta name="google-site-verification" content="GL_MN5ppVlrThYDUpviv9e4gRrljAwbIHbW3zUvcXAA" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #FFFFFF;
-      --cream: #F3ECE2;
-      --paleteal: #E7EFEE;
-      --text: #2A211C;
-      --soft: #6B5E54;
-      --accent: #C1502E;
-      --accentdark: #9C2B2B;
-      --teal: #0F5C56;
-      --gold: #C9A24B;
-      --font-head: Georgia, "Liberation Serif", "Times New Roman", serif;
-      --font-body: Arial, "Liberation Sans", Helvetica, sans-serif;
+    /* Styles pour le header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      width: 100%;
+      background: #2563eb;
     }
-
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
     body {
-      font-family: var(--font-body);
-      color: var(--text);
-      background: var(--bg);
+      padding-top: 60px;
       font-size: 16px;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
+      background-color: white;
     }
-
-    .section {
-      padding: 20px 18px 14px 18px;
-      position: relative;
-      min-height: auto;
-      page-break-before: always;
+    html {
+      scroll-padding-top: 60px;
     }
-
-    .section:first-child { page-break-before: auto; }
-
-    .eyebrow {
-      font-weight: bold;
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 0 0 4px 0;
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 10px;
+      background: #2563eb;
+      padding: 10px;
+      border-radius: 5px;
+      z-index: 50;
     }
-
-    h1.title {
-      font-family: var(--font-head);
-      font-weight: normal;
-      font-size: 26px;
-      line-height: 1.1;
-      color: var(--text);
-      margin: 0 0 10px 0;
-    }
-
-    p.lead {
-      font-size: 15px;
-      color: var(--soft);
-      margin: 0 0 12px 0;
-    }
-
-    .hero {
-      width: 100%;
-      border-radius: 4px;
-      display: block;
-      margin: 0 0 12px 0;
-    }
-
-    .photo-row {
+    .nav-menu.active {
       display: flex;
-      gap: 8px;
-      margin: 0 0 10px 0;
     }
-
-    .photo-row img {
-      width: 100%;
-      border-radius: 3px;
+    .nav-toggle {
       display: block;
-      object-fit: cover;
+      cursor: pointer;
     }
-
-    .photo-row.two img { height: 195px; }
-    .photo-row.three img { height: 156px; }
-    .photo-row.four img { height: 137px; }
-
-    .caption {
-      font-family: var(--font-head);
-      font-style: italic;
-      font-size: 13.5px;
-      color: var(--soft);
-      margin: 0 0 12px 0;
+    .daily-quote {
+      color: #9333EA !important;
+      padding: 0.75rem;
+      width: 150px;
       text-align: center;
-    }
-
-    .item { margin: 0 0 12px 0; }
-
-    .item .item-title {
-      font-family: var(--font-head);
-      font-size: 17px;
-      color: var(--accent);
-      margin: 0 0 3px 0;
-    }
-
-    .item .item-desc { font-size: 14.5px; }
-
-    .card {
-      background: var(--cream);
       border-radius: 6px;
-      padding: 14px 16px;
-      margin: 0 0 12px 0;
-    }
-
-    .card.teal { background: var(--paleteal); }
-
-    .card .card-title {
-      font-family: var(--font-head);
-      font-size: 16px;
-      color: var(--teal);
-      margin: 0 0 4px 0;
-      font-weight: bold;
-    }
-
-    .card .card-body { font-size: 14.5px; }
-
-    ul.bullets {
-      margin: 6px 0 0 0;
-      padding-left: 18px;
-    }
-
-    ul.bullets li {
-      margin-bottom: 6px;
-      font-size: 14.5px;
-    }
-
-    .stat-row {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--paleteal);
-    }
-
-    .stat-row .stat-num {
-      font-family: var(--font-head);
-      font-size: 22px;
-      color: var(--accent);
-      min-width: 82px;
-    }
-
-    .stat-row .stat-label {
-      font-size: 14px;
-      color: var(--soft);
-    }
-
-    .day {
-      display: flex;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--paleteal);
-    }
-
-    .day:last-child { border-bottom: none; }
-
-    .day .day-num {
-      font-family: var(--font-head);
-      font-size: 14px;
-      font-weight: bold;
-      color: #FFFFFF;
-      background: var(--accent);
-      border-radius: 50%;
-      width: 38px;
-      height: 38px;
-      min-width: 38px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      line-height: 1.1;
-    }
-
-    .day .day-body {
-      font-size: 14.5px;
-      padding-top: 3px;
-    }
-
-    .day .day-body .day-title {
-      font-weight: bold;
-      color: var(--text);
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    .two-col {
-      display: flex;
-      gap: 18px;
-      margin-top: 10px;
-    }
-
-    .two-col .col { flex: 1; }
-
-    .subhead {
-      font-family: var(--font-head);
-      font-size: 15px;
-      color: var(--teal);
-      font-weight: bold;
-      margin: 12px 0 4px 0;
-    }
-
-    .pill-list li {
-      list-style: none;
-      padding-left: 16px;
-      position: relative;
-      margin-bottom: 8px;
-      font-size: 14px;
-    }
-
-    .pill-list.do li::before {
-      content: "•";
-      color: var(--teal);
-      position: absolute;
-      left: 0;
-      font-weight: bold;
-    }
-
-    .pill-list.dont li::before {
-      content: "•";
-      color: var(--accentdark);
-      position: absolute;
-      left: 0;
-      font-weight: bold;
-    }
-
-    .footer-bar {
-      margin-top: 18px;
-      padding-top: 10px;
-      border-top: 1px solid var(--gold);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-bar .brand {
-      font-size: 9.5px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--soft);
-      font-weight: bold;
-    }
-
-    .footer-bar .pagenum {
-      font-size: 9.5px;
-      color: var(--soft);
-    }
-
-    .watermark {
-      position: absolute;
-      right: 14px;
-      bottom: 44px;
-      width: 34px;
-      opacity: 0.55;
-    }
-
-    .cover-hero {
-      width: 100%;
-      display: block;
-    }
-
-    .cover-body {
-      padding: 12px 18px 6px 18px;
-      min-height: auto;
-    }
-
-    .cover-eyebrow {
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: bold;
-      margin: 0 0 4px 0;
-    }
-
-    .cover-title {
-      font-family: var(--font-head);
-      font-size: 40px;
-      color: var(--text);
-      margin: 0;
-      line-height: 1;
-    }
-
-    .cover-title-spacer {
-      display: block;
-      height: 8px;
-    }
-
-    .cover-sub {
-      font-family: var(--font-head);
+      font-size: 0.9rem;
+      font-family: 'Indie Flower', cursive;
       font-style: italic;
-      font-size: 20px;
-      color: var(--accent);
-      margin: 0;
-      line-height: 1;
+      margin-top: 0.5rem;
     }
-
-    .cover-intro {
-      font-size: 14.5px;
-      color: var(--text);
-      margin: 4px 0 6px 0;
+    .flag-img {
+      object-fit: contain;
+      width: 112px;
+      height: 72px;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      background: none;
+      animation: none;
+      transition: none;
+      transform: none;
+      display: block;
+      margin: 0 auto;
     }
-
-    .cover-list {
-      margin: 0 0 8px 0;
-      padding-left: 18px;
+    .flag-container {
+      position: relative;
+      display: block;
+      background: none;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 0;
+      transition: none;
+      cursor: pointer;
     }
-
-    .cover-list li {
-      font-size: 14.5px;
-      margin-bottom: 4px;
+    .flag-container:hover {
+      transform: none;
+      box-shadow: none;
     }
-
-    .cover-logo-row {
-      display: flex;
-      flex-direction: column; /* Changé pour centrer l'un sous l'autre */
-      align-items: center;
-      gap: 6px;
-      border-top: 1px solid var(--paleteal);
-      padding-top: 8px;
-      margin-top: 0;
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.00); }
+      100% { transform: scale(1); }
     }
-
-    .cover-logo-row img {
-      width: 40px;
-      height: 40px;
+    .cuba img {
+      object-fit: contain;
     }
-
-    .back {
-      text-align: center;
-      padding: 60px 24px;
+    .cuba p {
+      margin-top: 2px;
     }
-
-    .back img.back-photo {
-      width: 100%;
-      border-radius: 4px;
-      margin-bottom: 22px;
-    }
-
-    .back .back-msg {
-      font-family: var(--font-head);
-      font-size: 22px;
-      color: var(--text);
-      line-height: 1.35;
-      margin-bottom: 26px;
-    }
-
-    .back img.back-logo {
-      width: 56px;
-      height: 56px;
-      margin-bottom: 8px;
-    }
-
-    .back .site {
-      font-size: 13px;
-      color: var(--teal);
-      font-weight: bold;
-    }
-
-    .item, .card, .photo-row, .day, .stat-row, .cover-logo-row, .footer-bar, h1.title, .eyebrow, .subhead, .caption {
-      page-break-inside: avoid;
-      break-inside: avoid;
-    }
-
-    .eyebrow, h1.title {
-      page-break-after: avoid;
-      break-after: avoid;
-    }
-
-    @media (max-width: 768px) {
-      .section {
-        padding: 16px 18px 12px 18px;
-        min-height: auto;
+    @media (min-width: 640px) {
+      header {
+        padding: 1rem 0;
       }
-
-      .cover-body {
-        padding: 10px 18px 6px 18px;
+      body {
+        padding-top: 80px;
+      }
+      html {
+        scroll-padding-top: 80px;
+      }
+      .nav-menu {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        background: none;
+        padding: 0;
+        border-radius: 0;
+      }
+      .nav-toggle {
+        display: none;
+      }
+      .daily-quote {
+        width: 200px;
+        padding: 1rem;
+        font-size: 0.9rem;
+        font-family: 'Indie Flower', cursive;
+        font-style: italic;
+        position: static;
+        margin-top: 1rem;
+      }
+      .argentine .see-program {
+        display: none;
+      }
+    }
+    @media (max-width: 639px) {
+      #destinations {
+        padding-top: 0; /* supprime l'espace entre le proverbe et les drapeaux */
+      }
+      #destinations .grid {
+        grid-template-areas:
+          "center center"
+          "left1 left2"
+          "right1 right2";
+      }
+      #destinations .espagne {
+        grid-area: center;
+        grid-column: span 2;
+      }
+      #destinations .cuba {
+        grid-area: left1;
+      }
+      #destinations .argentine {
+        grid-area: left2;
+      }
+      #destinations .uruguay {
+        grid-area: right1;
+      }
+      #destinations .colombie {
+        grid-area: right2;
+      }
+      #destinations h2 {
+        display: none; /* masqué uniquement sur mobile */
+      }
+      .argentine .see-program {
+        display: block;
+      }
+      #home {
+        height: auto;
+        min-height: 40vh;
+      }
+      #home .text-center {
+        padding: 1rem;
+      }
+      #home h2 {
+        font-size: 1.5rem;
+      }
+      #home p {
+        font-size: 1rem;
+      }
+      .espagne img, .cuba img, .argentine img, .uruguay img, .colombie img {
+        width: 6rem;
+        height: 3.6rem;
+      }
+      .flag-container {
+        padding: 0;
+        background: none;
+        border: none;
+        box-shadow: none;
+        transform: none;
+      }
+      .flag-container:hover {
+        transform: none;
+        box-shadow: none;
       }
     }
   </style>
 </head>
-<body>
+<body class="font-sans">
+  <header class="bg-blue-600 text-white py-2">
+    <div class="container mx-auto px-4 flex justify-between items-center flex-wrap">
+      <div class="flex items-center space-x-4">
+        <img src="Images/logo.jpg" alt="Logo Patrick Daroque - Travel Planner" class="h-12 w-12 object-contain image-check">
+        <div class="flex flex-col">
+          <h1 class="text-2xl font-bold">VPDVOYAGES</h1>
+          <span class="text-base font-medium">Patrick Daroque - Travel Planner</span>
+        </div>
+      </div>
+      <button class="nav-toggle text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      <nav class="nav-menu md:flex md:space-x-4">
+        <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
+          <li><a href="#home" class="hover:underline text-base md:text-lg">Accueil</a></li>
+          <li><a href="#destinations" class="hover:underline text-base md:text-lg">Les destinations</a></li>
+          <li><a href="#about" class="hover:underline text-base md:text-lg">Mon approche</a></li>
+          <li><a href="#reviews" class="hover:underline text-base md:text-lg">Ce que disent nos clients</a></li>
+          <li><a href="#travel-planner" class="hover:underline text-base md:text-lg">Qu'est-ce qu'un Travel Planner ?</a></li>
+          <li><a href="#contact" class="hover:underline text-base md:text-lg">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-  <div class="section" style="padding:0;">
-    <img class="cover-hero" src="images/photo01.jpg" alt="Argentine Tango & Bodegas" />
-    <div class="cover-body">
-      <div class="cover-eyebrow">Idée voyage en petit groupe !</div>
-      <h1 class="cover-title">Argentine</h1>
-      <span class="cover-title-spacer"></span>
-      <div class="cover-sub">Tango &amp; Bodegas</div>
-      <p class="cover-intro">18 jours au cœur de l'Amérique latine :</p>
-      <ul class="cover-list">
-        <li>Buenos Aires, capitale du tango</li>
-        <li>Un stage de tango avec des professeurs locaux</li>
-        <li>Une échappée dans la Pampa argentine</li>
-        <li>Mendoza et ses bodegas de renom</li>
-        <li>La Cordillère des Andes</li>
-      </ul>
-      <div class="cover-logo-row">
-        <img src="images/photo02.jpg" alt="vpdvoyages" />
-        <div class="site">vpdvoyages.com</div>
+  <section id="home" class="bg-cover bg-center h-40 flex flex-col items-center justify-center relative mb-0" style="background-image: url('https://vpdvoyages.com/Voyages de rêve/Images/hero-image.jpg')">
+    <div class="text-center text-white bg-black bg-opacity-30 p-3 rounded relative z-10">
+      <h2 class="text-2xl font-bold mb-2 relative z-10">Découvrez l'Espagne et l'Amérique latine autrement</h2>
+      <p class="text-base mb-6 relative z-10">Des aventures inoubliables vous attendent</p>
+      <div class="flex flex-wrap justify-center items-center gap-6 relative z-10">
+        <a href="#contact" class="bg-blue-600 text-white px-4 py-1 rounded-full hover:bg-blue-700 text-base">Parlons de votre projet</a>
+        <a href="voyage-solo.html" class="bg-orange-500 text-white px-4 py-1 rounded-full hover:bg-orange-600 text-base inline-flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.5c-3.3 0-9.8 1.6-9.8 4.9v2.4h19.6v-2.4c0-3.3-6.5-4.9-9.8-4.9z"/>
+          </svg>
+          Je voyage seul(e) ?
+        </a>
       </div>
     </div>
-  </div>
+    <div class="daily-quote w-full md:w-auto mt-2 md:mt-0"></div>
+  </section>
 
-  <div class="section">
-    <div class="eyebrow">Présentation</div>
-    <h1 class="title">Le voyage en un coup d’œil</h1>
-    <p class="lead">Direction l'Argentine pour un circuit qui marie passion et authenticité : 18 jours entre les milongas historiques de Buenos Aires, le grand air de la Pampa et les vignobles réputés de Mendoza, au pied de la Cordillère des Andes.</p>
-    <!-- ✅ Une seule photo ici (celle de gauche) -->
-    <img class="hero" src="images/photo03.jpg" alt="Buenos Aires" style="max-width:70%; margin:0 auto 16px auto;" />
-    <div class="item">
-      <div class="item-title">Buenos Aires</div>
-      <div class="item-desc">La ville qui a vu naître le tango, entre Microcentro animé et milongas légendaires.</div>
-    </div>
-    <div class="item">
-      <div class="item-title">Le tango argentin</div>
-      <div class="item-desc">Stage avec des professeurs locaux et milongas sous les étoiles, tous les soirs de la semaine.</div>
-    </div>
-    <div class="item">
-      <div class="item-title">La Pampa</div>
-      <div class="item-desc">Estancias, chevaux et asado traditionnel, au cœur des grandes plaines argentines.</div>
-    </div>
-    <div class="item">
-      <div class="item-title">Mendoza</div>
-      <div class="item-desc">Capitale du vin argentin, entre bodegas renommées et sommets andins.</div>
-    </div>
-    <p class="lead" style="margin-top:6px;">Ce circuit combine culture, gastronomie et nature pour une expérience inoubliable, entre spectacles de tango authentiques, dégustations de Malbecs d'exception et paysages époustouflants.</p>
-    <div class="footer-bar">
-      <div class="brand">Argentine · Tango &amp; Bodegas</div>
-      <div class="pagenum">01</div>
-    </div>
-  </div>
+  <section id="destinations" class="pt-4 pb-0 mt-0 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-6">Les destinations</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 mb-2">
+        <div class="espagne text-center">
+          <a href="espagne.html" class="flag-container">
+            <img src="Images/espagne_flag.png" alt="Espagne" class="flag-img mx-auto">
+            <p class="mt-2 text-gray-600 text-base font-semibold">Espagne</p>
+          </a>
+        </div>
+        <div class="cuba text-center flex flex-col items-center">
+          <a href="cuba.html" class="flag-container">
+            <img src="Images/cuba_flag.png" alt="Cuba" class="flag-img mx-auto">
+            <p class="mt-2 text-gray-600 text-base font-semibold">Cuba</p>
+          </a>
+          <div class="mt-1">
+            <span style="
+              display:inline-block;
+              background:#ffcc00;
+              color:#000;
+              padding:4px 6px;
+              border-radius:5px;
+              font-weight:normal;
+              font-size:0.75rem;
+              line-height:1.2;
+              max-width:140px;
+              animation: pulseMsg 2s infinite;
+            ">
+              Départs selon l'actualité
 
-  <div class="section">
-    <div class="eyebrow">Le pays</div>
-    <h1 class="title">Argentine, un continent à elle seule</h1>
-    <img class="hero" src="images/photo07.jpg" alt="Argentine" style="max-width:46%; margin:0 auto 16px auto;" />
-    <div class="stat-row">
-      <div class="stat-num">3 700 km</div>
-      <div class="stat-label">du Nord au Sud, entre tropique et terres australes</div>
+Contactez-moi !
+            </span>
+          </div>
+        </div>
+        <style>
+        @keyframes pulseMsg {
+          0% { background:#ffcc00; }
+          50% { background:#ffd84d; }
+          100% { background:#ffcc00; }
+        }
+        </style>
+        <div class="argentine text-center">
+          <a href="argentine.html" class="flag-container">
+            <img src="Images/argentine_flag.png" alt="Argentine" class="flag-img mx-auto">
+            <p class="mt-2 text-gray-600 text-base font-semibold">Argentine</p>
+          </a>
+        </div>
+        <div class="uruguay text-center">
+          <a href="uruguay.html" class="flag-container">
+            <img src="Images/uruguay_flag.png" alt="Uruguay" class="flag-img mx-auto">
+            <p class="mt-2 text-gray-600 text-base font-semibold">Uruguay</p>
+          </a>
+        </div>
+        <div class="colombie text-center">
+          <a href="colombie.html" class="flag-container">
+            <img src="Images/colombie_flag.png" alt="Colombie" class="flag-img mx-auto">
+            <p class="mt-1 text-gray-600 text-base font-semibold">Colombie</p>
+          </a>
+        </div>
+      </div>
+      <div class="text-right -mt-2 mb-2">
+        <div class="inline-block bg-blue-50 border border-blue-200 rounded px-3 py-1">
+          <p class="animate-pulse text-blue-600 italic text-sm m-0">
+            Départs possibles toute l'année, selon la destination et les disponibilités.
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="stat-row">
-      <div class="stat-num">46 M</div>
-      <div class="stat-label">d'habitants, dont 16 M dans l'agglomération de Buenos Aires</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-num">32</div>
-      <div class="stat-label">parcs nationaux, des Andes à la Patagonie</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-num">6 962 m</div>
-      <div class="stat-label">l'Aconcagua, plus haut sommet des Amériques</div>
-    </div>
-    <p class="lead" style="margin-top:12px;">Des Andes à la Pampa, en passant par la Patagonie et la Terre de Feu : une mosaïque de paysages à couper le souffle.</p>
-    <div class="footer-bar">
-      <div class="brand">Argentine · Tango &amp; Bodegas</div>
-      <div class="pagenum">02</div>
-    </div>
-  </div>
+  </section>
 
-  <div class="section">
-    <div class="eyebrow">Buenos Aires</div>
-    <h1 class="title">La capitale qui vit au rythme du tango</h1>
-    <p class="lead">Immersion totale dans la culture argentine entre le Microcentro animé, les quartiers historiques et les théâtres de milongas, Buenos Aires se découvre au fil des avenues et des places, un hôtel au cœur de la ville comme point d'ancrage.</p>
-    <img class="hero" src="images/photo08.jpg" alt="Buenos Aires" />
-    <ul class="bullets">
-      <li>Logement en hôtel au Microcentro, petits-déjeuners et déjeuners inclus</li>
-      <li>Un dîner-spectacle pour une première immersion dans l’univers du tango show</li>
-      <li>Visite des différents quartiers de la ville</li>
-      <li>Une journée libre pour explorer à son rythme</li>
-    </ul>
-    <div class="footer-bar">
-      <div class="brand">Argentine · Tango &amp; Bodegas</div>
-      <div class="pagenum">03</div>
+  <section id="about" class="pt-4 pb-4 -mt-1 bg-gray-100">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-4">Mon approche du voyage sur mesure</h2>
+      <div class="flex flex-col items-center">
+        <div class="mb-4">
+          <img src="Images/Photo Patrick.JPG" alt="Patrick Daroque" class="h-24 w-24 object-cover rounded-full mx-auto image-check">
+        </div>
+        <div>
+          <p class="text-gray-600 text-base mb-2">
+            Je suis Patrick Daroque, <strong>Travel Planner spécialisé en voyages sur mesure en Espagne et en Amérique latine</strong>. 
+            Mon univers s’inspire des cultures hispaniques, de leurs contrastes, de leurs couleurs et de cette énergie singulière qui traverse chaque territoire, de la Méditerranée aux Andes.
+          </p>
+          <p class="text-gray-600 text-base mb-2">
+            Mon travail consiste à imaginer des <strong>itinéraires personnalisés</strong>, façonnés grâce à une <strong>sélection experte</strong> d’adresses de caractère, d’expériences locales raffinées et de lieux emblématiques qui incarnent l’essence des destinations hispanophones. 
+            Chaque proposition est pensée pour révéler la profondeur culturelle, la diversité et l’authenticité de ces régions du monde.
+          </p>
+          <p class="text-gray-600 text-base">
+            Des ruelles vibrantes de <strong>Cartagène</strong> en Colombie aux vignobles élégants de <strong>la Rioja</strong> en Espagne ou de <strong>Mendoza</strong> en Argentine, des façades pastel de <strong>La Havane</strong> aux places lumineuses de <strong>Valence</strong>, chaque destination possède une identité forte, nourrie par la langue espagnole et par des histoires multiples, passionnées et intemporelles.
+            Mon approche repose sur une connaissance approfondie du terrain, une attention minutieuse aux détails et une volonté constante de mettre en lumière ce que ces pays ont de plus authentique et de plus inspirant.
+            Une manière d’offrir une vision exigeante, sensible et profondément respectueuse du monde hispanique.
+          </p>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="section">
-    <div class="eyebrow">Immersion culturelle</div>
-    <h1 class="title">Le tango argentin, une passion à vivre</h1>
-    <p class="lead">Un stage de 10 heures avec des professeurs locaux pour s'initier ou se perfectionner aux pas de cette danse passionnée, puis chaque soir, une nouvelle milonga à découvrir : Buenos Aires en compte entre 150 et 200 régulières, avec en moyenne une trentaine ouvertes chaque nuit de la semaine !</p>
-    <img class="hero" src="images/photo09.jpg" alt="Tango" />
-    <div class="subhead">À chaque soir sa milonga</div>
-    <div class="stat-row">
-      <div class="stat-num" style="font-size:15px; min-width:95px;">Lundi</div>
-      <div class="stat-label">Le Club Gricel</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-num" style="font-size:15px; min-width:95px;">Mardi</div>
-      <div class="stat-label">La Catedral, Le Viejo Correo</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-num" style="font-size:15px; min-width:95px;">Mercredi</div>
-      <div class="stat-label">La Villa Malcolm</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-num" style="font-size:15px; min-width:95px;">Jeudi</div>
-      <div class="stat-label">Maldita Milonga</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-num" style="font-size:15px; min-width:95px;">Vendredi</div>
-      <div class="stat-label">Salon Marabú</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-num" style="font-size:15px; min-width:95px;">Samedi</div>
-      <div class="stat-label">Le Club Sunderland</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-num" style="font-size:15px; min-width:95px;">Dimanche</div>
-      <div class="stat-label">El Beso</div>
-    </div>
-    <div class="footer-bar">
-      <div class="brand">Argentine · Tango &amp; Bodegas</div>
-      <div class="pagenum">04</div>
-    </div>
-  </div>
+  <section id="combined-section" class="py-6 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="text-center" id="reviews">
+          <h2 class="text-2xl font-bold mb-4">Ce que disent nos clients</h2>
+          <div class="bg-gray-200 p-3 rounded shadow-lg">
+            <p class="text-gray-600 text-base mb-2">Découvrez les avis sur nos voyages uniques en Espagne et Amérique latine.</p>
+            <a href="javascript:void(0);" onclick="openReviewsPopup()" class="text-blue-600 hover:underline text-base font-semibold">Voir les avis</a>
+          </div>
+          <div class="mt-4">
+            <img src="Images/carte_amerique_latine.jpeg" alt="Carte d'Amérique latine mettant en évidence Cuba, Argentine, Uruguay et Colombie" class="w-full h-60 object-contain rounded mx-auto image-check">
+          </div>
+        </div>
 
-  <div class="section">
-    <div class="eyebrow">Nature & traditions</div>
-    <h1 class="title">Une journée dans la Pampa</h1>
-    <p class="lead">À 170 km de Buenos Aires, près de la localité de General Belgrano, la Pampa argentine dévoile ses grands espaces : troupeaux de bétail, chevaux et traditions gauchos, pour une parenthèse authentique au cœur de la campagne.</p>
-    <div class="photo-row two">
-      <img src="images/photo10.jpg" alt="Pampa 1" />
-      <img src="images/photo11.jpg" alt="Pampa 2" />
-    </div>
-    <ul class="bullets">
-      <li>Rencontre avec le bétail et les chevaux d’une estancia</li>
-      <li>Un authentique asado, la grillade traditionnelle argentine</li>
-      <li>Farniente au bord de la piscine</li>
-      <li>Une soirée tango pour clore la journée</li>
-    </ul>
-    <div class="footer-bar">
-      <div class="brand">Argentine · Tango &amp; Bodegas</div>
-      <div class="pagenum">05</div>
-    </div>
-  </div>
+        <div class="text-center" id="contact">
+          <h2 class="text-2xl font-bold text-center mb-4">Contactez-nous</h2>
+          <div class="max-w-sm mx-auto bg-white p-4 rounded shadow-lg">
+            <form id="contactForm" action="https://formspree.io/f/mblkkdrj" method="POST">
+              <div class="mb-2">
+                <label for="name" class="block text-gray-600 text-base">Nom</label>
+                <input type="text" id="name" name="name" class="w-full p-1 border rounded text-base" placeholder="Votre nom" required>
+              </div>
+              <div class="mb-2">
+                <label for="email" class="block text-gray-600 text-base">Email</label>
+                <input type="email" id="email" name="email" class="w-full p-1 border rounded text-base" placeholder="Votre email" required>
+              </div>
+              <div class="mb-2">
+                <label for="message" class="block text-gray-600 text-base">Message</label>
+                <textarea id="message" name="message" class="w-full p-1 border rounded text-base" rows="3" placeholder="Votre message" required></textarea>
+              </div>
+              <input type="text" name="_gotcha" style="display:none">
+              <button type="submit" class="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 w-full text-base">
+                Envoyer
+              </button>
+              <p id="confirmation" class="text-green-600 font-bold mt-3" style="display:none;">
+                Merci ! Votre message a bien été envoyé.
+              </p>
+            </form>
+            <a href="https://wa.me/33610950984?text=Bonjour,%20je%20souhaite%20des%20informations%20sur%20vos%20voyages"
+               class="mt-2 bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600 w-full text-center inline-block text-base"
+               target="_blank">WhatsApp</a>
+          </div>
+        </div>
 
-  <div class="section">
-    <div class="eyebrow">Nature & littoral</div>
-    <h1 class="title">Le Delta du Tigre</h1>
-    <p class="lead">À une heure de Buenos Aires, le Delta du Tigre offre une parenthèse nature bienvenue : canaux paisibles, villas centenaires et balade en bateau composent le décor d'une journée aquatique au fil de l'eau.</p>
-    <!-- ✅ Photo remplacée par tigre01.jpg en image seule -->
-    <img class="hero" src="images/tigre01.jpg" alt="Delta du Tigre" style="max-width:70%; margin:0 auto 16px auto;" />
-    <div class="footer-bar">
-      <div class="brand">Argentine · Tango &amp; Bodegas</div>
-      <div class="pagenum">06</div>
+        <div class="text-center" id="travel-planner">
+          <h2 class="text-2xl font-bold mb-4">Qu'est-ce qu'un Travel Planner ?</h2>
+          <div class="max-w-xs mx-auto text-base text-gray-600 text-left">
+            <p class="mb-2">Un travel planner est un organisateur de voyages indépendant qui crée des séjours sur mesure selon les envies, le budget et le style du voyageur :</p>
+            <ul class="list-disc pl-5 mb-2">
+              <li>il crée des itinéraires personnalisés,</li>
+              <li>il organise des voyages sur mesure, sans agence,</li>
+              <li>il permet de gagner du temps avec une expertise locale,</li>
+              <li>il offre authenticité et personnalisation,</li>
+              <li>il connaît les prestataires sur place.</li>
+            </ul>
+            <p class="mb-2">Le travel planner vous aide à voyager l'esprit libre !</p>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="section">
-    <div class="eyebrow">Saveurs d'Argentine</div>
-    <h1 class="title">La gastronomie argentine</h1>
-    <img class="hero" src="images/photo14.jpg" alt="Cuisine argentine" style="max-width:70%; margin:0 auto 16px auto;" />
-    <div class="item">
-      <div class="item-title">Le bœuf argentin</div>
-      <div class="item-desc">Réputé dans le monde entier : bife de lomo, filet épais et très tendre, ou bife de chorizo, faux-filet cuit sur son propre gras, à savourer arrosé de chimichurri, la sauce qui accompagne toutes les viandes grillées.</div>
+  <footer class="bg-blue-600 py-2">
+    <div class="container mx-auto px-4 text-center">
+      <p style="color: white; font-size: 1rem;">&copy; 2026 - VPDVOYAGES - Patrick Daroque - Travel Planner. Tous droits réservés. | n° siret : 52534368700030
+      | <a href="cgv.html" style="color: white; text-decoration: underline;">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;">Mentions légales</a></p>
     </div>
-    <div class="item">
-      <div class="item-title">Le locro</div>
-      <div class="item-desc">Un plat traditionnel à base de maïs, pois chiches, lentilles, chorizo, potiron et oignons : le réconfort argentin par excellence.</div>
-    </div>
-    <div class="item">
-      <div class="item-title">La provoleta</div>
-      <div class="item-desc">Un fromage grillé au barbecue, accompagnement classique de l’asado argentin.</div>
-    </div>
-    <div class="item">
-      <div class="item-title">Les empanadas</div>
-      <div class="item-desc">Petits chaussons de pâte farcis de viande hachée ou de poisson, de raisins, d’olives, d’oignons, assaisonnés de poivre et de cumin.</div>
-    </div>
-    <div class="footer-bar">
-      <div class="brand">Argentine · Tango &amp; Bodegas</div>
-      <div class="pagenum">07</div>
-    </div>
-  </div>
+  </footer>
 
-  <div class="section">
-    <div class="eyebrow">Sur la route</div>
-    <h1 class="title">De Buenos Aires à Mendoza</h1>
-    <p class="lead">Cap sur l'Ouest et la Cordillère des Andes : direction Mendoza par la mythique Nationale 7, en autocar longue distance tout confort lit-suite. L'occasion de traverser l'immensité du territoire argentin et de mesurer, en chemin, le changement de paysage.</p>
-    <img class="hero" src="images/photo15.jpg" alt="Route Argentine" />
-    <div class="stat-row">
-      <div class="stat-num">1 049 km</div>
-      <div class="stat-label">de trajet</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-num">13 h 05</div>
-      <div class="stat-label">de route de nuit</div>
-    </div>
-    <div class="footer-bar">
-      <div class="brand">Argentine · Tango &amp; Bodegas</div>
-      <div class="pagenum">08</div>
-    </div>
-  </div>
+  <script src="quotes.js" defer></script>
+  <script type="text/javascript">
+    var gk_isXlsx = false;
+    var gk_xlsxFileLookup = {};
+    var gk_fileData = {};
+    function filledCell(cell) {
+      return cell !== '' && cell != null;
+    }
+    function loadFileData(filename) {
+      if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+        try {
+          var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+          var firstSheetName = workbook.SheetNames[0];
+          var worksheet = workbook.Sheets[firstSheetName];
+          var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+          var filteredData = jsonData.filter(row => row.some(filledCell));
+          var headerRowIndex = filteredData.findIndex((row, index) => row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length);
+          if (headerRowIndex === -1 || headerRowIndex > 25) {
+            headerRowIndex = 0;
+          }
+          var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
+          csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+          return csv;
+        } catch (e) {
+          console.error(e);
+          return "";
+        }
+      }
+      return gk_fileData[filename] || "";
+    }
+  </script>
+  <script>
+    // Reset menus on page load and popstate
+    function resetMenus() {
+      document.querySelector('.nav-menu')?.classList.remove('active');
+    }
+    window.addEventListener('load', resetMenus);
+    window.addEventListener('popstate', resetMenus);
+    // Smooth scrolling and navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        resetMenus();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          console.error('Erreur : Section ' + this.getAttribute('href') + ' non trouvée');
+          alert('Erreur : La section "' + this.getAttribute('href').substring(1) + '" est introuvable.');
+        }
+      });
+      anchor.addEventListener('touchstart', function (e) {
+        e.preventDefault();
+        resetMenus();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          console.error('Erreur : Section ' + this.getAttribute('href') + ' non trouvée');
+          alert('Erreur : La section "' + this.getAttribute('href').substring(1) + '" est introuvable.');
+        }
+      });
+    });
+    // Menu hamburger toggle
+    document.querySelector('.nav-toggle').addEventListener('click', function () {
+      document.querySelector('.nav-menu').classList.toggle('active');
+    });
+    document.querySelector('.nav-toggle').addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      document.querySelector('.nav-menu').classList.toggle('active');
+    });
+    // Image verification
+    document.querySelectorAll('.image-check').forEach(img => {
+      img.addEventListener('error', function () {
+        console.error('Erreur : Image manquante pour', this.alt, ':', this.src);
+        alert('Erreur : L\'image est manquante ou le chemin est invalide pour ' + this.alt + '. Vérifiez le chemin : ' + this.src);
+      });
+    });
+    // Daily travel quote
+    document.addEventListener('DOMContentLoaded', function () {
+      const quotes = window.travelQuotes || [];
+      const today = new Date();
+      const quoteIndex = today.getDate() % quotes.length;
+      const dailyQuoteElement = document.querySelector('.daily-quote');
+      if (dailyQuoteElement && quotes.length > 0) {
+        dailyQuoteElement.textContent = quotes[quoteIndex] || "Aucune citation disponible.";
+      } else {
+        console.log("Erreur : Élément .daily-quote non trouvé ou pas de citations.");
+      }
+    });
+    // Open reviews in a popup
+    function openReviewsPopup() {
+      const width = 800;
+      const height = 600;
+      const left = (window.innerWidth - width) / 2;
+      const top = (window.innerHeight - height) / 2;
+      const reviewsWindow = window.open('https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site', '_blank', `width=${width},height=${height},left=${left},top=${top}`);
+      if (reviewsWindow) {
+        reviewsWindow.focus();
+      } else {
+        alert('Veuillez autoriser les popups pour voir les avis.');
+      }
+    }
+  </script>
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const form = event.target;
 
-  <div class="section">
-    <div class="eyebrow">Mendoza</div>
-    <h1 class="title">Aux portes de la Cordillère</h1>
-    <p class="lead">Il fait bon flâner dans les rues de Mendoza, aussi argentine que déjà un peu chilienne, où le soleil brille 320 jours par an. Vers le milieu du 19ème siècle, l'arrivée des vignerons français, italiens et espagnols donna naissance aux vignobles qui fournissent aujourd'hui les trois quarts du vin argentin.</p>
-    <img class="hero" src="images/photo16.jpg" alt="Mendoza" />
-    <ul class="bullets">
-      <li>Logement en hôtel en centre-ville</li>
-      <li>Visite de la ville et de deux bodegas</li>
-      <li>Petits-déjeuners et déjeuners pris ensemble</li>
-      <li>Une journée libre pour prolonger la découverte</li>
-    </ul>
-    <div class="footer-bar">
-      <div class="brand">Argentine · Tango &amp; Bodegas</div>
-      <div class="pagenum">09</div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="eyebrow">Patrimoine viticole</div>
-    <h1 class="title">Mendoza et son fameux Malbec</h1>
-    <p class="lead">Le Malbec, cépage français d'origine, a trouvé à Mendoza son terroir de prédilection. Direction le Musée du Vin puis la Bodega La Rural, avant une dégustation chez Trapiche, l'une des maisons emblématiques de la région.</p>
-    <div class="photo-row two">
-      <img src="images/photo17.jpg" alt="Bodega 1" />
-      <img src="images/photo18.jpg" alt="Bodega 2" />
-    </div>
-    <div class="item">
-      <div class="item-title">Le Musée du Vin · Bodega La Rural</div>
-      <div class="item-desc">Une dégustation au cœur de l'une des bodegas historiques de Mendoza.</div>
-    </div>
-    <div class="item">
-      <div class="item-title">Trapiche</div>
-      <div class="item-desc">Dégustation au cœur d’une des maisons emblématiques de Mendoza.</div>
-    </div>
-    <div class="footer-bar">
-      <div class="brand">Argentine · Tango &amp; Bodegas</div>
-      <div class="pagenum">10</div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="eyebrow">Tradition & sommets</div>
-    <h1 class="title">Tango à Mendoza, jusqu’aux Andes</h1>
-    <p class="lead">Même loin de Buenos Aires, la passion du tango reste intacte : soirée milonga « Au Café Soul », selon la météo à l'air libre, en compagnie de l'association locale Ana y Luis Tango. Puis excursion vers la Cordillère, jusqu'à la frontière du Chili.</p>
-    <div class="photo-row two">
-      <img src="images/photo19.jpg" alt="Tango Mendoza 1" />
-      <img src="images/photo20.jpg" alt="Tango Mendoza 2" />
-    </div>
-    <div class="stat-row">
-      <div class="stat-num">6 962 m</div>
-      <div class="stat-label">l’Aconcagua</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-num">2 700 m</div>
-      <div class="stat-label">le Pont de l’Inca</div>
-    </div>
-    <div class="footer-bar">
-      <div class="brand">Argentine · Tango &amp; Bodegas</div>
-      <div class="pagenum">11</div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="eyebrow">Hébergement</div>
-    <h1 class="title">Hôtel ou Appartement</h1>
-    <div class="photo-row two">
-      <img src="images/photo21.jpg" alt="Hébergement 1" />
-      <img src="images/photo22.jpg" alt="Hébergement 2" />
-    </div>
-    <div class="item">
-      <div class="item-title">Buenos Aires – Microcentro ou San Telmo</div>
-      <div class="item-desc">En plein cœur de la ville, à deux pas des théâtres et des grandes avenues.</div>
-    </div>
-    <div class="item">
-      <div class="item-title">Mendoza – Centre-ville</div>
-      <div class="item-desc">À proximité immédiate des bodegas et du départ des excursions vers les Andes.</div>
-    </div>
-    <div class="footer-bar">
-      <div class="brand">Argentine · Tango &amp; Bodegas</div>
-      <div class="pagenum">14</div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="eyebrow">Informations pratiques</div>
-    <h1 class="title">À savoir avant de partir</h1>
-    <div class="item">
-      <div class="item-title">Formalités</div>
-      <div class="item-desc">Aucun visa n'est nécessaire pour un séjour touristique. Prévoir une photocopie du passeport.</div>
-    </div>
-    <div class="item">
-      <div class="item-title">Langue</div>
-      <div class="item-desc">Espagnol</div>
-    </div>
-    <div class="item">
-      <div class="item-title">Décalage horaire</div>
-      <div class="item-desc">- 5 h 00 par rapport à Paris.</div>
-    </div>
-    <div class="item">
-      <div class="item-title">Meilleure saison</div>
-      <div class="item-desc">L'été argentin, de décembre à mars.</div>
-    </div>
-    <div class="card">
-      <div class="card-title">Conseils voyageurs</div>
-      <div class="card-body">Le Ministère des Affaires Étrangères publie des conseils actualisés par destination.<br><span style="color:var(--teal)">diplomatie.gouv.fr</span> → Argentine</div>
-    </div>
-    <p class="lead" style="margin-top:6px;">Le métro circule de 5h à 22h (lundi-samedi) et de 8h à minuit le dimanche. Les déjeuners sont pris ensemble ; les dîners restent libres sauf 3.</p>
-    <div class="footer-bar">
-      <div class="brand">Argentine · Tango &amp; Bodegas</div>
-      <div class="pagenum">16</div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="eyebrow">Budget</div>
-    <h1 class="title">Le peso argentin</h1>
-    <p class="lead">Conseil : ne jamais changer à l'aéroport, ni dans la rue.</p>
-    <div class="card">
-      <div class="card-title">Taux de change indicatif</div>
-      <div class="card-body" style="font-size:18px; font-family:var(--font-head); color:var(--accent);">1 euro = 1 720 ARS</div>
-    </div>
-    <div class="item">
-      <div class="item-title">Bureaux de change</div>
-      <div class="item-desc">Western Union, les « cuevas », casas de cambio.</div>
-    </div>
-    <div class="subhead">Pratique</div>
-    <ul class="bullets">
-      <li>Sac à dos pour les escapades à Mendoza, léger pour l’appareil photo et le caméscope</li>
-      <li>Prises électriques argentines : norme européenne, double ou triple rond, 220 V</li>
-      <li>Bonnes chaussures recommandées : Buenos Aires se visite beaucoup à pied</li>
-    </ul>
-    <div class="footer-bar">
-      <div class="brand">Argentine · Tango &amp; Bodegas</div>
-      <div class="pagenum">17</div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="eyebrow">Sécurité & bon sens</div>
-    <h1 class="title">Quelques précautions</h1>
-    <p class="lead">Comme dans toute grande ville, quelques règles simples permettent d'aborder le séjour en toute sérénité.</p>
-    <ul class="bullets">
-      <li>Ne pas laisser à la vue les sacs à main ou à dos.</li>
-      <li>Ne pas porter de bijoux de façon ostentatoire : voleurs à la tire.</li>
-      <li>Ne jamais rester seule dans la rue, surtout le soir.</li>
-      <li>Faire attention dans les bus et le métro : pick-pockets.</li>
-      <li>Faire une photocopie du passeport et du billet d’avion.</li>
-      <li>Ne jamais indiquer où l’on habite.</li>
-      <li>Attention aux émules de Fangio : bus, voitures.</li>
-      <li>Contrôler systématiquement le rendu de monnaie.</li>
-    </ul>
-    <div class="footer-bar">
-      <div class="brand">Argentine · Tango &amp; Bodegas</div>
-      <div class="pagenum">18</div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="eyebrow">Coordonnées utiles</div>
-    <h1 class="title">Ambassade de France en Argentine</h1>
-    <p class="lead">Cerrito 1399 – CP 1010, Buenos Aires · Tél. : (00 54 11) 45 15 29 67</p>
-    <div class="stat-row">
-      <div class="stat-num" style="font-size:15px; min-width:180px;">Standard de l'ambassade</div>
-      <div class="stat-label">4515 7000</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-num" style="font-size:15px; min-width:180px;">Standard du Consulat général</div>
-      <div class="stat-label">4515 6900</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-num" style="font-size:15px; min-width:180px;">Urgences consulaires hors horaires</div>
-      <div class="stat-label">15 4470 3202</div>
-    </div>
-    <div class="footer-bar">
-      <div class="brand">Argentine · Tango &amp; Bodegas</div>
-      <div class="pagenum">19</div>
-    </div>
-  </div>
-
-  <div class="section back">
-    <img class="back-logo" src="images/photo23.jpg" alt="Logo" style="width:90px; height:60px; border-radius:2px;" />
-    <div class="back-msg" style="margin-top:18px;">Bon séjour au pays du Tango et des Bodegas !</div>
-    <img class="back-logo" src="images/photo24.jpg" alt="Logo 2" />
-    <div class="site">vpdvoyages.com</div>
-  </div>
-
+      fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { "Accept": "application/json" }
+      })
+      .then(response => {
+          if (response.ok) {
+              document.getElementById("confirmation").style.display = "block";
+              form.reset();
+          }
+      })
+      .catch(() => {
+          alert("Une erreur est survenue. Réessayez plus tard.");
+      });
+    });
+  </script>
 </body>
 </html>
