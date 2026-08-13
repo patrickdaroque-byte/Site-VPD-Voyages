@@ -180,20 +180,23 @@
   <script>
     function setPdfLinks() {
       const isMobile = window.innerWidth <= 640;
-      const folder = isMobile ? 'PDF_mobile/' : 'PDF/';
-      
-      // Clé unique de rafraîchissement basée sur la milliseconde actuelle
       const antiCache = Date.now();
 
-      // Récupération des éléments
       const triangle = document.querySelector('.triangle-pdf');
       const magie = document.querySelector('.magie-pdf');
       const tango = document.querySelector('.tango-pdf');
 
-      // Attribution des liens mis à jour en temps réel avec l'anti-cache
-      if (triangle) triangle.href = folder + 'Colombie_Le_Triangle_Magique.pdf?v=' + antiCache;
-      if (magie) magie.href = folder + 'Colombie_La_Magie_Realiste.pdf?v=' + antiCache;
-      if (tango) tango.href = folder + 'Colombie_Festival_Tango_Medellin.pdf?v=' + antiCache;
+      // Version PC : PDF/ (inchangé)
+      // Version mobile : dossiers PDF_mobile/ selon capture
+      if (isMobile) {
+        if (triangle) triangle.href = 'PDF_mobile/Colombie_Triangle_Magique/programme.html?v=' + antiCache;
+        if (magie) magie.href = 'PDF_mobile/Colombie_Magie_Realiste/programme.html?v=' + antiCache;
+        if (tango) tango.href = 'PDF_mobile/Colombie_Festival_Tango_Medellin/programme.html?v=' + antiCache;
+      } else {
+        if (triangle) triangle.href = 'PDF/Colombie_Le_Triangle_Magique.pdf?v=' + antiCache;
+        if (magie) magie.href = 'PDF/Colombie_La_Magie_Realiste.pdf?v=' + antiCache;
+        if (tango) tango.href = 'PDF/Colombie_Festival_Tango_Medellin.pdf?v=' + antiCache;
+      }
     }
 
     // Chargement initial et ajustements d'écran

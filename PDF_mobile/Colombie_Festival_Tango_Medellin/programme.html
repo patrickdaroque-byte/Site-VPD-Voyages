@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Voyage en petit groupe - Festival International de Tango de Medellín 2027 - Colombie">
+  <title>Colombie · Festitango Medellín 2027</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rouge: #c41e3a;
+      --rouge-fonce: #8b1528;
+      --noir: #1a1a1a;
+      --creme: #faf7f2;
+      --or: #c9a227;
+      --gris: #5a5a5a;
+      --blanc: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--creme);
+      color: var(--noir);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ===== HEADER / HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: var(--noir);
+      color: var(--blanc);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.75) 70%, rgba(0,0,0,0.92) 100%),
+                  url('images/tango-medellin.jpg') center/cover no-repeat;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 2rem 1.25rem 3rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--rouge);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero h1 span {
+      color: var(--or);
+    }
+
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-list {
+      list-style: none;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-list li {
+      font-size: 0.9rem;
+      padding: 0.35rem 0;
+      padding-left: 1.1rem;
+      position: relative;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .hero-list li::before {
+      content: "•";
+      color: var(--or);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    .site-link {
+      font-size: 0.8rem;
+      color: var(--or);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== NAV ===== */
+    .nav-sticky {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(26,26,26,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .nav-sticky::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-inner {
+      display: flex;
+      gap: 0;
+      padding: 0 0.5rem;
+      min-width: max-content;
+    }
+
+    .nav-inner a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.9rem 0.85rem;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .nav-inner a:hover,
+    .nav-inner a:active {
+      color: var(--or);
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 2.75rem 1.25rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rouge);
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 1.25rem;
+      color: var(--noir);
+    }
+
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: var(--gris);
+      margin-bottom: 1rem;
+    }
+
+    .divider {
+      width: 40px;
+      height: 3px;
+      background: var(--rouge);
+      margin: 0 0 1.5rem;
+    }
+
+    /* ===== PRESENTATION ===== */
+    .presentation {
+      background: var(--blanc);
+    }
+
+    .presentation-text {
+      margin-bottom: 1.75rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--creme);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 1rem 1.1rem 1.2rem;
+    }
+
+    .card-body h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .card-body p {
+      font-size: 0.85rem;
+      margin-bottom: 0;
+    }
+
+    /* ===== REGIONS ===== */
+    .regions {
+      background: var(--noir);
+      color: var(--blanc);
+    }
+
+    .regions h2 {
+      color: var(--blanc);
+    }
+
+    .regions .section-label {
+      color: var(--or);
+    }
+
+    .region-block {
+      margin-bottom: 2rem;
+    }
+
+    .region-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .region-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--or);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid rgba(201,162,39,0.3);
+    }
+
+    .region-list {
+      list-style: none;
+    }
+
+    .region-list li {
+      font-size: 0.9rem;
+      padding: 0.4rem 0;
+      padding-left: 1rem;
+      position: relative;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .region-list li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: var(--or);
+    }
+
+    .map-img {
+      border-radius: 10px;
+      margin-top: 1.5rem;
+      width: 100%;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    /* ===== FESTIVAL ===== */
+    .festival {
+      background: var(--blanc);
+    }
+
+    .festival-hero-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+    }
+
+    .festival-features {
+      list-style: none;
+      margin: 1.25rem 0;
+    }
+
+    .festival-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      font-size: 0.95rem;
+    }
+
+    .festival-features li:last-child {
+      border-bottom: none;
+    }
+
+    .feature-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      background: var(--rouge);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .quote-box {
+      background: var(--creme);
+      border-left: 3px solid var(--rouge);
+      padding: 1rem 1.15rem;
+      margin-top: 1.5rem;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .quote-box p {
+      font-style: italic;
+      font-size: 0.9rem;
+      margin: 0;
+      color: var(--noir);
+    }
+
+    /* ===== DESTINATION SECTIONS ===== */
+    .dest-section {
+      background: var(--creme);
+    }
+
+    .dest-section.alt {
+      background: var(--blanc);
+    }
+
+    .img-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      margin: 1.25rem 0 1.5rem;
+    }
+
+    .img-gallery.full {
+      grid-template-columns: 1fr;
+    }
+
+    .img-gallery img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .img-gallery.full img {
+      height: 200px;
+    }
+
+    .img-gallery.triple {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .img-gallery.triple img {
+      height: 110px;
+    }
+
+    .highlight-box {
+      background: var(--noir);
+      color: white;
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .highlight-box h3 {
+      color: var(--or);
+      font-size: 1.1rem;
+    }
+
+    .highlight-box p {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+
+    /* ===== PROGRAMME ===== */
+    .programme {
+      background: var(--blanc);
+    }
+
+    .week-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--rouge);
+      margin: 1.75rem 0 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--rouge);
+    }
+
+    .week-title:first-of-type {
+      margin-top: 0.5rem;
+    }
+
+    .day-card {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .day-card:last-child {
+      border-bottom: none;
+    }
+
+    .day-num {
+      flex-shrink: 0;
+      width: 52px;
+      text-align: center;
+    }
+
+    .day-num .label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--rouge);
+    }
+
+    .day-num .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--noir);
+    }
+
+    .day-content h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .day-content p {
+      font-size: 0.85rem;
+      margin: 0;
+      color: var(--gris);
+    }
+
+    /* ===== SECURITE ===== */
+    .securite {
+      background: var(--creme);
+    }
+
+    .secu-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .secu-item {
+      background: var(--blanc);
+      border-radius: 10px;
+      padding: 1.15rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .secu-item h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--rouge-fonce);
+    }
+
+    .secu-item p {
+      font-size: 0.85rem;
+      margin: 0;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--noir);
+      color: white;
+      text-align: center;
+      padding: 3rem 1.25rem 2.5rem;
+    }
+
+    .footer-img {
+      width: 100%;
+      max-width: 280px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    .footer h2 {
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .footer p {
+      color: rgba(255,255,255,0.7);
+      font-style: italic;
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-info {
+      font-size: 0.8rem;
+      color: var(--or);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer a {
+      color: var(--or);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* ===== UTILS ===== */
+    .text-center {
+      text-align: center;
+    }
+
+    @media (min-width: 480px) {
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      .cards-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .img-gallery img {
+        height: 160px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HERO ========== -->
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <span class="badge">Idée voyage en petit groupe</span>
+      <h1>Colombie<br><span>Tango &amp; Printemps éternel</span></h1>
+      <p class="hero-subtitle">Festival International de Tango à Medellín 2027</p>
+      <ul class="hero-list">
+        <li>Milongas &amp; maestros internationaux</li>
+        <li>Spectacles de haut niveau</li>
+        <li>Medellín – Comuna 13 &amp; Metrocable</li>
+        <li>Bogotá – Candelaria &amp; Musée de l'Or</li>
+        <li>Cathédrale de Sel de Zipaquirá</li>
+        <li>Guatapé &amp; la Piedra del Peñol</li>
+      </ul>
+      <a href="https://vpdvoyages.com" class="site-link" target="_blank" rel="noopener">vpdvoyages.com</a>
+    </div>
+  </header>
+
+  <!-- ========== NAV ========== -->
+  <nav class="nav-sticky">
+    <div class="nav-inner">
+      <a href="#presentation">Présentation</a>
+      <a href="#festival">Festival</a>
+      <a href="#bogota">Bogotá</a>
+      <a href="#medellin">Medellín</a>
+      <a href="#guatape">Guatapé</a>
+      <a href="#programme">Programme</a>
+      <a href="#securite">Sécurité</a>
+    </div>
+  </nav>
+
+  <!-- ========== PRESENTATION ========== -->
+  <section class="presentation" id="presentation">
+    <span class="section-label">Présentation</span>
+    <h2>Gardel, Tango et découvertes colombiennes</h2>
+    <div class="divider"></div>
+    <div class="presentation-text">
+      <p>Vivez une expérience unique au Festival International de Tango de Medellín, l'un des plus prestigieux d'Amérique latine. Medellín n'est pas une ville de tango par hasard : c'est ici que Carlos Gardel, la légende du tango, a trouvé la mort en 1935, faisant de cette ville le sanctuaire de sa mémoire et le berceau du tango colombien.</p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card">
+        <img src="images/couple-tango.jpg" alt="Couple de danseurs de tango">
+        <div class="card-body">
+          <h3>Festival de Tango</h3>
+          <p>Milongas, cours avec maestros, spectacles de haut niveau</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/metrocable.jpg" alt="Metrocable de Medellín">
+        <div class="card-body">
+          <h3>Medellín</h3>
+          <p>La ville du Printemps éternel, Comuna 13, Metrocable, Parc Arví</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/Bogota.jpg" alt="Bogotá – La Candelaria">
+        <div class="card-body">
+          <h3>Bogotá</h3>
+          <p>La Candelaria, Musée de l'Or, Monserrate, Zipaquirá</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/penon-guatape.jpg" alt="Piedra del Peñol – Guatapé">
+        <div class="card-body">
+          <h3>Guatapé</h3>
+          <p>Village coloré, Piedra del Peñol – 740 marches</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== REGIONS ========== -->
+  <section class="regions" id="regions">
+    <span class="section-label">Les régions visitées</span>
+    <h2>Cundinamarca &amp; Antioquia</h2>
+    <div class="divider" style="background:var(--or)"></div>
+
+    <div class="region-block">
+      <div class="region-title">Cundinamarca – Bogotá</div>
+      <ul class="region-list">
+        <li>Quartier de la Candelaria</li>
+        <li>Musée de l'Or</li>
+        <li>Mirador de Monserrate</li>
+        <li>Cathédrale de Sel – Zipaquirá</li>
+        <li>Lagune de Guatavita (Eldorado)</li>
+        <li>Quartier El Paraíso</li>
+      </ul>
+    </div>
+
+    <div class="region-block">
+      <div class="region-title">Antioquia – Medellín</div>
+      <ul class="region-list">
+        <li>Festival International de Tango</li>
+        <li>Musée d'Antioquia &amp; Place Botero</li>
+        <li>Metrocable &amp; Comuna 13</li>
+        <li>Musée de la Mémoire</li>
+        <li>Parc Arví</li>
+        <li>Guatapé &amp; Piedra del Peñol</li>
+      </ul>
+    </div>
+
+    <img src="images/carte-villes-colombie.jpg" alt="Carte des villes visitées en Colombie" class="map-img">
+  </section>
+
+  <!-- ========== FESTIVAL ========== -->
+  <section class="festival" id="festival">
+    <span class="section-label">Le Festival</span>
+    <h2>Festival International de Tango de Medellín</h2>
+    <div class="divider"></div>
+
+    <img src="images/groupe-tango.jpg" alt="Groupe de danseurs de tango" class="festival-hero-img">
+
+    <h3 style="color:var(--rouge);font-size:1.1rem;margin-bottom:0.75rem;">Festitango 2027 · Medellín, une ville de tango</h3>
+
+    <ul class="festival-features">
+      <li><span class="feature-icon">1</span> Milongas sous les étoiles</li>
+      <li><span class="feature-icon">2</span> Cours avec maestros internationaux</li>
+      <li><span class="feature-icon">3</span> Spectacles de haut niveau</li>
+      <li><span class="feature-icon">4</span> Tangovia</li>
+      <li><span class="feature-icon">5</span> Inauguration &amp; Despedida du festival</li>
+    </ul>
+
+    <div class="quote-box">
+      <p>Carlos Gardel y a trouvé la mort en 1935 — Medellín est le sanctuaire de sa mémoire et le berceau du tango colombien.</p>
+    </div>
+
+    <img src="images/gardel.jpg" alt="Carlos Gardel" style="width:100%;height:180px;object-fit:cover;border-radius:10px;margin-top:1.5rem;">
+  </section>
+
+  <!-- ========== BOGOTA ========== -->
+  <section class="dest-section" id="bogota">
+    <span class="section-label">Bogotá</span>
+    <h2>La Candelaria, le Musée de l'Or &amp; Monserrate</h2>
+    <div class="divider"></div>
+
+    <div class="img-gallery triple">
+      <img src="images/Bogota.jpg" alt="La Candelaria">
+      <img src="images/latin-dancers-tango.jpg" alt="Ambiance tango">
+      <img src="images/musee-de-l'or.jpg" alt="Ambiance tango">
+
+    </div>
+
+    <div class="cards-grid" style="margin-top:0.5rem;">
+      <div class="card">
+        <div class="card-body">
+          <h3>La Candelaria</h3>
+          <p>Quartier colonial historique au cœur de Bogotá</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h3>Musée de l'Or</h3>
+          <p>Trésors précolombiens exceptionnels</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h3>Monserrate</h3>
+          <p>Vue panoramique à 3 152 m d'altitude</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== EXCURSIONS BOGOTA ========== -->
+  <section class="dest-section alt" id="excursions">
+    <span class="section-label">Excursions depuis Bogotá</span>
+    <h2>La Cathédrale de Sel &amp; Guatavita</h2>
+    <div class="divider"></div>
+
+    <div class="img-gallery">
+      <img src="images/casa-loca.jpg" alt="Casa Loca près de Guatavita">
+      <img src="images/laguna-guatavita.jpg" alt="Lagune de Guatavita">
+    </div>
+
+    <div class="highlight-box" style="margin-bottom:1rem;">
+      <h3>Cathédrale de Sel – Zipaquirá</h3>
+      <p>Cathédrale souterraine creusée dans une mine de sel. Architecture spectaculaire et lumière mystique.</p>
+    </div>
+
+    <div class="highlight-box">
+      <h3>Guatavita et la « Maison folle »</h3>
+      <p>Lagune sacrée des Muiscas, légende de l'Eldorado. Repas champêtre près de La Casa Loca.</p>
+    </div>
+  </section>
+
+  <!-- ========== MEDELLIN ========== -->
+  <section class="dest-section" id="medellin">
+    <span class="section-label">Medellín</span>
+    <h2>Le Musée Botero, le Metrocable, la Comuna 13</h2>
+    <div class="divider"></div>
+
+    <div class="img-gallery">
+      <img src="images/metrocable.jpg" alt="Metrocable de Medellín">
+      <img src="images/comuna-13-medellin.jpg" alt="Comuna 13 – Medellín">
+    </div>
+
+    <p>Découvrez la ville du Printemps éternel : le Musée d'Antioquia et la Place Botero, le Metrocable qui surplombe la ville, la transformation spectaculaire de la Comuna 13, le Musée de la Mémoire et le Parc Arví.</p>
+  </section>
+
+  <!-- ========== GUATAPE ========== -->
+  <section class="dest-section alt" id="guatape">
+    <span class="section-label">Excursion</span>
+    <h2>Guatapé – 740 marches !</h2>
+    <div class="divider"></div>
+
+    <img src="images/penon-guatape.jpg" alt="Piedra del Peñol à Guatapé" style="width:100%;height:220px;object-fit:cover;border-radius:10px;margin-bottom:1.25rem;">
+
+    <h3 style="color:var(--rouge);">Piedra del Peñol</h3>
+    <p>Monolithe de granit de 200 m. 740 marches pour atteindre le sommet et admirer un panorama exceptionnel sur le lac et les îles.</p>
+    <p>Le village de Guatapé, aux façades colorées et <em>zócalos</em> peints, complète cette excursion inoubliable.</p>
+  </section>
+
+  <!-- ========== PROGRAMME ========== -->
+  <section class="programme" id="programme">
+    <span class="section-label">Programme</span>
+    <h2>Votre itinéraire jour par jour</h2>
+    <div class="divider"></div>
+
+    <div class="week-title">1<sup>re</sup> semaine — Bogotá &amp; début du Festival</div>
+
+    <div class="day-card">
+      <div class="day-num">
+        <div class="label">Jours</div>
+        <div class="num">1-2</div>
+      </div>
+      <div class="day-content">
+        <h4>Arrivée</h4>
+        <p>Formalités · Découverte de la Candelaria</p>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-num">
+        <div class="label">Jour</div>
+        <div class="num">3</div>
+      </div>
+      <div class="day-content">
+        <h4>Bogotá</h4>
+        <p>Musée de l'Or · Monserrate</p>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-num">
+        <div class="label">Jour</div>
+        <div class="num">4</div>
+      </div>
+      <div class="day-content">
+        <h4>Zipaquirá</h4>
+        <p>Cathédrale de Sel</p>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-num">
+        <div class="label">Jour</div>
+        <div class="num">5</div>
+      </div>
+      <div class="day-content">
+        <h4>Guatavita</h4>
+        <p>Eldorado · Repas nature</p>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-num">
+        <div class="label">Jour</div>
+        <div class="num">6</div>
+      </div>
+      <div class="day-content">
+        <h4>El Paraíso</h4>
+        <p>Visite guidée du quartier</p>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-num">
+        <div class="label">Jour</div>
+        <div class="num">7</div>
+      </div>
+      <div class="day-content">
+        <h4>Vol vers Medellín</h4>
+        <p>Bogotá → Medellín · Soir : Inauguration Festitango</p>
+      </div>
+    </div>
+
+    <div class="week-title">2<sup>e</sup> semaine — Festival, Guatapé &amp; retour</div>
+
+    <div class="day-card">
+      <div class="day-num">
+        <div class="label">Jours</div>
+        <div class="num">8-10</div>
+      </div>
+      <div class="day-content">
+        <h4>Festival</h4>
+        <p>Milongas · Spectacles · Tangovia</p>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-num">
+        <div class="label">Jour</div>
+        <div class="num">11</div>
+      </div>
+      <div class="day-content">
+        <h4>Medellín</h4>
+        <p>Musée d'Antioquia · Place Botero</p>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-num">
+        <div class="label">Jour</div>
+        <div class="num">12</div>
+      </div>
+      <div class="day-content">
+        <h4>Comuna 13</h4>
+        <p>Metrocable · Parc Arví</p>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-num">
+        <div class="label">Jour</div>
+        <div class="num">13</div>
+      </div>
+      <div class="day-content">
+        <h4>Guatapé</h4>
+        <p>740 marches · Village coloré</p>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-num">
+        <div class="label">Jour</div>
+        <div class="num">14</div>
+      </div>
+      <div class="day-content">
+        <h4>Despedida</h4>
+        <p>Clôture du Festival</p>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-num">
+        <div class="label">Jour</div>
+        <div class="num">15</div>
+      </div>
+      <div class="day-content">
+        <h4>Retour Bogotá</h4>
+        <p>Vol Medellín → Bogotá</p>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-num">
+        <div class="label">Jour</div>
+        <div class="num">16</div>
+      </div>
+      <div class="day-content">
+        <h4>Départ</h4>
+        <p>Vol retour France</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECURITE ========== -->
+  <section class="securite" id="securite">
+    <span class="section-label">Sécurité</span>
+    <h2>Zones touristiques sécurisées</h2>
+    <div class="divider"></div>
+
+    <p>Voyagez dans des zones touristiques sécurisées. Si certains endroits de Colombie restent à éviter, toutes les zones visitées lors de ce voyage sont parfaitement sûres pour les touristes.</p>
+
+    <div class="secu-grid">
+      <div class="secu-item">
+        <h4>Ne pas marcher seul(e) le soir</h4>
+        <p>Faire appeler un taxi (Cabify / Uber) par l'hôtel.</p>
+      </div>
+      <div class="secu-item">
+        <h4>Bijoux &amp; argent</h4>
+        <p>Pas d'attitudes ostentatoires. Contrôler le rendu de monnaie.</p>
+      </div>
+      <div class="secu-item">
+        <h4>Distributeurs</h4>
+        <p>Uniquement en journée, dans des lieux fréquentés.</p>
+      </div>
+      <div class="secu-item">
+        <h4>Transports</h4>
+        <p>Attention aux pickpockets dans les bus et le métro.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <img src="images/couple-tango.jpg" alt="Tango en Colombie" class="footer-img">
+    <h2>Bon séjour en Colombie,</h2>
+    <p>… version Tango argentin !</p>
+    <div class="footer-info">Festitango Medellín 2027 · Bogotá · Guatapé</div>
+    <a href="https://vpdvoyages.com" target="_blank" rel="noopener">vpdvoyages.com</a>
+  </footer>
+
+</body>
+</html>
