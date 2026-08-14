@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Uruguay - Montevideo, Gauchos &amp; Bodegas</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Cuba · Randonnée Viñales & Escambray</title>
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
     body {
-      font-family: Arial, 'Liberation Sans', Helvetica, sans-serif;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       background: #f5f2eb;
       color: #1e2b2c;
-      font-size: 16px;
-      line-height: 1.4;
-      padding: 0 0 1rem 0;
+      line-height: 1.5;
+      padding: 0 0 2rem 0;
     }
     .container {
       max-width: 480px;
       margin: 0 auto;
-      background: #ffffff;
+      background: white;
       box-shadow: 0 0 20px rgba(0,0,0,0.05);
     }
-    .section {
-      padding: 14px 18px 12px 18px;
+    .card {
+      padding: 1.25rem 1.2rem;
       border-bottom: 6px solid #f0ebe3;
     }
-    .section:last-child {
+    .card:last-child {
       border-bottom: none;
     }
     h1, h2, h3 {
@@ -37,17 +36,17 @@
     }
     .hero {
       background: #1e3b3c;
-      color: #ffffff;
-      padding: 1.4rem 1.2rem 1.2rem;
+      color: white;
+      padding: 1.8rem 1.2rem 1.5rem;
       text-align: center;
     }
     .hero h1 {
-      font-size: 2rem;
+      font-size: 2.1rem;
       line-height: 1.2;
       margin-bottom: 0.2rem;
     }
     .hero .sub {
-      font-size: 0.9rem;
+      font-size: 1rem;
       opacity: 0.85;
       font-weight: 400;
       letter-spacing: 1px;
@@ -56,23 +55,16 @@
       background: #d9b382;
       color: #1e2b2c;
       display: inline-block;
-      padding: 0.2rem 0.9rem;
+      padding: 0.2rem 1rem;
       border-radius: 30px;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 600;
-      letter-spacing: 0.3px;
-      margin-top: 0.4rem;
-    }
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 6px;
-      margin-top: 0.4rem;
+      letter-spacing: 0.5px;
+      margin-top: 0.5rem;
     }
     .section-title {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -80,471 +72,263 @@
     .section-title span {
       background: #d9b382;
       color: #1e2b2c;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       padding: 0.1rem 0.7rem;
       border-radius: 30px;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin: 1rem 0 0.5rem;
+    }
+    .stat-item {
+      background: #f7f4ef;
+      border-radius: 20px;
+      padding: 0.8rem 0.3rem;
+      text-align: center;
+    }
+    .stat-item .number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1e3b3c;
+    }
+    .stat-item .label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      opacity: 0.7;
+      letter-spacing: 0.3px;
     }
     .image-fit {
       width: 100%;
       height: auto;
-      border-radius: 16px;
-      margin: 0.6rem 0 0.5rem;
+      border-radius: 24px;
+      margin: 1rem 0 0.5rem;
       display: block;
       background: #ddd6cc;
       object-fit: cover;
       aspect-ratio: 16/9;
     }
-    .image-fit.small {
-      aspect-ratio: 4/3;
+    .list-bullet {
+      list-style: none;
+      padding: 0;
     }
-    .image-fit.cover {
-      aspect-ratio: 16/10;
+    .list-bullet li {
+      padding: 0.4rem 0 0.4rem 1.8rem;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%231e3b3c" stroke-width="2"><circle cx="12" cy="12" r="6"/></svg>') left center no-repeat;
+      background-size: 1.2rem;
     }
-    .photo-row {
-      display: flex;
-      gap: 6px;
-      margin: 0.4rem 0 0.5rem;
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 0.8rem 0;
     }
-    .photo-row img {
-      width: 100%;
-      border-radius: 12px;
-      display: block;
-      object-fit: cover;
+    .info-tag {
+      background: #f0ebe3;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      display: inline-block;
     }
-    .photo-row.two img {
-      height: 130px;
-    }
-    .photo-row.three img {
-      height: 100px;
-    }
-    .photo-row.four img {
-      height: 85px;
-    }
-    .caption {
-      font-style: italic;
-      font-size: 0.8rem;
-      color: #6b5e54;
+    .footer-brand {
       text-align: center;
-      margin: 0 0 0.5rem 0;
-    }
-    .item {
-      margin: 0 0 0.5rem 0;
-    }
-    .item .item-title {
-      font-size: 1rem;
-      color: #c1502e;
-      font-weight: 700;
-      margin: 0 0 1px 0;
-    }
-    .item .item-desc {
-      font-size: 0.85rem;
-      color: #1e2b2c;
-    }
-    .card {
-      background: #f3ece2;
-      border-radius: 10px;
-      padding: 0.7rem 0.9rem;
-      margin: 0 0 0.5rem 0;
-    }
-    .card.teal {
-      background: #e7efee;
-    }
-    .card .card-title {
-      font-size: 0.95rem;
-      color: #0f5c56;
-      margin: 0 0 2px 0;
-      font-weight: 700;
-    }
-    .card .card-body {
-      font-size: 0.85rem;
-    }
-    ul.bullets {
-      margin: 3px 0 0 0;
-      padding-left: 18px;
-    }
-    ul.bullets li {
-      margin-bottom: 3px;
-      font-size: 0.85rem;
-    }
-    .stat-row {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-      padding: 4px 0;
-      border-bottom: 1px solid #e7efee;
-    }
-    .stat-row .stat-num {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #c1502e;
-      min-width: 75px;
-    }
-    .stat-row .stat-label {
-      font-size: 0.85rem;
-      color: #6b5e54;
-    }
-    .day {
-      display: flex;
-      gap: 10px;
-      padding: 5px 0;
-      border-bottom: 1px solid #e7efee;
-    }
-    .day:last-child {
-      border-bottom: none;
-    }
-    .day .day-num {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: #ffffff;
-      background: #c1502e;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      min-width: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      line-height: 1.1;
-    }
-    .day .day-body {
-      font-size: 0.85rem;
-      padding-top: 1px;
-    }
-    .day .day-body .day-title {
-      font-weight: 700;
-      color: #1e2b2c;
-      display: block;
-      margin-bottom: 1px;
-    }
-    .subhead {
-      font-size: 0.95rem;
-      color: #0f5c56;
-      font-weight: 700;
-      margin: 6px 0 2px 0;
+      padding: 1.5rem 1rem 1rem;
+      background: #1e3b3c;
+      color: #f0ebe3;
+      border-radius: 30px 30px 0 0;
+      margin-top: 1rem;
     }
     .footer-logo-block {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin-top: 0.4rem;
+      margin-top: 0.5rem;
     }
     .footer-logo-block img {
-      max-width: 70px;
+      max-width: 80px;
       height: auto;
       display: block;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.3rem;
     }
     .footer-logo-block .site-name {
-      font-size: 0.9rem;
+      font-size: 1rem;
       font-weight: 400;
       letter-spacing: 0.5px;
       opacity: 0.9;
     }
-    .footer-brand {
-      text-align: center;
-      padding: 1.2rem 1rem 1rem;
-      background: #1e3b3c;
-      color: #f0ebe3;
-      border-radius: 24px 24px 0 0;
-      margin-top: 0.5rem;
-    }
-    .info-tag {
-      background: #f0ebe3;
-      padding: 0.2rem 0.8rem;
-      border-radius: 30px;
-      font-size: 0.7rem;
-      display: inline-block;
-    }
-    .cover-hero {
-      width: 100%;
-      display: block;
-      max-height: 180px;
-      object-fit: cover;
-    }
-    .cover-body {
-      padding: 0.8rem 1.2rem 0.8rem;
-    }
-    .cover-eyebrow {
-      font-size: 0.7rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #c9a24b;
-      font-weight: 700;
-      margin-bottom: 2px;
-    }
-    .cover-title {
-      font-size: 2.2rem;
-      color: #1e2b2c;
-      margin: 0;
-      line-height: 1;
-    }
-    .cover-sub {
-      font-style: italic;
-      font-size: 1.1rem;
-      color: #c1502e;
-      margin: 2px 0 4px 0;
-    }
-    .cover-intro {
-      font-size: 0.85rem;
-      color: #1e2b2c;
-      margin-bottom: 3px;
-    }
-    .cover-list {
-      margin: 3px 0 8px 0;
-      padding-left: 18px;
-    }
-    .cover-list li {
-      font-size: 0.85rem;
-      margin-bottom: 2px;
-    }
-    .cover-logo-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border-top: 1px solid #e7efee;
-      padding-top: 6px;
-    }
-    .cover-logo-row img {
-      width: 32px;
-      height: 32px;
-    }
-    .cover-logo-row .site {
-      font-size: 0.8rem;
-      color: #0f5c56;
-      font-weight: 700;
-    }
-    .tight-top { padding-top: 4px; }
-    .tight-bottom { padding-bottom: 6px; }
-    .tight-both { padding-top: 4px; padding-bottom: 6px; }
   </style>
 </head>
 <body>
 <div class="container">
 
-  <!-- COVER -->
-  <div style="padding:0;">
-    <img class="cover-hero" src="images/juan-panagea.jpg" style="max-height:160px;object-fit:cover;"/>
-    <div class="cover-body">
-      <div class="cover-eyebrow">Idée voyage en petit groupe !</div>
-      <h1 class="cover-title">Uruguay</h1>
-      <div class="cover-sub">Montevideo, Gauchos &amp; Bodegas</div>
-      <p class="cover-intro">À la découverte d'un pays authentique :</p>
-      <ul class="cover-list">
-        <li>Montevideo - Plazas &amp; patrimoine</li>
-        <li>Estancia avec les gauchos (cheval, asado)</li>
-        <li>Punta del Este - Plages</li>
-        <li>Bodegas Moizo &amp; Los Pinos</li>
-        <li>Colonia del Sacramento UNESCO</li>
-      </ul>
-      <div class="cover-logo-row">
-        <img src="images/logo-vpd.jpg"/>
-        <div class="site">vpdvoyages.com</div>
-      </div>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="sub">IDÉE VOYAGE EN PETIT GROUPE</div>
+    <h1>Cuba</h1>
+    <div style="font-size:1.2rem; font-weight:300;">Randonnée · Mogotes de Viñales & Escambray</div>
+    <div style="margin-top:0.6rem; display:flex; flex-wrap:wrap; justify-content:center; gap:8px;">
+      <span class="badge">🌿 Vallée de Viñales UNESCO</span>
+      <span class="badge">🏔️ Massif de l'Escambray</span>
     </div>
-  </div>
-
-  <!-- PRÉSENTATION -->
-  <div class="section">
-    <div class="section-title">📖 PRÉSENTATION</div>
-    <p style="font-size:0.9rem;">Montevideo et son patrimoine, Punta del Este et ses plages, immersion gaucho en estancia (cheval, bétail, asado), bodegas et Colonia del Sacramento UNESCO. Un circuit au cœur de l'Uruguay authentique.</p>
-    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:0.5rem;">
-      <span class="info-tag">🏛️ Montevideo</span>
-      <span class="info-tag">🐴 Estancia gaucho</span>
-      <span class="info-tag">🏖️ Punta del Este</span>
-      <span class="info-tag">🍷 Bodegas</span>
-      <span class="info-tag">🏛️ Colonia UNESCO</span>
+    <div style="margin-top:0.6rem; display:flex; flex-wrap:wrap; justify-content:center; gap:8px;">
+      <span class="badge">💧 Cascade Caburní (1 100 m)</span>
+      <span class="badge">🏝️ Baie des Cochons</span>
     </div>
+    <div style="margin-top:1rem; font-size:0.9rem; opacity:0.9;">Sentiers tabac & grottes · Journée paysanne Trinidad</div>
+    <div style="margin-top:0.5rem; font-size:0.8rem; background:#2a4b4c; padding:0.2rem 1rem; border-radius:40px; display:inline-block;">vpdvoyages.com</div>
   </div>
 
-  <!-- LE CIRCUIT -->
-  <div class="section">
-    <div class="section-title">🗺️ LE CIRCUIT</div>
-    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:0.3rem;">
-      <span class="info-tag">1. Montevideo</span>
-      <span class="info-tag">2. Tacuarembó</span>
-      <span class="info-tag">3. Estancia</span>
-      <span class="info-tag">4. Punta del Este</span>
-      <span class="info-tag">5. Bodegas</span>
-      <span class="info-tag">6. Colonia</span>
+  <!-- IMAGE : vallée de Viñales -->
+  <div style="padding:0.2rem 1.2rem 0;">
+    <img src="images/vallee-de-vinales.jpg" alt="Vallée de Viñales" class="image-fit" style="margin-top:0.4rem;">
+  </div>
+
+  <!-- LE SÉJOUR -->
+  <div class="card">
+    <div class="section-title">🥾 LE SÉJOUR</div>
+    <p style="font-weight:400;">Randonnées de 4 à 8 h, difficulté facile à moyenne. À Viñales : mogotes calcaires, plantations de tabac, grottes et rencontres avec les guajiros. À Trinidad : dans le massif de l'Escambray jusqu'à 1 100 m, cascade Caburní, journée paysanne et Baie des Cochons. Immersion nature et culturelle.</p>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:0.8rem;">
+      <span class="info-tag">🌿 Viñales · Sierra de los Órganos</span>
+      <span class="info-tag">🏔️ Escambray · Topes de Collantes</span>
+      <span class="info-tag">🏝️ Baie des Cochons</span>
     </div>
-    <p style="font-size:0.85rem;color:#6b5e54;">Montevideo → Tacuarembó → Punta del Este → Colonia</p>
-    <img class="image-fit" src="images/carte-uruguay.png" alt="Carte Uruguay"/>
+    <div style="margin-top:0.8rem; background:#f0ebe3; border-radius:40px; padding:0.4rem 1rem; font-size:0.9rem;"><strong>Niveau</strong> facile à moyen · 4 à 8 h de marche</div>
   </div>
 
-  <!-- EXEMPLE DE PROGRAMME - 1ère semaine -->
-  <div class="section">
-    <div class="section-title">📅 PROGRAMME <span>1ère semaine</span></div>
-    <div class="day"><div class="day-num">2</div><div class="day-body"><span class="day-title">Jour 2</span>Montevideo · Formalités · Av. 18 Julio · Rambla · Palacio Salvo</div></div>
-    <div class="day"><div class="day-num">3</div><div class="day-body"><span class="day-title">Jour 3</span>Vieille Ville · Plaza Matriz · Musée Tango · Palacio Taranco · Plaza Independencia</div></div>
-    <div class="day"><div class="day-num">4</div><div class="day-body"><span class="day-title">Jour 4</span>Vers Tacuarembó · Route via Florida · Durazno · Paso de los Toros · Musée Gardel</div></div>
-    <div class="day"><div class="day-num">5-7</div><div class="day-body"><span class="day-title">Jours 5 à 7</span>Estancia · Vie de gaucho · Cheval, bétail · Asado · Soirées étoiles</div></div>
-    <div class="day"><div class="day-num">8</div><div class="day-body"><span class="day-title">Jour 8</span>Punta del Este · Route vers PDE · Installation · Plages</div></div>
-    <div class="day"><div class="day-num">9</div><div class="day-body"><span class="day-title">Jour 9</span>Punta del Este · Pain de Sucre · Casapueblo · Punta Ballena</div></div>
-    <div class="day"><div class="day-num">10</div><div class="day-body"><span class="day-title">Jour 10</span>Côte · El Águila · Villa Argentina · Temps libre plage</div></div>
+  <!-- LES MASSIFS -->
+  <div class="card">
+    <div class="section-title">⛰️ LES MASSIFS</div>
+    <div style="margin-bottom:0.6rem;"><span class="info-tag">Sierra de los Órganos – Viñales</span> Vallée UNESCO, mogotes calcaires, sentiers à travers tabac et terre rouge. Grottes (Cueva del Indio, Santo Tomás). Rencontres guajiros et café paysan.</div>
+    <div><span class="info-tag">Escambray – Topes de Collantes</span> Massif au-dessus de Trinidad. Sentiers ombragés jusqu'à 1 100 m. Cascade Caburní, panoramas sur la ville coloniale et la mer des Caraïbes.</div>
   </div>
 
-  <!-- IMAGE : Punta del Este -->
+  <!-- IMAGE : trek Escambray -->
   <div style="padding:0 1.2rem;">
-    <img class="image-fit" src="images/punta-del-este.jpg" alt="Punta del Este"/>
+    <img src="images/trek-escambray.jpg" alt="Trek Escambray" class="image-fit">
   </div>
 
-  <!-- EXEMPLE DE PROGRAMME - 2ème semaine -->
-  <div class="section">
-    <div class="section-title">📅 PROGRAMME <span>2ème semaine</span></div>
-    <div class="day"><div class="day-num">11</div><div class="day-body"><span class="day-title">Jour 11</span>Bodega Moizo · Progreso · Visite &amp; dégustation · Repas vignoble</div></div>
-    <div class="day"><div class="day-num">12</div><div class="day-body"><span class="day-title">Jour 12</span>Vers Colonia · Route Colonia · Nueva Helvecia · Côte rioplatense</div></div>
-    <div class="day"><div class="day-num">13</div><div class="day-body"><span class="day-title">Jour 13</span>Colonia · Vieille ville UNESCO · Real de San Carlos · Fortaleza</div></div>
-    <div class="day"><div class="day-num">14</div><div class="day-body"><span class="day-title">Jour 14</span>Bodega Los Pinos · Dégustation · Retour Montevideo</div></div>
-    <div class="day"><div class="day-num">15</div><div class="day-body"><span class="day-title">Jour 15</span>Montevideo · Cerro / Fortaleza · Palermo, Parc Rodó · Castillo Pittamiglio</div></div>
-    <div class="day"><div class="day-num">16</div><div class="day-body"><span class="day-title">Jour 16</span>Montevideo · Marché du Port · Théâtre Solís · Pocitos / Ramírez</div></div>
-    <div class="day"><div class="day-num">17</div><div class="day-body"><span class="day-title">Jour 17</span>Départ · Temps libre · Aéroport Carrasco · Vol retour</div></div>
-  </div>
-
-  <!-- MONTEVIDEO -->
-  <div class="section tight-top">
-    <div class="section-title">🏛️ MONTEVIDEO <span>Capitale vibrante</span></div>
-    <img class="image-fit" src="images/palacio-salvo.jpg" alt="Palacio Salvo"/>
-    <div style="display:flex;flex-wrap:wrap;gap:4px;">
-      <span class="info-tag">Plaza Independencia</span>
-      <span class="info-tag">Palacio Salvo</span>
-      <span class="info-tag">Puerta de la Ciudadela</span>
-    </div>
-    <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;">
-      <span class="info-tag">Vieille Ville</span>
-      <span class="info-tag">Plaza Matriz</span>
-      <span class="info-tag">Calle Sarandí</span>
-      <span class="info-tag">Cathédrale</span>
-    </div>
-    <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;">
-      <span class="info-tag">Rambla</span>
-      <span class="info-tag">Musée du Tango</span>
-      <span class="info-tag">Marché du Port</span>
-      <span class="info-tag">Palermo &amp; Pocitos</span>
+  <!-- EXEMPLE PROGRAMME 1ère semaine -->
+  <div class="card">
+    <div class="section-title">📅 PROGRAMME <span>1ère semaine – Havane & Viñales</span></div>
+    <div style="display:flex; flex-direction:column; gap:8px;">
+      <div><span class="info-tag">Jour 1</span> Vol vers Cuba</div>
+      <div><span class="info-tag">Jour 2</span> Arrivée Havane · Installation Vedado/Malecón · Briefing rando</div>
+      <div><span class="info-tag">Jour 3</span> Vieille Havane · Visite guidée Capitole, Plazas · Temps libre</div>
+      <div><span class="info-tag">Jour 4</span> Route Viñales · 1er sentier mogotes · Plantations tabac · Casa particular</div>
+      <div><span class="info-tag">Jour 5</span> Rando vallée 4-6 h · Cueva del Indio · Café guajiro</div>
+      <div><span class="info-tag">Jour 6</span> Grottes & crêtes · Santo Tomás ou crête mogotes · 6-7 h</div>
+      <div><span class="info-tag">Jour 7</span> Ferme agro-écologique · Rando douce 3-4 h · Soirée locale</div>
+      <div><span class="info-tag">Jour 8</span> Retour Havane · Dernier sentier · Repos libre</div>
     </div>
   </div>
 
-  <!-- IMMERSION GAUCHO -->
-  <div class="section">
-    <div class="section-title">🐴 IMMERSION GAUCHO <span>Estancia</span></div>
-    <img class="image-fit" src="images/campo-cheval.jpg" alt="Campo et cheval"/>
-    <p style="font-size:0.9rem;font-weight:700;color:#c1502e;">Chez Juan - Estancia</p>
-    <p style="font-size:0.85rem;">Participation à la vie du ranch. ~1 000 vaches · ~2 000 moutons · Centaine de chevaux. Monter comme un gaucho (cheval au pas), gestion du bétail, asado au feu de bois, récits sous les étoiles.</p>
-    <div class="card teal">
-      <div class="card-title">3 nuits d'immersion</div>
-      <ul class="bullets">
-        <li>Cheval au pas</li>
-        <li>Gestion du bétail</li>
-        <li>Asado au feu de bois</li>
-        <li>Récits sous les étoiles</li>
-      </ul>
-    </div>
-    <div class="photo-row two">
-      <img src="images/asado02.jpg" alt="Asado"/>
-      <img src="images/pampa-campo.jpg" alt="Pampa"/>
+  <!-- IMAGE : charrette Viñales -->
+  <div style="padding:0 1.2rem;">
+    <img src="images/charette-vinales.jpg" alt="Charrette Viñales" class="image-fit">
+  </div>
+
+  <!-- EXEMPLE PROGRAMME 2ème semaine -->
+  <div class="card">
+    <div class="section-title">📅 PROGRAMME <span>2ème semaine – Baie des Cochons, Trinidad & Escambray</span></div>
+    <div style="display:flex; flex-direction:column; gap:8px;">
+      <div><span class="info-tag">Jour 9</span> Route sud · Grottes & Cueva de los Peces · Caleta Buena</div>
+      <div><span class="info-tag">Jour 10</span> Playa Larga · Matin plage · Histoire locale · Route Trinidad</div>
+      <div><span class="info-tag">Jour 11</span> Trinidad UNESCO · Plaza Mayor · Casa de la Trova</div>
+      <div><span class="info-tag">Jour 12</span> Journée paysanne · Valle de los Ingenios · Manaca Iznaga · Déjeuner guajiro · Cheval/rivière</div>
+      <div><span class="info-tag">Jour 13</span> Escambray · Topes de Collantes · Cascade Caburní · 6-8 h · 1 100 m</div>
+      <div><span class="info-tag">Jour 14</span> 2e rando Escambray · Sentier alternatif · 4-6 h · Retour Trinidad</div>
+      <div><span class="info-tag">Jours 15-16</span> Playa Ancón ou Havane · Temps libre · Vol retour</div>
     </div>
   </div>
 
-  <!-- CÔTE & COLONIA -->
-  <div class="section tight-top">
-    <div class="section-title">🏖️ CÔTE &amp; COLONIA</div>
-    <p style="font-size:0.9rem;font-weight:700;color:#0f5c56;">Punta del Este</p>
-    <p style="font-size:0.85rem;">Perle balnéaire. Plages dorées, Casapueblo (Carlos Páez Vilaró), Pain de Sucre, Punta Ballena. Élégance et couchers de soleil.</p>
-    <div class="photo-row two">
-      <img src="images/uruguay-punta-de-este.jpg" alt="Punta del Este"/>
-      <img src="images/casapueblo.webp" alt="Casapueblo"/>
-    </div>
-    <p style="font-size:0.9rem;font-weight:700;color:#0f5c56;margin-top:0.5rem;">Colonia del Sacramento</p>
-    <p style="font-size:0.85rem;">Ville coloniale UNESCO. Ruelles pavées, Real de San Carlos, phare, charme intemporel sur le Río de la Plata.</p>
-    <div class="photo-row two">
-      <img src="images/colonia.jpg" alt="Colonia"/>
-      <img src="images/colonia-auto.jpg" alt="Colonia"/>
+  <!-- IMAGE : Trinidad toits -->
+  <div style="padding:0 1.2rem;">
+    <img src="images/trinidad_toits_clocher_montagnes.jpg" alt="Trinidad toits et montagne" class="image-fit">
+  </div>
+
+  <!-- LES RANDONNÉES -->
+  <div class="card">
+    <div class="section-title">🥾 LES RANDONNÉES <span>Facile à moyenne · 4 à 8 h</span></div>
+    <div style="display:flex; flex-direction:column; gap:6px;">
+      <div><span class="info-tag">Vallée des mogotes</span> Viñales · 4-6 h · Tabac, terre rouge, vues</div>
+      <div><span class="info-tag">Cueva del Indio / Santo Tomás</span> Viñales · 3-5 h · Grottes et sentiers ombragés</div>
+      <div><span class="info-tag">Crêtes de mogotes</span> Viñales · 6-7 h · Moyen · Panoramas</div>
+      <div><span class="info-tag">Cascade Caburní</span> Escambray · 6-8 h · Jusqu'à 1 100 m</div>
+      <div><span class="info-tag">Sentiers Topes de Collantes</span> Escambray · 4-6 h · Forêt et belvédères</div>
+      <div><span class="info-tag">Vallée de los Ingenios</span> Trinidad · Journée paysanne · Tour Iznaga, guajiros</div>
     </div>
   </div>
 
-  <!-- VIGNOBLES -->
-  <div class="section tight-top">
-    <div class="section-title">🍷 VIGNOBLES <span>Tannat &amp; terroir</span></div>
-    <p style="font-size:0.9rem;font-weight:700;color:#c1502e;">Bodegas Moizo &amp; Los Pinos</p>
-    <p style="font-size:0.85rem;">Visites, dégustations et repas dans les bodegas de Progreso (Moizo) et Nueva Helvecia (Los Pinos). Le cépage Tannat, originaire de Madiran dans le Sud-Ouest de la France, signature de l'Uruguay.</p>
-    <div class="photo-row two">
-      <img src="images/moizo.jpg" alt="Bodega Moizo"/>
-      <img src="images/famille-moizo.jpg" alt="Famille Moizo"/>
-    </div>
-    <div class="photo-row two" style="margin-top:6px;">
-      <img src="images/lospinos.jpg" alt="Bodega Los Pinos"/>
-      <img src="images/uruguay-flag.png" alt="Drapeau Uruguay"/>
-    </div>
+  <!-- IMAGE : El Nicho / Sierra Escambray -->
+  <div style="padding:0 1.2rem;">
+    <img src="images/Circuit-rando.jpg" alt="El Nicho Sierra Escambray" class="image-fit">
   </div>
 
-  <!-- INFORMATIONS PRATIQUES -->
-  <div class="section tight-top">
-    <div class="section-title">ℹ️ INFORMATIONS PRATIQUES</div>
-    <div class="item">
-      <div class="item-title">Passeport</div>
-      <div class="item-desc">Valide 6 mois après le retour. Pas de vaccins obligatoires.</div>
-    </div>
-    <div class="item">
-      <div class="item-title">Décalage &amp; langue</div>
-      <div class="item-desc">- 4 ou - 5 h (pas d'heure d'été). Espagnol.</div>
-    </div>
-    <div class="item">
-      <div class="item-title">Monnaie</div>
-      <div class="item-desc">Peso uruguayen. Change casas de cambio. Pas à l'aéroport.</div>
-    </div>
-    <div class="item">
-      <div class="item-title">Inclus</div>
-      <div class="item-desc">Tous les PDJ et déjeuners, 3 dîners. Wi-Fi (sauf estancia).</div>
-    </div>
+  <!-- EXPÉRIENCES -->
+  <div class="card">
+    <div class="section-title">🌊 EXPÉRIENCES</div>
+    <div style="margin-bottom:0.6rem;"><span class="info-tag">Baie des Cochons</span> Playa Larga et Caleta Buena. Grottes inondées, Cueva de los Peces, piscine naturelle. Nature, baignade et un peu d'histoire.</div>
+    <div><span class="info-tag">Journée paysanne</span> Valle de los Ingenios – Manaca Iznaga. Tour de guet, déjeuner guajiro (cochon de lait), balade à cheval ou baignade en rivière. Rencontre authentique avec le monde rural cubain.</div>
   </div>
 
-  <!-- CONSEILS -->
-  <div class="section tight-top">
-    <div class="section-title">💡 CONSEILS <span>Pratique &amp; budget</span></div>
-    <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:0.3rem;">
-      <span class="info-tag">Chaussures</span>
-      <span class="info-tag">Prises 110/220V</span>
-      <span class="info-tag">Sécurité</span>
-      <span class="info-tag">Répulsif</span>
-    </div>
-    <p style="font-size:0.85rem;">Coût de la vie ≈ - 15 % vs France. L'Uruguay n'est pas un pays bon marché.</p>
-    <div class="card">
-      <div class="card-title">Prix indicatifs</div>
-      <ul class="bullets">
-        <li>Déjeuner ~15 €</li>
-        <li>Bière 50 cl ~3,20 €</li>
-        <li>Essence ~1,70 €/L</li>
-        <li>Wi-Fi partout sauf Estancia</li>
-      </ul>
-    </div>
+  <!-- IMAGE : plage -->
+  <div style="padding:0 1.2rem;">
+    <img src="images/plage.JPG" alt="Plage Caraïbes" class="image-fit">
   </div>
 
-  <!-- FOOTER -->
+  <!-- AVANT LE DÉPART -->
+  <div class="card">
+    <div class="section-title">🛂 AVANT LE DÉPART</div>
+    <ul class="list-bullet">
+      <li><strong>Passeport</strong> valable 6 mois après retour, numérisation + photocopie</li>
+      <li><strong>Carte de tourisme</strong> (visa) à obtenir avant le départ</li>
+      <li><strong>Formulaire D'Viajeros</strong> à remplir en ligne avant l'arrivée</li>
+      <li><strong>Assurance santé</strong> obligatoire (attestation via carte Visa) – 155 000 € frais médicaux, rapatriement 24/7</li>
+    </ul>
+  </div>
+
+  <!-- PRATIQUE RANDONNÉE -->
+  <div class="card">
+    <div class="section-title">🎒 PRATIQUE RANDONNÉE</div>
+    <div><span class="info-tag">Chaussures</span> Bonnes chaussures de marche (pavés + sentiers)</div>
+    <div><span class="info-tag">Sac à dos</span> Léger : eau (1,5-2 L), protection soleil, répulsif, en-cas</div>
+    <div><span class="info-tag">Vêtements</span> Léger, respirant, couche de pluie, chapeau, maillot</div>
+    <div><span class="info-tag">Niveau</span> Facile à moyen · Dénivelé modéré (Escambray jusqu'à 1 100 m)</div>
+    <div><span class="info-tag">Monnaie</span> Pesos cubains (CUP) · Change banque/Cadeca</div>
+    <div><span class="info-tag">Sécurité</span> Cuba très sécuritaire · Règles de bon sens · Copie passeport</div>
+  </div>
+
+  <!-- IMAGES FINALES : cavalier, voiture, cigare, etc -->
+  <div style="display:flex; gap:6px; padding:0.5rem 1.2rem 0; flex-wrap:wrap; justify-content:center;">
+    <img src="images/cavalier_cheval_voiture_ancienne_campagne.jpg" alt="cavalier cheval campagne" style="width:30%; border-radius:40px; aspect-ratio:1/1; object-fit:cover;">
+    <img src="images/curro-cheval.JPG" alt="curro cheval" style="width:30%; border-radius:40px; aspect-ratio:1/1; object-fit:cover;">
+    <img src="images/roulage_cigare_artisanal_mains.jpg" alt="roulage cigare" style="width:30%; border-radius:40px; aspect-ratio:1/1; object-fit:cover;">
+  </div>
+
+  <!-- FOOTER AVEC LOGO (sans emoji drapeau) -->
   <div class="footer-brand">
-    <div style="font-size:1.2rem;font-weight:300;">Bon séjour en Uruguay,</div>
-    <div style="margin:0.2rem 0;opacity:0.8;">le plus petit pays d'Amérique du Sud !</div>
-    <div style="display:flex;justify-content:center;gap:0.8rem;flex-wrap:wrap;margin-top:0.3rem;font-size:0.8rem;opacity:0.8;">
-      <span>Montevideo</span>
-      <span>·</span>
-      <span>Estancia</span>
-      <span>·</span>
-      <span>Punta del Este</span>
-      <span>·</span>
-      <span>Colonia</span>
+    <div style="font-size:1.4rem; font-weight:300;">Cuba… en randonnée !</div>
+    <div style="margin:0.3rem 0; opacity:0.8;">Mogotes · Escambray · Baie des Cochons</div>
+    <div style="display:flex; justify-content:center; gap:1.2rem; flex-wrap:wrap; margin-top:0.5rem; font-size:0.85rem;">
+      <span>Viñales · Trinidad · Facile à moyenne</span>
     </div>
+
+    <!-- Bloc logo + nom du site centrés -->
     <div class="footer-logo-block">
-      <img src="images/logo-vpd.jpg" alt="Logo VPD Voyages"/>
+      <img src="images/logo.jpg" alt="Logo VPD Voyages">
       <span class="site-name">vpdvoyages.com</span>
     </div>
-    <div style="margin-top:0.5rem;display:flex;justify-content:center;gap:6px;flex-wrap:wrap;">
-      <span class="info-tag" style="background:#2a4b4c;color:white;">🐴 Gauchos</span>
-      <span class="info-tag" style="background:#2a4b4c;color:white;">🍷 Bodegas</span>
-      <span class="info-tag" style="background:#2a4b4c;color:white;">🇺🇾 Uruguay</span>
+
+    <div style="margin-top:0.8rem; display:flex; justify-content:center; gap:8px; flex-wrap:wrap;">
+      <span class="info-tag" style="background:#2a4b4c; color:white;">🌿 Viñales UNESCO</span>
+      <span class="info-tag" style="background:#2a4b4c; color:white;">🏔️ Escambray</span>
+      <span class="info-tag" style="background:#2a4b4c; color:white;">Cuba</span>
     </div>
   </div>
 
-  <div style="text-align:center;font-size:0.55rem;color:#7a7166;padding:0.5rem 1rem;">Photos : dossier images/ · Uruguay - Montevideo, Gauchos &amp; Bodegas</div>
+  <div style="text-align:center; font-size:0.6rem; color:#7a7166; padding:0.8rem 1rem;">Photos : dossier images/ · Cuba Randonnée Viñales & Escambray</div>
 
 </div>
 </body>
