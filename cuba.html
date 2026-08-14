@@ -318,26 +318,28 @@
       const isMobile = window.innerWidth <= 640;
       
       // Dictionnaire des chemins pour chaque voyage
+      // Sur mobile : on pointe vers programme.html dans pdf_mobile/
+      // Sur PC : on pointe vers les PDF dans le dossier PDF/
       const voyages = {
         'cuba-decouverte': {
           pc: 'PDF/Cuba_Decouverte_Patrimoine_Traditions.pdf',
-          mobile: 'Cuba_Decouverte_Patrimoine_Traditions/programme.html'
+          mobile: 'pdf_mobile/Cuba_Decouverte_Patrimoine_Traditions/programme.html'
         },
         'cuba-tango': {
           pc: 'PDF/Cuba_Festival_Tango_La_Havane.pdf',
-          mobile: 'Cuba_Festival_Tango/programme.html'
+          mobile: 'pdf_mobile/Cuba_Festival_Tango/programme.html'
         },
         'cuba-velo': {
           pc: 'PDF/Cuba_a_Velo_Santiago_Havane.pdf',
-          mobile: 'Cuba_a_Velo_Santiago_Havane/programme.html'
+          mobile: 'pdf_mobile/Cuba_a_Velo_Santiago_Havane/programme.html'
         },
         'cuba-randonnee': {
           pc: 'PDF/Cuba_Randonnee_Vinales_Trinidad.pdf',
-          mobile: 'Cuba_Randonnee_Vinales/programme.html'
+          mobile: 'pdf_mobile/Cuba_Randonnee_Vinales/programme.html'
         },
         'cuba-stagephoto': {
           pc: 'PDF/Cuba_Stage_Photo_Havane_Trinidad.pdf',
-          mobile: 'Cuba_Stage_Photo/programme.html'
+          mobile: 'pdf_mobile/Cuba_Stage_Photo/programme.html'
         }
       };
       
