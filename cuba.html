@@ -316,34 +316,43 @@
     // Bascule dynamique des liens selon l'écran
     function updateLinks() {
       const isMobile = window.innerWidth <= 640;
-
-      // Tango : HTML sur Mobile / PDF sur PC
-      const tangoImg = document.getElementById('cuba-tango-image-link');
-      const tangoBtn = document.getElementById('cuba-tango-pdf-button');
-
-      if (isMobile) {
-        if (tangoImg) { tangoImg.href = 'Cuba - Festival de Tango à La Havane.html'; tangoImg.target = '_self'; }
-        if (tangoBtn) { tangoBtn.href = 'Cuba - Festival de Tango à La Havane.html'; tangoBtn.target = '_self'; }
-      } else {
-        if (tangoImg) { tangoImg.href = 'PDF/Cuba_Festival_Tango_La_Havane.pdf'; tangoImg.target = '_blank'; }
-        if (tangoBtn) { tangoBtn.href = 'PDF/Cuba_Festival_Tango_La_Havane.pdf'; tangoBtn.target = '_blank'; }
-      }
-
-      // Autres cartes : toujours le dossier PDF (même sur mobile)
-      const otherLinks = {
-        'cuba-decouverte': 'Cuba_Decouverte_Patrimoine_Traditions.pdf',
-        'cuba-velo': 'Cuba_a_Velo_Santiago_Havane.pdf',
-        'cuba-randonnee': 'Cuba_Randonnee_Vinales_Trinidad.pdf',
-        'cuba-stagephoto': 'Cuba_Stage_Photo_Havane_Trinidad.pdf'
+      
+      // Dictionnaire des chemins pour chaque voyage
+      const voyages = {
+        'cuba-decouverte': {
+          pc: 'PDF/Cuba_Decouverte_Patrimoine_Traditions.pdf',
+          mobile: 'Cuba_Decouverte_Patrimoine_Traditions/programme.html'
+        },
+        'cuba-tango': {
+          pc: 'PDF/Cuba_Festival_Tango_La_Havane.pdf',
+          mobile: 'Cuba_Festival_Tango/programme.html'
+        },
+        'cuba-velo': {
+          pc: 'PDF/Cuba_a_Velo_Santiago_Havane.pdf',
+          mobile: 'Cuba_a_Velo_Santiago_Havane/programme.html'
+        },
+        'cuba-randonnee': {
+          pc: 'PDF/Cuba_Randonnee_Vinales_Trinidad.pdf',
+          mobile: 'Cuba_Randonnee_Vinales/programme.html'
+        },
+        'cuba-stagephoto': {
+          pc: 'PDF/Cuba_Stage_Photo_Havane_Trinidad.pdf',
+          mobile: 'Cuba_Stage_Photo/programme.html'
+        }
       };
-
-      Object.keys(otherLinks).forEach(id => {
-        const folder = 'PDF'; // même dossier que sur PC
-        const path = `${folder}/${otherLinks[id]}`;
+      
+      Object.keys(voyages).forEach(id => {
+        const path = isMobile ? voyages[id].mobile : voyages[id].pc;
         const img = document.getElementById(`${id}-image-link`);
         const btn = document.getElementById(`${id}-pdf-button`);
-        if (img) img.href = path;
-        if (btn) btn.href = path;
+        if (img) {
+          img.href = path;
+          img.target = isMobile ? '_self' : '_blank';
+        }
+        if (btn) {
+          btn.href = path;
+          btn.target = isMobile ? '_self' : '_blank';
+        }
       });
     }
     
@@ -363,6 +372,6 @@
       });
     });
   </script>
-<script src="bandeau.js"></script>
+  <script src="bandeau.js"></script>
 </body>
 </html>

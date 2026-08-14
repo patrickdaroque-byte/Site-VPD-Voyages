@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cuba - Festival de Tango à La Havane</title>
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, 'Liberation Sans', Helvetica, sans-serif;
+  background: #f5f2eb;
+  color: #1e2b2c;
+  font-size: 16px;
+  line-height: 1.4;
+  padding: 0 0 1rem 0;
+}
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  background: #ffffff;
+  box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+.section {
+  padding: 14px 18px 12px 18px;
+  border-bottom: 6px solid #f0ebe3;
+}
+.section:last-child {
+  border-bottom: none;
+}
+h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.hero {
+  background: #1e3b3c;
+  color: #ffffff;
+  padding: 1.4rem 1.2rem 1.2rem;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+  margin-bottom: 0.2rem;
+}
+.hero .sub {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+.hero .dates {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0.3rem;
+  color: #d9b382;
+}
+.badge {
+  background: #d9b382;
+  color: #1e2b2c;
+  display: inline-block;
+  padding: 0.2rem 0.9rem;
+  border-radius: 30px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  margin-top: 0.4rem;
+}
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 0.4rem;
+}
+.section-title {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title span {
+  background: #d9b382;
+  color: #1e2b2c;
+  font-size: 0.8rem;
+  padding: 0.1rem 0.7rem;
+  border-radius: 30px;
+}
+.image-fit {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  margin: 0.6rem 0 0.5rem;
+  display: block;
+  background: #ddd6cc;
+  object-fit: cover;
+  aspect-ratio: 16/9;
+}
+.image-fit.small {
+  aspect-ratio: 4/3;
+}
+.image-fit.cover {
+  aspect-ratio: 16/10;
+}
+.photo-row {
+  display: flex;
+  gap: 6px;
+  margin: 0.4rem 0 0.5rem;
+}
+.photo-row img {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+  object-fit: cover;
+}
+.photo-row.two img {
+  height: 130px;
+}
+.photo-row.three img {
+  height: 100px;
+}
+.photo-row.four img {
+  height: 85px;
+}
+.caption {
+  font-style: italic;
+  font-size: 0.8rem;
+  color: #6b5e54;
+  text-align: center;
+  margin: 0 0 0.5rem 0;
+}
+.item {
+  margin: 0 0 0.5rem 0;
+}
+.item .item-title {
+  font-size: 1rem;
+  color: #c1502e;
+  font-weight: 700;
+  margin: 0 0 1px 0;
+}
+.item .item-desc {
+  font-size: 0.85rem;
+  color: #1e2b2c;
+}
+.card {
+  background: #f3ece2;
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+  margin: 0 0 0.5rem 0;
+}
+.card.teal {
+  background: #e7efee;
+}
+.card .card-title {
+  font-size: 0.95rem;
+  color: #0f5c56;
+  margin: 0 0 2px 0;
+  font-weight: 700;
+}
+.card .card-body {
+  font-size: 0.85rem;
+}
+ul.bullets {
+  margin: 3px 0 0 0;
+  padding-left: 18px;
+}
+ul.bullets li {
+  margin-bottom: 3px;
+  font-size: 0.85rem;
+}
+.stat-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 4px 0;
+  border-bottom: 1px solid #e7efee;
+}
+.stat-row .stat-num {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #c1502e;
+  min-width: 75px;
+}
+.stat-row .stat-label {
+  font-size: 0.85rem;
+  color: #6b5e54;
+}
+.day {
+  display: flex;
+  gap: 10px;
+  padding: 5px 0;
+  border-bottom: 1px solid #e7efee;
+}
+.day:last-child {
+  border-bottom: none;
+}
+.day .day-num {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: #c1502e;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.1;
+}
+.day .day-body {
+  font-size: 0.85rem;
+  padding-top: 1px;
+}
+.day .day-body .day-title {
+  font-weight: 700;
+  color: #1e2b2c;
+  display: block;
+  margin-bottom: 1px;
+}
+.subhead {
+  font-size: 0.95rem;
+  color: #0f5c56;
+  font-weight: 700;
+  margin: 6px 0 2px 0;
+}
+.pill-list {
+  list-style: none;
+  padding: 0;
+}
+.pill-list li {
+  padding-left: 18px;
+  position: relative;
+  margin-bottom: 4px;
+  font-size: 0.85rem;
+}
+.pill-list.do li:before {
+  content: "✓";
+  color: #0f5c56;
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+}
+.pill-list.dont li:before {
+  content: "–";
+  color: #9c2b2b;
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+}
+.footer-bar {
+  margin-top: 0.8rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #c9a24b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-bar .brand {
+  font-size: 0.55rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #6b5e54;
+  font-weight: 700;
+}
+.footer-bar .pagenum {
+  font-size: 0.55rem;
+  color: #6b5e54;
+}
+.footer-logo-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.4rem;
+}
+.footer-logo-block img {
+  max-width: 70px;
+  height: auto;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.footer-logo-block .site-name {
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+}
+.footer-brand {
+  text-align: center;
+  padding: 1.2rem 1rem 1rem;
+  background: #1e3b3c;
+  color: #f0ebe3;
+  border-radius: 24px 24px 0 0;
+  margin-top: 0.5rem;
+}
+.info-tag {
+  background: #f0ebe3;
+  padding: 0.2rem 0.8rem;
+  border-radius: 30px;
+  font-size: 0.7rem;
+  display: inline-block;
+}
+/* Cover */
+.cover-hero {
+  width: 100%;
+  display: block;
+  max-height: 180px;
+  object-fit: cover;
+}
+.cover-body {
+  padding: 0.8rem 1.2rem 0.8rem;
+}
+.cover-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #c9a24b;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.cover-title {
+  font-size: 2.2rem;
+  color: #1e2b2c;
+  margin: 0;
+  line-height: 1;
+}
+.cover-sub {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #c1502e;
+  margin: 2px 0 4px 0;
+}
+.cover-dates {
+  font-size: 0.9rem;
+  color: #6b5e54;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+.cover-intro {
+  font-size: 0.85rem;
+  color: #1e2b2c;
+  margin-bottom: 3px;
+}
+.cover-list {
+  margin: 3px 0 8px 0;
+  padding-left: 18px;
+}
+.cover-list li {
+  font-size: 0.85rem;
+  margin-bottom: 2px;
+}
+.cover-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid #e7efee;
+  padding-top: 6px;
+}
+.cover-logo-row img {
+  width: 32px;
+  height: 32px;
+}
+.cover-logo-row .site {
+  font-size: 0.8rem;
+  color: #0f5c56;
+  font-weight: 700;
+}
+/* Back */
+.back {
+  text-align: center;
+  padding: 1.5rem 1.2rem;
+}
+.back .back-msg {
+  font-size: 1.2rem;
+  color: #1e2b2c;
+  line-height: 1.35;
+  margin-bottom: 0.8rem;
+}
+.back img.back-logo {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 4px;
+}
+.back .site {
+  font-size: 0.85rem;
+  color: #0f5c56;
+  font-weight: 700;
+}
+.tight-top {
+  padding-top: 4px;
+}
+.tight-bottom {
+  padding-bottom: 6px;
+}
+.tight-both {
+  padding-top: 4px;
+  padding-bottom: 6px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- COVER -->
+  <div style="padding:0;">
+    <img class="cover-hero" src="images/cover.jpg" style="max-height:160px;object-fit:cover;"/>
+    <div class="cover-body">
+      <div class="cover-eyebrow">Idée voyage en petit groupe !</div>
+      <h1 class="cover-title">Cuba</h1>
+      <div class="cover-sub">Tango à La Havane</div>
+      <div class="cover-dates">19 octobre – 4 novembre 2026</div>
+      <p class="cover-intro">17 jours au cœur des Caraïbes :</p>
+      <ul class="cover-list">
+        <li>le 7<sup>ème</sup> Festival de Tango de La Havane</li>
+        <li>la Vieille Havane</li>
+        <li>la Baie des Cochons</li>
+        <li>Trinidad et la Vallée des Ingenios</li>
+        <li>les Cours de salsa</li>
+      </ul>
+      <div class="cover-logo-row">
+        <img src="images/logo.jpg"/>
+        <div class="site">vpdvoyages.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRÉSENTATION -->
+  <div class="section">
+    <div class="section-title">📖 PRÉSENTATION</div>
+    <p style="font-size:0.9rem;">Du 19 octobre au 4 novembre 2026, vibrez au rythme du tango lors du 7<sup>ème</sup> Festival de Tango de La Havane – un événement unique mêlant passion et culture cubaine – puis prolongez l'aventure à la découverte des trésors de l'île.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:0.5rem;">
+      <span class="info-tag">🏛️ La Havane · Vedado</span>
+      <span class="info-tag">🎭 Festival de Tango</span>
+      <span class="info-tag">🏝️ Trinidad UNESCO</span>
+      <span class="info-tag">🌊 Baie des Cochons</span>
+    </div>
+  </div>
+
+  <!-- LE PAYS avec carte-cuba.png -->
+  <div class="section">
+    <div class="section-title">🌎 LE PAYS <span>Perle des Antilles</span></div>
+    <img class="image-fit" src="images/carte-cuba.png"/>
+    <div class="stat-row"><span class="stat-num">1 250 km</span><span class="stat-label">d'Ouest en Est</span></div>
+    <div class="stat-row"><span class="stat-num">200 km</span><span class="stat-label">du Nord au Sud</span></div>
+    <div class="stat-row"><span class="stat-num">148 km</span><span class="stat-label">au sud de Key West (Floride)</span></div>
+    <div class="stat-row"><span class="stat-num">1 600</span><span class="stat-label">« cayos » tout autour de l'île</span></div>
+    <div class="stat-row"><span class="stat-num">9,5 M</span><span class="stat-label">d'habitants, dont 1,7 M à La Havane</span></div>
+  </div>
+
+  <!-- LA HAVANE - Vieille Havane avec h-nacional-drapeau.jpg -->
+  <div class="section">
+    <div class="section-title">🏛️ LA HAVANE <span>Vieille Havane</span></div>
+    <p style="font-size:0.9rem;margin-bottom:0.3rem;">Ruelles pavées, façades coloniales et places animées : le cœur battant de la capitale, classé au patrimoine mondial de l'UNESCO.</p>
+    <img class="image-fit" src="images/h-nacional-drapeau.jpg"/>
+    <p class="caption">« Être Havanais, c'est vivre La Havane ! » — Le Capitole, le Parc Central, le Palais des Capitaines Généraux et la Place d'Armes.</p>
+  </div>
+
+  <!-- LA HAVANE - Vedado (sans palmier, 3 photos réorganisées) -->
+  <div class="section tight-both">
+    <div class="section-title">🏛️ LA HAVANE <span>Le Vedado</span></div>
+    <p style="font-size:0.9rem;">Quartier résidentiel et culturel, entre avenues arborées, musées et théâtres : le Musée Napoléonien, le Musée des Arts Décoratifs et l'effervescence de la 23<sup>ème</sup> avenue.</p>
+    <div class="photo-row three">
+      <img src="images/riviera-habana.jpg"/>
+      <img src="images/baie-havane.jpg"/>
+      <img src="images/sunset.jpg"/>
+    </div>
+  </div>
+
+  <!-- FESTIVAL DE TANGO avec Jaler-Amy.jpg -->
+  <div class="section">
+    <div class="section-title">🎭 FESTIVAL <span>TangueArte</span></div>
+    <img class="image-fit" src="images/Jaler-Amy.jpg"/>
+    <p style="font-size:0.9rem;">Spectacles de tango-théâtre, tango-fusion et tango vélo, milongas en plein air, concours « Isla Tango », feria d'artisans et musique en direct : trois jours dédiés à la passion argentine, revisitée dans une ambiance cubaine.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin:0.4rem 0;">
+      <span class="info-tag">📅 23 au 25 octobre 2026</span>
+      <span class="info-tag">📍 El Ojo del Ciclón</span>
+    </div>
+    <div class="photo-row two">
+      <img src="images/affiche-2026.jpg"/>
+      <img src="images/Couple-tango.jpeg"/>
+    </div>
+    <div class="card teal">
+      <div class="card-title">Au programme</div>
+      <ul class="bullets">
+        <li>Initiation &amp; techniques de base</li>
+        <li>Cours avec TangueArte, en amont du festival</li>
+        <li>Rueda de Milonga</li>
+        <li>Tango-thérapie</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- IMMERSION CULTURELLE - Danses -->
+  <div class="section tight-top">
+    <div class="section-title">💃 IMMERSION CULTURELLE</div>
+    <p style="font-size:0.9rem;font-weight:700;color:#c1502e;">Danses et musique cubaines</p>
+    <p style="font-size:0.85rem;">Salsa, chacha, rumba… à la découverte des danses cubaines</p>
+    <div class="photo-row two">
+      <img src="images/salsa.jpg"/>
+      <img src="images/enfants-bandoneon.jpg"/>
+    </div>
+  </div>
+
+  <!-- RENCONTRES & TRADITIONS -->
+  <div class="section tight-top">
+    <div class="section-title">🤝 RENCONTRES &amp; TRADITIONS</div>
+    <div class="item">
+      <div class="item-title">Hemingway à La Havane</div>
+      <div class="item-desc">Sur les traces de l'écrivain, entre la Bodeguita del Medio et sa villa Finca Vigía.</div>
+    </div>
+    <img class="image-fit" src="images/hemingway.jpg"/>
+    <div class="item">
+      <div class="item-title">La Santería, syncrétisme religieux</div>
+      <div class="item-desc">Immersion dans une véritable cérémonie religieuse, à la rencontre des traditions afro-cubaines.</div>
+    </div>
+    <img class="image-fit" src="images/santeria.jpg"/>
+  </div>
+
+  <!-- NATURE & LITTORAL -->
+  <div class="section">
+    <div class="section-title">🌊 NATURE &amp; LITTORAL</div>
+    <p style="font-size:0.9rem;font-weight:700;color:#0f5c56;">La Baie des Cochons et les Playas del Este</p>
+    <p style="font-size:0.85rem;">Playa Larga · Ciénaga de Zapata · Playa Santa María</p>
+    <p style="font-size:0.85rem;">Eaux turquoise, mangroves préservées et farniente : deux visages de la côte cubaine, entre plongée dans l'histoire de la Baie des Cochons et détente balnéaire sur les plages de l'Est.</p>
+    <div class="photo-row two">
+      <img src="images/fond-marin.jpg"/>
+      <img src="images/photo01.jpg"/>
+    </div>
+  </div>
+
+  <!-- PATRIMOINE MONDIAL - Trinidad -->
+  <div class="section tight-both">
+    <div class="section-title">🏛️ PATRIMOINE MONDIAL <span>Trinidad UNESCO</span></div>
+    <p style="font-size:0.9rem;">Ruelles pavées, façades pastel et ambiance intemporelle : la ville coloniale la mieux préservée de Cuba, entre Palacio Cantero et Casa de la Trova.</p>
+    <div class="photo-row two">
+      <img src="images/trinidad.jpg"/>
+      <img src="images/cheval-trinidad.jpg"/>
+    </div>
+  </div>
+
+  <!-- SUR LA ROUTE -->
+  <div class="section tight-both">
+    <div class="section-title">🚗 SUR LA ROUTE</div>
+    <p style="font-size:0.9rem;font-weight:700;color:#c1502e;">Transferts en voiture américaine 1950</p>
+    <p style="font-size:0.85rem;">Le charme rétro des voitures américaines pour sillonner l'île, entre La Havane et Trinidad.</p>
+    <div class="photo-row two">
+      <img src="images/oldsmobile-trinidad.jpg"/>
+      <img src="images/voiture.jpg"/>
+    </div>
+  </div>
+
+  <!-- ITINÉRAIRE - Semaine 1 -->
+  <div class="section">
+    <div class="section-title">📅 ITINÉRAIRE <span>1ère semaine</span></div>
+    <div class="day"><div class="day-num">2</div><div class="day-body"><span class="day-title">Jour 2</span>Formalités</div></div>
+    <div class="day"><div class="day-num">3</div><div class="day-body"><span class="day-title">Jour 3</span>Le Vedado – découverte du quartier<br/><span style="color:#6b5e54;">Vieille Havane, Capitole, Parc Central, Palais des Capitaines Généraux, Place d'Armes</span></div></div>
+    <div class="day"><div class="day-num">4</div><div class="day-body"><span class="day-title">Jour 4</span>Cours de salsa (2h)<br/><span style="color:#6b5e54;">Plages de l'Est – Tarará / Santa María</span></div></div>
+    <div class="day"><div class="day-num">5</div><div class="day-body"><span class="day-title">Jour 5</span>Visite panoramique — Place de la Révolution, Bois de La Havane, 5<sup>ème</sup> avenue<br/><span style="color:#6b5e54;">Dîner – Restaurant El Bodegón</span></div></div>
+    <div class="day"><div class="day-num">6</div><div class="day-body"><span class="day-title">Jour 6</span>TangueArte — 7<sup>ème</sup> Festival de Tango<br/><span style="color:#6b5e54;">Cours de salsa (2h/j)</span></div></div>
+    <div class="day"><div class="day-num">7</div><div class="day-body"><span class="day-title">Jour 7</span>Festival — cours &amp; milongas (2h/j)*</div></div>
+    <div class="day"><div class="day-num">8</div><div class="day-body"><span class="day-title">Jour 8</span>Inauguration &amp; spectacle artistique — Ojo del Ciclón<br/><span style="color:#6b5e54;">Temps libre</span></div></div>
+    <p style="font-size:0.7rem;color:#6b5e54;font-style:italic;margin-top:4px;">*Programme indicatif, ajusté selon le calendrier définitif communiqué par le festival.</p>
+  </div>
+
+  <!-- ITINÉRAIRE - Semaine 2 -->
+  <div class="section">
+    <div class="section-title">📅 ITINÉRAIRE <span>2ème semaine</span></div>
+    <div class="day"><div class="day-num">9</div><div class="day-body"><span class="day-title">Jour 9</span>Route vers la Ciénaga de Zapata<br/><span style="color:#6b5e54;">Piscine naturelle Caleta Buena</span></div></div>
+    <div class="day"><div class="day-num">10</div><div class="day-body"><span class="day-title">Jour 10</span>Cienfuegos – Punta Gorda<br/><span style="color:#6b5e54;">Playa Larga · Baie des Cochons</span></div></div>
+    <div class="day"><div class="day-num">11</div><div class="day-body"><span class="day-title">Jour 11</span>Vallée de los Ingenios (Torre Iznaga)<br/><span style="color:#6b5e54;">Trinidad – visite de la ville, Palacio Cantero</span></div></div>
+    <div class="day"><div class="day-num">12</div><div class="day-body"><span class="day-title">Jour 12</span>Déjeuner Guajiro à Manaca Iznaga, balade à cheval, baignade<br/><span style="color:#6b5e54;">Casa de la Trova</span></div></div>
+    <div class="day"><div class="day-num">13</div><div class="day-body"><span class="day-title">Jour 13</span>Retour à La Havane<br/><span style="color:#6b5e54;">La Havane bucolique – Capdevila</span></div></div>
+    <div class="day"><div class="day-num">14</div><div class="day-body"><span class="day-title">Jour 14</span>Cours de salsa (2h)<br/><span style="color:#6b5e54;">Callejón de Hamel</span></div></div>
+    <div class="day"><div class="day-num">15</div><div class="day-body"><span class="day-title">Jour 15</span>Cours de salsa (2h)<br/><span style="color:#6b5e54;">Cérémonie santera — Centro Habana / Temps libre</span></div></div>
+    <div class="day"><div class="day-num">16</div><div class="day-body"><span class="day-title">Jour 16</span>Foire artisanale de San José</div></div>
+  </div>
+
+  <!-- HÉBERGEMENT -->
+  <div class="section">
+    <div class="section-title">🏠 HÉBERGEMENT</div>
+    <p style="font-size:0.9rem;font-weight:700;color:#0f5c56;">Logement à la Vieille Havane</p>
+    <div class="item">
+      <div class="item-title">Casa particular</div>
+      <div class="item-desc">Hébergement chez l'habitant en plein cœur du quartier historique, à quelques minutes à pied des principaux monuments et des lieux du festival.</div>
+    </div>
+    <img class="image-fit" src="images/riviera-habana.jpg"/>
+  </div>
+
+  <!-- AVANT LE DÉPART (déplacé avant le footer) -->
+  <div class="section">
+    <div class="section-title">🛂 AVANT LE DÉPART</div>
+    <div class="item">
+      <div class="item-title">Passeport</div>
+      <div class="item-desc">Valable 6 mois après la date de retour. Prévoir une numérisation et une photocopie à conserver séparément.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Carte de tourisme (visa)</div>
+      <div class="item-desc">Obligatoire pour tout séjour à Cuba, à obtenir avant le départ.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Formulaire « D'Viajeros »</div>
+      <div class="item-desc">Déclaration numérique de voyageur à compléter avant l'arrivée sur le territoire cubain.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Assurance santé – obligatoire</div>
+      <div class="card-body">
+        Une attestation d'assistance associée à votre carte Visa est requise : www.votre-assistance.fr<br/>
+        Saisir les 9 premiers chiffres de la carte bancaire pour générer l'attestation (Mondial Assistance). Assistance 24h/24 – 7j/7.
+        <ul class="bullets">
+          <li>Frais médicaux : 155 000 €</li>
+          <li>Rapatriement / transport sanitaire</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- INFORMATIONS PRATIQUES -->
+  <div class="section tight-top">
+    <div class="section-title">ℹ️ INFORMATIONS PRATIQUES</div>
+    <ul class="bullets">
+      <li>Pas de vaccin obligatoire</li>
+      <li>Langue officielle : l'espagnol</li>
+      <li>Décalage horaire : – 6 heures (12h à Paris = 6h à La Havane)</li>
+      <li>Eau du robinet potable et propre à la consommation</li>
+      <li>Déjeuners pris ensemble ; dîners libres (sauf 3 soirées : cubaine, cocktails, Trinidad)</li>
+    </ul>
+    <div class="card">
+      <div class="card-title">Argent</div>
+      <ul class="bullets">
+        <li>Monnaie : peso cubain (CUP) – 1 € ≈ 134 CUP (taux indicatif, change en banque ou Cadeca)</li>
+        <li>Distributeurs automatiques : commission de 3 % sur le montant en $US ; cartes de crédit US non acceptées</li>
+        <li>Change €/$US : banques et CADECAs uniquement</li>
+        <li>Conseil : ne jamais changer à l'aéroport ni dans la rue</li>
+      </ul>
+    </div>
+    <div class="subhead">Quelques prix repères</div>
+    <p style="font-size:0.85rem;">Restaurant / paladar : 10-35 € · Cabaret ou ballet/opéra : ~30 € · Cocktail (mojito, daïquiri…) : ~4 € · Préférer l'app « La Nave » aux Cubataxis, plus onéreux.</p>
+  </div>
+
+  <!-- SÉCURITÉ -->
+  <div class="section">
+    <div class="section-title">🔒 SÉCURITÉ &amp; BON SENS</div>
+    <p style="font-size:0.9rem;">De tous les pays d'Amérique latine, Cuba est l'un des plus sûrs. Quelques règles simples permettent d'aborder le séjour en toute sérénité.</p>
+    <ul class="bullets pill-list dont">
+      <li>Éviter de marcher seul(e) le soir, surtout dans les rues peu éclairées</li>
+      <li>Décliner poliment mais fermement les sollicitations des « jinetero(a)s »</li>
+      <li>Marcher au milieu de la rue dans les vieux quartiers</li>
+      <li>Ne pas acheter de cigares dans la rue (50 maximum autorisés à la sortie de Cuba)</li>
+    </ul>
+    <ul class="bullets pill-list do">
+      <li>Ne sortir qu'avec une copie du passeport et du visa, sans bijoux ni argent superflu</li>
+      <li>Vérifier les additions manuscrites au restaurant et la monnaie rendue</li>
+      <li>Prévoir une pochette étanche pour ses papiers en cas de forte pluie</li>
+      <li>Bonnes chaussures indispensables ; prises électriques 110V/220V au format américain</li>
+    </ul>
+    <div class="card teal">
+      <div class="card-body">Ambassade de France – Calle 14, n°312 entre 5ta y 3ra, Miramar (Playa)</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-brand">
+    <div style="font-size:1.2rem;font-weight:300;">Bon séjour à Cuba,</div>
+    <div style="margin:0.2rem 0;opacity:0.8;">au cœur des Caraïbes !</div>
+    <div class="footer-logo-block">
+      <img src="images/logo.jpg" alt="Logo VPD Voyages"/>
+      <span class="site-name">vpdvoyages.com</span>
+    </div>
+    <div style="margin-top:0.5rem;display:flex;justify-content:center;gap:6px;flex-wrap:wrap;">
+      <span class="info-tag" style="background:#2a4b4c;color:white;">🎭 Festival de Tango</span>
+      <span class="info-tag" style="background:#2a4b4c;color:white;">🏛️ Cuba</span>
+    </div>
+  </div>
+
+  <div style="text-align:center;font-size:0.55rem;color:#7a7166;padding:0.5rem 1rem;">Photos : dossier images/ · Cuba Festival de Tango</div>
+
+</div>
+</body>
+</html>
