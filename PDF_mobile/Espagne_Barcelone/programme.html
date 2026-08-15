@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barcelone - Escapade en 4 jours</title>
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --cream: #F3ECE2;
+      --paleteal: #E7EFEE;
+      --text: #2A211C;
+      --soft: #6B5E54;
+      --accent: #C1502E;
+      --accentdark: #9C2B2B;
+      --teal: #0F5C56;
+      --gold: #C9A24B;
+      --font-head: Georgia, "Liberation Serif", "Times New Roman", serif;
+      --font-body: Arial, "Liberation Sans", Helvetica, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--bg);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .section {
+      padding: 20px 18px 14px 18px;
+      position: relative;
+      min-height: auto;
+      page-break-before: always;
+    }
+
+    .section:first-child { page-break-before: auto; }
+
+    .eyebrow {
+      font-weight: bold;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 4px 0;
+    }
+
+    h1.title {
+      font-family: var(--font-head);
+      font-weight: normal;
+      font-size: 26px;
+      line-height: 1.1;
+      color: var(--text);
+      margin: 0 0 10px 0;
+    }
+
+    p.lead {
+      font-size: 15px;
+      color: var(--soft);
+      margin: 0 0 12px 0;
+    }
+
+    .hero {
+      width: 100%;
+      border-radius: 4px;
+      display: block;
+      margin: 0 0 12px 0;
+    }
+
+    /* ✅ Gestion adaptative des photos côte à côte */
+    .photo-row {
+      display: flex;
+      gap: 8px;
+      margin: 0 0 10px 0;
+    }
+
+    .photo-row img {
+      width: 100%;
+      border-radius: 3px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .photo-row.two img {
+      width: 50%;
+      height: 195px;
+    }
+
+    .photo-row.three img { height: 156px; }
+    .photo-row.four img { height: 137px; }
+
+    .caption {
+      font-family: var(--font-head);
+      font-style: italic;
+      font-size: 13.5px;
+      color: var(--soft);
+      margin: 0 0 12px 0;
+      text-align: center;
+    }
+
+    .item { margin: 0 0 12px 0; }
+
+    .item .item-title {
+      font-family: var(--font-head);
+      font-size: 17px;
+      color: var(--accent);
+      margin: 0 0 3px 0;
+    }
+
+    .item .item-desc { font-size: 14.5px; }
+
+    .card {
+      background: var(--cream);
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin: 0 0 12px 0;
+    }
+
+    .card.teal { background: var(--paleteal); }
+
+    .card .card-title {
+      font-family: var(--font-head);
+      font-size: 16px;
+      color: var(--teal);
+      margin: 0 0 4px 0;
+      font-weight: bold;
+    }
+
+    .card .card-body { font-size: 14.5px; }
+
+    ul.bullets {
+      margin: 6px 0 0 0;
+      padding-left: 18px;
+    }
+
+    ul.bullets li {
+      margin-bottom: 6px;
+      font-size: 14.5px;
+    }
+
+    .stat-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--paleteal);
+    }
+
+    .stat-row .stat-num {
+      font-family: var(--font-head);
+      font-size: 22px;
+      color: var(--accent);
+      min-width: 82px;
+    }
+
+    .stat-row .stat-label {
+      font-size: 14px;
+      color: var(--soft);
+    }
+
+    .day {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--paleteal);
+    }
+
+    .day:last-child { border-bottom: none; }
+
+    .day .day-num {
+      font-family: var(--font-head);
+      font-size: 14px;
+      font-weight: bold;
+      color: #FFFFFF;
+      background: var(--accent);
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    .day .day-body {
+      font-size: 14.5px;
+      padding-top: 3px;
+    }
+
+    .day .day-body .day-title {
+      font-weight: bold;
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .subhead {
+      font-family: var(--font-head);
+      font-size: 15px;
+      color: var(--teal);
+      font-weight: bold;
+      margin: 12px 0 4px 0;
+    }
+
+    .footer-bar {
+      margin-top: 18px;
+      padding-top: 10px;
+      border-top: 1px solid var(--gold);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bar .brand {
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--soft);
+      font-weight: bold;
+    }
+
+    .footer-bar .pagenum {
+      font-size: 9.5px;
+      color: var(--soft);
+    }
+
+    .cover-hero {
+      width: 100%;
+      display: block;
+    }
+
+    .cover-body {
+      padding: 12px 18px 6px 18px;
+      min-height: auto;
+    }
+
+    .cover-eyebrow {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: bold;
+      margin: 0 0 4px 0;
+    }
+
+    .cover-title {
+      font-family: var(--font-head);
+      font-size: 40px;
+      color: var(--text);
+      margin: 0;
+      line-height: 1;
+    }
+
+    .cover-title-spacer {
+      display: block;
+      height: 8px;
+    }
+
+    .cover-sub {
+      font-family: var(--font-head);
+      font-style: italic;
+      font-size: 20px;
+      color: var(--accent);
+      margin: 0;
+      line-height: 1;
+    }
+
+    .cover-intro {
+      font-size: 14.5px;
+      color: var(--text);
+      margin: 4px 0 6px 0;
+    }
+
+    .cover-list {
+      margin: 0 0 8px 0;
+      padding-left: 18px;
+    }
+
+    .cover-list li {
+      font-size: 14.5px;
+      margin-bottom: 4px;
+    }
+
+    .cover-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid var(--paleteal);
+      padding-top: 8px;
+      margin-top: 0;
+    }
+
+    .cover-logo-row img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .back {
+      text-align: center;
+      padding: 60px 24px;
+    }
+
+    .back .back-msg {
+      font-family: var(--font-head);
+      font-size: 22px;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 16px;
+    }
+
+    .back .back-logo {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 8px;
+      border-radius: 2px;
+    }
+
+    .back .site {
+      font-size: 13px;
+      color: var(--teal);
+      font-weight: bold;
+    }
+
+    .back .full-content {
+      font-size: 12px;
+      color: var(--soft);
+      margin-top: 20px;
+      border-top: 1px solid var(--paleteal);
+      padding-top: 16px;
+    }
+
+    .item, .card, .photo-row, .day, .stat-row, .cover-logo-row, .footer-bar, h1.title, .eyebrow, .subhead, .caption {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .eyebrow, h1.title {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    /* ============================================================ */
+    /* ✅ ADAPTATION MOBILE : photos empilées et hauteur réduite    */
+    /* ============================================================ */
+    @media (max-width: 640px) {
+      .section {
+        padding: 16px 18px 12px 18px;
+        min-height: auto;
+      }
+      .cover-body {
+        padding: 10px 18px 6px 18px;
+      }
+
+      /* ✅ Empile les photos côte à côte */
+      .photo-row.two {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .photo-row.two img {
+        width: 100%;
+        height: 160px;
+      }
+
+      .photo-row.three {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .photo-row.three img {
+        width: 100%;
+        height: 140px;
+      }
+
+      .photo-row.four {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .photo-row.four img {
+        width: 100%;
+        height: 130px;
+      }
+
+      /* ✅ Hero images : largeur réduite sur mobile */
+      .hero {
+        max-width: 100% !important;
+        width: 100%;
+      }
+
+      /* ✅ Réduction de la taille du titre de couverture */
+      .cover-title {
+        font-size: 32px;
+      }
+
+      .cover-sub {
+        font-size: 17px;
+      }
+    }
+
+    /* ✅ Écrans très petits (moins de 400px) */
+    @media (max-width: 400px) {
+      .photo-row.two img {
+        height: 130px;
+      }
+
+      .photo-row.three img {
+        height: 120px;
+      }
+
+      .photo-row.four img {
+        height: 110px;
+      }
+
+      .cover-title {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== COVER ==================== -->
+  <div class="section" style="padding:0;">
+    <img class="cover-hero" src="images/Cathedrale_Barcelone.jpg" alt="Barcelone - Escapade" />
+    <div class="cover-body">
+      <div class="cover-eyebrow">Escapade à Barcelone</div>
+      <h1 class="cover-title">Barcelone</h1>
+      <span class="cover-title-spacer"></span>
+      <div class="cover-sub">4 jours · 2 jours sur place</div>
+      <p class="cover-intro">Une découverte culturelle, gourmande et méditerranéenne</p>
+      <p class="cover-intro" style="font-style:italic; color:var(--accent);">« Regards croisés »</p>
+      <ul class="cover-list">
+        <li>Barri Gòtic &amp; Méditerranée</li>
+        <li>Modernisme &amp; Barcelone contemporaine</li>
+        <li>Palau de la Música Catalana</li>
+        <li>La Boqueria &amp; tapas</li>
+        <li>Barceloneta &amp; la mer</li>
+      </ul>
+      <div class="cover-logo-row">
+        <img src="images/Logo_VPD_Voyages.png" alt="VPDVOYAGES" />
+        <div class="site">vpdvoyages.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PRÉSENTATION ==================== -->
+  <div class="section">
+    <div class="eyebrow">Présentation</div>
+    <h1 class="title">Barcelone en 4 jours</h1>
+    <p class="lead" style="font-style:italic; color:var(--accent);">« Regards croisés »</p>
+    <p class="lead">Un format court, pensé pour profiter de la ville sans transformer l'escapade en course contre la montre.</p>
+    <div class="photo-row two">
+      <img src="images/Cathedrale_Barcelone.jpg" alt="Cathédrale de Barcelone" />
+      <img src="images/Arc_de_Triomf.jpg" alt="Arc de Triomf" />
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Barcelone · Escapade</div>
+      <div class="pagenum">01</div>
+    </div>
+  </div>
+
+  <!-- ==================== JOUR 1 ==================== -->
+  <div class="section">
+    <div class="eyebrow">Jour 1</div>
+    <h1 class="title">Le voyage fait partie de l'escapade</h1>
+    <p class="lead">Trajet aller · Lérida · Barcelone</p>
+    <div class="item">
+      <div class="item-title">Départ</div>
+      <div class="item-desc">Pause déjeuner à Lérida. Une étape volontaire pour couper le trajet et donner au voyage un premier parfum catalan.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Arrivée à Barcelone</div>
+      <div class="item-desc">Installation à l'hôtel puis temps libre pour prendre ses repères : quartier, terrasse, première promenade ou dîner à proximité.</div>
+    </div>
+    <p class="lead">L'idée : commencer doucement, sans programme lourd dès l'arrivée. Une journée de liaison, mais pas une journée perdue.</p>
+    <div class="footer-bar">
+      <div class="brand">Barcelone · Escapade</div>
+      <div class="pagenum">02</div>
+    </div>
+  </div>
+
+  <!-- ==================== JOUR 2 - BARCELONE HISTORIQUE ==================== -->
+  <div class="section">
+    <div class="eyebrow">Jour 2</div>
+    <h1 class="title">Barcelone historique et gourmande</h1>
+    <div class="photo-row two">
+      <img src="images/Cathedrale_Barcelone.jpg" alt="Cathédrale de Barcelone" />
+      <img src="images/Boqueria_Mercat_3.jpg" alt="La Boqueria" />
+    </div>
+    <div class="item">
+      <div class="item-title">Le Barri Gòtic</div>
+      <div class="item-desc">Une promenade dans le cœur médiéval : ruelles, placettes, traces de l'ancienne ville et atmosphère très barcelonaise.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">La Boqueria</div>
+      <div class="item-desc">Puis les Ramblas et le marché : couleurs, produits catalans et pause gourmande.</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Barcelone · Escapade</div>
+      <div class="pagenum">03</div>
+    </div>
+  </div>
+
+  <!-- ==================== JOUR 2 - MODERNISME & MÉDITERRANÉE ==================== -->
+  <div class="section">
+    <div class="eyebrow">Jour 2</div>
+    <h1 class="title">Du modernisme à la Méditerranée</h1>
+    <div class="photo-row two">
+      <img src="images/Palau_Musica_Catalana_interieur.jpg" alt="Palau de la Música Catalana" />
+      <img src="images/Cathedrale_Barcelone.jpg" alt="Barceloneta" />
+    </div>
+    <div class="item">
+      <div class="item-title">Palau de la Música Catalana</div>
+      <div class="item-desc">Une visite qui résume à elle seule le modernisme catalan : lumière, mosaïques, sculpture et spectaculaire salle de concert.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Puis cap vers la Barceloneta</div>
+      <div class="item-desc">Flânerie au bord de la mer, façades populaires et ambiance méditerranéenne. En fin de journée, chacun peut choisir entre plage, terrasse ou dîner de tapas.</div>
+    </div>
+    <p class="lead">Une journée très « VPDVOYAGES » : Culture, gastronomie, quartiers vivants et temps pour soi.</p>
+    <div class="footer-bar">
+      <div class="brand">Barcelone · Escapade</div>
+      <div class="pagenum">04</div>
+    </div>
+  </div>
+
+  <!-- ==================== JOUR 3 - MODERNISME & CONTEMPORAIN ==================== -->
+  <div class="section">
+    <div class="eyebrow">Jour 3</div>
+    <h1 class="title">Modernisme &amp; Barcelone contemporaine</h1>
+    <div class="photo-row two">
+      <img src="images/Arc_de_Triomf.jpg" alt="Arc de Triomf" />
+      <img src="images/Torre_Glories.jpg" alt="Torre Glòries" />
+    </div>
+    <div class="item">
+      <div class="item-title">Passeig de Gràcia</div>
+      <div class="item-desc">Façades modernistes, grandes avenues et lecture de l'architecture de Gaudí et de ses contemporains.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Arc de Triomf &amp; Ciutadella</div>
+      <div class="item-desc">Une parenthèse plus verte : promenade vers l'Arc de Triomf puis le parc de la Ciutadella.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Torre Glòries &amp; Barcelone d'aujourd'hui</div>
+      <div class="item-desc">L'ancienne Tour Agbar est devenue un repère du paysage contemporain. Santa Maria del Mar peut compléter la journée selon le rythme et les envies.</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Barcelone · Escapade</div>
+      <div class="pagenum">05</div>
+    </div>
+  </div>
+
+  <!-- ==================== JOUR 4 - RETOUR ==================== -->
+  <div class="section">
+    <div class="eyebrow">Jour 4</div>
+    <h1 class="title">Le retour en douceur</h1>
+    <p class="lead">Barcelone · Narbonne · retour</p>
+    <img class="hero" src="images/Narbonne_Canal_Robine.jpg" alt="Narbonne - Canal de la Robine" style="max-width:70%; margin:0 auto 16px auto;" />
+    <div class="item">
+      <div class="item-title">Départ de Barcelone</div>
+      <div class="item-desc">Une matinée volontairement légère pour quitter Barcelone sans précipitation, puis reprendre la route.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Déjeuner à Narbonne</div>
+      <div class="item-desc">La pause retour devient une dernière petite parenthèse de voyage : déjeuner puis, selon l'horaire, quelques pas le long du canal de la Robine ou dans le centre historique. Narbonne est traversée par le canal de la Robine, embranchement du canal du Midi classé au patrimoine mondial de l'UNESCO.</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Barcelone · Escapade</div>
+      <div class="pagenum">06</div>
+    </div>
+  </div>
+
+  <!-- ==================== DEUX JOURS SUR PLACE ==================== -->
+  <div class="section">
+    <div class="eyebrow">L'esprit du voyage</div>
+    <h1 class="title">Deux jours sur place, mais une vraie respiration</h1>
+    <p class="lead">Ce qui fait la différence</p>
+    <p class="lead">Le programme donne un fil conducteur, mais laisse volontairement des espaces pour vivre Barcelone : un café, une sieste, une terrasse, une boutique, une plage ou une découverte imprévue.</p>
+    <div class="card">
+      <div class="card-title">Culture</div>
+      <div class="card-body">Palau · Gòtic · Santa Maria</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Saveurs</div>
+      <div class="card-body">Boqueria · tapas · marchés</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Méditerranée</div>
+      <div class="card-body">Barceloneta · promenades</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Barcelone · Escapade</div>
+      <div class="pagenum">07</div>
+    </div>
+  </div>
+
+  <!-- ==================== RÉCAPITULATIF ==================== -->
+  <div class="section">
+    <div class="eyebrow">Récapitulatif</div>
+    <h1 class="title">Le programme en un regard</h1>
+    <div class="day">
+      <div class="day-num">J1</div>
+      <div class="day-body">
+        <span class="day-title">Trajet aller</span>
+        Lérida : déjeuner · Barcelone : installation &amp; soirée libre
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-num">J2</div>
+      <div class="day-body">
+        <span class="day-title">Barcelone historique</span>
+        Barri Gòtic · Boqueria · Ramblas · Palau de la Música · Barceloneta
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-num">J3</div>
+      <div class="day-body">
+        <span class="day-title">Barcelone plurielle</span>
+        Passeig de Gràcia · modernisme · Arc de Triomf · Ciutadella · Torre Glòries
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-num">J4</div>
+      <div class="day-body">
+        <span class="day-title">Retour</span>
+        Barcelone → déjeuner à Narbonne → retour
+      </div>
+    </div>
+    <p class="lead" style="margin-top:12px;">Un séjour volontairement équilibré : les incontournables, mais aussi des quartiers, des ambiances et du temps pour profiter.</p>
+    <div class="footer-bar">
+      <div class="brand">Barcelone · Escapade</div>
+      <div class="pagenum">08</div>
+    </div>
+  </div>
+
+  <!-- ==================== PHILOSOPHIE ==================== -->
+  <div class="section">
+    <div class="eyebrow">Philosophie</div>
+    <h1 class="title">Une escapade pensée comme un voyage sur mesure</h1>
+    <p class="lead">VPDVOYAGES ne se contente pas d'aligner des visites. L'objectif est de construire un séjour cohérent, fluide et personnel : des lieux emblématiques, des adresses choisies, des expériences locales et suffisamment de liberté pour que chacun puisse s'approprier Barcelone.</p>
+    <div class="item">
+      <div class="item-title">Sélection</div>
+      <div class="item-desc">Des étapes qui ont du sens dans le rythme global du séjour.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Équilibre</div>
+      <div class="item-desc">Culture + gastronomie + quartiers + temps libre.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Personnalisation</div>
+      <div class="item-desc">Le programme peut évoluer selon vos envies, votre rythme et votre budget.</div>
+    </div>
+    <p class="lead" style="font-style:italic; color:var(--accent);">Barcelone, autrement : moins de cases à cocher, plus de moments à vivre.</p>
+    <div class="footer-bar">
+      <div class="brand">Barcelone · Escapade</div>
+      <div class="pagenum">09</div>
+    </div>
+  </div>
+
+  <!-- ==================== BACK ==================== -->
+  <div class="section back">
+    <div class="back-msg">Bon séjour à Barcelone !</div>
+    <div style="font-size:18px; font-family:var(--font-head); color:var(--accent); margin-bottom:12px;">Escapade en 4 jours</div>
+    <div style="font-size:14px; color:var(--soft); margin-bottom:16px;">Barcelone · « Regards croisés »</div>
+    <img class="back-logo" src="images/Logo_VPD_Voyages.png" alt="Logo VPDVOYAGES" />
+    <div class="site">vpdvoyages.com</div>
+    <div class="full-content">Contenu intégral sur vpdvoyages.com (ordinateur).</div>
+  </div>
+
+</body>
+</html>

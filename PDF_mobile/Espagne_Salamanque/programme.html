@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salamanque - Escapade et Route des Reines</title>
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --cream: #F3ECE2;
+      --paleteal: #E7EFEE;
+      --text: #2A211C;
+      --soft: #6B5E54;
+      --accent: #C1502E;
+      --accentdark: #9C2B2B;
+      --teal: #0F5C56;
+      --gold: #C9A24B;
+      --font-head: Georgia, "Liberation Serif", "Times New Roman", serif;
+      --font-body: Arial, "Liberation Sans", Helvetica, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--bg);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .section {
+      padding: 20px 18px 14px 18px;
+      position: relative;
+      min-height: auto;
+      page-break-before: always;
+    }
+
+    .section:first-child { page-break-before: auto; }
+
+    .eyebrow {
+      font-weight: bold;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 4px 0;
+    }
+
+    h1.title {
+      font-family: var(--font-head);
+      font-weight: normal;
+      font-size: 26px;
+      line-height: 1.1;
+      color: var(--text);
+      margin: 0 0 10px 0;
+    }
+
+    p.lead {
+      font-size: 15px;
+      color: var(--soft);
+      margin: 0 0 12px 0;
+    }
+
+    .hero {
+      width: 100%;
+      border-radius: 4px;
+      display: block;
+      margin: 0 0 12px 0;
+    }
+
+    .photo-row {
+      display: flex;
+      gap: 8px;
+      margin: 0 0 10px 0;
+    }
+
+    .photo-row img {
+      width: 100%;
+      border-radius: 3px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .photo-row.two img {
+      width: 50%;
+      height: 195px;
+    }
+
+    .photo-row.three img { height: 156px; }
+    .photo-row.four img { height: 137px; }
+
+    .caption {
+      font-family: var(--font-head);
+      font-style: italic;
+      font-size: 13.5px;
+      color: var(--soft);
+      margin: 0 0 12px 0;
+      text-align: center;
+    }
+
+    .item { margin: 0 0 12px 0; }
+
+    .item .item-title {
+      font-family: var(--font-head);
+      font-size: 17px;
+      color: var(--accent);
+      margin: 0 0 3px 0;
+    }
+
+    .item .item-desc { font-size: 14.5px; }
+
+    .card {
+      background: var(--cream);
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin: 0 0 12px 0;
+    }
+
+    .card.teal { background: var(--paleteal); }
+
+    .card .card-title {
+      font-family: var(--font-head);
+      font-size: 16px;
+      color: var(--teal);
+      margin: 0 0 4px 0;
+      font-weight: bold;
+    }
+
+    .card .card-body { font-size: 14.5px; }
+
+    ul.bullets {
+      margin: 6px 0 0 0;
+      padding-left: 18px;
+    }
+
+    ul.bullets li {
+      margin-bottom: 6px;
+      font-size: 14.5px;
+    }
+
+    .stat-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--paleteal);
+    }
+
+    .stat-row .stat-num {
+      font-family: var(--font-head);
+      font-size: 22px;
+      color: var(--accent);
+      min-width: 82px;
+    }
+
+    .stat-row .stat-label {
+      font-size: 14px;
+      color: var(--soft);
+    }
+
+    .day {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--paleteal);
+    }
+
+    .day:last-child { border-bottom: none; }
+
+    .day .day-num {
+      font-family: var(--font-head);
+      font-size: 14px;
+      font-weight: bold;
+      color: #FFFFFF;
+      background: var(--accent);
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    .day .day-body {
+      font-size: 14.5px;
+      padding-top: 3px;
+    }
+
+    .day .day-body .day-title {
+      font-weight: bold;
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .subhead {
+      font-family: var(--font-head);
+      font-size: 15px;
+      color: var(--teal);
+      font-weight: bold;
+      margin: 12px 0 4px 0;
+    }
+
+    .footer-bar {
+      margin-top: 18px;
+      padding-top: 10px;
+      border-top: 1px solid var(--gold);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bar .brand {
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--soft);
+      font-weight: bold;
+    }
+
+    .footer-bar .pagenum {
+      font-size: 9.5px;
+      color: var(--soft);
+    }
+
+    .cover-hero {
+      width: 100%;
+      display: block;
+    }
+
+    .cover-body {
+      padding: 12px 18px 6px 18px;
+      min-height: auto;
+    }
+
+    .cover-eyebrow {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: bold;
+      margin: 0 0 4px 0;
+    }
+
+    .cover-title {
+      font-family: var(--font-head);
+      font-size: 40px;
+      color: var(--text);
+      margin: 0;
+      line-height: 1;
+    }
+
+    .cover-title-spacer {
+      display: block;
+      height: 8px;
+    }
+
+    .cover-sub {
+      font-family: var(--font-head);
+      font-style: italic;
+      font-size: 20px;
+      color: var(--accent);
+      margin: 0;
+      line-height: 1;
+    }
+
+    .cover-sub-spacer {
+      display: block;
+      height: 8px;
+    }
+
+    .cover-intro {
+      font-size: 14.5px;
+      color: var(--text);
+      margin: 4px 0 6px 0;
+    }
+
+    .cover-list {
+      margin: 0 0 8px 0;
+      padding-left: 18px;
+    }
+
+    .cover-list li {
+      font-size: 14.5px;
+      margin-bottom: 4px;
+    }
+
+    .cover-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid var(--paleteal);
+      padding-top: 8px;
+      margin-top: 0;
+    }
+
+    .cover-logo-row img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .back {
+      text-align: center;
+      padding: 60px 24px;
+    }
+
+    .back .back-msg {
+      font-family: var(--font-head);
+      font-size: 22px;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 16px;
+    }
+
+    .back .back-logo {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 8px;
+      border-radius: 2px;
+    }
+
+    .back .site {
+      font-size: 13px;
+      color: var(--teal);
+      font-weight: bold;
+    }
+
+    .back .full-content {
+      font-size: 12px;
+      color: var(--soft);
+      margin-top: 20px;
+      border-top: 1px solid var(--paleteal);
+      padding-top: 16px;
+    }
+
+    .item, .card, .photo-row, .day, .stat-row, .cover-logo-row, .footer-bar, h1.title, .eyebrow, .subhead, .caption {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .eyebrow, h1.title {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    @media (max-width: 640px) {
+      .section {
+        padding: 16px 18px 12px 18px;
+        min-height: auto;
+      }
+      .cover-body {
+        padding: 10px 18px 6px 18px;
+      }
+
+      .photo-row.two {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .photo-row.two img {
+        width: 100%;
+        height: 160px;
+      }
+
+      .photo-row.three {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .photo-row.three img {
+        width: 100%;
+        height: 140px;
+      }
+
+      .photo-row.four {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .photo-row.four img {
+        width: 100%;
+        height: 130px;
+      }
+
+      .hero {
+        max-width: 100% !important;
+        width: 100%;
+      }
+
+      .cover-title {
+        font-size: 32px;
+      }
+
+      .cover-sub {
+        font-size: 17px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .photo-row.two img {
+        height: 130px;
+      }
+
+      .photo-row.three img {
+        height: 120px;
+      }
+
+      .photo-row.four img {
+        height: 110px;
+      }
+
+      .cover-title {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== COVER ==================== -->
+  <div class="section" style="padding:0;">
+    <img class="cover-hero" src="images/Plaza_Mayor_Salamanque.jpg" alt="Salamanque - Escapade" />
+    <div class="cover-body">
+      <div class="cover-eyebrow">ESCAPADE 4 JOURS</div>
+      <h1 class="cover-title">Salamanque</h1>
+      <span class="cover-title-spacer"></span>
+      <div class="cover-sub">et la Route des Reines</div>
+      <p class="cover-intro">Castille-et-León · Espagne</p>
+      <div class="cover-logo-row">
+        <img src="images/Logo_VPD_Voyages.png" alt="VPDVOYAGES" />
+        <div class="site">vpdvoyages.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== LA DESTINATION ==================== -->
+  <div class="section">
+    <div class="eyebrow">La Destination</div>
+    <h1 class="title">Salamanque, joyau doré de la Castille</h1>
+    <p class="lead">Plongez au cœur d'une ville universitaire unique, où la pierre dorée des monuments se mêle à l'énergie étudiante et aux traditions castillanes. Une escapade de 4 jours pour savourer l'histoire, l'architecture et la gastronomie de cette cité intemporelle.</p>
+    <div class="photo-row two">
+      <img src="images/catedral-salamanca.jpeg" alt="Plaza Mayor" />
+      <img src="images/Casa_de_las_Conchas_Salamanque.png" alt="Casa de las Conchas" />
+    </div>
+    <div class="item">
+      <div class="item-title">Plaza Mayor</div>
+      <div class="item-desc">L'une des plus belles places d'Espagne</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Université</div>
+      <div class="item-desc">La grenouille légendaire à dénicher</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Cathédrale</div>
+      <div class="item-desc">Deux édifices majestueux imbriqués</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Gastronomie</div>
+      <div class="item-desc">Hornazo, jamón ibérico &amp; vins locaux</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Salamanque · Escapade</div>
+      <div class="pagenum">01</div>
+    </div>
+  </div>
+
+  <!-- ==================== PROGRAMME ==================== -->
+  <div class="section">
+    <div class="eyebrow">Le Programme</div>
+    <h1 class="title">Quatre jours d'escapade</h1>
+    <div class="day">
+      <div class="day-num">J1</div>
+      <div class="day-body">
+        <span class="day-title">Aller vers Salamanque</span>
+        Départ matinal · Arrêt déjeuner à Palencia · Arrivée en fin d'après-midi · Installation &amp; première balade
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-num">J2</div>
+      <div class="day-body">
+        <span class="day-title">Salamanque découverte</span>
+        Plaza Mayor &amp; rues historiques · Université &amp; la grenouille · Cathédrale &amp; Casa de las Conchas · Soirée tapas en centre-ville
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-num">J3</div>
+      <div class="day-body">
+        <span class="day-title">Route des Reines</span>
+        Tordesillas &amp; Traité de 1494 · Medina del Campo et Madrigal de las Altas Torres · Dégustation de vins locaux · Ambiance étudiante le soir
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-num">J4</div>
+      <div class="day-body">
+        <span class="day-title">Retour</span>
+        Matinée libre à Salamanque · Départ · Arrêt déjeuner à Puras de Villafranca (Burgos) · Retour
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Salamanque · Escapade</div>
+      <div class="pagenum">02</div>
+    </div>
+  </div>
+
+  <!-- ==================== JOUR 1 ==================== -->
+  <div class="section">
+    <div class="eyebrow">Jour 1</div>
+    <h1 class="title">En route vers Salamanque</h1>
+    <p class="lead">Arrêt déjeuner à Palencia</p>
+    <div class="photo-row two">
+      <img src="images/Palencia.JPG" alt="Palencia" />
+      <img src="images/palencia (2).JPG" alt="Palencia" />
+    </div>
+    <p class="lead">Le trajet traverse les vastes paysages de la Castille et notamment Burgos. Une pause déjeuner à Palencia permet de découvrir une ville au riche patrimoine religieux avant d'atteindre Salamanque en fin d'après-midi.</p>
+    <div class="item">
+      <div class="item-title">Palencia</div>
+      <div class="item-desc">Pause déjeuner dans cette cité historique de Castille-et-León. Cathédrale gothique, ruelles authentiques et ambiance locale pour une première immersion castillane.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Arrivée à Salamanque</div>
+      <div class="item-desc">Installation à l'hôtel première balade sur la Plaza Mayor, baignée de la célèbre lumière dorée de la pierre de Villamayor.</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Salamanque · Escapade</div>
+      <div class="pagenum">03</div>
+    </div>
+  </div>
+
+  <!-- ==================== JOURS 2 & 3 ==================== -->
+  <div class="section">
+    <div class="eyebrow">Jours 2 &amp; 3</div>
+    <h1 class="title">Deux jours d'immersion à Salamanque</h1>
+    <div class="photo-row two">
+      <img src="images/plaza-mayor.JPG" alt="Plaza Mayor" />
+      <img src="images/Sceau_Universite_Salamanque.png" alt="Rues de Salamanque" />
+    </div>
+    <div class="item">
+      <div class="item-title">Plaza Mayor</div>
+      <div class="item-desc">Cœur baroque et vivant de la ville</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Université</div>
+      <div class="item-desc">La grenouille à trouver sur la façade</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Cathédrale</div>
+      <div class="item-desc">Vieille et Nouvelle imbriquées et une énigme à trouver</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Casa de las Conchas</div>
+      <div class="item-desc">Façade unique ornée de coquillages</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Route des Reines</div>
+      <div class="item-desc">Tordesillas et le Traité de 1494</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Saveurs &amp; ambiance</div>
+      <div class="item-desc">Dégustez le hornazo castillan, le jamón ibérico et les vins de Rueda (verdejo). Le soir, les tavernes du centre s'animent de l'énergie étudiante et de l'ambiance conviviale propre à Salamanque.</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Salamanque · Escapade</div>
+      <div class="pagenum">04</div>
+    </div>
+  </div>
+
+  <!-- ==================== ROUTE DES REINES ==================== -->
+  <div class="section">
+    <div class="eyebrow">Route des Reines</div>
+    <h1 class="title">Tordesillas &amp; Medina del Campo</h1>
+    <div class="photo-row two">
+      <img src="images/Colomb_Rois_Catholiques.jpg" alt="Tordesillas - Monastère" />
+      <img src="images/chteau-medina.JPG" alt="Château de Medina del Campo" />
+    </div>
+    <div class="item">
+      <div class="item-title">Tordesillas</div>
+      <div class="item-desc">Traité de 1494 - Monastère royal - Patrimoine castillan</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Medina del Campo</div>
+      <div class="item-desc">Villages castillans - Dégustation de vins locaux</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Rueda</div>
+      <div class="item-desc">Vins de Rueda - Cépages verdejo</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Salamanque · Escapade</div>
+      <div class="pagenum">05</div>
+    </div>
+  </div>
+
+  <!-- ==================== JOUR 4 ==================== -->
+  <div class="section">
+    <div class="eyebrow">Jour 4</div>
+    <h1 class="title">Retour &amp; dernière pause</h1>
+    <p class="lead">Puras de Villafranca</p>
+    <div class="photo-row two">
+      <img src="images/petit-dej-salamanque.jpg" alt="Madrigal" />
+      <img src="images/puras-restaurant.png" alt="Colomb et les Rois Catholiques" />
+    </div>
+    <p class="lead">Dernier café sur la Plaza Mayor. Le trajet du retour s'interrompt pour un déjeuner convivial à Puras de Villafranca, belle étape pour clôturer l'escapade.</p>
+    <div class="item">
+      <div class="item-title">Patrimoine castillan</div>
+      <div class="item-desc">Histoire des Rois Catholiques, Isabelle de Castille et Ferdinand d'Aragon</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Salamanque · Escapade</div>
+      <div class="pagenum">06</div>
+    </div>
+  </div>
+
+  <!-- ==================== CONCLUSION ==================== -->
+  <div class="section">
+    <div class="eyebrow">Conclusion</div>
+    <h1 class="title">Venez partager cette escapade au cœur de la Castille dorée.</h1>
+    <div class="footer-bar">
+      <div class="brand">Salamanque · Escapade</div>
+      <div class="pagenum">07</div>
+    </div>
+  </div>
+
+  <!-- ==================== BACK ==================== -->
+  <div class="section back">
+    <div class="back-msg">Bon séjour à Salamanque !</div>
+    <div style="font-size:18px; font-family:var(--font-head); color:var(--accent); margin-bottom:12px;">Salamanque et la Route des Reines</div>
+    <div style="font-size:14px; color:var(--soft); margin-bottom:16px;">Escapade 4 jours · Castille-et-León</div>
+    <img class="back-logo" src="images/Logo_VPD_Voyages.png" alt="Logo VPDVOYAGES" />
+    <div class="site">vpdvoyages.com</div>
+    <div class="full-content">Contenu intégral sur vpdvoyages.com (ordinateur).</div>
+  </div>
+
+</body>
+</html>

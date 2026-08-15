@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matarraña - La Toscane Espagnole</title>
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --cream: #F3ECE2;
+      --paleteal: #E7EFEE;
+      --text: #2A211C;
+      --soft: #6B5E54;
+      --accent: #C1502E;
+      --accentdark: #9C2B2B;
+      --teal: #0F5C56;
+      --gold: #C9A24B;
+      --font-head: Georgia, "Liberation Serif", "Times New Roman", serif;
+      --font-body: Arial, "Liberation Sans", Helvetica, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--bg);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .section {
+      padding: 20px 18px 14px 18px;
+      position: relative;
+      min-height: auto;
+      page-break-before: always;
+    }
+
+    .section:first-child { page-break-before: auto; }
+
+    .eyebrow {
+      font-weight: bold;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 4px 0;
+    }
+
+    h1.title {
+      font-family: var(--font-head);
+      font-weight: normal;
+      font-size: 26px;
+      line-height: 1.1;
+      color: var(--text);
+      margin: 0 0 10px 0;
+    }
+
+    p.lead {
+      font-size: 15px;
+      color: var(--soft);
+      margin: 0 0 12px 0;
+    }
+
+    .hero {
+      width: 100%;
+      border-radius: 4px;
+      display: block;
+      margin: 0 0 12px 0;
+    }
+
+    .photo-row {
+      display: flex;
+      gap: 8px;
+      margin: 0 0 10px 0;
+    }
+
+    .photo-row img {
+      width: 100%;
+      border-radius: 3px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .photo-row.two img { height: 195px; }
+    .photo-row.three img { height: 156px; }
+    .photo-row.four img { height: 137px; }
+
+    .caption {
+      font-family: var(--font-head);
+      font-style: italic;
+      font-size: 13.5px;
+      color: var(--soft);
+      margin: 0 0 12px 0;
+      text-align: center;
+    }
+
+    .item { margin: 0 0 12px 0; }
+
+    .item .item-title {
+      font-family: var(--font-head);
+      font-size: 17px;
+      color: var(--accent);
+      margin: 0 0 3px 0;
+    }
+
+    .item .item-desc { font-size: 14.5px; }
+
+    .card {
+      background: var(--cream);
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin: 0 0 12px 0;
+    }
+
+    .card.teal { background: var(--paleteal); }
+
+    .card .card-title {
+      font-family: var(--font-head);
+      font-size: 16px;
+      color: var(--teal);
+      margin: 0 0 4px 0;
+      font-weight: bold;
+    }
+
+    .card .card-body { font-size: 14.5px; }
+
+    ul.bullets {
+      margin: 6px 0 0 0;
+      padding-left: 18px;
+    }
+
+    ul.bullets li {
+      margin-bottom: 6px;
+      font-size: 14.5px;
+    }
+
+    .stat-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--paleteal);
+    }
+
+    .stat-row .stat-num {
+      font-family: var(--font-head);
+      font-size: 22px;
+      color: var(--accent);
+      min-width: 82px;
+    }
+
+    .stat-row .stat-label {
+      font-size: 14px;
+      color: var(--soft);
+    }
+
+    .day {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--paleteal);
+    }
+
+    .day:last-child { border-bottom: none; }
+
+    .day .day-num {
+      font-family: var(--font-head);
+      font-size: 14px;
+      font-weight: bold;
+      color: #FFFFFF;
+      background: var(--accent);
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    .day .day-body {
+      font-size: 14.5px;
+      padding-top: 3px;
+    }
+
+    .day .day-body .day-title {
+      font-weight: bold;
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .subhead {
+      font-family: var(--font-head);
+      font-size: 15px;
+      color: var(--teal);
+      font-weight: bold;
+      margin: 12px 0 4px 0;
+    }
+
+    .footer-bar {
+      margin-top: 18px;
+      padding-top: 10px;
+      border-top: 1px solid var(--gold);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bar .brand {
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--soft);
+      font-weight: bold;
+    }
+
+    .footer-bar .pagenum {
+      font-size: 9.5px;
+      color: var(--soft);
+    }
+
+    .cover-hero {
+      width: 100%;
+      display: block;
+    }
+
+    .cover-body {
+      padding: 12px 18px 6px 18px;
+      min-height: auto;
+    }
+
+    .cover-eyebrow {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: bold;
+      margin: 0 0 4px 0;
+    }
+
+    .cover-title {
+      font-family: var(--font-head);
+      font-size: 40px;
+      color: var(--text);
+      margin: 0;
+      line-height: 1;
+    }
+
+    .cover-title-spacer {
+      display: block;
+      height: 8px;
+    }
+
+    .cover-sub {
+      font-family: var(--font-head);
+      font-style: italic;
+      font-size: 20px;
+      color: var(--accent);
+      margin: 0;
+      line-height: 1;
+    }
+
+    .cover-intro {
+      font-size: 14.5px;
+      color: var(--text);
+      margin: 4px 0 6px 0;
+    }
+
+    .cover-list {
+      margin: 0 0 8px 0;
+      padding-left: 18px;
+    }
+
+    .cover-list li {
+      font-size: 14.5px;
+      margin-bottom: 4px;
+    }
+
+    .cover-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid var(--paleteal);
+      padding-top: 8px;
+      margin-top: 0;
+    }
+
+    .cover-logo-row img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .back {
+      text-align: center;
+      padding: 60px 24px;
+    }
+
+    .back .back-msg {
+      font-family: var(--font-head);
+      font-size: 22px;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 16px;
+    }
+
+    .back .back-logo {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 8px;
+      border-radius: 2px;
+    }
+
+    .back .site {
+      font-size: 13px;
+      color: var(--teal);
+      font-weight: bold;
+    }
+
+    .back .full-content {
+      font-size: 12px;
+      color: var(--soft);
+      margin-top: 20px;
+      border-top: 1px solid var(--paleteal);
+      padding-top: 16px;
+    }
+
+    .item, .card, .photo-row, .day, .stat-row, .cover-logo-row, .footer-bar, h1.title, .eyebrow, .subhead, .caption {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .eyebrow, h1.title {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        padding: 16px 18px 12px 18px;
+        min-height: auto;
+      }
+      .cover-body {
+        padding: 10px 18px 6px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== COVER ==================== -->
+  <div class="section" style="padding:0;">
+    <img class="cover-hero" src="images/Hort_Aubert_Coquelicots.jpg" alt="Matarraña - La Toscane Espagnole" />
+    <div class="cover-body">
+      <div class="cover-eyebrow">Matarraña</div>
+      <h1 class="cover-title">La Toscane Espagnole</h1>
+      <span class="cover-title-spacer"></span>
+      <div class="cover-sub">au cœur du Bas-Aragon</div>
+      <p class="cover-intro">Une immersion confidentielle entre villages médiévaux, oliveraies séculaires, gorges spectaculaires et gastronomie raffinée.</p>
+      <div class="cover-logo-row">
+        <img src="images/Logo_VPD_Voyages.png" alt="VPDVOYAGES" />
+        <div class="site">vpdvoyages.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== INTRODUCTION ==================== -->
+  <div class="section">
+    <div class="eyebrow">L'Art du Voyage</div>
+    <h1 class="title">Une Parenthèse Ressourçante &amp; Authentique</h1>
+    <div class="item">
+      <div class="item-title">Région préservée</div>
+      <div class="item-desc">Située dans le Bas-Aragon, le Matarraña séduit par son rythme paisible et sa nature intacte.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Format intimiste</div>
+      <div class="item-desc">Conçu pour de petits groupes (2 à 5 personnes) assurant convivialité, flexibilité et partage.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Gourmandise &amp; Terroir</div>
+      <div class="item-desc">Dégustations d'huile d'olive artisanale, de vins bio locaux et de truffe noire.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Nature &amp; Patrimoine</div>
+      <div class="item-desc">Balades dans le parc naturel du Parrizal de Beceite et villages classés.</div>
+    </div>
+    <p class="lead" style="font-style:italic; color:var(--accent); margin-top:8px;">L'Esprit du Séjour</p>
+    <div class="footer-bar">
+      <div class="brand">Matarraña · Toscane Espagnole</div>
+      <div class="pagenum">01</div>
+    </div>
+  </div>
+
+  <!-- ==================== DESTINATION MATARRAÑA ==================== -->
+  <div class="section">
+    <div class="eyebrow">Destination Matarraña</div>
+    <h1 class="title">Une Situation Privilégiée</h1>
+    <img class="hero" src="images/Carte_Bassin_Ebre.jpg" alt="Carte du Matarraña" style="max-width:70%; margin:0 auto 16px auto;" />
+    <p class="lead">La comarque du Matarraña est située dans la province de Teruel, au sud-est de l'Aragon, à la charnière de la Catalogne et de la région de Valence. À quelques heures de route du Sud-Ouest de la France, elle offre un dépaysement total au cœur d'une vallée verdoyante irriguée par la rivière Matarraña.</p>
+    <div class="footer-bar">
+      <div class="brand">Matarraña · Toscane Espagnole</div>
+      <div class="pagenum">02</div>
+    </div>
+  </div>
+
+  <!-- ==================== LA TOSCANE ESPAGNOLE ==================== -->
+  <div class="section">
+    <div class="eyebrow">Destination Matarraña</div>
+    <h1 class="title">La « Toscane Espagnole »</h1>
+    <div class="photo-row two">
+      <img src="images/Paysage_Matarrana.jpg" alt="Paysage du Matarraña" />
+      <img src="images/Paysage_Murets_Olivier.jpg" alt="Oliveraies" />
+    </div>
+    <p class="lead">Surnommée ainsi pour ses collines douces couvertes d'oliveraies, de pins et de vignobles, ponctuées de villages perchés aux pierres dorées. Un microclimat doux et une lumière exceptionnelle favorisent la culture de la vigne et de l'olivier depuis l'époque ibérique.</p>
+    <div class="footer-bar">
+      <div class="brand">Matarraña · Toscane Espagnole</div>
+      <div class="pagenum">03</div>
+    </div>
+  </div>
+
+  <!-- ==================== ALCAÑIZ ==================== -->
+  <div class="section">
+    <div class="eyebrow">Halte Historique</div>
+    <h1 class="title">Alcañiz</h1>
+    <p class="lead">Capitale du Bas-Aragon</p>
+    <div class="photo-row two">
+      <img src="images/Chateau_Valderrobres.jpg" alt="Château des Calatravos" />
+      <img src="images/Pont_Gothique_Valderrobres.jpg" alt="Pont gothique" />
+    </div>
+    <div class="item">
+      <div class="item-title">Château des Calatravos</div>
+      <div class="item-desc">Imposante forteresse médiévale du XIIe siècle dominant la vallée, abritant de majestueuses peintures murales gothiques.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Cœur Baroque</div>
+      <div class="item-desc">La Plaza España, l'Hôtel de Ville Renaissance et la collégiale Santa María la Mayor témoignent du prestige passé de la cité.</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Matarraña · Toscane Espagnole</div>
+      <div class="pagenum">04</div>
+    </div>
+  </div>
+
+  <!-- ==================== HÉBERGEMENTS ==================== -->
+  <div class="section">
+    <div class="eyebrow">Hébergements de Charme</div>
+    <h1 class="title">Des Nuits d'Exception</h1>
+    <div class="item">
+      <div class="item-title">Glamping à Valderrobres</div>
+      <div class="item-desc">Logement insolite d'exception : tentes bédouines élégantes (jaimas du désert) et yourtes mongoles traditionnelles au cœur de la nature. Camping le plus célèbre du Matarraña !</div>
+    </div>
+    <div class="photo-row two">
+      <img src="images/Appartement_Hort_Aubert.jpg" alt="Hort de l'Aubert" />
+      <img src="images/Chambre_Hort_Aubert.jpg" alt="Chambre Hort de l'Aubert" />
+    </div>
+    <div class="item">
+      <div class="item-title">Hort de l'Aubert (1789)</div>
+      <div class="item-desc">Demeure historique basée à Cretas offrant des chambres thématiques raffinées : ambiance Provençale, Africaine, Mexicaine ou Hindoue. Charme &amp; authenticité séculaire. Confort &amp; Sérénité garantis.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Des établissements à taille humaine</div>
+      <div class="item-desc">Choisis pour la qualité de leur accueil, leur calme absolu et leur immersion dans le paysage local.</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Matarraña · Toscane Espagnole</div>
+      <div class="pagenum">05</div>
+    </div>
+  </div>
+
+  <!-- ==================== OENOLOGIE & CRÉATIVITÉ ==================== -->
+  <div class="section">
+    <div class="eyebrow">Oenologie &amp; Créativité</div>
+    <h1 class="title">Domaine Viticole Biologique</h1>
+    <div class="photo-row two">
+      <img src="images/Degustation_Venta_Aubert.jpg" alt="Dégustation Venta d'Aubert" />
+      <img src="images/Parc_Sculptures_Venta_Aubert.jpg" alt="Parc des Sculptures" />
+    </div>
+    <p class="lead">Niché dans la vallée de Cretas, le domaine Venta d'Aubert produit des vins biologiques d'exception en associant cépages traditionnels et savoir-faire exigeant.</p>
+    <div class="item">
+      <div class="item-title">Visite &amp; Dégustation</div>
+      <div class="item-desc">Découverte des chais, du terroir bio et dégustation commentée des cuvées du domaine.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Parc des Sculptures</div>
+      <div class="item-desc">Un parcours poétique en plein air s'interrogeant sur la disparition et la reconstruction du monde.</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Matarraña · Toscane Espagnole</div>
+      <div class="pagenum">06</div>
+    </div>
+  </div>
+
+  <!-- ==================== CRETAS ==================== -->
+  <div class="section">
+    <div class="eyebrow">Village Médiéval</div>
+    <h1 class="title">Cretas</h1>
+    <p class="lead">Joyau d'Architecture Rurale</p>
+    <div class="photo-row two">
+      <img src="images/Place_Village_Cretas_ou_Valderrobres.jpg" alt="Place de Cretas" />
+      <img src="images/Ruelle_medievale_Valderrobres_Cretas.jpg" alt="Ruelle médiévale" />
+    </div>
+    <p class="lead">Cretas est un ravissant village aux ruelles pavées en pierre dorée, situé à la frontière culturelle entre l'Aragon et la Catalogne.</p>
+    <div class="item">
+      <div class="item-title">Eglise Fortifiée</div>
+      <div class="item-desc">Son église du XVIe siècle domine le bourg avec sa façade imposante typique du style gothique-renaissance du Bas-Aragon.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Camps de Base</div>
+      <div class="item-desc">Un point d'ancrage idéal pour rayonner dans toute la région et apprécier la douceur de vivre aragonaise.</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Matarraña · Toscane Espagnole</div>
+      <div class="pagenum">07</div>
+    </div>
+  </div>
+
+  <!-- ==================== VALDERROBRES ==================== -->
+  <div class="section">
+    <div class="eyebrow">La Capitale Historique</div>
+    <h1 class="title">Valderrobres</h1>
+    <p class="lead">Classé parmi les « Mas Bellos Pueblos de España »</p>
+    <div class="photo-row two">
+      <img src="images/Valderrobres_Chateau.jpg" alt="Château de Valderrobres" />
+      <img src="images/Pont_Gothique_Valderrobres.jpg" alt="Pont gothique" />
+    </div>
+    <p class="lead">Valderrobres offre une vision féerique dès le passage de son pont médiéval.</p>
+    <div class="item">
+      <div class="item-title">Pont Gothique</div>
+      <div class="item-desc">Ouvrage du XIVe siècle franchissant les eaux turquoise du Matarraña.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Château-Palais Gothique</div>
+      <div class="item-desc">Majestueuse forteresse des évêques de Saragosse (XIVe s.) surplombant la cité.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Eglise Santa María</div>
+      <div class="item-desc">Chef-d'œuvre du gothique levantin intégré au complexe du château.</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Matarraña · Toscane Espagnole</div>
+      <div class="pagenum">08</div>
+    </div>
+  </div>
+
+  <!-- ==================== ACTIVITÉS PLEIN AIR ==================== -->
+  <div class="section">
+    <div class="eyebrow">Activités Plein Air &amp; Nature</div>
+    <h1 class="title">L'Échappée Douce</h1>
+    <p class="lead">Itinéraire Jaune · La Vía Verde à Vélo</p>
+    <div class="photo-row two">
+      <img src="images/Profil_Via_Verde.jpg" alt="Profil Vía Verde" />
+      <img src="images/Tunnel_Via_Verde.jpg" alt="Tunnel Vía Verde" />
+    </div>
+    <p class="lead">L'ancienne voie ferrée du Val de Zafán a été transformée en une somptueuse piste cyclable panoramique à travers tunnels et viaducs.</p>
+    <div class="item">
+      <div class="item-title">Profil en descente</div>
+      <div class="item-desc">Un itinéraire accessible à tous les niveaux sans effort excessif.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Vélos électriques (option)</div>
+      <div class="item-desc">Assistance VAE disponible pour un confort absolu.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Logistique intégrée</div>
+      <div class="item-desc">Récupération en minibus à l'arrivée pour le retour à Cretas.</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Matarraña · Toscane Espagnole</div>
+      <div class="pagenum">09</div>
+    </div>
+  </div>
+
+  <!-- ==================== GASTRONOMIE ==================== -->
+  <div class="section">
+    <div class="eyebrow">Plaisirs de la Table</div>
+    <h1 class="title">Terroir &amp; Authenticité</h1>
+    <div class="photo-row two">
+      <img src="images/Cuisine_Restaurant.jpg" alt="Cuisine du restaurant" />
+      <img src="images/Restaurant_Interieur.jpg" alt="Intérieur restaurant" />
+    </div>
+    <p class="lead">Huile d'olive extra-vierge AOP, truffe noire de Teruel, jambon Serrano et vins locaux à chaque étape gourmande.</p>
+    <div class="item">
+      <div class="item-title">Restaurants du Séjour</div>
+      <div class="item-desc">Alcañiz : Empeltre · Cretas : Centro Cultural · Pinell de Brai : La Brasa Verda</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Dîners Conviviaux</div>
+      <div class="item-desc">Horta de San Joan : Restaurant Miralles · Barbastro : Restaurant El Placer · Soirée Auberge espagnole à l'Hort d'Aubert.</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Matarraña · Toscane Espagnole</div>
+      <div class="pagenum">10</div>
+    </div>
+  </div>
+
+  <!-- ==================== ITINÉRAIRE ==================== -->
+  <div class="section">
+    <div class="eyebrow">Itinéraire</div>
+    <h1 class="title">Le Programme des 4 Jours</h1>
+    <div class="day">
+      <div class="day-num">J1</div>
+      <div class="day-body">
+        <span class="day-title">Trajet aller · Alcañiz</span>
+        Départ · Arrêt découverte à Alcañiz : Château des Calatravos, Plaza España · Installation à l'hôtel à Cretas · Dîner libre
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-num">J2</div>
+      <div class="day-body">
+        <span class="day-title">Valderrobres &amp; Venta d'Aubert</span>
+        Visite de Valderrobres (pont gothique, château, église) · Déjeuner · Après-midi : visite &amp; dégustation au domaine Venta d'Aubert · Parc des sculptures
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-num">J3</div>
+      <div class="day-body">
+        <span class="day-title">Vía Verde à vélo</span>
+        Journée Vía Verde : parcours à vélo entre tunnels et viaducs · Pique-nique · Retour en minibus · Dîner convivial
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-num">J4</div>
+      <div class="day-body">
+        <span class="day-title">Cretas &amp; retour</span>
+        Matinée libre à Cretas · Déjeuner · Route retour avec une dernière pause gourmande
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Matarraña · Toscane Espagnole</div>
+      <div class="pagenum">11</div>
+    </div>
+  </div>
+
+  <!-- ==================== CONCLUSION ==================== -->
+  <div class="section">
+    <div class="eyebrow">Conclusion</div>
+    <h1 class="title">Matarraña</h1>
+    <div class="photo-row two">
+      <img src="images/Paysage_Oliveraie.jpg" alt="Oliveraie" />
+      <img src="images/velo-viaduc.jpg" alt="Vélo et viaduc" />
+    </div>
+    <p class="lead">Matarraña, avec son mélange unique de villages médiévaux, d'oliveraies séculaires et de gorges secrètes, promet une escapade authentique et ressourçante.</p>
+    <p class="lead">Repartez avec des souvenirs plein les yeux et le goût des saveurs du Matarraña !</p>
+    <div class="footer-bar">
+      <div class="brand">Matarraña · Toscane Espagnole</div>
+      <div class="pagenum">12</div>
+    </div>
+  </div>
+
+  <!-- ==================== BACK ==================== -->
+  <div class="section back">
+    <div class="back-msg">Bon séjour au Matarraña !</div>
+    <div style="font-size:18px; font-family:var(--font-head); color:var(--accent); margin-bottom:12px;">La Toscane Espagnole</div>
+    <div style="font-size:14px; color:var(--soft); margin-bottom:16px;">Bas-Aragon · Villages médiévaux &amp; oliveraies</div>
+    <img class="back-logo" src="images/Logo_VPD_Voyages.png" alt="Logo VPDVOYAGES" />
+    <div class="site">vpdvoyages.com</div>
+    <div class="full-content">Contenu intégral sur vpdvoyages.com (ordinateur).</div>
+  </div>
+
+</body>
+</html>

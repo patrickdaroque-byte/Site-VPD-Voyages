@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bilbao - Escapade au Pays Basque</title>
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --cream: #F3ECE2;
+      --paleteal: #E7EFEE;
+      --text: #2A211C;
+      --soft: #6B5E54;
+      --accent: #C1502E;
+      --accentdark: #9C2B2B;
+      --teal: #0F5C56;
+      --gold: #C9A24B;
+      --font-head: Georgia, "Liberation Serif", "Times New Roman", serif;
+      --font-body: Arial, "Liberation Sans", Helvetica, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--bg);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .section {
+      padding: 20px 18px 14px 18px;
+      position: relative;
+      min-height: auto;
+      page-break-before: always;
+    }
+
+    .section:first-child { page-break-before: auto; }
+
+    .eyebrow {
+      font-weight: bold;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 4px 0;
+    }
+
+    h1.title {
+      font-family: var(--font-head);
+      font-weight: normal;
+      font-size: 26px;
+      line-height: 1.1;
+      color: var(--text);
+      margin: 0 0 10px 0;
+    }
+
+    p.lead {
+      font-size: 15px;
+      color: var(--soft);
+      margin: 0 0 12px 0;
+    }
+
+    .hero {
+      width: 100%;
+      border-radius: 4px;
+      display: block;
+      margin: 0 0 12px 0;
+    }
+
+    /* ✅ Gestion adaptative des photos côte à côte */
+    .photo-row {
+      display: flex;
+      gap: 8px;
+      margin: 0 0 10px 0;
+    }
+
+    .photo-row img {
+      width: 100%;
+      border-radius: 3px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .photo-row.two img {
+      width: 50%;
+      height: 195px;
+    }
+
+    .photo-row.three img { height: 156px; }
+    .photo-row.four img { height: 137px; }
+
+    .caption {
+      font-family: var(--font-head);
+      font-style: italic;
+      font-size: 13.5px;
+      color: var(--soft);
+      margin: 0 0 12px 0;
+      text-align: center;
+    }
+
+    .item { margin: 0 0 12px 0; }
+
+    .item .item-title {
+      font-family: var(--font-head);
+      font-size: 17px;
+      color: var(--accent);
+      margin: 0 0 3px 0;
+    }
+
+    .item .item-desc { font-size: 14.5px; }
+
+    .card {
+      background: var(--cream);
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin: 0 0 12px 0;
+    }
+
+    .card.teal { background: var(--paleteal); }
+
+    .card .card-title {
+      font-family: var(--font-head);
+      font-size: 16px;
+      color: var(--teal);
+      margin: 0 0 4px 0;
+      font-weight: bold;
+    }
+
+    .card .card-body { font-size: 14.5px; }
+
+    ul.bullets {
+      margin: 6px 0 0 0;
+      padding-left: 18px;
+    }
+
+    ul.bullets li {
+      margin-bottom: 6px;
+      font-size: 14.5px;
+    }
+
+    .stat-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--paleteal);
+    }
+
+    .stat-row .stat-num {
+      font-family: var(--font-head);
+      font-size: 22px;
+      color: var(--accent);
+      min-width: 82px;
+    }
+
+    .stat-row .stat-label {
+      font-size: 14px;
+      color: var(--soft);
+    }
+
+    .day {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--paleteal);
+    }
+
+    .day:last-child { border-bottom: none; }
+
+    .day .day-num {
+      font-family: var(--font-head);
+      font-size: 14px;
+      font-weight: bold;
+      color: #FFFFFF;
+      background: var(--accent);
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    .day .day-body {
+      font-size: 14.5px;
+      padding-top: 3px;
+    }
+
+    .day .day-body .day-title {
+      font-weight: bold;
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .subhead {
+      font-family: var(--font-head);
+      font-size: 15px;
+      color: var(--teal);
+      font-weight: bold;
+      margin: 12px 0 4px 0;
+    }
+
+    .footer-bar {
+      margin-top: 18px;
+      padding-top: 10px;
+      border-top: 1px solid var(--gold);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bar .brand {
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--soft);
+      font-weight: bold;
+    }
+
+    .footer-bar .pagenum {
+      font-size: 9.5px;
+      color: var(--soft);
+    }
+
+    .cover-hero {
+      width: 100%;
+      display: block;
+    }
+
+    .cover-body {
+      padding: 12px 18px 6px 18px;
+      min-height: auto;
+    }
+
+    .cover-eyebrow {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: bold;
+      margin: 0 0 4px 0;
+    }
+
+    .cover-title {
+      font-family: var(--font-head);
+      font-size: 40px;
+      color: var(--text);
+      margin: 0;
+      line-height: 1;
+    }
+
+    .cover-title-spacer {
+      display: block;
+      height: 8px;
+    }
+
+    .cover-sub {
+      font-family: var(--font-head);
+      font-style: italic;
+      font-size: 20px;
+      color: var(--accent);
+      margin: 0;
+      line-height: 1;
+    }
+
+    .cover-sub-spacer {
+      display: block;
+      height: 8px;
+    }
+
+    .cover-intro {
+      font-size: 14.5px;
+      color: var(--text);
+      margin: 4px 0 6px 0;
+    }
+
+    .cover-list {
+      margin: 0 0 8px 0;
+      padding-left: 18px;
+    }
+
+    .cover-list li {
+      font-size: 14.5px;
+      margin-bottom: 4px;
+    }
+
+    .cover-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid var(--paleteal);
+      padding-top: 8px;
+      margin-top: 0;
+    }
+
+    .cover-logo-row img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .back {
+      text-align: center;
+      padding: 60px 24px;
+    }
+
+    .back .back-msg {
+      font-family: var(--font-head);
+      font-size: 22px;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 16px;
+    }
+
+    .back .back-logo {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 8px;
+      border-radius: 2px;
+    }
+
+    .back .site {
+      font-size: 13px;
+      color: var(--teal);
+      font-weight: bold;
+    }
+
+    .back .full-content {
+      font-size: 12px;
+      color: var(--soft);
+      margin-top: 20px;
+      border-top: 1px solid var(--paleteal);
+      padding-top: 16px;
+    }
+
+    .item, .card, .photo-row, .day, .stat-row, .cover-logo-row, .footer-bar, h1.title, .eyebrow, .subhead, .caption {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .eyebrow, h1.title {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    /* ============================================================ */
+    /* ✅ ADAPTATION MOBILE : photos empilées et hauteur réduite    */
+    /* ============================================================ */
+    @media (max-width: 640px) {
+      .section {
+        padding: 16px 18px 12px 18px;
+        min-height: auto;
+      }
+      .cover-body {
+        padding: 10px 18px 6px 18px;
+      }
+
+      /* ✅ Empile les photos côte à côte */
+      .photo-row.two {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .photo-row.two img {
+        width: 100%;
+        height: 160px;
+      }
+
+      .photo-row.three {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .photo-row.three img {
+        width: 100%;
+        height: 140px;
+      }
+
+      .photo-row.four {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .photo-row.four img {
+        width: 100%;
+        height: 130px;
+      }
+
+      /* ✅ Hero images : largeur réduite sur mobile */
+      .hero {
+        max-width: 100% !important;
+        width: 100%;
+      }
+
+      /* ✅ Réduction de la taille du titre de couverture */
+      .cover-title {
+        font-size: 32px;
+      }
+
+      .cover-sub {
+        font-size: 17px;
+      }
+    }
+
+    /* ✅ Écrans très petits (moins de 400px) */
+    @media (max-width: 400px) {
+      .photo-row.two img {
+        height: 130px;
+      }
+
+      .photo-row.three img {
+        height: 120px;
+      }
+
+      .photo-row.four img {
+        height: 110px;
+      }
+
+      .cover-title {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== COVER ==================== -->
+  <div class="section" style="padding:0;">
+    <img class="cover-hero" src="images/Guggenheim.jpg" alt="Bilbao - Pays Basque" />
+    <div class="cover-body">
+      <div class="cover-eyebrow">VPD VOYAGES</div>
+      <h1 class="cover-title">Bilbao, el Botxo !</h1>
+      <span class="cover-title-spacer"></span>
+      <div class="cover-sub">Escapade de 4 jours au Pays Basque</div>
+      <span class="cover-sub-spacer"></span>
+      <p class="cover-intro">Musée Guggenheim Bilbao</p>
+      <ul class="cover-list">
+        <li>Casco Viejo &amp; pintxos</li>
+        <li>San Juan de Gaztelugatxe</li>
+        <li>Guernica &amp; l'Arbre de la Liberté</li>
+        <li>Astigarraga &amp; l'expérience txotx</li>
+      </ul>
+      <div class="cover-logo-row">
+        <img src="images/Logo_VPD_Voyages.png" alt="VPDVOYAGES" />
+        <div class="site">vpdvoyages.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== INTRODUCTION ==================== -->
+  <div class="section">
+    <div class="eyebrow">Bienvenue</div>
+    <h1 class="title">Bienvenue au Pays Basque !</h1>
+    <p class="lead">Plongez dans l'effervescence de Bilbao, perle du Pays Basque : modernité, culture et gastronomie vous attendent pour une escapade vibrante et authentique.</p>
+    <img class="hero" src="images/bilabao-1.jpeg" alt="Musée Guggenheim" style="max-width:70%; margin:0 auto 16px auto;" />
+    <div class="footer-bar">
+      <div class="brand">Bilbao · Pays Basque</div>
+      <div class="pagenum">01</div>
+    </div>
+  </div>
+
+  <!-- ==================== INTRODUCTION BILBAO ==================== -->
+  <div class="section">
+    <div class="eyebrow">Bilbao · Pays Basque I</div>
+    <h1 class="title">Plongez dans l'effervescence de Bilbao</h1>
+    <p class="lead">Perle du Pays Basque, pour une escapade de 4 jours.</p>
+    <div class="photo-row two">
+      <img src="images/bilbaobis.jpeg" alt="Guggenheim Bilbao" />
+      <img src="images/port bilbao.webp" alt="Port vieux de Bilbao" />
+    </div>
+    <div class="item">
+      <div class="item-title">Architecture &amp; Art</div>
+      <div class="item-desc">Découvrez le célèbre musée Guggenheim, chef-d'œuvre de Frank Gehry abritant une collection d'art contemporain d'exception.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Casco Viejo</div>
+      <div class="item-desc">Flânez dans le cœur historique aux ruelles animées, entre places arcades, boutiques traditionnelles et ambiance authentique.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Gastronomie</div>
+      <div class="item-desc">Savourez des pintxos dans les bars traditionnels, accompagnés d'un verre de txakoli, et découvrez la culture de la sidra.</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Bilbao · Pays Basque</div>
+      <div class="pagenum">02</div>
+    </div>
+  </div>
+
+  <!-- ==================== CARTE ==================== -->
+  <div class="section">
+    <div class="eyebrow">Carte · Pays Basque II</div>
+    <h1 class="title">Euskal Herria</h1>
+    <p class="lead">Le Pays Basque en un clin d'œil</p>
+    <img class="hero" src="images/carte-pays-basque.jpg" alt="Carte du Pays Basque" style="max-width:70%; margin:0 auto 16px auto;" />
+    <p class="lead">Votre itinéraire traverse le cœur de l'Euskal Herria : Bilbao, Guernica et Astigarraga.</p>
+    <div class="stat-row">
+      <div class="stat-num" style="font-size:15px; min-width:120px;">Bilbao</div>
+      <div class="stat-label">Camp de base - 2 jours sur place</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-num" style="font-size:15px; min-width:120px;">Guernica</div>
+      <div class="stat-label">Arrêt déjeuner aller - Musée de la Paix &amp; Arbre de Gernika</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-num" style="font-size:15px; min-width:120px;">San Juan de Gaztelugatxe</div>
+      <div class="stat-label">Arrêt déjeuner retour - Sidreries &amp; txotx</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-num" style="font-size:15px; min-width:120px;">Astigarraga</div>
+      <div class="stat-label">Arrêt déjeuner retour - Sidreries &amp; txotx</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Bilbao · Pays Basque</div>
+      <div class="pagenum">03</div>
+    </div>
+  </div>
+
+  <!-- ==================== PROGRAMME ==================== -->
+  <div class="section">
+    <div class="eyebrow">Programme · 4 jours III</div>
+    <h1 class="title">Votre escapade en un coup d'œil</h1>
+    <div class="day">
+      <div class="day-num">J1</div>
+      <div class="day-body">
+        <span class="day-title">Trajet aller</span>
+        Départ + arrêt déjeuner à Guernica. Route vers Bilbao avec arrêt déjeuner et visite à Guernica : Musée de la Paix &amp; Arbre de Gernika.
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-num">J2</div>
+      <div class="day-body">
+        <span class="day-title">Sur place</span>
+        Bilbao découverte : Guggenheim, Casco Viejo, pintxos &amp; txakoli. Pont transbordeur de Bizkaia (UNESCO), héritage industriel, ou excursion vers la côte basque.
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-num">J3</div>
+      <div class="day-body">
+        <span class="day-title">Sur place</span>
+        Patrimoine &amp; côte : San Juan de Gaztelugatxe est un îlot rocheux de la côte basque espagnole relié à la terre par un spectaculaire pont de pierre. Son sommet abrite un ermitage du Xᵉ siècle.
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-num">J4</div>
+      <div class="day-body">
+        <span class="day-title">Retour</span>
+        Arrêt déjeuner à Astigarraga + route. Arrêt déjeuner dans une sidrerie d'Astigarraga (expérience txotx) avant le trajet retour.
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Bilbao · Pays Basque</div>
+      <div class="pagenum">04</div>
+    </div>
+  </div>
+
+  <!-- ==================== JOUR 1 - GUERNICA ==================== -->
+  <div class="section">
+    <div class="eyebrow">Jour 1 · Trajet aller IV</div>
+    <h1 class="title">Arrêt déjeuner à Guernica</h1>
+    <p class="lead">Sur la route vers Bilbao, une halte historique et émouvante</p>
+    <div class="photo-row two">
+      <img src="images/guernica-picasso.jpg" alt="Guernica - Musée de la Paix" />
+      <img src="images/chene-guernica.jpeg" alt="Arbre de Gernika" />
+    </div>
+    <div class="item">
+      <div class="item-title">Musée de la Paix</div>
+      <div class="item-desc">Retrace le bombardement de 1937, immortalisé par Picasso. Une plongée poignante dans l'histoire basque et européenne.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">L'Arbre de Gernika</div>
+      <div class="item-desc">Symbole millénaire de la liberté basque. Les seigneurs de Biscaye y prêtaient serment de respecter les fueros.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Assemblée de Guernica</div>
+      <div class="item-desc">Lieu historique où siégeait le parlement foral. Architecture et mémoire se rencontrent.</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Bilbao · Pays Basque</div>
+      <div class="pagenum">05</div>
+    </div>
+  </div>
+
+  <!-- ==================== JOUR 2 - BILBAO ==================== -->
+  <div class="section">
+    <div class="eyebrow">Jour 2 · Sur place V</div>
+    <h1 class="title">Bilbao : modernité &amp; traditions</h1>
+    <div class="photo-row two">
+      <img src="images/guggenheim-chien-puppy.jpg" alt="Musée Guggenheim" />
+      <img src="images/tapas-bilbao.png" alt="Pintxos" />
+    </div>
+    <div class="item">
+      <div class="item-title">Musée Guggenheim</div>
+      <div class="item-desc">Chef-d'œuvre de Frank Gehry. Architecture titanium et collection d'art contemporain. Un symbole de la renaissance de Bilbao.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Casco Viejo &amp; Pintxos</div>
+      <div class="item-desc">Les Siete Calles, Plaza Nueva, bars traditionnels. Dégustation de pintxos et de txakoli dans l'ambiance chaleureuse du cœur historique.</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Bilbao · Pays Basque</div>
+      <div class="pagenum">06</div>
+    </div>
+  </div>
+
+  <!-- ==================== JOUR 3 - PATRIMOINE ==================== -->
+  <div class="section">
+    <div class="eyebrow">Jour 3 · Sur place VI</div>
+    <h1 class="title">Héritage industriel &amp; symboles basques</h1>
+    <div class="photo-row two">
+      <img src="images/puente+3+390+315.jpg" alt="Pont transbordeur de Bizkaia" />
+      <img src="images/indistrie-bilbao.jpeg" alt="Héritage industriel" />
+    </div>
+    <div class="item">
+      <div class="item-title">Pont transbordeur de Bizkaia</div>
+      <div class="item-desc">Classé UNESCO. Unique en son genre, ce pont-transbordeur de 1893 relie Portugalete à Getxo. Une prouesse d'ingénierie à découvrir.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Musées industriels</div>
+      <div class="item-desc">Explorez l'héritage sidérurgique et maritime qui a façonné Bilbao. Musées retraçant la transformation de la ville.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Côte basque (option)</div>
+      <div class="item-desc">Proximité de la côte : Getxo, plages ou villages de pêcheurs. Possibilité d'excursion selon les envies du groupe.</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">Bilbao · Pays Basque</div>
+      <div class="pagenum">07</div>
+    </div>
+  </div>
+
+  <!-- ==================== SAN JUAN DE GAZTELUGATXE ==================== -->
+  <div class="section">
+    <div class="eyebrow">Jour 3 · Sur place IV</div>
+    <h1 class="title">San Juan de Gaztelugatxe</h1>
+    <p class="lead">L'îlot magique au sommet de 241 marches de pierre, surplombant la côte sauvage de Biscaye.</p>
+    <img class="hero" src="images/San-Juan-de-Gaztelugatxe.jpg" alt="San Juan de Gaztelugatxe" style="max-width:70%; margin:0 auto 16px auto;" />
+    <div class="stat-row">
+      <div class="stat-num" style="font-size:15px; min-width:120px;">Localisation</div>
+      <div class="stat-label">Bermeo · 35 km Bilbao</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-num" style="font-size:15px; min-width:120px;">Hauteur</div>
+      <div class="stat-label">~ 80 - 150 mètres</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-num" style="font-size:15px; min-width:120px;">Accès</div>
+      <div class="stat-label">Pont + 241 marches</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-num" style="font-size:15px; min-width:120px;">Origine</div>
+      <div class="stat-label">9ème - 10ème siècle</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-num" style="font-size:15px; min-width:120px;">Tradition</div>
+      <div class="stat-label">Cloche × 3</div>
+    </div>
+    <p class="lead" style="margin-top:12px;">Gaztelugatxe · « château de roche » ou « château inaccessible »</p>
+    <div class="footer-bar">
+      <div class="brand">Bilbao · Pays Basque</div>
+      <div class="pagenum">08</div>
+    </div>
+  </div>
+
+  <!-- ==================== JOUR 4 - ASTIGARRAGA ==================== -->
+  <div class="section">
+    <div class="eyebrow">Jour 4 · Retour VII</div>
+    <h1 class="title">Arrêt déjeuner à Astigarraga</h1>
+    <p class="lead">La capitale de la sidra basque - expérience txotx</p>
+    <img class="hero" src="images/txotx.jpg" alt="Expérience txotx" style="max-width:70%; margin:0 auto 16px auto;" />
+    <div class="item">
+      <div class="item-title">L'expérience Txotx</div>
+      <div class="item-desc">Astigarraga concentre la plus forte densité de sidrerías (sagardotegiak) du Pays Basque. Ici, on déguste la sidra naturelle directement au tonneau selon le rituel du « txotx ».</div>
+    </div>
+    <ul class="bullets">
+      <li>Menu traditionnel : omelette de morue, steak, fromage &amp; noix</li>
+      <li>Sidra naturelle servie au tonneau</li>
+      <li>Ambiance conviviale et authentique</li>
+      <li>Parfait point d'orgue avant le retour</li>
+    </ul>
+    <div class="footer-bar">
+      <div class="brand">Bilbao · Pays Basque</div>
+      <div class="pagenum">09</div>
+    </div>
+  </div>
+
+  <!-- ==================== CONCLUSION ==================== -->
+  <div class="section">
+    <div class="eyebrow">Conclusion</div>
+    <h1 class="title">Bilbao, el Botxo !</h1>
+    <img class="hero" src="images/puertoviejo-bilbao.jpg" alt="Port vieux de Bilbao" style="max-width:70%; margin:0 auto 16px auto;" />
+    <p class="lead">Bilbao, avec son mélange unique d'innovation, de traditions basques et de paysages époustouflants, promet une escapade vibrante et authentique.</p>
+    <p class="lead">Repartez avec des souvenirs plein les yeux et le goût des saveurs du Pays Basque !</p>
+    <div class="footer-bar">
+      <div class="brand">Bilbao · Pays Basque</div>
+      <div class="pagenum">10</div>
+    </div>
+  </div>
+
+  <!-- ==================== BACK ==================== -->
+  <div class="section back">
+    <div class="back-msg">Bon séjour à Bilbao !</div>
+    <div style="font-size:18px; font-family:var(--font-head); color:var(--accent); margin-bottom:12px;">Bilbao, el Botxo !</div>
+    <div style="font-size:14px; color:var(--soft); margin-bottom:16px;">Escapade de 4 jours au Pays Basque</div>
+    <img class="back-logo" src="images/Logo_VPD_Voyages.png" alt="Logo VPDVOYAGES" />
+    <div class="site">vpdvoyages.com</div>
+    <div class="full-content">Contenu intégral sur vpdvoyages.com (ordinateur).</div>
+  </div>
+
+</body>
+</html>
