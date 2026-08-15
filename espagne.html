@@ -266,7 +266,7 @@
                         <p class="mt-2 font-bold">540 € (4 jours / 3 nuits)*</p>
                     </div>
                 </div>
-                <!-- Pics d'Europe - UNIQUEMENT PDF, pas de version mobile -->
+                <!-- Pics d'Europe -->
                 <div class="bg-white rounded shadow-lg overflow-hidden">
                     <div class="bg-gray-200">
                         <a href="PDF/Espagne_Pics_Europe.pdf" target="_blank" class="cursor-pointer block pdf-link" id="pics-image-link">
@@ -300,7 +300,7 @@
                         <p class="mt-2 font-bold">480 € (4 jours / 3 nuits)*</p>
                     </div>
                 </div>
-                <!-- Ribera del Duero - UNIQUEMENT PDF, pas de version mobile -->
+                <!-- Ribera del Duero -->
                 <div class="bg-white rounded shadow-lg overflow-hidden">
                     <div class="bg-gray-200">
                         <a href="PDF/Espagne_Ribera_del_Duero.pdf" target="_blank" class="cursor-pointer block pdf-link" id="ribera-image-link">
@@ -348,7 +348,7 @@
                             <button class="read-more">+</button>
                             <a href="PDF/Espagne_Bilbao.pdf" class="pdf-button" target="_blank" id="bilbao-pdf-button">voir pgm</a>
                         </div>
-                        <p class="text-red-600 font-bold text-center mt-2">Septembre 2027</p>
+                        <p class="text-red-600 font-bold text-center mt-2">Prochainement !</p>
                     </div>
                 </div>
                 <!-- Barcelone -->
@@ -379,12 +379,15 @@
         </div>
     </footer>
     <script>
+        // Menu mobile
         document.querySelector('.nav-toggle').addEventListener('click', function () {
             document.querySelector('.nav-menu').classList.toggle('active');
         });
         document.querySelector('.dropdown-toggle').addEventListener('click', function () {
             document.querySelector('.dropdown-menu').classList.toggle('active');
         });
+        
+        // Bouton "Lire la suite"
         document.querySelectorAll('.read-more').forEach(button => {
             button.addEventListener('click', function () {
                 const description = this.closest('.p-4').querySelector('.description');
@@ -405,12 +408,11 @@
             });
         });
 
-        // ✅ GESTION PC / MOBILE POUR TOUS LES VOYAGES ESPAGNE
+        // ✅ GESTION PC / MOBILE - BASCULEMENT DES LIENS
         (function () {
             function updateLinks() {
                 const isMobile = window.innerWidth <= 640;
                 
-                // Dictionnaire des voyages espagnols
                 const voyages = {
                     'rioja': {
                         pc: 'PDF/Espagne_La_Rioja.pdf',
@@ -422,7 +424,7 @@
                     },
                     'pics': {
                         pc: 'PDF/Espagne_Pics_Europe.pdf',
-                        mobile: 'PDF/Espagne_Pics_Europe.pdf'  // PAS de version mobile → toujours PDF
+                        mobile: 'PDF/Espagne_Pics_Europe.pdf'
                     },
                     'salamanque': {
                         pc: 'PDF/Espagne_Salamanque.pdf',
@@ -430,7 +432,7 @@
                     },
                     'ribera': {
                         pc: 'PDF/Espagne_Ribera_del_Duero.pdf',
-                        mobile: 'PDF/Espagne_Ribera_del_Duero.pdf'  // PAS de version mobile → toujours PDF
+                        mobile: 'PDF/Espagne_Ribera_del_Duero.pdf'
                     },
                     'matarrana': {
                         pc: 'PDF/Espagne_Matarraña.pdf',
@@ -467,7 +469,6 @@
             updateLinks();
             window.addEventListener('resize', updateLinks);
         })();
-
     </script>
     <script src="bandeau.js"></script>
 </body>
