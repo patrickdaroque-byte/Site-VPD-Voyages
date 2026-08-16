@@ -170,6 +170,39 @@
       }
     }
 
+    /* ===== MENU MOBILE (hamburger) ===== */
+    .nav-toggle {
+      display: block;
+      cursor: pointer;
+    }
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 10px;
+      background: #2563eb;
+      padding: 10px;
+      border-radius: 5px;
+      z-index: 50;
+    }
+    .nav-menu.active {
+      display: flex;
+    }
+    @media (min-width: 768px) {
+      .nav-toggle {
+        display: none;
+      }
+      .nav-menu {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        background: none;
+        padding: 0;
+        border-radius: 0;
+      }
+    }
+
     /* ===== MISE EN AVANT DE LA CARTE "DEUX FORMULES" (lien depuis la home) ===== */
     #formules {
       scroll-margin-top: 90px;
@@ -217,7 +250,12 @@
           <span class="text-base font-medium">Patrick Daroque - Travel Planner</span>
         </div>
       </div>
-      <nav class="hidden md:flex space-x-4">
+      <button class="nav-toggle text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      <nav class="nav-menu md:space-x-4">
         <a href="index.html#home" class="hover:underline text-base md:text-lg">Accueil</a>
         <a href="index.html#destinations" class="hover:underline text-base md:text-lg">Les destinations</a>
         <a href="index.html#about" class="hover:underline text-base md:text-lg">Mon approche</a>
@@ -249,6 +287,12 @@
     <div class="container mx-auto px-4 max-w-5xl">
       <h2 class="text-3xl font-bold text-center mb-6">La promesse faite aux voyageurs solos</h2>
       <div class="promise-grid grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div id="formules" class="bg-gray-50 p-6 rounded-lg text-center shadow-sm border-4 border-amber-300">
+          <span class="formules-tag">🆕 Nouveauté</span>
+          <div class="text-4xl mb-3">🗺️</div>
+          <h3 class="font-bold text-lg mb-2">Deux formules</h3>
+          <p class="text-gray-600 text-sm"><strong>Autonomie</strong> (vous gérez) ou <strong>Sérénité</strong> (guide Français + vols internationaux inclus).</p>
+        </div>
         <div class="bg-gray-50 p-6 rounded-lg text-center shadow-sm">
           <div class="text-4xl mb-3">👥</div>
           <h3 class="font-bold text-lg mb-2">Groupe intime</h3>
@@ -258,12 +302,6 @@
           <div class="text-4xl mb-3">💰</div>
           <h3 class="font-bold text-lg mb-2">Pas de supplément single</h3>
           <p class="text-gray-600 text-sm">Voyager seul(e) n'est pas pénalisé : jumelage inclus sans surcoût.</p>
-        </div>
-        <div id="formules" class="bg-gray-50 p-6 rounded-lg text-center shadow-sm border-4 border-amber-300">
-          <span class="formules-tag">🆕 Nouveauté</span>
-          <div class="text-4xl mb-3">🗺️</div>
-          <h3 class="font-bold text-lg mb-2">Deux formules</h3>
-          <p class="text-gray-600 text-sm"><strong>Autonomie</strong> (vous gérez) ou <strong>Sérénité</strong> (guide Français + vols internationaux inclus).</p>
         </div>
       </div>
     </div>
@@ -453,5 +491,15 @@
     </div>
   </footer>
 
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function () {
+      document.querySelector('.nav-menu').classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-menu a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        document.querySelector('.nav-menu').classList.remove('active');
+      });
+    });
+  </script>
 </body>
 </html>
