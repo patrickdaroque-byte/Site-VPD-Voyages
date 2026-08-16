@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Voyage solo en petit groupe | VPDVOYAGES</title>
-  <meta name="description" content="Voyagez seul(e) en groupe intime de 2-5 personnes avec VPDVOYAGES. Tango, salsa, randonnée, œnologie – sans supplément single. Découvrez nos départs.">
+  <meta name="description" content="Voyagez seul(e) en groupe intime de 2-5 personnes avec VPDVOYAGES. Tango, salsa, randonnée, œnologie – sans supplément single. Découvrez les dates de départ.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
   <style>
@@ -93,19 +93,23 @@
       padding: 10px 12px;
       border-bottom: 1px solid #e2e8f0;
     }
+    th:nth-child(3), th:nth-child(4),
+    td:nth-child(3), td:nth-child(4) {
+      text-align: right;
+    }
     tr:hover {
       background: #f1f5f9;
     }
     .badge-solo {
-      background: rgba(230, 126, 34, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: #E67E22;
+      border: 2px solid rgba(255, 255, 255, 0.85);
       color: #ffffff;
-      padding: 0.3rem 1.2rem;
+      padding: 0.4rem 1.5rem;
       border-radius: 20px;
       font-style: italic;
-      font-weight: 500;
+      font-weight: 700;
       display: inline-block;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
     /* ===== AMÉLIORATIONS MOBILE ===== */
@@ -165,6 +169,40 @@
         white-space: normal;
       }
     }
+
+    /* ===== MISE EN AVANT DE LA CARTE "DEUX FORMULES" (lien depuis la home) ===== */
+    #formules {
+      scroll-margin-top: 90px;
+      position: relative;
+      animation: formules-blink 1.8s ease-in-out infinite;
+    }
+    .formules-tag {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #f9e79f 0%, #d4a017 45%, #9c6b0a 100%);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.02em;
+      padding: 3px 12px;
+      border-radius: 999px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+      white-space: nowrap;
+    }
+    @keyframes formules-blink {
+      0%, 100% { border-color: #fcd34d; box-shadow: 0 0 0 0 rgba(212,160,23,0); }
+      50% { border-color: #9c6b0a; box-shadow: 0 0 0 5px rgba(212,160,23,0.35); }
+    }
+    #formules:target {
+      animation: formules-highlight 2.2s ease-out;
+    }
+    @keyframes formules-highlight {
+      0% { box-shadow: 0 0 0 8px rgba(212,160,23,0.55); }
+      70% { box-shadow: 0 0 0 8px rgba(212,160,23,0.55); }
+      100% { box-shadow: 0 0 0 0 rgba(212,160,23,0); }
+    }
   </style>
 </head>
 <body>
@@ -183,7 +221,7 @@
         <a href="index.html#home" class="hover:underline text-base md:text-lg">Accueil</a>
         <a href="index.html#destinations" class="hover:underline text-base md:text-lg">Les destinations</a>
         <a href="index.html#about" class="hover:underline text-base md:text-lg">Mon approche</a>
-        <a href="index.html#reviews" class="hover:underline text-base md:text-lg">Ce que disent nos clients</a>
+        <a href="index.html#reviews" class="hover:underline text-base md:text-lg">Ce que disent les clients</a>
         <a href="index.html#travel-planner" class="hover:underline text-base md:text-lg">Qu'est-ce qu'un Travel Planner ?</a>
         <a href="index.html#contact" class="hover:underline text-base md:text-lg">Contact</a>
       </nav>
@@ -192,7 +230,7 @@
 
   <!-- HERO (Avenant, coloré & icône bien visible) -->
   <section class="bg-cover bg-center py-6 flex items-center justify-center" style="background-image: url('https://vpdvoyages.com/Voyages de rêve/Images/hero-image.jpg');">
-    <div class="hero-content text-center text-white bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-800 p-6 md:p-8 rounded-2xl mx-4 shadow-2xl max-w-4xl border border-amber-400/30">
+    <div class="hero-content text-center text-white bg-gradient-to-r from-blue-600/70 via-indigo-600/65 to-purple-700/70 p-6 md:p-8 rounded-2xl mx-4 shadow-2xl max-w-4xl border border-amber-400/30">
       <div class="flex items-center justify-center gap-3 mb-3">
         <div class="bg-white/20 p-2 rounded-full flex items-center justify-center">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" viewBox="0 0 24 24" fill="currentColor">
@@ -209,7 +247,7 @@
   <!-- SECTION : NOTRE PROMESSE -->
   <section class="pt-4 pb-8 bg-white">
     <div class="container mx-auto px-4 max-w-5xl">
-      <h2 class="text-3xl font-bold text-center mb-6">Notre promesse pour les voyageurs solos</h2>
+      <h2 class="text-3xl font-bold text-center mb-6">La promesse faite aux voyageurs solos</h2>
       <div class="promise-grid grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-gray-50 p-6 rounded-lg text-center shadow-sm">
           <div class="text-4xl mb-3">👥</div>
@@ -219,9 +257,10 @@
         <div class="bg-gray-50 p-6 rounded-lg text-center shadow-sm">
           <div class="text-4xl mb-3">💰</div>
           <h3 class="font-bold text-lg mb-2">Pas de supplément single</h3>
-          <p class="text-gray-600 text-sm">Nous ne vous punissons pas d'être seul(e). Jumelage inclus sans surcoût.</p>
+          <p class="text-gray-600 text-sm">Voyager seul(e) n'est pas pénalisé : jumelage inclus sans surcoût.</p>
         </div>
-        <div class="bg-gray-50 p-6 rounded-lg text-center shadow-sm">
+        <div id="formules" class="bg-gray-50 p-6 rounded-lg text-center shadow-sm border-4 border-amber-300">
+          <span class="formules-tag">🆕 Nouveauté</span>
           <div class="text-4xl mb-3">🗺️</div>
           <h3 class="font-bold text-lg mb-2">Deux formules</h3>
           <p class="text-gray-600 text-sm"><strong>Autonomie</strong> (vous gérez) ou <strong>Sérénité</strong> (guide Français + vols internationaux inclus).</p>
@@ -269,9 +308,9 @@
   <section class="py-12 bg-white">
     <div class="container mx-auto px-4 max-w-5xl">
       <h2 class="text-3xl font-bold text-center mb-8">Propositions Séjours et Escapades Solo</h2>
-      <p class="text-center text-gray-600 mb-1">Tous nos voyages en Amérique latine durent <strong>17 à 18 jours</strong> (groupes de 2 à 5 personnes).</p>
-      <p class="text-center text-gray-600 mb-2">En Espagne, nous vous proposons des escapades de <strong>4 jours</strong> (groupes de 2 à 5 personnes).</p>
-      <p class="text-center text-sm text-gray-400 mb-8">(Propositions non exhaustives – d'autres destinations et thématiques sont disponibles sur demande)</p>
+      <p class="text-center text-gray-600 mb-1">Tous les voyages en Amérique latine durent <strong>17 à 18 jours</strong> (groupes de 2 à 5 personnes).</p>
+      <p class="text-center text-gray-600 mb-2">En Espagne, les escapades proposées durent <strong>4 jours</strong> (groupes de 2 à 5 personnes).</p>
+      <p class="text-center text-sm text-gray-400 mt-4 mb-2">(Propositions non exhaustives – d'autres destinations et thématiques sont disponibles sur demande)</p>
 
       <div class="overflow-x-auto">
         <table>
@@ -298,19 +337,19 @@
             </tr>
             <tr>
               <td><strong>Colombie</strong></td>
-              <td>Salsa, Café & Nature</td>
+              <td>La Magie réaliste</td>
               <td>1 590 €</td>
-              <td>3 690 €</td>
+              <td>3 250 €</td>
             </tr>
             <tr>
               <td><strong>Espagne</strong></td>
-              <td>Œnologie & Rando</td>
-              <td>480 €</td>
-              <td>890 €</td>
+              <td>Escapade dans la La Rioja</td>
+              <td>490 €</td>
+              <td>850 €</td>
             </tr>
             <tr>
               <td><strong>Uruguay</strong></td>
-              <td>Détente & Patrimoine</td>
+              <td>Patrimoine et Gauchos</td>
               <td>1 590 €</td>
               <td>3 590 €</td>
             </tr>
@@ -335,12 +374,12 @@
 
       <div class="bg-white p-6 rounded-lg shadow-sm mb-4">
         <h3 class="font-bold text-lg mb-2">Que se passe-t-il si je suis le/la seul(e) inscrit(e) ?</h3>
-        <p class="text-gray-700">Les deux formules sont maintenues à partir de <strong>2 personnes</strong> (selon le tarif). S'il n'y a qu'une seule personne, seule la formule <strong>Autonomie</strong> est proposée, avec road book, assistance téléphonique et tous nos contacts d'urgence.</p>
+        <p class="text-gray-700">La formule Sérénité est maintenue à partir de <strong>2 personnes</strong> (selon le tarif accepté). S'il n'y a qu'une seule personne, seule la formule <strong>Autonomie</strong> est proposée, avec Road-Book, assistance téléphonique et tous les contacts d'urgence.</p>
       </div>
 
       <div class="bg-white p-6 rounded-lg shadow-sm mb-4">
         <h3 class="font-bold text-lg mb-2">Puis-je choisir mon(ma) partenaire de chambre ?</h3>
-        <p class="text-gray-700">Oui, si vous venez avec une personne connue. Sinon, nous vous attribuons une personne du même sexe, après vous avoir présenté brièvement.</p>
+        <p class="text-gray-700">Oui, si vous venez avec une personne connue. Sinon, une personne du même sexe est attribuée, après une brève présentation.</p>
       </div>
 
       <div class="bg-white p-6 rounded-lg shadow-sm mb-4">
@@ -350,12 +389,12 @@
 
       <div class="bg-white p-6 rounded-lg shadow-sm mb-4">
         <h3 class="font-bold text-lg mb-2">Et la sécurité ?</h3>
-        <p class="text-gray-700">En formule <strong>Sérénité</strong>, un guide Français est avec vous 24h/24. En formule <strong>Autonomie</strong>, nous vous fournissons un road book détaillé avec tous nos contacts d'urgence.</p>
+        <p class="text-gray-700">En formule <strong>Sérénité</strong>, un guide Français est avec vous 24h/24. En formule <strong>Autonomie</strong>, un road book détaillé est fourni avec tous les contacts d'urgence utiles.</p>
       </div>
 
       <div class="bg-white p-6 rounded-lg shadow-sm mb-4">
         <h3 class="font-bold text-lg mb-2">Je ne parle pas espagnol, c'est gênant ?</h3>
-        <p class="text-gray-700">Non, nos guides sont Français. Et un sourire, ça suffit pour commander un verre !</p>
+        <p class="text-gray-700">Non, les guides sont Français. Et un sourire, ça suffit pour commander un verre !</p>
       </div>
     </div>
   </section>
@@ -383,7 +422,7 @@
           <span class="text-2xl">❤️</span>
           <div>
             <h3 class="font-bold">Une communauté</h3>
-            <p class="text-gray-600 text-sm">Nos clients repartent avec des amitiés solides, et certains refont des voyages ensemble.</p>
+            <p class="text-gray-600 text-sm">Les clients repartent avec des amitiés solides, et certains refont des voyages ensemble.</p>
           </div>
         </div>
         <div class="flex items-start gap-3">
