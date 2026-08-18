@@ -183,7 +183,8 @@
       line-height: 1;
       letter-spacing: 0.02em;
       color: #ffffff;
-text-shadow: 0 1px 1px rgba(0,0,0,0.25);  }
+      text-shadow: 0 1px 1px rgba(0,0,0,0.25);
+    }
     .starburst-sub {
       font-weight: 700;
       font-size: 0.85rem;
@@ -191,7 +192,8 @@ text-shadow: 0 1px 1px rgba(0,0,0,0.25);  }
       margin-top: 4px;
       max-width: 100px;
       color: #cc0000;
-  text-shadow: none;  }
+      text-shadow: none;
+    }
     @keyframes starburst-pulse {
       0% { transform: translateY(-50%) rotate(10deg) scale(1); }
       50% { transform: translateY(-50%) rotate(10deg) scale(1.06); }
@@ -262,7 +264,7 @@ text-shadow: 0 1px 1px rgba(0,0,0,0.25);  }
     }
     @media (max-width: 639px) {
       #destinations {
-        padding-top: 0; /* supprime l'espace entre le proverbe et les drapeaux */
+        padding-top: 0;
       }
       #destinations .grid {
         grid-template-areas:
@@ -287,7 +289,7 @@ text-shadow: 0 1px 1px rgba(0,0,0,0.25);  }
         grid-area: right2;
       }
       #destinations h2 {
-        display: none; /* masqué uniquement sur mobile */
+        display: none;
       }
       .argentine .see-program {
         display: block;
@@ -663,5 +665,39 @@ Contactez-moi !
       });
     });
   </script>
+
+<!-- Script Voiceflow avec traduction en français et contrôle On/Off -->
+<script type="text/javascript">
+  // CHANGER ICI POUR ACTIVER / DESACTIVER LE CHATBOT: true = ACTIF | false = INACTIF
+  const BOT_ACTIF = true;
+
+  if (BOT_ACTIF) {
+    (function(d, t) {
+        var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+        v.onload = function() {
+          window.voiceflow.chat.load({
+            verify: { projectID: '6a84bf641c51f4a7bb70c4d3' },
+            url: 'https://general-runtime.voiceflow.com',
+            voice: {
+              url: "https://runtime-api.voiceflow.com"
+            },
+            assistant: {
+              title: "Votre conseiller VPDVOYAGES",
+              description: "Mon assistant voyage",
+              ariaLabel: "Assistant voyage",
+              color: "#2563eb"
+            },
+            i18n: {
+              startNewChat: "Démarrer une nouvelle conversation",
+              cancel: "Annuler"
+            }
+          });
+        }
+        v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; 
+        v.type = "text/javascript"; 
+        s.parentNode.insertBefore(v, s);
+    })(document, 'script');
+  }
+</script>
 </body>
 </html>
