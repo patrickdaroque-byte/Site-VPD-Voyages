@@ -1,9 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Page d'accueil -->
   <url>
     <loc>https://vpdvoyages.com/</loc>
-    <lastmod>2025-08-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- Pages principales -->
+  <url>
+    <loc>https://vpdvoyages.com/voyage-solo.html</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://vpdvoyages.com/cgv.html</loc>
+    <changefreq>yearly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://vpdvoyages.com/mentions-legales.html</loc>
+    <changefreq>yearly</changefreq>
+  </url>
+
+  <!-- Pages pays -->
+  <url>
+    <loc>https://vpdvoyages.com/argentine.html</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://vpdvoyages.com/cuba.html</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://vpdvoyages.com/uruguay.html</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://vpdvoyages.com/espagne.html</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://vpdvoyages.com/colombie.html</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+
 </urlset>
