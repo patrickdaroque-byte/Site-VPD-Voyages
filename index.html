@@ -439,11 +439,49 @@
             </a>
           </div>
           <div class="cuba text-center flex flex-col items-center">
-            <a href="cuba.html" class="flag-container" title="Voyages et séjours sur mesure à Cuba">
-              <img src="Images/cuba_flag.png" alt="Drapeau Cuba - Voyages authentiques VPDVOYAGES" width="112" height="72" class="flag-img mx-auto">
-              <p class="mt-2 text-gray-600 text-base font-semibold">Cuba</p>
-            </a>
+            <!-- Mobile : bandeau jaune à gauche du drapeau (2 lignes) ; Desktop : bandeau sous Cuba -->
+            <div class="cuba-with-badge flex flex-row items-center justify-center gap-2 md:flex-col md:gap-0">
+              <div class="cuba-badge order-1 md:order-2 mt-0 md:mt-1">
+                <span class="cuba-badge-text">
+                  Départs selon<br class="md:hidden"> l'actualité
+                </span>
+              </div>
+              <a href="cuba.html" class="flag-container order-2 md:order-1" title="Voyages et séjours sur mesure à Cuba">
+                <img src="Images/cuba_flag.png" alt="Drapeau Cuba - Voyages authentiques VPDVOYAGES" width="112" height="72" class="flag-img mx-auto">
+                <p class="mt-2 text-gray-600 text-base font-semibold">Cuba</p>
+              </a>
+            </div>
           </div>
+          <style>
+          @keyframes pulseMsg {
+            0% { background:#ffcc00; }
+            50% { background:#ffd84d; }
+            100% { background:#ffcc00; }
+          }
+          .cuba-badge-text {
+            display: inline-block;
+            background: #ffcc00;
+            color: #000;
+            padding: 4px 6px;
+            border-radius: 5px;
+            font-weight: normal;
+            font-size: 0.7rem;
+            line-height: 1.25;
+            max-width: 88px;
+            text-align: center;
+            animation: pulseMsg 2s infinite;
+          }
+          @media (min-width: 640px) {
+            .cuba-badge-text {
+              font-size: 0.75rem;
+              max-width: 140px;
+              padding: 4px 6px;
+            }
+            .cuba-badge-text br {
+              display: none;
+            }
+          }
+          </style>
           <div class="argentine text-center">
             <a href="argentine.html" class="flag-container" title="Voyages sur mesure en Argentine">
               <img src="Images/argentine_flag.png" alt="Drapeau Argentine - Séjours Tango et Bodegas avec VPDVOYAGES" width="112" height="72" class="flag-img mx-auto">

@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
       </div>
       <div class="bandeau-ligne" style="font-size: 0.82rem; line-height: 1.4; font-weight: 400; letter-spacing: 0.01em; margin-top: 1px;">
         <span style="color: #f6e05e; margin-right: 3px;">✦</span>
-        <span><strong style="color: #f6e05e; font-weight: 600;">Sérénité :</strong> Tout inclus avec Transports & Guide privé</span>
+        <span><strong style="color: #f6e05e; font-weight: 600;">Sérénité :</strong> Formule Autonomie + Transports & Guide privé</span>
       </div>
     `;
   }
