@@ -267,6 +267,35 @@
         display: none;
       }
     }
+    /* Effet cliquable renforcé uniquement sur ordinateur.
+       La version mobile reste strictement inchangée. */
+    @media (min-width: 640px) {
+      #destinations .flag-container {
+        padding: 5px 8px 7px;
+        border: 1px solid #dbeafe;
+        border-radius: 12px;
+        box-shadow: 0 3px 8px rgba(37, 99, 235, 0.12);
+        transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+      }
+
+      #destinations .flag-container:hover {
+        transform: translateY(-3px) scale(1.02);
+        border-color: #93c5fd;
+        box-shadow: 0 8px 16px rgba(37, 99, 235, 0.20);
+      }
+
+      #destinations .flag-container:active {
+        transform: translateY(1px) scale(0.98);
+        border-color: #2563eb;
+        box-shadow: 0 2px 5px rgba(37, 99, 235, 0.18);
+      }
+
+      #destinations .flag-container:focus-visible {
+        outline: 3px solid rgba(37, 99, 235, 0.30);
+        outline-offset: 2px;
+      }
+    }
+
     @media (max-width: 639px) {
       #destinations {
         padding-top: 0;
@@ -439,7 +468,7 @@
             </a>
           </div>
           <div class="cuba text-center flex flex-col items-center">
-            <!-- Mobile : bandeau à gauche, 2 lignes, centré verticalement avec le drapeau, rapproché ; Desktop : sous Cuba -->
+            <!-- Mobile : astérisque après Cuba ; Desktop : bandeau jaune sous Cuba -->
             <div class="cuba-with-badge">
               <div class="cuba-badge">
                 <span class="cuba-badge-text">
@@ -486,6 +515,19 @@
           .cuba-br {
             display: block;
           }
+          @media (max-width: 639px) {
+            /* Mobile : on conserve la grille et la disposition actuelles.
+               Le bandeau jaune disparaît uniquement sur mobile et l'astérisque
+               est ajouté directement après « Cuba ». */
+            .cuba-badge {
+              display: none;
+            }
+            .cuba p::after {
+              content: "*";
+              margin-left: 1px;
+            }
+          }
+
           @media (min-width: 640px) {
             .cuba-with-badge {
               flex-direction: column;
@@ -501,8 +543,10 @@
             }
             .cuba-badge-text {
               font-size: 0.75rem;
-              max-width: 140px;
-              padding: 4px 6px;
+              max-width: none;
+              width: auto;
+              white-space: nowrap;
+              padding: 4px 8px;
             }
             .cuba-br {
               display: none;
@@ -546,7 +590,7 @@
         <div class="text-right -mt-2 mb-2">
           <div class="inline-block bg-blue-50 border border-blue-200 rounded px-3 py-1">
             <p class="animate-pulse text-blue-600 italic text-sm m-0">
-              Départs possibles toute l'année, selon la destination et les disponibilités.
+              * Les départs sont proposés toute l’année selon l’actualité et les disponibilités.
             </p>
           </div>
         </div>
