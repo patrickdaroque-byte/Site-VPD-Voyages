@@ -80,6 +80,7 @@
       padding: 1rem 1.25rem;
       border-radius: 8px;
       margin: 1rem 0;
+      scroll-margin-top: 100px; /* évite que le header fixe (80px) ne masque l'encart ciblé par une ancre */
     }
   </style>
 </head>
@@ -103,7 +104,7 @@
 
   <main class="cgv-content">
     <h1 class="text-4xl font-bold text-center mb-6">CONDITIONS GÉNÉRALES DE VENTE</h1>
-    <p class="text-center text-gray-600 mb-8"><strong>Dernière mise à jour : 20 Août 2026</strong></p>
+    <p class="text-center text-gray-600 mb-8"><strong>Dernière mise à jour : 25 Août 2026</strong></p>
 
     <!-- Encadré récapitulatif du statut juridique -->
     <div class="legal-notice">
@@ -137,6 +138,7 @@
         <li>La conception d’itinéraires personnalisés adaptés aux souhaits du client</li>
         <li>La recherche et la recommandation de prestataires locaux (hôtels, restaurants, guides, transporteurs)</li>
         <li>La mise en relation avec ces prestataires et, si nécessaire, une assistance purement informative dans les démarches de réservation. <strong>Sauf disposition contraire expressément indiquée dans le devis (notamment formule Sérénité), les réservations et les paiements sont effectués exclusivement par le client auprès des prestataires.</strong></li>
+        <li>Lorsque le client contacte directement un prestataire recommandé ou mis en relation par VPDVOYAGES, il peut indiquer qu’il est <strong>« recommandé par VPDVOYAGES »</strong> ou qu’il vient <strong>« de la part de VPDVOYAGES »</strong>. Cette indication constitue uniquement une information destinée au prestataire et ne signifie pas que VPDVOYAGES effectue la réservation, agit comme intermédiaire dans la conclusion du contrat ou encaisse le paiement, sauf disposition contraire expressément prévue dans le devis.</li>
         <li>Le conseil et l’accompagnement dans l’organisation du voyage</li>
         <li>La fourniture d’informations pratiques et culturelles sur les destinations</li>
         <li>Les formules de voyage en petit groupe <strong>Autonomie</strong> et <strong>Sérénité</strong> (voir article 2.7)</li>
@@ -160,10 +162,10 @@
       <h3>2.6 Information et conseil</h3>
       <p>Je m’engage à fournir au client toutes les informations utiles concernant les formalités administratives (passeport, visa, vaccinations), les conditions sanitaires et de sécurité des destinations proposées. Il appartient néanmoins au client de vérifier ces informations auprès des autorités compétentes avant son départ.</p>
 
-      <h3>2.7 Formules Autonomie et Sérénité (voyages en petit groupe 2 à 5 personnes)</h3>
+      <h3 id="cgv-formules" style="scroll-margin-top: 100px;">2.7 Formules Autonomie et Sérénité (voyages en petit groupe 2 à 5 personnes)</h3>
       <p>VPDVOYAGES propose deux formules clairement distinctes pour les voyages en petit groupe (2 à 5 personnes maximum), particulièrement adaptées aux voyageurs solos :</p>
 
-      <div class="formule-box">
+      <div class="formule-box" id="cgv-autonomie">
         <h4>Formule Autonomie</h4>
         <p><strong>« Vous gérez »</strong></p>
         <ul>
@@ -175,7 +177,7 @@
         </ul>
       </div>
 
-      <div class="formule-box">
+      <div class="formule-box" id="cgv-serenite">
         <h4>Formule Sérénité</h4>
         <p><strong>« Accompagnement sur place »</strong></p>
         <ul>
@@ -229,6 +231,7 @@
       
       <h3>4.1 Devis et proposition de voyage</h3>
       <p>Après un premier échange permettant de définir vos attentes, je vous adresse une proposition de voyage personnalisée accompagnée d’un devis détaillé. Le devis précise clairement s’il s’agit d’une prestation de conseil, de la formule <strong>Autonomie</strong> ou de la formule <strong>Sérénité</strong>.</p>
+      <p><strong>Lorsqu’une réservation est effectuée directement par le client auprès d’un prestataire recommandé par VPDVOYAGES, le client peut préciser qu’il est « recommandé par VPDVOYAGES ».</strong> Cette mention permet simplement au prestataire d’identifier l’origine de la recommandation ; elle ne modifie pas le fait que le client contracte directement avec le prestataire et règle directement les prestations concernées, sauf disposition contraire expressément prévue dans le devis.</p>
 
       <h3>4.2 Validation</h3>
       <p>La validation de la proposition s’effectue par retour du devis signé accompagné du règlement de l’acompte. Cette validation vaut acceptation des présentes conditions générales de vente.</p>

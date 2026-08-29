@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salsa à Cali – Colombie | VPDVOYAGES</title>
+    <meta name="description" content="Salsa à Cali, capitale mondiale de la salsa. Cours, soirées, rencontres avec des danseurs et immersion totale dans la culture salsera avec VPDVOYAGES.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            width: 100%;
+            background: #2563eb;
+        }
+        body {
+            padding-top: 80px;
+        }
+        html {
+            scroll-padding-top: 80px;
+        }
+        .nav-menu {
+            display: flex;
+        }
+        .nav-toggle {
+            display: none;
+        }
+        @media (max-width: 640px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                right: 10px;
+                background: #2563eb;
+                padding: 10px;
+                border-radius: 5px;
+                z-index: 50;
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .nav-toggle {
+                display: block;
+                cursor: pointer;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <!-- HEADER -->
+    <header class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <a href="/">
+                    <img src="Images/logo.png" alt="VPDVOYAGES" class="h-12">
+                </a>
+                <div>
+                    <a href="/" class="text-xl font-bold tracking-tight">VPDVOYAGES</a>
+                    <p class="text-sm opacity-90">Patrick Daroque - Travel Planner</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="nav-toggle text-2xl md:hidden">☰</button>
+                <nav class="nav-menu space-x-4 md:flex">
+                    <a href="/" class="hover:underline text-sm md:text-base">Accueil</a>
+                    <a href="/#destinations" class="hover:underline text-sm md:text-base">Les destinations</a>
+                    <a href="/#approche" class="hover:underline text-sm md:text-base">Qui suis-je ?</a>
+                    <a href="/#avis" class="hover:underline text-sm md:text-base">Avis des voyageurs</a>
+                    <a href="/#travel-planner" class="hover:underline text-sm md:text-base">Qu'est-ce qu'un Travel Planner ?</a>
+                    <a href="/#contact" class="hover:underline text-sm md:text-base">Contact</a>
+                </nav>
+                <a href="prochainement.html" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 text-sm">Retour</a>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 mt-2">
+            <ul class="flex flex-wrap gap-3 text-sm">
+                <li><a class="hover:underline" href="/argentine">Argentine</a></li>
+                <li><a class="hover:underline" href="/colombie">Colombie</a></li>
+                <li><a class="hover:underline" href="/cuba">Cuba</a></li>
+                <li><a class="hover:underline" href="/espagne">Espagne</a></li>
+                <li><a class="hover:underline" href="/uruguay">Uruguay</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- CONTENU PRINCIPAL -->
+    <section class="py-12">
+        <div class="container mx-auto px-4 max-w-3xl">
+
+            <!-- Image principale -->
+            <div class="bg-gray-200 rounded-lg overflow-hidden mb-8 shadow-lg">
+                <img src="Images/salsa-cali.jpg" alt="Salsa à Cali" class="w-full h-64 md:h-80 object-cover">
+            </div>
+
+            <!-- Titre et infos -->
+            <h1 class="text-3xl md:text-4xl font-bold text-center mb-2">Salsa à Cali</h1>
+            <p class="text-center text-amber-600 font-semibold text-lg mb-6">Cali, Colombie</p>
+
+            <!-- Accroche -->
+            <p class="text-center text-xl text-gray-700 italic mb-8">
+                La capitale mondiale de la salsa, pure énergie et passion.
+            </p>
+
+            <!-- Résumé -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-xl font-semibold mb-4">Le voyage</h2>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    Cali vit au rythme de la salsa. Ce voyage est entièrement dédié à la danse et à l’ambiance unique de la ville.
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    Cours avec des professeurs locaux, soirées dans les meilleurs clubs et salles, rencontres avec des danseurs, et immersion dans la culture salsera de Cali. Un séjour intense, rythmé et joyeux, pensé pour ceux qui veulent vraiment vivre la salsa sur place.
+                </p>
+            </div>
+
+            <!-- Points forts -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-xl font-semibold mb-4">Points forts</h2>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start">
+                        <span class="text-amber-500 mr-3">✦</span>
+                        Cours de salsa avec des professeurs locaux
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-amber-500 mr-3">✦</span>
+                        Soirées dans l’ambiance authentique de Cali
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-amber-500 mr-3">✦</span>
+                        Rencontres avec la communauté de danseurs
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-amber-500 mr-3">✦</span>
+                        Immersion totale dans la culture salsera
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Formules -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-xl font-semibold mb-4">Formules</h2>
+                <div class="space-y-3 text-gray-700">
+                    <p><strong>Autonomie</strong> : vous gérez une partie des déplacements et activités sur place.</p>
+                    <p><strong>Sérénité</strong> : accompagnement plus complet avec guide et organisation renforcée.</p>
+                </div>
+                <p class="text-sm text-gray-500 mt-4">Les détails (durée exacte, hébergements, prix) seront précisés prochainement.</p>
+            </div>
+
+            <!-- Appel à l'action -->
+            <div class="text-center bg-blue-50 rounded-lg p-8 shadow-md">
+                <p class="text-lg text-gray-800 mb-6">
+                    Ce voyage est encore en finalisation.<br>
+                    Vous souhaitez être informé(e) en priorité ou l’adapter à vos envies ?
+                </p>
+                <a href="https://wa.me/33610950984?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20le%20voyage%20Salsa%20à%20Cali" 
+                   class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-full text-lg transition">
+                    Contacter Patrick sur WhatsApp
+                </a>
+                <p class="mt-4">
+                    <a href="prochainement.html" class="text-blue-600 hover:underline text-sm">← Retour aux propositions</a>
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-blue-600 text-white py-6 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">
+                &copy; 2026 - VPDVOYAGES - Patrick Daroque - Travel Planner. Tous droits réservés. | n° siret : 52534368700030
+                | <a href="/cgv" class="underline">CGV</a>
+                | <a href="/mentions-legales" class="underline">Mentions légales</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.nav-toggle')?.addEventListener('click', function () {
+            document.querySelector('.nav-menu')?.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
