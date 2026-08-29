@@ -439,14 +439,14 @@
             </a>
           </div>
           <div class="cuba text-center flex flex-col items-center">
-            <!-- Mobile : bandeau jaune à gauche du drapeau (2 lignes) ; Desktop : bandeau sous Cuba -->
-            <div class="cuba-with-badge flex flex-row items-center justify-center gap-2 md:flex-col md:gap-0">
-              <div class="cuba-badge order-1 md:order-2 mt-0 md:mt-1">
+            <!-- Mobile : bandeau à gauche, 2 lignes, centré verticalement avec le drapeau, rapproché ; Desktop : sous Cuba -->
+            <div class="cuba-with-badge">
+              <div class="cuba-badge">
                 <span class="cuba-badge-text">
-                  Départs selon<br class="md:hidden"> l'actualité
+                  Départs selon<br class="cuba-br"> l'actualité
                 </span>
               </div>
-              <a href="cuba.html" class="flag-container order-2 md:order-1" title="Voyages et séjours sur mesure à Cuba">
+              <a href="cuba.html" class="flag-container" title="Voyages et séjours sur mesure à Cuba">
                 <img src="Images/cuba_flag.png" alt="Drapeau Cuba - Voyages authentiques VPDVOYAGES" width="112" height="72" class="flag-img mx-auto">
                 <p class="mt-2 text-gray-600 text-base font-semibold">Cuba</p>
               </a>
@@ -458,26 +458,53 @@
             50% { background:#ffd84d; }
             100% { background:#ffcc00; }
           }
+          .cuba-with-badge {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 4px;
+          }
+          .cuba-badge {
+            /* Aligne le bandeau au milieu vertical du drapeau (hauteur ~3.6rem mobile) */
+            margin-top: 0.55rem;
+            flex-shrink: 0;
+          }
           .cuba-badge-text {
             display: inline-block;
             background: #ffcc00;
             color: #000;
-            padding: 4px 6px;
+            padding: 3px 5px;
             border-radius: 5px;
             font-weight: normal;
-            font-size: 0.7rem;
-            line-height: 1.25;
-            max-width: 88px;
+            font-size: 0.65rem;
+            line-height: 1.2;
+            max-width: 72px;
             text-align: center;
             animation: pulseMsg 2s infinite;
           }
+          .cuba-br {
+            display: inline;
+          }
           @media (min-width: 640px) {
+            .cuba-with-badge {
+              flex-direction: column;
+              align-items: center;
+              gap: 0;
+            }
+            .cuba-badge {
+              margin-top: 0.25rem;
+              order: 2;
+            }
+            .cuba-with-badge .flag-container {
+              order: 1;
+            }
             .cuba-badge-text {
               font-size: 0.75rem;
               max-width: 140px;
               padding: 4px 6px;
             }
-            .cuba-badge-text br {
+            .cuba-br {
               display: none;
             }
           }
