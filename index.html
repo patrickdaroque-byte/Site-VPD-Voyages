@@ -291,6 +291,47 @@
         outline: 3px solid rgba(37, 99, 235, 0.30);
         outline-offset: 2px;
       }
+
+      /* Cuba : même largeur de pavé cliquable que les autres destinations sur ordinateur.
+         Les autres boutons (Espagne, Argentine, Uruguay, Colombie) sont des liens "block"
+         qui s'étirent automatiquement sur toute la largeur de leur colonne de grille.
+         Le bouton Cuba est imbriqué dans .cuba-with-badge (flex, align-items: center),
+         ce qui le réduisait à la largeur de son contenu. On force ici le même étirement
+         sur 100% de la colonne, pour une largeur toujours identique quelle que soit la
+         largeur d'écran. */
+      #destinations .cuba-with-badge {
+        width: 100%;
+      }
+      #destinations .cuba .flag-container {
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Prochainement : même zone interactive que les autres destinations sur ordinateur. */
+      #destinations .prochainement-btn {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 5px 8px 7px;
+        border: 1px solid #dbeafe;
+        border-radius: 12px;
+        box-shadow: 0 3px 8px rgba(37, 99, 235, 0.12);
+        transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+        cursor: pointer;
+      }
+      #destinations .prochainement-btn:hover {
+        transform: translateY(-3px) scale(1.02);
+        border-color: #93c5fd;
+        box-shadow: 0 8px 16px rgba(37, 99, 235, 0.20);
+      }
+      #destinations .prochainement-btn:active {
+        transform: translateY(1px) scale(0.98);
+        border-color: #2563eb;
+        box-shadow: 0 2px 5px rgba(37, 99, 235, 0.18);
+      }
+      #destinations .prochainement-btn:focus-visible {
+        outline: 3px solid rgba(37, 99, 235, 0.30);
+        outline-offset: 2px;
+      }
     }
 
     @media (max-width: 639px) {
@@ -337,16 +378,64 @@
       .cuba p {
         margin-top: 2px;
       }
-      .flag-container {
-        padding: 0;
-        background: none;
-        border: none;
-        box-shadow: none;
-        transform: none;
+      /* Mobile : même signal de clic que sur ordinateur, mais plus discret.
+         La disposition, les dimensions des drapeaux et les 6 destinations restent inchangées. */
+      #destinations .flag-container {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 2px 3px 4px;
+        background: rgba(255,255,255,0.78);
+        border: 1px solid #dbeafe;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(37, 99, 235, 0.14);
+        transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+        cursor: pointer;
       }
-      .flag-container:hover {
-        transform: none;
-        box-shadow: none;
+      #destinations .flag-container:active {
+        transform: translateY(1px) scale(0.98);
+        border-color: #2563eb;
+        box-shadow: 0 1px 3px rgba(37, 99, 235, 0.18);
+      }
+      #destinations .flag-container:focus-visible {
+        outline: 2px solid rgba(37, 99, 235, 0.30);
+        outline-offset: 1px;
+      }
+      /* Cuba : même taille de drapeau que les autres destinations sur mobile. */
+      #destinations .cuba {
+        width: 100%;
+      }
+      #destinations .cuba-with-badge {
+        display: block;
+        width: 100%;
+      }
+      #destinations .cuba .flag-container {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      #destinations .cuba img {
+        width: 6rem;
+        height: 3.6rem;
+      }
+      /* Prochainement : même logique de bouton cliquable sur mobile. */
+      #destinations .prochainement-btn {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 2px 3px 4px;
+        border: 1px solid #dbeafe;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(37, 99, 235, 0.14);
+        transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+      }
+      #destinations .prochainement-btn:active {
+        transform: translateY(1px) scale(0.98);
+        border-color: #2563eb;
+        box-shadow: 0 1px 3px rgba(37, 99, 235, 0.18);
+      }
+      #destinations .prochainement-btn:focus-visible {
+        outline: 2px solid rgba(37, 99, 235, 0.30);
+        outline-offset: 1px;
       }
     }
 
