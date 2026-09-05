@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     bandeau.style.justifyContent = 'center';
     bandeau.style.alignItems = 'center';
     bandeau.style.textAlign = 'center';
-    bandeau.style.maxWidth = '680px';
+    bandeau.style.maxWidth = '740px';
     bandeau.style.margin = '0 auto 1rem auto';
     bandeau.style.padding = '6px 16px';
     bandeau.style.borderRadius = '6px';
@@ -36,14 +36,24 @@ document.addEventListener('DOMContentLoaded', function () {
     `;
     document.head.appendChild(styleFix);
 
+    var page = window.location.pathname.split('/').pop().toLowerCase();
+    var estEspagne = page.indexOf('espagne') !== -1;
+
+    var flagSvg = '<svg width="11" height="8" viewBox="0 0 3 2" style="vertical-align:middle; margin-right:2px; border-radius:1px;"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#FFFFFF"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg>';
+
+    var transportIcon = estEspagne ? '🚐' : '✈️';
+    var texteSerenite = estEspagne
+      ? 'Accompagnement francophone + tous transports.'
+      : 'Accompagnement francophone + vols internationaux.';
+
     bandeau.innerHTML = `
       <div class="bandeau-ligne" style="font-size: 0.82rem; line-height: 1.4; font-weight: 400; letter-spacing: 0.01em;">
         <span style="color: #f6e05e; margin-right: 3px;">✦</span>
-        <span><strong style="color: #f6e05e; font-weight: 600;">Autonomie :</strong> 1/2 pension + 3 dîners & visites incluses <em style="opacity:0.88; font-size:0.92em;">(déplacements sur place libres, sans guide)</em></span>
+        <span><strong style="color: #f6e05e; font-weight: 600;">Autonomie :</strong> Hébergement • Déjeuners • 3 dîners • Activités <em style="opacity:0.88; font-size:0.92em;">Voyagez librement.</em></span>
       </div>
       <div class="bandeau-ligne" style="font-size: 0.82rem; line-height: 1.4; font-weight: 400; letter-spacing: 0.01em; margin-top: 1px;">
         <span style="color: #f6e05e; margin-right: 3px;">✦</span>
-        <span><strong style="color: #f6e05e; font-weight: 600;">Sérénité :</strong> Formule Autonomie + Transports & Guide privé</span>
+        <span><strong style="color: #f6e05e; font-weight: 600;">Sérénité :</strong> Hébergement • Déjeuners • 3 dîners • Activités <em style="opacity:0.88; font-size:0.92em; white-space:nowrap;">${flagSvg}${transportIcon} ${texteSerenite}</em></span>
       </div>
     `;
   }
