@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
     bandeau.style.justifyContent = 'center';
     bandeau.style.alignItems = 'center';
     bandeau.style.textAlign = 'center';
-    bandeau.style.maxWidth = '740px';
+    bandeau.style.maxWidth = '95%';
+    bandeau.style.width = 'fit-content';
     bandeau.style.margin = '0 auto 1rem auto';
     bandeau.style.padding = '6px 16px';
     bandeau.style.borderRadius = '6px';
