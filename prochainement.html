@@ -50,6 +50,8 @@
             background: #2563eb;
             padding: 0;
             cursor: pointer;
+            transition: background 0.2s;
+            flex-shrink: 0;
         }
         .read-more:hover {
             background: #1e40af;
@@ -65,6 +67,10 @@
             justify-content: center;
             font-size: 0.9rem;
             text-decoration: none;
+            transition: background 0.2s;
+            flex-shrink: 0;
+            border: none;
+            cursor: pointer;
         }
         .pdf-button:hover {
             background: #15803d;
@@ -80,6 +86,37 @@
             font-size: 0.9rem;
             margin: 0 auto 2rem auto;
         }
+        /* Carte cliquable - TOUTE la carte est un lien */
+        .trip-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+        }
+        .trip-card:active {
+            transform: scale(0.98);
+        }
+        .trip-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+        /* Les boutons restent cliquables sans déclencher la carte */
+        .trip-card .read-more,
+        .trip-card .pdf-button {
+            position: relative;
+            z-index: 2;
+            pointer-events: auto;
+        }
+        /* La photo et le texte sont cliquables via la carte parente */
+        .trip-card img,
+        .trip-card h3,
+        .trip-card .description,
+        .trip-card .card-content p {
+            pointer-events: none;
+        }
+        /* Version mobile */
         @media (max-width: 640px) {
             .nav-menu {
                 display: none;
@@ -91,6 +128,7 @@
                 padding: 10px;
                 border-radius: 5px;
                 z-index: 50;
+                min-width: 180px;
             }
             .nav-menu.active {
                 display: flex;
@@ -98,12 +136,39 @@
             .nav-toggle {
                 display: block;
                 cursor: pointer;
+                font-size: 1.5rem;
+                background: none;
+                border: none;
+                color: white;
+                padding: 0 8px;
             }
             .grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .read-more {
+                width: 38px;
+                height: 38px;
+                font-size: 0.7rem;
+            }
+            .pdf-button {
+                width: 38px;
+                height: 38px;
+                font-size: 0.75rem;
+            }
+            .card-content {
+                min-height: 200px;
+            }
+            /* Augmenter la zone de clic sur mobile */
+            .trip-card {
+                padding: 0;
+                margin: 0;
+            }
+            .trip-card .p-4 {
+                padding: 1rem;
             }
         }
-        @media (min-width: 640px) and (max-width: 1023px) {
+        @media (min-width: 641px) and (max-width: 1023px) {
             .grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -121,28 +186,31 @@
     <header class="bg-blue-600 text-white py-4">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <a href="/">
-                    <img src="Images/Logo VPDVOYAGES.COM.png" alt="VPDVOYAGES" class="h-12">
+                <a href="index.html">
+                    <img src="Images/logo.jpg" alt="VPDVOYAGES" class="h-12 w-12 object-contain" onerror="this.style.display='none'">
                 </a>
                 <div>
-                    <a href="/" class="text-xl font-bold tracking-tight">VPDVOYAGES</a>
+                    <a href="index.html" class="text-xl font-bold tracking-tight">VPDVOYAGES</a>
                     <p class="text-sm opacity-90">Patrick Daroque - Travel Planner</p>
                 </div>
             </div>
             <div class="flex items-center space-x-4">
-                <button class="nav-toggle text-2xl md:hidden">☰</button>
-                <nav class="nav-menu space-x-4 md:flex">
-                    <a href="/" class="hover:underline text-sm md:text-base">Accueil</a>
-                    <a href="/#destinations" class="hover:underline text-sm md:text-base">Les destinations</a>
-                    <a href="/#approche" class="hover:underline text-sm md:text-base">Qui suis-je ?</a>
-                    <a href="/#avis" class="hover:underline text-sm md:text-base">Avis des voyageurs</a>
-                    <a href="/#travel-planner" class="hover:underline text-sm md:text-base">Qu'est-ce qu'un Travel Planner ?</a>
-                    <a href="/#contact" class="hover:underline text-sm md:text-base">Contact</a>
+                <button class="nav-toggle md:hidden text-white focus:outline-none" aria-label="Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <nav class="nav-menu space-x-4">
+                    <a href="index.html#home" class="hover:underline text-sm md:text-base">Accueil</a>
+                    <a href="index.html#destinations" class="hover:underline text-sm md:text-base">Les destinations</a>
+                    <a href="index.html#about" class="hover:underline text-sm md:text-base">Qui suis-je ?</a>
+                    <a href="index.html#reviews" class="hover:underline text-sm md:text-base">Avis des voyageurs</a>
+                    <a href="index.html#travel-planner" class="hover:underline text-sm md:text-base">Qu'est-ce qu'un Travel Planner ?</a>
+                    <a href="index.html#contact" class="hover:underline text-sm md:text-base">Contact</a>
                 </nav>
-                <a href="/#destinations" class="hidden md:inline-block bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 text-sm">Retour</a>
+                <a href="index.html#destinations" class="hidden md:inline-block bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 text-sm">Retour</a>
             </div>
         </div>
-
     </header>
 
     <!-- CONTENU -->
@@ -151,33 +219,33 @@
             <h1 class="text-3xl font-bold text-center mb-4">Prochainement</h1>
             <p class="transition-line">
                 6 nouvelles propositions en cours de finalisation.<br>
-                Cliquez sur « → » pour lire le résumé, puis contactez-moi.
+                Cliquez sur une carte, une photo ou un texte pour découvrir le voyage.
             </p>
 
             <div class="grid gap-6 max-w-6xl mx-auto">
 
                 <!-- 1. Festival de Jazz -->
-                <div class="bg-white rounded shadow-lg overflow-hidden">
+                <a href="havane-jazz-2027.html" class="trip-card bg-white rounded shadow-lg overflow-hidden">
                     <div class="bg-gray-200">
-                        <img src="Images/havane-jazz.jpg" alt="Festival de Jazz à La Havane" class="w-full h-48 object-cover">
+                        <img src="Images/havane-jazz.jpg" alt="Festival de Jazz à La Havane" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23e5e7eb%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%236b7280%22 font-size=%2220%22 font-family=%22sans-serif%22%3EJazz%20%C3%A0%20La%20Havane%3C/text%3E%3C/svg%3E'">
                     </div>
                     <div class="p-4 card-content">
                         <h3 class="text-xl font-semibold">Festival de Jazz à La Havane</h3>
                         <p class="text-sm text-amber-600 font-medium mt-1">Janvier 2027</p>
                         <p class="text-gray-600 mt-2 description">
-                            Vivez l’énergie unique du jazz cubain au cœur de La Havane. Concerts, rencontres avec des musiciens, immersion dans les quartiers historiques et ambiance nocturne inoubliable.
+                            Vivez l'énergie unique du jazz cubain au cœur de La Havane. Concerts, rencontres avec des musiciens, immersion dans les quartiers historiques et ambiance nocturne inoubliable.
                         </p>
                         <div class="flex justify-center space-x-2 mt-3">
-                            <button class="read-more">+</button>
-                            <a href="havane-jazz-2027.html" class="pdf-button" title="Voir la fiche">→</a>
+                            <button class="read-more" onclick="event.stopPropagation(); event.preventDefault();">+</button>
+                            <button class="pdf-button" onclick="event.stopPropagation(); window.location.href=this.closest('.trip-card').getAttribute('href');">→</button>
                         </div>
                     </div>
-                </div>
+                </a>
 
                 <!-- 2. Tango comme thérapie -->
-                <div class="bg-white rounded shadow-lg overflow-hidden">
+                <a href="tango-therapie.html" class="trip-card bg-white rounded shadow-lg overflow-hidden">
                     <div class="bg-gray-200">
-                        <img src="Images/tango-therapie.jpg" alt="Tango comme thérapie" class="w-full h-48 object-cover">
+                        <img src="Images/tango-therapie.jpg" alt="Tango comme thérapie" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23e5e7eb%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%236b7280%22 font-size=%2220%22 font-family=%22sans-serif%22%3ETango%20Th%C3%A9rapie%3C/text%3E%3C/svg%3E'">
                     </div>
                     <div class="p-4 card-content">
                         <h3 class="text-xl font-semibold">Tango comme thérapie</h3>
@@ -186,16 +254,16 @@
                             Une expérience profonde alliant danse, émotion et bien-être. Cours et milongas à Buenos Aires, puis immersion dans les vignobles de Mendoza pour prolonger le voyage intérieur.
                         </p>
                         <div class="flex justify-center space-x-2 mt-3">
-                            <button class="read-more">+</button>
-                            <a href="tango-therapie.html" class="pdf-button" title="Voir la fiche">→</a>
+                            <button class="read-more" onclick="event.stopPropagation(); event.preventDefault();">+</button>
+                            <button class="pdf-button" onclick="event.stopPropagation(); window.location.href=this.closest('.trip-card').getAttribute('href');">→</button>
                         </div>
                     </div>
-                </div>
+                </a>
 
                 <!-- 3. Salsa à Cali -->
-                <div class="bg-white rounded shadow-lg overflow-hidden">
+                <a href="salsa-cali.html" class="trip-card bg-white rounded shadow-lg overflow-hidden">
                     <div class="bg-gray-200">
-                        <img src="Images/salsa-cali.jpg" alt="Salsa à Cali" class="w-full h-48 object-cover">
+                        <img src="Images/salsa-cali.jpg" alt="Salsa à Cali" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23e5e7eb%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%236b7280%22 font-size=%2220%22 font-family=%22sans-serif%22%3ESalsa%20%C3%A0%20Cali%3C/text%3E%3C/svg%3E'">
                     </div>
                     <div class="p-4 card-content">
                         <h3 class="text-xl font-semibold">Salsa à Cali</h3>
@@ -204,16 +272,16 @@
                             La capitale mondiale de la salsa. Cours avec des professeurs locaux, soirées dans les meilleurs clubs, rencontres avec des danseurs et immersion totale dans la culture salsera de Cali.
                         </p>
                         <div class="flex justify-center space-x-2 mt-3">
-                            <button class="read-more">+</button>
-                            <a href="salsa-cali.html" class="pdf-button" title="Voir la fiche">→</a>
+                            <button class="read-more" onclick="event.stopPropagation(); event.preventDefault();">+</button>
+                            <button class="pdf-button" onclick="event.stopPropagation(); window.location.href=this.closest('.trip-card').getAttribute('href');">→</button>
                         </div>
                     </div>
-                </div>
+                </a>
 
                 <!-- 4. Barcelone -->
-                <div class="bg-white rounded shadow-lg overflow-hidden">
+                <a href="barcelone.html" class="trip-card bg-white rounded shadow-lg overflow-hidden">
                     <div class="bg-gray-200">
-                        <img src="Images/barcelone.jpg" alt="Barcelone" class="w-full h-48 object-cover">
+                        <img src="Images/barcelone.jpg" alt="Barcelone" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23e5e7eb%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%236b7280%22 font-size=%2220%22 font-family=%22sans-serif%22%3EBarcelone%3C/text%3E%3C/svg%3E'">
                     </div>
                     <div class="p-4 card-content">
                         <h3 class="text-xl font-semibold">Barcelone, regards croisés</h3>
@@ -222,47 +290,47 @@
                             Architecture, plages, gastronomie et vie de quartier. Une escapade méditerranéenne entre modernité et héritage, à vivre à votre rythme.
                         </p>
                         <div class="flex justify-center space-x-2 mt-3">
-                            <button class="read-more">+</button>
-                            <a href="barcelone.html" class="pdf-button" title="Voir la fiche">→</a>
+                            <button class="read-more" onclick="event.stopPropagation(); event.preventDefault();">+</button>
+                            <button class="pdf-button" onclick="event.stopPropagation(); window.location.href=this.closest('.trip-card').getAttribute('href');">→</button>
                         </div>
                     </div>
-                </div>
+                </a>
 
                 <!-- 5. Argentine authentique -->
-                <div class="bg-white rounded shadow-lg overflow-hidden">
+                <a href="argentine-authentique.html" class="trip-card bg-white rounded shadow-lg overflow-hidden">
                     <div class="bg-gray-200">
-                        <img src="Images/argentine-authentique.jpg" alt="Argentine authentique" class="w-full h-48 object-cover">
+                        <img src="Images/argentine-authentique.jpg" alt="Argentine authentique" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23e5e7eb%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%236b7280%22 font-size=%2220%22 font-family=%22sans-serif%22%3EArgentine%20Authentique%3C/text%3E%3C/svg%3E'">
                     </div>
                     <div class="p-4 card-content">
                         <h3 class="text-xl font-semibold">Argentine authentique</h3>
                         <p class="text-sm text-amber-600 font-medium mt-1">BSAS • Mar del Plata • Tres Arroyos • Pigüé</p>
                         <p class="text-gray-600 mt-2 description">
-                            L’Argentine hors des circuits classiques. De Buenos Aires à la côte atlantique, puis les plaines de Tres Arroyos et Pigüé. Traditions, rencontres et paysages intimes.
+                            L'Argentine hors des circuits classiques. De Buenos Aires à la côte atlantique, puis les plaines de Tres Arroyos et Pigüé. Traditions, rencontres et paysages intimes.
                         </p>
                         <div class="flex justify-center space-x-2 mt-3">
-                            <button class="read-more">+</button>
-                            <a href="argentine-authentique.html" class="pdf-button" title="Voir la fiche">→</a>
+                            <button class="read-more" onclick="event.stopPropagation(); event.preventDefault();">+</button>
+                            <button class="pdf-button" onclick="event.stopPropagation(); window.location.href=this.closest('.trip-card').getAttribute('href');">→</button>
                         </div>
                     </div>
-                </div>
+                </a>
 
                 <!-- 6. Cuba entre Salsa et Tango -->
-                <div class="bg-white rounded shadow-lg overflow-hidden">
+                <a href="cuba-salsa-tango.html" class="trip-card bg-white rounded shadow-lg overflow-hidden">
                     <div class="bg-gray-200">
-                        <img src="Images/cuba-salsa-tango.jpg" alt="Cuba entre Salsa et Tango" class="w-full h-48 object-cover">
+                        <img src="Images/cuba-salsa-tango.jpg" alt="Cuba entre Salsa et Tango" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23e5e7eb%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%236b7280%22 font-size=%2220%22 font-family=%22sans-serif%22%3ECuba%20Salsa%20Tango%3C/text%3E%3C/svg%3E'">
                     </div>
                     <div class="p-4 card-content">
                         <h3 class="text-xl font-semibold">Cuba : entre Salsa et Tango</h3>
                         <p class="text-sm text-amber-600 font-medium mt-1">La Havane</p>
                         <p class="text-gray-600 mt-2 description">
-                            Deux danses, une même passion. Alternance de cours et soirées salsa et tango à La Havane, rencontres avec des danseurs et immersion dans l’ambiance nocturne et culturelle de la ville.
+                            Deux danses, une même passion. Alternance de cours et soirées salsa et tango à La Havane, rencontres avec des danseurs et immersion dans l'ambiance nocturne et culturelle de la ville.
                         </p>
                         <div class="flex justify-center space-x-2 mt-3">
-                            <button class="read-more">+</button>
-                            <a href="cuba-salsa-tango.html" class="pdf-button" title="Voir la fiche">→</a>
+                            <button class="read-more" onclick="event.stopPropagation(); event.preventDefault();">+</button>
+                            <button class="pdf-button" onclick="event.stopPropagation(); window.location.href=this.closest('.trip-card').getAttribute('href');">→</button>
                         </div>
                     </div>
-                </div>
+                </a>
 
             </div>
         </div>
@@ -273,20 +341,45 @@
         <div class="container mx-auto px-4 text-center">
             <p class="text-sm">
                 &copy; 2026 - VPDVOYAGES - Patrick Daroque - Travel Planner. Tous droits réservés. | n° siret : 52534368700030
-                | <a href="/cgv" class="underline">CGV</a>
-                | <a href="/mentions-legales" class="underline">Mentions légales</a>
+                | <a href="cgv.html" class="underline">CGV</a>
+                | <a href="mentions-legales.html" class="underline">Mentions légales</a>
             </p>
         </div>
     </footer>
 
     <script>
-        document.querySelector('.nav-toggle')?.addEventListener('click', function () {
+        // Menu mobile - toggle
+        document.querySelector('.nav-toggle')?.addEventListener('click', function (e) {
+            e.stopPropagation();
             document.querySelector('.nav-menu')?.classList.toggle('active');
         });
 
+        // Fermeture du menu quand on clique sur un lien
+        document.querySelectorAll('.nav-menu a').forEach(anchor => {
+            anchor.addEventListener('click', function () {
+                if (window.innerWidth <= 640) {
+                    document.querySelector('.nav-menu')?.classList.remove('active');
+                }
+            });
+        });
+
+        // Fermer le menu en cliquant ailleurs
+        document.addEventListener('click', function (e) {
+            if (window.innerWidth <= 640) {
+                const menu = document.querySelector('.nav-menu');
+                const toggle = document.querySelector('.nav-toggle');
+                if (menu && !menu.contains(e.target) && !toggle?.contains(e.target)) {
+                    menu.classList.remove('active');
+                }
+            }
+        });
+
+        // Système "Lire plus / Moins"
         document.querySelectorAll('.read-more').forEach(button => {
-            button.addEventListener('click', function () {
-                const description = this.closest('.p-4').querySelector('.description');
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const description = this.closest('.card-content').querySelector('.description');
                 if (description) {
                     description.classList.toggle('expanded');
                     this.textContent = description.classList.contains('expanded') ? '−' : '+';
