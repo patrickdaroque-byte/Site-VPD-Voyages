@@ -11,35 +11,29 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Balise Title -->
   <title>VPDVOYAGES – Patrick Daroque | Voyages sur mesure Espagne & Amérique latine</title>
-  <!-- Meta Description -->
   <meta name="description" content="VPDVOYAGES – Patrick Daroque, Travel Planner. Voyages sur mesure et en petit groupe (formules Autonomie ou Sérénité) en Espagne, Colombie, Argentine, Cuba et Uruguay.">
   <meta name="keywords" content="Patrick Daroque, VPDVOYAGES, voyages Espagne, voyages Amérique latine, séjour personnalisé, travel planner">
   <meta name="author" content="Patrick Daroque">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://vpdvoyages.com/">
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Patrick Daroque - Voyages sur mesure Espagne & Amérique latine">
   <meta property="og:description" content="Voyagez différemment avec VPDVOYAGES. Séjours personnalisés en Espagne et Amérique latine avec Patrick Daroque.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://vpdvoyages.com/">
   <meta property="og:image" content="https://vpdvoyages.com/Images/hero-image.jpg">
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Patrick Daroque - Voyages sur mesure Espagne & Amérique latine">
   <meta name="twitter:description" content="VPDVOYAGES - Vos séjours personnalisés avec Patrick Daroque en Espagne et Amérique latine.">
   <meta name="twitter:image" content="https://vpdvoyages.com/Images/hero-image.jpg">
 
-  <!-- Google Site Verification -->
   <meta name="google-site-verification" content="GL_MN5ppVlrThYDUpviv9e4gRrljAwbIHbW3zUvcXAA" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
 
-  <!-- Données structurées JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -164,17 +158,13 @@
       transform: none;
       box-shadow: none;
     }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.00); }
-      100% { transform: scale(1); }
-    }
+    
     .starburst {
       position: absolute;
-      z-index: 20;
+      z-index: 30;
       right: 10%;
       left: auto;
-      top: 50%;
+      top: 58%;                 /* un peu plus bas pour être entière en version ordi */
       text-decoration: none;
       cursor: pointer;
       transform: translateY(-50%) rotate(10deg);
@@ -182,6 +172,7 @@
       height: 170px;
       background: linear-gradient(135deg, #ffeb3b 0%, #ffc107 45%, #f57c00 100%);
       clip-path: polygon(50.0% 0.0%, 57.3% 17.8%, 71.7% 5.0%, 70.6% 24.2%, 89.1% 18.8%, 79.7% 35.7%, 98.7% 38.9%, 83.0% 50.0%, 98.7% 61.1%, 79.7% 64.3%, 89.1% 81.2%, 70.6% 75.8%, 71.7% 95.0%, 57.3% 82.2%, 50.0% 100.0%, 42.7% 82.2%, 28.3% 95.0%, 29.4% 75.8%, 10.9% 81.2%, 20.3% 64.3%, 1.3% 61.1%, 17.0% 50.0%, 1.3% 38.9%, 20.3% 35.7%, 10.9% 18.8%, 29.4% 24.2%, 28.3% 5.0%, 42.7% 17.8%);
+      -webkit-clip-path: polygon(50.0% 0.0%, 57.3% 17.8%, 71.7% 5.0%, 70.6% 24.2%, 89.1% 18.8%, 79.7% 35.7%, 98.7% 38.9%, 83.0% 50.0%, 98.7% 61.1%, 79.7% 64.3%, 89.1% 81.2%, 70.6% 75.8%, 71.7% 95.0%, 57.3% 82.2%, 50.0% 100.0%, 42.7% 82.2%, 28.3% 95.0%, 29.4% 75.8%, 10.9% 81.2%, 20.3% 64.3%, 1.3% 61.1%, 17.0% 50.0%, 1.3% 38.9%, 20.3% 35.7%, 10.9% 18.8%, 29.4% 24.2%, 28.3% 5.0%, 42.7% 17.8%);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -212,29 +203,34 @@
       50% { transform: translateY(-50%) rotate(10deg) scale(1.06); }
       100% { transform: translateY(-50%) rotate(10deg) scale(1); }
     }
+    /* top 58% déjà appliqué sur .starburst desktop */
     @media (max-width: 639px) {
       .starburst {
         width: 110px;
         height: 110px;
-        top: 10px;
-        right: 6px;
+        top: 72px;          /* bien sous le header fixe */
+        right: 8px;
         left: auto;
-        transform: rotate(10deg);
+        transform: rotate(8deg);
+        z-index: 40;
+        animation: starburst-pulse-mobile 2.2s ease-in-out infinite;
       }
       .starburst-title {
         font-size: 0.85rem;
       }
       .starburst-sub {
-        font-size: 0.60rem;
-        max-width: 65px;
-        margin-top: 2px;
+        font-size: 0.62rem;
+        max-width: 70px;
+        margin-top: 3px;
+        line-height: 1.15;
       }
-      @keyframes starburst-pulse {
-        0% { transform: rotate(10deg) scale(1); }
-        50% { transform: rotate(10deg) scale(1.06); }
-        100% { transform: rotate(10deg) scale(1); }
+      @keyframes starburst-pulse-mobile {
+        0% { transform: rotate(8deg) scale(1); }
+        50% { transform: rotate(8deg) scale(1.07); }
+        100% { transform: rotate(8deg) scale(1); }
       }
     }
+
     .cuba img {
       object-fit: contain;
     }
@@ -315,6 +311,11 @@
         box-shadow: 0 3px 8px rgba(37, 99, 235, 0.12);
         transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
         cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        background: none;
       }
       #destinations .prochainement-btn:hover {
         transform: translateY(-3px) scale(1.02);
@@ -329,6 +330,26 @@
       #destinations .prochainement-btn:focus-visible {
         outline: 3px solid rgba(37, 99, 235, 0.30);
         outline-offset: 2px;
+      }
+
+      /* Desktop : uniquement la photo, pas le titre ni le texte */
+      #about .about-title,
+      #about .about-text {
+        display: none !important;
+      }
+      #about {
+        padding-top: 1.25rem;
+        padding-bottom: 1.25rem;
+      }
+      #about .about-photo {
+        margin-bottom: 0 !important;
+      }
+      #about .about-photo img {
+        width: 9rem;
+        height: 9rem;
+      }
+      #destinations {
+        margin-bottom: 0.5rem;
       }
     }
 
@@ -350,28 +371,49 @@
         grid-column: auto;
       }
       #destinations h2 {
-        display: none;
+        display: block;            /* titre visible aussi sur mobile */
+        font-size: 1.35rem;
+        margin-bottom: 0.5rem;
+        margin-top: 0.25rem;
       }
       .argentine .see-program {
         display: block;
       }
       #home {
         height: auto;
-        min-height: 35vh;
+        min-height: 32vh;
+        padding-top: 68px !important;   /* juste sous le header */
+        padding-bottom: 0.5rem;
+        justify-content: flex-start;
       }
       #home .text-center {
-        padding: 0.75rem;
-      }
-      #home h1 {
-        font-size: 1.35rem;
+        padding: 0.9rem 1rem;
+        background: rgba(0, 0, 0, 0.55) !important;
+        border-radius: 10px;
+        max-width: 92%;
+        margin: 0 auto;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
       }
       #home p {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
+        margin-bottom: 0.75rem !important;
       }
+      
+      /* ===== BANDEAU COMPLET ===== */
+      #home h1 {
+        font-size: 1.2rem !important;
+        line-height: 1.35 !important;
+        white-space: normal !important;
+        word-wrap: break-word !important;
+        max-width: 100% !important;
+        margin-bottom: 0.4rem !important;
+      }
+      
       .espagne img, .cuba img, .argentine img, .uruguay img, .colombie img {
         width: 5.5rem;
         height: 3.3rem;
       }
+      
       #destinations .flag-container {
         display: block;
         width: 100%;
@@ -409,6 +451,8 @@
         width: 5.5rem;
         height: 3.3rem;
       }
+      
+      /* ===== PROCHAINEMENT : MEME CADRE QUE LES AUTRES ===== */
       #destinations .prochainement-btn {
         width: 100%;
         box-sizing: border-box;
@@ -417,6 +461,11 @@
         border-radius: 10px;
         box-shadow: 0 2px 5px rgba(37, 99, 235, 0.14);
         transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        background: rgba(255,255,255,0.78);
       }
       #destinations .prochainement-btn:active {
         transform: translateY(1px) scale(0.98);
@@ -426,6 +475,32 @@
       #destinations .prochainement-btn:focus-visible {
         outline: 2px solid rgba(37, 99, 235, 0.30);
         outline-offset: 1px;
+      }
+      
+      .globe-star {
+        width: 3.3rem !important;   /* cercle parfait aussi sur mobile */
+        height: 3.3rem !important;
+        border-radius: 50% !important;
+        margin: 0 auto !important;
+        background: linear-gradient(145deg, #3b82f6 0%, #1d4ed8 100%) !important;
+        border: 2px solid #93c5fd !important;
+        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.45) !important;
+      }
+      .globe-star svg { 
+        width: 22px !important; 
+        height: 22px !important; 
+      }
+      .globe-star .star-dot { 
+        width: 8px !important; 
+        height: 8px !important; 
+        top: 3px !important; 
+        right: 3px !important; 
+      }
+      .prochainement-label { 
+        font-size: 1rem !important; 
+        font-weight: 600 !important;
+        color: #4b5563 !important;
+        margin-top: 0.15rem !important;
       }
     }
 
@@ -437,9 +512,10 @@
       transition: transform 0.2s ease;
     }
     .prochainement-btn:hover { transform: scale(1.06); }
+    
     .globe-star {
-      width: 72px;
-      height: 72px;
+      width: 64px;                 /* même taille visuelle que les pastilles drapeaux */
+      height: 64px;
       border-radius: 50%;
       background: linear-gradient(145deg, #3b82f6 0%, #1d4ed8 100%);
       display: flex;
@@ -448,14 +524,21 @@
       box-shadow: 0 4px 14px rgba(37, 99, 235, 0.45);
       position: relative;
       border: 2px solid #93c5fd;
+      margin: 0 auto;
     }
-    .globe-star svg { width: 42px; height: 42px; }
+    .globe-star svg { 
+      width: 32px; 
+      height: 32px; 
+      fill: none;
+      stroke: white;
+      stroke-width: 1.5;
+    }
     .globe-star .star-dot {
       position: absolute;
-      top: 8px;
-      right: 10px;
-      width: 14px;
-      height: 14px;
+      top: 5px;
+      right: 6px;
+      width: 11px;
+      height: 11px;
       background: #fbbf24;
       border-radius: 50%;
       box-shadow: 0 0 8px 2px rgba(251, 191, 36, 0.8);
@@ -466,17 +549,10 @@
       50% { transform: scale(1.25); opacity: 0.85; }
     }
     .prochainement-label {
-      margin-top: 0.5rem;
+      margin-top: 0.25rem;
       color: #4b5563;
       font-size: 1rem;
       font-weight: 600;
-    }
-    @media (max-width: 639px) {
-      .globe-star { width: 50px; height: 50px; }
-      .globe-star svg { width: 28px; height: 28px; }
-      .globe-star .star-dot { width: 10px; height: 10px; top: 5px; right: 6px; }
-      .prochainement-label { font-size: 0.85rem; }
-      #destinations .prochainement { grid-area: auto; }
     }
   </style>
 </head>
@@ -486,7 +562,6 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <!-- HEADER -->
   <header class="bg-blue-600 text-white py-2">
     <div class="container mx-auto px-4 flex justify-between items-center flex-wrap">
       <div class="flex items-center space-x-4">
@@ -506,8 +581,8 @@
           <li><a href="#home" class="hover:underline text-base md:text-lg">Accueil</a></li>
           <li><a href="#destinations" class="hover:underline text-base md:text-lg">Destinations</a></li>
           <li><a href="#about" class="hover:underline text-base md:text-lg">Mon approche</a></li>
-          <li><a href="#reviews" class="hover:underline text-base md:text-lg" title="Ce que dicen les clients de Patrick Daroque">Avis clients</a></li>
-          <li><a href="#travel-planner" class="hover:underline text-base md:text-lg" title="Qu'est-ce qu'un Travel Planner ?">Travel Planner ?</a></li>
+          <li><a href="#reviews" class="hover:underline text-base md:text-lg">Avis clients</a></li>
+          <li><a href="#travel-planner" class="hover:underline text-base md:text-lg">Travel Planner ?</a></li>
           <li><a href="#contact" class="hover:underline text-base md:text-lg">Contact</a></li>
         </ul>
       </nav>
@@ -515,18 +590,17 @@
   </header>
 
   <main>
-    <!-- HERO SECTION -->
-    <section id="home" class="bg-cover bg-center min-h-[16rem] md:min-h-[18rem] -mt-[60px] pb-0 flex flex-col items-center justify-center relative mb-0" style="background-image: url('https://vpdvoyages.com/Voyages%20de%20r%C3%AAve/Images/hero-image.jpg')">
+    <section id="home" class="bg-cover bg-center min-h-[14rem] md:min-h-[16rem] -mt-[60px] pb-0 flex flex-col items-center justify-start md:justify-start relative mb-0 pt-[68px] md:pt-[70px]" style="background-image: url('https://vpdvoyages.com/Voyages%20de%20r%C3%AAve/Images/hero-image.jpg')">
       <a href="cgv.html#cgv-formules" class="starburst" title="Découvrir les formules Autonomie et Sérénité dans les CGV">
         <span class="starburst-title">Nouveau</span>
         <span class="starburst-sub">Autonomie &amp; Sérénité</span>
       </a>
-      <div class="text-center text-white bg-black bg-opacity-30 p-2 md:p-3 rounded relative z-10 mt-0 md:mt-0">
+      <div class="text-center text-white bg-black bg-opacity-55 md:bg-opacity-35 p-3 md:p-3 rounded-lg relative z-10 mt-0 shadow-lg">
         <h1 class="text-xl md:text-2xl font-bold mb-1 md:mb-2 relative z-10">Découvrez l'Espagne et l'Amérique latine autrement</h1>
         <p class="text-sm md:text-base mb-3 md:mb-4 relative z-10">Des aventures sur mesure et en petit groupe vous attendent</p>
         <div class="flex flex-wrap justify-center items-center gap-3 md:gap-4 relative z-10">
-          <a href="#contact" class="bg-blue-600 text-white px-3 py-1 rounded-full hover:bg-blue-700 text-sm md:text-base" title="Prendre contact pour un projet de voyage">Parlons de votre projet</a>
-          <a href="voyage-solo.html" class="bg-orange-500 text-white px-3 py-1 rounded-full hover:bg-orange-600 text-sm md:text-base inline-flex items-center gap-2" title="Découvrir l'offre de voyages solo en petit groupe">
+          <a href="#contact" class="bg-blue-600 text-white px-3 py-1 rounded-full hover:bg-blue-700 text-sm md:text-base">Parlons de votre projet</a>
+          <a href="voyage-solo.html" class="bg-orange-500 text-white px-3 py-1 rounded-full hover:bg-orange-600 text-sm md:text-base inline-flex items-center gap-2">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.5c-3.3 0-9.8 1.6-9.8 4.9v2.4h19.6v-2.4c0-3.3-6.5-4.9-9.8-4.9z"/>
             </svg>
@@ -534,17 +608,16 @@
           </a>
         </div>
       </div>
-      <div class="daily-quote w-full md:w-auto mt-0 md:mt-0"></div>
+      <div class="daily-quote w-full md:w-auto mt-1 md:mt-1"></div>
     </section>
 
-    <!-- DESTINATIONS SECTION -->
-    <section id="destinations" class="pt-0 pb-2 mt-0 bg-white">
+    <section id="destinations" class="pt-0 pb-2 -mt-2 md:-mt-3 bg-white">
       <div class="container mx-auto px-4">
-        <h2 class="text-2xl md:text-3xl font-bold text-center mb-4">Nos destinations d'exception</h2>
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-2 md:mb-3">Nos destinations d'exception</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 mb-2">
           <div class="espagne text-center">
-            <a href="espagne.html" class="flag-container" title="Circuit sur mesure en Espagne">
-              <img src="Images/espagne_flag.png" alt="Drapeau Espagne - Circuits et séjours avec VPDVOYAGES" width="112" height="72" class="flag-img mx-auto">
+            <a href="espagne.html" class="flag-container">
+              <img src="Images/espagne_flag.png" alt="Drapeau Espagne" width="112" height="72" class="flag-img mx-auto">
               <p class="mt-1 text-gray-600 text-base font-semibold">Espagne</p>
             </a>
           </div>
@@ -555,8 +628,8 @@
                   Départs selon<br class="cuba-br"> l'actualité
                 </span>
               </div>
-              <a href="cuba.html" class="flag-container" title="Voyages et séjours sur mesure à Cuba">
-                <img src="Images/cuba_flag.png" alt="Drapeau Cuba - Voyages authentiques VPDVOYAGES" width="112" height="72" class="flag-img mx-auto">
+              <a href="cuba.html" class="flag-container">
+                <img src="Images/cuba_flag.png" alt="Drapeau Cuba" width="112" height="72" class="flag-img mx-auto">
                 <p class="mt-1 text-gray-600 text-base font-semibold">Cuba</p>
               </a>
             </div>
@@ -630,34 +703,34 @@
           }
           </style>
           <div class="argentine text-center">
-            <a href="argentine.html" class="flag-container" title="Voyages sur mesure en Argentine">
-              <img src="Images/argentine_flag.png" alt="Drapeau Argentine - Séjours Tango et Bodegas avec VPDVOYAGES" width="112" height="72" class="flag-img mx-auto">
+            <a href="argentine.html" class="flag-container">
+              <img src="Images/argentine_flag.png" alt="Drapeau Argentine" width="112" height="72" class="flag-img mx-auto">
               <p class="mt-1 text-gray-600 text-base font-semibold">Argentine</p>
             </a>
           </div>
           <div class="uruguay text-center">
-            <a href="uruguay.html" class="flag-container" title="Découvrir l'Uruguay sur mesure">
-              <img src="Images/uruguay_flag.png" alt="Drapeau Uruguay - Circuits et séjours authenticité VPDVOYAGES" width="112" height="72" class="flag-img mx-auto">
+            <a href="uruguay.html" class="flag-container">
+              <img src="Images/uruguay_flag.png" alt="Drapeau Uruguay" width="112" height="72" class="flag-img mx-auto">
               <p class="mt-1 text-gray-600 text-base font-semibold">Uruguay</p>
             </a>
           </div>
           <div class="colombie text-center">
-            <a href="colombie.html" class="flag-container" title="Voyages sur mesure en Colombie">
-              <img src="Images/colombie_flag.png" alt="Drapeau Colombie - Circuits authenticité avec VPDVOYAGES" width="112" height="72" class="flag-img mx-auto">
+            <a href="colombie.html" class="flag-container">
+              <img src="Images/colombie_flag.png" alt="Drapeau Colombie" width="112" height="72" class="flag-img mx-auto">
               <p class="mt-1 text-gray-600 text-base font-semibold">Colombie</p>
             </a>
           </div>
           <div class="prochainement text-center">
-            <a href="prochainement.html" class="prochainement-btn" title="Découvrir les prochaines destinations et expériences" aria-label="Voir les prochaines destinations">
+            <a href="prochainement.html" class="prochainement-btn">
               <div class="globe-star">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9" stroke="white" stroke-width="1.5" fill="none"/>
-                  <ellipse cx="12" cy="12" rx="4" ry="9" stroke="white" stroke-width="1.2" fill="none"/>
+                  <circle cx="12" cy="12" r="9" stroke="white" stroke-width="1.5"/>
+                  <ellipse cx="12" cy="12" rx="4" ry="9" stroke="white" stroke-width="1.2"/>
                   <path d="M3 12h18" stroke="white" stroke-width="1.2"/>
-                  <path d="M5 7.5c2.5 1 5.5 1.5 7 1.5s4.5-.5 7-1.5" stroke="white" stroke-width="1" fill="none"/>
-                  <path d="M5 16.5c2.5-1 5.5-1.5 7-1.5s4.5.5 7 1.5" stroke="white" stroke-width="1" fill="none"/>
+                  <path d="M5 7.5c2.5 1 5.5 1.5 7 1.5s4.5-.5 7-1.5" stroke="white" stroke-width="1"/>
+                  <path d="M5 16.5c2.5-1 5.5-1.5 7-1.5s4.5.5 7 1.5" stroke="white" stroke-width="1"/>
                 </svg>
-                <span class="star-dot" title="Nouveautés"></span>
+                <span class="star-dot"></span>
               </div>
               <p class="prochainement-label">Prochainement</p>
             </a>
@@ -673,17 +746,14 @@
       </div>
     </section>
 
-    <!-- ABOUT SECTION -->
     <section id="about" class="pt-4 pb-4 -mt-1 bg-gray-100">
       <div class="container mx-auto px-4">
         <div class="flex flex-col items-center">
-          <!-- PHOTO EN HAUT -->
-          <div class="mb-4">
-            <img src="Images/Photo%20Patrick.JPG" alt="Patrick Daroque - Travel Planner expert Espagne et Amérique latine" width="120" height="120" class="h-28 w-28 object-cover rounded-full mx-auto image-check shadow-md" loading="lazy">
+          <div class="mb-4 about-photo">
+            <img src="Images/Photo%20Patrick.JPG" alt="Patrick Daroque - Travel Planner" width="120" height="120" class="h-28 w-28 object-cover rounded-full mx-auto image-check shadow-md" loading="lazy">
           </div>
-          <!-- TITRE APRÈS LA PHOTO -->
-          <h2 class="text-3xl font-bold text-center mb-4">Mon approche du voyage sur mesure</h2>
-          <div>
+          <h2 class="text-3xl font-bold text-center mb-4 about-title">Mon approche du voyage sur mesure</h2>
+          <div class="about-text">
             <h3 class="text-blue-600 font-bold text-lg mb-1">Une passion pour le monde hispanique</h3>
             <p class="text-gray-600 text-base mb-4">
               Je suis Patrick Daroque, <strong>Travel Planner spécialisé en voyages sur mesure ou en petit groupe (formules Autonomie ou Sérénité) en Espagne et en Amérique latine</strong>. 
@@ -705,24 +775,21 @@
       </div>
     </section>
 
-    <!-- COMBINED SECTION -->
     <section id="combined-section" class="py-6 bg-white">
       <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           
-          <!-- Avis -->
           <div class="text-center" id="reviews">
             <h2 class="text-2xl font-bold mb-4">Ce que dicen les clients</h2>
             <div class="bg-gray-200 p-3 rounded shadow-lg">
               <p class="text-gray-600 text-base mb-2">Découvrez les avis sur les voyages uniques en Espagne et Amérique latine.</p>
-              <a href="javascript:void(0);" onclick="openReviewsPopup()" class="text-blue-600 hover:underline text-base font-semibold" title="Ouvrir la fenêtre d'avis voyageurs">Voir les avis clients</a>
+              <a href="javascript:void(0);" onclick="openReviewsPopup()" class="text-blue-600 hover:underline text-base font-semibold">Voir les avis clients</a>
             </div>
             <div class="mt-4">
-              <img src="Images/carte_amerique_latine.jpeg" alt="Carte d'Amérique latine situant Cuba, Argentine, Uruguay et Colombie" width="300" height="240" class="w-full h-60 object-contain rounded mx-auto image-check" loading="lazy">
+              <img src="Images/carte_amerique_latine.jpeg" alt="Carte d'Amérique latine" width="300" height="240" class="w-full h-60 object-contain rounded mx-auto image-check" loading="lazy">
             </div>
           </div>
 
-          <!-- Contact -->
           <div class="text-center" id="contact">
             <h2 class="text-2xl font-bold text-center mb-4">Contactez-moi</h2>
             <div class="max-w-sm mx-auto bg-white p-4 rounded shadow-lg">
@@ -749,11 +816,10 @@
               </form>
               <a href="https://wa.me/33610950984?text=Bonjour,%20je%20souhaite%20des%20informations%20sur%20vos%20voyages"
                  class="mt-2 bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600 w-full text-center inline-block text-base font-medium"
-                 target="_blank" rel="noopener noreferrer" title="Contacter Patrick Daroque via WhatsApp">WhatsApp</a>
+                 target="_blank" rel="noopener noreferrer">WhatsApp</a>
             </div>
           </div>
 
-          <!-- Travel Planner Concept -->
           <div class="text-center" id="travel-planner">
             <h2 class="text-2xl font-bold mb-4">Qu'est-ce qu'un Travel Planner ?</h2>
             <div class="max-w-xs mx-auto text-base text-gray-600 text-left">
@@ -774,12 +840,11 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="bg-blue-600 py-2">
     <div class="container mx-auto px-4 text-center">
       <p style="color: white; font-size: 1rem;">&copy; 2026 - VPDVOYAGES - Patrick Daroque - Travel Planner. Tous droits réservés. | SIRET : 52534368700030
-      | <a href="cgv.html" style="color: white; text-decoration: underline;" title="Consulter les Conditions Générales de Vente">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;" title="Consulter les mentions légales">Mentions légales</a>
-      | <a href="partenaires.html" title="Nos partenaires" aria-label="Nos partenaires" style="display: inline-flex; align-items: center; vertical-align: middle;">
+      | <a href="cgv.html" style="color: white; text-decoration: underline;">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;">Mentions légales</a>
+      | <a href="partenaires.html" style="display: inline-flex; align-items: center; vertical-align: middle;">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.75;">
             <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
             <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
@@ -789,36 +854,6 @@
   </footer>
 
   <script src="quotes.js" defer></script>
-  <script type="text/javascript">
-    var gk_isXlsx = false;
-    var gk_xlsxFileLookup = {};
-    var gk_fileData = {};
-    function filledCell(cell) {
-      return cell !== '' && cell != null;
-    }
-    function loadFileData(filename) {
-      if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-        try {
-          var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-          var firstSheetName = workbook.SheetNames[0];
-          var worksheet = workbook.Sheets[firstSheetName];
-          var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-          var filteredData = jsonData.filter(row => row.some(filledCell));
-          var headerRowIndex = filteredData.findIndex((row, index) => row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length);
-          if (headerRowIndex === -1 || headerRowIndex > 25) {
-            headerRowIndex = 0;
-          }
-          var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
-          csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-          return csv;
-        } catch (e) {
-          console.error(e);
-          return "";
-        }
-      }
-      return gk_fileData[filename] || "";
-    }
-  </script>
   <script>
     function resetMenus() {
       document.querySelector('.nav-menu')?.classList.remove('active');
@@ -833,20 +868,6 @@
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
           target.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          console.error('Erreur : Section ' + this.getAttribute('href') + ' non trouvée');
-          alert('Erreur : La section "' + this.getAttribute('href').substring(1) + '" est introuvable.');
-        }
-      });
-      anchor.addEventListener('touchstart', function (e) {
-        e.preventDefault();
-        resetMenus();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          console.error('Erreur : Section ' + this.getAttribute('href') + ' non trouvée');
-          alert('Erreur : La section "' + this.getAttribute('href').substring(1) + '" est introuvable.');
         }
       });
     });
@@ -854,15 +875,10 @@
     document.querySelector('.nav-toggle').addEventListener('click', function () {
       document.querySelector('.nav-menu').classList.toggle('active');
     });
-    document.querySelector('.nav-toggle').addEventListener('touchstart', function (e) {
-      e.preventDefault();
-      document.querySelector('.nav-menu').classList.toggle('active');
-    });
 
     document.querySelectorAll('.image-check').forEach(img => {
       img.addEventListener('error', function () {
-        console.error('Erreur : Image manquante pour', this.alt, ':', this.src);
-        alert('Erreur : L\'image est manquante ou le chemin est invalide pour ' + this.alt + '. Vérifiez le chemin : ' + this.src);
+        console.error('Image manquante :', this.src);
       });
     });
 
@@ -873,8 +889,6 @@
       const dailyQuoteElement = document.querySelector('.daily-quote');
       if (dailyQuoteElement && quotes.length > 0) {
         dailyQuoteElement.textContent = quotes[quoteIndex] || "Aucune citation disponible.";
-      } else {
-        console.log("Erreur : Élément .daily-quote non trouvé ou pas de citations.");
       }
     });
 
@@ -883,12 +897,7 @@
       const height = 600;
       const left = (window.innerWidth - width) / 2;
       const top = (window.innerHeight - height) / 2;
-      const reviewsWindow = window.open('https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site', '_blank', `width=${width},height=${height},left=${left},top=${top}`);
-      if (reviewsWindow) {
-        reviewsWindow.focus();
-      } else {
-        alert('Veuillez autoriser les popups pour voir les avis.');
-      }
+      window.open('https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site', '_blank', `width=${width},height=${height},left=${left},top=${top}`);
     }
   </script>
   <script>
@@ -912,68 +921,6 @@
       });
     });
   </script>
-
-  <!-- Script Voiceflow standard (se masque automatiquement si quota dépassé) -->
-  <script type="text/javascript">
-    (function(d, t) {
-      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-      v.onload = function() {
-        try {
-          window.voiceflow.chat.load({
-            verify: { projectID: '6a84bf641c51f4a7bb70c4d3' },
-            url: 'https://general-runtime.voiceflow.com',
-            voice: {
-              url: "https://runtime-api.voiceflow.com"
-            },
-            render: {
-              mode: 'overlay'
-            },
-            assistant: {
-              title: "Votre conseiller VPDVOYAGES",
-              description: "Mon assistant voyage",
-              ariaLabel: "Assistant voyage",
-              color: "#2563eb"
-            },
-            i18n: {
-              startNewChat: "Démarrer une nouvelle conversation",
-              cancel: "Annuler"
-            }
-          }).then(() => {
-            window.voiceflow.widget.on('open', () => {
-              if (typeof gtag === 'function') {
-                gtag('event', 'chatbot_opened', {
-                  'event_category': 'Chatbot',
-                  'event_label': 'Ouverture du chat'
-                });
-              }
-            });
-
-            window.voiceflow.widget.on('interact', (action) => {
-              if (typeof gtag === 'function') {
-                gtag('event', 'chatbot_message_sent', {
-                  'event_category': 'Chatbot',
-                  'event_label': 'Message utilisateur'
-                });
-              }
-            });
-          }).catch((err) => {
-            if (window.voiceflow && window.voiceflow.chat) {
-              window.voiceflow.chat.hide();
-            }
-          });
-        } catch (err) {
-          console.warn("Erreur de chargement Voiceflow :", err);
-        }
-      };
-      
-      v.onerror = function() {
-        console.warn("Impossible de charger le script Voiceflow.");
-      };
-
-      v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; 
-      v.type = "text/javascript"; 
-      s.parentNode.insertBefore(v, s);
-    })(document, 'script');
-  </script>
+  <!-- Voiceflow retiré : sans crédits le launcher s'affiche quand même, la détection côté client est impossible -->
 </body>
 </html>
