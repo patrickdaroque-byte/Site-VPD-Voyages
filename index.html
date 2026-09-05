@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PT88MSGW');</script>
+  <!-- End Google Tag Manager -->
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Balise Title -->
@@ -235,10 +243,10 @@
         padding: 1rem 0;
       }
       body {
-        padding-top: 80px;
+        padding-top: 60px;
       }
       html {
-        scroll-padding-top: 80px;
+        scroll-padding-top: 60px;
       }
       .nav-menu {
         display: flex;
@@ -264,8 +272,6 @@
         display: none;
       }
     }
-    /* Effet cliquable renforcé uniquement sur ordinateur.
-       La version mobile reste strictement inchangée. */
     @media (min-width: 640px) {
       #destinations .flag-container {
         padding: 5px 8px 7px;
@@ -292,13 +298,6 @@
         outline-offset: 2px;
       }
 
-      /* Cuba : même largeur de pavé cliquable que les autres destinations sur ordinateur.
-         Les autres boutons (Espagne, Argentine, Uruguay, Colombie) sont des liens "block"
-         qui s'étirent automatiquement sur toute la largeur de leur colonne de grille.
-         Le bouton Cuba est imbriqué dans .cuba-with-badge (flex, align-items: center),
-         ce qui le réduisait à la largeur de son contenu. On force ici le même étirement
-         sur 100% de la colonne, pour une largeur toujours identique quelle que soit la
-         largeur d'écran. */
       #destinations .cuba-with-badge {
         width: 100%;
       }
@@ -307,7 +306,6 @@
         box-sizing: border-box;
       }
 
-      /* Prochainement : même zone interactive que les autres destinations sur ordinateur. */
       #destinations .prochainement-btn {
         box-sizing: border-box;
         width: 100%;
@@ -338,7 +336,6 @@
       #destinations {
         padding-top: 0;
       }
-      /* Mobile : 6 boutons en grille 2 x 3 */
       #destinations .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         grid-template-areas: none;
@@ -375,8 +372,6 @@
         width: 6rem;
         height: 3.6rem;
       }
-      /* Mobile : même signal de clic que sur ordinateur, mais plus discret.
-         La disposition, les dimensions des drapeaux et les 6 destinations restent inchangées. */
       #destinations .flag-container {
         display: block;
         width: 100%;
@@ -398,7 +393,6 @@
         outline: 2px solid rgba(37, 99, 235, 0.30);
         outline-offset: 1px;
       }
-      /* Cuba : même taille de drapeau que les autres destinations sur mobile. */
       #destinations .cuba {
         width: 100%;
       }
@@ -415,7 +409,6 @@
         width: 6rem;
         height: 3.6rem;
       }
-      /* Prochainement : même logique de bouton cliquable sur mobile. */
       #destinations .prochainement-btn {
         width: 100%;
         box-sizing: border-box;
@@ -436,7 +429,6 @@
       }
     }
 
-    /* Prochainement – globe + étoile */
     .prochainement-btn {
       display: flex;
       flex-direction: column;
@@ -486,10 +478,13 @@
       .prochainement-label { font-size: 0.9rem; }
       #destinations .prochainement { grid-area: auto; }
     }
-
   </style>
 </head>
 <body class="font-sans">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PT88MSGW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- HEADER -->
   <header class="bg-blue-600 text-white py-2">
@@ -511,7 +506,7 @@
           <li><a href="#home" class="hover:underline text-base md:text-lg">Accueil</a></li>
           <li><a href="#destinations" class="hover:underline text-base md:text-lg">Destinations</a></li>
           <li><a href="#about" class="hover:underline text-base md:text-lg">Mon approche</a></li>
-          <li><a href="#reviews" class="hover:underline text-base md:text-lg" title="Ce que disent les clients de Patrick Daroque">Avis clients</a></li>
+          <li><a href="#reviews" class="hover:underline text-base md:text-lg" title="Ce que dicen les clients de Patrick Daroque">Avis clients</a></li>
           <li><a href="#travel-planner" class="hover:underline text-base md:text-lg" title="Qu'est-ce qu'un Travel Planner ?">Travel Planner ?</a></li>
           <li><a href="#contact" class="hover:underline text-base md:text-lg">Contact</a></li>
         </ul>
@@ -554,7 +549,6 @@
             </a>
           </div>
           <div class="cuba text-center flex flex-col items-center">
-            <!-- Mobile : astérisque après Cuba ; Desktop : bandeau jaune sous Cuba -->
             <div class="cuba-with-badge">
               <div class="cuba-badge">
                 <span class="cuba-badge-text">
@@ -581,7 +575,6 @@
             gap: 2px;
           }
           .cuba-badge {
-            /* Aligne le bandeau au milieu vertical du drapeau */
             margin-top: 0.55rem;
             flex-shrink: 0;
           }
@@ -602,9 +595,6 @@
             display: block;
           }
           @media (max-width: 639px) {
-            /* Mobile : on conserve la grille et la disposition actuelles.
-               Le bandeau jaune disparaît uniquement sur mobile et l'astérisque
-               est ajouté directement après « Cuba ». */
             .cuba-badge {
               display: none;
             }
@@ -706,14 +696,14 @@
             <p class="text-gray-600 text-base">
               Des ruelles vibrantes de <strong>Carthagène des Indes</strong> en Colombie aux vignobles élégants de <strong>la Rioja</strong> en Espagne ou de <strong>Mendoza</strong> en Argentine, des façades pastel de <strong>La Havane</strong> aux places lumineuses de <strong>Valence</strong>, chaque destination possède une identité forte, nourrie par la langue espagnole et par des histoires multiples, passionnées et intemporelles.
               Mon approche repose sur une connaissance approfondie du terrain, une attention minutieuse aux détails et une volonté constante de mettre en lumière ce que ces pays ont de plus authentique et de plus inspirant.
-              Une manière d’offrir une vision exigeante, sensible et profondément respectueuse du monde hispanique.
+              Une manière d’offrir une vision exigeante, sensible et deeply respectueuse du monde hispanique.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- COMBINED SECTION (Avis / Contact / Travel Planner) -->
+    <!-- COMBINED SECTION -->
     <section id="combined-section" class="py-6 bg-white">
       <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -786,7 +776,13 @@
   <footer class="bg-blue-600 py-2">
     <div class="container mx-auto px-4 text-center">
       <p style="color: white; font-size: 1rem;">&copy; 2026 - VPDVOYAGES - Patrick Daroque - Travel Planner. Tous droits réservés. | SIRET : 52534368700030
-      | <a href="cgv.html" style="color: white; text-decoration: underline;" title="Consulter les Conditions Générales de Vente">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;" title="Consulter les mentions légales">Mentions légales</a></p>
+      | <a href="cgv.html" style="color: white; text-decoration: underline;" title="Consulter les Conditions Générales de Vente">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;" title="Consulter les mentions légales">Mentions légales</a>
+      | <a href="partenaires.html" title="Nos partenaires" aria-label="Nos partenaires" style="display: inline-flex; align-items: center; vertical-align: middle;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.75;">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+        </a></p>
     </div>
   </footer>
 
@@ -915,37 +911,67 @@
     });
   </script>
 
-  <!-- Script Voiceflow -->
+  <!-- Script Voiceflow standard (se masque automatiquement si quota dépassé) -->
   <script type="text/javascript">
-    const BOT_ACTIF = true;
-
-    if (BOT_ACTIF) {
-      (function(d, t) {
-          var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-          v.onload = function() {
-            window.voiceflow.chat.load({
-              verify: { projectID: '6a84bf641c51f4a7bb70c4d3' },
-              url: 'https://general-runtime.voiceflow.com',
-              voice: {
-                url: "https://runtime-api.voiceflow.com"
-              },
-              assistant: {
-                title: "Votre conseiller VPDVOYAGES",
-                description: "Mon assistant voyage",
-                ariaLabel: "Assistant voyage",
-                color: "#2563eb"
-              },
-              i18n: {
-                startNewChat: "Démarrer une nouvelle conversation",
-                cancel: "Annuler"
+    (function(d, t) {
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function() {
+        try {
+          window.voiceflow.chat.load({
+            verify: { projectID: '6a84bf641c51f4a7bb70c4d3' },
+            url: 'https://general-runtime.voiceflow.com',
+            voice: {
+              url: "https://runtime-api.voiceflow.com"
+            },
+            render: {
+              mode: 'overlay'
+            },
+            assistant: {
+              title: "Votre conseiller VPDVOYAGES",
+              description: "Mon assistant voyage",
+              ariaLabel: "Assistant voyage",
+              color: "#2563eb"
+            },
+            i18n: {
+              startNewChat: "Démarrer une nouvelle conversation",
+              cancel: "Annuler"
+            }
+          }).then(() => {
+            window.voiceflow.widget.on('open', () => {
+              if (typeof gtag === 'function') {
+                gtag('event', 'chatbot_opened', {
+                  'event_category': 'Chatbot',
+                  'event_label': 'Ouverture du chat'
+                });
               }
             });
-          }
-          v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; 
-          v.type = "text/javascript"; 
-          s.parentNode.insertBefore(v, s);
-      })(document, 'script');
-    }
+
+            window.voiceflow.widget.on('interact', (action) => {
+              if (typeof gtag === 'function') {
+                gtag('event', 'chatbot_message_sent', {
+                  'event_category': 'Chatbot',
+                  'event_label': 'Message utilisateur'
+                });
+              }
+            });
+          }).catch((err) => {
+            if (window.voiceflow && window.voiceflow.chat) {
+              window.voiceflow.chat.hide();
+            }
+          });
+        } catch (err) {
+          console.warn("Erreur de chargement Voiceflow :", err);
+        }
+      };
+      
+      v.onerror = function() {
+        console.warn("Impossible de charger le script Voiceflow.");
+      };
+
+      v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; 
+      v.type = "text/javascript"; 
+      s.parentNode.insertBefore(v, s);
+    })(document, 'script');
   </script>
 </body>
 </html>
