@@ -161,10 +161,10 @@
     
     .starburst {
       position: absolute;
-      z-index: 30;
+      z-index: 20;
       right: 10%;
       left: auto;
-      top: 58%;                 /* un peu plus bas pour être entière en version ordi */
+      top: calc(50% + 40px);
       text-decoration: none;
       cursor: pointer;
       transform: translateY(-50%) rotate(10deg);
@@ -172,7 +172,6 @@
       height: 170px;
       background: linear-gradient(135deg, #ffeb3b 0%, #ffc107 45%, #f57c00 100%);
       clip-path: polygon(50.0% 0.0%, 57.3% 17.8%, 71.7% 5.0%, 70.6% 24.2%, 89.1% 18.8%, 79.7% 35.7%, 98.7% 38.9%, 83.0% 50.0%, 98.7% 61.1%, 79.7% 64.3%, 89.1% 81.2%, 70.6% 75.8%, 71.7% 95.0%, 57.3% 82.2%, 50.0% 100.0%, 42.7% 82.2%, 28.3% 95.0%, 29.4% 75.8%, 10.9% 81.2%, 20.3% 64.3%, 1.3% 61.1%, 17.0% 50.0%, 1.3% 38.9%, 20.3% 35.7%, 10.9% 18.8%, 29.4% 24.2%, 28.3% 5.0%, 42.7% 17.8%);
-      -webkit-clip-path: polygon(50.0% 0.0%, 57.3% 17.8%, 71.7% 5.0%, 70.6% 24.2%, 89.1% 18.8%, 79.7% 35.7%, 98.7% 38.9%, 83.0% 50.0%, 98.7% 61.1%, 79.7% 64.3%, 89.1% 81.2%, 70.6% 75.8%, 71.7% 95.0%, 57.3% 82.2%, 50.0% 100.0%, 42.7% 82.2%, 28.3% 95.0%, 29.4% 75.8%, 10.9% 81.2%, 20.3% 64.3%, 1.3% 61.1%, 17.0% 50.0%, 1.3% 38.9%, 20.3% 35.7%, 10.9% 18.8%, 29.4% 24.2%, 28.3% 5.0%, 42.7% 17.8%);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -203,36 +202,57 @@
       50% { transform: translateY(-50%) rotate(10deg) scale(1.06); }
       100% { transform: translateY(-50%) rotate(10deg) scale(1); }
     }
-    /* top 58% déjà appliqué sur .starburst desktop */
     @media (max-width: 639px) {
       .starburst {
-        width: 110px;
-        height: 110px;
-        top: 72px;          /* bien sous le header fixe */
-        right: 8px;
+        width: 90px;
+        height: 90px;
+        top: 58px;
+        right: 6px;
         left: auto;
-        transform: rotate(8deg);
-        z-index: 40;
+        transform: rotate(10deg);
         animation: starburst-pulse-mobile 2.2s ease-in-out infinite;
       }
       .starburst-title {
-        font-size: 0.85rem;
+        font-size: 0.7rem;
       }
       .starburst-sub {
-        font-size: 0.62rem;
-        max-width: 70px;
-        margin-top: 3px;
-        line-height: 1.15;
+        font-size: 0.5rem;
+        max-width: 50px;
+        margin-top: 2px;
       }
       @keyframes starburst-pulse-mobile {
-        0% { transform: rotate(8deg) scale(1); }
-        50% { transform: rotate(8deg) scale(1.07); }
-        100% { transform: rotate(8deg) scale(1); }
+        0% { transform: rotate(10deg) scale(1); }
+        50% { transform: rotate(10deg) scale(1.06); }
+        100% { transform: rotate(10deg) scale(1); }
       }
     }
 
     .cuba img {
       object-fit: contain;
+    }
+    @media (max-width: 639px) {
+      header {
+        padding: 0.35rem 0;
+      }
+      header img.image-check {
+        width: 2.25rem !important;
+        height: 2.25rem !important;
+      }
+      header .text-xl {
+        font-size: 1.05rem;
+      }
+      header .text-xs {
+        font-size: 0.65rem;
+      }
+      body {
+        padding-top: 50px;
+      }
+      html {
+        scroll-padding-top: 50px;
+      }
+      #home {
+        margin-top: -50px !important;
+      }
     }
     @media (min-width: 640px) {
       header {
@@ -331,26 +351,6 @@
         outline: 3px solid rgba(37, 99, 235, 0.30);
         outline-offset: 2px;
       }
-
-      /* Desktop : uniquement la photo, pas le titre ni le texte */
-      #about .about-title,
-      #about .about-text {
-        display: none !important;
-      }
-      #about {
-        padding-top: 1.25rem;
-        padding-bottom: 1.25rem;
-      }
-      #about .about-photo {
-        margin-bottom: 0 !important;
-      }
-      #about .about-photo img {
-        width: 9rem;
-        height: 9rem;
-      }
-      #destinations {
-        margin-bottom: 0.5rem;
-      }
     }
 
     @media (max-width: 639px) {
@@ -370,43 +370,29 @@
         grid-area: auto;
         grid-column: auto;
       }
-      #destinations h2 {
-        display: block;            /* titre visible aussi sur mobile */
-        font-size: 1.35rem;
-        margin-bottom: 0.5rem;
-        margin-top: 0.25rem;
-      }
       .argentine .see-program {
         display: block;
       }
       #home {
         height: auto;
-        min-height: 32vh;
-        padding-top: 68px !important;   /* juste sous le header */
-        padding-bottom: 0.5rem;
+        min-height: 35vh;
         justify-content: flex-start;
+        padding-top: 50px;
       }
       #home .text-center {
-        padding: 0.9rem 1rem;
-        background: rgba(0, 0, 0, 0.55) !important;
-        border-radius: 10px;
-        max-width: 92%;
-        margin: 0 auto;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        padding: 0.75rem;
       }
       #home p {
-        font-size: 0.85rem;
-        margin-bottom: 0.75rem !important;
+        font-size: 0.8rem;
       }
       
       /* ===== BANDEAU COMPLET ===== */
       #home h1 {
-        font-size: 1.2rem !important;
-        line-height: 1.35 !important;
+        font-size: 1.1rem !important;
+        line-height: 1.4 !important;
         white-space: normal !important;
         word-wrap: break-word !important;
         max-width: 100% !important;
-        margin-bottom: 0.4rem !important;
       }
       
       .espagne img, .cuba img, .argentine img, .uruguay img, .colombie img {
@@ -478,7 +464,7 @@
       }
       
       .globe-star {
-        width: 3.3rem !important;   /* cercle parfait aussi sur mobile */
+        width: 3.3rem !important;
         height: 3.3rem !important;
         border-radius: 50% !important;
         margin: 0 auto !important;
@@ -487,14 +473,14 @@
         box-shadow: 0 4px 14px rgba(37, 99, 235, 0.45) !important;
       }
       .globe-star svg { 
-        width: 22px !important; 
-        height: 22px !important; 
+        width: 24px !important; 
+        height: 24px !important; 
       }
       .globe-star .star-dot { 
         width: 8px !important; 
         height: 8px !important; 
         top: 3px !important; 
-        right: 3px !important; 
+        right: 4px !important; 
       }
       .prochainement-label { 
         font-size: 1rem !important; 
@@ -514,8 +500,8 @@
     .prochainement-btn:hover { transform: scale(1.06); }
     
     .globe-star {
-      width: 64px;                 /* même taille visuelle que les pastilles drapeaux */
-      height: 64px;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
       background: linear-gradient(145deg, #3b82f6 0%, #1d4ed8 100%);
       display: flex;
@@ -527,8 +513,8 @@
       margin: 0 auto;
     }
     .globe-star svg { 
-      width: 32px; 
-      height: 32px; 
+      width: 34px; 
+      height: 34px; 
       fill: none;
       stroke: white;
       stroke-width: 1.5;
@@ -537,8 +523,8 @@
       position: absolute;
       top: 5px;
       right: 6px;
-      width: 11px;
-      height: 11px;
+      width: 12px;
+      height: 12px;
       background: #fbbf24;
       border-radius: 50%;
       box-shadow: 0 0 8px 2px rgba(251, 191, 36, 0.8);
@@ -590,12 +576,13 @@
   </header>
 
   <main>
-    <section id="home" class="bg-cover bg-center min-h-[14rem] md:min-h-[16rem] -mt-[60px] pb-0 flex flex-col items-center justify-start md:justify-start relative mb-0 pt-[68px] md:pt-[70px]" style="background-image: url('https://vpdvoyages.com/Voyages%20de%20r%C3%AAve/Images/hero-image.jpg')">
+    <section id="home" class="bg-cover bg-center min-h-[16rem] md:min-h-[18rem] -mt-[60px] pb-0 flex flex-col items-center justify-center relative mb-0" style="background-image: url('https://vpdvoyages.com/Voyages%20de%20r%C3%AAve/Images/hero-image.jpg')">
       <a href="cgv.html#cgv-formules" class="starburst" title="Découvrir les formules Autonomie et Sérénité dans les CGV">
         <span class="starburst-title">Nouveau</span>
         <span class="starburst-sub">Autonomie &amp; Sérénité</span>
       </a>
-      <div class="text-center text-white bg-black bg-opacity-55 md:bg-opacity-35 p-3 md:p-3 rounded-lg relative z-10 mt-0 shadow-lg">
+      <div class="text-center text-white bg-black bg-opacity-30 p-2 md:p-3 rounded relative z-10 mt-0 md:mt-0">
+        <br class="md:hidden">
         <h1 class="text-xl md:text-2xl font-bold mb-1 md:mb-2 relative z-10">Découvrez l'Espagne et l'Amérique latine autrement</h1>
         <p class="text-sm md:text-base mb-3 md:mb-4 relative z-10">Des aventures sur mesure et en petit groupe vous attendent</p>
         <div class="flex flex-wrap justify-center items-center gap-3 md:gap-4 relative z-10">
@@ -607,13 +594,14 @@
             Voyager seul(e) !
           </a>
         </div>
+        <br class="md:hidden">
       </div>
-      <div class="daily-quote w-full md:w-auto mt-1 md:mt-1"></div>
+      <div class="daily-quote w-full md:w-auto mt-0 md:mt-0"></div>
     </section>
 
-    <section id="destinations" class="pt-0 pb-2 -mt-2 md:-mt-3 bg-white">
+    <section id="destinations" class="pt-0 pb-2 mt-0 bg-white">
       <div class="container mx-auto px-4">
-        <h2 class="text-2xl md:text-3xl font-bold text-center mb-2 md:mb-3">Nos destinations d'exception</h2>
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-4">Nos destinations d'exception</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 mb-2">
           <div class="espagne text-center">
             <a href="espagne.html" class="flag-container">
@@ -749,11 +737,11 @@
     <section id="about" class="pt-4 pb-4 -mt-1 bg-gray-100">
       <div class="container mx-auto px-4">
         <div class="flex flex-col items-center">
-          <div class="mb-4 about-photo">
+          <div class="mb-4">
             <img src="Images/Photo%20Patrick.JPG" alt="Patrick Daroque - Travel Planner" width="120" height="120" class="h-28 w-28 object-cover rounded-full mx-auto image-check shadow-md" loading="lazy">
           </div>
-          <h2 class="text-3xl font-bold text-center mb-4 about-title">Mon approche du voyage sur mesure</h2>
-          <div class="about-text">
+          <h2 class="text-3xl font-bold text-center mb-4">Mon approche du voyage sur mesure</h2>
+          <div>
             <h3 class="text-blue-600 font-bold text-lg mb-1">Une passion pour le monde hispanique</h3>
             <p class="text-gray-600 text-base mb-4">
               Je suis Patrick Daroque, <strong>Travel Planner spécialisé en voyages sur mesure ou en petit groupe (formules Autonomie ou Sérénité) en Espagne et en Amérique latine</strong>. 
@@ -780,7 +768,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           
           <div class="text-center" id="reviews">
-            <h2 class="text-2xl font-bold mb-4">Ce que dicen les clients</h2>
+            <h2 class="text-2xl font-bold mb-4">Ce que disent les clients</h2>
             <div class="bg-gray-200 p-3 rounded shadow-lg">
               <p class="text-gray-600 text-base mb-2">Découvrez les avis sur les voyages uniques en Espagne et Amérique latine.</p>
               <a href="javascript:void(0);" onclick="openReviewsPopup()" class="text-blue-600 hover:underline text-base font-semibold">Voir les avis clients</a>
@@ -921,6 +909,63 @@
       });
     });
   </script>
-  <!-- Voiceflow retiré : sans crédits le launcher s'affiche quand même, la détection côté client est impossible -->
+
+  <!-- ============================================================ -->
+  <!-- INTERRUPTEUR MANUEL DU WIDGET VOICEFLOW                       -->
+  <!-- Passez cette valeur à false quand vous n'avez plus de crédit  -->
+  <!-- Voiceflow, et remettez-la à true quand le crédit est renouvelé.-->
+  <!-- C'est la SEULE ligne à modifier, rien d'autre à toucher.      -->
+  <!-- ============================================================ -->
+  <script>
+    var VOICEFLOW_WIDGET_ACTIF = false;
+  </script>
+
+  <!-- Script Voiceflow - ne se charge que si VOICEFLOW_WIDGET_ACTIF = true -->
+  <script type="text/javascript">
+    if (VOICEFLOW_WIDGET_ACTIF) {
+      (function(d, t) {
+        var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+        v.onload = function() {
+          try {
+            window.voiceflow.chat.load({
+              verify: { projectID: '6a84bf641c51f4a7bb70c4d3' },
+              url: 'https://general-runtime.voiceflow.com',
+              voice: {
+                url: "https://runtime-api.voiceflow.com"
+              },
+              render: {
+                mode: 'overlay'
+              },
+              assistant: {
+                title: "Votre conseiller VPDVOYAGES",
+                description: "Mon assistant voyage",
+                ariaLabel: "Assistant voyage",
+                color: "#2563eb"
+              },
+              i18n: {
+                startNewChat: "Démarrer une nouvelle conversation",
+                cancel: "Annuler"
+              }
+            }).catch((err) => {
+              // Sécurité supplémentaire si Voiceflow renvoie une erreur au chargement
+              if (window.voiceflow && window.voiceflow.chat) {
+                window.voiceflow.chat.hide();
+              }
+            });
+          } catch (err) {
+            if (window.voiceflow && window.voiceflow.chat) {
+              window.voiceflow.chat.hide();
+            }
+          }
+        };
+        v.onerror = function() {
+          console.warn("Impossible de charger le script Voiceflow.");
+        };
+        v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; 
+        v.type = "text/javascript"; 
+        s.parentNode.insertBefore(v, s);
+      })(document, 'script');
+    }
+  </script>
 </body>
 </html>
