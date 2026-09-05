@@ -20,6 +20,7 @@
       width: 40px; height: 40px; border-radius: 50%; border: none;
       display: flex; align-items: center; justify-content: center;
       font-size: 0.8rem; color: white; background: #2563eb; padding: 0;
+      cursor: pointer;
     }
     .read-more:hover { background: #1e40af; color: white; text-decoration: none; }
     .pdf-button {
@@ -51,6 +52,23 @@
       font-size: 0.9rem;
       white-space: nowrap;
       margin: 0 auto 2rem auto;
+    }
+    /* Carte cliquable */
+    .trip-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .trip-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+    .trip-card .pdf-button {
+      pointer-events: auto;
+    }
+    .trip-card .read-more {
+      pointer-events: auto;
     }
     @media (max-width: 640px) {
       .nav-menu {
@@ -120,49 +138,57 @@
       <div id="bandeau-orange" class="info-badge"></div>
       <p class="transition-line">Ces exemples de séjours sont des bases de travail, ajustées ensuite à vos dates, votre rythme et vos envies.</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-        <div class="bg-white rounded shadow-lg">
-          <img src="Images/Colombie Triangle magique.jpg" class="w-full h-48 object-cover rounded">
+        
+        <!-- Carte 1 - Le Triangle magique -->
+        <a href="#" class="trip-card bg-white rounded shadow-lg overflow-hidden" id="trip-triangle">
+          <img src="Images/Colombie Triangle magique.jpg" class="w-full h-48 object-cover rounded" alt="Colombie - Le Triangle magique">
           <div class="p-4 card-content">
             <h3 class="text-xl font-semibold">Le Triangle magique</h3>
             <p class="text-gray-600 mt-2 description">Découvrez Bogotá, Medellín, la Piedra del Peñol, Barichara, Guane via le Camino Real, Villa de Leyva et Girón.</p>
             <div class="flex justify-center space-x-2 mt-2">
-              <button class="read-more">+</button>
-              <a href="#" class="pdf-button triangle-pdf" target="_blank">voir pgm</a>
+              <button class="read-more" onclick="event.preventDefault();">+</button>
+              <span class="pdf-button" onclick="event.stopPropagation();">voir pgm</span>
             </div>
             <p class="text-gray-600 mt-2">1 390 € (18 jours / 16 nuits)*</p>
           </div>
-        </div>
-        <div class="bg-white rounded shadow-lg">
-          <img src="Images/Colombie.jpg" class="w-full h-48 object-cover rounded">
+        </a>
+
+        <!-- Carte 2 - La Magie réaliste -->
+        <a href="#" class="trip-card bg-white rounded shadow-lg overflow-hidden" id="trip-magie">
+          <img src="Images/Colombie.jpg" class="w-full h-48 object-cover rounded" alt="Colombie - La Magie réaliste">
           <div class="p-4 card-content">
             <h3 class="text-xl font-semibold">La Magie réaliste</h3>
             <p class="text-gray-600 mt-2 description">Découvrez Bogotá, Zipaquirá, Medellín, Carthagène. Expériences authentiques et paysages époustouflants.</p>
             <div class="flex justify-center space-x-2 mt-2">
-              <button class="read-more">+</button>
-              <a href="#" class="pdf-button magie-pdf" target="_blank">voir pgm</a>
+              <button class="read-more" onclick="event.preventDefault();">+</button>
+              <span class="pdf-button" onclick="event.stopPropagation();">voir pgm</span>
             </div>
             <p class="text-gray-600 mt-2">1 590 € (17 jours / 16 nuits)*</p>
           </div>
-        </div>
-        <div class="bg-white rounded shadow-lg">
-          <img src="Images/Tango Medellin.jpeg" class="w-full h-48 object-cover rounded">
+        </a>
+
+        <!-- Carte 3 - Festival international de Tango Medellín 2027 -->
+        <a href="#" class="trip-card bg-white rounded shadow-lg overflow-hidden" id="trip-tango">
+          <img src="Images/Tango Medellin.jpeg" class="w-full h-48 object-cover rounded" alt="Colombie - Festival international de Tango Medellín 2027">
           <div class="p-4 card-content">
             <h3 class="text-xl font-semibold">Festival international de Tango Medellín 2027</h3>
             <p class="text-gray-600 mt-2 description">Après une édition 2026 exceptionnelle ayant célébré les 20 ans du festival, Medellín vous invite à vivre la magie du tango entre concerts, milongas, spectacles, compétitions et rencontres au cœur de la capitale colombienne du tango.</p>
             <div class="flex justify-center space-x-2 mt-2">
-              <button class="read-more">+</button>
-              <a href="#" class="pdf-button tango-pdf" target="_blank">voir pgm</a>
+              <button class="read-more" onclick="event.preventDefault();">+</button>
+              <span class="pdf-button" onclick="event.stopPropagation();">voir pgm</span>
             </div>
             <p class="text-gray-600 mt-2">1 475 € (16 jours / 15 nuits)*</p>
           </div>
-        </div>
-        <div class="bg-white rounded shadow-lg">
-          <img src="Images/Cali Salsa.jpg" class="w-full h-48 object-cover rounded">
+        </a>
+
+        <!-- Carte 4 - Cali - Capitale mondiale de la Salsa 2027 -->
+        <div class="bg-white rounded shadow-lg overflow-hidden">
+          <img src="Images/Cali Salsa.jpg" class="w-full h-48 object-cover rounded" alt="Colombie - Cali - Capitale mondiale de la Salsa 2027">
           <div class="p-4 card-content">
             <h3 class="text-xl font-semibold">Cali - Capitale mondiale de la Salsa 2027</h3>
             <p class="text-gray-600 mt-2 description">Vivez l'énergie explosive du Festival Mundial de Salsa à Cali, avec une édition spéciale en septembre 2027 incluant la Gran Cumbre Mondiale de la Salsa (alliance internationale). Danse, concerts et ambiance unique ! <a href="https://mundialdesalsa.com" target="_blank" class="text-blue-600 hover:underline">Site officiel</a>.</p>
             <div class="flex justify-center space-x-2 mt-2">
-              <button class="read-more">+</button>
+              <button class="read-more" onclick="event.preventDefault();">+</button>
             </div>
             <p class="text-gray-600 text-center text-sm mt-2">Programme détaillé en préparation — Édition spéciale septembre 2027</p>
           </div>
@@ -173,51 +199,51 @@
 
   <footer class="bg-blue-600 text-white py-4">
     <div class="container mx-auto px-4 text-center">
-<!-- NOUVEAU TEXTE -->
-<p class="text-white text-sm mt-2 italic">*Prix indicatif en Formule Autonomie, variable selon le groupe.</p>
-
+      <p class="text-white text-sm mt-2 italic">*Prix indicatif en Formule Autonomie, variable selon le groupe.</p>
       <p style="color: white; font-size: 1rem;">© 2026 - VPDVOYAGES - Patrick Daroque - Travel Planner. Tous droits réservés. | n° siret : 52534368700030
  | <a href="cgv.html" style="color: white; text-decoration: underline;">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;">Mentions légales</a></p>
     </div>
   </footer>
 
   <script>
-    function setPdfLinks() {
-      const isMobile = window.innerWidth <= 640;
-      const antiCache = Date.now();
+    // Gestion des cartes cliquables pour la Colombie
+    (function() {
+      function setTripLinks() {
+        const isMobile = window.innerWidth <= 640;
+        const antiCache = Date.now();
 
-      const triangle = document.querySelector('.triangle-pdf');
-      const magie = document.querySelector('.magie-pdf');
-      const tango = document.querySelector('.tango-pdf');
+        const trips = [
+          { id: 'trip-triangle', mobile: 'PDF_mobile/Colombie_Triangle_Magique/programme.html', desktop: 'PDF/Colombie_Le_Triangle_Magique.pdf' },
+          { id: 'trip-magie', mobile: 'PDF_mobile/Colombie_Magie_Realiste/programme.html', desktop: 'PDF/Colombie_La_Magie_Realiste.pdf' },
+          { id: 'trip-tango', mobile: 'PDF_mobile/Colombie_Festival_Tango_Medellin/programme.html', desktop: 'PDF/Colombie_Festival_Tango_Medellin.pdf' }
+        ];
 
-      // Version PC : PDF/ (inchangé)
-      // Version mobile : dossiers PDF_mobile/ selon capture
-      if (isMobile) {
-        if (triangle) triangle.href = 'PDF_mobile/Colombie_Triangle_Magique/programme.html?v=' + antiCache;
-        if (magie) magie.href = 'PDF_mobile/Colombie_Magie_Realiste/programme.html?v=' + antiCache;
-        if (tango) tango.href = 'PDF_mobile/Colombie_Festival_Tango_Medellin/programme.html?v=' + antiCache;
-      } else {
-        if (triangle) triangle.href = 'PDF/Colombie_Le_Triangle_Magique.pdf?v=' + antiCache;
-        if (magie) magie.href = 'PDF/Colombie_La_Magie_Realiste.pdf?v=' + antiCache;
-        if (tango) tango.href = 'PDF/Colombie_Festival_Tango_Medellin.pdf?v=' + antiCache;
+        trips.forEach(function(trip) {
+          const card = document.getElementById(trip.id);
+          if (card) {
+            const url = isMobile ? trip.mobile : trip.desktop;
+            card.href = url + (url.includes('?') ? '&' : '?') + 'v=' + antiCache;
+            card.target = isMobile ? '_self' : '_blank';
+          }
+        });
       }
-    }
 
-    // Chargement initial et ajustements d'écran
-    document.addEventListener('DOMContentLoaded', setPdfLinks);
-    window.addEventListener('load', setPdfLinks);
-    window.addEventListener('resize', setPdfLinks);
+      // Exécution au chargement et redimensionnement
+      setTripLinks();
+      window.addEventListener('resize', setTripLinks);
+    })();
 
-    // Système d'affichage "Lire plus / Moins"
+    // Système "Lire plus / Moins"
     document.querySelectorAll('.read-more').forEach(btn => {
-      btn.addEventListener('click', function(){
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
         const desc = this.closest('.card-content').querySelector('.description');
         desc.classList.toggle('expanded');
         this.textContent = desc.classList.contains('expanded') ? '−' : '+';
       });
     });
 
-    // Menus responsives et menus déroulants
+    // Menus responsives
     document.querySelector('.nav-toggle').addEventListener('click', () => 
       document.querySelector('.nav-menu').classList.toggle('active')
     );
@@ -225,6 +251,6 @@
       document.querySelector('.dropdown-menu').classList.toggle('active')
     );
   </script>
-<script src="bandeau.js"></script>
+  <script src="bandeau.js"></script>
 </body>
 </html>

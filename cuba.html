@@ -16,7 +16,6 @@
     .description { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .description.expanded { -webkit-line-clamp: unset; }
     
-    /* Boutons uniformisés (identiques aux autres destinations) */
     .read-more {
       width: 40px; height: 40px; border-radius: 50%; border: none; display: flex; align-items: center;
       justify-content: center; font-size: 0.8rem; color: white; background: #2563eb; padding: 0; flex-shrink: 0;
@@ -188,10 +187,10 @@
               <button class="read-more" aria-label="Lire plus">+</button>
               <a href="PDF/Cuba_Decouverte_Patrimoine_Traditions.pdf" class="pdf-button" target="_blank" rel="noopener" id="cuba-decouverte-pdf-button">voir pgm</a>
               <div class="photo-button-container ml-8">
-                  <a href="https://www.youtube.com/watch?v=ntxbIsLMolg" class="photo-button" target="_blank" rel="noopener">
+                <a href="https://www.youtube.com/watch?v=ntxbIsLMolg" class="photo-button" target="_blank" rel="noopener">
                   <img src="Images/emoji photographe.jpeg" alt="Voir photos" class="image-check">
                 </a>
-                  <a href="https://www.youtube.com/watch?v=ntxbIsLMolg" class="text text-link" target="_blank" rel="noopener">Voir photos</a>
+                <a href="https://www.youtube.com/watch?v=ntxbIsLMolg" class="text text-link" target="_blank" rel="noopener">Voir photos</a>
               </div>
             </div>
             <p class="text-gray-600 mt-4">1 490 € (17 jours / 16 nuits)*</p>
@@ -210,10 +209,10 @@
               <button class="read-more" aria-label="Lire plus">+</button>
               <a href="Cuba - Festival de Tango à La Havane.html" class="pdf-button" id="cuba-tango-pdf-button">voir pgm</a>
               <div class="photo-button-container ml-8">
-                <a href="https://www.youtube.com/watch?v=OXXh9TQV5ps" class="photo-button" target="_blank" rel="noopener">
+                <a href="https://www.youtube.com/watch?v=avQmz8Np3VI" class="photo-button" target="_blank" rel="noopener">
                   <img src="Images/emoji photographe.jpeg" alt="Voir photos" class="image-check">
                 </a>
-                <a href="https://www.youtube.com/watch?v=OXXh9TQV5ps" class="text text-link" target="_blank" rel="noopener">Voir photos</a>
+                <a href="https://www.youtube.com/watch?v=avQmz8Np3VI" class="text text-link" target="_blank" rel="noopener">Voir photos</a>
               </div>
             </div>
             <p class="text-gray-600 mt-4">1 220 € (17 jours / 16 nuits)*</p>
@@ -264,10 +263,10 @@
               <button class="read-more" aria-label="Lire plus">+</button>
               <a href="PDF/Cuba_Stage_Photo_Havane_Trinidad.pdf" class="pdf-button" target="_blank" rel="noopener" id="cuba-stagephoto-pdf-button">voir pgm</a>
               <div class="photo-button-container ml-8">
-                  <a href="https://www.youtube.com/watch?v=ntxbIsLMolg" class="photo-button" target="_blank" rel="noopener">
+                <a href="https://www.youtube.com/watch?v=ntxbIsLMolg" class="photo-button" target="_blank" rel="noopener">
                   <img src="Images/emoji photographe.jpeg" alt="Voir photos" class="image-check">
                 </a>
-                  <a href="https://www.youtube.com/watch?v=ntxbIsLMolg" class="text text-link" target="_blank" rel="noopener">Voir photos</a>
+                <a href="https://www.youtube.com/watch?v=ntxbIsLMolg" class="text text-link" target="_blank" rel="noopener">Voir photos</a>
               </div>
             </div>
             <p class="text-red-600 mt-4 font-bold text-center">Renseignements sur demande</p>
@@ -280,16 +279,13 @@
   <!-- Footer -->
   <footer class="bg-blue-600 text-white py-4">
     <div class="container mx-auto px-4 text-center">
-<!-- NOUVEAU TEXTE -->
-<p class="text-white text-sm mt-2 italic">*Prix indicatif en Formule Autonomie, variable selon le groupe.</p>
-
+      <p class="text-white text-sm mt-2 italic">*Prix indicatif en Formule Autonomie, variable selon le groupe.</p>
       <p style="color: white; font-size: 1rem;">&copy; 2026 - VPDVOYAGES - Patrick Daroque - Travel Planner. Tous droits réservés. | n° siret : 52534368700030
  | <a href="cgv.html" style="color: white; text-decoration: underline;">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;">Mentions légales</a></p>
     </div>
   </footer>
   
   <script>
-    // Toggle mobile menu
     const navToggle = document.querySelector('.nav-toggle');
     if (navToggle) {
       navToggle.addEventListener('click', () => {
@@ -306,7 +302,6 @@
       });
     }
     
-    // Read more toggle
     document.querySelectorAll('.read-more').forEach(button => {
       button.addEventListener('click', function () {
         const desc = this.closest('.card-content')?.querySelector('.description');
@@ -317,13 +312,9 @@
       });
     });
     
-    // Bascule dynamique des liens selon l'écran
     function updateLinks() {
       const isMobile = window.innerWidth <= 640;
       
-      // Dictionnaire des chemins pour chaque voyage
-      // Sur mobile : on pointe vers programme.html dans pdf_mobile/
-      // Sur PC : on pointe vers les PDF dans le dossier PDF/
       const voyages = {
         'cuba-decouverte': {
           pc: 'PDF/Cuba_Decouverte_Patrimoine_Traditions.pdf',
@@ -362,12 +353,10 @@
       });
     }
     
-    // Attendre le chargement complet du DOM avant d'exécuter updateLinks
     document.addEventListener('DOMContentLoaded', function () {
       updateLinks();
       window.addEventListener('resize', updateLinks);
       
-      // Fermer les menus mobiles lors des clics sur les liens
       document.querySelectorAll('.nav-menu a, .dropdown-menu a').forEach(anchor => {
         anchor.addEventListener('click', function () {
           if (window.innerWidth <= 640) {

@@ -6,10 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
     bandeau.style.justifyContent = 'center';
     bandeau.style.alignItems = 'center';
     bandeau.style.textAlign = 'center';
-    bandeau.style.maxWidth = '95%';
-    bandeau.style.width = 'fit-content';
+    bandeau.style.maxWidth = '780px';
     bandeau.style.margin = '0 auto 1rem auto';
-    bandeau.style.padding = '6px 16px';
+    bandeau.style.padding = '8px 16px';
     bandeau.style.borderRadius = '6px';
     
     bandeau.style.background = 'linear-gradient(135deg, #2b6cb0 0%, #1a4980 100%)';
@@ -24,38 +23,67 @@ document.addEventListener('DOMContentLoaded', function () {
         display: none !important;
         content: "" !important;
       }
+      .flag-fr {
+        width: 16px;
+        height: 11px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 3px;
+        border-radius: 1px;
+      }
+      .highlight-text {
+        color: #f6e05e;
+        font-style: italic;
+        font-weight: 500;
+        border-bottom: 1px dotted #f6e05e;
+        padding-bottom: 1px;
+      }
       @media (max-width: 600px) {
         #bandeau-orange {
-          max-width: 92% !important;
-          padding: 6px 10px !important;
+          max-width: 95% !important;
+          padding: 8px 10px !important;
         }
         #bandeau-orange .bandeau-ligne {
           font-size: 0.75rem !important;
           line-height: 1.35 !important;
         }
+        .flag-fr {
+          width: 14px;
+          height: 10px;
+        }
       }
     `;
     document.head.appendChild(styleFix);
 
-    var page = window.location.pathname.split('/').pop().toLowerCase();
-    var estEspagne = page.indexOf('espagne') !== -1;
+    // Drapeau français en SVG inline
+    var flagSvg = `<svg class="flag-fr" viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="2" fill="#002395"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ED2939"/></svg>`;
 
-    var flagSvg = '<svg width="11" height="8" viewBox="0 0 3 2" style="vertical-align:middle; margin-right:2px; border-radius:1px;"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#FFFFFF"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg>';
+    // Détection de la page actuelle
+    var pathname = window.location.pathname.toLowerCase();
 
-    var transportIcon = estEspagne ? '🚐' : '✈️';
-    var texteSerenite = estEspagne
-      ? 'Accompagnement francophone + tous transports.'
-      : 'Accompagnement francophone + vols internationaux.';
-
-    bandeau.innerHTML = `
-      <div class="bandeau-ligne" style="font-size: 0.82rem; line-height: 1.4; font-weight: 400; letter-spacing: 0.01em;">
-        <span style="color: #f6e05e; margin-right: 3px;">✦</span>
-        <span><strong style="color: #f6e05e; font-weight: 600;">Autonomie :</strong> Hébergement • Déjeuners • 3 dîners • Activités <em style="opacity:0.88; font-size:0.92em;">Voyagez librement.</em></span>
-      </div>
-      <div class="bandeau-ligne" style="font-size: 0.82rem; line-height: 1.4; font-weight: 400; letter-spacing: 0.01em; margin-top: 1px;">
-        <span style="color: #f6e05e; margin-right: 3px;">✦</span>
-        <span><strong style="color: #f6e05e; font-weight: 600;">Sérénité :</strong> Hébergement • Déjeuners • 3 dîners • Activités <em style="opacity:0.88; font-size:0.92em; white-space:nowrap;">${flagSvg}${transportIcon} ${texteSerenite}</em></span>
-      </div>
-    `;
+    if (pathname.includes('espagne')) {
+      bandeau.innerHTML = `
+        <div class="bandeau-ligne" style="font-size: 0.82rem; line-height: 1.4; font-weight: 400; letter-spacing: 0.01em;">
+          <span style="color: #f6e05e; margin-right: 3px;">✦</span>
+          <span><strong style="color: #f6e05e; font-weight: 600;">Autonomie :</strong> Hébergement • Déjeuners • 3 dîners • Activités - <span class="highlight-text">Voyagez librement.</span></span>
+        </div>
+        <div class="bandeau-ligne" style="font-size: 0.82rem; line-height: 1.4; font-weight: 400; letter-spacing: 0.01em; margin-top: 2px;">
+          <span style="color: #f6e05e; margin-right: 3px;">✦</span>
+          <span><strong style="color: #f6e05e; font-weight: 600;">Sérénité :</strong> Hébergement • Déjeuners • 3 dîners • Activités - <span class="highlight-text">${flagSvg} Accompagnement francophone + 🚐 Tous transports.</span></span>
+        </div>
+      `;
+    } else {
+      // Pour argentine, cuba, colombie et uruguay
+      bandeau.innerHTML = `
+        <div class="bandeau-ligne" style="font-size: 0.82rem; line-height: 1.4; font-weight: 400; letter-spacing: 0.01em;">
+          <span style="color: #f6e05e; margin-right: 3px;">✦</span>
+          <span><strong style="color: #f6e05e; font-weight: 600;">Autonomie :</strong> Hébergement • Déjeuners • 3 dîners • Activités <span class="highlight-text">Voyagez librement.</span></span>
+        </div>
+        <div class="bandeau-ligne" style="font-size: 0.82rem; line-height: 1.4; font-weight: 400; letter-spacing: 0.01em; margin-top: 2px;">
+          <span style="color: #f6e05e; margin-right: 3px;">✦</span>
+          <span><strong style="color: #f6e05e; font-weight: 600;">Sérénité :</strong> Hébergement • Déjeuners • 3 dîners • Activités - <span class="highlight-text">${flagSvg} Accompagnement francophone + ✈️ Vols internationaux.</span></span>
+        </div>
+      `;
+    }
   }
 });

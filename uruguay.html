@@ -20,6 +20,7 @@
       width: 40px; height: 40px; border-radius: 50%; border: none;
       display: flex; align-items: center; justify-content: center;
       font-size: 0.8rem; color: white; background: #2563eb; padding: 0;
+      cursor: pointer;
     }
     .read-more:hover { background: #1e40af; color: white; text-decoration: none; }
     .pdf-button {
@@ -52,6 +53,24 @@
       font-size: 0.9rem;
       white-space: nowrap;
       margin: 0 auto 2rem auto;
+    }
+    
+    /* Carte cliquable */
+    .trip-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .trip-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+    .trip-card .pdf-button {
+      pointer-events: auto;
+    }
+    .trip-card .read-more {
+      pointer-events: auto;
     }
     
     @media (max-width: 640px) {
@@ -128,32 +147,32 @@
       
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
         <!-- Voyage 1 - Montevideo, Punta del Este et Gauchos -->
-        <div class="bg-white rounded shadow-lg overflow-hidden">
+        <a href="#" class="trip-card bg-white rounded shadow-lg overflow-hidden" id="trip-gauchos">
           <img src="Images/Panagea-ranch.jpg" alt="Montevideo, Punta del Este et Gauchos" class="w-full h-48 object-cover rounded image-check">
           <div class="p-4 card-content">
             <h3 class="text-xl font-semibold">Montevideo, Punta del Este et Gauchos</h3>
             <p class="text-gray-600 mt-2 description">Découvrez Montevideo et son patrimoine, Punta del Este avec ses plages élégantes, et vivez l'authenticité gaucho dans les estancias.</p>
             <div class="flex justify-center space-x-4 mt-2">
-              <button class="read-more">+</button>
-              <a href="PDF/Uruguay_Montevideo_Gauchos_Bodegas.pdf" class="pdf-button pdf-link" id="uruguay-gauchos-pdf-button" target="_blank">voir pgm</a>
+              <button class="read-more" onclick="event.preventDefault();">+</button>
+              <span class="pdf-button" onclick="event.stopPropagation();">voir pgm</span>
             </div>
             <p class="mt-2 font-bold">1 590 € (17 jours / 16 nuits)*</p>
           </div>
-        </div>
+        </a>
         
         <!-- Voyage 2 - Río de la Plata - Le berceau du tango -->
-        <div class="bg-white rounded shadow-lg overflow-hidden">
+        <a href="#" class="trip-card bg-white rounded shadow-lg overflow-hidden" id="trip-rio">
           <img src="Images/Montevideo.jpg" alt="Uruguay - Rio de la Plata - Le berceau du tango" class="w-full h-48 object-cover rounded image-check">
           <div class="p-4 card-content">
             <h3 class="text-xl font-semibold">Rio de la Plata - Le berceau du tango</h3>
             <p class="text-gray-600 mt-2 description">Voyage exclusif pour danseurs confirmés : perfectionnez votre tango à Buenos Aires, vivez l'intensité des milongas, traversez le Río de la Plata et découvrez Montevideo intime.</p>
             <div class="flex justify-center space-x-4 mt-2">
-              <button class="read-more">+</button>
-              <a href="PDF/Rio_de_la_Plata_Berceau_du_Tango.pdf" class="pdf-button pdf-link" id="uruguay-rio-pdf-button" target="_blank">voir pgm</a>
+              <button class="read-more" onclick="event.preventDefault();">+</button>
+              <span class="pdf-button" onclick="event.stopPropagation();">voir pgm</span>
             </div>
             <p class="mt-2 font-bold">1 290 € (17 jours / 16 nuits)*</p>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </section>
@@ -161,18 +180,43 @@
   <!-- FOOTER -->
   <footer class="bg-blue-600 text-white py-4">
     <div class="container mx-auto px-4 text-center">
-<!-- NOUVEAU TEXTE -->
-<p class="text-white text-sm mt-2 italic">*Prix indicatif en Formule Autonomie, variable selon le groupe.</p>
-
+      <p class="text-white text-sm mt-2 italic">*Prix indicatif en Formule Autonomie, variable selon le groupe.</p>
       <p style="color: white; font-size: 1rem;">&copy; 2026 VPDVOYAGES - Patrick Daroque - Travel Planner. Tous droits réservés. | n° siret : 52534368700030
  | <a href="cgv.html" style="color: white; text-decoration: underline;">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;">Mentions légales</a></p>
     </div>
   </footer>
   
   <script>
+    // Gestion des cartes cliquables pour l'Uruguay
+    (function() {
+      function setTripLinks() {
+        const isMobile = window.innerWidth <= 640;
+        const antiCache = Date.now();
+
+        const trips = [
+          { id: 'trip-gauchos', mobile: 'pdf_mobile/Uruguay_Montevideo_Gauchos/programme.html', desktop: 'PDF/Uruguay_Montevideo_Gauchos_Bodegas.pdf' },
+          { id: 'trip-rio', mobile: 'pdf_mobile/Rio_de_la_Plata_Berceau_du_Tango/programme.html', desktop: 'PDF/Rio_de_la_Plata_Berceau_du_Tango.pdf' }
+        ];
+
+        trips.forEach(function(trip) {
+          const card = document.getElementById(trip.id);
+          if (card) {
+            const url = isMobile ? trip.mobile : trip.desktop;
+            card.href = url + (url.includes('?') ? '&' : '?') + 'v=' + antiCache;
+            card.target = isMobile ? '_self' : '_blank';
+          }
+        });
+      }
+
+      // Exécution au chargement et redimensionnement
+      setTripLinks();
+      window.addEventListener('resize', setTripLinks);
+    })();
+
     // Bouton Lire la suite
     document.querySelectorAll('.read-more').forEach(btn=>{
-      btn.addEventListener('click',function(){
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
         const desc=this.closest('.card-content').querySelector('.description');
         desc.classList.toggle('expanded');
         this.textContent=desc.classList.contains('expanded')?'−':'+';
@@ -198,42 +242,6 @@
         }
       });
     });
-
-    // ✅ GESTION PC / MOBILE POUR LES DEUX VOYAGES
-    (function () {
-      function updateLinks() {
-        const isMobile = window.innerWidth <= 640;
-        
-        // Voyage 1 - Montevideo, Gauchos
-        const gauchosBtn = document.getElementById('uruguay-gauchos-pdf-button');
-        if (gauchosBtn) {
-          if (isMobile) {
-            gauchosBtn.href = 'pdf_mobile/Uruguay_Montevideo_Gauchos/programme.html';
-            gauchosBtn.target = '_self';
-          } else {
-            gauchosBtn.href = 'PDF/Uruguay_Montevideo_Gauchos_Bodegas.pdf';
-            gauchosBtn.target = '_blank';
-          }
-        }
-        
-        // Voyage 2 - Rio de la Plata
-        const rioBtn = document.getElementById('uruguay-rio-pdf-button');
-        if (rioBtn) {
-          if (isMobile) {
-            rioBtn.href = 'pdf_mobile/Rio_de_la_Plata_Berceau_du_Tango/programme.html';
-            rioBtn.target = '_self';
-          } else {
-            rioBtn.href = 'PDF/Rio_de_la_Plata_Berceau_du_Tango.pdf';
-            rioBtn.target = '_blank';
-          }
-        }
-      }
-      
-      // Exécution au chargement et au redimensionnement
-      updateLinks();
-      window.addEventListener('resize', updateLinks);
-    })();
-
   </script>
   <script src="bandeau.js"></script>
 </body>
