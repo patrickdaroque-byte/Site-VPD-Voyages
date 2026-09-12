@@ -12,9 +12,8 @@ window.travelQuotes = [
   "Voyager, c’est vivre. – Hans Christian Andersen",
   "Il n’y a pas de chemin vers le bonheur, le bonheur est le chemin. – Proverbe oriental",
   "Le voyage est la seule chose qu’on achète qui nous rend plus riche. – Inconnu",
-  "Le voyage est la seule chose que vous achetez qui vous rend plus riche.",
-  "Partir, c'est voir un monde nouveau à chaque horizon.",
-  "Chaque voyage commence par un pas vers l'inconnu.",
+  "Partir, c’est voir un monde nouveau à chaque horizon.",
+  "Chaque voyage commence par un pas vers l’inconnu.",
   "Les plus belles découvertes se font hors des sentiers battus.",
-  "Voyager, c'est apprendre une nouvelle façon de voir la vie."
+  "Voyager, c’est apprendre une nouvelle façon de voir la vie."
 ];
