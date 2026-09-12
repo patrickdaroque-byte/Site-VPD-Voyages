@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VPDVOYAGES – Patrick Daroque | Voyages sur mesure Espagne & Amérique latine</title>
   <meta name="description" content="VPDVOYAGES – Patrick Daroque, Travel Planner. Voyages sur mesure et en petit groupe (formules Autonomie ou Sérénité) en Espagne, Colombie, Argentine, Cuba et Uruguay.">
-  <meta name="keywords" content="Patrick Daroque, VPDVOYAGES, voyages Espagne, voyages Amérique latine, séjour personnalisé, travel planner">
+  <meta name="keywords" content="Patrick Daroque, VPDVOYAGES, voyages Espagne, voyages Amérique latine, séjour personnalisé, travel planner, voyage solo">
   <meta name="author" content="Patrick Daroque">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://vpdvoyages.com/">
@@ -32,7 +32,7 @@
   <meta name="google-site-verification" content="GL_MN5ppVlrThYDUpviv9e4gRrljAwbIHbW3zUvcXAA" />
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Indie+Flower&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <script type="application/ld+json">
   {
@@ -45,7 +45,7 @@
       "Patrick Daroque"
     ],
     "url": "https://vpdvoyages.com",
-    "logo": "https://vpdvoyages.com/Images/logo.jpg",
+    "logo": "https://vpdvoyages.com/Images/logo-wow.png",
     "description": "VPDVOYAGES – Patrick Daroque, Travel Planner. Voyages sur mesure et en petit groupe (formules Autonomie ou Sérénité) en Espagne et en Amérique latine : Colombie, Argentine, Cuba, Uruguay.",
     "founder": {
       "@type": "Person",
@@ -71,6 +71,7 @@
     "knowsAbout": [
       "Voyages sur mesure",
       "Voyages en petit groupe",
+      "Voyages solo",
       "Espagne",
       "Amérique latine",
       "Colombie",
@@ -83,462 +84,635 @@
   </script>
 
   <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+    body {
+      margin: 0;
+      padding-top: 72px;
+      font-size: 16px;
+      background: #fff;
+      color: #1f2937;
+      font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    }
+
+    /* ================= HEADER ================= */
     header {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: 76px;
       width: 100%;
-      background: #2563eb;
+      background: linear-gradient(90deg,#1764df 0%,#2463d8 55%,#1d5bc8 100%);
+      color: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,.16);
     }
-    body {
-      padding-top: 60px;
-      font-size: 16px;
-      background-color: white;
+    header .container { height: 100%; }
+    .nav-menu { display:flex; align-items:center; }
+    .nav-menu ul { align-items:center; }
+    .nav-menu a { color:#fff; text-decoration:none; font-weight:700; }
+    .nav-menu a:hover { text-decoration:none; opacity:.9; }
+    @media (min-width:768px) {
+      .nav-menu li.nav-primary {
+        position:relative;
+        top:-7px;
+      }
     }
-    html {
-      scroll-padding-top: 60px;
+    .nav-menu a[href="#home"] { position:relative; }
+    .nav-menu a.nav-home {
+      color:#1764df !important;
+      text-decoration:none;
+      z-index:0;
     }
-    .nav-menu {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 60px;
-      right: 10px;
-      background: #2563eb;
-      padding: 10px;
-      border-radius: 5px;
-      z-index: 50;
+    .nav-menu a.nav-home::before {
+      content:"";
+      position:absolute;
+      z-index:-1;
+      left:-10px;
+      right:-10px;
+      top:-6px;
+      bottom:-6px;
+      background:#fff;
+      border-radius:999px;
+      box-shadow:0 3px 10px rgba(0,0,0,.16);
     }
-    .nav-menu.active {
-      display: flex;
+    .nav-toggle { display:none; }
+    .header-phone { white-space:nowrap; font-weight:700; margin-top:-26px; }
+    .wow-logo { width: 275px; height: 64px; object-fit: contain; object-position:left center; display:block; }
+    .nav-reviews { display:inline-flex; align-items:center; gap:5px; padding:6px 11px; border-radius:999px; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28); box-shadow:0 3px 10px rgba(0,0,0,.10); }
+    .nav-reviews span { color:#ffd34d; font-size:1.05em; }
+    .nav-reviews:hover { background:#fff; color:#1764df !important; }
+
+    /* Bloc droit : menu + téléphone empilés (desktop) */
+    .header-right {
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:2px;
     }
-    .nav-toggle {
-      display: block;
-      cursor: pointer;
+
+    /* ===== MENU MOBILE (caché par défaut) ===== */
+    .nav-menu-mobile { display: none; }
+
+    /* ================= BADGE NOUVEAU ================= */
+    .new-badge {
+      position:absolute;
+      z-index:20;
+      top:36px;
+      right:6.5%;
+      min-width:235px;
+      padding:14px 18px 14px 20px;
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      align-items:center;
+      gap:12px;
+      border:4px solid rgba(255,255,255,.78);
+      border-radius:28px;
+      color:#fff;
+      text-decoration:none;
+      background:linear-gradient(135deg,#ffb52b 0%,#ff6d22 100%);
+      box-shadow:0 12px 26px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.35);
+      transform:rotate(4deg);
+      transition:.25s ease;
     }
+    .new-badge::before,
+    .new-badge::after {
+      content:""; position:absolute; width:7px; height:28px; border-radius:8px;
+      background:#ffb52b; top:-30px; opacity:.95;
+    }
+    .new-badge::before { left:55px; transform:rotate(-35deg); }
+    .new-badge::after { right:48px; transform:rotate(35deg); }
+    .new-badge:hover { transform:rotate(1deg) translateY(-3px) scale(1.03); box-shadow:0 16px 32px rgba(0,0,0,.32); }
+    .new-badge-top {
+      padding:4px 8px; border-radius:7px; background:#fff; color:#f97316;
+      font-size:16px; line-height:1; font-weight:900; letter-spacing:.04em;
+    }
+    .new-badge-bottom { font-size:19px; line-height:1.02; font-weight:900; letter-spacing:.01em; }
+    .new-badge-arrow { font-size:31px; line-height:1; font-weight:900; }
+
+    /* ================= HERO ================= */
+    #home {
+      position:relative;
+      min-height:455px;
+      margin:0;
+      overflow:visible;
+      isolation:isolate;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background-image:
+        linear-gradient(rgba(0,0,0,.14),rgba(0,0,0,.18)),
+        url('https://images.pexels.com/photos/37164319/pexels-photo-37164319.jpeg?auto=compress&cs=tinysrgb&w=2000');
+      background-size:cover;
+      background-position:center 50%;
+    }
+    #home::after {
+      content:""; position:absolute; inset:0; z-index:-1;
+      background:linear-gradient(180deg,rgba(0,0,0,.02) 0%,rgba(0,0,0,.05) 55%,rgba(0,0,0,.16) 100%);
+      pointer-events:none;
+    }
+    .hero-panel {
+      width:min(1000px,78vw);
+      margin-top:8px;
+      padding:20px 32px 13px;
+      border:2px solid rgba(255,255,255,.75);
+      border-radius:22px;
+      background:rgba(255,255,255,.55);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      box-shadow:0 16px 42px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.22);
+      color:#17365f;
+    }
+    .hero-kicker {
+      margin:0 0 12px;
+      color:#1764df;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.20em;
+      text-transform:uppercase;
+      text-shadow:none;
+    }
+    .hero-title-main {
+      display:block;
+      color:#17365f;
+      font-size:clamp(2rem,3.7vw,3rem);
+      line-height:1.02;
+      font-weight:800;
+      text-shadow:none;
+    }
+    .hero-title-accent {
+      display:block;
+      margin-top:4px;
+      color:#ffb52e;
+      font-family:'Caveat',cursive;
+      font-size:clamp(2.55rem,4.8vw,3.85rem);
+      line-height:1;
+      text-shadow:none;
+    }
+    .hero-panel > p:not(.hero-kicker) {
+      margin:9px auto 12px;
+      max-width:720px;
+      color:#334155;
+      font-size:16px;
+      line-height:1.45;
+      text-shadow:none;
+    }
+    .hero-panel .hero-quote { display:flex; justify-content:flex-end; margin-top:4px; }
+
+    /* ===== PROVERBE DU JOUR ===== */
     .daily-quote {
-      color: #9333EA !important;
-      padding: 0.75rem;
-      width: 150px;
-      text-align: center;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      font-family: 'Indie Flower', cursive;
-      font-style: italic;
-      margin-top: 0.5rem;
+      width:100%;
+      max-width:560px;
+      margin-left:auto;
+      color:#1e3a5f !important;
+      text-align:right;
+      font-family:'Caveat',cursive;
+      font-style:italic;
+      font-size:22px;
+      line-height:1.25;
+      text-shadow:none !important;
     }
-    .flag-img {
-      object-fit: contain;
-      width: 112px;
-      height: 72px;
-      border: none;
-      border-radius: 0;
-      box-shadow: none;
-      background: none;
-      animation: none;
-      transition: none;
-      transform: none;
-      display: block;
-      margin: 0 auto;
+    .daily-quote .quote-text {
+      font-style:italic;
     }
-    .flag-container {
-      position: relative;
-      display: block;
-      background: none;
-      border: none;
-      border-radius: 0;
-      box-shadow: none;
-      padding: 0;
-      transition: none;
-      cursor: pointer;
-    }
-    .flag-container:hover {
-      transform: none;
-      box-shadow: none;
-    }
-    
-    .starburst {
-      position: absolute;
-      z-index: 20;
-      right: 10%;
-      left: auto;
-      top: calc(50% + 40px);
-      text-decoration: none;
-      cursor: pointer;
-      transform: translateY(-50%) rotate(10deg);
-      width: 170px;
-      height: 170px;
-      background: linear-gradient(135deg, #ffeb3b 0%, #ffc107 45%, #f57c00 100%);
-      clip-path: polygon(50.0% 0.0%, 57.3% 17.8%, 71.7% 5.0%, 70.6% 24.2%, 89.1% 18.8%, 79.7% 35.7%, 98.7% 38.9%, 83.0% 50.0%, 98.7% 61.1%, 79.7% 64.3%, 89.1% 81.2%, 70.6% 75.8%, 71.7% 95.0%, 57.3% 82.2%, 50.0% 100.0%, 42.7% 82.2%, 28.3% 95.0%, 29.4% 75.8%, 10.9% 81.2%, 20.3% 64.3%, 1.3% 61.1%, 17.0% 50.0%, 1.3% 38.9%, 20.3% 35.7%, 10.9% 18.8%, 29.4% 24.2%, 28.3% 5.0%, 42.7% 17.8%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.35), inset 0 0 0 2px rgba(255,255,255,0.5);
-      animation: starburst-pulse 2.2s ease-in-out infinite;
-    }
-    .starburst-title {
-      font-weight: 800;
-      font-size: 1.25rem;
-      line-height: 1;
-      letter-spacing: 0.02em;
-      color: #ffffff;
-      text-shadow: 0 1px 1px rgba(0,0,0,0.25);
-    }
-    .starburst-sub {
-      font-weight: 700;
-      font-size: 0.95rem;
-      line-height: 1.2;
-      margin-top: 4px;
-      max-width: 105px;
-      color: #cc0000;
-      text-shadow: none;
-    }
-    @keyframes starburst-pulse {
-      0% { transform: translateY(-50%) rotate(10deg) scale(1); }
-      50% { transform: translateY(-50%) rotate(10deg) scale(1.06); }
-      100% { transform: translateY(-50%) rotate(10deg) scale(1); }
+    .daily-quote .quote-author {
+      white-space:nowrap;
+      margin-left:6px;
+      font-size:0.8em;
+      font-style:normal;
+      font-weight:600;
+      opacity:.85;
     }
     @media (max-width: 639px) {
-      .starburst {
-        width: 90px;
-        height: 90px;
-        top: 58px;
-        right: 6px;
-        left: auto;
-        transform: rotate(10deg);
-        animation: starburst-pulse-mobile 2.2s ease-in-out infinite;
-      }
-      .starburst-title {
-        font-size: 0.7rem;
-      }
-      .starburst-sub {
-        font-size: 0.5rem;
-        max-width: 50px;
-        margin-top: 2px;
-      }
-      @keyframes starburst-pulse-mobile {
-        0% { transform: rotate(10deg) scale(1); }
-        50% { transform: rotate(10deg) scale(1.06); }
-        100% { transform: rotate(10deg) scale(1); }
-      }
-    }
-
-    .cuba img {
-      object-fit: contain;
-    }
-    @media (max-width: 639px) {
-      header {
-        padding: 0.35rem 0;
-      }
-      header img.image-check {
-        width: 2.25rem !important;
-        height: 2.25rem !important;
-      }
-      header .text-xl {
-        font-size: 1.05rem;
-      }
-      header .text-xs {
-        font-size: 0.65rem;
-      }
-      body {
-        padding-top: 50px;
-      }
-      html {
-        scroll-padding-top: 50px;
-      }
-      #home {
-        margin-top: -50px !important;
-      }
-    }
-    @media (min-width: 640px) {
-      header {
-        padding: 1rem 0;
-      }
-      body {
-        padding-top: 60px;
-      }
-      html {
-        scroll-padding-top: 60px;
-      }
-      .nav-menu {
-        display: flex;
-        flex-direction: row;
-        position: static;
-        background: none;
-        padding: 0;
-        border-radius: 0;
-      }
-      .nav-toggle {
-        display: none;
-      }
       .daily-quote {
-        width: 200px;
-        padding: 0.5rem;
-        font-size: 0.85rem;
-        font-family: 'Indie Flower', cursive;
-        font-style: italic;
-        position: static;
-        margin-top: 0.5rem;
+        max-width: 100%;
+        font-size: 15px;
+        line-height: 1.25;
       }
-      .argentine .see-program {
+      .daily-quote .quote-author {
+        font-size: 0.8em;
+      }
+    }
+
+    .hero-panel a.bg-blue-600,
+    .hero-panel a.bg-white {
+      min-height:56px;
+      padding:0 28px !important;
+      border-radius:999px !important;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-size:17px !important;
+      font-weight:800 !important;
+      text-decoration:none;
+      transition:.22s ease;
+    }
+    .hero-panel a.bg-blue-600 { background:#2477ef !important; border:2px solid rgba(255,255,255,.9); color:#fff !important; }
+    .hero-panel a.bg-blue-600:hover { transform:translateY(-2px); background:#1767dc !important; }
+    .hero-panel a.bg-white { background:transparent !important; border:2px solid #fff !important; color:#fff !important; }
+    .hero-panel a.bg-white:hover { background:rgba(255,255,255,.16) !important; transform:translateY(-2px); }
+
+    .hero-panel .hero-quote {
+      border-top:1px solid rgba(23,54,95,.14);
+      padding-top:7px;
+    }
+
+    /* CTA principal – orange vif, forme "ticket" arrondie, pulse */
+    .hero-panel a.cta-projet {
+      min-height:62px !important;
+      padding:0 34px 0 30px !important;
+      border-radius:16px 28px 16px 28px !important;
+      display:inline-flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+      gap:10px !important;
+      font-size:18px !important;
+      font-weight:900 !important;
+      letter-spacing:.01em !important;
+      text-decoration:none !important;
+      white-space:nowrap !important;
+      background:linear-gradient(135deg,#ffb52b 0%,#ff8a1a 45%,#ff5c1a 100%) !important;
+      border:3px solid #fff !important;
+      color:#1a1a1a !important;
+      box-shadow:
+        0 12px 32px rgba(255,109,34,.52),
+        0 2px 0 rgba(180,60,0,.25),
+        inset 0 1px 0 rgba(255,255,255,.55) !important;
+      transition:transform .22s ease, box-shadow .22s ease, background .22s ease, border-radius .22s ease !important;
+      animation: cta-pulse 3.2s ease-out infinite;
+    }
+    .hero-panel a.cta-projet:hover {
+      animation: none;
+      transform:translateY(-4px) scale(1.04) !important;
+      border-radius:28px 16px 28px 16px !important;
+      background:linear-gradient(135deg,#ff5c1a 0%,#e8480f 100%) !important;
+      color:#fff !important;
+      box-shadow:
+        0 16px 36px rgba(232,72,15,.55),
+        0 3px 0 rgba(120,30,0,.3),
+        inset 0 1px 0 rgba(255,255,255,.35) !important;
+    }
+    @keyframes cta-pulse {
+      0%, 100% { box-shadow:0 10px 28px rgba(255,109,34,.45), 0 2px 0 rgba(180,60,0,.25), 0 0 0 0 rgba(255,140,30,.55); }
+      55% { box-shadow:0 10px 28px rgba(255,109,34,.45), 0 2px 0 rgba(180,60,0,.25), 0 0 0 14px rgba(255,140,30,0); }
+    }
+    @media (max-width:639px) {
+      .hero-panel a.cta-projet {
+        width:100% !important;
+        min-height:56px !important;
+        font-size:15px !important;
+        padding:0 14px !important;
+        justify-content:center !important;
+        border-radius:14px 22px 14px 22px !important;
+      }
+      .hero-panel a.cta-projet:hover {
+        border-radius:22px 14px 22px 14px !important;
+      }
+    }
+
+    /* ================= DESTINATIONS ================= */
+    #contact { scroll-margin-top: 92px; }
+
+    #destinations {
+      position:relative;
+      z-index:5;
+      margin-top:0;
+      padding:0 0 26px;
+      background:#fff;
+    }
+    #destinations .container { max-width:1460px; }
+    #destinations h2 { display:none; }
+    #destinations .grid {
+      display:grid;
+      grid-template-columns:repeat(6,minmax(0,1fr));
+      gap:12px;
+      margin-top:28px;
+      margin-bottom:18px;
+    }
+    #destinations .grid > div { min-width:0; }
+    #destinations .flag-container,
+    #destinations .prochainement-btn {
+      position:relative;
+      display:block;
+      width:100%;
+      height:160px;
+      min-height:160px;
+      overflow:hidden;
+      padding:0;
+      border:0;
+      border-radius:18px;
+      background:#111;
+      box-shadow:0 10px 24px rgba(0,0,0,.20);
+      text-decoration:none;
+      transition:transform .28s ease,box-shadow .28s ease;
+    }
+    #destinations .flag-container::before,
+    #destinations .prochainement-btn::before {
+      content:""; position:absolute; inset:0; z-index:1;
+      background:linear-gradient(to bottom,rgba(0,0,0,.02) 30%,rgba(0,0,0,.08) 52%,rgba(0,0,0,.52) 100%);
+    }
+    #destinations .flag-container:hover,
+    #destinations .prochainement-btn:hover {
+      transform:translateY(-7px) scale(1.018);
+      box-shadow:0 18px 34px rgba(0,0,0,.28);
+    }
+    #destinations img.destination-photo {
+      position:absolute; inset:0;
+      width:100%; height:100%; margin:0;
+      object-fit:cover;
+      transition:transform .45s ease;
+    }
+    #destinations .flag-container:hover img.destination-photo,
+    #destinations .prochainement-btn:hover img.destination-photo { transform:scale(1.07); }
+    #destinations .destination-content {
+      position:absolute; z-index:3; left:13px; right:13px; bottom:11px;
+      color:#fff; text-align:left;
+    }
+    #destinations .destination-content p {
+      margin:0 0 8px;
+      color:#fff;
+      font-family:'Poppins',Arial,Helvetica,sans-serif;
+      font-size:clamp(15px,1.55vw,24px);
+      line-height:1.05;
+      font-weight:900;
+      letter-spacing:.01em;
+      text-shadow:0 2px 7px rgba(0,0,0,.32);
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+    #destinations .destination-content p img {
+      vertical-align:middle;
+    }
+    #destinations .prochainement .destination-content p {
+      font-size:clamp(12px,1.2vw,17px) !important;
+      letter-spacing:-0.02em;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width:100%;
+    }
+    #destinations .destination-content span {
+      display:flex;
+      width:100%;
+      min-height:34px;
+      align-items:center;
+      justify-content:center;
+      border:2px solid rgba(255,255,255,.95);
+      border-radius:999px;
+      background:rgba(0,0,0,.10);
+      color:#fff;
+      font-size:15px;
+      font-weight:800;
+      opacity:1;
+      transform:none;
+      backdrop-filter:blur(2px);
+      transition:.22s ease;
+    }
+    #destinations .flag-container:hover .destination-content span,
+    #destinations .prochainement-btn:hover .destination-content span { background:rgba(255,255,255,.14); }
+
+    /* Cuba availability badge */
+    #destinations .cuba-with-badge { position:relative; width:100%; }
+    #destinations .cuba-badge { position:absolute; z-index:7; top:10px; right:10px; margin:0; }
+    #destinations .cuba-badge-text {
+      display:inline-block; padding:6px 9px; border-radius:999px;
+      background:#ffcc00; color:#111; font-size:10px; line-height:1.05; font-weight:900;
+      text-align:center; box-shadow:0 4px 12px rgba(0,0,0,.22);
+    }
+    #destinations .prochainement-label { color:#fff !important; }
+
+    #destinations .text-center.mb-2 p {
+      margin:0;
+      font-size:12px;
+      color:#6b7280;
+    }
+
+    /* ================= LIEN "VOYAGER SEUL(E)" DANS LE MENU – VERT ÉMERAUDE ================= */
+    .nav-solo {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:6px 14px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#10b981 0%,#059669 100%);
+      color:#fff !important;
+      font-weight:800;
+      box-shadow:0 4px 12px rgba(16,185,129,.40);
+      transition:.22s ease;
+    }
+    .nav-solo:hover {
+      transform:translateY(-2px) scale(1.04);
+      box-shadow:0 8px 22px rgba(16,185,129,.55);
+      opacity:1 !important;
+      background:linear-gradient(135deg,#059669 0%,#047857 100%);
+    }
+
+    /* ================= ENCART VOYAGE SOLO (home) ================= */
+    #voyage-solo-promo {
+      background:linear-gradient(135deg,#eef4ff 0%,#fff7e6 50%,#eef4ff 100%);
+    }
+    .solo-card {
+      display:block;
+      max-width:1000px;
+      margin:0 auto;
+      border:4px solid #fcd34d;
+      border-radius:22px;
+      background:#fff;
+      box-shadow:0 10px 30px rgba(15,23,42,.10);
+      transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+      text-decoration:none;
+      color:inherit;
+      overflow:hidden;
+    }
+    .solo-card:hover {
+      transform:translateY(-5px);
+      box-shadow:0 22px 48px rgba(15,23,42,.20);
+      border-color:#f59e0b;
+    }
+    .solo-card-inner {
+      display:flex;
+      align-items:center;
+      gap:22px;
+      padding:22px 28px;
+    }
+    .solo-emoji {
+      flex-shrink:0;
+      font-size:58px;
+      line-height:1;
+      filter:drop-shadow(0 4px 8px rgba(0,0,0,.12));
+    }
+    .solo-badge {
+      display:inline-block;
+      padding:3px 12px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#10b981 0%,#059669 100%);
+      color:#fff;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.05em;
+      margin-bottom:8px;
+      box-shadow:0 3px 8px rgba(16,185,129,.35);
+    }
+    .solo-title {
+      margin:0 0 6px;
+      color:#1764df;
+      font-size:clamp(1.3rem,2.2vw,1.75rem);
+      line-height:1.15;
+      font-weight:900;
+    }
+    .solo-text {
+      margin:0;
+      color:#475569;
+      font-size:15px;
+      line-height:1.45;
+    }
+    .solo-text strong { color:#1e293b; }
+    .solo-cta-wrap { flex-shrink:0; }
+    .solo-cta {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:14px 26px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#10b981 0%,#059669 100%);
+      color:#fff;
+      font-weight:800;
+      font-size:15px;
+      white-space:nowrap;
+      box-shadow:0 8px 20px rgba(16,185,129,.40);
+      transition:.25s ease;
+    }
+    .solo-card:hover .solo-cta {
+      background:linear-gradient(135deg,#059669 0%,#047857 100%);
+      transform:translateX(4px);
+      box-shadow:0 12px 28px rgba(16,185,129,.60);
+    }
+    @media (max-width:768px) {
+      .solo-card-inner {
+        flex-direction:column;
+        text-align:center;
+        padding:22px 18px;
+        gap:14px;
+      }
+      .solo-emoji { font-size:48px; }
+      .solo-cta { width:100%; justify-content:center; }
+    }
+
+    /* ================= LOWER PAGE ================= */
+    #about { margin-top:0 !important; }
+
+    /* ===== Retour à la ligne forcé du titre "Votre voyage / commence ici" (mobile uniquement) ===== */
+    .mobile-br { display: inline; }
+    .desktop-space { display: none; }
+    @media (min-width: 768px) {
+      .mobile-br { display: none; }
+      .desktop-space { display: inline; }
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width:1250px) {
+      #destinations .grid { grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:24px; }
+      #destinations .flag-container,#destinations .prochainement-btn { height:300px; min-height:300px; }
+    }
+    @media (min-width:1251px) {
+      #destinations .grid { margin-top:24px; }
+    }
+    @media (min-width:640px) {
+      header { padding:0 !important; }
+      .nav-menu { display:flex; }
+      .nav-menu ul { display:flex; flex-direction:row; gap:26px; }
+      .header-phone { display:flex; align-items:center; gap:8px; }
+    }
+    @media (max-width:639px) {
+      html { scroll-padding-top:56px; }
+      body { padding-top:56px; }
+      header { height:56px; }
+      header .container { padding-left:12px; padding-right:12px; }
+      header img.image-check { width:190px !important; height:46px !important; object-fit:contain !important; object-position:left center !important; }
+      header .text-xl { font-size:1.05rem; }
+      header .text-xs { font-size:.58rem; }
+      .nav-toggle { display:block; background:none; border:0; color:#fff; }
+      .nav-menu {
+        display:none; position:absolute; top:56px; right:10px; width:230px;
+        flex-direction:column; align-items:stretch; padding:12px;
+        background:#1764df; border-radius:0 0 12px 12px; box-shadow:0 12px 24px rgba(0,0,0,.2);
+      }
+      .nav-menu.active { display:flex; }
+      .nav-menu ul { display:flex; flex-direction:column; gap:9px; }
+      .nav-menu a { display:block; padding:6px 8px; }
+      .nav-menu li.nav-primary { top:auto; }
+      .nav-menu a.nav-home {
+        color:#fff !important;
+      }
+      .nav-menu a.nav-home::before {
+        display:none;
+      }
+      .nav-menu a[href="#home"]::after { display:none; }
+      .nav-solo { justify-content:center; }
+      .header-phone { display:none; }
+      .header-right { display:none; }
+
+      /* ===== MENU MOBILE (overlay dédié) ===== */
+      .nav-menu-mobile {
         display: none;
+        position: absolute;
+        top: 56px; right: 10px; width: 230px;
+        flex-direction: column; align-items: stretch; padding: 12px;
+        background: #1764df;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 12px 24px rgba(0,0,0,.2);
       }
-    }
-    @media (min-width: 640px) {
-      #destinations .flag-container {
-        padding: 5px 8px 7px;
-        border: 1px solid #dbeafe;
-        border-radius: 12px;
-        box-shadow: 0 3px 8px rgba(37, 99, 235, 0.12);
-        transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+      .nav-menu-mobile.active { display: flex; }
+      .nav-menu-mobile ul {
+        display: flex; flex-direction: column; gap: 9px;
+        list-style: none; padding: 0; margin: 0;
       }
+      .nav-menu-mobile a {
+        display: block; padding: 6px 8px;
+        color: #fff; text-decoration: none; font-weight: 700;
+      }
+      .nav-menu-mobile a.nav-solo { justify-content: center; display: flex; }
 
-      #destinations .flag-container:hover {
-        transform: translateY(-3px) scale(1.02);
-        border-color: #93c5fd;
-        box-shadow: 0 8px 16px rgba(37, 99, 235, 0.20);
-      }
-
-      #destinations .flag-container:active {
-        transform: translateY(1px) scale(0.98);
-        border-color: #2563eb;
-        box-shadow: 0 2px 5px rgba(37, 99, 235, 0.18);
-      }
-
-      #destinations .flag-container:focus-visible {
-        outline: 3px solid rgba(37, 99, 235, 0.30);
-        outline-offset: 2px;
-      }
-
-      #destinations .cuba-with-badge {
-        width: 100%;
-      }
-      #destinations .cuba .flag-container {
-        width: 100%;
-        box-sizing: border-box;
-      }
-
-      #destinations .prochainement-btn {
-        box-sizing: border-box;
-        width: 100%;
-        padding: 5px 8px 7px;
-        border: 1px solid #dbeafe;
-        border-radius: 12px;
-        box-shadow: 0 3px 8px rgba(37, 99, 235, 0.12);
-        transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-decoration: none;
-        background: none;
-      }
-      #destinations .prochainement-btn:hover {
-        transform: translateY(-3px) scale(1.02);
-        border-color: #93c5fd;
-        box-shadow: 0 8px 16px rgba(37, 99, 235, 0.20);
-      }
-      #destinations .prochainement-btn:active {
-        transform: translateY(1px) scale(0.98);
-        border-color: #2563eb;
-        box-shadow: 0 2px 5px rgba(37, 99, 235, 0.18);
-      }
-      #destinations .prochainement-btn:focus-visible {
-        outline: 3px solid rgba(37, 99, 235, 0.30);
-        outline-offset: 2px;
-      }
-    }
-
-    @media (max-width: 639px) {
-      #destinations {
-        padding-top: 0;
-      }
-      #destinations .grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-template-areas: none;
-      }
-      #destinations .espagne,
-      #destinations .cuba,
-      #destinations .argentine,
-      #destinations .uruguay,
-      #destinations .colombie,
-      #destinations .prochainement {
-        grid-area: auto;
-        grid-column: auto;
-      }
-      .argentine .see-program {
-        display: block;
-      }
       #home {
-        height: auto;
-        min-height: 35vh;
-        justify-content: flex-start;
-        padding-top: 50px;
+        min-height:405px;
+        padding:18px 10px 14px;
+        background-position:50% 38%;
       }
-      #home .text-center {
-        padding: 0.75rem;
+      .new-badge { top:13px; right:9px; min-width:168px; padding:8px 10px; border-width:3px; border-radius:19px; gap:7px; }
+      .new-badge-top { font-size:11px; padding:3px 6px; }
+      .new-badge-bottom { font-size:14px; line-height:1.0; }
+      .new-badge-arrow { font-size:21px; }
+      .hero-panel { width:100%; margin-top:12px; padding:15px 12px 9px; border-radius:16px; }
+      .hero-kicker { font-size:9px; letter-spacing:.14em; }
+      .hero-title-main { font-size:1.42rem; }
+      .hero-title-accent { font-size:1.95rem; }
+      .hero-panel > p:not(.hero-kicker) { font-size:12.5px; line-height:1.35; margin:10px auto 12px; }
+      .hero-panel a.bg-blue-600,.hero-panel a.bg-white { min-height:42px; padding:0 17px !important; font-size:14px !important; width:100%; }
+      .hero-panel .flex.flex-wrap { flex-direction:column; }
+      #destinations { padding-bottom:20px; }
+      #destinations .grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:22px; margin-bottom:12px; }
+      #destinations .flag-container,#destinations .prochainement-btn { height:138px; min-height:138px; border-radius:14px; }
+      #destinations .destination-content { left:10px; right:10px; bottom:10px; }
+      #destinations .destination-content p { font-size:16px; margin-bottom:6px; font-weight:900; text-shadow:0 2px 6px rgba(0,0,0,.35); }
+      #destinations .destination-content p img { width:20px !important; height:14px !important; margin-right:6px !important; }
+      #destinations .prochainement .destination-content p { font-size:12px !important; letter-spacing:-0.03em; }
+      #destinations .destination-content span { min-height:27px; font-size:11px; border-width:1px; }
+      #destinations .cuba-badge { top:7px; right:7px; }
+      #destinations .cuba-badge-text { font-size:7px; padding:4px 5px; }
+      #destinations .text-center.mb-2 p { font-size:9px; margin-top:10px; }
+    }
+    /* Mobile: prioritize reading over decoration */
+    @media (max-width: 639px) {
+      #destinations .destination-content p {
+        color:#fff;
+        text-shadow:0 2px 6px rgba(0,0,0,.35) !important;
+        -webkit-text-stroke:0;
       }
-      #home p {
-        font-size: 0.8rem;
-      }
-      
-      /* ===== BANDEAU COMPLET ===== */
-      #home h1 {
-        font-size: 1.1rem !important;
-        line-height: 1.4 !important;
-        white-space: normal !important;
-        word-wrap: break-word !important;
-        max-width: 100% !important;
-      }
-      
-      .espagne img, .cuba img, .argentine img, .uruguay img, .colombie img {
-        width: 5.5rem;
-        height: 3.3rem;
-      }
-      
-      #destinations .flag-container {
-        display: block;
-        width: 100%;
-        box-sizing: border-box;
-        padding: 2px 3px 4px;
-        background: rgba(255,255,255,0.78);
-        border: 1px solid #dbeafe;
-        border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(37, 99, 235, 0.14);
-        transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
-        cursor: pointer;
-      }
-      #destinations .flag-container:active {
-        transform: translateY(1px) scale(0.98);
-        border-color: #2563eb;
-        box-shadow: 0 1px 3px rgba(37, 99, 235, 0.18);
-      }
-      #destinations .flag-container:focus-visible {
-        outline: 2px solid rgba(37, 99, 235, 0.30);
-        outline-offset: 1px;
-      }
-      #destinations .cuba {
-        width: 100%;
-      }
-      #destinations .cuba-with-badge {
-        display: block;
-        width: 100%;
-      }
-      #destinations .cuba .flag-container {
-        display: block;
-        width: 100%;
-        box-sizing: border-box;
-      }
-      #destinations .cuba img {
-        width: 5.5rem;
-        height: 3.3rem;
-      }
-      
-      /* ===== PROCHAINEMENT : MEME CADRE QUE LES AUTRES ===== */
-      #destinations .prochainement-btn {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 2px 3px 4px;
-        border: 1px solid #dbeafe;
-        border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(37, 99, 235, 0.14);
-        transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-decoration: none;
-        background: rgba(255,255,255,0.78);
-      }
-      #destinations .prochainement-btn:active {
-        transform: translateY(1px) scale(0.98);
-        border-color: #2563eb;
-        box-shadow: 0 1px 3px rgba(37, 99, 235, 0.18);
-      }
-      #destinations .prochainement-btn:focus-visible {
-        outline: 2px solid rgba(37, 99, 235, 0.30);
-        outline-offset: 1px;
-      }
-      
-      .globe-star {
-        width: 3.3rem !important;
-        height: 3.3rem !important;
-        border-radius: 50% !important;
-        margin: 0 auto !important;
-        background: linear-gradient(145deg, #3b82f6 0%, #1d4ed8 100%) !important;
-        border: 2px solid #93c5fd !important;
-        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.45) !important;
-      }
-      .globe-star svg { 
-        width: 24px !important; 
-        height: 24px !important; 
-      }
-      .globe-star .star-dot { 
-        width: 8px !important; 
-        height: 8px !important; 
-        top: 3px !important; 
-        right: 4px !important; 
-      }
-      .prochainement-label { 
-        font-size: 1rem !important; 
-        font-weight: 600 !important;
-        color: #4b5563 !important;
-        margin-top: 0.15rem !important;
+      #destinations .destination-content span {
+        text-shadow:none !important;
       }
     }
 
-    .prochainement-btn {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      transition: transform 0.2s ease;
-    }
-    .prochainement-btn:hover { transform: scale(1.06); }
-    
-    .globe-star {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background: linear-gradient(145deg, #3b82f6 0%, #1d4ed8 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.45);
-      position: relative;
-      border: 2px solid #93c5fd;
-      margin: 0 auto;
-    }
-    .globe-star svg { 
-      width: 34px; 
-      height: 34px; 
-      fill: none;
-      stroke: white;
-      stroke-width: 1.5;
-    }
-    .globe-star .star-dot {
-      position: absolute;
-      top: 5px;
-      right: 6px;
-      width: 12px;
-      height: 12px;
-      background: #fbbf24;
-      border-radius: 50%;
-      box-shadow: 0 0 8px 2px rgba(251, 191, 36, 0.8);
-      animation: starPulse 1.8s ease-in-out infinite;
-    }
-    @keyframes starPulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.25); opacity: 0.85; }
-    }
-    .prochainement-label {
-      margin-top: 0.25rem;
-      color: #4b5563;
-      font-size: 1rem;
-      font-weight: 600;
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { scroll-behavior:auto !important; transition:none !important; animation:none !important; }
     }
   </style>
 </head>
@@ -550,187 +724,177 @@
 
   <header class="bg-blue-600 text-white py-2">
     <div class="container mx-auto px-4 flex justify-between items-center flex-wrap">
-      <div class="flex items-center space-x-4">
-        <img src="Images/logo.jpg" alt="VPDVOYAGES - Logo Patrick Daroque Travel Planner" width="48" height="48" class="h-12 w-12 object-contain image-check">
-        <div class="flex flex-col leading-tight">
-          <span class="text-xl md:text-2xl font-bold tracking-tight">VPDVOYAGES</span>
-          <span class="text-xs md:text-sm font-medium opacity-90 whitespace-nowrap">Patrick Daroque · Travel Planner</span>
+
+      <!-- Bloc gauche : logo -->
+      <div class="flex items-center">
+        <img src="Images/logo.png" alt="VPDVOYAGES - Patrick Daroque Travel Planner" width="290" height="68" class="wow-logo image-check">
+      </div>
+
+      <!-- Bloc droit desktop : menu sur une ligne + téléphone en dessous, alignés à droite -->
+      <div class="header-right hidden md:flex" style="margin-right:60px;">
+        <nav class="nav-menu" aria-label="Navigation du site">
+          <ul class="flex flex-row gap-[26px]">
+            <li class="nav-primary" style="padding-top:14px;"><a href="#home" class="hover:underline text-base md:text-lg nav-home">Accueil</a></li>
+            <li class="nav-primary" style="padding-top:14px;"><a href="#destinations" class="hover:underline text-base md:text-lg">Destinations</a></li>
+            <li class="nav-primary" style="padding-top:14px;"><a href="voyage-solo.html" class="nav-solo text-base md:text-lg" title="Voyager seul(e) en petit groupe">🧳 Voyager seul(e)</a></li>
+            <li class="nav-primary" style="padding-top:14px;"><a href="cgv.html#cgv-autonomie" class="hover:underline text-base md:text-lg">Formules</a></li>
+            <li class="nav-primary" style="padding-top:14px;"><a href="https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site/" target="_blank" rel="noopener noreferrer" class="nav-reviews text-base md:text-lg" title="Voir les avis clients VPDVOYAGES"><span>★</span> Avis clients</a></li>
+            <li style="margin-top:-22px;"><a href="#about" class="hover:underline text-base md:text-lg">À propos</a></li>
+            <li style="margin-top:-22px;"><a href="#contact" class="hover:underline text-base md:text-lg">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="header-phone hidden md:flex">
+          <span aria-hidden="true">☎</span><span>+33 6 10 95 09 84</span>
         </div>
       </div>
-      <button class="nav-toggle text-white focus:outline-none" aria-label="Menu principal">
+
+      <!-- Bouton burger (mobile) -->
+      <button class="nav-toggle text-white focus:outline-none md:hidden" aria-label="Menu principal">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
       </button>
-      <nav class="nav-menu md:flex md:space-x-4" aria-label="Navigation du site">
-        <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
-          <li><a href="#home" class="hover:underline text-base md:text-lg">Accueil</a></li>
-          <li><a href="#destinations" class="hover:underline text-base md:text-lg">Destinations</a></li>
-          <li><a href="#about" class="hover:underline text-base md:text-lg">Mon approche</a></li>
-          <li><a href="#reviews" class="hover:underline text-base md:text-lg">Avis clients</a></li>
-          <li><a href="#travel-planner" class="hover:underline text-base md:text-lg">Travel Planner ?</a></li>
-          <li><a href="#contact" class="hover:underline text-base md:text-lg">Contact</a></li>
+
+      <!-- Menu mobile (affiché au clic du burger sur mobile) -->
+      <nav class="nav-menu-mobile" aria-label="Navigation mobile">
+        <ul>
+          <li><a href="#home">Accueil</a></li>
+          <li><a href="#destinations">Destinations</a></li>
+          <li><a href="voyage-solo.html" class="nav-solo" title="Voyager seul(e) en petit groupe">🧳 Voyager seul(e)</a></li>
+          <li><a href="cgv.html#cgv-autonomie">Formules</a></li>
+          <li><a href="https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site/" target="_blank" rel="noopener noreferrer" class="nav-reviews" title="Voir les avis clients VPDVOYAGES"><span>★</span> Avis clients</a></li>
+          <li><a href="#about">À propos</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main>
-    <section id="home" class="bg-cover bg-center min-h-[16rem] md:min-h-[18rem] -mt-[60px] pb-0 flex flex-col items-center justify-center relative mb-0" style="background-image: url('https://vpdvoyages.com/Voyages%20de%20r%C3%AAve/Images/hero-image.jpg')">
-      <a href="cgv.html#cgv-formules" class="starburst" title="Découvrir les formules Autonomie et Sérénité dans les CGV">
-        <span class="starburst-title">Nouveau</span>
-        <span class="starburst-sub">Autonomie &amp; Sérénité</span>
+    <section id="home" class="flex flex-col items-center justify-center relative">
+      <a href="cgv.html#cgv-autonomie" class="new-badge" title="Découvrir les formules Autonomie et Sérénité">
+        <span class="new-badge-top">NOUVEAU</span>
+        <span class="new-badge-bottom">Autonomie<br>&amp; Sérénité</span>
+        <span class="new-badge-arrow">→</span>
       </a>
-      <div class="text-center text-white bg-black bg-opacity-30 p-2 md:p-3 rounded relative z-10 mt-0 md:mt-0">
-        <br class="md:hidden">
-        <h1 class="text-xl md:text-2xl font-bold mb-1 md:mb-2 relative z-10">Découvrez l'Espagne et l'Amérique latine autrement</h1>
-        <p class="text-sm md:text-base mb-3 md:mb-4 relative z-10">Voyages sur mesure, conçus par un expert du voyage pour des expériences d’exception.</p>
-        <div class="flex flex-wrap justify-center items-center gap-3 md:gap-4 relative z-10">
-          <a href="#contact" class="bg-blue-600 text-white px-3 py-1 rounded-full hover:bg-blue-700 text-sm md:text-base">Parlons de votre projet</a>
-          <a href="voyage-solo.html" class="bg-orange-500 text-white px-3 py-1 rounded-full hover:bg-orange-600 text-sm md:text-base inline-flex items-center gap-2">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.5c-3.3 0-9.8 1.6-9.8 4.9v2.4h19.6v-2.4c0-3.3-6.5-4.9-9.8-4.9z"/>
+
+      <div class="hero-panel text-center text-white relative z-10">
+        <p class="hero-kicker">VOYAGES SUR MESURE &amp; EN PETIT GROUPE</p>
+        <h1 class="font-bold mb-3">
+          <span class="hero-title-main">L&rsquo;Espagne &amp; l&rsquo;Amérique latine</span>
+          <span class="hero-title-accent">vous attendent !</span>
+        </h1>
+        <p class="mb-4">Des expériences authentiques, des rencontres uniques, des voyages qui ont du sens.</p>
+        <div class="flex flex-wrap justify-center items-center gap-3 md:gap-4">
+          <a href="#destinations" class="bg-blue-600 text-white px-5 py-2.5 rounded-full hover:bg-blue-700 text-sm md:text-base font-semibold shadow-lg inline-flex items-center gap-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21 10.5c0 5.25-9 11-9 11s-9-5.75-9-11a9 9 0 1 1 18 0zm-9 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
             </svg>
-            Voyager seul(e) !
+            Nos destinations →
+          </a>
+          <a href="#contact" class="cta-projet" title="Votre voyage commence ici — parler de mon projet avec VPDVOYAGES" aria-label="Votre voyage commence ici, aller à la rubrique Contactez-moi">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.2H22l-6 4.8 2.4 7.2L12 16.8 5.6 21.2 8 14 2 9.2h7.6L12 2z"/></svg>
+            <span class="hidden md:inline">VOTRE VOYAGE COMMENCE ICI</span><span class="md:hidden">COMMENCER MON VOYAGE</span> →
           </a>
         </div>
-        <br class="md:hidden">
+        <div class="hero-quote">
+          <div class="daily-quote"></div>
+        </div>
       </div>
-      <div class="daily-quote w-full md:w-auto mt-0 md:mt-0"></div>
     </section>
 
     <section id="destinations" class="pt-0 pb-2 mt-0 bg-white">
       <div class="container mx-auto px-4">
         <h2 class="text-2xl md:text-3xl font-bold text-center mb-4">Nos destinations d'exception</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 mb-2">
-          <div class="espagne text-center">
+        <div class="grid mb-6">
+          <div class="espagne">
             <a href="espagne.html" class="flag-container">
-              <img src="Images/espagne_flag.png" alt="Drapeau Espagne" width="112" height="72" class="flag-img mx-auto">
-              <p class="mt-1 text-gray-600 text-base font-semibold">Espagne</p>
+              <img src="https://images.pexels.com/photos/30820126/pexels-photo-30820126.jpeg?cs=srgb&dl=pexels-gottapics-30820126.jpg&fm=jpg" alt="Espagne – destination VPDVOYAGES" class="destination-photo" loading="lazy">
+              <div class="destination-content">
+                <p><img src="https://flagcdn.com/w40/es.png" srcset="https://flagcdn.com/w80/es.png 2x" alt="" width="26" height="18" style="display:inline-block;vertical-align:middle;margin-right:8px;border-radius:3px;box-shadow:0 2px 4px rgba(0,0,0,.2);" loading="lazy">Espagne</p>
+                <span>Découvrir →</span>
+              </div>
             </a>
           </div>
-          <div class="cuba text-center flex flex-col items-center">
+
+          <div class="cuba">
             <div class="cuba-with-badge">
               <div class="cuba-badge">
-                <span class="cuba-badge-text">
-                  Départs selon<br class="cuba-br"> l'actualité
-                </span>
+                <span class="cuba-badge-text">Départs selon l’actualité</span>
               </div>
               <a href="cuba.html" class="flag-container">
-                <img src="Images/cuba_flag.png" alt="Drapeau Cuba" width="112" height="72" class="flag-img mx-auto">
-                <p class="mt-1 text-gray-600 text-base font-semibold">Cuba</p>
+                <img src="https://images.pexels.com/photos/37224660/pexels-photo-37224660.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Cuba – destination VPDVOYAGES" class="destination-photo" loading="lazy">
+                <div class="destination-content">
+                  <p><img src="https://flagcdn.com/w40/cu.png" srcset="https://flagcdn.com/w80/cu.png 2x" alt="" width="26" height="18" style="display:inline-block;vertical-align:middle;margin-right:8px;border-radius:3px;box-shadow:0 2px 4px rgba(0,0,0,.2);" loading="lazy">Cuba</p>
+                  <span>Découvrir →</span>
+                </div>
               </a>
             </div>
           </div>
-          <style>
-          @keyframes pulseMsg {
-            0% { background:#ffcc00; }
-            50% { background:#ffd84d; }
-            100% { background:#ffcc00; }
-          }
-          .cuba-with-badge {
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            justify-content: center;
-            gap: 2px;
-          }
-          .cuba-badge {
-            margin-top: 0.55rem;
-            flex-shrink: 0;
-          }
-          .cuba-badge-text {
-            display: inline-block;
-            background: #ffcc00;
-            color: #000;
-            padding: 3px 4px;
-            border-radius: 5px;
-            font-weight: normal;
-            font-size: 0.65rem;
-            line-height: 1.15;
-            width: 4.6rem;
-            text-align: center;
-            animation: pulseMsg 2s infinite;
-          }
-          .cuba-br {
-            display: block;
-          }
-          @media (max-width: 639px) {
-            .cuba-badge {
-              display: none;
-            }
-            .cuba p::after {
-              content: "*";
-              margin-left: 1px;
-            }
-          }
 
-          @media (min-width: 640px) {
-            .cuba-with-badge {
-              flex-direction: column;
-              align-items: center;
-              gap: 0;
-            }
-            .cuba-badge {
-              margin-top: 0.25rem;
-              order: 2;
-            }
-            .cuba-with-badge .flag-container {
-              order: 1;
-            }
-            .cuba-badge-text {
-              font-size: 0.75rem;
-              max-width: none;
-              width: auto;
-              white-space: nowrap;
-              padding: 4px 8px;
-            }
-            .cuba-br {
-              display: none;
-            }
-          }
-          </style>
-          <div class="argentine text-center">
+          <div class="argentine">
             <a href="argentine.html" class="flag-container">
-              <img src="Images/argentine_flag.png" alt="Drapeau Argentine" width="112" height="72" class="flag-img mx-auto">
-              <p class="mt-1 text-gray-600 text-base font-semibold">Argentine</p>
-            </a>
-          </div>
-          <div class="uruguay text-center">
-            <a href="uruguay.html" class="flag-container">
-              <img src="Images/uruguay_flag.png" alt="Drapeau Uruguay" width="112" height="72" class="flag-img mx-auto">
-              <p class="mt-1 text-gray-600 text-base font-semibold">Uruguay</p>
-            </a>
-          </div>
-          <div class="colombie text-center">
-            <a href="colombie.html" class="flag-container">
-              <img src="Images/colombie_flag.png" alt="Drapeau Colombie" width="112" height="72" class="flag-img mx-auto">
-              <p class="mt-1 text-gray-600 text-base font-semibold">Colombie</p>
-            </a>
-          </div>
-          <div class="prochainement text-center">
-            <a href="prochainement.html" class="prochainement-btn">
-              <div class="globe-star">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9" stroke="white" stroke-width="1.5"/>
-                  <ellipse cx="12" cy="12" rx="4" ry="9" stroke="white" stroke-width="1.2"/>
-                  <path d="M3 12h18" stroke="white" stroke-width="1.2"/>
-                  <path d="M5 7.5c2.5 1 5.5 1.5 7 1.5s4.5-.5 7-1.5" stroke="white" stroke-width="1"/>
-                  <path d="M5 16.5c2.5-1 5.5-1.5 7-1.5s4.5.5 7 1.5" stroke="white" stroke-width="1"/>
-                </svg>
-                <span class="star-dot"></span>
+              <img src="https://images.pexels.com/photos/37164319/pexels-photo-37164319.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Argentine – destination VPDVOYAGES" class="destination-photo" loading="lazy">
+              <div class="destination-content">
+                <p><img src="https://flagcdn.com/w40/ar.png" srcset="https://flagcdn.com/w80/ar.png 2x" alt="" width="26" height="18" style="display:inline-block;vertical-align:middle;margin-right:8px;border-radius:3px;box-shadow:0 2px 4px rgba(0,0,0,.2);" loading="lazy">Argentine</p>
+                <span>Découvrir →</span>
               </div>
-              <p class="prochainement-label">Prochainement</p>
+            </a>
+          </div>
+
+          <div class="uruguay">
+            <a href="uruguay.html" class="flag-container">
+              <img src="Images/gauchos.jpeg" alt="Uruguay – gauchos dans la pampa, destination VPDVOYAGES" class="destination-photo" loading="lazy">
+              <div class="destination-content">
+                <p><img src="https://flagcdn.com/w40/uy.png" srcset="https://flagcdn.com/w80/uy.png 2x" alt="" width="26" height="18" style="display:inline-block;vertical-align:middle;margin-right:8px;border-radius:3px;box-shadow:0 2px 4px rgba(0,0,0,.2);" loading="lazy">Uruguay</p>
+                <span>Découvrir →</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="colombie">
+            <a href="colombie.html" class="flag-container">
+              <img src="https://images.pexels.com/photos/36895093/pexels-photo-36895093.jpeg?cs=srgb&dl=pexels-diego-hg-2157656524-36895093.jpg&fm=jpg" alt="Colombie – destination VPDVOYAGES" class="destination-photo" loading="lazy">
+              <div class="destination-content">
+                <p><img src="https://flagcdn.com/w40/co.png" srcset="https://flagcdn.com/w80/co.png 2x" alt="" width="26" height="18" style="display:inline-block;vertical-align:middle;margin-right:8px;border-radius:3px;box-shadow:0 2px 4px rgba(0,0,0,.2);" loading="lazy">Colombie</p>
+                <span>Découvrir →</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="prochainement">
+            <a href="prochainement.html" class="prochainement-btn" aria-label="Découvrir les prochaines destinations" title="Découvrir les prochaines destinations VPDVOYAGES">
+              <img src="Images/prochainement.jpg" alt="Prochainement – nouvelles destinations VPDVOYAGES" class="destination-photo" loading="lazy">
+              <div class="destination-content">
+                <p>🌍 Prochainement…</p>
+                <span>À découvrir →</span>
+              </div>
             </a>
           </div>
         </div>
-        <div class="text-right -mt-2 mb-2">
-          <div class="inline-block bg-blue-50 border border-blue-200 rounded px-3 py-1">
-            <p class="animate-pulse text-blue-600 italic text-xs md:text-sm m-0">
-              * Les départs sont proposés toute l'année selon l'actualité et les disponibilités.
-            </p>
+        <div class="text-center mb-2"><p class="text-gray-500 italic text-xs md:text-sm m-0">* Les départs sont proposés toute l'année selon l'actualité et les disponibilités.</p></div>
+      </div>
+    </section>
+
+    <!-- ===== ENCART VOYAGE SOLO ===== -->
+    <section id="voyage-solo-promo" class="py-6">
+      <div class="container mx-auto px-4">
+        <a href="voyage-solo.html" class="solo-card" title="Découvrir le voyage solo en petit groupe">
+          <div class="solo-card-inner">
+            <div class="solo-emoji">🧳</div>
+            <div style="flex:1;">
+              <span class="solo-badge">🆕 NOUVEAU</span>
+              <h3 class="solo-title">Voyager seul(e)… mais jamais isolé(e)</h3>
+              <p class="solo-text">
+                Partez à votre rythme et rejoignez un petit groupe de <strong>2 à 5 voyageurs</strong>.
+                <strong>Sans supplément single.</strong> Espagne &amp; Amérique latine.
+              </p>
+            </div>
+            <div class="solo-cta-wrap">
+              <span class="solo-cta">Découvrir →</span>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
     </section>
 
@@ -765,21 +929,12 @@
 
     <section id="combined-section" class="py-6 bg-white">
       <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          
-          <div class="text-center" id="reviews">
-            <h2 class="text-2xl font-bold mb-4">Ce que disent les clients</h2>
-            <div class="bg-gray-200 p-3 rounded shadow-lg">
-              <p class="text-gray-600 text-base mb-2">Découvrez les avis sur les voyages uniques en Espagne et Amérique latine.</p>
-              <a href="javascript:void(0);" onclick="openReviewsPopup()" class="text-blue-600 hover:underline text-base font-semibold">Voir les avis clients</a>
-            </div>
-            <div class="mt-4">
-              <img src="Images/carte_amerique_latine.jpeg" alt="Carte d'Amérique latine" width="300" height="240" class="w-full h-60 object-contain rounded mx-auto image-check" loading="lazy">
-            </div>
-          </div>
-
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="text-center" id="contact">
-            <h2 class="text-2xl font-bold text-center mb-4">Contactez-moi</h2>
+            <h2 class="text-2xl font-bold text-center mb-2">
+              Votre voyage<span class="mobile-br"><br></span><span class="desktop-space"> </span>commence ici
+            </h2>
+            <p class="text-blue-600 font-semibold text-base mb-3">Contactez-moi pour parler de votre projet</p>
             <div class="max-w-sm mx-auto bg-white p-4 rounded shadow-lg">
               <form id="contactForm" action="https://formspree.io/f/mblkkdrj" method="POST">
                 <div class="mb-2">
@@ -830,7 +985,7 @@
 
   <footer class="bg-blue-600 py-2">
     <div class="container mx-auto px-4 text-center">
-      <p style="color: white; font-size: 1rem;">&copy; 2026 - VPDVOYAGES - Patrick Daroque - Travel Planner. Tous droits réservés. | SIRET : 52534368700030
+      <p style="color: white; font-size: 1rem;"><a href="index.html" style="color: white; text-decoration: underline;">Accueil</a> | <a href="voyage-solo.html" style="color: white; text-decoration: underline;">Voyager seul(e)</a> | &copy; 2026 - VPDVOYAGES - Patrick Daroque - Travel Planner. Tous droits réservés. | SIRET : 52534368700030
       | <a href="cgv.html" style="color: white; text-decoration: underline;">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;">Mentions légales</a>
       | <a href="partenaires.html" style="display: inline-flex; align-items: center; vertical-align: middle;">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.75;">
@@ -845,6 +1000,7 @@
   <script>
     function resetMenus() {
       document.querySelector('.nav-menu')?.classList.remove('active');
+      document.querySelector('.nav-menu-mobile')?.classList.remove('active');
     }
     window.addEventListener('load', resetMenus);
     window.addEventListener('popstate', resetMenus);
@@ -861,7 +1017,7 @@
     });
 
     document.querySelector('.nav-toggle').addEventListener('click', function () {
-      document.querySelector('.nav-menu').classList.toggle('active');
+      document.querySelector('.nav-menu-mobile').classList.toggle('active');
     });
 
     document.querySelectorAll('.image-check').forEach(img => {
@@ -875,18 +1031,21 @@
       const today = new Date();
       const quoteIndex = today.getDate() % quotes.length;
       const dailyQuoteElement = document.querySelector('.daily-quote');
+
       if (dailyQuoteElement && quotes.length > 0) {
-        dailyQuoteElement.textContent = quotes[quoteIndex] || "Aucune citation disponible.";
+        const raw = quotes[quoteIndex] || "";
+        const parts = raw.split(/\s+[—–-]\s+/);
+        if (parts.length >= 2) {
+          const auteur = parts.pop();
+          const texte = parts.join(' — ');
+          dailyQuoteElement.innerHTML =
+            `<span class="quote-text">«&nbsp;${texte}&nbsp;»</span>` +
+            `<span class="quote-author">—&nbsp;${auteur}</span>`;
+        } else {
+          dailyQuoteElement.innerHTML = `<span class="quote-text">«&nbsp;${raw}&nbsp;»</span>`;
+        }
       }
     });
-
-    function openReviewsPopup() {
-      const width = 800;
-      const height = 600;
-      const left = (window.innerWidth - width) / 2;
-      const top = (window.innerHeight - height) / 2;
-      window.open('https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site', '_blank', `width=${width},height=${height},left=${left},top=${top}`);
-    }
   </script>
   <script>
     document.getElementById("contactForm").addEventListener("submit", function(event) {
@@ -910,17 +1069,10 @@
     });
   </script>
 
-  <!-- ============================================================ -->
-  <!-- INTERRUPTEUR MANUEL DU WIDGET VOICEFLOW                       -->
-  <!-- Passez cette valeur à false quand vous n'avez plus de crédit  -->
-  <!-- Voiceflow, et remettez-la à true quand le crédit est renouvelé.-->
-  <!-- C'est la SEULE ligne à modifier, rien d'autre à toucher.      -->
-  <!-- ============================================================ -->
   <script>
     var VOICEFLOW_WIDGET_ACTIF = false;
   </script>
 
-  <!-- Script Voiceflow - ne se charge que si VOICEFLOW_WIDGET_ACTIF = true -->
   <script type="text/javascript">
     if (VOICEFLOW_WIDGET_ACTIF) {
       (function(d, t) {
@@ -930,12 +1082,8 @@
             window.voiceflow.chat.load({
               verify: { projectID: '6a84bf641c51f4a7bb70c4d3' },
               url: 'https://general-runtime.voiceflow.com',
-              voice: {
-                url: "https://runtime-api.voiceflow.com"
-              },
-              render: {
-                mode: 'overlay'
-              },
+              voice: { url: "https://runtime-api.voiceflow.com" },
+              render: { mode: 'overlay' },
               assistant: {
                 title: "Votre conseiller VPDVOYAGES",
                 description: "Mon assistant voyage",
@@ -947,7 +1095,6 @@
                 cancel: "Annuler"
               }
             }).catch((err) => {
-              // Sécurité supplémentaire si Voiceflow renvoie une erreur au chargement
               if (window.voiceflow && window.voiceflow.chat) {
                 window.voiceflow.chat.hide();
               }

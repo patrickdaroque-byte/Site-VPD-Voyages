@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme - VPDVOYAGES</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        #pdf-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* ===== PILULE FLOTTANTE BAS CENTRÉE ===== */
+        #controls-pill {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+
+            display: flex;
+            align-items: center;
+            gap: 0;
+
+            background: linear-gradient(135deg,
+                        rgba(30, 58, 138, 0.88) 0%,
+                        rgba(15, 23, 42, 0.88) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+
+            padding: 6px 8px;
+
+            box-shadow:
+                0 8px 24px rgba(37, 99, 235, 0.35),
+                0 4px 12px rgba(0, 0, 0, 0.4);
+
+            /* Animation d'entrée + flottement au repos */
+            animation: pillEnter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+                       pillFloat 3.5s ease-in-out 0.6s infinite;
+        }
+
+        @keyframes pillEnter {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        @keyframes pillFloat {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-3px);
+            }
+        }
+
+        /* ===== BOUTONS DANS LA PILULE (base commune) ===== */
+        #controls-pill a,
+        #controls-pill button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            background: transparent;
+            border: none;
+
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: inherit;
+
+            padding: 12px 22px;
+            border-radius: 50px;
+
+            cursor: pointer;
+            text-decoration: none;
+
+            transition: background 0.25s ease, transform 0.15s ease;
+            white-space: nowrap;
+        }
+
+        #controls-pill a:active,
+        #controls-pill button:active {
+            transform: scale(0.97);
+        }
+
+        /* ===== BOUTON RETOUR — ROUGE ===== */
+        #btn-retour {
+            background: #ef4444 !important;
+            color: #ffffff;
+        }
+        #btn-retour:hover {
+            background: #dc2626 !important;
+        }
+        #btn-retour .arrow {
+            display: inline-block;
+            transition: transform 0.25s ease;
+        }
+        #btn-retour:hover .arrow {
+            transform: translateX(-4px);
+        }
+
+        /* ===== BOUTON AGRANDIR — VERT ===== */
+        #btn-fullscreen {
+            background: #10b981 !important;
+            color: #ffffff;
+        }
+        #btn-fullscreen:hover {
+            background: #059669 !important;
+        }
+        #btn-fullscreen .fs-icon {
+            display: inline-block;
+            transition: transform 0.25s ease;
+        }
+        #btn-fullscreen:hover .fs-icon {
+            transform: scale(1.15);
+        }
+
+        /* État "déjà en plein écran" : bouton grisé */
+        #btn-fullscreen.hidden {
+            opacity: 0.35;
+            cursor: default;
+        }
+        #btn-fullscreen.hidden:hover {
+            background: #10b981 !important;
+        }
+
+        /* ===== SÉPARATEUR DORÉ ===== */
+        .separator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #d4a24e;
+            box-shadow:
+                0 0 0 2px rgba(212, 162, 78, 0.25),
+                0 0 8px rgba(212, 162, 78, 0.5);
+            margin: 0 4px;
+            flex-shrink: 0;
+        }
+
+        /* ===== ERREUR ===== */
+        .erreur {
+            color: #fff;
+            padding: 2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Pilule de contrôles -->
+    <div id="controls-pill">
+        <a href="javascript:void(0)" id="btn-retour" title="Retour à la page précédente">
+            <span class="arrow">←</span>
+            <span>Retour</span>
+        </a>
+
+        <span class="separator"></span>
+
+        <button id="btn-fullscreen" title="Agrandir le programme">
+            <span class="fs-icon">⛶</span>
+            <span>Agrandir</span>
+        </button>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const pdfPath = params.get('pdf');
+        const retourUrl = params.get('retour');
+
+        const btnRetour = document.getElementById('btn-retour');
+        const btnFullscreen = document.getElementById('btn-fullscreen');
+
+        /* ===== GESTION DU BOUTON RETOUR ===== */
+        if (retourUrl) {
+            btnRetour.dataset.target = retourUrl;
+        } else {
+            btnRetour.dataset.target = 'javascript:history.back()';
+        }
+
+        btnRetour.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = btnRetour.dataset.target;
+
+            // Si on est en plein écran, on quitte d'abord proprement
+            if (document.fullscreenElement || document.webkitFullscreenElement) {
+                const exit = document.exitFullscreen || document.webkitExitFullscreen;
+                if (exit) {
+                    exit.call(document).then(() => {
+                        if (target.startsWith('javascript:')) {
+                            history.back();
+                        } else {
+                            window.location.href = target;
+                        }
+                    }).catch(() => {
+                        if (target.startsWith('javascript:')) {
+                            history.back();
+                        } else {
+                            window.location.href = target;
+                        }
+                    });
+                    return;
+                }
+            }
+
+            if (target.startsWith('javascript:')) {
+                history.back();
+            } else {
+                window.location.href = target;
+            }
+        });
+
+        /* ===== CHARGEMENT DU PDF ===== */
+        if (!pdfPath) {
+            document.body.innerHTML = '<p class="erreur">Erreur : aucun PDF spécifié.</p>';
+        } else {
+            const iframe = document.createElement('iframe');
+            iframe.id = 'pdf-frame';
+            iframe.src = pdfPath + '#zoom=page-fit&toolbar=0&navpanes=0';
+            iframe.allowFullscreen = true;
+            document.body.insertBefore(iframe, document.body.firstChild);
+
+            /* ===== GESTION DU PLEIN ÉCRAN ===== */
+            function goFullscreen() {
+                const el = document.documentElement;
+                if (el.requestFullscreen) {
+                    el.requestFullscreen().catch(() => {});
+                } else if (el.webkitRequestFullscreen) {
+                    el.webkitRequestFullscreen();
+                }
+            }
+
+            // Tentative automatique au chargement
+            goFullscreen();
+
+            // Bouton manuel
+            btnFullscreen.addEventListener('click', goFullscreen);
+
+            // Suivre l'état du plein écran
+            function updateFullscreenBtn() {
+                const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+                btnFullscreen.classList.toggle('hidden', isFs);
+                btnFullscreen.title = isFs
+                    ? 'Déjà en plein écran — appuyez sur Échap pour quitter'
+                    : 'Agrandir le programme';
+            }
+            document.addEventListener('fullscreenchange', updateFullscreenBtn);
+            document.addEventListener('webkitfullscreenchange', updateFullscreenBtn);
+            updateFullscreenBtn();
+        }
+    </script>
+</body>
+</html>
