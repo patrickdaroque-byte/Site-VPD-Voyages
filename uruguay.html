@@ -26,6 +26,38 @@
         }
 
         header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #2563eb; }
+
+        @media (min-width: 768px) {
+            header {
+                background: linear-gradient(90deg,#1764df 0%,#2463d8 55%,#1d5bc8 100%);
+            }
+
+            .nav-menu a {
+                color: #fff;
+                text-decoration: none;
+                font-weight: 700;
+                padding: 6px 4px;
+                position: relative;
+                transition: color .2s ease;
+            }
+            .nav-menu a:hover {
+                color: #ffd84d !important;
+                text-decoration: none;
+            }
+
+            .nav-active::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: -6px;
+                height: 3px;
+                border-radius: 2px;
+                background: linear-gradient(90deg,#ffd84d 0%,#ffb52b 100%);
+                box-shadow: 0 0 8px rgba(255,180,40,.55);
+            }
+        }
+
         html { scroll-padding-top: 80px; }
         .nav-menu { display: flex; }
         .nav-toggle { display: none; }
@@ -52,7 +84,7 @@
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
 
-    <header class="bg-blue-600 text-white py-4">
+    <header class="text-white py-4">
     <div class="container mx-auto px-4 flex justify-between items-center flex-wrap">
       <div class="flex items-center space-x-4">
         <a href="index.html#home" title="VPDVOYAGES – Accueil">
@@ -73,7 +105,7 @@
       </div>
       <nav class="nav-menu md:flex md:space-x-6">
         <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
-          <li><a href="index.html#home" class="hover:underline text-sm md:text-base">Accueil</a></li>
+          <li><a href="index.html#home" class="nav-active hover:underline text-sm md:text-base">Accueil</a></li>
           <li><a href="index.html#destinations" class="hover:underline text-sm md:text-base">Les destinations</a></li>
           <li><a href="index.html#about" class="hover:underline text-sm md:text-base">Qui suis-je ?</a></li>
           <li><a href="index.html#reviews" class="hover:underline text-sm md:text-base">Avis des voyageurs</a></li>
