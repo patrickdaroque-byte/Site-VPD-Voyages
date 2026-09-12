@@ -15,12 +15,25 @@
       right: 0;
       z-index: 100;
       width: 100%;
-      background: #2563eb;
+      background: linear-gradient(90deg,#1764df 0%,#2463d8 55%,#1d5bc8 100%);
     }
     body {
-      padding-top: 80px;
+      padding-top: 76px;
       font-size: 16px;
       background-color: white;
+    }
+    .wow-logo {
+      width: 275px;
+      height: 64px;
+      object-fit: contain;
+      object-position: left center;
+      display: block;
+    }
+    @media (max-width: 640px) {
+      .wow-logo {
+        width: 190px !important;
+        height: 46px !important;
+      }
     }
     .cgv-content {
       max-width: 900px;
@@ -80,10 +93,9 @@
       padding: 1rem 1.25rem;
       border-radius: 8px;
       margin: 1rem 0;
-      scroll-margin-top: 100px; /* évite que le header fixe (80px) ne masque l'encart ciblé par une ancre */
+      scroll-margin-top: 100px;
     }
 
-    /* Ancres directes vers les formules Autonomie / Sérénité */
     #cgv-formules,
     #cgv-autonomie,
     #cgv-serenite {
@@ -93,17 +105,11 @@
   <link rel="canonical" href="https://vpdvoyages.com/cgv.html">
 </head>
 <body class="font-sans">
-  <header class="bg-blue-600 text-white py-4">
+  <header class="py-2">
     <div class="container mx-auto px-4 flex justify-between items-center">
-      <div class="flex items-center space-x-4">
-        <a href="index.html" class="flex items-center space-x-4">
-          <img src="Images/logo.jpg" alt="Logo Patrick Daroque - Travel Planner" class="h-12 w-12 object-contain">
-          <div class="flex flex-col">
-            <h1 class="text-2xl font-bold">VPDVOYAGES</h1>
-            <span class="text-base font-medium">Patrick - Daroque - Travel Planner</span>
-          </div>
-        </a>
-      </div>
+      <a href="index.html" title="VPDVOYAGES – Accueil">
+        <img src="Images/logo.png" alt="VPDVOYAGES - Patrick Daroque Travel Planner" width="290" height="68" class="wow-logo">
+      </a>
       <nav>
         <a href="index.html" class="bg-white text-blue-600 font-semibold px-4 py-2 rounded hover:bg-gray-100 text-base inline-block">Retour</a>
       </nav>
@@ -135,7 +141,7 @@
 
     <section>
       <h2>2. NATURE DE LA PRESTATION ET RESPONSABILITÉ</h2>
-      
+
       <h3>2.1 Statut et périmètre d’intervention</h3>
       <p>Je suis Travel Planner indépendant immatriculé sous le numéro SIRET 52534368700030. À ce titre, je propose un service de conseil, d’organisation et de coordination de voyages sur mesure, ainsi que des formules de voyages en petit groupe (2 à 5 personnes) sous les dénominations Autonomie et Sérénité.</p>
       <p><strong>Je n’exerce pas l’activité d’agence de voyages et ne suis pas immatriculé au registre des opérateurs de voyages et de séjours d’Atout France</strong>, conformément à la réponse ministérielle du 5 mai 2026, dès lors que mon activité de conseil et de planification ne comporte pas d’encaissement de fonds pour le compte de tiers (hors éléments éventuellement inclus dans la formule Sérénité et clairement identifiés dans le devis).</p>
@@ -210,7 +216,7 @@
 
     <section>
       <h2>3. TARIFS ET MODALITÉS DE PAIEMENT</h2>
-      
+
       <h3>3.1 Honoraires de conseil et formules</h3>
       <p>Les honoraires du Travel Planner et les tarifs des formules Autonomie / Sérénité sont fixés en fonction de la complexité du voyage, de la durée du séjour, du nombre de participants et des options retenues. Un devis détaillé est établi avant toute prestation.</p>
 
@@ -220,7 +226,7 @@
         <li>30 % à la commande (acompte non remboursable, sous réserve du droit de rétractation de l’article 4.4)</li>
         <li>70 % à la remise du carnet de voyage final</li>
       </ul>
-      
+
       <p><strong>3.2.2 Pour les formules Autonomie et Sérénité :</strong></p>
       <ul>
         <li>Un acompte de 50 % est exigé à la signature du devis</li>
@@ -236,7 +242,7 @@
 
     <section>
       <h2>4. PROCESSUS DE RÉSERVATION</h2>
-      
+
       <h3>4.1 Devis et proposition de voyage</h3>
       <p>Après un premier échange permettant de définir vos attentes, je vous adresse une proposition de voyage personnalisée accompagnée d’un devis détaillé. Le devis précise clairement s’il s’agit d’une prestation de conseil, de la formule <strong>Autonomie</strong> ou de la formule <strong>Sérénité</strong>.</p>
       <p><strong>Lorsqu’une réservation est effectuée directement par le client auprès d’un prestataire recommandé par VPDVOYAGES, le client peut préciser qu’il est « recommandé par VPDVOYAGES ».</strong> Cette mention permet simplement au prestataire d’identifier l’origine de la recommandation ; elle ne modifie pas le fait que le client contracte directement avec le prestataire et règle directement les prestations concernées, sauf disposition contraire expressément prévue dans le devis.</p>
@@ -257,7 +263,7 @@
 
     <section>
       <h2>5. ANNULATION ET MODIFICATION</h2>
-      
+
       <h3>5.1 Annulation par le client</h3>
       <p>En cas d’annulation du projet de voyage par le client :</p>
       <ul>
@@ -276,7 +282,7 @@
 
     <section>
       <h2>6. PROTECTION DES DONNÉES PERSONNELLES</h2>
-      
+
       <h3>6.1 Collecte des données</h3>
       <p>Les données personnelles collectées (nom, prénom, coordonnées, préférences de voyage) sont nécessaires à la réalisation de la prestation et ne sont utilisées qu’à cette fin.</p>
 
@@ -318,11 +324,11 @@
     </section>
 
     <div class="text-center mt-12 mb-8">
-      <a href="index.html" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 text-lg inline-block">← Retour à l'accueil</a>
+      <a href="index.html" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 text-lg inline-block">Retour</a>
     </div>
   </main>
 
-  <footer class="bg-blue-600 py-4">
+  <footer class="bg-blue-600 py-2">
     <div class="container mx-auto px-4 text-center">
       <p style="color: white; font-size: 1rem;">&copy; 2026 Patrick Daroque - Travel Planner. Tous droits réservés. | n° siret : 52534368700030 | <a href="cgv.html" style="color: white; text-decoration: underline;">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;">Mentions légales</a></p>
     </div>

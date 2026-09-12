@@ -18,15 +18,28 @@
       right: 0;
       z-index: 100;
       width: 100%;
-      background: #2563eb;
+      background: linear-gradient(90deg,#1764df 0%,#2463d8 55%,#1d5bc8 100%);
     }
     body {
-      padding-top: 60px;
+      padding-top: 76px;
       font-size: 16px;
       background-color: white;
     }
     html {
-      scroll-padding-top: 60px;
+      scroll-padding-top: 76px;
+    }
+    .wow-logo {
+      width: 275px;
+      height: 64px;
+      object-fit: contain;
+      object-position: left center;
+      display: block;
+    }
+    @media (max-width: 640px) {
+      .wow-logo {
+        width: 190px !important;
+        height: 46px !important;
+      }
     }
     .partner-list a {
       display: flex;
@@ -60,11 +73,12 @@
 </head>
 <body>
 
-  <!-- HEADER simplifié, cohérent avec le reste du site -->
-  <header class="py-3 px-4">
+  <header class="py-2 px-4">
     <div class="container mx-auto flex items-center justify-between">
-      <a href="index.html" class="text-white font-bold text-lg">VPDVOYAGES</a>
-      <a href="index.html" class="text-white text-sm underline">&larr; Retour à l'accueil</a>
+      <a href="index.html" title="VPDVOYAGES – Accueil">
+        <img src="Images/logo.png" alt="VPDVOYAGES - Patrick Daroque Travel Planner" width="290" height="68" class="wow-logo">
+      </a>
+      <a href="index.html" class="bg-white text-blue-600 font-semibold px-4 py-2 rounded hover:bg-gray-100 text-base inline-block">Retour</a>
     </div>
   </header>
 
@@ -106,7 +120,9 @@
     </ul>
   </main>
 
-  <!-- FOOTER identique au reste du site -->
+  <!-- Espace avant le footer pour "descendre" le footer -->
+  <div style="height:80px;"></div>
+
   <footer class="bg-blue-600 py-2">
     <div class="container mx-auto px-4 text-center">
       <p style="color: white; font-size: 1rem;">&copy; 2026 - VPDVOYAGES - Patrick Daroque - Travel Planner. Tous droits réservés. | SIRET : 52534368700030

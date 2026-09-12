@@ -15,12 +15,25 @@
       right: 0;
       z-index: 100;
       width: 100%;
-      background: #2563eb;
+      background: linear-gradient(90deg,#1764df 0%,#2463d8 55%,#1d5bc8 100%);
     }
     body {
-      padding-top: 80px;
+      padding-top: 76px;
       font-size: 16px;
       background-color: white;
+    }
+    .wow-logo {
+      width: 275px;
+      height: 64px;
+      object-fit: contain;
+      object-position: left center;
+      display: block;
+    }
+    @media (max-width: 640px) {
+      .wow-logo {
+        width: 190px !important;
+        height: 46px !important;
+      }
     }
     .mentions-content {
       max-width: 900px;
@@ -53,17 +66,11 @@
   </style>
 </head>
 <body class="font-sans">
-  <header class="bg-blue-600 text-white py-4">
+  <header class="py-2">
     <div class="container mx-auto px-4 flex justify-between items-center">
-      <div class="flex items-center space-x-4">
-        <a href="index.html" class="flex items-center space-x-4">
-          <img src="Images/logo.jpg" alt="Logo Patrick Daroque - Travel Planner" class="h-12 w-12 object-contain">
-          <div class="flex flex-col">
-            <h1 class="text-2xl font-bold">VPDVOYAGES</h1>
-            <span class="text-base font-medium">Patrick Daroque - Travel Planner</span>
-          </div>
-        </a>
-      </div>
+      <a href="index.html" title="VPDVOYAGES – Accueil">
+        <img src="Images/logo.png" alt="VPDVOYAGES - Patrick Daroque Travel Planner" width="290" height="68" class="wow-logo">
+      </a>
       <nav>
         <a href="index.html" class="bg-white text-blue-600 font-semibold px-4 py-2 rounded hover:bg-gray-100 text-base inline-block">Retour</a>
       </nav>
@@ -72,7 +79,7 @@
 
   <main class="mentions-content">
     <h1 class="text-4xl font-bold text-center mb-6">MENTIONS LÉGALES</h1>
-    <p class="text-center text-gray-600 mb-8"><strong>Dernière mise à jour : 20 Août 2026</strong></p>
+    <p class="text-center text-gray-600 mb-8"><strong>Dernière mise à jour : 13 septembre 2026</strong></p>
 
     <section>
       <h2>1. ÉDITEUR DU SITE</h2>
@@ -92,7 +99,7 @@
       <strong>Adresse :</strong> 21370 SW Langer Farms Parkway, Suite 142-429,
 Sherwood, OR 97140, États-Unis<br>
       <strong>Site web :</strong> https://porkbun.com</p>
-      
+
     </section>
 
     <section>
@@ -104,7 +111,7 @@ Sherwood, OR 97140, États-Unis<br>
 
     <section>
       <h2>4. DONNÉES PERSONNELLES ET RGPD</h2>
-      
+
       <h3>4.1 Responsable du traitement</h3>
       <p>Le responsable du traitement des données est Patrick Daroque, joignable à l'adresse email : contact@vpdvoyages.com</p>
 
@@ -181,11 +188,11 @@ Sherwood, OR 97140, États-Unis<br>
     </section>
 
     <div class="text-center mt-12 mb-8">
-      <a href="index.html" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 text-lg inline-block">← Retour à l'accueil</a>
+      <a href="index.html" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 text-lg inline-block">Retour</a>
     </div>
   </main>
 
-  <footer class="bg-blue-600 py-4">
+  <footer class="bg-blue-600 py-2">
     <div class="container mx-auto px-4 text-center">
       <p style="color: white; font-size: 1rem;">&copy; 2026 Patrick Daroque - Travel Planner. Tous droits réservés. | n° siret : 52534368700030
  | <a href="cgv.html" style="color: white; text-decoration: underline;">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;">Mentions légales</a></p>
