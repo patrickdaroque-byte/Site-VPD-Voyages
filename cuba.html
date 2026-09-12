@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voyages à Cuba - VPDVOYAGES Patrick Daroque</title>
+    <meta name="description" content="Voyages sur mesure et en petit groupe à Cuba avec VPDVOYAGES : patrimoine et traditions, festival de tango à La Havane, traversée à vélo, randonnée à Viñales et Trinidad.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { padding-top: 80px; margin: 0; font-family: sans-serif; }
+
+        #bandeau-orange {
+            margin: 0 !important;
+        }
+        @media (min-width: 768px) {
+            #bandeau-orange {
+                max-width: 900px !important;
+                width: 100% !important;
+                flex: 0 1 900px !important;
+            }
+        }
+        @media (max-width: 767px) {
+            #bandeau-orange {
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+        }
+
+        @media (min-width: 768px) {
+            h1.text-3xl {
+                font-size: 1.75rem !important;
+                line-height: 1.2 !important;
+                flex-shrink: 0;
+            }
+        }
+
+        .wow-logo {
+            width: 275px;
+            height: 64px;
+            object-fit: contain;
+            object-position: left center;
+            display: block;
+        }
+        @media (max-width: 640px) {
+            .wow-logo {
+                width: 190px !important;
+                height: 46px !important;
+            }
+        }
+
+        header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #2563eb; }
+        html { scroll-padding-top: 80px; }
+        .nav-menu { display: flex; }
+        .nav-toggle { display: none; }
+        .dropdown-menu { display: none; }
+
+        @media (max-width: 640px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                right: 10px;
+                background: #2563eb;
+                padding: 10px;
+                border-radius: 5px;
+                z-index: 50;
+            }
+            .nav-menu.active { display: flex; }
+            .nav-toggle { display: block; cursor: pointer; }
+            .dropdown-menu {
+                position: absolute;
+                top: 80px;
+                left: 10px;
+                background: #2563eb;
+                padding: 10px;
+                border-radius: 5px;
+                z-index: 50;
+            }
+        }
+
+        .pdf-button {
+            display: inline-block;
+            background-color: #ef4444;
+            color: white;
+            padding: 0.35rem 0.85rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: background-color 0.2s;
+            text-decoration: none;
+        }
+        .pdf-button:hover {
+            background-color: #dc2626;
+        }
+
+        .photo-button {
+            display: inline-block;
+            background-color: #2563eb;
+            color: white;
+            padding: 0.35rem 0.85rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: background-color 0.2s;
+            text-decoration: none;
+        }
+        .photo-button:hover {
+            background-color: #1e40af;
+        }
+
+        .pdf-desktop { display: inline-block; }
+        .pdf-mobile { display: none; }
+
+        @media (max-width: 768px) {
+            .pdf-desktop { display: none !important; }
+            .pdf-mobile { display: inline-block !important; }
+        }
+    </style>
+<link rel="canonical" href="https://vpdvoyages.com/cuba.html">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <!-- Header -->
+    <header class="bg-blue-600 text-white py-4">
+    <div class="container mx-auto px-4 flex justify-between items-center flex-wrap">
+      <div class="flex items-center space-x-4">
+        <a href="index.html#home" title="VPDVOYAGES – Accueil">
+          <img src="images/logo.png" alt="VPDVOYAGES - Patrick Daroque Travel Planner" width="290" height="68" class="wow-logo image-check">
+        </a>
+      </div>
+      <div class="flex items-center space-x-4">
+        <button class="nav-toggle md:hidden text-white focus:outline-none" aria-label="Ouvrir menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+        <button class="dropdown-toggle md:flex text-white focus:outline-none" aria-label="Ouvrir sous-menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path>
+          </svg>
+        </button>
+      </div>
+      <nav class="nav-menu md:flex md:space-x-6">
+        <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
+          <li><a href="index.html#home" class="hover:underline text-sm md:text-base">Accueil</a></li>
+          <li><a href="index.html#destinations" class="hover:underline text-sm md:text-base">Les destinations</a></li>
+          <li><a href="index.html#about" class="hover:underline text-sm md:text-base">Qui suis-je ?</a></li>
+          <li><a href="index.html#reviews" class="hover:underline text-sm md:text-base">Avis des voyageurs</a></li>
+          <li><a href="index.html#travel-planner" class="hover:underline text-sm md:text-base">Qu'est-ce qu'un Travel Planner ?</a></li>
+          <li><a href="index.html#contact" class="hover:underline text-sm md:text-base">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="dropdown-menu md:flex md:space-x-6">
+        <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
+          <li><a href="espagne.html" class="hover:underline text-sm md:text-base">Espagne</a></li>
+          <li><a href="cuba.html" class="hover:underline text-sm md:text-base">Cuba</a></li>
+          <li><a href="argentine.html" class="hover:underline text-sm md:text-base">Argentine</a></li>
+          <li><a href="uruguay.html" class="hover:underline text-sm md:text-base">Uruguay</a></li>
+          <li><a href="colombie.html" class="hover:underline text-sm md:text-base">Colombie</a></li>
+        </ul>
+      </div>
+      <a href="index.html#home" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 text-sm md:text-base desktop-only">Retour</a>
+    </div>
+  </header>
+
+    <!-- Sous-menu Destinations -->
+    <div class="bg-gray-100 border-b border-gray-200 py-3">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap gap-4 text-sm font-medium justify-center md:justify-start">
+            <a href="argentine.html" class="text-gray-600 hover:text-blue-600">Argentine</a>
+            <a href="colombie.html" class="text-gray-600 hover:text-blue-600">Colombie</a>
+            <a href="cuba.html" class="text-blue-600 font-bold border-b-2 border-blue-600 pb-1">Cuba</a>
+            <a href="espagne.html" class="text-gray-600 hover:text-blue-600">Espagne</a>
+            <a href="uruguay.html" class="text-gray-600 hover:text-blue-600">Uruguay</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <div class="mb-8">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
+                <h1 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Voyages à Cuba</h1>
+                <div id="bandeau-orange" class="info-badge">Chargement des tarifs...</div>
+            </div>
+            <p class="mt-2 text-gray-600">Ces exemples de séjours sont des bases de travail, ajustées ensuite à vos dates, votre rythme et vos envies.</p>
+        </div>
+
+        <!-- Grille des séjours -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Carte 1: Découverte, patrimoine et traditions -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col transition hover:shadow-lg relative group">
+                <a href="presentation/lecteur.html?pdf=../PDF/Cuba_Decouverte_Patrimoine_Traditions.pdf&retour=../cuba.html" class="pdf-desktop absolute inset-0 z-10" aria-label="Voir le programme Découverte, patrimoine et traditions"></a>
+                <a href="PDF_mobile/Cuba_Decouverte_Patrimoine_Traditions/programme.html" target="_blank" class="pdf-mobile absolute inset-0 z-10" aria-label="Voir le programme Découverte, patrimoine et traditions"></a>
+                <img src="Images/Cuba Découverte.jpg" alt="Cuba - Découverte, patrimoine et traditions" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1500759344980-4d7e6c5e6d1f';">
+                <div class="p-5 flex flex-col flex-grow">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Découverte, patrimoine et traditions</h2>
+                    <p class="text-gray-600 text-sm flex-grow">Plongez dans l'âme cubaine avec ce voyage mêlant patrimoine et traditions. Explorez La Havane et sa salsa vibrante, Trinidad, joyau colonial UNESCO, et la vallée de Viñales, avec ses mogotes et plantations de tabac. Vivez une immersion culturelle authentique, entre histoire, musique et rencontres inoubliables.</p>
+                    <div class="mt-4 flex flex-wrap justify-between items-center pt-4 border-t border-gray-100 gap-2 relative z-20">
+                        <span class="font-bold text-blue-600">1 490 € <span class="text-xs text-gray-500 font-normal">(17 jours / 16 nuits)*</span></span>
+                        <div class="flex gap-2 flex-wrap">
+                            <a href="presentation/lecteur.html?pdf=../PDF/Cuba_Decouverte_Patrimoine_Traditions.pdf&retour=../cuba.html" class="pdf-button pdf-desktop">Voir le programme</a>
+                            <a href="PDF_mobile/Cuba_Decouverte_Patrimoine_Traditions/programme.html" target="_blank" class="pdf-button pdf-mobile">Voir le programme</a>
+                            <a href="https://www.youtube.com/watch?v=ntxbIsLMolg" target="_blank" rel="noopener" class="photo-button">Voir photos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carte 2: Festival de Tango à La Havane -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col transition hover:shadow-lg relative group">
+                <a href="presentation/lecteur.html?pdf=../PDF/Cuba_Festival_Tango_La_Havane.pdf&retour=../cuba.html" class="pdf-desktop absolute inset-0 z-10" aria-label="Voir le programme Festival de Tango à La Havane"></a>
+                <a href="PDF_mobile/Cuba_Festival_Tango/programme.html" target="_blank" class="pdf-mobile absolute inset-0 z-10" aria-label="Voir le programme Festival de Tango à La Havane"></a>
+                <img src="Images/cuba tango.jpg" alt="Cuba - Festival de Tango à La Havane" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518639192441-8fce0a366e2e';">
+                <div class="p-5 flex flex-col flex-grow">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Festival de Tango à La Havane</h2>
+                    <p class="text-gray-600 text-sm flex-grow">Du 23 au 25 octobre 2026, vivez le Festival de Tango à La Havane. Découvrez spectacles, ateliers avec maestros et milongas sous les étoiles. Explorez les quartiers historiques vibrants de culture cubaine. Un voyage mêlant l'élégance du tango et la chaleur de Cuba pour une expérience inoubliable.</p>
+                    <div class="mt-4 flex flex-wrap justify-between items-center pt-4 border-t border-gray-100 gap-2 relative z-20">
+                        <span class="font-bold text-blue-600">1 220 € <span class="text-xs text-gray-500 font-normal">(17 jours / 16 nuits)*</span></span>
+                        <div class="flex gap-2 flex-wrap">
+                            <a href="presentation/lecteur.html?pdf=../PDF/Cuba_Festival_Tango_La_Havane.pdf&retour=../cuba.html" class="pdf-button pdf-desktop">Voir le programme</a>
+                            <a href="PDF_mobile/Cuba_Festival_Tango/programme.html" target="_blank" class="pdf-button pdf-mobile">Voir le programme</a>
+                            <a href="https://www.youtube.com/watch?v=avQmz8Np3VI" target="_blank" rel="noopener" class="photo-button">Voir photos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carte 3: Traversée à vélo -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col transition hover:shadow-lg relative group">
+                <a href="presentation/lecteur.html?pdf=../PDF/Cuba_a_Velo_Santiago_Havane.pdf&retour=../cuba.html" class="pdf-desktop absolute inset-0 z-10" aria-label="Voir le programme Traversée à vélo"></a>
+                <a href="PDF_mobile/Cuba_a_Velo_Santiago_Havane/programme.html" target="_blank" class="pdf-mobile absolute inset-0 z-10" aria-label="Voir le programme Traversée à vélo"></a>
+                <img src="Images/Cuba a velo.jpg" alt="Cuba - Traversée à vélo" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1571068316344-75bc76f77890';">
+                <div class="p-5 flex flex-col flex-grow">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Traversée à vélo</h2>
+                    <p class="text-gray-600 text-sm flex-grow">Parcourez Cuba à vélo pour une aventure immersive. De Santiago de Cuba à La Havane, en passant par Trinidad et Matanzas, découvrez l'île à votre rythme. Une expérience unique alliant sport, patrimoine et rencontres culturelles.</p>
+                    <div class="mt-4 flex flex-wrap justify-between items-center pt-4 border-t border-gray-100 gap-2 relative z-20">
+                        <span class="font-bold text-red-600 text-sm">Renseignements sur demande</span>
+                        <div class="flex gap-2 flex-wrap">
+                            <a href="presentation/lecteur.html?pdf=../PDF/Cuba_a_Velo_Santiago_Havane.pdf&retour=../cuba.html" class="pdf-button pdf-desktop">Voir le programme</a>
+                            <a href="PDF_mobile/Cuba_a_Velo_Santiago_Havane/programme.html" target="_blank" class="pdf-button pdf-mobile">Voir le programme</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carte 4: Randonnée à Viñales et Trinidad -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col transition hover:shadow-lg relative group">
+                <a href="presentation/lecteur.html?pdf=../PDF/Cuba_Randonnee_Vinales_Trinidad.pdf&retour=../cuba.html" class="pdf-desktop absolute inset-0 z-10" aria-label="Voir le programme Randonnée à Viñales et Trinidad"></a>
+                <a href="PDF_mobile/Cuba_Randonnee_Vinales/programme.html" target="_blank" class="pdf-mobile absolute inset-0 z-10" aria-label="Voir le programme Randonnée à Viñales et Trinidad"></a>
+                <img src="Images/Cuba - Randonnée Vinales Trinidad.jpg" alt="Cuba - Randonnée à Viñales et Trinidad" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b';">
+                <div class="p-5 flex flex-col flex-grow">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Randonnée à Viñales et Trinidad</h2>
+                    <p class="text-gray-600 text-sm flex-grow">Explorez les mogotes de Viñales et les collines d'Escambray à Trinidad. Traversez des sentiers verdoyants, découvrez des cascades et profitez de vues panoramiques sur des paysages uniques. Une aventure mêlant nature et culture cubaine.</p>
+                    <div class="mt-4 flex flex-wrap justify-between items-center pt-4 border-t border-gray-100 gap-2 relative z-20">
+                        <span class="font-bold text-red-600 text-sm">Renseignements sur demande</span>
+                        <div class="flex gap-2 flex-wrap">
+                            <a href="presentation/lecteur.html?pdf=../PDF/Cuba_Randonnee_Vinales_Trinidad.pdf&retour=../cuba.html" class="pdf-button pdf-desktop">Voir le programme</a>
+                            <a href="PDF_mobile/Cuba_Randonnee_Vinales/programme.html" target="_blank" class="pdf-button pdf-mobile">Voir le programme</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carte 5: Stage de Photos à La Havane et Trinidad -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col transition hover:shadow-lg relative group">
+                <a href="presentation/lecteur.html?pdf=../PDF/Cuba_Stage_Photo_Havane_Trinidad.pdf&retour=../cuba.html" class="pdf-desktop absolute inset-0 z-10" aria-label="Voir le programme Stage de Photos à La Havane et Trinidad"></a>
+                <a href="PDF_mobile/Cuba_Stage_Photo/programme.html" target="_blank" class="pdf-mobile absolute inset-0 z-10" aria-label="Voir le programme Stage de Photos à La Havane et Trinidad"></a>
+                <img src="Images/Cuba - Stage photo.jpg" alt="Cuba - Stage de Photos à La Havane et Trinidad" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1452587925148-ce544e77e70d';">
+                <div class="p-5 flex flex-col flex-grow">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Stage de Photos à La Havane et Trinidad</h2>
+                    <p class="text-gray-600 text-sm flex-grow">Stage de photographie à La Havane et Trinidad (UNESCO) : Perfectionnez votre art en capturant les vieilles voitures, la salsa et l'âme cubaine lors d'ateliers pratiques et de sorties guidées.</p>
+                    <div class="mt-4 flex flex-wrap justify-between items-center pt-4 border-t border-gray-100 gap-2 relative z-20">
+                        <span class="font-bold text-red-600 text-sm">Renseignements sur demande</span>
+                        <div class="flex gap-2 flex-wrap">
+                            <a href="presentation/lecteur.html?pdf=../PDF/Cuba_Stage_Photo_Havane_Trinidad.pdf&retour=../cuba.html" class="pdf-button pdf-desktop">Voir le programme</a>
+                            <a href="PDF_mobile/Cuba_Stage_Photo/programme.html" target="_blank" class="pdf-button pdf-mobile">Voir le programme</a>
+                            <a href="https://www.youtube.com/watch?v=ntxbIsLMolg" target="_blank" rel="noopener" class="photo-button">Voir photos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <p class="text-xs text-gray-500 mt-8">*Prix indicatif en Formule Autonomie, variable selon le groupe.</p>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-8 border-t border-gray-700 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+            <p>&copy; 2026 - VPDVOYAGES - Patrick Daroque - Travel Planner. Tous droits réservés. | n° siret : 52534368700030 | <a href="cgv.html" class="underline hover:text-white">CGV</a> | <a href="mentions-legales.html" class="underline hover:text-white">Mentions légales</a></p>
+        </div>
+    </footer>
+
+    <script src="bandeau.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var navToggle = document.querySelector('.nav-toggle');
+        var navMenu = document.querySelector('.nav-menu');
+        if (navToggle && navMenu) {
+          navToggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            navMenu.classList.toggle('active');
+          });
+        }
+
+        var dropdownToggle = document.querySelector('.dropdown-toggle');
+        var dropdownMenu = document.querySelector('.dropdown-menu');
+        if (dropdownToggle && dropdownMenu) {
+          dropdownToggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            dropdownMenu.classList.toggle('active');
+          });
+        }
+
+        document.querySelectorAll('.nav-menu a').forEach(function (a) {
+          a.addEventListener('click', function () {
+            navMenu && navMenu.classList.remove('active');
+          });
+        });
+
+        document.querySelectorAll('.dropdown-menu a').forEach(function (a) {
+          a.addEventListener('click', function () {
+            dropdownMenu && dropdownMenu.classList.remove('active');
+          });
+        });
+      });
+    </script>
+
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"7f7b0fd8732c4326aae4b9d58d5c514a","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
