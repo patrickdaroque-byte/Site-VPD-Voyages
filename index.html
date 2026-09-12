@@ -104,9 +104,24 @@
       width: 100%;
       background: linear-gradient(90deg,#1764df 0%,#2463d8 55%,#1d5bc8 100%);
       color: #fff;
-      box-shadow: 0 2px 12px rgba(0,0,0,.16);
+      /* Ombre supprimée : elle créait une ligne sombre visible sous le logo */
+      box-shadow: none;
     }
-    header .container { height: 100%; }
+    header .container {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    /* Logo : centré verticalement, léger ajustement pour éviter tout chevauchement */
+    .wow-logo {
+      width: 275px;
+      height: 64px;
+      object-fit: contain;
+      object-position: left center;
+      display: block;
+      margin: 0;
+      vertical-align: middle;
+    }
     .nav-menu { display:flex; align-items:center; }
     .nav-menu ul { align-items:center; }
     .nav-menu a { color:#fff; text-decoration:none; font-weight:700; }
@@ -137,7 +152,6 @@
     }
     .nav-toggle { display:none; }
     .header-phone { white-space:nowrap; font-weight:700; margin-top:-26px; }
-    .wow-logo { width: 275px; height: 64px; object-fit: contain; object-position:left center; display:block; }
     .nav-reviews { display:inline-flex; align-items:center; gap:5px; padding:6px 11px; border-radius:999px; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28); box-shadow:0 3px 10px rgba(0,0,0,.10); }
     .nav-reviews span { color:#ffd34d; font-size:1.05em; }
     .nav-reviews:hover { background:#fff; color:#1764df !important; }
