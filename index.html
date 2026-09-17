@@ -417,7 +417,6 @@
       text-decoration:none;
       transition:transform .28s ease,box-shadow .28s ease;
     }
-    /* === SOLUTION 2 : Dégradé sombre renforcé pour un meilleur contraste === */
     #destinations .flag-container::before,
     #destinations .prochainement-btn::before {
       content:""; position:absolute; inset:0; z-index:1;
@@ -443,7 +442,6 @@
       position:absolute; z-index:3; left:13px; right:13px; bottom:11px;
       color:#fff; text-align:left;
     }
-    /* === SOLUTIONS 1 + 3 : Texte doré + contour noir + ombre renforcée === */
     #destinations .destination-content p {
       margin:0 0 8px;
       color:#ffd84d;
@@ -721,7 +719,6 @@
       #destinations .cuba-badge-text { font-size:7px; padding:4px 5px; }
       #destinations .text-center.mb-2 p { font-size:9px; margin-top:10px; }
     }
-    /* Mobile: prioritize reading over decoration */
     @media (max-width: 639px) {
       #destinations .destination-content span {
         text-shadow:none !important;
@@ -966,7 +963,9 @@
                   <label for="message" class="block text-gray-600 text-base text-left">Message</label>
                   <textarea id="message" name="message" class="w-full p-1 border rounded text-base" rows="3" placeholder="Votre message" required></textarea>
                 </div>
-                <input type="text" name="_gotcha" style="display:none">
+                <!-- Champ Honeypot sécurisé -->
+                <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off">
+                
                 <button type="submit" class="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 w-full text-base font-medium">
                   Envoyer
                 </button>
