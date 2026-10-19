@@ -373,35 +373,8 @@
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-3">Propositions Séjours & Escapades Solo</h2>
       <p class="text-center text-gray-500 mb-10">Cliquez sur un pays pour découvrir les séjours proposés</p>
       
-      <div class="bg-amber-50 border border-amber-100 rounded-2xl p-6 mb-10 text-center">
-        <h3 class="text-xl font-bold text-amber-900 mb-4">Ce qui est compris dans votre séjour</h3>
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-sm text-gray-700">
-          <div class="flex flex-col items-center gap-1"><span class="text-2xl">🏨</span><strong>Hébergement</strong></div>
-          <div class="flex flex-col items-center gap-1"><span class="text-2xl">🍴</span><strong>Déjeuners</strong></div>
-          <div class="flex flex-col items-center gap-1"><span class="text-2xl">🍷</span><strong>3 dîners</strong></div>
-          <div class="flex flex-col items-center gap-1"><span class="text-2xl">🎟️</span><strong>Activités</strong></div>
-          <div class="flex flex-col items-center gap-1"><span class="text-2xl">📋</span><strong>Prestation VPD</strong></div>
-        </div>
-        <p class="text-xs text-gray-500 mt-4">Les vols internationaux sont inclus uniquement dans la formule Sérénité.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
-        <div class="bg-stone-700 text-white rounded-2xl p-6 shadow-lg text-center">
-          <h3 class="text-2xl font-bold mb-2">AUTONOMIE</h3>
-          <p class="text-stone-200 text-sm mb-3">Hébergement • Tous les déjeuners • 3 dîners • Activités</p>
-          <p class="italic text-lg">Voyagez librement.</p>
-          <p class="text-xs mt-3 text-stone-300">Assistance à distance • vols non inclus</p>
-        </div>
-        <div class="bg-gradient-to-br from-orange-600 to-amber-700 text-white rounded-2xl p-6 shadow-lg text-center relative">
-          <span class="absolute top-3 right-3 bg-white text-orange-700 text-xs font-bold px-2 py-0.5 rounded-full">Recommandé</span>
-          <h3 class="text-2xl font-bold mb-2">SÉRÉNITÉ</h3>
-          <p class="text-orange-100 text-sm mb-3">Hébergement • Tous les déjeuners • 3 dîners • Activités</p>
-          <p class="italic text-lg">+ accompagnement francophone</p>
-          <p class="text-xs mt-3 text-orange-100">Vols internationaux inclus</p>
-        </div>
-      </div>
-
-      <div id="pays-sections" class="space-y-6">
+      <!-- CARTES PAYS -->
+      <div id="pays-sections" class="space-y-6 mb-12">
         
         <div class="country-card" id="pays-Argentine">
           <div class="country-header" data-pays-toggle="arg">
@@ -651,6 +624,37 @@
         </div>
       </div>
 
+      <!-- CARTOUCHE "CE QUI EST COMPRIS" DÉPLACÉ ICI -->
+      <div class="bg-amber-50 border border-amber-100 rounded-2xl p-6 mb-12 text-center">
+        <h3 class="text-xl font-bold text-amber-900 mb-4">Ce qui est compris dans votre séjour</h3>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-sm text-gray-700">
+          <div class="flex flex-col items-center gap-1"><span class="text-2xl">🏨</span><strong>Hébergement</strong></div>
+          <div class="flex flex-col items-center gap-1"><span class="text-2xl">🍴</span><strong>Déjeuners</strong></div>
+          <div class="flex flex-col items-center gap-1"><span class="text-2xl">🍷</span><strong>3 dîners</strong></div>
+          <div class="flex flex-col items-center gap-1"><span class="text-2xl">🎟️</span><strong>Activités</strong></div>
+          <div class="flex flex-col items-center gap-1"><span class="text-2xl">📋</span><strong>Prestation VPD</strong></div>
+        </div>
+        <p class="text-xs text-gray-500 mt-4">Les vols internationaux sont inclus uniquement dans la formule Sérénité.</p>
+      </div>
+
+      <!-- CARTES AUTONOMIE / SERENITE -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
+        <div class="bg-stone-700 text-white rounded-2xl p-6 shadow-lg text-center">
+          <h3 class="text-2xl font-bold mb-2">AUTONOMIE</h3>
+          <p class="text-stone-200 text-sm mb-3">Hébergement • Tous les déjeuners • 3 dîners • Activités</p>
+          <p class="italic text-lg">Voyagez librement.</p>
+          <p class="text-xs mt-3 text-stone-300">Assistance à distance • vols non inclus</p>
+        </div>
+        <div class="bg-gradient-to-br from-orange-600 to-amber-700 text-white rounded-2xl p-6 shadow-lg text-center relative">
+          <span class="absolute top-3 right-3 bg-white text-orange-700 text-xs font-bold px-2 py-0.5 rounded-full">Recommandé</span>
+          <h3 class="text-2xl font-bold mb-2">SÉRÉNITÉ</h3>
+          <p class="text-orange-100 text-sm mb-3">Hébergement • Tous les déjeuners • 3 dîners • Activités</p>
+          <p class="italic text-lg">+ accompagnement francophone</p>
+          <p class="text-xs mt-3 text-orange-100">Vols internationaux inclus</p>
+        </div>
+      </div>
+
+      <!-- TARIFS -->
       <div class="mt-14">
         <h3 class="text-2xl font-bold text-center mb-6">Tarifs indicatifs par personne</h3>
         <div class="overflow-x-auto rounded-xl shadow-sm border border-gray-200">

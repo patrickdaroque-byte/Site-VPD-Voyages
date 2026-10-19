@@ -381,6 +381,36 @@
       }
     }
 
+    /* BOUTON VOYAGER SEUL MOBILE (dans le Hero) */
+    .hero-btn-solo {
+      display: none; /* Caché par défaut (desktop) */
+      min-height: 56px;
+      padding: 0 28px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #fff !important;
+      font-size: 17px;
+      font-weight: 800;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,.9);
+      box-shadow: 0 8px 20px rgba(16,185,129,.4);
+      transition: .22s ease;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+    }
+    .hero-btn-solo:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      box-shadow: 0 12px 28px rgba(16,185,129,.6);
+    }
+    @media (max-width: 767px) {
+      .hero-btn-solo {
+        display: inline-flex; /* Affiché sur mobile */
+      }
+    }
+
     /* ================= DESTINATIONS ================= */
     #contact { scroll-margin-top: 92px; }
 
@@ -799,6 +829,12 @@
           <span class="hero-title-accent">vous attendent !</span>
         </h1>
         <p class="mb-4">Des expériences authentiques, des rencontres uniques, des voyages qui ont du sens.</p>
+        
+        <!-- BOUTON VOYAGER SEUL (mobile uniquement) -->
+        <div class="flex justify-center mb-3 md:hidden">
+            <a href="voyage-solo.html" class="hero-btn-solo">🧳 Voyager seul(e)</a>
+        </div>
+
         <div class="flex flex-wrap justify-center items-center gap-3 md:gap-4">
           <a href="#destinations" class="bg-blue-600 text-white px-5 py-2.5 rounded-full hover:bg-blue-700 text-sm md:text-base font-semibold shadow-lg inline-flex items-center gap-2">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
