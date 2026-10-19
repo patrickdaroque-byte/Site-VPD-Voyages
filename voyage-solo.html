@@ -10,8 +10,8 @@
   <style>
     :root { --blue: #2563eb; --orange: #E67E22; --ink: #1e293b; }
     header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; width: 100%; }
-    body { padding-top: 80px; font-family: 'Inter', system-ui, sans-serif; background-color: #fafaf9; }
-    html { scroll-padding-top: 90px; }
+    body { padding-top: 104px; font-family: 'Inter', system-ui, sans-serif; background-color: #fafaf9; }
+    html { scroll-padding-top: 115px; }
     h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; }
     
     .btn-orange { background: #E67E22; color: #FFFFFF; padding: 0.65rem 1.6rem; border-radius: 50px; font-size: 1rem; font-weight: 600; text-decoration: none; border: 2px solid #E67E22; transition: all 0.25s ease; display: inline-block; }
@@ -268,12 +268,30 @@
       .profil-statut-label { text-align: left; }
     }
     
+    /* Logo cliquable : contour en forme de bouton */
+    .logo-btn { display:flex; align-items:center; padding:4px 16px 4px 8px; border:2px solid rgba(255,255,255,.85); border-radius:999px; background:rgba(255,255,255,.12); box-shadow:0 3px 10px rgba(0,0,0,.18); transition:.22s ease; }
+    .logo-btn:hover { background:rgba(255,255,255,.24); transform:translateY(-2px); box-shadow:0 6px 16px rgba(0,0,0,.28); }
+    .logo-btn img { background:#1764df; mix-blend-mode:lighten; border-radius:999px; }
+    .site-header { background: linear-gradient(90deg,#1764df 0%,#2463d8 55%,#1d5bc8 100%); padding: .4rem 0; box-shadow: 0 2px 12px rgba(0,0,0,.18); }
     .nav-toggle { display: block; cursor: pointer; }
-    .nav-menu { display: none; flex-direction: column; position: absolute; top: 70px; right: 10px; background: #2563eb; padding: 12px; border-radius: 8px; z-index: 50; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+    .nav-menu { display: none; flex-direction: column; align-items: stretch; gap: 6px; position: absolute; top: 100%; right: 10px; left: 10px; background: #1e4fc4; padding: 12px; border-radius: 12px; z-index: 50; box-shadow: 0 10px 25px rgba(0,0,0,.25); }
     .nav-menu.active { display: flex; }
-    @media (min-width: 768px) {
+    .nav-link { color: #fff; font-weight: 700; font-size: 1.02rem; padding: .5rem 1rem; border-radius: 999px; text-decoration: none; transition: background .2s, transform .2s; white-space: nowrap; display: inline-block; }
+    .nav-link:hover { background: rgba(255,255,255,.18); }
+    .nav-solo { background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 4px 12px rgba(5,150,105,.45); }
+    .nav-solo:hover { background: linear-gradient(135deg, #10b981, #059669); transform: translateY(-1px); }
+    .nav-avis { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.35); }
+    .nav-current { outline: 2px solid #fff; outline-offset: 1px; }
+    .nav-contact { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+    .nav-contact-links { display: flex; gap: 4px; }
+    .nav-tel { color: #fff; font-weight: 700; font-size: .95rem; padding: 0 1rem; text-decoration: none; white-space: nowrap; }
+    .nav-tel:hover { text-decoration: underline; }
+    @media (min-width: 1024px) {
       .nav-toggle { display: none; }
-      .nav-menu { display: flex; flex-direction: row; position: static; background: none; padding: 0; box-shadow: none; }
+      .nav-menu { display: flex; flex-direction: row; align-items: center; gap: 6px; position: static; background: none; padding: 0; box-shadow: none; border-radius: 0; }
+      .nav-contact { align-items: flex-end; }
+      .nav-contact .nav-link { padding: 0 .6rem; }
+      .nav-tel { padding: 0 .6rem; }
     }
     
     @media (max-width: 640px) {
@@ -301,23 +319,29 @@
 <body>
 
   <!-- HEADER -->
-  <header class="bg-blue-600 text-white py-2">
-    <div class="container mx-auto px-4 flex justify-between items-center flex-wrap gap-4">
-      <a href="index.html" class="flex items-center shrink-0">
-        <img src="Images/logo.png" alt="VPDVOYAGES - Patrick Daroque" class="h-12 md:h-14 w-auto object-contain">
+  <header class="site-header text-white">
+    <div class="container mx-auto px-4 flex justify-between items-center gap-4">
+      <a href="index.html" class="logo-btn shrink-0" title="Retour à l'accueil VPDVOYAGES">
+        <img src="Images/logo.png" alt="VPDVOYAGES - Patrick Daroque" class="h-14 md:h-[4.5rem] w-auto object-contain">
       </a>
-      <button class="nav-toggle text-white focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <button class="nav-toggle text-white focus:outline-none" aria-label="Menu">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
       </button>
-      <nav class="nav-menu md:space-x-4 ml-auto">
-        <a href="index.html#home" class="hover:underline text-base md:text-lg">Accueil</a>
-        <a href="index.html#destinations" class="hover:underline text-base md:text-lg">Les destinations</a>
-        <a href="index.html#about" class="hover:underline text-base md:text-lg">Mon approche</a>
-        <a href="https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site/" target="_blank" rel="noopener noreferrer" class="hover:underline text-base md:text-lg">Ce que disent les clients</a>
-        <a href="index.html#travel-planner" class="hover:underline text-base md:text-lg">Qu'est-ce qu'un Travel Planner ?</a>
-        <a href="index.html#contact" class="hover:underline text-base md:text-lg">Contact</a>
+      <nav class="nav-menu ml-auto">
+        <a href="index.html#home" class="nav-link">Accueil</a>
+        <a href="index.html#destinations" class="nav-link">Destinations</a>
+        <a href="voyage-solo.html" class="nav-link nav-solo nav-current">🧳 Voyager seul(e)</a>
+        <a href="index.html#formules" class="nav-link">Formules</a>
+        <a href="https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site/" target="_blank" rel="noopener noreferrer" class="nav-link nav-avis">⭐ Avis clients</a>
+        <span class="nav-contact">
+          <span class="nav-contact-links">
+            <a href="index.html#about" class="nav-link">À propos</a>
+            <a href="index.html#contact" class="nav-link">Contact</a>
+          </span>
+          <a href="tel:+33610950984" class="nav-tel">☎️ +33 6 10 95 09 84</a>
+        </span>
       </nav>
     </div>
   </header>
