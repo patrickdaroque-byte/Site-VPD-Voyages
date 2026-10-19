@@ -97,7 +97,7 @@
     #vpd-solo .dc-a.w { background:#ffedd5; color:#c2410c; }
     #vpd-solo .dc-a.e { background:#f1f5f9; color:#94a3b8; border:1.5px dashed #94a3b8; }
     #vpd-solo .dc-a.you { background:#dbeafe; color:#1d4ed8; border:1.5px dashed #60a5fa; }
-    #vpd-solo .dc-profil { font-size:.75rem; color:#475569; line-height:1.3; }
+    #vpd-solo .dc-profil { font-size:.75rem; color:#475569; line-height:1.3; font-style: italic; }
     #vpd-solo .dc-chip { align-self:flex-start; font-size:.75rem; font-weight:700; padding:2px 10px; border-radius:999px; }
     #vpd-solo .dc-chip.ok { background:#dcfce7; color:#15803d; }
     #vpd-solo .dc-chip.w { background:#ffedd5; color:#c2410c; }
@@ -126,7 +126,7 @@
     .btn-lancer.green:hover { background:#fff; color:#16a34a; }
     
     /* ====================================================================
-       NOUVELLE CARTE PROFIL — structure robuste en grille
+       CARTE PROFIL MODIFIÉE POUR SUPPORTER PLUSIEURS PROFILS
        ==================================================================== */
     .profil-card {
       display: grid;
@@ -146,15 +146,22 @@
       box-shadow: 0 4px 14px rgba(134, 239, 172, 0.25);
     }
     
+    .profil-photo-container {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    
     .profil-photo {
-      width: 50px; height: 50px;
+      width: 45px; height: 45px;
       border-radius: 50%;
       background: linear-gradient(135deg, #E67E22, #d97706);
       display: flex; align-items: center; justify-content: center;
-      color: white; font-size: 1.2rem; font-weight: 700;
-      border: 3px solid #fff;
-      box-shadow: 0 2px 8px rgba(230,126,34,0.35);
-      flex-shrink: 0;
+      color: white; font-size: 1.1rem; font-weight: 700;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(230,126,34,0.35);
     }
     .profil-card.confirmed .profil-photo { background: linear-gradient(135deg, #16a34a, #15803d); }
     
@@ -179,12 +186,12 @@
       display: inline-block;
       background: #E67E22;
       color: #fff;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      padding: 3px 9px;
+      padding: 4px 10px;
       border-radius: 999px;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
+      text-transform: capitalize;
+      letter-spacing: 0.02em;
       white-space: nowrap;
     }
     .profil-card.confirmed .profil-tag { background: #16a34a; }
@@ -285,14 +292,13 @@
     .inline-form .submit-inline:hover { background: #fff; color: #E67E22; }
     .inline-form .res { margin-top: 8px; font-weight: 600; font-size: 0.9rem; color: #c2410c; }
 
-    /* Carte repliée : places et profils visibles d'emblée + prix dans le détail */
     .depart-prix { margin:10px 0 0; font-size:0.9rem; color:#1e293b; background:#fff; border:1px dashed #cbd5e1; border-radius:10px; padding:8px 12px; }
   </style>
   <link rel="canonical" href="https://vpdvoyages.com/voyage-solo.html">
 </head>
 <body>
 
-  <!-- HEADER (bannière de voyage-soloold.html) -->
+  <!-- HEADER -->
   <header class="bg-blue-600 text-white py-2">
     <div class="container mx-auto px-4 flex justify-between items-center flex-wrap gap-4">
       <a href="index.html" class="flex items-center shrink-0">
@@ -412,7 +418,7 @@
               </div>
             </div>
             <div class="sej-card full">
-              <div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1552410260-0fd9b577afa6?w=300&q=80');"></div>
+              <div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1533587856050-dffc5e855c6e?w=800&q=80');"></div>
               <div class="sej-body">
                 <h4 class="font-semibold text-amber-800">Buenos Aires et Iguazu</h4>
                 <p class="text-sm text-amber-700 mt-1">🔥 Presque complet — 1 place restante !</p>
@@ -773,9 +779,8 @@
       { pays: "Uruguay", couleur: "#8fd0e3" }
     ];
 
-    // === LECTURE DU GOOGLE SHEET ===
     var SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRR8d9TYHQF99gLuPjje3F1Vt6dMYjAkuTR5aHRmCJW5DHJQUQTp3tem5V4azLR1JtcWPSFJDLuvW9X/pub?output=csv";
-    var DEPARTS = []; // Sera rempli automatiquement par Google Sheets
+    var DEPARTS = [];
     var PRIX_A_PARTIR_DE = { Argentine: 3640, Colombie: 3250, Cuba: 3490, Espagne: 850, Uruguay: 3590 };
 
     function chargerDepuisSheet() {
@@ -822,8 +827,8 @@
     function getInfosBase(pays, sejour, profilPerso) {
       var base = {
         "Argentine|Tango et Bodegas": { saison: "A", dates: "12 – 29 octobre 2027", genre: "M", profil: "femme 55-60 ans, homme 60-65 ans", photo: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=300&q=80" },
-        // J'AI MIS UNE VRAIE PHOTO D'IGUAZU ICI AU LIEU DU LION
-        "Argentine|Buenos Aires et Iguazu": { saison: "P", dates: "5 – 22 avril 2027", genre: "M", profil: "2 femmes 45-50 ans, homme 50-55 ans, femme 60-65 ans", photo: "https://images.unsplash.com/photo-1552410260-0fd9b577afa6?w=300&q=80" }, 
+        // PHOTO D'IGUAZU MISE À JOUR CORRECTEMENT ICI
+        "Argentine|Buenos Aires et Iguazu": { saison: "P", dates: "5 – 22 avril 2027", genre: "M", profil: "Femme 55 ans, Homme 56 ans, Femme 65 ans", photo: "https://images.unsplash.com/photo-1533587856050-dffc5e855c6e?w=800&q=80" }, 
         "Argentine|Rio de la Plata - le berceau du Tango": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=300&q=80" }, 
         "Argentine|Buenos Aires Mendoza et les Andes": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=300&q=80" }, 
         
@@ -888,6 +893,7 @@
       }
     }
 
+    // CORRECTION : Affichage de tous les profils multiples séparés par des virgules ou retours à la ligne dans le sheet
     function profilMessage(nbInscrits, profilTexte, genre, dateLimite) {
       var reste = CONFIG.min - nbInscrits;
       var confirmed = nbInscrits >= CONFIG.min;
@@ -903,10 +909,9 @@
       }
       
       var tagProfils = "";
-      // ON NETTOIE LE TEXTE POUR ENLEVER LES ESPACES BIZARRES ET LES VIRGULES COLLEES
       if (profilTexte && profilTexte !== "Profil à confirmer") {
-        var texteNettoye = profilTexte.replace(/\s*,\s*/g, "|"); // Remplace les virgules par un séparateur |
-        var profils = texteNettoye.split("|").map(function(p){ return p.trim(); });
+        // Découpage propre par virgules pour récupérer chaque profil individuellement (ex: "Femme 55 ans", "Homme 56 ans", etc.)
+        var profils = profilTexte.split(",").map(function(p){ return p.trim(); });
         tagProfils = profils.map(function(p) {
           if (p) return '<span class="profil-tag">' + p + '</span>';
         }).join("");
@@ -925,7 +930,9 @@
       }
       
       return '<div class="' + cardClass + '">' +
-        '<div class="profil-photo">' + acc.initiale + '</div>' +
+        '<div class="profil-photo-container">' +
+          '<div class="profil-photo">' + nbInscrits + '</div>' +
+        '</div>' +
         '<div class="profil-content">' +
           '<p class="profil-titre">' + acc.titre + '</p>' +
           '<div class="profil-tags">' + tagProfils + '</div>' +
@@ -957,12 +964,22 @@
 
     function lettresProfil(d) {
       var out = [];
-      (d.profil || "").split(/,| et /).forEach(function (seg) {
-        var m = seg.match(/^\s*(\d+)?\s*(femme|homme)/i);
-        if (!m) return;
-        var n = m[1] ? parseInt(m[1], 10) : 1;
-        for (var i = 0; i < n; i++) out.push(m[2].toLowerCase() === "femme" ? "F" : "H");
+      var texteProfil = d.profil || "";
+      var segments = texteProfil.split(/,|\bet\b/);
+      
+      segments.forEach(function (seg) {
+        var m = seg.trim().match(/^(?:(\d+)\s*)?(femme|homme)/i);
+        if (m) {
+          var n = m[1] ? parseInt(m[1], 10) : 1;
+          var lettre = m[2].toLowerCase() === "femme" ? "F" : "H";
+          for (var i = 0; i < n; i++) out.push(lettre);
+        } else if (seg.toLowerCase().includes("femme")) {
+          out.push("F");
+        } else if (seg.toLowerCase().includes("homme")) {
+          out.push("H");
+        }
       });
+      
       while (out.length < d.inscrits) out.push("·");
       return out.slice(0, d.inscrits);
     }
@@ -974,7 +991,7 @@
       return '<div class="dc-av" role="img" aria-label="' + d.inscrits + ' inscrit' + (d.inscrits > 1 ? "s" : "") + ' sur ' + CONFIG.max + ' places">' + h + '</div>';
     }
 
-    function profilTexte(d) {
+    function profilTexteCompact(d) {
       var t = d.profil || "";
       return t.charAt(0).toUpperCase() + t.slice(1);
     }
@@ -1002,7 +1019,7 @@
       h += '<div class="depart-pays">' + d.pays + ' · ' + SAISONS[d.saison] + ' ' + CONFIG.annee + '</div>';
       h += '<div class="depart-titre">' + d.sejour + '</div>';
       h += avatarsHtml(d);
-      if (d.profil && d.profil !== "Profil à confirmer") h += '<div class="dc-profil">' + profilTexte(d) + '</div>';
+      if (d.profil && d.profil !== "Profil à confirmer") h += '<div class="dc-profil">' + profilTexteCompact(d) + '</div>';
       h += '<span class="dc-chip ' + chipCls + '">' + chipTxt + '</span>';
       if (libres) h += '<div class="dc-libres">' + libres + '</div>';
       h += '</div>';
@@ -1040,7 +1057,7 @@
           h = '<h4 class="font-semibold">' + titre + '</h4>' +
             (card.dataset.compact === "1"
               ? '<button class="btn-lancer text-sm" ' + attrs + '>🚀 Lancer</button>'
-              : '<p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l\'initiative !</p><button class="btn-lancer" ' + attrs + '>🚀 Lancer ce séjour</button>');
+              : '<p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p><button class="btn-lancer" ' + attrs + '>🚀 Lancer ce séjour</button>');
         } else {
           var conf = d.inscrits >= CONFIG.min;
           var restantes = CONFIG.max - d.inscrits;
@@ -1245,7 +1262,6 @@
       document.querySelector('.nav-menu').classList.toggle('active');
     });
 
-    // === LANCEMENT AU DEMARRAGE ===
     chargerDepuisSheet();
   })();
   </script>
