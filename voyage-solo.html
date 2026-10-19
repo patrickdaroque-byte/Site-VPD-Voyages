@@ -792,8 +792,6 @@
               var sejour = cols[1].trim();
               var inscrits = parseInt(cols[2].trim(), 10) || 0;
               var dateLimite = cols[3] ? cols[3].trim() : "";
-              
-              // Nouveauté : on lit la colonne "profil" (colonne 5)
               var profilPerso = cols[4] ? cols[4].trim() : "";
               
               var infoBase = getInfosBase(pays, sejour, profilPerso);
@@ -824,42 +822,39 @@
     function getInfosBase(pays, sejour, profilPerso) {
       var base = {
         "Argentine|Tango et Bodegas": { saison: "A", dates: "12 – 29 octobre 2027", genre: "M", profil: "femme 55-60 ans, homme 60-65 ans", photo: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=300&q=80" },
-        "Argentine|Buenos Aires et Iguazu": { saison: "P", dates: "5 – 22 avril 2027", genre: "M", profil: "2 femmes 45-50 ans, homme 50-55 ans, femme 60-65 ans", photo: "https://images.unsplash.com/photo-1552410260-0fd9b577afa6?w=300&q=80" }, // Chutes d'Iguazu
-        "Argentine|Rio de la Plata - le berceau du Tango": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=300&q=80" }, // Tango
-        "Argentine|Buenos Aires Mendoza et les Andes": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=300&q=80" }, // Montagnes
+        // J'AI MIS UNE VRAIE PHOTO D'IGUAZU ICI AU LIEU DU LION
+        "Argentine|Buenos Aires et Iguazu": { saison: "P", dates: "5 – 22 avril 2027", genre: "M", profil: "2 femmes 45-50 ans, homme 50-55 ans, femme 60-65 ans", photo: "https://images.unsplash.com/photo-1552410260-0fd9b577afa6?w=300&q=80" }, 
+        "Argentine|Rio de la Plata - le berceau du Tango": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=300&q=80" }, 
+        "Argentine|Buenos Aires Mendoza et les Andes": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=300&q=80" }, 
         
-        "Colombie|La Magie realiste": { saison: "P", dates: "dates à confirmer", genre: "F", profil: "femme 50-64 ans", photo: "https://images.unsplash.com/photo-1583531352515-8884af319dc1?w=300&q=80" }, // Café
-        "Colombie|Cali - capitale de la salsa": { saison: "E", dates: "8 – 25 juillet 2027", genre: "M", profil: "2 femmes 40-50 ans, homme 45-55 ans", photo: "https://images.unsplash.com/photo-1547153760-18fc86324498?w=300&q=80" }, // Salsa
-        "Colombie|Le Triangle Magique": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=300&q=80" }, // Carthagène
-        "Colombie|Festival de tango Medellin": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=300&q=80" }, // Tango
+        "Colombie|La Magie realiste": { saison: "P", dates: "dates à confirmer", genre: "F", profil: "femme 50-64 ans", photo: "https://images.unsplash.com/photo-1583531352515-8884af319dc1?w=300&q=80" }, 
+        "Colombie|Cali - capitale de la salsa": { saison: "E", dates: "8 – 25 juillet 2027", genre: "M", profil: "2 femmes 40-50 ans, homme 45-55 ans", photo: "https://images.unsplash.com/photo-1547153760-18fc86324498?w=300&q=80" }, 
+        "Colombie|Le Triangle Magique": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=300&q=80" }, 
+        "Colombie|Festival de tango Medellin": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=300&q=80" }, 
         
-        "Cuba|Decouverte - patrimoine et traditions": { saison: "H", dates: "15 janvier – 1er fevrier 2027", genre: "H", profil: "homme 60-65 ans", photo: "https://images.unsplash.com/photo-1500759285222-a95626b934cb?w=300&q=80" }, // Voiture
-        "Cuba|Festival de Tango de La Havane": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=300&q=80" }, // Fête
-        "Cuba|Traversee de l'ile a velo": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=300&q=80" }, // Vélo
-        "Cuba|Randonnee a Vinales et Trinidad": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=300&q=80" }, // Vinales
+        "Cuba|Decouverte - patrimoine et traditions": { saison: "H", dates: "15 janvier – 1er fevrier 2027", genre: "H", profil: "homme 60-65 ans", photo: "https://images.unsplash.com/photo-1500759285222-a95626b934cb?w=300&q=80" }, 
+        "Cuba|Festival de Tango de La Havane": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=300&q=80" }, 
+        "Cuba|Traversee de l'ile a velo": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=300&q=80" }, 
+        "Cuba|Randonnee a Vinales et Trinidad": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=300&q=80" }, 
         
-        "Espagne|La Rioja": { saison: "A", dates: "4 jours en octobre 2027", genre: "F", profil: "femme 50-60 ans", photo: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=300&q=80" }, // Vignoble
-        "Espagne|Ribera del Duero": { saison: "P", dates: "4 jours au printemps 2027", genre: "M", profil: "2 femmes 45-55 ans", photo: "https://images.unsplash.com/photo-1474722883778-792e7990302f?w=300&q=80" }, // Vignoble
-        "Espagne|Valence": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=300&q=80" }, // Cité des Arts
-        "Espagne|Les Pics d'Europe": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=300&q=80" }, // Montagnes
-        "Espagne|Salamanque": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1558642084-fd07fae5282e?w=300&q=80" }, // Cathédrale
-        "Espagne|Matarrana": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=300&q=80" }, // Nature
-        "Espagne|Bilbao": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=300&q=80" }, // Guggenheim
-        "Espagne|Barcelone": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=300&q=80" }, // Sagrada
+        "Espagne|La Rioja": { saison: "A", dates: "4 jours en octobre 2027", genre: "F", profil: "femme 50-60 ans", photo: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=300&q=80" }, 
+        "Espagne|Ribera del Duero": { saison: "P", dates: "4 jours au printemps 2027", genre: "M", profil: "2 femmes 45-55 ans", photo: "https://images.unsplash.com/photo-1474722883778-792e7990302f?w=300&q=80" }, 
+        "Espagne|Valence": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=300&q=80" }, 
+        "Espagne|Les Pics d'Europe": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=300&q=80" }, 
+        "Espagne|Salamanque": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1558642084-fd07fae5282e?w=300&q=80" }, 
+        "Espagne|Matarrana": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=300&q=80" }, 
+        "Espagne|Bilbao": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=300&q=80" }, 
+        "Espagne|Barcelone": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=300&q=80" }, 
         
-        "Uruguay|Rio de la Plata - le berceau du Tango": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=300&q=80" }, // Colonia
-        "Uruguay|Uruguay avec les gauchos": { saison: "A", dates: "10 – 27 novembre 2027", genre: "M", profil: "homme et femme 55-65 ans", photo: "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=300&q=80" } // Gauchos
+        "Uruguay|Rio de la Plata - le berceau du Tango": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=300&q=80" }, 
+        "Uruguay|Uruguay avec les gauchos": { saison: "A", dates: "10 – 27 novembre 2027", genre: "M", profil: "homme et femme 55-65 ans", photo: "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=300&q=80" } 
       };
       
       var key = pays + "|" + sejour;
       var res = base[key] || { saison: "P", dates: "dates à confirmer", genre: "M", profil: "Profil à confirmer", photo: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&q=80" };
       
-      // Si on a un profil personnalisé dans le Google Sheet, on l'utilise.
-      // Sinon on garde celui par défaut (ou "Profil à confirmer" si vide).
       if (profilPerso) {
         res.profil = profilPerso;
-      } else if (res.profil === "profil à confirmer") {
-        res.profil = "Profil à confirmer"; // Majuscule propre
       }
       
       return res;
@@ -908,10 +903,12 @@
       }
       
       var tagProfils = "";
+      // ON NETTOIE LE TEXTE POUR ENLEVER LES ESPACES BIZARRES ET LES VIRGULES COLLEES
       if (profilTexte && profilTexte !== "Profil à confirmer") {
-        var profils = profilTexte.split(",").map(function(p){ return p.trim(); });
+        var texteNettoye = profilTexte.replace(/\s*,\s*/g, "|"); // Remplace les virgules par un séparateur |
+        var profils = texteNettoye.split("|").map(function(p){ return p.trim(); });
         tagProfils = profils.map(function(p) {
-          return '<span class="profil-tag">' + p + '</span>';
+          if (p) return '<span class="profil-tag">' + p + '</span>';
         }).join("");
       } else {
         tagProfils = '<span class="profil-tag">Profil à confirmer</span>';
