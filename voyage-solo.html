@@ -373,7 +373,6 @@
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-3">Propositions Séjours & Escapades Solo</h2>
       <p class="text-center text-gray-500 mb-10">Cliquez sur un pays pour découvrir les séjours proposés</p>
       
-      <!-- CARTES PAYS -->
       <div id="pays-sections" class="space-y-6 mb-12">
         
         <div class="country-card" id="pays-Argentine">
@@ -624,7 +623,7 @@
         </div>
       </div>
 
-      <!-- CARTOUCHE "CE QUI EST COMPRIS" DÉPLACÉ ICI -->
+      <!-- CARTOUCHE "CE QUI EST COMPRIS" -->
       <div class="bg-amber-50 border border-amber-100 rounded-2xl p-6 mb-12 text-center">
         <h3 class="text-xl font-bold text-amber-900 mb-4">Ce qui est compris dans votre séjour</h3>
         <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-sm text-gray-700">
@@ -654,7 +653,6 @@
         </div>
       </div>
 
-      <!-- TARIFS -->
       <div class="mt-14">
         <h3 class="text-2xl font-bold text-center mb-6">Tarifs indicatifs par personne</h3>
         <div class="overflow-x-auto rounded-xl shadow-sm border border-gray-200">
@@ -795,7 +793,10 @@
               var inscrits = parseInt(cols[2].trim(), 10) || 0;
               var dateLimite = cols[3] ? cols[3].trim() : "";
               
-              var infoBase = getInfosBase(pays, sejour);
+              // Nouveauté : on lit la colonne "profil" (colonne 5)
+              var profilPerso = cols[4] ? cols[4].trim() : "";
+              
+              var infoBase = getInfosBase(pays, sejour, profilPerso);
               
               nouveauxDeparts.push({
                 pays: pays,
@@ -812,27 +813,27 @@
           }
           
           DEPARTS = nouveauxDeparts;
-          syncCountryCards(); // Met à jour les cartes du bas
-          render();           // Met à jour le bloc du haut
+          syncCountryCards();
+          render();
         })
         .catch(function(error) {
           console.error("Erreur de chargement du Google Sheet:", error);
         });
     }
 
-    function getInfosBase(pays, sejour) {
+    function getInfosBase(pays, sejour, profilPerso) {
       var base = {
         "Argentine|Tango et Bodegas": { saison: "A", dates: "12 – 29 octobre 2027", genre: "M", profil: "femme 55-60 ans, homme 60-65 ans", photo: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=300&q=80" },
         "Argentine|Buenos Aires et Iguazu": { saison: "P", dates: "5 – 22 avril 2027", genre: "M", profil: "2 femmes 45-50 ans, homme 50-55 ans, femme 60-65 ans", photo: "https://images.unsplash.com/photo-1552410260-0fd9b577afa6?w=300&q=80" }, // Chutes d'Iguazu
-        "Argentine|Rio de la Plata - le berceau du Tango": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=300&q=80" }, // Danseurs de tango
+        "Argentine|Rio de la Plata - le berceau du Tango": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=300&q=80" }, // Tango
         "Argentine|Buenos Aires Mendoza et les Andes": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=300&q=80" }, // Montagnes
         
-        "Colombie|La Magie realiste": { saison: "P", dates: "dates à confirmer", genre: "F", profil: "femme 50-64 ans", photo: "https://images.unsplash.com/photo-1583531352515-8884af319dc1?w=300&q=80" }, // Paysage de café
+        "Colombie|La Magie realiste": { saison: "P", dates: "dates à confirmer", genre: "F", profil: "femme 50-64 ans", photo: "https://images.unsplash.com/photo-1583531352515-8884af319dc1?w=300&q=80" }, // Café
         "Colombie|Cali - capitale de la salsa": { saison: "E", dates: "8 – 25 juillet 2027", genre: "M", profil: "2 femmes 40-50 ans, homme 45-55 ans", photo: "https://images.unsplash.com/photo-1547153760-18fc86324498?w=300&q=80" }, // Salsa
         "Colombie|Le Triangle Magique": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=300&q=80" }, // Carthagène
         "Colombie|Festival de tango Medellin": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=300&q=80" }, // Tango
         
-        "Cuba|Decouverte - patrimoine et traditions": { saison: "H", dates: "15 janvier – 1er fevrier 2027", genre: "H", profil: "homme 60-65 ans", photo: "https://images.unsplash.com/photo-1500759285222-a95626b934cb?w=300&q=80" }, // Voiture La Havane
+        "Cuba|Decouverte - patrimoine et traditions": { saison: "H", dates: "15 janvier – 1er fevrier 2027", genre: "H", profil: "homme 60-65 ans", photo: "https://images.unsplash.com/photo-1500759285222-a95626b934cb?w=300&q=80" }, // Voiture
         "Cuba|Festival de Tango de La Havane": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=300&q=80" }, // Fête
         "Cuba|Traversee de l'ile a velo": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=300&q=80" }, // Vélo
         "Cuba|Randonnee a Vinales et Trinidad": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=300&q=80" }, // Vinales
@@ -849,8 +850,19 @@
         "Uruguay|Rio de la Plata - le berceau du Tango": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=300&q=80" }, // Colonia
         "Uruguay|Uruguay avec les gauchos": { saison: "A", dates: "10 – 27 novembre 2027", genre: "M", profil: "homme et femme 55-65 ans", photo: "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=300&q=80" } // Gauchos
       };
+      
       var key = pays + "|" + sejour;
-      return base[key] || { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&q=80" };
+      var res = base[key] || { saison: "P", dates: "dates à confirmer", genre: "M", profil: "Profil à confirmer", photo: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&q=80" };
+      
+      // Si on a un profil personnalisé dans le Google Sheet, on l'utilise.
+      // Sinon on garde celui par défaut (ou "Profil à confirmer" si vide).
+      if (profilPerso) {
+        res.profil = profilPerso;
+      } else if (res.profil === "profil à confirmer") {
+        res.profil = "Profil à confirmer"; // Majuscule propre
+      }
+      
+      return res;
     }
 
     var SAISONS = { H: "Hiver", P: "Printemps", E: "Été", A: "Automne" };
@@ -896,11 +908,13 @@
       }
       
       var tagProfils = "";
-      if (profilTexte) {
+      if (profilTexte && profilTexte !== "Profil à confirmer") {
         var profils = profilTexte.split(",").map(function(p){ return p.trim(); });
         tagProfils = profils.map(function(p) {
           return '<span class="profil-tag">' + p + '</span>';
         }).join("");
+      } else {
+        tagProfils = '<span class="profil-tag">Profil à confirmer</span>';
       }
       
       var note = "Vous n'avez pas besoin d'avoir le même profil";
@@ -991,7 +1005,7 @@
       h += '<div class="depart-pays">' + d.pays + ' · ' + SAISONS[d.saison] + ' ' + CONFIG.annee + '</div>';
       h += '<div class="depart-titre">' + d.sejour + '</div>';
       h += avatarsHtml(d);
-      if (d.profil) h += '<div class="dc-profil">' + profilTexte(d) + '</div>';
+      if (d.profil && d.profil !== "Profil à confirmer") h += '<div class="dc-profil">' + profilTexte(d) + '</div>';
       h += '<span class="dc-chip ' + chipCls + '">' + chipTxt + '</span>';
       if (libres) h += '<div class="dc-libres">' + libres + '</div>';
       h += '</div>';
@@ -1025,14 +1039,12 @@
         card.classList.remove('confirmed', 'full');
         var h;
         
-        // Si aucun inscrit (0) ou pas dans le sheet, on affiche "Lancer ce séjour"
         if (!d || d.inscrits === 0) {
           h = '<h4 class="font-semibold">' + titre + '</h4>' +
             (card.dataset.compact === "1"
               ? '<button class="btn-lancer text-sm" ' + attrs + '>🚀 Lancer</button>'
               : '<p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l\'initiative !</p><button class="btn-lancer" ' + attrs + '>🚀 Lancer ce séjour</button>');
         } else {
-          // Si >= 1 inscrit, on affiche le compteur
           var conf = d.inscrits >= CONFIG.min;
           var restantes = CONFIG.max - d.inscrits;
           var tone = !conf ? "orange" : (restantes <= 1 ? "amber" : "green");
@@ -1064,7 +1076,6 @@
       renderPaysNav();
       var h = "";
       
-      // On sépare ceux à 0 de ceux à 1+
       var enAttente = DEPARTS.filter(function(d) { return d.inscrits > 0 && d.inscrits < CONFIG.min; });
       var confirmes = DEPARTS.filter(function(d) { return d.inscrits >= CONFIG.min; });
 
