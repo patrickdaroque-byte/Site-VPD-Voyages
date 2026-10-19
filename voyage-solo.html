@@ -832,7 +832,7 @@
     function getInfosBase(pays, sejour) {
       var base = {
         "Argentine|Tango et Bodegas": { saison: "A", dates: "12 – 29 octobre 2027", genre: "M", profil: "femme 55-60 ans, homme 60-65 ans", photo: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=300&q=80" },
-        "Argentine|Buenos Aires et Iguazu": { saison: "P", dates: "5 – 22 avril 2027", genre: "M", profil: "2 femmes 45-50 ans, homme 50-55 ans, femme 60-65 ans", photo: "https://images.unsplash.com/photo-1552410260-0fd9b577afa6?w=300&q=80" },
+        "Argentine|Buenos Aires et Iguazu": { saison: "P", dates: "5 – 22 avril 2027", genre: "M", profil: "2 femmes 45-50 ans, homme 50-55 ans, femme 60-65 ans", photo: "https://images.unsplash.com/photo-1552410260-0fd9b577afa6?w=300&q=80" }, // Photo des chutes d'Iguazu
         "Argentine|Rio de la Plata - le berceau du Tango": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=300&q=80" }, // Photo de danseurs de tango
         "Argentine|Buenos Aires Mendoza et les Andes": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=300&q=80" }, // Montagnes des Andes
         
@@ -1033,12 +1033,15 @@
         var d = findDepart(pays, sejour);
         card.classList.remove('confirmed', 'full');
         var h;
-        if (!d) {
+        
+        // Si aucun inscrit (0) ou pas dans le sheet, on affiche "Lancer ce séjour"
+        if (!d || d.inscrits === 0) {
           h = '<h4 class="font-semibold">' + titre + '</h4>' +
             (card.dataset.compact === "1"
               ? '<button class="btn-lancer text-sm" ' + attrs + '>🚀 Lancer</button>'
               : '<p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l\'initiative !</p><button class="btn-lancer" ' + attrs + '>🚀 Lancer ce séjour</button>');
         } else {
+          // Si >= 1 inscrit, on affiche le compteur
           var conf = d.inscrits >= CONFIG.min;
           var restantes = CONFIG.max - d.inscrits;
           var tone = !conf ? "orange" : (restantes <= 1 ? "amber" : "green");
@@ -1070,8 +1073,8 @@
       renderPaysNav();
       var h = "";
       
-      // On affiche tous les départs dans les deux blocs
-      var enAttente = DEPARTS.filter(function(d) { return d.inscrits < CONFIG.min; });
+      // On sépare ceux à 0 de ceux à 1+
+      var enAttente = DEPARTS.filter(function(d) { return d.inscrits > 0 && d.inscrits < CONFIG.min; });
       var confirmes = DEPARTS.filter(function(d) { return d.inscrits >= CONFIG.min; });
 
       h += '<div class="grid grid-cols-1 gap-4 mb-6">';
