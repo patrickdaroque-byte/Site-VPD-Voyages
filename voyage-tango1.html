@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voyages Tango en petit groupe | VPDVOYAGES</title>
+  <meta name="description" content="Découvrez nos voyages dédiés au Tango en Argentine, Uruguay, Cuba et Espagne. En petit groupe, seul(e) ou entre amis.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root { --blue: #2563eb; --orange: #E67E22; --ink: #1e293b; }
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; width: 100%; }
+    body { padding-top: 104px; font-family: 'Inter', system-ui, sans-serif; background-color: #fafaf9; }
+    html { scroll-padding-top: 115px; }
+    h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; }
+    
+    .btn-orange { background: #E67E22; color: #FFFFFF; padding: 0.7rem 1.6rem; border-radius: 50px; font-size: 1rem; font-weight: 700; text-decoration: none; border: 2px solid #E67E22; transition: all 0.25s ease; display: inline-block; box-shadow: 0 6px 18px rgba(230,126,34,0.35); }
+    .btn-orange:hover { background: #FFFFFF; color: #E67E22; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(230,126,34,0.45); }
+    
+    .country-card { border-radius: 16px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.08); margin-bottom: 1.5rem; background: white; transition: transform 0.2s; }
+    .country-card:hover { transform: translateY(-2px); }
+    .country-header { position: relative; height: 180px; background-size: cover; background-position: center; display: flex; align-items: flex-end; cursor: pointer; transition: height 0.2s; }
+    .country-header::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 40%, transparent 70%); }
+    .country-header-content { position: relative; z-index: 2; padding: 1rem 1.25rem; color: white; width: 100%; display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; }
+    .country-header-content h3 { text-shadow: 2px 2px 8px rgba(0,0,0,0.7); margin: 0; }
+    .country-header-content p { text-shadow: 1px 1px 4px rgba(0,0,0,0.7); margin: 0; }
+    .country-cta { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.95); color: #1e3a5f; padding: 8px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.25); transition: all 0.2s ease; white-space: nowrap; flex-shrink: 0; }
+    .country-header:hover .country-cta { background: #f59e0b; color: white; transform: scale(1.03); }
+    .country-cta .cta-arrow { transition: transform 0.3s ease; }
+    .country-card.open .country-cta .cta-arrow { transform: rotate(180deg); }
+    .country-card.open .country-cta { background: #f59e0b; color: white; }
+    
+    .country-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 1.25rem; }
+    .country-card.open .country-body { max-height: 4500px; padding: 1.25rem; }
+    
+    @media (max-width: 640px) {
+      .country-header { height: 150px; }
+      .country-header-content { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .country-cta { font-size: 0.78rem; padding: 6px 12px; }
+    }
+    
+    .sej-card { background: #f8fafc; border-radius: 12px; margin: 0.75rem 0; border: 1px solid #e2e8f0; transition: all 0.2s; display: flex; gap: 14px; padding: 12px; overflow: hidden; }
+    .sej-card:hover { border-color: #fdba74; background: #fffbeb; }
+    .sej-card.confirmed { background: #f0fdf4; border-color: #86efac; }
+    .sej-card.full { background: #fef3c7; border-color: #fbbf24; }
+    .sej-thumb { flex-shrink: 0; width: 90px; height: 90px; border-radius: 10px; background-size: cover; background-position: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    .sej-body { flex: 1; min-width: 0; }
+    @media (max-width: 640px) {
+      .sej-card { flex-direction: column; }
+      .sej-thumb { width: 100%; height: 120px; }
+    }
+    
+    .logo-btn { display:flex; align-items:center; padding:4px 16px 4px 8px; border:2px solid rgba(255,255,255,.85); border-radius:999px; background:rgba(255,255,255,.12); box-shadow:0 3px 10px rgba(0,0,0,.18); transition:.22s ease; }
+    .logo-btn:hover { background:rgba(255,255,255,.24); transform:translateY(-2px); box-shadow:0 6px 16px rgba(0,0,0,.28); }
+    .logo-btn img { background:#1764df; mix-blend-mode:lighten; border-radius:999px; }
+    .site-header { background: linear-gradient(90deg,#1764df 0%,#2463d8 55%,#1d5bc8 100%); padding: .4rem 0; box-shadow: 0 2px 12px rgba(0,0,0,.18); }
+    .nav-toggle { display: block; cursor: pointer; }
+    .nav-menu { display: none; flex-direction: column; align-items: stretch; gap: 6px; position: absolute; top: 100%; right: 10px; left: 10px; background: #1e4fc4; padding: 12px; border-radius: 12px; z-index: 50; box-shadow: 0 10px 25px rgba(0,0,0,.25); }
+    .nav-menu.active { display: flex; }
+    .nav-link { color: #fff; font-weight: 700; font-size: 1.02rem; padding: .5rem 1rem; border-radius: 999px; text-decoration: none; transition: background .2s, transform .2s; white-space: nowrap; display: inline-block; }
+    .nav-link:hover { background: rgba(255,255,255,.18); }
+    .nav-solo { background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 4px 12px rgba(5,150,105,.45); }
+    .nav-solo:hover { background: linear-gradient(135deg, #10b981, #059669); transform: translateY(-1px); }
+    .nav-tango { background: #fbbf24; color: #1a1a1a !important; box-shadow: 0 4px 12px rgba(251,191,36,.45); }
+    .nav-tango:hover { background: #f59e0b; transform: translateY(-1px); }
+    .nav-avis { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.35); }
+    .nav-current { outline: 2px solid #fff; outline-offset: 1px; }
+    .nav-contact { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+    .nav-contact-links { display: flex; gap: 4px; }
+    .nav-tel { color: #fff; font-weight: 700; font-size: .95rem; padding: 0 1rem; text-decoration: none; white-space: nowrap; }
+    .nav-tel:hover { text-decoration: underline; }
+    
+    @media (min-width: 1024px) {
+      .nav-toggle { display: none; }
+      .nav-menu { display: flex; flex-direction: row; align-items: center; gap: 6px; position: static; background: none; padding: 0; box-shadow: none; border-radius: 0; }
+      .nav-contact { align-items: flex-end; }
+      .nav-contact .nav-link { padding: 0 .6rem; }
+      .nav-tel { padding: 0 .6rem; }
+    }
+    
+    @media (max-width: 640px) { .btn-orange, .btn-blue { display: block; width: 100%; text-align: center; } }
+    
+    .hero-text-shadow { text-shadow: 0 2px 8px rgba(0,0,0,0.85); }
+    .hero-card-glass {
+      background: rgba(30, 30, 30, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-top: 4px solid #fbbf24;
+      border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    .hero-badge-bg {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+    }
+    .hero-btn-tango {
+      background: #f59e0b;
+      color: #1a1a1a;
+      font-weight: 800;
+      transition: all 0.25s ease;
+    }
+    .hero-btn-tango:hover {
+      background: #ffffff;
+      color: #d97706;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255,255,255,0.2);
+    }
+    
+    .inline-form { background: #fff; border: 2px solid #fdba74; border-radius: 12px; padding: 16px; margin-top: 14px; box-shadow: 0 4px 14px rgba(230,126,34,0.15); }
+    .inline-form strong { display: block; margin-bottom: 10px; color: #c2410c; font-size: 1rem; }
+    .inline-form label { display: block; margin: 8px 0 3px; font-size: 0.88rem; font-weight: 600; color: #1e293b; }
+    .inline-form input[type=text], .inline-form input[type=email], .inline-form select, .inline-form textarea { width: 100%; padding: 0.55rem; border: 1px solid #cbd5e1; border-radius: 8px; font: inherit; background: #fff; }
+    .inline-form .chk { display: flex; gap: 8px; align-items: flex-start; margin-top: 8px; }
+    .inline-form .chk input { margin-top: 4px; }
+    .inline-form .chk label { margin: 0; font-weight: 400; font-size: 0.82rem; }
+    .inline-form .submit-inline { width: 100%; margin-top: 12px; padding: 0.7rem; border: 2px solid #E67E22; border-radius: 50px; background: #E67E22; color: #fff; font-weight: 700; cursor: pointer; font-size: 0.95rem; }
+    .inline-form .submit-inline:hover { background: #fff; color: #E67E22; }
+    .inline-form .res { margin-top: 8px; font-weight: 600; font-size: 0.9rem; color: #c2410c; }
+  </style>
+  <link rel="canonical" href="https://vpdvoyages.com/voyage-tango.html">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header text-white">
+    <div class="container mx-auto px-4 flex justify-between items-center gap-4">
+      <a href="index.html" class="logo-btn shrink-0" title="Retour à l'accueil VPDVOYAGES">
+        <img src="Images/logo.png" alt="VPDVOYAGES - Patrick Daroque" class="h-12 md:h-14 w-auto object-contain">
+      </a>
+      <button class="nav-toggle text-white focus:outline-none" aria-label="Menu">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+      <nav class="nav-menu ml-auto">
+        <a href="index.html#home" class="nav-link text-[15px]">Accueil</a>
+        <a href="index.html#destinations" class="nav-link text-[15px]">Destinations</a>
+        <a href="voyage-tango.html" class="nav-link nav-tango nav-current text-[15px]">Tango argentin</a>
+        <a href="voyage-solo.html" class="nav-link nav-solo text-[15px]">🧳 Voyager seul(e)</a>
+        <a href="cgv.html#cgv-autonomie" class="nav-link text-[15px]">Formules</a>
+        <a href="https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site/" target="_blank" rel="noopener noreferrer" class="nav-link nav-avis text-[15px]">⭐ Avis clients</a>
+        <span class="nav-contact">
+          <span class="nav-contact-links">
+            <a href="index.html#about" class="nav-link text-[15px]">À propos</a>
+            <a href="index.html#contact" class="nav-link text-[15px]">Contact</a>
+          </span>
+          <a href="tel:+33610950984" class="nav-tel text-[14px]">☎️ +33 6 10 95 09 84</a>
+        </span>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SPÉCIAL TANGO (Avec la photo du couple) -->
+  <!-- ATTENTION : Assurez-vous que le nom du fichier correspond exactement à ce que vous avez dans votre dossier Images/ -->
+  <section class="relative bg-cover bg-center min-h-[600px] flex items-center justify-center py-8" style="background-image: url('Images/hero-tango.jpg'); background-color: #1a1a1a;">
+    <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(15, 23, 42, 0.2) 0%, rgba(15, 23, 42, 0.4) 100%);"></div>
+    
+    <div class="relative z-10 container mx-auto px-4 flex justify-start">
+      
+      <!-- Bloc unique : texte et bouton empilés -->
+      <div class="w-full md:w-1/2 max-w-lg">
+        <div class="hero-card-glass p-6 md:p-8 w-full text-center md:text-left flex flex-col items-center md:items-start">
+          
+          <h1 class="text-3xl md:text-5xl font-bold tracking-tight mb-4 leading-tight hero-text-shadow text-white">
+            L'univers du Tango
+          </h1>
+
+          <div class="inline-flex items-center gap-2 hero-badge-bg px-4 py-1.5 rounded-full text-xs md:text-sm font-semibold mb-6 text-amber-200 hero-text-shadow">
+            <span>💃</span> Argentine · Uruguay · Cuba · Espagne
+          </div>
+
+          <div class="space-y-3 hero-text-shadow text-sm md:text-base mb-6">
+            <p class="font-bold text-amber-400 text-lg md:text-xl">
+              Des séjours rythmés par la passion.
+            </p>
+            <p class="text-white/95 leading-relaxed">
+              Que vous soyez débutant ou danseur aguerri, voyagez en petit groupe pour vivre le Tango à sa source.
+            </p>
+          </div>
+
+          <!-- Bouton placé à l'intérieur du bloc, sous le texte -->
+          <a href="#tango-sejours" class="hero-btn-tango text-base md:text-lg px-8 py-4 shadow-xl w-full md:w-auto text-center font-bold rounded-full block border-2 border-transparent hover:border-white">
+            👀 Voir les séjours Tango
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="tango-sejours" class="py-14 bg-white">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-3">Nos propositions Tango</h2>
+      <p class="text-center text-gray-500 mb-10">Cliquez sur une destination pour découvrir les détails</p>
+      
+      <div id="pays-sections" class="space-y-6 mb-12">
+        
+        <!-- PAYS : ARGENTINE (Focus Tango) -->
+        <div class="country-card" id="pays-Argentine">
+          <div class="country-header" data-pays-toggle="arg">
+            <div style="position:absolute; inset:0; display:flex;">
+              <div style="flex:1; background-image:url('Images/argentine.jpg'); background-size:cover; background-position:center;"></div>
+              <div style="flex:1; background-image:url('Images/Tango Bodegas.jpg'); background-size:cover; background-position:center;"></div>
+            </div>
+            <div class="country-header-content">
+              <div>
+                <h3 class="text-2xl font-bold">Argentine</h3>
+                <p class="text-sm text-white/90">Le berceau du Tango</p>
+              </div>
+              <span class="country-cta">
+                <span>Voir les séjours</span>
+                <svg class="cta-arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </div>
+          </div>
+          <div class="country-body" id="body-arg">
+            <div class="sej-card confirmed">
+              <div class="sej-thumb" style="background-image:url('Images/Tango Bodegas.jpg');"></div>
+              <div class="sej-body">
+                <h4 class="font-semibold text-green-800">Tango et Bodegas</h4>
+                <p class="text-sm text-green-700 mt-1">✅ Départ confirmé !</p>
+                <p class="text-xs text-gray-600 mt-1">Automne 2027 · 12 – 29 octobre 2027</p>
+                <button class="btn-lancer green" data-pays="Argentine" data-sejour="Tango et Bodegas" data-depart="1" style="background:#16a34a; color:white; padding:8px 18px; border-radius:50px; font-weight:bold; margin-top:8px; border:none;">Rejoindre ce départ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAYS : URUGUAY (Focus Tango) -->
+        <div class="country-card" id="pays-Uruguay">
+          <div class="country-header" data-pays-toggle="uru">
+            <div style="position:absolute; inset:0; background-image:url('Images/argentine.jpg'); background-size:cover; background-position:center;"></div>
+            <div class="country-header-content">
+              <div>
+                <h3 class="text-2xl font-bold">Uruguay</h3>
+                <p class="text-sm text-white/90">L'autre rive du Río de la Plata</p>
+              </div>
+              <span class="country-cta">
+                <span>Voir les séjours</span>
+                <svg class="cta-arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </div>
+          </div>
+          <div class="country-body" id="body-uru">
+            <div class="sej-card">
+              <div class="sej-thumb" style="background-image:url('Images/argentine.jpg');"></div>
+              <div class="sej-body">
+                <h4 class="font-semibold">Rio de la Plata - le berceau du Tango</h4>
+                <p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p>
+                <button class="btn-lancer" data-pays="Uruguay" data-sejour="Rio de la Plata - le berceau du Tango" style="background:#E67E22; color:white; padding:8px 18px; border-radius:50px; font-weight:bold; margin-top:8px; border:none;">🚀 Lancer ce séjour</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAYS : CUBA (Focus Tango) -->
+        <div class="country-card" id="pays-Cuba">
+          <div class="country-header" data-pays-toggle="cuba">
+            <div style="position:absolute; inset:0; background-image:url('Images/Cuba Découverte.jpg'); background-size:cover; background-position:center;"></div>
+            <div class="country-header-content">
+              <div>
+                <h3 class="text-2xl font-bold">Cuba</h3>
+                <p class="text-sm text-white/90">Salsa, Son & Tango</p>
+              </div>
+              <span class="country-cta">
+                <span>Voir les séjours</span>
+                <svg class="cta-arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </div>
+          </div>
+          <div class="country-body" id="body-cuba">
+            <div class="sej-card">
+              <div class="sej-thumb" style="background-image:url('Images/Cuba Tango.jpg');"></div>
+              <div class="sej-body">
+                <h4 class="font-semibold">Festival de Tango de La Havane</h4>
+                <p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p>
+                <button class="btn-lancer" data-pays="Cuba" data-sejour="Festival de Tango de La Havane" style="background:#E67E22; color:white; padding:8px 18px; border-radius:50px; font-weight:bold; margin-top:8px; border:none;">🚀 Lancer ce séjour</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAYS : COLOMBIE (Focus Tango) -->
+        <div class="country-card" id="pays-Colombie">
+          <div class="country-header" data-pays-toggle="col">
+            <div style="position:absolute; inset:0; background-image:url('Images/Colombie.jpg'); background-size:cover; background-position:center;"></div>
+            <div class="country-header-content">
+              <div>
+                <h3 class="text-2xl font-bold">Colombie</h3>
+                <p class="text-sm text-white/90">Le Tango à Medellin</p>
+              </div>
+              <span class="country-cta">
+                <span>Voir les séjours</span>
+                <svg class="cta-arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </div>
+          </div>
+          <div class="country-body" id="body-col">
+            <div class="sej-card">
+              <div class="sej-thumb" style="background-image:url('Images/Tango Medellino.jpeg');"></div>
+              <div class="sej-body">
+                <h4 class="font-semibold">Festival de tango Medellin</h4>
+                <p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p>
+                <button class="btn-lancer" data-pays="Colombie" data-sejour="Festival de tango Medellin" style="background:#E67E22; color:white; padding:8px 18px; border-radius:50px; font-weight:bold; margin-top:8px; border:none;">🚀 Lancer ce séjour</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAYS : ESPAGNE (Focus Tango) -->
+        <div class="country-card" id="pays-Espagne">
+          <div class="country-header" data-pays-toggle="esp">
+            <div style="position:absolute; inset:0; background-image:url('Images/Logrono.jpg'); background-size:cover; background-position:center;"></div>
+            <div class="country-header-content">
+              <div>
+                <h3 class="text-2xl font-bold">Espagne</h3>
+                <p class="text-sm text-white/90">Escapades Tango express</p>
+              </div>
+              <span class="country-cta">
+                <span>Voir les escapades</span>
+                <svg class="cta-arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </div>
+          </div>
+          <div class="country-body" id="body-esp">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="sej-card">
+                <div class="sej-thumb" style="background-image:url('Images/valencia.jpg');"></div>
+                <div class="sej-body">
+                  <h4 class="font-semibold">Valence</h4>
+                  <button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Valence" style="background:#E67E22; color:white; padding:6px 14px; border-radius:50px; font-weight:bold; margin-top:8px; border:none;">🚀 Lancer ce séjour</button>
+                </div>
+              </div>
+              <div class="sej-card">
+                <div class="sej-thumb" style="background-image:url('Images/Salamanque.jpg');"></div>
+                <div class="sej-body">
+                  <h4 class="font-semibold">Valladolid</h4>
+                  <button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Valladolid" style="background:#E67E22; color:white; padding:6px 14px; border-radius:50px; font-weight:bold; margin-top:8px; border:none;">🚀 Lancer ce séjour</button>
+                </div>
+              </div>
+              <div class="sej-card">
+                <div class="sej-thumb" style="background-image:url('Images/Matarraña.jpeg');"></div>
+                <div class="sej-body">
+                  <h4 class="font-semibold">Saragosse</h4>
+                  <button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Saragosse" style="background:#E67E22; color:white; padding:6px 14px; border-radius:50px; font-weight:bold; margin-top:8px; border:none;">🚀 Lancer ce séjour</button>
+                </div>
+              </div>
+              <div class="sej-card">
+                <div class="sej-thumb" style="background-image:url('Images/barcelone.jpg');"></div>
+                <div class="sej-body">
+                  <h4 class="font-semibold">Barcelone</h4>
+                  <button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Barcelone" style="background:#E67E22; color:white; padding:6px 14px; border-radius:50px; font-weight:bold; margin-top:8px; border:none;">🚀 Lancer ce séjour</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NOUVELLE CARTE : PROJETS & CO-CRÉATION (Image Tango) -->
+        <div class="country-card" id="pays-Projets">
+          <div class="country-header" data-pays-toggle="projets" style="background-image: url('https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?q=80&w=1200&auto=format&fit=crop'); background-color: #333;">
+            <div class="country-header-content">
+              <div>
+                <h3 class="text-2xl font-bold">Voyages Tango sur-mesure</h3>
+                <p class="text-sm text-white/90">Projets &amp; Co-création</p>
+              </div>
+              <span class="country-cta">
+                <span>Découvrir les concepts</span>
+                <svg class="cta-arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </div>
+          </div>
+          <div class="country-body" id="body-projets">
+            <div class="bg-amber-50/50 p-4 rounded-xl border border-amber-200">
+              <div class="text-center max-w-2xl mx-auto mb-6 mt-2">
+                <p class="text-sm md:text-base text-gray-700 leading-relaxed">
+                  En complément de nos circuits classiques, nous développons des expériences immersives et affinitaires en très petit groupe (2 à 5 personnes). Découvrez nos concepts en préparation.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                
+                <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm hover:border-amber-400 transition">
+                  <h4 class="font-bold text-base text-stone-800 mb-1 flex items-center gap-2">
+                    <span>💃</span> Salsa, Tango argentin &amp; Son Cubain — La Havane
+                  </h4>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    Une immersion au cœur des rythmes cubains. À La Havane et Trinidad, apprenez la Salsa et laissez-vous porter par le Son Cubain. Découvrez aussi comment le Tango argentin puise ses racines dans la Habanera cubaine, ce rythme qui a voyagé des ports de Cuba à ceux de Buenos Aires. Des séjours rythmés par la musique, avec des cours et des soirées dans des lieux authentiques.
+                  </p>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm hover:border-amber-400 transition">
+                  <h4 class="font-bold text-base text-stone-800 mb-1 flex items-center gap-2">
+                    <span>🐢</span> Slow Travel Tango (Séjour long : Uruguay &amp; Argentine)
+                  </h4>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    Pour ceux qui veulent prendre le temps. Un séjour de 3 semaines ou plus entre l'Uruguay et l'Argentine, au rythme des milongas, des cafés historiques et de la vie locale. Parfait pour les digital nomads, les retraités ou les amoureux de tango qui souhaitent s'immerger profondément.
+                  </p>
+                </div>
+
+                <!-- MISE EN PAGE SPÉCIALE : Ces deux éléments côte à côte -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:col-span-2">
+                  <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm hover:border-amber-400 transition">
+                    <h4 class="font-bold text-base text-stone-800 mb-1 flex items-center gap-2">
+                      <span>🇪🇸</span> Escapade express de 4 jours en Espagne
+                    </h4>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                      Une pause tango de 4 jours pour les voyageurs pressés. Au choix : Valence, Valladolid, Saragosse ou Barcelone. Ateliers intensifs, milongas locales et exploration culturelle.
+                    </p>
+                  </div>
+
+                  <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm hover:border-amber-400 transition">
+                    <h4 class="font-bold text-base text-stone-800 mb-1 flex items-center gap-2">
+                      <span>🎩</span> Sur les traces de Carlos Gardel &amp; l'histoire du Tango
+                    </h4>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                      Un itinéraire culturel reliant les lieux mythiques du tango, de l'immigration européenne au Río de la Plata aux figures poétiques du lunfardo. Visites de cantines historiques et rencontres avec des luthiers.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm hover:border-amber-400 transition">
+                  <h4 class="font-bold text-base text-stone-800 mb-1 flex items-center gap-2">
+                    <span>🌹</span> Voyage tango femmes seules : sécurité &amp; liberté
+                  </h4>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    Une immersion bienveillante pensée pour les voyageuses solos à Buenos Aires. Accompagnement personnalisé, apprentissage des codes de la milonga, ateliers de confiance en soi et découverte des quartiers historiques entre femmes.
+                  </p>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm hover:border-amber-400 transition">
+                  <h4 class="font-bold text-base text-stone-800 mb-1 flex items-center gap-2">
+                    <span>🍷</span> Voyage tango hommes seuls : camaraderie &amp; terroir
+                  </h4>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    Un séjour entre hommes solos conjuguant culture populaire, cafés historiques, asados d'exception et technique du guidage (leader). Une ambiance conviviale, sans pression de performance, combinant tango et art de vivre argentin.
+                  </p>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm hover:border-amber-400 transition">
+                  <h4 class="font-bold text-base text-stone-800 mb-1 flex items-center gap-2">
+                    <span>🌿</span> Tango-thérapie &amp; bien-être intérieur
+                  </h4>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    Un parcours axé sur la conscience corporelle, l'équilibre et le lâcher-prise. Conçu avec des intervenants qualifiés, ce voyage s'adresse aux danseurs ou débutants souhaitant travailler l'écoute et la connexion à l'autre par l'abrazo.
+                  </p>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm hover:border-amber-400 transition">
+                  <h4 class="font-bold text-base text-stone-800 mb-1 flex items-center gap-2">
+                    <span>🌙</span> Les milongas secrètes et insolites de Buenos Aires
+                  </h4>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    Loin des circuits touristiques industriels, plongez au cœur du Buenos Aires nocturne et authentique. Poussez les portes de milongas de quartier confidentielles et vibrez au son des orchestres typiques en direct.
+                  </p>
+                </div>
+
+              </div>
+
+              <!-- FORMULAIRE CO-CRÉATION -->
+              <div class="mt-8 pt-6 border-t border-amber-200/80 text-center" id="bloc-thematiques-tango">
+                <p class="text-sm text-stone-600 italic mb-4">
+                  Un de ces univers correspond à votre projet de voyage ?
+                </p>
+                <button class="btn-lancer" id="btn-interet-thematiques" style="background:#E67E22; color:white; padding:10px 24px; border-radius:50px; font-weight:bold; font-size:1rem; border:none; cursor:pointer; transition:0.2s;">
+                  ✨ Exprimer mon intérêt pour ces thématiques
+                </button>
+                <div id="form-thematiques-container"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- FIN CARTE PROJETS -->
+
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="bg-stone-900 py-6 mt-12">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-stone-300 text-sm">© 2026 – VPDVOYAGES – Patrick Daroque – Travel Planner. Tous droits réservés.<br>
+      n° siret : 52534368700030 · <a href="cgv.html" class="underline">CGV</a> · <a href="mentions-legales.html" class="underline">Mentions légales</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Gestion de l'ouverture/fermeture des cartes pays
+    document.querySelectorAll('[data-pays-toggle]').forEach(function(header) {
+      header.addEventListener('click', function() {
+        var code = this.dataset.paysToggle;
+        var map = { arg: "Argentine", col: "Colombie", cuba: "Cuba", esp: "Espagne", uru: "Uruguay", projets: "Projets" };
+        var card = document.getElementById("pays-" + map[code]);
+        if (card) card.classList.toggle("open");
+      });
+    });
+
+    // Gestion du formulaire de co-création
+    var btnThematiques = document.getElementById('btn-interet-thematiques');
+    if (btnThematiques) {
+      btnThematiques.addEventListener('click', function () {
+        var container = document.getElementById('form-thematiques-container');
+        if (!container) return;
+        if (container.innerHTML !== '') { container.innerHTML = ''; return; }
+
+        var html = '<div class="inline-form text-left mt-4 max-w-xl mx-auto" style="background:#fff; padding:20px; border-radius:12px; border:2px solid #fdba74;">' +
+          '<strong style="display:block; margin-bottom:15px; color:#c2410c; font-size:1.1rem;">✨ Co-créez votre voyage sur-mesure</strong>' +
+          '<label style="display:block; margin-bottom:5px; font-weight:bold; font-size:0.9rem;">Quelle(s) thématique(s) vous inspire(nt) ?</label>' +
+          '<select name="thematique_prefere" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; margin-bottom:15px;">' +
+          '<option value="Salsa Tango Son">💃 Salsa, Tango argentin & Son Cubain — La Havane</option>' +
+          '<option value="Slow Travel">🐢 Slow Travel Tango (Séjour long : Uruguay & Argentine)</option>' +
+          '<option value="Escapade Espagne">🇪🇸 Escapade express de 4 jours en Espagne</option>' +
+          '<option value="Femmes seules">🌹 Voyage tango femmes seules : sécurité & liberté</option>' +
+          '<option value="Hommes seuls">🍷 Voyage tango hommes seuls : camaraderie & terroir</option>' +
+          '<option value="Tango-therapie">🌿 Tango-thérapie & bien-être intérieur</option>' +
+          '<option value="Milongas secretes">🌙 Les milongas secrètes et insolites</option>' +
+          '<option value="Carlos Gardel">🎩 Sur les traces de Carlos Gardel</option>' +
+          '<option value="Plusieurs ou Sur-mesure">✨ Plusieurs thématiques / Sur-mesure</option>' +
+          '</select>' +
+          '<label style="display:block; margin-bottom:5px; font-weight:bold; font-size:0.9rem;">Prénom</label><input type="text" name="prenom" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; margin-bottom:15px;">' +
+          '<label style="display:block; margin-bottom:5px; font-weight:bold; font-size:0.9rem;">E-mail</label><input type="email" name="email" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; margin-bottom:15px;">' +
+          '<label style="display:block; margin-bottom:5px; font-weight:bold; font-size:0.9rem;">Précision ou message (optionnel)</label><textarea name="message" rows="3" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; margin-bottom:15px;"></textarea>' +
+          '<button type="button" class="submit-inline" id="submit-tango" style="width:100%; padding:12px; background:#E67E22; color:white; border:none; border-radius:50px; font-weight:bold; font-size:1rem; cursor:pointer;">Envoyer mon intérêt</button>' +
+          '<div class="res" role="status" style="margin-top:10px; font-weight:bold; color:#c2410c; text-align:center;"></div>' +
+          '</div>';
+
+        container.innerHTML = html;
+
+        container.querySelector('#submit-tango').addEventListener('click', function () {
+          var prenom = container.querySelector('[name=prenom]').value.trim();
+          var email = container.querySelector('[name=email]');
+          var res = container.querySelector('.res');
+          
+          if (!prenom || !email.value || !email.validity.valid) {
+            res.textContent = "Complétez votre prénom et un e-mail valide."; return;
+          }
+          
+          res.textContent = "Merci ! Votre intérêt est bien enregistré.";
+          container.innerHTML = '<p style="text-align:center; color:#15803d; font-weight:bold; padding:20px;">Merci ' + prenom + ' ! Nous vous recontacterons rapidement.</p>';
+        });
+      });
+    }
+  </script>
+</body>
+</html>

@@ -6,8 +6,9 @@
   <title>Conditions Générales de Vente - VPDVOYAGES</title>
   <meta name="description" content="Conditions Générales de Vente de VPDVOYAGES">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Indie+Flower&display=swap" rel="stylesheet">
   <style>
+    * { box-sizing: border-box; }
     header {
       position: fixed;
       top: 0;
@@ -15,26 +16,49 @@
       right: 0;
       z-index: 100;
       width: 100%;
-      background: linear-gradient(90deg,#1764df 0%,#2463d8 55%,#1d5bc8 100%);
     }
     body {
-      padding-top: 76px;
+      padding-top: 104px;
       font-size: 16px;
       background-color: white;
+      font-family: 'Poppins', Arial, Helvetica, sans-serif;
     }
-    .wow-logo {
-      width: 275px;
-      height: 64px;
-      object-fit: contain;
-      object-position: left center;
-      display: block;
+    
+    /* ================= HEADER STYLE UNIFORMISÉ ================= */
+    .site-header { background: linear-gradient(90deg,#1764df 0%,#2463d8 55%,#1d5bc8 100%); padding: .4rem 0; box-shadow: 0 2px 12px rgba(0,0,0,.18); }
+    
+    .logo-btn { display:flex; align-items:center; padding:4px 16px 4px 8px; border:2px solid rgba(255,255,255,.85); border-radius:999px; background:rgba(255,255,255,.12); box-shadow:0 3px 10px rgba(0,0,0,.18); transition:.22s ease; text-decoration:none; }
+    .logo-btn:hover { background:rgba(255,255,255,.24); transform:translateY(-2px); box-shadow:0 6px 16px rgba(0,0,0,.28); }
+    .logo-btn img { background:#1764df; mix-blend-mode:lighten; border-radius:999px; }
+
+    .nav-toggle { display: block; cursor: pointer; color: #fff; background: none; border: 0; }
+    .nav-menu { display: none; flex-direction: column; align-items: stretch; gap: 6px; position: absolute; top: 100%; right: 10px; left: 10px; background: #1e4fc4; padding: 12px; border-radius: 12px; z-index: 50; box-shadow: 0 10px 25px rgba(0,0,0,.25); }
+    .nav-menu.active { display: flex; }
+    .nav-link { color: #fff; font-weight: 700; font-size: 1.02rem; padding: .5rem 1rem; border-radius: 999px; text-decoration: none; transition: background .2s, transform .2s; white-space: nowrap; display: inline-block; }
+    .nav-link:hover { background: rgba(255,255,255,.18); text-decoration: none; }
+    
+    .nav-solo { background: linear-gradient(135deg, #10b981, #059669); color: #fff !important; box-shadow: 0 4px 12px rgba(5,150,105,.45); }
+    .nav-solo:hover { background: linear-gradient(135deg, #10b981, #059669); transform: translateY(-1px); }
+    
+    .nav-tango { background: #fbbf24; color: #1a1a1a !important; box-shadow: 0 4px 12px rgba(251,191,36,.45); }
+    .nav-tango:hover { background: #f59e0b; transform: translateY(-1px); }
+    
+    .nav-avis { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.35); }
+    .nav-current { outline: 2px solid #fff; outline-offset: 1px; }
+    
+    .nav-contact { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+    .nav-contact-links { display: flex; gap: 4px; }
+    .nav-tel { color: #fff; font-weight: 700; font-size: .95rem; padding: 0 1rem; text-decoration: none; white-space: nowrap; }
+    .nav-tel:hover { text-decoration: underline; }
+
+    @media (min-width: 1024px) {
+      .nav-toggle { display: none; }
+      .nav-menu { display: flex; flex-direction: row; align-items: center; gap: 6px; position: static; background: none; padding: 0; box-shadow: none; border-radius: 0; }
+      .nav-contact { align-items: flex-end; }
+      .nav-contact .nav-link { padding: 0 .6rem; }
+      .nav-tel { padding: 0 .6rem; }
     }
-    @media (max-width: 640px) {
-      .wow-logo {
-        width: 190px !important;
-        height: 46px !important;
-      }
-    }
+
     .cgv-content {
       max-width: 900px;
       margin: 0 auto;
@@ -105,13 +129,30 @@
   <link rel="canonical" href="https://vpdvoyages.com/cgv.html">
 </head>
 <body class="font-sans">
-  <header class="py-2">
-    <div class="container mx-auto px-4 flex justify-between items-center">
-      <a href="index.html" title="VPDVOYAGES – Accueil">
-        <img src="Images/logo.png" alt="VPDVOYAGES - Patrick Daroque Travel Planner" width="290" height="68" class="wow-logo">
+  
+  <!-- HEADER UNIFORMISÉ -->
+  <header class="site-header text-white">
+    <div class="container mx-auto px-4 flex justify-between items-center gap-4">
+      <a href="index.html" class="logo-btn shrink-0" title="Retour à l'accueil VPDVOYAGES">
+        <img src="Images/logo.png" alt="VPDVOYAGES - Patrick Daroque" class="h-12 md:h-14 w-auto object-contain">
       </a>
-      <nav>
-        <a href="index.html" class="bg-white text-blue-600 font-semibold px-4 py-2 rounded hover:bg-gray-100 text-base inline-block">Retour</a>
+      <button class="nav-toggle text-white focus:outline-none" aria-label="Menu principal">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+      <nav class="nav-menu ml-auto">
+        <a href="index.html#home" class="nav-link text-[15px]">Accueil</a>
+        <a href="index.html#destinations" class="nav-link text-[15px]">Destinations</a>
+        <a href="voyage-tango.html" class="nav-link nav-tango text-[15px]">Tango argentin</a>
+        <a href="voyage-solo.html" class="nav-link nav-solo text-[15px]">🧳 Voyager seul(e)</a>
+        <a href="cgv.html#cgv-autonomie" class="nav-link nav-current text-[15px]">Formules</a>
+        <a href="https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site/" target="_blank" rel="noopener noreferrer" class="nav-link nav-avis text-[15px]">⭐ Avis clients</a>
+        <span class="nav-contact">
+          <span class="nav-contact-links">
+            <a href="index.html#about" class="nav-link text-[15px]">À propos</a>
+            <a href="index.html#contact" class="nav-link text-[15px]">Contact</a>
+          </span>
+          <a href="tel:+33610950984" class="nav-tel text-[14px]">☎️ +33 6 10 95 09 84</a>
+        </span>
       </nav>
     </div>
   </header>
@@ -333,5 +374,11 @@
       <p style="color: white; font-size: 1rem;">&copy; 2026 Patrick Daroque - Travel Planner. Tous droits réservés. | n° siret : 52534368700030 | <a href="cgv.html" style="color: white; text-decoration: underline;">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;">Mentions légales</a></p>
     </div>
   </footer>
+
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function () {
+      document.querySelector('.nav-menu').classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
