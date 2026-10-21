@@ -14,8 +14,8 @@
     html { scroll-padding-top: 115px; }
     h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; }
     
-    .btn-orange { background: #E67E22; color: #FFFFFF; padding: 0.65rem 1.6rem; border-radius: 50px; font-size: 1rem; font-weight: 600; text-decoration: none; border: 2px solid #E67E22; transition: all 0.25s ease; display: inline-block; }
-    .btn-orange:hover { background: #FFFFFF; color: #E67E22; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(230,126,34,0.25); }
+    .btn-orange { background: #E67E22; color: #FFFFFF; padding: 0.7rem 1.6rem; border-radius: 50px; font-size: 1rem; font-weight: 700; text-decoration: none; border: 2px solid #E67E22; transition: all 0.25s ease; display: inline-block; box-shadow: 0 6px 18px rgba(230,126,34,0.35); }
+    .btn-orange:hover { background: #FFFFFF; color: #E67E22; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(230,126,34,0.45); }
     .btn-blue { background: #1e3a5f; color: #FFFFFF; padding: 0.65rem 1.6rem; border-radius: 50px; font-size: 1rem; font-weight: 600; text-decoration: none; border: 2px solid #1e3a5f; transition: all 0.25s ease; display: inline-block; }
     .btn-blue:hover { background: #FFFFFF; color: #1e3a5f; transform: translateY(-2px); }
     
@@ -27,10 +27,12 @@
     table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
     th { background: #1e3a5f; color: white; padding: 12px 14px; text-align: left; }
     td { padding: 12px 14px; border-bottom: 1px solid #e2e8f0; background: white; }
-    th:nth-child(3), th:nth-child(4), td:nth-child(3), td:nth-child(4) { text-align: right; }
+    th:nth-child(1), td:nth-child(1) { width: 22%; text-align: left; }
+    th:nth-child(2), td:nth-child(2) { width: 48%; text-align: left; }
+    th:nth-child(3), td:nth-child(3), th:nth-child(4), td:nth-child(4) { width: 15%; text-align: right; }
     tr:hover td { background: #f1f5f9; }
     
-    .badge-solo { background: #E67E22; border: 2px solid rgba(255,255,255,0.9); color: #ffffff; padding: 0.4rem 1.4rem; border-radius: 999px; font-style: italic; font-weight: 700; display: inline-block; box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
+    .badge-solo { background: #E67E22; border: 2px solid rgba(255,255,255,0.95); color: #ffffff; padding: 0.45rem 1.5rem; border-radius: 999px; font-style: italic; font-weight: 700; display: inline-block; box-shadow: 0 4px 14px rgba(0,0,0,0.25); }
     
     .country-card { border-radius: 16px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.08); margin-bottom: 1.5rem; background: white; transition: transform 0.2s; }
     .country-card:hover { transform: translateY(-2px); }
@@ -46,7 +48,7 @@
     .country-card.open .country-cta { background: #E67E22; color: white; }
     
     .country-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 1.25rem; }
-    .country-card.open .country-body { max-height: 3000px; padding: 1.25rem; }
+    .country-card.open .country-body { max-height: 4500px; padding: 1.25rem; }
     
     @media (max-width: 640px) {
       .country-header { height: 150px; }
@@ -65,19 +67,17 @@
       .sej-thumb { width: 100%; height: 120px; }
     }
     
-    .hero-overlay { background: linear-gradient(135deg, rgba(30,58,95,0.35) 0%, rgba(60,40,30,0.25) 50%, rgba(120,60,20,0.25) 100%); }
-    
-    #vpd-pays-nav-hero button { padding: .5rem 1rem; border: 2px solid rgba(255,255,255,0.9); border-radius: 999px; background: rgba(255,255,255,0.95); color: #1e3a5f; font: inherit; font-size: .9rem; font-weight: 700; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
+    /* STYLE DES FILTRES PAYS (HERO) */
+    #vpd-pays-nav-hero button { padding: .45rem .9rem; border: 2px solid rgba(255,255,255,0.9); border-radius: 999px; background: rgba(255,255,255,0.95); color: #1e3a5f; font: inherit; font-size: .85rem; font-weight: 700; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
     #vpd-pays-nav-hero button:hover { background: #fff; border-color: #E67E22; color: #E67E22; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(230,126,34,0.4); }
     #vpd-pays-nav-hero button.on { background: #E67E22; border-color: #E67E22; color: #fff; box-shadow: 0 6px 16px rgba(230,126,34,0.5); }
-    #vpd-pays-nav-hero .pastille { width: 14px; height: 14px; border-radius: 50%; display: inline-block; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+    #vpd-pays-nav-hero .pastille { width: 12px; height: 12px; border-radius: 50%; display: inline-block; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
     
     #vpd-solo { color:#1e293b; }
     #vpd-solo .card { background:#fff; border-radius:16px; padding:16px; box-shadow:0 4px 14px rgba(30,58,138,.08); margin-bottom:14px; }
     #vpd-solo .alerte-card { background: linear-gradient(135deg, #fff7ed, #ffedd5); border: 2px solid #fdba74; }
     #vpd-solo .confirme-card { background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 2px solid #86efac; }
     
-    /* ===== CARTES DE DÉPART (compactes : 3 par ligne sur grand écran, photo à droite) ===== */
     #vpd-solo .dep-grid { display:grid; grid-template-columns:minmax(0,1fr); gap:10px; grid-auto-flow:row dense; }
     @media (min-width:640px) { #vpd-solo .dep-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
     @media (min-width:900px) { #vpd-solo .dep-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
@@ -87,7 +87,6 @@
     #vpd-solo .depart-item.confirme:hover { border-color:#16a34a; }
     #vpd-solo .depart-item.open { border-color:#E67E22; box-shadow:0 0 0 3px rgba(230,126,34,.2); }
     #vpd-solo .depart-item.confirme.open { border-color:#16a34a; box-shadow:0 0 0 3px rgba(22,163,74,.2); }
-    #vpd-solo .depart-item:focus-visible { outline:3px solid #f0b429; outline-offset:2px; }
     #vpd-solo .depart-content { flex:1; min-width:0; display:flex; flex-direction:column; gap:5px; }
     #vpd-solo .depart-pays { font-size:.72rem; color:#64748b; line-height:1.25; }
     #vpd-solo .depart-titre { font-size:.95rem; font-weight:700; color:#1e293b; line-height:1.2; }
@@ -115,21 +114,12 @@
     #vpd-solo .go:hover { background:#fff; color:#E67E22; }
     #vpd-solo .go.go-green { background:#16a34a; border-color:#16a34a; }
     #vpd-solo .go.go-green:hover { background:#fff; color:#16a34a; }
-    #vpd-solo .box { background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:14px; margin:6px 0 10px; font-size:.93rem; }
-    #vpd-solo label { display:block; margin:8px 0 3px; font-size:.88rem; font-weight:600; }
-    #vpd-solo input[type=text], #vpd-solo input[type=email], #vpd-solo select { width:100%; padding:.55rem; border:1px solid #cbd5e1; border-radius:8px; font:inherit; background:#fff; }
-    #vpd-solo .chk { display:flex; gap:8px; align-items:flex-start; margin-top:8px; }
-    #vpd-solo .chk input { margin-top:4px; }
-    #vpd-solo .chk label { margin:0; font-weight:400; font-size:.82rem; }
     
     .btn-lancer { display:inline-block; margin-top:8px; padding:8px 18px; background:#E67E22; color:#fff; border:2px solid #E67E22; border-radius:50px; font-weight:700; font-size:0.9rem; cursor:pointer; transition:all 0.2s; }
     .btn-lancer:hover { background:#fff; color:#E67E22; }
     .btn-lancer.green { background:#16a34a; border-color:#16a34a; }
     .btn-lancer.green:hover { background:#fff; color:#16a34a; }
     
-    /* ====================================================================
-       CARTE PROFIL MODIFIÉE POUR SUPPORTER PLUSIEURS PROFILS
-       ==================================================================== */
     .profil-card {
       display: grid;
       grid-template-columns: 50px 1fr;
@@ -268,7 +258,6 @@
       .profil-statut-label { text-align: left; }
     }
     
-    /* Logo cliquable : contour en forme de bouton */
     .logo-btn { display:flex; align-items:center; padding:4px 16px 4px 8px; border:2px solid rgba(255,255,255,.85); border-radius:999px; background:rgba(255,255,255,.12); box-shadow:0 3px 10px rgba(0,0,0,.18); transition:.22s ease; }
     .logo-btn:hover { background:rgba(255,255,255,.24); transform:translateY(-2px); box-shadow:0 6px 16px rgba(0,0,0,.28); }
     .logo-btn img { background:#1764df; mix-blend-mode:lighten; border-radius:999px; }
@@ -298,19 +287,34 @@
       .btn-orange, .btn-blue { display: block; width: 100%; text-align: center; }
     }
     
-    .hero-text-shadow { text-shadow: 2px 2px 12px rgba(0,0,0,0.8), 0 0 30px rgba(0,0,0,0.5); }
-    .hero-badge-bg { background: rgba(30,58,95,0.55); backdrop-filter: blur(6px); }
+    .hero-text-shadow { text-shadow: 0 2px 8px rgba(0,0,0,0.85); }
+    .hero-badge-bg { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(8px); }
+    
+    /* PAVÉ HERO ÉCLAIRCI */
+    .hero-card-glass {
+      background: rgba(15, 23, 42, 0.35); /* Fond plus transparent */
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    }
     
     .inline-form { background: #fff; border: 2px solid #fdba74; border-radius: 12px; padding: 16px; margin-top: 14px; box-shadow: 0 4px 14px rgba(230,126,34,0.15); }
     .inline-form strong { display: block; margin-bottom: 10px; color: #c2410c; font-size: 1rem; }
     .inline-form label { display: block; margin: 8px 0 3px; font-size: 0.88rem; font-weight: 600; color: #1e293b; }
-    .inline-form input[type=text], .inline-form input[type=email], .inline-form select { width: 100%; padding: 0.55rem; border: 1px solid #cbd5e1; border-radius: 8px; font: inherit; background: #fff; }
+    .inline-form input[type=text], .inline-form input[type=email], .inline-form select, .inline-form textarea { width: 100%; padding: 0.55rem; border: 1px solid #cbd5e1; border-radius: 8px; font: inherit; background: #fff; }
     .inline-form .chk { display: flex; gap: 8px; align-items: flex-start; margin-top: 8px; }
     .inline-form .chk input { margin-top: 4px; }
     .inline-form .chk label { margin: 0; font-weight: 400; font-size: 0.82rem; }
     .inline-form .submit-inline { width: 100%; margin-top: 12px; padding: 0.7rem; border: 2px solid #E67E22; border-radius: 50px; background: #E67E22; color: #fff; font-weight: 700; cursor: pointer; font-size: 0.95rem; }
     .inline-form .submit-inline:hover { background: #fff; color: #E67E22; }
     .inline-form .res { margin-top: 8px; font-weight: 600; font-size: 0.9rem; color: #c2410c; }
+
+    #tarifs-body tr.tarif-pays td { background:#fff7ed; color:#c2410c; font-weight:700; font-family:'Playfair Display', Georgia, serif; font-size:1.05rem; border-bottom:2px solid #fdba74; text-align:left; }
+    #tarifs-body td.tarif-prix { text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+    #tarifs-body td.tarif-encours { text-align:right; font-style:italic; color:#64748b; font-size:.88rem; }
+    #tarifs-body tr.tarif-pays:hover td { background:#fff7ed; }
 
     .depart-prix { margin:10px 0 0; font-size:0.9rem; color:#1e293b; background:#fff; border:1px dashed #cbd5e1; border-radius:10px; padding:8px 12px; }
   </style>
@@ -346,33 +350,61 @@
     </div>
   </header>
 
-  <section class="relative bg-cover bg-center min-h-[520px] flex items-center justify-center" style="background-image: url('https://images.unsplash.com/photo-1533105079780-92b9be482077?w=1600&q=80');">
-    <div class="absolute inset-0 hero-overlay"></div>
-    <div class="relative z-10 text-center text-white px-4 py-12 max-w-4xl mx-auto">
-      <div class="inline-flex items-center gap-2 hero-badge-bg px-4 py-1.5 rounded-full text-sm font-medium mb-5 border border-white/30 hero-text-shadow">
-        <span class="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></span>
-        Groupes de 2 à 5 personnes seulement
-      </div>
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 leading-tight hero-text-shadow">
-        Voyage solo<br class="hidden sm:block"> en petit groupe
-      </h1>
-      <p class="mb-6"><span class="badge-solo text-lg">Seul(e) mais pas isolé(e)</span></p>
-      <p class="text-lg md:text-xl text-white max-w-2xl mx-auto mb-8 leading-relaxed hero-text-shadow font-medium">
-        Partez seul(e), mais partagez l’aventure avec un petit groupe de 2 à 5 personnes en Espagne ou en Amérique latine.
-      </p>
+  <!-- HERO : STRUCTURE CENTRÉE, PAVÉ ÉCLAIRCI -->
+  <section class="relative bg-cover bg-center min-h-[600px] flex items-center justify-center py-8" style="background-image: url('Images/hero-voyage-solo-premium.jpg');">
+    <div class="absolute inset-0 hero-overlay" style="background: linear-gradient(180deg, rgba(15, 23, 42, 0.12) 0%, rgba(15, 23, 42, 0.02) 50%, rgba(15, 23, 42, 0.22) 100%);"></div>
+    
+    <div class="relative z-10 text-center text-white px-4 container mx-auto flex flex-col items-end">
       
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-        <a href="#departs" class="btn-orange text-lg px-8 py-3 shadow-lg">👀 Voir les prochains départs</a>
+      <!-- CONTENEUR CENTRÉ POUR LE TEXTE ET LES FILTRES -->
+      <div class="w-full max-w-[340px] sm:max-w-sm md:max-w-lg mr-4 md:mr-12 lg:mr-20 flex flex-col items-center">
+        
+        <!-- CARTOUCHE (Fond éclairci) -->
+        <div class="hero-card-glass p-5 md:p-7 mb-5 w-full text-center">
+          
+          <!-- TITRE PRINCIPAL H1 -->
+          <h1 class="text-2xl md:text-4xl font-bold tracking-tight mb-3 leading-tight hero-text-shadow">
+            Voyage solo<br class="hidden sm:block"> en petit groupe
+          </h1>
+
+          <!-- BADGE -->
+          <div class="inline-flex items-center gap-2 hero-badge-bg px-3 py-1 rounded-full text-xs md:text-sm font-semibold mb-4 border border-white/30 hero-text-shadow">
+            <span class="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
+            Groupes de 2 à 5 personnes seulement
+          </div>
+
+          <!-- ACCROCHE -->
+          <div class="space-y-1.5 hero-text-shadow text-sm md:text-base">
+            <p class="font-bold text-amber-300 text-base md:text-lg">
+              Des expériences immersives sur mesure.
+            </p>
+            <p class="font-medium text-white/95">
+              En formule Sérénité ou Autonomie.
+            </p>
+            <p class="text-stone-200 text-sm md:text-base">
+              Pour explorer l'Espagne et l'Amérique latine à votre rythme.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- BOUTON D'ACTION -->
+        <div class="w-full mb-6">
+          <a href="#departs" class="btn-orange text-base md:text-lg px-8 py-3.5 shadow-xl w-full text-center font-bold">👀 Voir les prochains départs</a>
+        </div>
+        
+        <!-- FILTRES PAR PAYS (Centrés sous le texte) -->
+        <div id="vpd-pays-nav-hero" class="flex flex-col gap-2 items-center w-full"></div>
       </div>
-      
-      <div id="vpd-pays-nav-hero" class="flex flex-wrap gap-2 justify-center"></div>
+
     </div>
   </section>
 
   <section id="departs" class="py-14" style="background: linear-gradient(180deg, #eff6ff 0%, #fff7ed 100%);">
     <div class="container mx-auto px-4 max-w-5xl">
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-3 text-stone-800">🧭 Prochains départs en formule Sérénité</h2>
-      <p class="text-center text-gray-600 mb-8 max-w-xl mx-auto">À 2, le départ est confirmé. Jusqu’à 5, chaque voyageur supplémentaire fait baisser le prix pour tous.</p>
+      
+      <p class="text-center text-gray-600 mb-8 max-w-xl mx-auto">À 2 personnes, le départ est confirmé. Jusqu’au nombre maximum de 5 personnes, chaque voyageur supplémentaire fait baisser le prix pour tous.</p>
 
       <div id="vpd-solo"></div>
 
@@ -407,11 +439,12 @@
       
       <div id="pays-sections" class="space-y-6 mb-12">
         
+        <!-- PAYS : ARGENTINE -->
         <div class="country-card" id="pays-Argentine">
           <div class="country-header" data-pays-toggle="arg">
             <div style="position:absolute; inset:0; display:flex;">
-              <div style="flex:1; background-image:url('https://images.unsplash.com/photo-1626792421940-8fec643fbe23?w=700&q=80'); background-size:cover; background-position:center;"></div>
-              <div style="flex:1; background-image:url('https://images.unsplash.com/photo-1648510399328-b8981e9fc1bb?w=700&q=80'); background-size:cover; background-position:center;"></div>
+              <div style="flex:1; background-image:url('Images/argentine.jpg'); background-size:cover; background-position:center;"></div>
+              <div style="flex:1; background-image:url('Images/Tango Bodegas.jpg'); background-size:cover; background-position:center;"></div>
             </div>
             <div class="country-header-content">
               <div>
@@ -419,14 +452,14 @@
                 <p class="text-sm text-white/90">Tango & Bodegas · 17 à 18 jours</p>
               </div>
               <span class="country-cta">
-                <span>Voir les 4 séjours</span>
+                <span>Voir les séjours &amp; thématiques</span>
                 <svg class="cta-arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </span>
             </div>
           </div>
           <div class="country-body" id="body-arg">
             <div class="sej-card">
-              <div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1626792421940-8fec643fbe23?w=300&q=80');"></div>
+              <div class="sej-thumb" style="background-image:url('Images/argentine.jpg');"></div>
               <div class="sej-body">
                 <h4 class="font-semibold">Rio de la Plata - le berceau du Tango</h4>
                 <p class="text-sm text-gray-600 mt-1">Aucune date fixée pour l’instant — soyez à l’initiative !</p>
@@ -434,7 +467,7 @@
               </div>
             </div>
             <div class="sej-card confirmed">
-              <div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1626792421940-8fec643fbe23?w=300&q=80');"></div>
+              <div class="sej-thumb" style="background-image:url('Images/Tango Bodegas.jpg');"></div>
               <div class="sej-body">
                 <h4 class="font-semibold text-green-800">Tango et Bodegas</h4>
                 <p class="text-sm text-green-700 mt-1">✅ Départ confirmé !</p>
@@ -444,7 +477,7 @@
               </div>
             </div>
             <div class="sej-card full">
-              <div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1648510399328-b8981e9fc1bb?w=300&q=80');"></div>
+              <div class="sej-thumb" style="background-image:url('Images/foz-do-iguacu.jpg');"></div>
               <div class="sej-body">
                 <h4 class="font-semibold text-amber-800">Buenos Aires et Iguazu</h4>
                 <p class="text-sm text-amber-700 mt-1">🔥 Presque complet — 1 place restante !</p>
@@ -454,19 +487,100 @@
               </div>
             </div>
             <div class="sej-card">
-              <div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1612960688178-cbf1ee03ebdc?w=300&q=80');"></div>
+              <div class="sej-thumb" style="background-image:url('Images/BsAs Mza Andes.jpg');"></div>
               <div class="sej-body">
                 <h4 class="font-semibold">Buenos Aires Mendoza et les Andes</h4>
                 <p class="text-sm text-gray-600 mt-1">Aucune date fixée pour l’instant — soyez à l’initiative !</p>
                 <button class="btn-lancer" data-pays="Argentine" data-sejour="Buenos Aires Mendoza et les Andes">🚀 Lancer ce séjour</button>
               </div>
             </div>
+
+            <!-- BLOC SEO & SOUHAITS TANGO THÉMATIQUES (Argentine) -->
+            <div class="mt-8 bg-amber-50/70 border border-amber-200 rounded-2xl p-6 shadow-sm">
+              <div class="text-center max-w-2xl mx-auto mb-6">
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-200/60 px-3 py-1 rounded-full">
+                  Projets &amp; Co-création
+                </span>
+                <h3 class="text-2xl font-bold text-stone-900 font-serif mt-2 mb-2">
+                  Voyages Tango sur-mesure &amp; Échappées Thématiques à Buenos Aires
+                </h3>
+                <p class="text-sm text-gray-700 leading-relaxed">
+                  En complément de nos circuits classiques, nous développons des expériences immersives et affinitaires en très petit groupe (2 à 5 personnes). Découvrez nos concepts en préparation.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                <!-- 1. Femmes seules -->
+                <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm hover:border-amber-400 transition">
+                  <h4 class="font-bold text-base text-stone-800 mb-1 flex items-center gap-2">
+                    <span>🌹</span> Voyage tango femmes seules : sécurité &amp; liberté
+                  </h4>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    Une immersion bienveillante pensée pour les voyageuses solos à Buenos Aires. Accompagnement personnalisé, apprentissage des codes de la milonga, ateliers de confiance en soi et découverte des quartiers historiques entre femmes.
+                  </p>
+                </div>
+
+                <!-- 2. Hommes seuls -->
+                <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm hover:border-amber-400 transition">
+                  <h4 class="font-bold text-base text-stone-800 mb-1 flex items-center gap-2">
+                    <span>🍷</span> Voyage tango hommes seuls : camaraderie &amp; terroir
+                  </h4>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    Un séjour entre hommes solos conjuguant culture populaire, cafés historiques, asados d'exception et technique du guidage (leader). Une ambiance conviviale, sans pression de performance, combinant tango et art de vivre argentin.
+                  </p>
+                </div>
+
+                <!-- 3. Tango-thérapie -->
+                <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm hover:border-amber-400 transition">
+                  <h4 class="font-bold text-base text-stone-800 mb-1 flex items-center gap-2">
+                    <span>🌿</span> Tango-thérapie &amp; bien-être intérieur
+                  </h4>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    Un parcours axé sur la conscience corporelle, l'équilibre et le lâcher-prise. Conçu avec des intervenants qualifiés, ce voyage s'adresse aux danseurs ou débutants souhaitant travailler l'écoute et la connexion à l'autre par l'abrazo.
+                  </p>
+                </div>
+
+                <!-- 4. Milongas secrètes -->
+                <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm hover:border-amber-400 transition">
+                  <h4 class="font-bold text-base text-stone-800 mb-1 flex items-center gap-2">
+                    <span>🌙</span> Les milongas secrètes et insolites de Buenos Aires
+                  </h4>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    Loin des circuits touristiques industriels, plongez au cœur du Buenos Aires nocturne et authentique. Poussez les portes de milongas de quartier confidentielles et vibrez au son des orchestres typiques en direct.
+                  </p>
+                </div>
+
+                <!-- 5. Sur les traces de Carlos Gardel -->
+                <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm hover:border-amber-400 transition md:col-span-2">
+                  <h4 class="font-bold text-base text-stone-800 mb-1 flex items-center gap-2">
+                    <span>🎩</span> Sur les traces de Carlos Gardel &amp; l'histoire du Tango
+                  </h4>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    Un itinéraire culturel reliant les lieux mythiques du tango, de l'immigration européenne au Río de la Plata aux figures poétiques du lunfardo. Visites de cantines historiques, rencontres avec des luthiers et balades à San Telmo et Abasto.
+                  </p>
+                </div>
+              </div>
+
+              <!-- BOUTON AVEC FORMULAIRE INTÉGRÉ -->
+              <div class="mt-6 pt-4 border-t border-amber-200/80 text-center" id="bloc-thematiques-tango">
+                <p class="text-xs text-stone-600 italic mb-3">
+                  Un de ces univers correspond à votre projet de voyage en Argentine ?
+                </p>
+                <button class="btn-lancer" id="btn-interet-thematiques">
+                  ✨ Exprimer mon intérêt pour ces thématiques
+                </button>
+                <div id="form-thematiques-container"></div>
+              </div>
+            </div>
+            <!-- FIN BLOC SEO & SOUHAITS TANGO -->
+
           </div>
         </div>
 
+        <!-- PAYS : COLOMBIE -->
         <div class="country-card" id="pays-Colombie">
           <div class="country-header" data-pays-toggle="col">
-            <div style="position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1672851612881-775cfd248971?w=900&q=80'); background-size:cover; background-position:center;"></div>
+            <div style="position:absolute; inset:0; background-image:url('Images/Colombie.jpg'); background-size:cover; background-position:center;"></div>
             <div class="country-header-content">
               <div>
                 <h3 class="text-2xl font-bold">Colombie</h3>
@@ -480,7 +594,7 @@
           </div>
           <div class="country-body" id="body-col">
             <div class="sej-card">
-              <div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1676254592764-cb8946b29671?w=300&q=80');"></div>
+              <div class="sej-thumb" style="background-image:url('Images/Colombie.jpg');"></div>
               <div class="sej-body">
                 <h4 class="font-semibold text-orange-800">La Magie realiste</h4>
                 <p class="text-sm text-orange-700 mt-1">🔥 Un départ cherche ses voyageurs !</p>
@@ -490,7 +604,7 @@
               </div>
             </div>
             <div class="sej-card">
-              <div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1672851612881-775cfd248971?w=300&q=80');"></div>
+              <div class="sej-thumb" style="background-image:url('Images/Colombie Triangle magique.jpg');"></div>
               <div class="sej-body">
                 <h4 class="font-semibold">Le Triangle Magique</h4>
                 <p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p>
@@ -498,7 +612,7 @@
               </div>
             </div>
             <div class="sej-card">
-              <div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1512250431446-d0b4b57b27ec?w=300&q=80');"></div>
+              <div class="sej-thumb" style="background-image:url('Images/Tango Medellino.jpeg');"></div>
               <div class="sej-body">
                 <h4 class="font-semibold">Festival de tango Medellin</h4>
                 <p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p>
@@ -506,10 +620,10 @@
               </div>
             </div>
             <div class="sej-card confirmed">
-              <div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1737916292794-dfa6090c444c?w=300&q=80');"></div>
+              <div class="sej-thumb" style="background-image:url('Images/Cali Salsa.jpg');"></div>
               <div class="sej-body">
                 <h4 class="font-semibold text-green-800">Cali - capitale de la salsa</h4>
-                <p class="text-sm text-green-700 mt-1">✅ Départ confirmé ! 2 places restantes</p>
+                <p class="text-sm text-green-700 mt-1">✅ Départ confirmed ! 2 places restantes</p>
                 <p class="text-xs text-gray-600 mt-1">Été 2027 · 8 – 25 juillet 2027</p>
                 <div class="profil-card-slot" data-slot-pays="Colombie" data-slot-sejour="Cali - capitale de la salsa"></div>
                 <button class="btn-lancer green" data-pays="Colombie" data-sejour="Cali - capitale de la salsa" data-depart="1">Rejoindre ce départ</button>
@@ -518,9 +632,10 @@
           </div>
         </div>
 
+        <!-- PAYS : CUBA -->
         <div class="country-card" id="pays-Cuba">
           <div class="country-header" data-pays-toggle="cuba">
-            <div style="position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1503436155788-4c4e5643aa91?w=900&q=80'); background-size:cover; background-position:center;"></div>
+            <div style="position:absolute; inset:0; background-image:url('Images/Cuba Découverte.jpg'); background-size:cover; background-position:center;"></div>
             <div class="country-header-content">
               <div>
                 <h3 class="text-2xl font-bold">Cuba</h3>
@@ -534,7 +649,7 @@
           </div>
           <div class="country-body" id="body-cuba">
             <div class="sej-card">
-              <div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1591051414651-3f21cab6c24f?w=300&q=80');"></div>
+              <div class="sej-thumb" style="background-image:url('Images/Cuba Découverte.jpg');"></div>
               <div class="sej-body">
                 <h4 class="font-semibold text-orange-800">Decouverte - patrimoine et traditions</h4>
                 <p class="text-sm text-orange-700 mt-1">🔥 Un départ cherche ses voyageurs !</p>
@@ -544,7 +659,7 @@
               </div>
             </div>
             <div class="sej-card">
-              <div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1503436155788-4c4e5643aa91?w=300&q=80');"></div>
+              <div class="sej-thumb" style="background-image:url('Images/Cuba Tango.jpg');"></div>
               <div class="sej-body">
                 <h4 class="font-semibold">Festival de Tango de La Havane</h4>
                 <p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p>
@@ -552,7 +667,7 @@
               </div>
             </div>
             <div class="sej-card">
-              <div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1585001996065-20ec0bb66bd5?w=300&q=80');"></div>
+              <div class="sej-thumb" style="background-image:url('Images/Cuba a velo.jpg');"></div>
               <div class="sej-body">
                 <h4 class="font-semibold">Traversee de l'ile a velo</h4>
                 <p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p>
@@ -560,7 +675,7 @@
               </div>
             </div>
             <div class="sej-card">
-              <div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1585001996065-20ec0bb66bd5?w=300&q=80');"></div>
+              <div class="sej-thumb" style="background-image:url('Images/Cuba - Randonnée Vinales Trinidad.jpg');"></div>
               <div class="sej-body">
                 <h4 class="font-semibold">Randonnee a Vinales et Trinidad</h4>
                 <p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p>
@@ -570,9 +685,10 @@
           </div>
         </div>
 
+        <!-- PAYS : ESPAGNE -->
         <div class="country-card" id="pays-Espagne">
           <div class="country-header" data-pays-toggle="esp">
-            <div style="position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1550834415-4b47996578ff?w=900&q=80'); background-size:cover; background-position:center;"></div>
+            <div style="position:absolute; inset:0; background-image:url('Images/Logrono.jpg'); background-size:cover; background-position:center;"></div>
             <div class="country-header-content">
               <div>
                 <h3 class="text-2xl font-bold">Espagne</h3>
@@ -586,41 +702,47 @@
           </div>
           <div class="country-body" id="body-esp">
             <div class="grid grid-cols-1 gap-3">
-              <div class="sej-card">
-                <div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1699802205090-316dbd9fab80?w=300&q=80');"></div>
-                <div class="sej-body">
-                  <h4 class="font-semibold text-orange-800">La Rioja</h4>
-                  <p class="text-sm text-orange-700 mt-1">🔥 Un départ cherche ses voyageurs !</p>
-                  <p class="text-xs text-gray-600 mt-1">Automne 2027 · 4 jours</p>
-                  <div class="profil-card-slot" data-slot-pays="Espagne" data-slot-sejour="La Rioja"></div>
-                  <button class="btn-lancer" data-pays="Espagne" data-sejour="La Rioja" data-depart="1">Je m’intéresse à ce départ</button>
-                </div>
-              </div>
-              <div class="sej-card confirmed">
-                <div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1660903293997-efd8ee1abf9a?w=300&q=80');"></div>
-                <div class="sej-body">
-                  <h4 class="font-semibold text-green-800">Ribera del Duero</h4>
-                  <p class="text-sm text-green-700 mt-1">✅ Départ confirmé ! 3 places restantes</p>
-                  <p class="text-xs text-gray-600 mt-1">Printemps 2027 · 4 jours</p>
-                  <div class="profil-card-slot" data-slot-pays="Espagne" data-slot-sejour="Ribera del Duero"></div>
-                  <button class="btn-lancer green" data-pays="Espagne" data-sejour="Ribera del Duero" data-depart="1">Rejoindre ce départ</button>
-                </div>
-              </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div class="sej-card"><div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1709062419108-3917e53541a3?w=300&q=80');"></div><div class="sej-body"><h4 class="font-semibold">Valence</h4><button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Valence">🚀 Lancer</button></div></div>
-                <div class="sej-card"><div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1660903293997-efd8ee1abf9a?w=300&q=80');"></div><div class="sej-body"><h4 class="font-semibold">Les Pics d'Europe</h4><button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Les Pics d'Europe">🚀 Lancer</button></div></div>
-                <div class="sej-card"><div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1642801965964-a230a6864ec1?w=300&q=80');"></div><div class="sej-body"><h4 class="font-semibold">Salamanque</h4><button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Salamanque">🚀 Lancer</button></div></div>
-                <div class="sej-card"><div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1699802205090-316dbd9fab80?w=300&q=80');"></div><div class="sej-body"><h4 class="font-semibold">Matarrana</h4><button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Matarrana">🚀 Lancer</button></div></div>
-                <div class="sej-card"><div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1559211568-8ce901de931b?w=300&q=80');"></div><div class="sej-body"><h4 class="font-semibold">Bilbao</h4><button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Bilbao">🚀 Lancer</button></div></div>
-                <div class="sej-card"><div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1550834415-4b47996578ff?w=300&q=80');"></div><div class="sej-body"><h4 class="font-semibold">Barcelone</h4><button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Barcelone">🚀 Lancer</button></div></div>
+                <div class="sej-card">
+                  <div class="sej-thumb" style="background-image:url('Images/Logrono.jpg');"></div>
+                  <div class="sej-body">
+                    <h4 class="font-semibold text-orange-800">La Rioja</h4>
+                    <p class="text-sm text-orange-700 mt-1">🔥 Un départ cherche ses voyageurs !</p>
+                    <p class="text-xs text-gray-600 mt-1">Automne 2027 · 4 jours</p>
+                    <button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="La Rioja">🚀 Lancer ce séjour</button>
+                  </div>
+                </div>
+                <div class="sej-card confirmed">
+                  <div class="sej-thumb" style="background-image:url('Images/Ribera del Duero.jpeg');"></div>
+                  <div class="sej-body">
+                    <h4 class="font-semibold text-green-800">Ribera del Duero</h4>
+                    <p class="text-sm text-green-700 mt-1">✅ Départ confirmé ! 3 places restantes</p>
+                    <p class="text-xs text-gray-600 mt-1">Printemps 2027 · 4 jours</p>
+                    <button class="btn-lancer green text-sm" data-pays="Espagne" data-sejour="Ribera del Duero" data-depart="1">Rejoindre ce départ</button>
+                  </div>
+                </div>
+                <div class="sej-card"><div class="sej-thumb" style="background-image:url('Images/valencia.jpg');"></div><div class="sej-body"><h4 class="font-semibold">Valence</h4><button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Valence">🚀 Lancer ce séjour</button></div></div>
+                <div class="sej-card"><div class="sej-thumb" style="background-image:url('Images/Pics_europe.jpg');"></div><div class="sej-body"><h4 class="font-semibold">Les Pics d'Europe</h4><button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Les Pics d'Europe">🚀 Lancer ce séjour</button></div></div>
+                <div class="sej-card"><div class="sej-thumb" style="background-image:url('Images/Salamanque.jpg');"></div><div class="sej-body"><h4 class="font-semibold">Salamanque</h4><button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Salamanque">🚀 Lancer ce séjour</button></div></div>
+                <div class="sej-card">
+                  <div class="sej-thumb" style="background-image:url('Images/Matarraña.jpeg');"></div>
+                  <div class="sej-body">
+                    <h4 class="font-semibold">Matarrana</h4>
+                    <p class="text-xs text-gray-500 mt-0.5">Parador de Alcañiz</p>
+                    <button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Matarrana">🚀 Lancer ce séjour</button>
+                  </div>
+                </div>
+                <div class="sej-card"><div class="sej-thumb" style="background-image:url('Images/Bilbao.jpg');"></div><div class="sej-body"><h4 class="font-semibold">Bilbao</h4><button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Bilbao">🚀 Lancer ce séjour</button></div></div>
+                <div class="sej-card"><div class="sej-thumb" style="background-image:url('Images/barcelone.jpg');"></div><div class="sej-body"><h4 class="font-semibold">Barcelone</h4><button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Barcelone">🚀 Lancer ce séjour</button></div></div>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- PAYS : URUGUAY -->
         <div class="country-card" id="pays-Uruguay">
           <div class="country-header" data-pays-toggle="uru">
-            <div style="position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1758291316203-89f4c79c619c?w=900&q=80'); background-size:cover; background-position:center;"></div>
+            <div style="position:absolute; inset:0; background-image:url('Images/argentine.jpg'); background-size:cover; background-position:center;"></div>
             <div class="country-header-content">
               <div>
                 <h3 class="text-2xl font-bold">Uruguay</h3>
@@ -634,7 +756,7 @@
           </div>
           <div class="country-body" id="body-uru">
             <div class="sej-card">
-              <div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1758291316203-89f4c79c619c?w=300&q=80');"></div>
+              <div class="sej-thumb" style="background-image:url('Images/argentine.jpg');"></div>
               <div class="sej-body">
                 <h4 class="font-semibold">Rio de la Plata - le berceau du Tango</h4>
                 <p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p>
@@ -642,7 +764,7 @@
               </div>
             </div>
             <div class="sej-card confirmed">
-              <div class="sej-thumb" style="background-image:url('https://images.unsplash.com/photo-1511195188569-9b97074ae1b1?w=300&q=80');"></div>
+              <div class="sej-thumb" style="background-image:url('Images/gauchos.jpeg');"></div>
               <div class="sej-body">
                 <h4 class="font-semibold text-green-800">Uruguay avec les gauchos</h4>
                 <p class="text-sm text-green-700 mt-1">✅ Départ confirmé ! 3 places restantes</p>
@@ -692,21 +814,15 @@
             <thead>
               <tr>
                 <th>Destination</th>
-                <th>Thématique</th>
+                <th>Séjour</th>
                 <th>Autonomie<br><span class="text-xs font-normal opacity-80">liberté</span></th>
                 <th>Sérénité<br><span class="text-xs font-normal opacity-80">accompagnement</span></th>
               </tr>
             </thead>
-            <tbody>
-              <tr><td><strong>Argentine</strong></td><td>Tango & Bodegas</td><td>1 540 €</td><td>3 640 €</td></tr>
-              <tr><td><strong>Cuba</strong></td><td>Salsa & Patrimoine</td><td>1 490 €</td><td>3 490 €</td></tr>
-              <tr><td><strong>Colombie</strong></td><td>La Magie réaliste</td><td>1 590 €</td><td>3 250 €</td></tr>
-              <tr><td><strong>Espagne</strong></td><td>Escapade La Rioja</td><td>490 €</td><td>850 €</td></tr>
-              <tr><td><strong>Uruguay</strong></td><td>Patrimoine et Gauchos</td><td>1 590 €</td><td>3 590 €</td></tr>
-            </tbody>
+            <tbody id="tarifs-body"></tbody>
           </table>
         </div>
-        <p class="text-center text-sm text-gray-500 mt-3">* Prix indicatifs par personne. Ils varient selon la saison et le nombre de participants.</p>
+        <p class="text-center text-sm text-gray-500 mt-3">* Prix indicatifs par personne. Ils varient selon la saison et le nombre de participants. Les tarifs « sur-mesure » seront communiqués dès que le séjour est finalisé.</p>
       </div>
 
       <div class="text-center mt-10">
@@ -805,11 +921,82 @@
       { pays: "Uruguay", couleur: "#8fd0e3" }
     ];
 
-    var SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRR8d9TYHQF99gLuPjje3F1Vt6dMYjAkuTR5aHRmCJW5DHJQUQTp3tem5V4azLR1JtcWPSFJDLuvW9X/pub?output=csv";
-    var DEPARTS = [];
-    var PRIX_A_PARTIR_DE = { Argentine: 3640, Colombie: 3250, Cuba: 3490, Espagne: 850, Uruguay: 3590 };
+    var TARIFS = [
+      { pays: "Argentine", sejours: [
+        { nom: "Rio de la Plata : le berceau du Tango", serenite: 3320, autonomie: 1287 },
+        { nom: "Tango et Bodegas", serenite: 3640, autonomie: 1538 },
+        { nom: "Buenos Aires & Iguazu : Ville et Nature en mouvement", cle: "Buenos Aires et Iguazu", serenite: 3775, autonomie: 1896 },
+        { nom: "Buenos Aires, Mendoza et les Andes", serenite: 0, autonomie: 0 }
+      ]},
+      { pays: "Colombie", sejours: [
+        { nom: "Le Triangle Magique", serenite: 0, autonomie: 0 },
+        { nom: "La Magie réaliste", serenite: 3250, autonomie: 1590 },
+        { nom: "Festival de tango Medellin", serenite: 0, autonomie: 0 },
+        { nom: "Cali, capitale de la salsa", serenite: 0, autonomie: 0 }
+      ]},
+      { pays: "Cuba", sejours: [
+        { nom: "Découverte, patrimoine et traditions", serenite: 3490, autonomie: 1490 },
+        { nom: "Festival de Tango de La Havane", serenite: 3025, autonomie: 1223 },
+        { nom: "Traversée de l'île à vélo", serenite: 0, autonomie: 0 },
+        { nom: "Randonnee a Vinales et Trinidad", serenite: 0, autonomie: 0 }
+      ]},
+      { pays: "Espagne (escapades de 4 jours)", sejours: [
+        { nom: "La Rioja", serenite: 858, autonomie: 492 },
+        { nom: "Valence", serenite: 989, autonomie: 542 },
+        { nom: "Les Pics d'Europe", serenite: 817, autonomie: 420 },
+        { nom: "Salamanque", serenite: 882, autonomie: 478 },
+        { nom: "Ribera del Duero", serenite: 810, autonomie: 464 },
+        { nom: "Matarraña", serenite: 747, autonomie: 428 },
+        { nom: "Bilbao", serenite: 0, autonomie: 0 },
+        { nom: "Barcelone", serenite: 0, autonomie: 0 }
+      ]},
+      { pays: "Uruguay", sejours: [
+        { nom: "Rio de la Plata : le berceau du Tango", serenite: 3320, autonomie: 1287 },
+        { nom: "Uruguay avec les gauchos", serenite: 3590, autonomie: 1590 }
+      ]}
+    ];
+    var TXT_TARIF_EN_COURS = "Bientôt disponible / Co-création";
 
-    // Parseur CSV : gère les guillemets, les virgules dans une cellule et les retours à la ligne
+    function tarifSerenite(pays, sejour) {
+      var np = norm(pays), ns = norm(sejour), prix = 0;
+      TARIFS.forEach(function (g) {
+        if (norm(g.pays).indexOf(np) !== 0) return;
+        g.sejours.forEach(function (s) {
+          if (norm(s.cle || s.nom) === ns) prix = Number(s.serenite) || 0;
+        });
+      });
+      return prix;
+    }
+
+    function renderTarifs() {
+      var tbody = document.getElementById("tarifs-body");
+      if (!tbody) return;
+      var h = "";
+      TARIFS.forEach(function (g) {
+        h += '<tr class="tarif-pays"><td colspan="4">' + g.pays + '</td></tr>';
+        g.sejours.forEach(function (s) {
+          var auto = Number(s.autonomie) || 0, sere = Number(s.serenite) || 0;
+          h += '<tr><td></td><td>' + s.nom + '</td>';
+          if (!auto && !sere) {
+            h += '<td class="tarif-encours" colspan="2">' + TXT_TARIF_EN_COURS + '</td>';
+          } else {
+            h += auto ? '<td class="tarif-prix">' + eur(auto) + '</td>' : '<td class="tarif-encours">' + TXT_TARIF_EN_COURS + '</td>';
+            h += sere ? '<td class="tarif-prix"><strong>' + eur(sere) + '</strong></td>' : '<td class="tarif-encours">' + TXT_TARIF_EN_COURS + '</td>';
+          }
+          h += '</tr>';
+        });
+      });
+      tbody.innerHTML = h;
+    }
+
+    var SHEET_URL ="https://docs.google.com/spreadsheets/d/e/2PACX-1vRR8d9TYHQF99gLuPjje3F1Vt6dMYjAkuTR5aHRmCJW5DHJQUQTp3tem5V4azLR1JtcWPSFJDLuvW9X/pub?output=csv";
+    var DEPARTS = [];
+
+    function norm(s) {
+      return String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+    }
+    function normKey(pays, sejour) { return norm(pays) + "|" + norm(sejour); }
+
     function parseCSV(text) {
       var rows = [], row = [], cell = "", inQ = false;
       for (var i = 0; i < text.length; i++) {
@@ -856,8 +1043,7 @@
                 saison: infoBase.saison,
                 dates: infoBase.dates,
                 genre: infoBase.genre,
-                profil: infoBase.profil,
-                photo: infoBase.photo
+                profil: infoBase.profil
               });
             }
           }
@@ -868,47 +1054,47 @@
         })
         .catch(function(error) {
           console.error("Erreur de chargement du Google Sheet:", error);
+          render();
         });
     }
 
     function getInfosBase(pays, sejour, profilPerso) {
       var base = {
-        "Argentine|Tango et Bodegas": { saison: "A", dates: "12 – 29 octobre 2027", genre: "M", profil: "femme 55-60 ans, homme 60-65 ans", photo: "https://images.unsplash.com/photo-1626792421940-8fec643fbe23?w=300&q=80" },
-        // PHOTO D'IGUAZU MISE À JOUR CORRECTEMENT ICI
-        "Argentine|Buenos Aires et Iguazu": { saison: "P", dates: "5 – 22 avril 2027", genre: "M", profil: "Femme 55 ans, Homme 56 ans, Femme 65 ans", photo: "https://images.unsplash.com/photo-1648510399328-b8981e9fc1bb?w=300&q=80" }, 
-        "Argentine|Rio de la Plata - le berceau du Tango": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1626792421940-8fec643fbe23?w=300&q=80" }, 
-        "Argentine|Buenos Aires Mendoza et les Andes": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1612960688178-cbf1ee03ebdc?w=300&q=80" }, 
+        "Argentine|Tango et Bodegas": { saison: "A", dates: "12 – 29 octobre 2027", genre: "M", profil: "femme 55-60 ans, homme 60-65 ans", photo: "Images/Tango Bodegas.jpg" },
+        "Argentine|Buenos Aires et Iguazu": { saison: "P", dates: "5 – 22 avril 2027", genre: "M", profil: "Femme 55 ans, Homme 56 ans, Femme 65 ans", photo: "Images/foz-do-iguacu.jpg" }, 
+        "Argentine|Rio de la Plata - le berceau du Tango": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/argentine.jpg" }, 
+        "Argentine|Buenos Aires Mendoza et les Andes": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/BsAs Mza Andes.jpg" }, 
         
-        "Colombie|La Magie realiste": { saison: "P", dates: "dates à confirmer", genre: "F", profil: "femme 50-64 ans", photo: "https://images.unsplash.com/photo-1676254592764-cb8946b29671?w=300&q=80" }, 
-        "Colombie|Cali - capitale de la salsa": { saison: "E", dates: "8 – 25 juillet 2027", genre: "M", profil: "2 femmes 40-50 ans, homme 45-55 ans", photo: "https://images.unsplash.com/photo-1737916292794-dfa6090c444c?w=300&q=80" }, 
-        "Colombie|Le Triangle Magique": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1672851612881-775cfd248971?w=300&q=80" }, 
-        "Colombie|Festival de tango Medellin": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1512250431446-d0b4b57b27ec?w=300&q=80" }, 
+        "Colombie|La Magie realiste": { saison: "P", dates: "dates à confirmer", genre: "F", profil: "femme 50-64 ans", photo: "Images/Colombie.jpg" }, 
+        "Colombie|Cali - capitale de la salsa": { saison: "E", dates: "8 – 25 juillet 2027", genre: "M", profil: "2 femmes 40-50 ans, homme 45-55 ans", photo: "Images/Cali Salsa.jpg" }, 
+        "Colombie|Le Triangle Magique": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/Colombie Triangle magique.jpg" }, 
+        "Colombie|Festival de tango Medellin": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/Tango Medellino.jpeg" }, 
         
-        "Cuba|Decouverte - patrimoine et traditions": { saison: "H", dates: "15 janvier – 1er fevrier 2027", genre: "H", profil: "homme 60-65 ans", photo: "https://images.unsplash.com/photo-1591051414651-3f21cab6c24f?w=300&q=80" }, 
-        "Cuba|Festival de Tango de La Havane": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1503436155788-4c4e5643aa91?w=300&q=80" }, 
-        "Cuba|Traversee de l'ile a velo": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1585001996065-20ec0bb66bd5?w=300&q=80" }, 
-        "Cuba|Randonnee a Vinales et Trinidad": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1585001996065-20ec0bb66bd5?w=300&q=80" }, 
+        "Cuba|Decouverte - patrimoine et traditions": { saison: "H", dates: "15 janvier – 1er fevrier 2027", genre: "H", profil: "homme 60-65 ans", photo: "Images/Cuba Découverte.jpg" }, 
+        "Cuba|Festival de Tango de La Havane": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/Cuba Tango.jpg" }, 
+        "Cuba|Traversee de l'ile a velo": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/Cuba a velo.jpg" }, 
+        "Cuba|Randonnee a Vinales et Trinidad": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/Cuba - Randonnée Vinales Trinidad.jpg" }, 
         
-        "Espagne|La Rioja": { saison: "A", dates: "4 jours en octobre 2027", genre: "F", profil: "femme 50-60 ans", photo: "https://images.unsplash.com/photo-1699802205090-316dbd9fab80?w=300&q=80" }, 
-        "Espagne|Ribera del Duero": { saison: "P", dates: "4 jours au printemps 2027", genre: "M", profil: "2 femmes 45-55 ans", photo: "https://images.unsplash.com/photo-1660903293997-efd8ee1abf9a?w=300&q=80" }, 
-        "Espagne|Valence": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1709062419108-3917e53541a3?w=300&q=80" }, 
-        "Espagne|Les Pics d'Europe": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1660903293997-efd8ee1abf9a?w=300&q=80" }, 
-        "Espagne|Salamanque": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1642801965964-a230a6864ec1?w=300&q=80" }, 
-        "Espagne|Matarrana": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1699802205090-316dbd9fab80?w=300&q=80" }, 
-        "Espagne|Bilbao": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1559211568-8ce901de931b?w=300&q=80" }, 
-        "Espagne|Barcelone": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1550834415-4b47996578ff?w=300&q=80" }, 
+        "Espagne|La Rioja": { saison: "A", dates: "4 jours en octobre 2027", genre: "F", profil: "femme 50-60 ans", photo: "Images/Ribera del Duero.jpeg" }, 
+        "Espagne|Ribera del Duero": { saison: "P", dates: "4 jours au printemps 2027", genre: "M", profil: "2 femmes 45-55 ans", photo: "Images/Ribera del Duero.jpeg" }, 
+        "Espagne|Valence": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/valencia.jpg" }, 
+        "Espagne|Les Pics d'Europe": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/Pics_europe.jpg" }, 
+        "Espagne|Salamanque": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/Salamanque.jpg" }, 
+        "Espagne|Matarrana": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/Matarraña.jpeg" }, 
+        "Espagne|Bilbao": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/Bilbao.jpg" }, 
+        "Espagne|Barcelone": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/barcelone.jpg" }, 
         
-        "Uruguay|Rio de la Plata - le berceau du Tango": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "https://images.unsplash.com/photo-1758291316203-89f4c79c619c?w=300&q=80" }, 
-        "Uruguay|Uruguay avec les gauchos": { saison: "A", dates: "10 – 27 novembre 2027", genre: "M", profil: "homme et femme 55-65 ans", photo: "https://images.unsplash.com/photo-1511195188569-9b97074ae1b1?w=300&q=80" } 
+        "Uruguay|Rio de la Plata - le berceau du Tango": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/argentine.jpg" }, 
+        "Uruguay|Uruguay avec les gauchos": { saison: "A", dates: "10 – 27 novembre 2027", genre: "M", profil: "homme et femme 55-65 ans", photo: "Images/gauchos.jpeg" } 
       };
       
-      var key = pays + "|" + sejour;
-      var res = base[key] || { saison: "P", dates: "dates à confirmer", genre: "M", profil: "Profil à confirmer", photo: "https://images.unsplash.com/photo-1626792421940-8fec643fbe23?w=300&q=80" };
-      
-      if (profilPerso) {
-        res.profil = profilPerso;
-      }
-      
+      var nk = normKey(pays, sejour), res = null;
+      Object.keys(base).forEach(function (k) {
+        var p = k.split("|");
+        if (normKey(p[0], p[1]) === nk) res = base[k];
+      });
+      if (!res) res = { saison: "P", dates: "dates à confirmer", genre: "M", profil: "Profil à confirmer", photo: "Images/argentine.jpg" };
+      if (profilPerso) res.profil = profilPerso;
       return res;
     }
 
@@ -940,7 +1126,6 @@
       }
     }
 
-    // CORRECTION : Affichage de tous les profils multiples séparés par des virgules ou retours à la ligne dans le sheet
     function profilMessage(nbInscrits, profilTexte, genre, dateLimite) {
       var reste = CONFIG.min - nbInscrits;
       var confirmed = nbInscrits >= CONFIG.min;
@@ -957,7 +1142,6 @@
       
       var tagProfils = "";
       if (profilTexte && profilTexte !== "Profil à confirmer") {
-        // Découpage propre par virgules pour récupérer chaque profil individuellement (ex: "Femme 55 ans", "Homme 56 ans", etc.)
         var profils = profilTexte.split(",").map(function(p){ return p.trim(); });
         tagProfils = profils.map(function(p) {
           if (p) return '<span class="profil-tag">' + p + '</span>';
@@ -1000,8 +1184,8 @@
       if (d && d.prix) {
         return Object.keys(d.prix).map(function (n) { return "à " + n + " voyageurs : " + eur(d.prix[n]); }).join(", ") + " par personne";
       }
-      var base = d ? PRIX_A_PARTIR_DE[d.pays] : null;
-      return base ? "à partir de " + eur(base) + " par personne" : "tarif communiqué avant réservation";
+      var base = d ? tarifSerenite(d.pays, d.sejour) : 0;
+      return base ? "à partir de " + eur(base) + " par personne" : "Bientôt disponible / Co-création";
     }
 
     function prixHtml(d) {
@@ -1049,7 +1233,7 @@
 
     function findDepart(pays, sejour) {
       for (var i = 0; i < DEPARTS.length; i++) {
-        if (DEPARTS[i].pays === pays && DEPARTS[i].sejour === sejour) {
+        if (normKey(DEPARTS[i].pays, DEPARTS[i].sejour) === normKey(pays, sejour)) {
           return DEPARTS[i];
         }
       }
@@ -1063,7 +1247,18 @@
       var chipTxt = !isConfirme ? "Il manque " + manque + " voyageur" + (manque > 1 ? "s" : "")
         : (restantes <= 0 ? "Complet" : "Départ confirmé");
       var libres = (isConfirme && restantes > 0) ? restantes + " place" + (restantes > 1 ? "s" : "") + " libre" + (restantes > 1 ? "s" : "") : "";
-      var photo = d.photo || "https://images.unsplash.com/photo-1626792421940-8fec643fbe23?w=300&q=80";
+      
+      var photo = "Images/argentine.jpg";
+      var thumbDiv = document.querySelector('.sej-card .btn-lancer[data-sejour="' + d.sejour + '"]');
+      if (thumbDiv) {
+        var cardEl = thumbDiv.closest('.sej-card');
+        var thumbBg = cardEl ? cardEl.querySelector('.sej-thumb') : null;
+        if (thumbBg) {
+          var bgStyle = thumbBg.style.backgroundImage;
+          var matchImg = bgStyle.match(/url\(['"]?(.*?)['"]?\)/i);
+          if (matchImg) photo = matchImg[1];
+        }
+      }
 
       var h = '<div class="depart-item' + (isConfirme ? ' confirme' : '') + (openKey === k ? ' open' : '') + '" data-alerte-open="' + k + '" role="button" tabindex="0" aria-expanded="' + (openKey === k) + '">';
       h += '<div class="depart-content">';
@@ -1102,12 +1297,13 @@
         var attrs = 'data-pays="' + pays + '" data-sejour="' + sejour + '"';
         var d = findDepart(pays, sejour);
         card.classList.remove('confirmed', 'full');
+        
         var h;
         
         if (!d || d.inscrits === 0) {
           h = '<h4 class="font-semibold">' + titre + '</h4>' +
             (card.dataset.compact === "1"
-              ? '<button class="btn-lancer text-sm" ' + attrs + '>🚀 Lancer</button>'
+              ? '<button class="btn-lancer text-sm" ' + attrs + '>🚀 Lancer ce séjour</button>'
               : '<p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p><button class="btn-lancer" ' + attrs + '>🚀 Lancer ce séjour</button>');
         } else {
           var conf = d.inscrits >= CONFIG.min;
@@ -1129,11 +1325,18 @@
       });
     }
 
+    // FILTRES DE NAVIGATION CENTRÉS
     function renderPaysNav() {
-      var h = '<button type="button" class="on" data-pays="">Tous</button>';
-      CATALOGUE.forEach(function(c) {
-        h += '<button type="button" data-pays="' + c.pays + '"><span class="pastille" style="background:' + c.couleur + '"></span>' + c.pays + '</button>';
-      });
+      var h = '<div class="flex flex-wrap gap-2 justify-center">';
+      h += '<button type="button" class="on" data-pays="">Tous</button>';
+      h += '<button type="button" data-pays="Argentine"><span class="pastille" style="background:#9be3e3"></span>Argentine</button>';
+      h += '<button type="button" data-pays="Colombie"><span class="pastille" style="background:#a8e063"></span>Colombie</button>';
+      h += '</div>';
+      h += '<div class="flex flex-wrap gap-2 justify-center">';
+      h += '<button type="button" data-pays="Cuba"><span class="pastille" style="background:#ffe94d"></span>Cuba</button>';
+      h += '<button type="button" data-pays="Espagne"><span class="pastille" style="background:#ff7a7a"></span>Espagne</button>';
+      h += '<button type="button" data-pays="Uruguay"><span class="pastille" style="background:#8fd0e3"></span>Uruguay</button>';
+      h += '</div>';
       paysNav.innerHTML = h;
     }
 
@@ -1197,9 +1400,74 @@
       });
     });
 
+    var btnThematiques = document.getElementById('btn-interet-thematiques');
+    if (btnThematiques) {
+      btnThematiques.addEventListener('click', function () {
+        var container = document.getElementById('form-thematiques-container');
+        if (!container) return;
+        if (container.innerHTML !== '') { container.innerHTML = ''; return; }
+
+        var html = '<div class="inline-form text-left mt-4 max-w-xl mx-auto">' +
+          '<strong>✨ Co-créez votre voyage Tango à Buenos Aires</strong>' +
+          '<label>Quelle(s) thématique(s) vous inspire(nt) ?' +
+          '<select name="thematique_prefere">' +
+          '<option value="Femmes seules">🌹 Voyage tango femmes seules : sécurité & liberté</option>' +
+          '<option value="Hommes seuls">🍷 Voyage tango hommes seuls : camaraderie & terroir</option>' +
+          '<option value="Tango-therapie">🌿 Tango-thérapie & bien-être intérieur</option>' +
+          '<option value="Milongas secretes">🌙 Les milongas secrètes et insolites</option>' +
+          '<option value="Carlos Gardel">🎩 Sur les traces de Carlos Gardel</option>' +
+          '<option value="Plusieurs ou Sur-mesure">✨ Plusieurs thématiques / Sur-mesure</option>' +
+          '</select></label>' +
+          '<label>Prénom<input type="text" name="prenom" autocomplete="given-name"></label>' +
+          '<label>E-mail<input type="email" name="email" autocomplete="email"></label>' +
+          '<label>Je suis<select name="sexe"><option>Une femme</option><option>Un homme</option></select></label>' +
+          '<label>Tranche d\'âge<select name="age"><option>18-34</option><option>35-49</option><option>50-64</option><option>65 et plus</option></select></label>' +
+          '<label>Précision ou message (optionnel)<textarea name="message" rows="2" placeholder="Vos attentes, vos dates de préférence..."></textarea></label>' +
+          '<div class="chk"><input type="checkbox" id="c_tango" name="c_tango" checked><label for="c_tango">J\'accepte que VPDVOYAGES me recontacte au sujet de ces projets thématiques.</label></div>' +
+          '<button type="button" class="submit-inline" id="submit-tango">Envoyer mon intérêt</button>' +
+          '<div class="res" role="status"></div>' +
+          '</div>';
+
+        container.innerHTML = html;
+
+        container.querySelector('#submit-tango').addEventListener('click', function () {
+          var prenom = container.querySelector('[name=prenom]').value.trim();
+          var email = container.querySelector('[name=email]');
+          var c_tango = container.querySelector('[name=c_tango]');
+          var res = container.querySelector('.res');
+          
+          if (!prenom || !email.value || !email.validity.valid || !c_tango.checked) {
+            res.textContent = "Complétez votre prénom, un e-mail valide et cochez la case.";
+            return;
+          }
+
+          var data = {
+            formule: "Projet Thématique Tango Sur-mesure",
+            pays: "Argentine",
+            thematique: container.querySelector('[name=thematique_prefere]').value,
+            prenom: prenom,
+            email: email.value,
+            sexe: container.querySelector('[name=sexe]').value,
+            age: container.querySelector('[name=age]').value,
+            message: container.querySelector('[name=message]').value
+          };
+
+          if (CONFIG.endpoint) {
+            fetch(CONFIG.endpoint, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data) })
+              .then(function (x) { if (!x.ok) throw 0; res.textContent = "Merci ! Votre intérêt est bien enregistré. Nous vous recontactons rapidement."; })
+              .catch(function () { res.textContent = "Envoi impossible. Écrivez-nous à " + CONFIG.email + "."; });
+          } else {
+            var body = Object.keys(data).map(function (k) { return k + " : " + data[k]; }).join("\n");
+            location.href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Demande Thématique Tango – Argentine") + "&body=" + encodeURIComponent(body);
+            res.textContent = "Votre messagerie s'ouvre : envoyez le message pour valider.";
+          }
+        });
+      });
+    }
+
     document.addEventListener('click', function (e) {
       var btn = e.target.closest('.btn-lancer, .go');
-      if (!btn) return;
+      if (!btn || btn.id === 'btn-interet-thematiques') return;
       var pays = btn.dataset.pays;
       var sejour = btn.dataset.sejour;
       var isDepart = btn.dataset.depart === "1";
@@ -1218,6 +1486,7 @@
       document.querySelectorAll('.inline-form').forEach(function (f) { f.remove(); });
 
       var dep = isDepart ? findDepart(pays, sejour) : null;
+      var tarifConnu = !!(dep && tarifSerenite(dep.pays, dep.sejour));
       var uid = (pays + "-" + sejour).replace(/[^A-Za-z0-9]/g, "");
 
       var formHtml = '<div class="inline-form">' +
@@ -1227,7 +1496,11 @@
         '<label>E-mail<input type="email" name="email" autocomplete="email"></label>' +
         '<label>Je suis<select name="sexe"><option>Une femme</option><option>Un homme</option></select></label>' +
         '<label>Tranche d\'âge<select name="age"><option>18-34</option><option>35-49</option><option>50-64</option><option>65 et plus</option></select></label>' +
-        (isDepart ? '<div class="chk"><input type="checkbox" id="c1-' + uid + '" name="c1"><label for="c1-' + uid + '">J\'accepte le tarif de ce départ en formule Sérénité (' + prixTexte(dep) + '). Le départ est confirmé dès que ' + CONFIG.min + ' voyageurs ont accepté le tarif.</label></div>' : '') +
+        (isDepart ? '<div class="chk"><input type="checkbox" id="c1-' + uid + '" name="c1"><label for="c1-' + uid + '">' +
+          (tarifConnu
+            ? 'J\'accepte le tarif de ce départ en formule Sérénité (' + prixTexte(dep) + '). Le départ est confirmé dès que ' + CONFIG.min + ' voyageurs ont accepté le tarif.'
+            : 'Je souhaite être informé(e) du tarif de ce départ en formule Sérénité dès qu\'il est calculé. Aucun engagement : j\'accepterai ou non le tarif à ce moment-là.') +
+          '</label></div>' : '') +
         '<div class="chk"><input type="checkbox" id="c2-' + uid + '" name="c2"><label for="c2-' + uid + '">J\'accepte que VPDVOYAGES me mette en relation avec d\'autres voyageurs intéressés.</label></div>' +
         '<button type="button" class="submit-inline">' + (isDepart ? "Je m'inscris sur ce départ" : "Me prévenir et me mettre en relation") + '</button>' +
         '<div class="res" role="status"></div>' +
@@ -1253,7 +1526,7 @@
         var data = {
           formule: "Sérénité", pays: pays, sejour: sejour, depart: sais,
           tarif_affiche: isDepart ? prixTexte(dep) : "sans objet",
-          accord_tarif: isDepart ? "oui" : "sans objet",
+          accord_tarif: !isDepart ? "sans objet" : (tarifConnu ? "oui" : "non : tarif en cours de calcul, souhaite être informé(e)"),
           prenom: prenom, email: email.value,
           sexe: formBox.querySelector('[name=sexe]').value,
           age: formBox.querySelector('[name=age]').value,
@@ -1313,6 +1586,19 @@
       document.querySelector('.nav-menu').classList.toggle('active');
     });
 
+    window.addEventListener('DOMContentLoaded', function() {
+      if (window.location.hash === '#pays-Argentine') {
+        var cardArg = document.getElementById('pays-Argentine');
+        if (cardArg) {
+          cardArg.classList.add('open');
+          cardArg.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+
+    renderTarifs();
+    renderPaysNav();
+    syncCountryCards();
     chargerDepuisSheet();
   })();
   </script>
