@@ -97,7 +97,8 @@
     .nav-menu-mobile { display: none; }
 
     /* ================= BADGE NOUVEAU ================= */
-    .new-badge { position:absolute; z-index:20; top:36px; right:6.5%; min-width:235px; padding:14px 18px 14px 20px; display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:12px; border:4px solid rgba(255,255,255,.78); border-radius:28px; color:#fff; text-decoration:none; background:linear-gradient(135deg,#ffb52b 0%,#ff6d22 100%); box-shadow:0 12px 26px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.35); transform:rotate(4deg); transition:.25s ease; }
+    /* LISIBILITÉ : badge remonté et décalé pour ne plus chevaucher le coin du cartouche */
+    .new-badge { position:absolute; z-index:20; top:14px; right:3%; min-width:235px; padding:14px 18px 14px 20px; display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:12px; border:4px solid rgba(255,255,255,.78); border-radius:28px; color:#fff; text-decoration:none; background:linear-gradient(135deg,#ffb52b 0%,#ff6d22 100%); box-shadow:0 12px 26px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.35); transform:rotate(4deg); transition:.25s ease; }
     .new-badge::before, .new-badge::after { content:""; position:absolute; width:7px; height:28px; border-radius:8px; background:#ffb52b; top:-30px; opacity:.95; }
     .new-badge::before { left:55px; transform:rotate(-35deg); }
     .new-badge::after { right:48px; transform:rotate(35deg); }
@@ -109,24 +110,37 @@
     /* ================= HERO ================= */
     #home { position:relative; min-height:455px; margin:0; overflow:visible; isolation:isolate; display:flex; align-items:center; justify-content:center; background-image: linear-gradient(rgba(0,0,0,.14),rgba(0,0,0,.18)), url('https://images.pexels.com/photos/37164319/pexels-photo-37164319.jpeg?auto=compress&cs=tinysrgb&w=2000'); background-size:cover; background-position:center 50%; }
     #home::after { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg,rgba(0,0,0,.02) 0%,rgba(0,0,0,.05) 55%,rgba(0,0,0,.16) 100%); pointer-events:none; }
-    .hero-panel { width:min(1000px,78vw); margin-top:8px; padding:20px 32px 13px; border:2px solid rgba(255,255,255,.75); border-radius:22px; background:rgba(255,255,255,.55); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); box-shadow:0 16px 42px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.22); color:#17365f; }
-    .hero-kicker { margin:0 0 12px; color:#1764df; font-size:12px; font-weight:800; letter-spacing:.20em; text-transform:uppercase; text-shadow:none; }
-    .hero-title-main { display:block; color:#17365f; font-size:clamp(2rem,3.7vw,3rem); line-height:1.02; font-weight:800; text-shadow:none; }
-    .hero-title-accent { display:block; margin-top:4px; color:#ffb52e; font-family:'Caveat',cursive; font-size:clamp(2.55rem,4.8vw,3.85rem); line-height:1; text-shadow:none; }
-    .hero-panel > p:not(.hero-kicker) { margin:9px auto 12px; max-width:720px; color:#334155; font-size:16px; line-height:1.45; text-shadow:none; }
+
+    /* LISIBILITÉ : cartouche beaucoup plus opaque + flou renforcé pour neutraliser le fond photo */
+    .hero-panel { width:min(1000px,78vw); margin-top:8px; padding:22px 32px 14px; border:2px solid rgba(255,255,255,.95); border-radius:22px; background:rgba(255,255,255,.90); backdrop-filter:blur(16px) saturate(1.1); -webkit-backdrop-filter:blur(16px) saturate(1.1); box-shadow:0 16px 42px rgba(0,0,0,.30), inset 0 1px 0 rgba(255,255,255,.6); color:#12294a; }
+
+    /* LISIBILITÉ : sur-titre plus grand, moins espacé, bleu plus profond */
+    .hero-kicker { margin:0 0 12px; color:#0f4bb8; font-size:13px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; text-shadow:none; }
+
+    .hero-title-main { display:block; color:#12294a; font-size:clamp(2rem,3.7vw,3rem); line-height:1.02; font-weight:800; text-shadow:none; }
+
+    /* LISIBILITÉ : "vous attendent !" passe en bleu de marque, plus épais, bien contrasté.
+       (et ne concurrence plus le badge et le bouton orange)
+       Pour revenir à l'orange : remplacer #1764df par #d9560a */
+    .hero-title-accent { display:block; margin-top:4px; color:#1764df; font-family:'Caveat',cursive; font-weight:700; font-size:clamp(2.7rem,5vw,4rem); line-height:1; text-shadow:none; }
+
+    /* LISIBILITÉ : phrase d'accroche plus grande, plus foncée, plus épaisse */
+    .hero-panel > p:not(.hero-kicker) { margin:9px auto 14px; max-width:760px; color:#1e293b; font-size:18px; line-height:1.45; font-weight:500; text-shadow:none; }
     .hero-panel .hero-quote { display:flex; justify-content:flex-end; margin-top:4px; }
     
-    .daily-quote { width:100%; max-width:560px; margin-left:auto; color:#1e3a5f !important; text-align:right; font-family:'Caveat',cursive; font-style:italic; font-size:22px; line-height:1.25; text-shadow:none !important; }
+    /* LISIBILITÉ : citation plus grosse, plus épaisse, couleur foncée */
+    .daily-quote { width:100%; max-width:600px; margin-left:auto; color:#12294a !important; text-align:right; font-family:'Caveat',cursive; font-style:italic; font-weight:700; font-size:25px; line-height:1.2; text-shadow:none !important; }
     .daily-quote .quote-text { font-style:italic; }
-    .daily-quote .quote-author { white-space:nowrap; margin-left:6px; font-size:0.8em; font-style:normal; font-weight:600; opacity:.85; }
-    @media (max-width: 639px) { .daily-quote { max-width: 100%; font-size: 15px; line-height: 1.25; } .daily-quote .quote-author { font-size: 0.8em; } }
+    .daily-quote .quote-author { white-space:nowrap; margin-left:6px; font-size:0.8em; font-style:normal; font-weight:700; opacity:1; }
+    @media (max-width: 639px) { .daily-quote { max-width: 100%; font-size: 18px; line-height: 1.2; } .daily-quote .quote-author { font-size: 0.8em; } }
 
     .hero-panel a.bg-blue-600, .hero-panel a.bg-white { min-height:56px; padding:0 28px !important; border-radius:999px !important; display:inline-flex; align-items:center; justify-content:center; font-size:17px !important; font-weight:800 !important; text-decoration:none; transition:.22s ease; }
     .hero-panel a.bg-blue-600 { background:#2477ef !important; border:2px solid rgba(255,255,255,.9); color:#fff !important; }
     .hero-panel a.bg-blue-600:hover { transform:translateY(-2px); background:#1767dc !important; }
     .hero-panel a.bg-white { background:transparent !important; border:2px solid #fff !important; color:#fff !important; }
     .hero-panel a.bg-white:hover { background:rgba(255,255,255,.16) !important; transform:translateY(-2px); }
-    .hero-panel .hero-quote { border-top:1px solid rgba(23,54,95,.14); padding-top:7px; }
+    /* LISIBILITÉ : séparateur plus visible */
+    .hero-panel .hero-quote { border-top:1px solid rgba(23,54,95,.30); padding-top:7px; }
 
     .hero-panel a.cta-projet { min-height:62px !important; padding:0 34px 0 30px !important; border-radius:16px 28px 16px 28px !important; display:inline-flex !important; align-items:center !important; justify-content:center !important; gap:10px !important; font-size:18px !important; font-weight:900 !important; letter-spacing:.01em !important; text-decoration:none !important; white-space:nowrap !important; background:linear-gradient(135deg,#ffb52b 0%,#ff8a1a 45%,#ff5c1a 100%) !important; border:3px solid #fff !important; color:#1a1a1a !important; box-shadow: 0 12px 32px rgba(255,109,34,.52), 0 2px 0 rgba(180,60,0,.25), inset 0 1px 0 rgba(255,255,255,.55) !important; transition:transform .22s ease, box-shadow .22s ease, background .22s ease, border-radius .22s ease !important; animation: cta-pulse 3.2s ease-out infinite; }
     .hero-panel a.cta-projet:hover { animation: none; transform:translateY(-4px) scale(1.04) !important; border-radius:28px 16px 28px 16px !important; background:linear-gradient(135deg,#ff5c1a 0%,#e8480f 100%) !important; color:#fff !important; box-shadow: 0 16px 36px rgba(232,72,15,.55), 0 3px 0 rgba(120,30,0,.3), inset 0 1px 0 rgba(255,255,255,.35) !important; }
@@ -194,6 +208,10 @@
     @media (min-width:640px) {
       header { padding:0 !important; }
       .nav-menu { display:flex; }
+      /* ORDI : hero compacté pour que les cartes pays soient visibles en entier dès l'arrivée sur la page */
+      #home { min-height:0; padding:58px 0 14px; }
+      .hero-panel { margin-top:0; padding:18px 32px 10px; }
+      #destinations .grid { margin-top:16px; margin-bottom:12px; }
     }
     @media (max-width:639px) {
       html { scroll-padding-top:56px; }
@@ -224,10 +242,10 @@
       .new-badge-bottom { font-size:14px; line-height:1.0; }
       .new-badge-arrow { font-size:21px; }
       .hero-panel { width:100%; margin-top:12px; padding:15px 12px 9px; border-radius:16px; }
-      .hero-kicker { font-size:9px; letter-spacing:.14em; }
+      .hero-kicker { font-size:10px; letter-spacing:.08em; }
       .hero-title-main { font-size:1.42rem; }
-      .hero-title-accent { font-size:1.95rem; }
-      .hero-panel > p:not(.hero-kicker) { font-size:12.5px; line-height:1.35; margin:10px auto 12px; }
+      .hero-title-accent { font-size:2.1rem; }
+      .hero-panel > p:not(.hero-kicker) { font-size:14px; line-height:1.35; margin:10px auto 12px; }
       .hero-panel a.bg-blue-600,.hero-panel a.bg-white { min-height:42px; padding:0 17px !important; font-size:14px !important; width:100%; }
       .hero-panel .flex.flex-wrap { flex-direction:column; }
       #destinations { padding-bottom:20px; }

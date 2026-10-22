@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voyage solo en petit groupe | VPDVOYAGES</title>
+  <meta name="description" content="Voyagez seul(e) ou entre amis en petit groupe de 2 à 5 personnes en Espagne et en Amérique latine.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root { --blue: #2563eb; --orange: #E67E22; --ink: #1e293b; }
+    /* ================= HEADER (identique à la page d'accueil) ================= */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 76px; width: 100%; background: linear-gradient(90deg,#1764df 0%,#2463d8 55%,#1d5bc8 100%); color: #fff; box-shadow: none; display: flex; align-items: center; }
+    header .container { height: 100%; display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .wow-logo { width: 200px; height: 46px; object-fit: contain; object-position: left center; display: block; margin: 0; background:#1764df; mix-blend-mode:lighten; }
+    .header-right { display:flex; align-items:center; gap:20px; height:100%; }
+    .nav-menu { display:flex; align-items:center; height:100%; }
+    .nav-menu ul { align-items:center; display:flex; flex-direction:row; gap:16px; margin:0; padding:0; list-style:none; height:100%; }
+    .nav-menu a { color:#fff; text-decoration:none; font-weight:700; font-size:14px; display:flex; align-items:center; height:100%; }
+    .nav-menu a:hover { text-decoration:none; opacity:.9; }
+    .header-phone { white-space:nowrap; font-weight:700; font-size:14px; display:flex; align-items:center; gap:5px; margin-left:10px; color:#fff; text-decoration:none; }
+    .header-phone:hover { text-decoration:underline; }
+    .nav-reviews { display:inline-flex; align-items:center; gap:5px; padding:5px 10px; border-radius:999px; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28); box-shadow:0 3px 10px rgba(0,0,0,.10); font-size:14px; }
+    .nav-reviews span { color:#ffd34d; font-size:1.05em; }
+    .nav-reviews:hover { background:#fff; color:#1764df !important; }
+    .nav-tango { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:999px; background:#fbbf24; color:#1a1a1a !important; font-weight:800; box-shadow:0 4px 12px rgba(251,191,36,.40); transition:.22s ease; height:auto; }
+    .nav-tango:hover { transform:translateY(-2px) scale(1.04); box-shadow:0 8px 22px rgba(251,191,36,.60); background:#f59e0b; opacity:1 !important; }
+    .nav-solo { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:999px; background:linear-gradient(135deg,#10b981 0%,#059669 100%); color:#fff !important; font-weight:800; box-shadow:0 4px 12px rgba(16,185,129,.40); transition:.22s ease; height:auto; }
+    .nav-solo:hover { transform:translateY(-2px) scale(1.04); box-shadow:0 8px 22px rgba(16,185,129,.55); opacity:1 !important; background:linear-gradient(135deg,#059669 0%,#047857 100%); }
+    .nav-solo.nav-current { box-shadow:0 0 0 2px #fff, 0 4px 12px rgba(16,185,129,.40); }
+    .nav-toggle { display:none; background:none; border:0; color:#fff; cursor:pointer; }
+    .nav-menu-mobile { display:none; position:absolute; top:100%; right:10px; width:250px; flex-direction:column; align-items:stretch; padding:12px; background:#1764df; border-radius:0 0 12px 12px; box-shadow:0 12px 24px rgba(0,0,0,.2); }
+    .nav-menu-mobile.active { display:flex; }
+    .nav-menu-mobile ul { display:flex; flex-direction:column; gap:9px; list-style:none; padding:0; margin:0; }
+    .nav-menu-mobile a { display:block; padding:6px 8px; color:#fff; text-decoration:none; font-weight:700; }
+    .nav-menu-mobile a.nav-solo, .nav-menu-mobile a.nav-tango { display:flex; justify-content:center; }
+    .nav-menu-mobile a.nav-tango { color:#1a1a1a; }
+    body { padding-top: 76px; font-family: 'Inter', system-ui, sans-serif; background-color: #fafaf9; }
+    html { scroll-padding-top: 90px; }
+    h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; }
+    
+    .btn-orange { background: #E67E22; color: #FFFFFF; padding: 0.7rem 1.6rem; border-radius: 50px; font-size: 1rem; font-weight: 700; text-decoration: none; border: 2px solid #E67E22; transition: all 0.25s ease; display: inline-block; box-shadow: 0 6px 18px rgba(230,126,34,0.35); }
+    .btn-orange:hover { background: #FFFFFF; color: #E67E22; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(230,126,34,0.45); }
+    .btn-blue { background: #1e3a5f; color: #FFFFFF; padding: 0.65rem 1.6rem; border-radius: 50px; font-size: 1rem; font-weight: 600; text-decoration: none; border: 2px solid #1e3a5f; transition: all 0.25s ease; display: inline-block; }
+    .btn-blue:hover { background: #FFFFFF; color: #1e3a5f; transform: translateY(-2px); }
+    
+    .testimonial-card { background: white; border-left: 4px solid #E67E22; padding: 1.5rem; border-radius: 12px; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.06); transition: transform 0.2s; }
+    .testimonial-card:hover { transform: translateY(-3px); }
+    .testimonial-card .author { font-weight: 600; color: #1e293b; margin-top: 0.75rem; }
+    .testimonial-card .status { font-size: 0.85rem; color: #64748b; }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    th { background: #1e3a5f; color: white; padding: 12px 14px; text-align: left; }
+    td { padding: 12px 14px; border-bottom: 1px solid #e2e8f0; background: white; }
+    th:nth-child(1), td:nth-child(1) { width: 22%; text-align: left; }
+    th:nth-child(2), td:nth-child(2) { width: 48%; text-align: left; }
+    th:nth-child(3), td:nth-child(3), th:nth-child(4), td:nth-child(4) { width: 15%; text-align: right; }
+    tr:hover td { background: #f1f5f9; }
+    
+    .badge-solo { background: #E67E22; border: 2px solid rgba(255,255,255,0.95); color: #ffffff; padding: 0.45rem 1.5rem; border-radius: 999px; font-style: italic; font-weight: 700; display: inline-block; box-shadow: 0 4px 14px rgba(0,0,0,0.25); }
+    
+    .country-card { border-radius: 16px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.08); margin-bottom: 1.5rem; background: white; transition: transform 0.2s; }
+    .country-card:hover { transform: translateY(-2px); }
+    .country-header { position: relative; height: 180px; background-size: cover; background-position: center; display: flex; align-items: flex-end; cursor: pointer; transition: height 0.2s; }
+    .country-header::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 40%, transparent 70%); }
+    .country-header-content { position: relative; z-index: 2; padding: 1rem 1.25rem; color: white; width: 100%; display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; }
+    .country-header-content h3 { text-shadow: 2px 2px 8px rgba(0,0,0,0.7); margin: 0; }
+    .country-header-content p { text-shadow: 1px 1px 4px rgba(0,0,0,0.7); margin: 0; }
+    .country-cta { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.95); color: #1e3a5f; padding: 8px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.25); transition: all 0.2s ease; white-space: nowrap; flex-shrink: 0; }
+    .country-header:hover .country-cta { background: #E67E22; color: white; transform: scale(1.03); }
+    .country-cta .cta-arrow { transition: transform 0.3s ease; }
+    .country-card.open .country-cta .cta-arrow { transform: rotate(180deg); }
+    .country-card.open .country-cta { background: #E67E22; color: white; }
+    
+    .country-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 1.25rem; }
+    .country-card.open .country-body { max-height: 4500px; padding: 1.25rem; }
+    
+    @media (max-width: 640px) {
+      .country-header { height: 150px; }
+      .country-header-content { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .country-cta { font-size: 0.78rem; padding: 6px 12px; }
+    }
+    
+    .sej-card { background: #f8fafc; border-radius: 12px; margin: 0.75rem 0; border: 1px solid #e2e8f0; transition: all 0.2s; display: flex; gap: 14px; padding: 12px; overflow: hidden; }
+    .sej-card:hover { border-color: #fdba74; background: #fffbeb; }
+    .sej-card.confirmed { background: #f0fdf4; border-color: #86efac; }
+    .sej-card.full { background: #fef3c7; border-color: #fbbf24; }
+    .sej-thumb { flex-shrink: 0; width: 90px; height: 90px; border-radius: 10px; background-size: cover; background-position: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    .sej-body { flex: 1; min-width: 0; }
+    @media (max-width: 640px) {
+      .sej-card { flex-direction: column; }
+      .sej-thumb { width: 100%; height: 120px; }
+    }
+    
+    /* STYLE DES FILTRES PAYS (HERO) */
+    #vpd-pays-nav-hero button { padding: .45rem .9rem; border: 2px solid rgba(255,255,255,0.9); border-radius: 999px; background: rgba(255,255,255,0.95); color: #1e3a5f; font: inherit; font-size: .85rem; font-weight: 700; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
+    #vpd-pays-nav-hero button:hover { background: #fff; border-color: #E67E22; color: #E67E22; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(230,126,34,0.4); }
+    #vpd-pays-nav-hero button.on { background: #E67E22; border-color: #E67E22; color: #fff; box-shadow: 0 6px 16px rgba(230,126,34,0.5); }
+    #vpd-pays-nav-hero .pastille { width: 12px; height: 12px; border-radius: 50%; display: inline-block; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+    
+    #vpd-solo { color:#1e293b; }
+    #vpd-solo .card { background:#fff; border-radius:16px; padding:16px; box-shadow:0 4px 14px rgba(30,58,138,.08); margin-bottom:14px; }
+    #vpd-solo .alerte-card { background: linear-gradient(135deg, #fff7ed, #ffedd5); border: 2px solid #fdba74; }
+    #vpd-solo .confirme-card { background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 2px solid #86efac; }
+    
+    #vpd-solo .dep-grid { display:grid; grid-template-columns:minmax(0,1fr); gap:10px; grid-auto-flow:row dense; }
+    @media (min-width:640px) { #vpd-solo .dep-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (min-width:900px) { #vpd-solo .dep-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+    #vpd-solo .depart-item { position:relative; display:flex; gap:10px; align-items:stretch; background:#fff; border:1.5px solid #e2e8f0; border-radius:14px; padding:10px; cursor:pointer; transition:box-shadow .2s, border-color .2s; min-width:0; text-align:left; }
+    #vpd-solo .depart-item:hover { box-shadow:0 6px 16px rgba(0,0,0,.10); border-color:#fdba74; }
+    #vpd-solo .depart-item.confirme { border-color:#86efac; }
+    #vpd-solo .depart-item.confirme:hover { border-color:#16a34a; }
+    #vpd-solo .depart-item.open { border-color:#E67E22; box-shadow:0 0 0 3px rgba(230,126,34,.2); }
+    #vpd-solo .depart-item.confirme.open { border-color:#16a34a; box-shadow:0 0 0 3px rgba(22,163,74,.2); }
+    #vpd-solo .depart-content { flex:1; min-width:0; display:flex; flex-direction:column; gap:5px; }
+    #vpd-solo .depart-pays { font-size:.72rem; color:#64748b; line-height:1.25; }
+    #vpd-solo .depart-titre { font-size:.95rem; font-weight:700; color:#1e293b; line-height:1.2; }
+    #vpd-solo .dc-av { display:flex; padding-left:5px; }
+    #vpd-solo .dc-a { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:700; border:2px solid #fff; margin-left:-5px; box-sizing:border-box; flex:none; }
+    #vpd-solo .dc-a.ok { background:#dcfce7; color:#15803d; }
+    #vpd-solo .dc-a.w { background:#ffedd5; color:#c2410c; }
+    #vpd-solo .dc-a.e { background:#f1f5f9; color:#94a3b8; border:1.5px dashed #94a3b8; }
+    #vpd-solo .dc-a.you { background:#dbeafe; color:#1d4ed8; border:1.5px dashed #60a5fa; }
+    #vpd-solo .dc-profil { display:flex; flex-direction:column; gap:2px; font-size:.78rem; color:#334155; line-height:1.3; }
+    #vpd-solo .dc-pl { display:block; }
+    #vpd-solo .dc-pl::before { content:'• '; color:#16a34a; font-weight:700; }
+    #vpd-solo .dc-chip { align-self:flex-start; font-size:.75rem; font-weight:700; padding:2px 10px; border-radius:999px; }
+    #vpd-solo .dc-chip.ok { background:#dcfce7; color:#15803d; }
+    #vpd-solo .dc-chip.w { background:#ffedd5; color:#c2410c; }
+    #vpd-solo .dc-chip.full { background:#fef3c7; color:#b45309; }
+    #vpd-solo .dc-libres { font-size:.75rem; color:#15803d; margin-top:-2px; }
+    #vpd-solo .depart-thumb { position:relative; flex:0 0 clamp(72px, 28%, 110px); border-radius:10px; background-size:cover; background-position:center; background-color:#e2e8f0; min-height:96px; }
+    #vpd-solo .depart-chev { position:absolute; right:6px; bottom:6px; width:24px; height:24px; border-radius:50%; background:rgba(255,255,255,.92); color:#475569; display:flex; align-items:center; justify-content:center; box-shadow:0 1px 4px rgba(0,0,0,.25); transition:transform .25s; }
+    #vpd-solo .depart-item.open .depart-chev { transform:rotate(180deg); color:#E67E22; }
+    #vpd-solo .depart-detail { grid-column:1 / -1; background:#f8fafc; border-radius:12px; padding:16px; border-left:4px solid #E67E22; }
+    #vpd-solo .depart-detail.confirme { border-left-color:#16a34a; background:#f0fdf4; }
+    
+    #vpd-solo .go { width:100%; margin-top:10px; padding:.75rem; border:2px solid #E67E22; border-radius:50px; background:#E67E22; color:#fff; font:inherit; font-weight:700; cursor:pointer; }
+    #vpd-solo .go:hover { background:#fff; color:#E67E22; }
+    #vpd-solo .go.go-green { background:#16a34a; border-color:#16a34a; }
+    #vpd-solo .go.go-green:hover { background:#fff; color:#16a34a; }
+    
+    .btn-lancer { display:inline-block; margin-top:8px; padding:8px 18px; background:#E67E22; color:#fff; border:2px solid #E67E22; border-radius:50px; font-weight:700; font-size:0.9rem; cursor:pointer; transition:all 0.2s; }
+    .btn-lancer:hover { background:#fff; color:#E67E22; }
+    .btn-lancer.green { background:#16a34a; border-color:#16a34a; }
+    .btn-lancer.green:hover { background:#fff; color:#16a34a; }
+    
+    .profil-card {
+      display: grid;
+      grid-template-columns: 50px 1fr;
+      gap: 14px;
+      align-items: start;
+      background: linear-gradient(135deg, #fff 0%, #fef3c7 100%);
+      border: 2px solid #fbbf24;
+      border-radius: 14px;
+      padding: 14px;
+      margin: 12px 0;
+      box-shadow: 0 4px 14px rgba(251, 191, 36, 0.15);
+    }
+    .profil-card.confirmed {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border-color: #86efac;
+      box-shadow: 0 4px 14px rgba(134, 239, 172, 0.25);
+    }
+    
+    .profil-photo-container {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    
+    .profil-photo {
+      width: 45px; height: 45px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #E67E22, #d97706);
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.1rem; font-weight: 700;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(230,126,34,0.35);
+    }
+    .profil-card.confirmed .profil-photo { background: linear-gradient(135deg, #16a34a, #15803d); }
+    
+    .profil-content { min-width: 0; }
+    
+    .profil-titre {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #92400e;
+      margin: 0 0 6px 0;
+      line-height: 1.3;
+    }
+    .profil-card.confirmed .profil-titre { color: #14532d; }
+    
+    .profil-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .profil-tag {
+      display: inline-block;
+      background: #E67E22;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-transform: capitalize;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .profil-card.confirmed .profil-tag { background: #16a34a; }
+    
+    .profil-sous-titre {
+      font-size: 0.85rem;
+      color: #b45309;
+      margin: 0 0 4px 0;
+      line-height: 1.3;
+    }
+    .profil-card.confirmed .profil-sous-titre { color: #166534; }
+    
+    .profil-note {
+      font-size: 0.72rem;
+      color: #a16207;
+      font-style: italic;
+      margin: 0;
+      display: block;
+      line-height: 1.3;
+    }
+    .profil-card.confirmed .profil-note { color: #166534; }
+    
+    .profil-statut {
+      grid-column: 1 / -1;
+      background: rgba(255,255,255,0.7);
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .profil-statut-compteur {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #c2410c;
+      line-height: 1;
+    }
+    .profil-card.confirmed .profil-statut-compteur { color: #15803d; }
+    
+    .profil-statut-label {
+      font-size: 0.8rem;
+      color: #92400e;
+      font-weight: 600;
+      line-height: 1.2;
+      text-align: right;
+    }
+    .profil-card.confirmed .profil-statut-label { color: #166534; }
+    
+    .deadline-banner {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fef3c7;
+      border: 1.5px dashed #f59e0b;
+      border-radius: 10px;
+      padding: 8px 12px;
+      margin-top: 4px;
+      font-size: 0.82rem;
+      color: #92400e;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .deadline-banner .dl-icon { font-size: 1.1rem; flex-shrink: 0; }
+    .deadline-banner .dl-text strong { color: #b45309; }
+    
+    @media (max-width: 500px) {
+      .profil-statut { flex-direction: column; align-items: flex-start; }
+      .profil-statut-label { text-align: left; }
+    }
+    
+    /* Bandeau : menu burger + mobile */
+    @media (max-width: 1199px) { .header-right { display:none; } .nav-toggle { display:block; } }
+    @media (min-width: 1200px) { .nav-menu-mobile { display:none !important; } }
+    @media (max-width: 639px) {
+      header { height:56px; }
+      body { padding-top:56px; }
+      html { scroll-padding-top:70px; }
+      header .container { padding-left:12px; padding-right:12px; }
+      .wow-logo { width:170px; height:40px; }
+    }
+    
+    @media (max-width: 640px) { .btn-orange, .btn-blue { display: block; width: 100%; text-align: center; } }
+    
+    .hero-text-shadow { text-shadow: 0 2px 8px rgba(0,0,0,0.85); }
+    .hero-badge-bg { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(8px); }
+    .hero-card-glass { background: rgba(15, 23, 42, 0.35); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.25); }
+    
+    .inline-form { background: #fff; border: 2px solid #fdba74; border-radius: 12px; padding: 16px; margin-top: 14px; box-shadow: 0 4px 14px rgba(230,126,34,0.15); }
+    .inline-form strong { display: block; margin-bottom: 10px; color: #c2410c; font-size: 1rem; }
+    .inline-form label { display: block; margin: 8px 0 3px; font-size: 0.88rem; font-weight: 600; color: #1e293b; }
+    .inline-form input[type=text], .inline-form input[type=email], .inline-form select, .inline-form textarea { width: 100%; padding: 0.55rem; border: 1px solid #cbd5e1; border-radius: 8px; font: inherit; background: #fff; }
+    .inline-form .chk { display: flex; gap: 8px; align-items: flex-start; margin-top: 8px; }
+    .inline-form .chk input { margin-top: 4px; }
+    .inline-form .chk label { margin: 0; font-weight: 400; font-size: 0.82rem; }
+    .inline-form .submit-inline { width: 100%; margin-top: 12px; padding: 0.7rem; border: 2px solid #E67E22; border-radius: 50px; background: #E67E22; color: #fff; font-weight: 700; cursor: pointer; font-size: 0.95rem; }
+    .inline-form .submit-inline:hover { background: #fff; color: #E67E22; }
+    .inline-form .res { margin-top: 8px; font-weight: 600; font-size: 0.9rem; color: #c2410c; }
+
+    .form-prix-box { background: #fff7ed; border: 1px dashed #fdba74; padding: 10px 14px; border-radius: 8px; margin: 12px 0 16px 0; font-size: 0.9rem; color: #1e293b; line-height: 1.4; }
+    .form-prix-box strong { color: #c2410c; font-size: 1rem; display: block; margin-bottom: 4px; }
+    .form-prix-box .price-val { font-size: 1.1rem; font-weight: 800; color: #b45309; }
+    .form-prix-box span { font-size: 0.8rem; color: #64748b; display: block; margin-top: 4px; font-style: italic; }
+
+    #tarifs-body tr.tarif-pays td { background:#fff7ed; color:#c2410c; font-weight:700; font-family:'Playfair Display', Georgia, serif; font-size:1.05rem; border-bottom:2px solid #fdba74; text-align:left; }
+    #tarifs-body td.tarif-prix { text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+    #tarifs-body td.tarif-encours { text-align:right; font-style:italic; color:#64748b; font-size:.88rem; }
+    #tarifs-body tr.tarif-pays:hover td { background:#fff7ed; }
+
+    .depart-prix { margin:10px 0 0; font-size:0.9rem; color:#1e293b; background:#fff; border:1px dashed #cbd5e1; border-radius:10px; padding:8px 12px; }
+  </style>
+  <link rel="canonical" href="https://vpdvoyages.com/voyage-solo.html">
+</head>
+<body>
+
+  <!-- HEADER (identique à la page d'accueil) -->
+  <header>
+    <div class="container mx-auto px-4">
+      <a href="index.html" class="flex items-center" title="Retour à l'accueil VPDVOYAGES">
+        <img src="Images/logo.png" alt="VPDVOYAGES - Patrick Daroque Travel Planner" width="290" height="68" class="wow-logo">
+      </a>
+
+      <div class="header-right">
+        <nav class="nav-menu" aria-label="Navigation du site">
+          <ul>
+            <li><a href="index.html#home">Accueil</a></li>
+            <li><a href="index.html#destinations">Destinations</a></li>
+            <li><a href="voyage-tango.html" class="nav-tango" title="Découvrir tous nos voyages Tango">Tango argentin</a></li>
+            <li><a href="voyage-solo.html" class="nav-solo nav-current" title="Voyager seul(e) en petit groupe" aria-current="page">🧳 Voyager seul(e)</a></li>
+            <li><a href="cgv.html#cgv-autonomie">Formules</a></li>
+            <li><a href="https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site/" target="_blank" rel="noopener noreferrer" class="nav-reviews" title="Voir les avis clients VPDVOYAGES"><span>★</span> Avis clients</a></li>
+            <li><a href="index.html#about">À propos</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <a href="tel:+33610950984" class="header-phone"><span aria-hidden="true">☎</span><span>+33 6 10 95 09 84</span></a>
+      </div>
+
+      <button class="nav-toggle" aria-label="Menu principal">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+
+      <nav class="nav-menu-mobile" aria-label="Navigation mobile">
+        <ul>
+          <li><a href="index.html#home">Accueil</a></li>
+          <li><a href="index.html#destinations">Destinations</a></li>
+          <li><a href="voyage-tango.html" class="nav-tango" title="Découvrir tous nos voyages Tango">Tango argentin</a></li>
+          <li><a href="voyage-solo.html" class="nav-solo nav-current" title="Voyager seul(e) en petit groupe" aria-current="page">🧳 Voyager seul(e)</a></li>
+          <li><a href="cgv.html#cgv-autonomie">Formules</a></li>
+          <li><a href="https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site/" target="_blank" rel="noopener noreferrer" class="nav-reviews" title="Voir les avis clients VPDVOYAGES"><span>★</span> Avis clients</a></li>
+          <li><a href="index.html#about">À propos</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="tel:+33610950984">☎ +33 6 10 95 09 84</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative bg-cover bg-center min-h-[600px] flex items-center justify-center py-8" style="background-image: url('Images/hero-voyage-solo-premium.jpg');">
+    <div class="absolute inset-0 hero-overlay" style="background: linear-gradient(180deg, rgba(15, 23, 42, 0.12) 0%, rgba(15, 23, 42, 0.02) 50%, rgba(15, 23, 42, 0.22) 100%);"></div>
+    
+    <div class="relative z-10 text-center text-white px-4 container mx-auto flex flex-col items-end">
+      
+      <div class="w-[85%] max-w-[290px] sm:max-w-sm md:max-w-lg mr-auto sm:mr-0 sm:ml-auto md:mr-12 lg:mr-20 flex flex-col items-center">
+        
+        <div class="hero-card-glass p-4 md:p-7 mb-4 w-full text-center">
+          
+          <h1 class="text-xl md:text-4xl font-bold tracking-tight mb-2 md:mb-3 leading-tight hero-text-shadow">
+            Voyage solo ou entre amis<br class="hidden sm:block"> en petit groupe
+          </h1>
+
+          <div class="inline-flex items-center gap-1 md:gap-2 hero-badge-bg px-2 md:px-3 py-1 rounded-full text-[11px] md:text-sm font-semibold mb-3 md:mb-4 border border-white/30 hero-text-shadow">
+            <span class="w-1.5 h-1.5 md:w-2 md:h-2 bg-amber-400 rounded-full animate-pulse"></span>
+            Groupes de 2 à 5 personnes
+          </div>
+
+          <div class="space-y-1 md:space-y-1.5 hero-text-shadow text-[11px] md:text-base">
+            <p class="font-bold text-amber-300 text-sm md:text-lg">
+              Des expériences immersives sur mesure.
+            </p>
+            <p class="font-medium text-white/95">
+              En formule Sérénité ou Autonomie.
+            </p>
+            <p class="text-stone-200 text-[11px] md:text-base">
+              Pour explorer l'Espagne et l'Amérique latine à votre rythme.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="w-full mb-5">
+          <a href="#departs" class="btn-orange text-sm md:text-lg px-6 md:px-8 py-2.5 md:py-3.5 shadow-xl w-full text-center font-bold">👀 Voir les prochains départs</a>
+        </div>
+        
+        <div id="vpd-pays-nav-hero" class="flex flex-col gap-1.5 md:gap-2 items-center w-full"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="departs" class="py-14" style="background: linear-gradient(180deg, #eff6ff 0%, #fff7ed 100%);">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-3 text-stone-800">🧭 Prochains départs en formule Sérénité</h2>
+      
+      <p class="text-center text-gray-600 mb-8 max-w-xl mx-auto">À 2 personnes, le départ est confirmé. Jusqu’au nombre maximum de 5 personnes, chaque voyageur supplémentaire fait baisser le prix pour tous.</p>
+
+      <div id="vpd-solo"></div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+        <div class="bg-emerald-50 border-2 border-emerald-300 rounded-2xl p-5 shadow-sm">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-2xl">🚀</span>
+            <h3 class="font-bold text-emerald-900 text-base font-serif">Départ confirmé dès 2 voyageurs</h3>
+          </div>
+          <p class="text-emerald-800 text-sm leading-relaxed">
+            Dès que <strong>2 voyageurs ont accepté le tarif</strong>, le voyage en formule Sérénité est confirmé. Vous voyez ici qui est déjà inscrit.
+          </p>
+        </div>
+
+        <div class="bg-amber-50 border-2 border-amber-300 rounded-2xl p-5 shadow-sm">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-2xl">💰</span>
+            <h3 class="font-bold text-amber-900 text-base font-serif">En option : un prix encore plus bas</h3>
+          </div>
+          <p class="text-amber-800 text-sm leading-relaxed">
+            Vous pouvez choisir d'ouvrir le groupe (jusqu'à 5 max). À chaque nouvel inscrit, <strong>le tarif baisse automatiquement</strong> pour tout le monde. C'est vous qui décidez !
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 bg-white">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-3">Propositions Séjours & Escapades</h2>
+      <p class="text-center text-gray-500 mb-10">Cliquez sur un pays pour découvrir les séjours proposés</p>
+      
+      <div id="pays-sections" class="space-y-6 mb-12">
+        
+        <!-- PAYS : ARGENTINE -->
+        <div class="country-card" id="pays-Argentine">
+          <div class="country-header" data-pays-toggle="arg">
+            <div style="position:absolute; inset:0; display:flex;">
+              <div style="flex:1; background-image:url('Images/argentine.jpg'); background-size:cover; background-position:center;"></div>
+              <div style="flex:1; background-image:url('Images/Tango Bodegas.jpg'); background-size:cover; background-position:center;"></div>
+            </div>
+            <div class="country-header-content">
+              <div>
+                <h3 class="text-2xl font-bold">Argentine</h3>
+                <p class="text-sm text-white/90">Tango & Bodegas · 17 à 18 jours</p>
+              </div>
+              <span class="country-cta">
+                <span>Voir les séjours &amp; thématiques</span>
+                <svg class="cta-arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </div>
+          </div>
+          <div class="country-body" id="body-arg">
+            <div class="sej-card">
+              <div class="sej-thumb" style="background-image:url('Images/argentine.jpg');"></div>
+              <div class="sej-body">
+                <h4 class="font-semibold">Rio de la Plata - le berceau du Tango</h4>
+                <p class="text-sm text-gray-600 mt-1">Aucune date fixée pour l’instant — soyez à l’initiative !</p>
+                <button class="btn-lancer" data-pays="Argentine" data-sejour="Rio de la Plata - le berceau du Tango">🚀 Lancer ce séjour</button>
+              </div>
+            </div>
+            <div class="sej-card confirmed">
+              <div class="sej-thumb" style="background-image:url('Images/Tango Bodegas.jpg');"></div>
+              <div class="sej-body">
+                <h4 class="font-semibold text-green-800">Tango et Bodegas</h4>
+                <p class="text-sm text-green-700 mt-1">✅ Départ confirmé !</p>
+                <p class="text-xs text-gray-600 mt-1">Automne 2027 · 12 – 29 octobre 2027</p>
+                <div class="profil-card-slot" data-slot-pays="Argentine" data-slot-sejour="Tango et Bodegas"></div>
+                <button class="btn-lancer green" data-pays="Argentine" data-sejour="Tango et Bodegas" data-depart="1">Rejoindre ce départ</button>
+              </div>
+            </div>
+            <div class="sej-card full">
+              <div class="sej-thumb" style="background-image:url('Images/foz-do-iguacu.jpg');"></div>
+              <div class="sej-body">
+                <h4 class="font-semibold text-amber-800">Buenos Aires et Iguazu</h4>
+                <p class="text-sm text-amber-700 mt-1">🔥 Presque complet — 1 place restante !</p>
+                <p class="text-xs text-gray-600 mt-1">Printemps 2027 · 5 – 22 avril 2027</p>
+                <div class="profil-card-slot" data-slot-pays="Argentine" data-slot-sejour="Buenos Aires et Iguazu"></div>
+                <button class="btn-lancer green" data-pays="Argentine" data-sejour="Buenos Aires et Iguazu" data-depart="1">Rejoindre ce départ</button>
+              </div>
+            </div>
+            <div class="sej-card">
+              <div class="sej-thumb" style="background-image:url('Images/BsAs Mza Andes.jpg');"></div>
+              <div class="sej-body">
+                <h4 class="font-semibold">Buenos Aires Mendoza et les Andes</h4>
+                <p class="text-sm text-gray-600 mt-1">Aucune date fixée pour l’instant — soyez à l’initiative !</p>
+                <button class="btn-lancer" data-pays="Argentine" data-sejour="Buenos Aires Mendoza et les Andes">🚀 Lancer ce séjour</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAYS : COLOMBIE -->
+        <div class="country-card" id="pays-Colombie">
+          <div class="country-header" data-pays-toggle="col">
+            <div style="position:absolute; inset:0; background-image:url('Images/Colombie.jpg'); background-size:cover; background-position:center;"></div>
+            <div class="country-header-content">
+              <div>
+                <h3 class="text-2xl font-bold">Colombie</h3>
+                <p class="text-sm text-white/90">17 à 18 jours</p>
+              </div>
+              <span class="country-cta">
+                <span>Voir les 4 séjours</span>
+                <svg class="cta-arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </div>
+          </div>
+          <div class="country-body" id="body-col">
+            <div class="sej-card">
+              <div class="sej-thumb" style="background-image:url('Images/Colombie.jpg');"></div>
+              <div class="sej-body">
+                <h4 class="font-semibold text-orange-800">La Magie realiste</h4>
+                <p class="text-sm text-orange-700 mt-1">🔥 Un départ cherche ses voyageurs !</p>
+                <p class="text-xs text-gray-600 mt-1">Printemps 2027 · Dates à confirmer</p>
+                <div class="profil-card-slot" data-slot-pays="Colombie" data-slot-sejour="La Magie realiste"></div>
+                <button class="btn-lancer" data-pays="Colombie" data-sejour="La Magie realiste" data-depart="1">Je m’intéresse à ce départ</button>
+              </div>
+            </div>
+            <div class="sej-card">
+              <div class="sej-thumb" style="background-image:url('Images/Colombie Triangle magique.jpg');"></div>
+              <div class="sej-body">
+                <h4 class="font-semibold">Le Triangle Magique</h4>
+                <p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p>
+                <button class="btn-lancer" data-pays="Colombie" data-sejour="Le Triangle Magique">🚀 Lancer ce séjour</button>
+              </div>
+            </div>
+            <div class="sej-card">
+              <div class="sej-thumb" style="background-image:url('Images/Tango Medellino.jpeg');"></div>
+              <div class="sej-body">
+                <h4 class="font-semibold">Festival de tango Medellin</h4>
+                <p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p>
+                <button class="btn-lancer" data-pays="Colombie" data-sejour="Festival de tango Medellin">🚀 Lancer ce séjour</button>
+              </div>
+            </div>
+            <div class="sej-card confirmed">
+              <div class="sej-thumb" style="background-image:url('Images/Cali Salsa.jpg');"></div>
+              <div class="sej-body">
+                <h4 class="font-semibold text-green-800">Cali - capitale de la salsa</h4>
+                <p class="text-sm text-green-700 mt-1">✅ Départ confirmed ! 2 places restantes</p>
+                <p class="text-xs text-gray-600 mt-1">Été 2027 · 8 – 25 juillet 2027</p>
+                <div class="profil-card-slot" data-slot-pays="Colombie" data-slot-sejour="Cali - capitale de la salsa"></div>
+                <button class="btn-lancer green" data-pays="Colombie" data-sejour="Cali - capitale de la salsa" data-depart="1">Rejoindre ce départ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAYS : CUBA -->
+        <div class="country-card" id="pays-Cuba">
+          <div class="country-header" data-pays-toggle="cuba">
+            <div style="position:absolute; inset:0; background-image:url('Images/Cuba Découverte.jpg'); background-size:cover; background-position:center;"></div>
+            <div class="country-header-content">
+              <div>
+                <h3 class="text-2xl font-bold">Cuba</h3>
+                <p class="text-sm text-white/90">17 à 18 jours</p>
+              </div>
+              <span class="country-cta">
+                <span>Voir les 4 séjours</span>
+                <svg class="cta-arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </div>
+          </div>
+          <div class="country-body" id="body-cuba">
+            <div class="sej-card">
+              <div class="sej-thumb" style="background-image:url('Images/Cuba Découverte.jpg');"></div>
+              <div class="sej-body">
+                <h4 class="font-semibold text-orange-800">Decouverte - patrimoine et traditions</h4>
+                <p class="text-sm text-orange-700 mt-1">🔥 Un départ cherche ses voyageurs !</p>
+                <p class="text-xs text-gray-600 mt-1">Hiver 2027 · 15 janvier – 1er fevrier 2027</p>
+                <div class="profil-card-slot" data-slot-pays="Cuba" data-slot-sejour="Decouverte - patrimoine et traditions"></div>
+                <button class="btn-lancer" data-pays="Cuba" data-sejour="Decouverte - patrimoine et traditions" data-depart="1">Je m’intéresse à ce départ</button>
+              </div>
+            </div>
+            <div class="sej-card">
+              <div class="sej-thumb" style="background-image:url('Images/Cuba Tango.jpg');"></div>
+              <div class="sej-body">
+                <h4 class="font-semibold">Festival de Tango de La Havane</h4>
+                <p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p>
+                <button class="btn-lancer" data-pays="Cuba" data-sejour="Festival de Tango de La Havane">🚀 Lancer ce séjour</button>
+              </div>
+            </div>
+            <div class="sej-card">
+              <div class="sej-thumb" style="background-image:url('Images/Cuba a velo.jpg');"></div>
+              <div class="sej-body">
+                <h4 class="font-semibold">Traversee de l'ile a velo</h4>
+                <p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p>
+                <button class="btn-lancer" data-pays="Cuba" data-sejour="Traversee de l'ile a velo">🚀 Lancer ce séjour</button>
+              </div>
+            </div>
+            <div class="sej-card">
+              <div class="sej-thumb" style="background-image:url('Images/Cuba - Randonnée Vinales Trinidad.jpg');"></div>
+              <div class="sej-body">
+                <h4 class="font-semibold">Randonnee a Vinales et Trinidad</h4>
+                <p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p>
+                <button class="btn-lancer" data-pays="Cuba" data-sejour="Randonnee a Vinales et Trinidad">🚀 Lancer ce séjour</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAYS : ESPAGNE -->
+        <div class="country-card" id="pays-Espagne">
+          <div class="country-header" data-pays-toggle="esp">
+            <div style="position:absolute; inset:0; background-image:url('Images/Logrono.jpg'); background-size:cover; background-position:center;"></div>
+            <div class="country-header-content">
+              <div>
+                <h3 class="text-2xl font-bold">Espagne</h3>
+                <p class="text-sm text-white/90">Escapades de 4 jours</p>
+              </div>
+              <span class="country-cta">
+                <span>Voir les 8 escapades</span>
+                <svg class="cta-arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </div>
+          </div>
+          <div class="country-body" id="body-esp">
+            <div class="grid grid-cols-1 gap-3">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="sej-card">
+                  <div class="sej-thumb" style="background-image:url('Images/Logrono.jpg');"></div>
+                  <div class="sej-body">
+                    <h4 class="font-semibold text-orange-800">La Rioja</h4>
+                    <p class="text-sm text-orange-700 mt-1">🔥 Un départ cherche ses voyageurs !</p>
+                    <p class="text-xs text-gray-600 mt-1">Automne 2027 · 4 jours</p>
+                    <button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="La Rioja">🚀 Lancer ce séjour</button>
+                  </div>
+                </div>
+                <div class="sej-card confirmed">
+                  <div class="sej-thumb" style="background-image:url('Images/Ribera del Duero.jpeg');"></div>
+                  <div class="sej-body">
+                    <h4 class="font-semibold text-green-800">Ribera del Duero</h4>
+                    <p class="text-sm text-green-700 mt-1">✅ Départ confirmé ! 3 places restantes</p>
+                    <p class="text-xs text-gray-600 mt-1">Printemps 2027 · 4 jours</p>
+                    <button class="btn-lancer green text-sm" data-pays="Espagne" data-sejour="Ribera del Duero" data-depart="1">Rejoindre ce départ</button>
+                  </div>
+                </div>
+                <div class="sej-card"><div class="sej-thumb" style="background-image:url('Images/valencia.jpg');"></div><div class="sej-body"><h4 class="font-semibold">Valence</h4><button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Valence">🚀 Lancer ce séjour</button></div></div>
+                <div class="sej-card"><div class="sej-thumb" style="background-image:url('Images/Pics_europe.jpg');"></div><div class="sej-body"><h4 class="font-semibold">Les Pics d'Europe</h4><button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Les Pics d'Europe">🚀 Lancer ce séjour</button></div></div>
+                <div class="sej-card"><div class="sej-thumb" style="background-image:url('Images/Salamanque.jpg');"></div><div class="sej-body"><h4 class="font-semibold">Salamanque</h4><button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Salamanque">🚀 Lancer ce séjour</button></div></div>
+                <div class="sej-card">
+                  <div class="sej-thumb" style="background-image:url('Images/Matarraña.jpeg');"></div>
+                  <div class="sej-body">
+                    <h4 class="font-semibold">Matarrana</h4>
+                    <p class="text-xs text-gray-500 mt-0.5">Parador de Alcañiz</p>
+                    <button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Matarrana">🚀 Lancer ce séjour</button>
+                  </div>
+                </div>
+                <div class="sej-card"><div class="sej-thumb" style="background-image:url('Images/Bilbao.jpg');"></div><div class="sej-body"><h4 class="font-semibold">Bilbao</h4><button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Bilbao">🚀 Lancer ce séjour</button></div></div>
+                <div class="sej-card"><div class="sej-thumb" style="background-image:url('Images/barcelone.jpg');"></div><div class="sej-body"><h4 class="font-semibold">Barcelone</h4><button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Barcelone">🚀 Lancer ce séjour</button></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAYS : URUGUAY -->
+        <div class="country-card" id="pays-Uruguay">
+          <div class="country-header" data-pays-toggle="uru">
+            <div style="position:absolute; inset:0; background-image:url('Images/Panagea-ranch.jpg'); background-size:cover; background-position:center;"></div>
+            <div class="country-header-content">
+              <div>
+                <h3 class="text-2xl font-bold">Uruguay</h3>
+                <p class="text-sm text-white/90">17 à 18 jours</p>
+              </div>
+              <span class="country-cta">
+                <span>Voir les 2 séjours</span>
+                <svg class="cta-arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </div>
+          </div>
+          <div class="country-body" id="body-uru">
+            <div class="sej-card">
+              <div class="sej-thumb" style="background-image:url('Images/argentine.jpg');"></div>
+              <div class="sej-body">
+                <h4 class="font-semibold">Rio de la Plata - le berceau du Tango</h4>
+                <p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p>
+                <button class="btn-lancer" data-pays="Uruguay" data-sejour="Rio de la Plata - le berceau du Tango">🚀 Lancer ce séjour</button>
+              </div>
+            </div>
+            <div class="sej-card confirmed">
+              <div class="sej-thumb" style="background-image:url('Images/gauchos.jpeg');"></div>
+              <div class="sej-body">
+                <h4 class="font-semibold text-green-800">Uruguay avec les gauchos</h4>
+                <p class="text-sm text-green-700 mt-1">✅ Départ confirmé ! 3 places restantes</p>
+                <p class="text-xs text-gray-600 mt-1">Automne 2027 · 10 – 27 novembre 2027</p>
+                <div class="profil-card-slot" data-slot-pays="Uruguay" data-slot-sejour="Uruguay avec les gauchos"></div>
+                <button class="btn-lancer green" data-pays="Uruguay" data-sejour="Uruguay avec les gauchos" data-depart="1">Rejoindre ce départ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARTOUCHE "CE QUI EST COMPRIS" -->
+      <div class="bg-amber-50 border border-amber-100 rounded-2xl p-6 mb-12 text-center">
+        <h3 class="text-xl font-bold text-amber-900 mb-4">Ce qui est compris dans votre séjour</h3>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-sm text-gray-700">
+          <div class="flex flex-col items-center gap-1"><span class="text-2xl">🏨</span><strong>Hébergement</strong></div>
+          <div class="flex flex-col items-center gap-1"><span class="text-2xl">🍴</span><strong>Déjeuners</strong></div>
+          <div class="flex flex-col items-center gap-1"><span class="text-2xl">🍷</span><strong>3 dîners</strong></div>
+          <div class="flex flex-col items-center gap-1"><span class="text-2xl">🎟️</span><strong>Activités</strong></div>
+          <div class="flex flex-col items-center gap-1"><span class="text-2xl">📋</span><strong>Prestation VPD</strong></div>
+        </div>
+        <p class="text-xs text-gray-500 mt-4">Les vols internationaux sont inclus uniquement dans la formule Sérénité.</p>
+      </div>
+
+      <!-- CARTES AUTONOMIE / SERENITE -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
+        <div class="bg-stone-700 text-white rounded-2xl p-6 shadow-lg text-center">
+          <h3 class="text-2xl font-bold mb-2">AUTONOMIE</h3>
+          <p class="text-stone-200 text-sm mb-3">Hébergement • Tous les déjeuners • 3 dîners • Activités</p>
+          <p class="italic text-lg">Voyagez librement.</p>
+          <p class="text-xs mt-3 text-stone-300">Assistance à distance • vols non inclus</p>
+        </div>
+        <div class="bg-gradient-to-br from-orange-600 to-amber-700 text-white rounded-2xl p-6 shadow-lg text-center relative">
+          <span class="absolute top-3 right-3 bg-white text-orange-700 text-xs font-bold px-2 py-0.5 rounded-full">Recommandé</span>
+          <h3 class="text-2xl font-bold mb-2">SÉRÉNITÉ</h3>
+          <p class="text-orange-100 text-sm mb-3">Hébergement • Tous les déjeuners • 3 dîners • Activités</p>
+          <p class="italic text-lg">+ accompagnement francophone</p>
+          <p class="text-xs mt-3 text-orange-100">Vols internationaux inclus</p>
+        </div>
+      </div>
+
+      <div class="mt-14">
+        <h3 class="text-2xl font-bold text-center mb-6">Tarifs indicatifs par personne</h3>
+        <div class="overflow-x-auto rounded-xl shadow-sm border border-gray-200">
+          <table>
+            <thead>
+              <tr>
+                <th>Destination</th>
+                <th>Séjour</th>
+                <th>Prix affiché<br><span class="text-xs font-normal opacity-80">sur site</span></th>
+                <th>Sérénité<br><span class="text-xs font-normal opacity-80">accompagnement</span></th>
+              </tr>
+            </thead>
+            <tbody id="tarifs-body"></tbody>
+          </table>
+        </div>
+        <p class="text-center text-sm text-gray-500 mt-3">* Prix indicatifs par personne. Ils varient selon la saison et le nombre de participants. Les tarifs « sur-mesure » seront communiqués dès que le séjour est finalisé.</p>
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="index.html#contact" class="btn-orange text-lg px-8 py-3">📞 Je veux réserver ou poser une question</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 bg-white">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">La promesse faite aux voyageurs</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-7 rounded-2xl text-center shadow-sm border border-amber-200 relative overflow-hidden">
+          <span class="absolute top-3 right-3 bg-amber-400 text-white text-xs font-bold px-2 py-0.5 rounded-full">Nouveauté</span>
+          <div class="text-4xl mb-4">🗺️</div>
+          <h3 class="font-bold text-xl mb-2">Deux façons de voyager</h3>
+          <p class="text-gray-600 text-sm leading-relaxed"><strong>Autonomie</strong> : liberté totale + assistance à distance<br>ou <strong>Sérénité</strong> : accompagnement francophone + vols inclus.</p>
+        </div>
+        <div class="bg-gray-50 p-7 rounded-2xl text-center shadow-sm">
+          <div class="text-4xl mb-4">👥</div>
+          <h3 class="font-bold text-xl mb-2">Groupe intime</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">2 à 5 personnes maximum — seul(e) ou entre amis. Assez pour créer des liens, sans l’effet grand groupe.</p>
+        </div>
+        <div class="bg-gray-50 p-7 rounded-2xl text-center shadow-sm">
+          <div class="text-4xl mb-4">💰</div>
+          <h3 class="font-bold text-xl mb-2">Pas de supplément single</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Voyager seul(e) ne signifie pas payer plus cher : jumelage inclus sans surcoût.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 bg-slate-100">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-3">Ils sont partis ensemble.<br>Ils ont vécu l’aventure.</h2>
+      <p class="text-center text-gray-500 mb-10">Vrais témoignages de voyageurs</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="testimonial-card">
+          <p class="text-gray-700 italic leading-relaxed">"Je suis partie seule en Argentine. 18 jours à danser le tango, déguster du Malbec, chevaucher dans la Pampa. J’ai rencontré 4 femmes formidables. On s’est quittées en promettant de se revoir. Je ne me suis jamais sentie seule une seconde."</p>
+          <div class="author">Catherine, 62 ans <span class="status">– veuve</span></div>
+        </div>
+        <div class="testimonial-card">
+          <p class="text-gray-700 italic leading-relaxed">"J’avais peur de voyager seule après mon divorce. Patrick m’a écoutée, m’a proposé un groupe de 5 personnes en Colombie. On a ri, on a dansé la salsa, on a partagé des émotions fortes. Un voyage qui m’a réconciliée avec la vie."</p>
+          <div class="author">Sophie, 51 ans <span class="status">– divorcée</span></div>
+        </div>
+        <div class="testimonial-card">
+          <p class="text-gray-700 italic leading-relaxed">"Une escapade de 4 jours en Espagne tout simplement mémorable ! Le format à 4 personnes était parfait pour échanger et profiter des domaines viticoles sans l’effet usine des grands tours."</p>
+          <div class="author">Marc, 48 ans <span class="status">– célibataire</span></div>
+        </div>
+        <div class="testimonial-card">
+          <p class="text-gray-700 italic leading-relaxed">"Partir seule à Cuba m’intimidait beaucoup. Grâce à la formule Sérénité et notre super groupe, je me suis sentie en parfaite sécurité du début à la fin. Une immersion incroyable !"</p>
+          <div class="author">Isabelle, 57 ans <span class="status">– célibataire</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">Pourquoi choisir VPDVOYAGES ?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="flex items-start gap-4"><span class="text-3xl">🌍</span><div><h3 class="font-bold text-lg">Je connais mes destinations</h3><p class="text-gray-600 text-sm mt-1">Je vis et travaille entre la France, l’Espagne et l’Amérique latine. Je ne propose que ce que j’ai testé.</p></div></div>
+        <div class="flex items-start gap-4"><span class="text-3xl">🤝</span><div><h3 class="font-bold text-lg">Un vrai voyageur, pas un tour-opérateur</h3><p class="text-gray-600 text-sm mt-1">Je construis chaque séjour avec des partenaires locaux de confiance.</p></div></div>
+        <div class="flex items-start gap-4"><span class="text-3xl">❤️</span><div><h3 class="font-bold text-lg">Une communauté</h3><p class="text-gray-600 text-sm mt-1">Les clients repartent avec des amitiés solides, et certains refont des voyages ensemble.</p></div></div>
+        <div class="flex items-start gap-4"><span class="text-3xl">📋</span><div><h3 class="font-bold text-lg">La transparence</h3><p class="text-gray-600 text-sm mt-1">Prix transparent : ce qui est indiqué comme inclus est vraiment compris dans le tarif.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gradient-to-br from-stone-800 to-amber-900 text-white">
+    <div class="container mx-auto px-4 max-w-2xl text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Votre voyage commence ici</h2>
+      <p class="text-stone-200 mb-8 text-lg">Une destination vous tente ? Une question sur les formules ? Échangeons simplement.</p>
+      <a href="index.html#contact" class="btn-orange text-lg px-10 py-3.5 shadow-xl">Parler de mon projet</a>
+      <p class="text-sm text-stone-300 mt-6">Ou appelez-moi : <a href="tel:+33610950984" class="underline font-semibold text-white">06 10 95 09 84</a></p>
+    </div>
+  </section>
+
+  <footer class="bg-stone-900 py-6">
+    <div class="container mx-auto px-4 text-center">
+      <p class="text-stone-300 text-sm">© 2026 – VPDVOYAGES – Patrick Daroque – Travel Planner. Tous droits réservés.<br>
+      n° siret : 52534368700030 · <a href="cgv.html" class="underline">CGV</a> · <a href="mentions-legales.html" class="underline">Mentions légales</a></p>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    var CONFIG = { min: 2, max: 5, annee: 2027, email: "contact@vpdvoyages.com", endpoint: "https://formspree.io/f/xzedqggz" };
+    
+    var CATALOGUE = [
+      { pays: "Argentine", couleur: "#9be3e3" },
+      { pays: "Colombie", couleur: "#a8e063" },
+      { pays: "Cuba", couleur: "#ffe94d" },
+      { pays: "Espagne", couleur: "#ff7a7a" },
+      { pays: "Uruguay", couleur: "#8fd0e3" }
+    ];
+
+    var TARIFS = [
+      { pays: "Argentine", sejours: [
+        { nom: "Rio de la Plata : le berceau du Tango", serenite: 3320, autonomie: 1290 },
+        { nom: "Tango et Bodegas", serenite: 3640, autonomie: 1540 },
+        { nom: "Buenos Aires & Iguazu : Ville et Nature en mouvement", cle: "Buenos Aires et Iguazu", serenite: 3775, autonomie: 1900 },
+        { nom: "Buenos Aires, Mendoza et les Andes", serenite: 0, autonomie: 0 }
+      ]},
+      { pays: "Colombie", sejours: [
+        { nom: "Le Triangle Magique", serenite: 0, autonomie: 1390 },
+        { nom: "La Magie réaliste", serenite: 3250, autonomie: 1590 },
+        { nom: "Festival de tango Medellin", serenite: 0, autonomie: 1475 },
+        { nom: "Cali, capitale de la salsa", serenite: 0, autonomie: 0 }
+      ]},
+      { pays: "Cuba", sejours: [
+        { nom: "Découverte, patrimoine et traditions", serenite: 3490, autonomie: 1490 },
+        { nom: "Festival de Tango de La Havane", serenite: 3025, autonomie: 1220 },
+        { nom: "Traversée de l'île à vélo", serenite: 0, autonomie: 0 },
+        { nom: "Randonnee a Vinales et Trinidad", serenite: 0, autonomie: 0 }
+      ]},
+      { pays: "Espagne (escapades de 4 jours)", sejours: [
+        { nom: "La Rioja", serenite: 858, autonomie: 490 },
+        { nom: "Valence", serenite: 989, autonomie: 540 },
+        { nom: "Les Pics d'Europe", serenite: 817, autonomie: 420 },
+        { nom: "Salamanque", serenite: 882, autonomie: 480 },
+        { nom: "Ribera del Duero", serenite: 810, autonomie: 460 },
+        { nom: "Matarraña", serenite: 747, autonomie: 430 },
+        { nom: "Bilbao", serenite: 0, autonomie: 520 },
+        { nom: "Barcelone", serenite: 0, autonomie: 0 }
+      ]},
+      { pays: "Uruguay", sejours: [
+        { nom: "Rio de la Plata : le berceau du Tango", serenite: 3320, autonomie: 1290 },
+        { nom: "Uruguay avec les gauchos", serenite: 3590, autonomie: 1590 }
+      ]}
+    ];
+    var TXT_TARIF_EN_COURS = "Bientôt disponible / Co-création";
+
+    function tarifSerenite(pays, sejour) {
+      var np = norm(pays), ns = norm(sejour), prix = 0;
+      TARIFS.forEach(function (g) {
+        if (norm(g.pays).indexOf(np) !== 0) return;
+        g.sejours.forEach(function (s) {
+          var sn = norm(s.cle || s.nom);
+          if (sn === ns || ns.indexOf(sn) !== -1 || sn.indexOf(ns) !== -1) {
+            prix = Number(s.serenite) || 0;
+          }
+        });
+      });
+      return prix;
+    }
+
+    function renderTarifs() {
+      var tbody = document.getElementById("tarifs-body");
+      if (!tbody) return;
+      var h = "";
+      TARIFS.forEach(function (g) {
+        h += '<tr class="tarif-pays"><td colspan="4">' + g.pays + '</td></tr>';
+        g.sejours.forEach(function (s) {
+          var auto = Number(s.autonomie) || 0;
+          var sere = Number(s.serenite) || 0;
+          
+          h += '<tr><td></td><td>' + s.nom + '</td>';
+          
+          // Colonne Prix affiché (remplace Autonomie)
+          if (auto > 0) {
+            h += '<td class="tarif-prix">' + eur(auto) + '</td>';
+          } else {
+            h += '<td class="tarif-encours">' + TXT_TARIF_EN_COURS + '</td>';
+          }
+          
+          // Colonne Sérénité
+          if (sere > 0) {
+            h += '<td class="tarif-prix"><strong>' + eur(sere) + '</strong></td>';
+          } else {
+            h += '<td class="tarif-encours">' + TXT_TARIF_EN_COURS + '</td>';
+          }
+          
+          h += '</tr>';
+        });
+      });
+      tbody.innerHTML = h;
+    }
+
+    var SHEET_URL ="https://docs.google.com/spreadsheets/d/e/2PACX-1vRR8d9TYHQF99gLuPjje3F1Vt6dMYjAkuTR5aHRmCJW5DHJQUQTp3tem5V4azLR1JtcWPSFJDLuvW9X/pub?output=csv";
+    var DEPARTS = [];
+
+    function norm(s) {
+      return String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+    }
+    function normKey(pays, sejour) { return norm(pays) + "|" + norm(sejour); }
+
+    function parseCSV(text) {
+      var rows = [], row = [], cell = "", inQ = false;
+      for (var i = 0; i < text.length; i++) {
+        var c = text.charAt(i);
+        if (inQ) {
+          if (c === '"') {
+            if (text.charAt(i + 1) === '"') { cell += '"'; i++; }
+            else { inQ = false; }
+          } else { cell += c; }
+        } else if (c === '"') { inQ = true; }
+        else if (c === ",") { row.push(cell); cell = ""; }
+        else if (c === "\n" || c === "\r") {
+          if (c === "\r" && text.charAt(i + 1) === "\n") i++;
+          row.push(cell); cell = ""; rows.push(row); row = [];
+        } else { cell += c; }
+      }
+      if (cell !== "" || row.length) { row.push(cell); rows.push(row); }
+      return rows;
+    }
+
+    function chargerDepuisSheet() {
+      fetch(SHEET_URL)
+        .then(function(response) { return response.text(); })
+        .then(function(csv) {
+          var lignes = parseCSV(csv);
+          var nouveauxDeparts = [];
+          
+          for (var i = 1; i < lignes.length; i++) {
+            var cols = lignes[i];
+            if (cols.length >= 3 && cols[0].trim() !== "") {
+              var pays = cols[0].trim();
+              var sejour = cols[1].trim();
+              var inscrits = parseInt(cols[2].trim(), 10) || 0;
+              var dateLimite = cols[3] ? cols[3].trim() : "";
+              var profilPerso = cols[4] ? cols[4].trim() : "";
+              
+              var infoBase = getInfosBase(pays, sejour, profilPerso);
+              
+              nouveauxDeparts.push({
+                pays: pays,
+                sejour: sejour,
+                inscrits: inscrits,
+                dateLimite: dateLimite,
+                saison: infoBase.saison,
+                dates: infoBase.dates,
+                genre: infoBase.genre,
+                profil: infoBase.profil
+              });
+            }
+          }
+          
+          DEPARTS = nouveauxDeparts;
+          syncCountryCards();
+          render();
+        })
+        .catch(function(error) {
+          console.error("Erreur de chargement du Google Sheet:", error);
+          render();
+        });
+    }
+
+    function getInfosBase(pays, sejour, profilPerso) {
+      var base = {
+        "Argentine|Tango et Bodegas": { saison: "A", dates: "12 – 29 octobre 2027", genre: "M", profil: "femme 55-60 ans, homme 60-65 ans", photo: "Images/Tango Bodegas.jpg" },
+        "Argentine|Buenos Aires et Iguazu": { saison: "P", dates: "5 – 22 avril 2027", genre: "M", profil: "Femme 55 ans, Homme 56 ans, Femme 65 ans", photo: "Images/foz-do-iguacu.jpg" }, 
+        "Argentine|Rio de la Plata - le berceau du Tango": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/argentine.jpg" }, 
+        "Argentine|Buenos Aires Mendoza et les Andes": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/BsAs Mza Andes.jpg" }, 
+        
+        "Colombie|La Magie realiste": { saison: "P", dates: "dates à confirmer", genre: "F", profil: "femme 50-64 ans", photo: "Images/Colombie.jpg" }, 
+        "Colombie|Cali - capitale de la salsa": { saison: "E", dates: "8 – 25 juillet 2027", genre: "M", profil: "2 femmes 40-50 ans, homme 45-55 ans", photo: "Images/Cali Salsa.jpg" }, 
+        "Colombie|Le Triangle Magique": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/Colombie Triangle magique.jpg" }, 
+        "Colombie|Festival de tango Medellin": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/Tango Medellino.jpeg" }, 
+        
+        "Cuba|Decouverte - patrimoine et traditions": { saison: "H", dates: "15 janvier – 1er fevrier 2027", genre: "H", profil: "homme 60-65 ans", photo: "Images/Cuba Découverte.jpg" }, 
+        "Cuba|Festival de Tango de La Havane": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/Cuba Tango.jpg" }, 
+        "Cuba|Traversee de l'ile a velo": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/Cuba a velo.jpg" }, 
+        "Cuba|Randonnee a Vinales et Trinidad": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/Cuba - Randonnée Vinales Trinidad.jpg" }, 
+        
+        "Espagne|La Rioja": { saison: "A", dates: "4 jours en octobre 2027", genre: "F", profil: "femme 50-60 ans", photo: "Images/Ribera del Duero.jpeg" }, 
+        "Espagne|Ribera del Duero": { saison: "P", dates: "4 jours au printemps 2027", genre: "M", profil: "2 femmes 45-55 ans", photo: "Images/Ribera del Duero.jpeg" }, 
+        "Espagne|Valence": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/valencia.jpg" }, 
+        "Espagne|Les Pics d'Europe": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/Pics_europe.jpg" }, 
+        "Espagne|Salamanque": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/Salamanque.jpg" }, 
+        "Espagne|Matarrana": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/Matarraña.jpeg" }, 
+        "Espagne|Bilbao": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/Bilbao.jpg" }, 
+        "Espagne|Barcelone": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/barcelone.jpg" }, 
+        
+        "Uruguay|Rio de la Plata - le berceau du Tango": { saison: "P", dates: "dates à confirmer", genre: "M", profil: "profil à confirmer", photo: "Images/argentine.jpg" }, 
+        "Uruguay|Uruguay avec les gauchos": { saison: "A", dates: "10 – 27 novembre 2027", genre: "M", profil: "homme et femme 55-65 ans", photo: "Images/gauchos.jpeg" } 
+      };
+      
+      var nk = normKey(pays, sejour), res = null;
+      Object.keys(base).forEach(function (k) {
+        var p = k.split("|");
+        if (normKey(p[0], p[1]) === nk) res = base[k];
+      });
+      if (!res) res = { saison: "P", dates: "dates à confirmer", genre: "M", profil: "Profil à confirmer", photo: "Images/argentine.jpg" };
+      if (profilPerso) res.profil = profilPerso;
+      return res;
+    }
+
+    var SAISONS = { H: "Hiver", P: "Printemps", E: "Été", A: "Automne" };
+    var root = document.getElementById("vpd-solo");
+    var paysNav = document.getElementById("vpd-pays-nav-hero");
+    var openKey = "", ctx = {};
+
+    function accordGenre(genre, nbInscrits) {
+      var singulier = (nbInscrits === 1);
+      if (genre === "H") {
+        return {
+          titre: singulier ? "Un voyageur a déjà réservé ce départ" : "Des voyageurs ont déjà réservé ce départ",
+          sousTitre: singulier ? "Il sera ravi de partager ce voyage avec vous" : "Ils seront ravis de partager ce voyage avec vous",
+          initiale: "H"
+        };
+      } else if (genre === "F") {
+        return {
+          titre: singulier ? "Une voyageuse a déjà réservé ce départ" : "Des voyageuses ont déjà réservé ce départ",
+          sousTitre: singulier ? "Elle sera ravie de partager ce voyage avec vous" : "Elles seront ravies de partager ce voyage avec vous",
+          initiale: "F"
+        };
+      } else {
+        return {
+          titre: "Des voyageurs ont déjà réservé ce départ",
+          sousTitre: "Ils seront ravis de partager ce voyage avec vous",
+          initiale: String(nbInscrits)
+        };
+      }
+    }
+
+    function profilMessage(nbInscrits, profilTexte, genre, dateLimite) {
+      var reste = CONFIG.min - nbInscrits;
+      var confirmed = nbInscrits >= CONFIG.min;
+      var cardClass = confirmed ? "profil-card confirmed" : "profil-card";
+      var acc = accordGenre(genre || "M", nbInscrits);
+      
+      var statutLabel;
+      if (confirmed) {
+        var places = CONFIG.max - nbInscrits;
+        statutLabel = "Départ confirmé — il reste " + places + " place" + (places > 1 ? "s" : "");
+      } else {
+        statutLabel = "Il manque " + reste + " personne" + (reste > 1 ? "s" : "") + " pour confirmer";
+      }
+      
+      var tagProfils = "";
+      if (profilTexte && profilTexte !== "Profil à confirmer") {
+        var profils = profilTexte.split(",").map(function(p){ return p.trim(); });
+        tagProfils = profils.map(function(p) {
+          if (p) return '<span class="profil-tag">' + p + '</span>';
+        }).join("");
+      } else {
+        tagProfils = '<span class="profil-tag">Profil à confirmer</span>';
+      }
+      
+      var note = "Vous n'avez pas besoin d'avoir le même profil";
+      
+      var deadlineHtml = "";
+      if (confirmed && dateLimite) {
+        deadlineHtml = '<div class="deadline-banner">' +
+          '<span class="dl-icon">⏳</span>' +
+          '<span class="dl-text"><strong>Date limite d\'inscription : ' + dateLimite + '</strong> — après cette date, le groupe est figé.</span>' +
+          '</div>';
+      }
+      
+      return '<div class="' + cardClass + '">' +
+        '<div class="profil-photo-container">' +
+          '<div class="profil-photo">' + nbInscrits + '</div>' +
+        '</div>' +
+        '<div class="profil-content">' +
+          '<p class="profil-titre">' + acc.titre + '</p>' +
+          '<div class="profil-tags">' + tagProfils + '</div>' +
+          '<p class="profil-sous-titre">' + acc.sousTitre + '</p>' +
+          '<span class="profil-note">' + note + '</span>' +
+        '</div>' +
+        '<div class="profil-statut">' +
+          '<span class="profil-statut-compteur">' + nbInscrits + ' / ' + CONFIG.max + '</span>' +
+          '<span class="profil-statut-label">' + statutLabel + '</span>' +
+        '</div>' +
+        deadlineHtml +
+      '</div>';
+    }
+
+    function eur(n) { return n.toLocaleString("fr-FR") + " €"; }
+
+    function prixTexte(d) {
+      if (d && d.prix) {
+        return Object.keys(d.prix).map(function (n) { return "à " + n + " voyageurs : " + eur(d.prix[n]); }).join(", ") + " par personne";
+      }
+      var base = d ? tarifSerenite(d.pays, d.sejour) : 0;
+      return base ? eur(base) + " par personne (tarif de base pour " + CONFIG.min + " voyageurs)" : "Tarif en cours de calcul";
+    }
+
+    function prixHtml(d) {
+      return '<strong>Tarif Sérénité :</strong> ' + prixTexte(d) +
+        '. <span class="text-xs text-gray-500">Prix indicatif : plus vous êtes nombreux (jusqu\'à ' + CONFIG.max + '), plus le tarif baisse.</span>';
+    }
+
+    function lettresProfil(d) {
+      var out = [];
+      var texteProfil = d.profil || "";
+      var segments = texteProfil.split(/,|\bet\b/);
+      
+      segments.forEach(function (seg) {
+        var m = seg.trim().match(/^(?:(\d+)\s*)?(femme|homme)/i);
+        if (m) {
+          var n = m[1] ? parseInt(m[1], 10) : 1;
+          var lettre = m[2].toLowerCase() === "femme" ? "F" : "H";
+          for (var i = 0; i < n; i++) out.push(lettre);
+        } else if (seg.toLowerCase().includes("femme")) {
+          out.push("F");
+        } else if (seg.toLowerCase().includes("homme")) {
+          out.push("H");
+        }
+      });
+      
+      while (out.length < d.inscrits) out.push("·");
+      return out.slice(0, d.inscrits);
+    }
+
+    function avatarsHtml(d) {
+      var conf = d.inscrits >= CONFIG.min;
+      var h = lettresProfil(d).map(function (l) { return '<span class="dc-a ' + (conf ? "ok" : "w") + '">' + l + '</span>'; }).join("");
+      if (d.inscrits < CONFIG.max) h += conf ? '<span class="dc-a e">+</span>' : '<span class="dc-a you">?</span>';
+      return '<div class="dc-av" role="img" aria-label="' + d.inscrits + ' inscrit' + (d.inscrits > 1 ? "s" : "") + ' sur ' + CONFIG.max + ' places">' + h + '</div>';
+    }
+
+    function profilTexteCompact(d) {
+      var t = d.profil || "";
+      return t.split(",").map(function (p) {
+        p = p.trim();
+        if (!p) return "";
+        return '<span class="dc-pl">' + p.charAt(0).toUpperCase() + p.slice(1) + '</span>';
+      }).join("");
+    }
+
+    function findDepart(pays, sejour) {
+      for (var i = 0; i < DEPARTS.length; i++) {
+        if (normKey(DEPARTS[i].pays, DEPARTS[i].sejour) === normKey(pays, sejour)) {
+          return DEPARTS[i];
+        }
+      }
+      return null;
+    }
+
+    function carteDepart(d, k, isConfirme) {
+      var restantes = CONFIG.max - d.inscrits;
+      var manque = CONFIG.min - d.inscrits;
+      var chipCls = !isConfirme ? "w" : (restantes <= 0 ? "full" : "ok");
+      var chipTxt = !isConfirme ? "Il manque " + manque + " voyageur" + (manque > 1 ? "s" : "")
+        : (restantes <= 0 ? "Complet" : "Départ confirmé");
+      var libres = (isConfirme && restantes > 0) ? restantes + " place" + (restantes > 1 ? "s" : "") + " libre" + (restantes > 1 ? "s" : "") : "";
+      
+      var photo = "Images/argentine.jpg";
+      var thumbDiv = document.querySelector('.sej-card .btn-lancer[data-sejour="' + d.sejour + '"]');
+      if (thumbDiv) {
+        var cardEl = thumbDiv.closest('.sej-card');
+        var thumbBg = cardEl ? cardEl.querySelector('.sej-thumb') : null;
+        if (thumbBg) {
+          var bgStyle = thumbBg.style.backgroundImage;
+          var matchImg = bgStyle.match(/url\(['"]?(.*?)['"]?\)/i);
+          if (matchImg) photo = matchImg[1];
+        }
+      }
+
+      var h = '<div class="depart-item' + (isConfirme ? ' confirme' : '') + (openKey === k ? ' open' : '') + '" data-alerte-open="' + k + '" role="button" tabindex="0" aria-expanded="' + (openKey === k) + '">';
+      h += '<div class="depart-content">';
+      h += '<div class="depart-pays">' + d.pays + ' · ' + SAISONS[d.saison] + ' ' + CONFIG.annee + '</div>';
+      h += '<div class="depart-titre">' + d.sejour + '</div>';
+      h += avatarsHtml(d);
+      if (d.profil && d.profil !== "Profil à confirmer") h += '<div class="dc-profil">' + profilTexteCompact(d) + '</div>';
+      h += '<span class="dc-chip ' + chipCls + '">' + chipTxt + '</span>';
+      if (libres) h += '<div class="dc-libres">' + libres + '</div>';
+      h += '</div>';
+      h += '<div class="depart-thumb" style="background-image:url(' + photo + ');"><span class="depart-chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div>';
+      h += '</div>';
+
+      if (openKey === k) {
+        ctx[k] = { pays: d.pays, sejour: d.sejour, dep: d };
+        h += '<div class="depart-detail' + (isConfirme ? ' confirme' : '') + '">';
+        h += '<p class="mb-3 text-sm"><strong>' + d.sejour + '</strong> (' + SAISONS[d.saison] + ' ' + CONFIG.annee + ' · ' + (d.dates || "dates à confirmer") + ')</p>';
+        h += profilMessage(d.inscrits, d.profil, d.genre, d.dateLimite);
+        h += '<p class="depart-prix">' + prixHtml(d) + '</p>';
+        h += '<button type="button" class="go' + (isConfirme ? ' go-green' : '') + '" data-form-open="' + k + '">' + (isConfirme ? 'Rejoindre ce départ' : 'Je m\'intéresse à ce départ') + '</button>';
+        h += '</div>';
+      }
+      
+      return h;
+    }
+
+    function syncCountryCards() {
+      document.querySelectorAll('.sej-card').forEach(function (card) {
+        var btn = card.querySelector('.btn-lancer');
+        var body = card.querySelector('.sej-body');
+        if (!btn || !body) return;
+        if (card.dataset.compact === undefined) card.dataset.compact = btn.classList.contains('text-sm') ? "1" : "0";
+        var pays = btn.dataset.pays, sejour = btn.dataset.sejour;
+        var h4 = body.querySelector('h4');
+        var titre = h4 ? h4.textContent : sejour;
+        var attrs = 'data-pays="' + pays + '" data-sejour="' + sejour + '"';
+        var d = findDepart(pays, sejour);
+        card.classList.remove('confirmed', 'full');
+        
+        var h;
+        
+        if (!d || d.inscrits === 0) {
+          h = '<h4 class="font-semibold">' + titre + '</h4>' +
+            '<p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p>' +
+            '<button class="btn-lancer' + (card.dataset.compact === "1" ? ' text-sm' : '') + '" ' + attrs + '>🚀 Lancer ce séjour</button>';
+        } else {
+          var conf = d.inscrits >= CONFIG.min;
+          var restantes = CONFIG.max - d.inscrits;
+          var tone = !conf ? "orange" : (restantes <= 1 ? "amber" : "green");
+          if (conf) card.classList.add(restantes <= 1 ? 'full' : 'confirmed');
+          var msg = !conf ? "🔥 Un départ cherche ses voyageurs !"
+            : restantes <= 0 ? "🔒 Complet"
+            : restantes === 1 ? "🔥 Presque complet — 1 place libre !"
+            : "✅ Départ confirmé ! " + restantes + " places libres";
+          h = '<h4 class="font-semibold text-' + tone + '-800">' + titre + '</h4>' +
+            '<p class="text-sm text-' + tone + '-700 mt-1">' + msg + '</p>' +
+            '<p class="text-xs text-gray-600 mt-1">' + SAISONS[d.saison] + ' ' + CONFIG.annee + ' · ' + (d.dates || "dates à confirmer") + '</p>' +
+            '<div class="profil-card-slot" data-slot-pays="' + pays + '" data-slot-sejour="' + sejour + '"></div>' +
+            '<button class="btn-lancer' + (conf ? ' green' : '') + '" ' + attrs + ' data-depart="1">' + (conf ? "Rejoindre ce départ" : "Je m\'intéresse à ce départ") + '</button>';
+        }
+        body.innerHTML = h;
+      });
+    }
+
+    function renderPaysNav() {
+      var h = '<div class="flex flex-wrap gap-1.5 sm:gap-2 justify-center w-full">';
+      h += '<button type="button" class="on" data-pays="">Tous</button>';
+      h += '<button type="button" data-pays="Argentine"><span class="pastille" style="background:#9be3e3"></span>Argentine</button>';
+      h += '<button type="button" data-pays="Colombie"><span class="pastille" style="background:#a8e063"></span>Colombie</button>';
+      h += '</div>';
+      h += '<div class="flex flex-wrap gap-1.5 sm:gap-2 justify-center w-full">';
+      h += '<button type="button" data-pays="Cuba"><span class="pastille" style="background:#ffe94d"></span>Cuba</button>';
+      h += '<button type="button" data-pays="Espagne"><span class="pastille" style="background:#ff7a7a"></span>Espagne</button>';
+      h += '<button type="button" data-pays="Uruguay"><span class="pastille" style="background:#8fd0e3"></span>Uruguay</button>';
+      h += '</div>';
+      paysNav.innerHTML = h;
+    }
+
+    function render() {
+      renderPaysNav();
+      var h = "";
+      
+      var enAttente = DEPARTS.filter(function(d) { return d.inscrits > 0 && d.inscrits < CONFIG.min; });
+      var confirmes = DEPARTS.filter(function(d) { return d.inscrits >= CONFIG.min; });
+
+      h += '<div class="grid grid-cols-1 gap-4 mb-6">';
+
+      if (confirmes.length > 0) {
+        h += '<div class="card confirme-card" style="margin-bottom:0;">';
+        h += '<p class="font-bold text-green-800 text-base mb-3">✅ ' + confirmes.length + ' départ' + (confirmes.length > 1 ? 's' : '') + ' confirmé' + (confirmes.length > 1 ? 's' : '') + '</p>';
+        h += '<div class="dep-grid">';
+        confirmes.forEach(function(d) {
+          var k = "d|" + d.pays + "|" + DEPARTS.indexOf(d);
+          h += carteDepart(d, k, true);
+        });
+        h += '</div>';
+        h += '<p class="text-xs text-center text-gray-500 mt-3">👆 Cliquez sur un départ pour voir le détail</p></div>';
+      }
+
+      if (enAttente.length > 0) {
+        h += '<div class="card alerte-card" style="margin-bottom:0;">';
+        h += '<p class="font-bold text-orange-800 text-base mb-3">🔥 ' + enAttente.length + ' départ' + (enAttente.length > 1 ? 's' : '') + ' cherche' + (enAttente.length > 1 ? 'nt leurs' : ' ses') + ' voyageurs !</p>';
+        h += '<div class="dep-grid">';
+        enAttente.forEach(function(d) {
+          var k = "d|" + d.pays + "|" + DEPARTS.indexOf(d);
+          h += carteDepart(d, k, false);
+        });
+        h += '</div>';
+        h += '<p class="text-xs text-center text-gray-500 mt-3">👆 Cliquez sur un départ pour voir le détail</p></div>';
+      }
+
+      h += '</div>';
+
+      if (enAttente.length === 0 && confirmes.length === 0) {
+        h += '<div class="card" style="background:#f0fdf4;border:2px solid #86efac;text-align:center"><p class="text-green-700 font-bold">Aucun départ pour le moment. <a href="#pays-sections" class="underline">Lancez le vôtre !</a></p></div>';
+      }
+      
+      root.innerHTML = h;
+      
+      document.querySelectorAll('.profil-card-slot').forEach(function(slot) {
+        var pays = slot.dataset.slotPays;
+        var sejour = slot.dataset.slotSejour;
+        var dep = findDepart(pays, sejour);
+        if (dep) {
+          slot.innerHTML = profilMessage(dep.inscrits, dep.profil, dep.genre, dep.dateLimite);
+        }
+      });
+    }
+
+    document.querySelectorAll('[data-pays-toggle]').forEach(function(header) {
+      header.addEventListener('click', function() {
+        var code = this.dataset.paysToggle;
+        var map = { arg: "Argentine", col: "Colombie", cuba: "Cuba", esp: "Espagne", uru: "Uruguay" };
+        var card = document.getElementById("pays-" + map[code]);
+        if (card) card.classList.toggle("open");
+      });
+    });
+
+    var btnThematiques = document.getElementById('btn-interet-thematiques');
+    if (btnThematiques) {
+      btnThematiques.addEventListener('click', function () {
+        var container = document.getElementById('form-thematiques-container');
+        if (!container) return;
+        if (container.innerHTML !== '') { container.innerHTML = ''; return; }
+
+        var html = '<div class="inline-form text-left mt-4 max-w-xl mx-auto">' +
+          '<strong>✨ Co-créutez votre voyage Tango à Buenos Aires</strong>' +
+          '<label>Quelle(s) thématique(s) vous inspire(nt) ?' +
+          '<select name="thematique_prefere">' +
+          '<option value="Femmes seules">🌹 Voyage tango femmes seules : sécurité & liberté</option>' +
+          '<option value="Hommes seuls">🍷 Voyage tango hommes seuls : camaraderie & terroir</option>' +
+          '<option value="Tango-therapie">🌿 Tango-thérapie & bien-être intérieur</option>' +
+          '<option value="Milongas secretes">🌙 Les milongas secrètes et insolites</option>' +
+          '<option value="Carlos Gardel">🎩 Sur les traces de Carlos Gardel</option>' +
+          '<option value="Plusieurs ou Sur-mesure">✨ Plusieurs thématiques / Sur-mesure</option>' +
+          '</select></label>' +
+          '<label>Prénom<input type="text" name="prenom" autocomplete="given-name"></label>' +
+          '<label>E-mail<input type="email" name="email" autocomplete="email"></label>' +
+          '<label>Je suis<select name="sexe"><option>Une femme</option><option>Un homme</option></select></label>' +
+          '<label>Tranche d\'âge<select name="age"><option>18-34</option><option>35-49</option><option>50-64</option><option>65 et plus</option></select></label>' +
+          '<label>Précision ou message (optionnel)<textarea name="message" rows="2" placeholder="Vos attentes, vos dates de préférence..."></textarea></label>' +
+          '<div class="chk"><input type="checkbox" id="c_tango" name="c_tango" checked><label for="c_tango">J\'accepte que VPDVOYAGES me recontacte au sujet de ces projets thématiques.</label></div>' +
+          '<button type="button" class="submit-inline" id="submit-tango">Envoyer mon intérêt</button>' +
+          '<div class="res" role="status"></div>' +
+          '</div>';
+
+        container.innerHTML = html;
+
+        container.querySelector('#submit-tango').addEventListener('click', function () {
+          var prenom = container.querySelector('[name=prenom]').value.trim();
+          var email = container.querySelector('[name=email]');
+          var c_tango = container.querySelector('[name=c_tango]');
+          var res = container.querySelector('.res');
+          
+          if (!prenom || !email.value || !email.validity.valid || !c_tango.checked) {
+            res.textContent = "Complétez votre prénom, un e-mail valide et cochez la case.";
+            return;
+          }
+
+          var data = {
+            formule: "Projet Thématique Tango Sur-mesure",
+            pays: "Argentine",
+            thematique: container.querySelector('[name=thematique_prefere]').value,
+            prenom: prenom,
+            email: email.value,
+            sexe: container.querySelector('[name=sexe]').value,
+            age: container.querySelector('[name=age]').value,
+            message: container.querySelector('[name=message]').value
+          };
+
+          if (CONFIG.endpoint) {
+            fetch(CONFIG.endpoint, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data) })
+              .then(function (x) { if (!x.ok) throw 0; res.textContent = "Merci ! Votre intérêt est bien enregistré. Nous vous recontactons rapidement."; })
+              .catch(function () { res.textContent = "Envoi impossible. Écrivez-nous à " + CONFIG.email + "."; });
+          } else {
+            var body = Object.keys(data).map(function (k) { return k + " : " + data[k]; }).join("\n");
+            location.href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Demande Thématique Tango – Argentine") + "&body=" + encodeURIComponent(body);
+            res.textContent = "Votre messagerie s'ouvre : envoyez le message pour valider.";
+          }
+        });
+      });
+    }
+
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.btn-lancer, .go');
+      if (!btn || btn.id === 'btn-interet-thematiques') return;
+      var pays = btn.dataset.pays;
+      var sejour = btn.dataset.sejour;
+      var isDepart = btn.dataset.depart === "1";
+
+      if (!pays && btn.dataset.formOpen) {
+        var c = ctx[btn.dataset.formOpen];
+        if (c) { pays = c.pays; sejour = c.sejour; isDepart = true; }
+      }
+      if (!pays) return;
+
+      var parent = btn.closest('.sej-body') || btn.closest('.depart-detail');
+      if (!parent) return;
+
+      var existing = parent.querySelector('.inline-form');
+      if (existing) { existing.remove(); return; }
+      document.querySelectorAll('.inline-form').forEach(function (f) { f.remove(); });
+
+      var dep = isDepart ? findDepart(pays, sejour) : null;
+      
+      // RECHERCHE DU TARIF (même si le départ n'est pas encore créé dans DEPARTS)
+      var tarifTrouve = tarifSerenite(pays, sejour);
+      var tarifConnu = tarifTrouve > 0;
+      
+      var uid = (pays + "-" + sejour).replace(/[^A-Za-z0-9]/g, "");
+
+      // BLOC PRIX AVEC FORMATAGE CLAIR
+      var boxPrix = '<div class="form-prix-box">' +
+        '<strong>Tarif Sérénité</strong>' +
+        (tarifConnu 
+          ? '<span class="price-val">' + eur(tarifTrouve) + ' par personne</span> (tarif de base pour ' + CONFIG.min + ' voyageurs).' +
+            '<span>Prix dégressif : plus vous êtes nombreux (jusqu\'à ' + CONFIG.max + '), plus le tarif baisse.</span>'
+          : 'Tarif en cours de calcul.' +
+            '<span>Nous vous tiendrons informé(e) dès que le tarif sera défini.</span>') +
+        '</div>';
+
+      var formHtml = '<div class="inline-form">' +
+        '<strong>' + (isDepart ? "Je m'intéresse à ce départ" : "Je suis intéressé(e) par ce séjour") + '</strong>' +
+        (isDepart ? '' : '<label>Saison souhaitée<select name="saison"><option value="H">Hiver 2027</option><option value="P" selected>Printemps 2027</option><option value="E">Été 2027</option><option value="A">Automne 2027</option></select></label>') +
+        '<label>Prénom<input type="text" name="prenom" autocomplete="given-name"></label>' +
+        '<label>E-mail<input type="email" name="email" autocomplete="email"></label>' +
+        '<label>Je suis<select name="sexe"><option>Une femme</option><option>Un homme</option></select></label>' +
+        '<label>Tranche d\'âge<select name="age"><option>18-34</option><option>35-49</option><option>50-64</option><option>65 et plus</option></select></label>' +
+        boxPrix + 
+        (isDepart ? '<div class="chk"><input type="checkbox" id="c1-' + uid + '" name="c1"><label for="c1-' + uid + '">' +
+          (tarifConnu
+            ? 'J\'accepte le tarif de ce départ en formule Sérénité (' + eur(tarifTrouve) + ' par personne). Le départ est confirmé dès que ' + CONFIG.min + ' voyageurs ont accepté le tarif.'
+            : 'Je souhaite être informé(e) du tarif de ce départ en formule Sérénité dès qu\'il est calculé. Aucun engagement : j\'accepterai ou non le tarif à ce moment-là.') +
+          '</label></div>' : '') +
+        '<div class="chk"><input type="checkbox" id="c2-' + uid + '" name="c2"><label for="c2-' + uid + '">J\'accepte que VPDVOYAGES me mette en relation avec d\'autres voyageurs intéressés.</label></div>' +
+        '<button type="button" class="submit-inline">' + (isDepart ? "Je m'inscris sur ce départ" : "Me prévenir et me mettre en relation") + '</button>' +
+        '<div class="res" role="status"></div>' +
+        '</div>';
+
+      parent.insertAdjacentHTML('beforeend', formHtml);
+
+      var formBox = parent.querySelector('.inline-form');
+      formBox.querySelector('.submit-inline').addEventListener('click', function () {
+        var prenom = formBox.querySelector('[name=prenom]').value.trim();
+        var email = formBox.querySelector('[name=email]');
+        var c2 = formBox.querySelector('[name=c2]');
+        var c1 = formBox.querySelector('[name=c1]');
+        var res = formBox.querySelector('.res');
+        if (!prenom || !email.value || !email.validity.valid || !c2.checked || (isDepart && c1 && !c1.checked)) {
+          res.textContent = "Complétez votre prénom, un e-mail valide et cochez la ou les cases.";
+          return;
+        }
+        var saisonEl = formBox.querySelector('[name=saison]');
+        var sais = dep
+          ? SAISONS[dep.saison] + " " + CONFIG.annee + " (" + (dep.dates || "dates à confirmer") + ")"
+          : (saisonEl ? "souhaité : " + saisonEl.options[saisonEl.selectedIndex].text : "à définir");
+        var data = {
+          formule: "Sérénité", pays: pays, sejour: sejour, depart: sais,
+          tarif_affiche: tarifConnu ? (eur(tarifTrouve) + " par personne") : "sans objet",
+          accord_tarif: !isDepart ? "sans objet" : (tarifConnu ? "oui" : "non : tarif en cours de calcul, souhaite être informé(e)"),
+          prenom: prenom, email: email.value,
+          sexe: formBox.querySelector('[name=sexe]').value,
+          age: formBox.querySelector('[name=age]').value,
+          accord_mise_en_relation: "oui"
+        };
+        if (CONFIG.endpoint) {
+          fetch(CONFIG.endpoint, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data) })
+            .then(function (x) { if (!x.ok) throw 0; res.textContent = "Vous êtes enregistré ! Nous vous écrivons très vite."; })
+            .catch(function () { res.textContent = "Envoi impossible. Écrivez-nous à " + CONFIG.email + "."; });
+        } else {
+          var body = Object.keys(data).map(function (k) { return k + " : " + data[k]; }).join("\n");
+          location.href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Voyageur solo – " + sejour + " – " + sais) + "&body=" + encodeURIComponent(body);
+          res.textContent = "Votre messagerie s'ouvre : envoyez le message pour valider.";
+        }
+      });
+    });
+
+    paysNav.addEventListener("click", function(e) {
+      var btn = e.target.closest("[data-pays]");
+      if (!btn) return;
+      var pays = btn.dataset.pays;
+      document.querySelectorAll('#vpd-pays-nav-hero button').forEach(function(b) { b.classList.remove('on'); });
+      btn.classList.add('on');
+      if (pays) {
+        var target = document.getElementById("pays-" + pays);
+        if (target) {
+          target.classList.add("open");
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      } else {
+        document.getElementById("departs").scrollIntoView({ behavior: "smooth" });
+      }
+    });
+
+    root.addEventListener("click", function (e) {
+      var al = e.target.closest("[data-alerte-open]");
+      if (al) {
+        openKey = openKey === al.dataset.alerteOpen ? "" : al.dataset.alerteOpen;
+        render();
+        return;
+      }
+    });
+
+    root.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      var al = e.target.closest("[data-alerte-open]");
+      if (!al || e.target !== al) return;
+      e.preventDefault();
+      var k = al.dataset.alerteOpen;
+      openKey = openKey === k ? "" : k;
+      render();
+      var again = root.querySelector('[data-alerte-open="' + k + '"]');
+      if (again) again.focus();
+    });
+
+    document.querySelector('.nav-toggle').addEventListener('click', function () {
+      document.querySelector('.nav-menu-mobile').classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-menu-mobile a').forEach(function (a) {
+      a.addEventListener('click', function () { document.querySelector('.nav-menu-mobile').classList.remove('active'); });
+    });
+
+    window.addEventListener('DOMContentLoaded', function() {
+      if (window.location.hash === '#pays-Argentine') {
+        var cardArg = document.getElementById('pays-Argentine');
+        if (cardArg) {
+          cardArg.classList.add('open');
+          cardArg.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+
+    renderTarifs();
+    renderPaysNav();
+    syncCountryCards();
+    chargerDepuisSheet();
+  })();
+  </script>
+</body>
+</html>
