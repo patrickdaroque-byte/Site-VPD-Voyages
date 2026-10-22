@@ -107,6 +107,7 @@
       box-shadow: 0 8px 20px rgba(255,255,255,0.2);
     }
     
+    /* STYLES POUR LES FORMULAIRES (Ajoutés depuis voyage-solo.html) */
     .inline-form { background: #fff; border: 2px solid #fdba74; border-radius: 12px; padding: 16px; margin-top: 14px; box-shadow: 0 4px 14px rgba(230,126,34,0.15); }
     .inline-form strong { display: block; margin-bottom: 10px; color: #c2410c; font-size: 1rem; }
     .inline-form label { display: block; margin: 8px 0 3px; font-size: 0.88rem; font-weight: 600; color: #1e293b; }
@@ -117,6 +118,11 @@
     .inline-form .submit-inline { width: 100%; margin-top: 12px; padding: 0.7rem; border: 2px solid #E67E22; border-radius: 50px; background: #E67E22; color: #fff; font-weight: 700; cursor: pointer; font-size: 0.95rem; }
     .inline-form .submit-inline:hover { background: #fff; color: #E67E22; }
     .inline-form .res { margin-top: 8px; font-weight: 600; font-size: 0.9rem; color: #c2410c; }
+    
+    .form-prix-box { background: #fff7ed; border: 1px dashed #fdba74; padding: 10px 14px; border-radius: 8px; margin: 12px 0 16px 0; font-size: 0.9rem; color: #1e293b; line-height: 1.4; }
+    .form-prix-box strong { color: #c2410c; font-size: 1rem; display: block; margin-bottom: 4px; }
+    .form-prix-box .price-val { font-size: 1.1rem; font-weight: 800; color: #b45309; }
+    .form-prix-box span { font-size: 0.8rem; color: #64748b; display: block; margin-top: 4px; font-style: italic; }
   </style>
   <link rel="canonical" href="https://vpdvoyages.com/voyage-tango.html">
 </head>
@@ -209,13 +215,13 @@
             </div>
           </div>
           <div class="country-body" id="body-arg">
-            <div class="sej-card confirmed">
+            <!-- CORRECTION ICI : Retrait de la classe "confirmed" et du texte en dur -->
+            <div class="sej-card">
               <div class="sej-thumb" style="background-image:url('Images/Tango Bodegas.jpg');"></div>
               <div class="sej-body">
-                <h4 class="font-semibold text-green-800">Tango et Bodegas</h4>
-                <p class="text-sm text-green-700 mt-1">✅ Départ confirmé !</p>
-                <p class="text-xs text-gray-600 mt-1">Automne 2027 · 12 – 29 octobre 2027</p>
-                <button class="btn-lancer green" data-pays="Argentine" data-sejour="Tango et Bodegas" data-depart="1" style="background:#16a34a; color:white; padding:8px 18px; border-radius:50px; font-weight:bold; margin-top:8px; border:none;">Rejoindre ce départ</button>
+                <h4 class="font-semibold">Tango et Bodegas</h4>
+                <p class="text-sm text-gray-600 mt-1">Dates envisagées : Automne 2027 · 12 – 29 octobre 2027</p>
+                <button class="btn-lancer" data-pays="Argentine" data-sejour="Tango et Bodegas" style="background:#E67E22; color:white; padding:8px 18px; border-radius:50px; font-weight:bold; margin-top:8px; border:none;">🚀 Lancer ce séjour</button>
               </div>
             </div>
           </div>
@@ -475,16 +481,129 @@
     </div>
   </footer>
 
+  <!-- SCRIPT COMPLET ET CORRIGÉ -->
   <script>
-    document.querySelectorAll('[data-pays-toggle]').forEach(function(header) {
-      header.addEventListener('click', function() {
-        var code = this.dataset.paysToggle;
-        var map = { arg: "Argentine", col: "Colombie", cuba: "Cuba", esp: "Espagne", uru: "Uruguay", projets: "Projets" };
-        var card = document.getElementById("pays-" + map[code]);
-        if (card) card.classList.toggle("open");
+  (function () {
+    var CONFIG = { min: 2, max: 5, email: "contact@vpdvoyages.com", endpoint: "https://formspree.io/f/xzedqggz" };
+    
+    // Tarifs indicatifs (à ajuster selon vos vrais tarifs)
+    var TARIFS = {
+      "Tango et Bodegas": 3640,
+      "Rio de la Plata - le berceau du Tango": 3320,
+      "Festival de Tango de La Havane": 3025,
+      "Festival de tango Medellin": 0,
+      "Valence": 989,
+      "Valladolid": 882,
+      "Saragosse": 817,
+      "Barcelone": 0
+    };
+
+    function eur(n) { return n.toLocaleString("fr-FR") + " €"; }
+
+    // Gestion du clic sur les boutons "Lancer" et "Rejoindre"
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.btn-lancer');
+      if (!btn || btn.id === 'btn-interet-thematiques') return;
+      
+      var pays = btn.dataset.pays;
+      var sejour = btn.dataset.sejour;
+      var isDepart = btn.dataset.depart === "1";
+      if (!pays) return;
+
+      // Trouver le conteneur parent (la carte du séjour)
+      var parent = btn.closest('.sej-body');
+      if (!parent) return;
+
+      // Fermer un éventuel formulaire déjà ouvert
+      var existing = parent.querySelector('.inline-form');
+      if (existing) { existing.remove(); return; }
+      document.querySelectorAll('.inline-form').forEach(function (f) { f.remove(); });
+
+      // Récupérer le tarif
+      var tarifTrouve = TARIFS[sejour] || 0;
+      var tarifConnu = tarifTrouve > 0;
+      var uid = (pays + "-" + sejour).replace(/[^A-Za-z0-9]/g, "");
+
+      // Bloc prix
+      var boxPrix = '<div class="form-prix-box">' +
+        '<strong>Tarif Sérénité</strong>' +
+        (tarifConnu 
+          ? '<span class="price-val">' + eur(tarifTrouve) + ' par personne</span> (tarif de base pour ' + CONFIG.min + ' voyageurs).' +
+            '<span>Prix dégressif : plus vous êtes nombreux (jusqu\'à ' + CONFIG.max + '), plus le tarif baisse.</span>'
+          : 'Tarif en cours de calcul.' +
+            '<span>Nous vous tiendrons informé(e) dès que le tarif sera défini.</span>') +
+        '</div>';
+
+      // Construction du formulaire
+      var formHtml = '<div class="inline-form">' +
+        '<strong>' + (isDepart ? "Je m'intéresse à ce départ" : "Je suis intéressé(e) par ce séjour") + '</strong>' +
+        (isDepart ? '' : '<label>Saison souhaitée<select name="saison"><option value="H">Hiver 2027</option><option value="P" selected>Printemps 2027</option><option value="E">Été 2027</option><option value="A">Automne 2027</option></select></label>') +
+        '<label>Prénom<input type="text" name="prenom" autocomplete="given-name"></label>' +
+        '<label>E-mail<input type="email" name="email" autocomplete="email"></label>' +
+        '<label>Je suis<select name="sexe"><option>Une femme</option><option>Un homme</option></select></label>' +
+        '<label>Tranche d\'âge<select name="age"><option>18-34</option><option>35-49</option><option>50-64</option><option>65 et plus</option></select></label>' +
+        boxPrix + 
+        (isDepart ? '<div class="chk"><input type="checkbox" id="c1-' + uid + '" name="c1"><label for="c1-' + uid + '">' +
+          (tarifConnu
+            ? 'J\'accepte le tarif de ce départ en formule Sérénité (' + eur(tarifTrouve) + ' par personne). Le départ est confirmé dès que ' + CONFIG.min + ' voyageurs ont accepté le tarif.'
+            : 'Je souhaite être informé(e) du tarif de ce départ en formule Sérénité dès qu\'il est calculé. Aucun engagement : j\'accepterai ou non le tarif à ce moment-là.') +
+          '</label></div>' : '') +
+        '<div class="chk"><input type="checkbox" id="c2-' + uid + '" name="c2"><label for="c2-' + uid + '">J\'accepte que VPDVOYAGES me mette en relation avec d\'autres voyageurs intéressés.</label></div>' +
+        '<button type="button" class="submit-inline">' + (isDepart ? "Je m'inscris sur ce départ" : "Me prévenir et me mettre en relation") + '</button>' +
+        '<div class="res" role="status"></div>' +
+        '</div>';
+
+      parent.insertAdjacentHTML('beforeend', formHtml);
+
+      // Gestion de l'envoi du formulaire
+      var formBox = parent.querySelector('.inline-form');
+      formBox.querySelector('.submit-inline').addEventListener('click', function () {
+        var prenom = formBox.querySelector('[name=prenom]').value.trim();
+        var email = formBox.querySelector('[name=email]');
+        var c2 = formBox.querySelector('[name=c2]');
+        var c1 = formBox.querySelector('[name=c1]');
+        var res = formBox.querySelector('.res');
+        
+        if (!prenom || !email.value || !email.validity.valid || !c2.checked || (isDepart && c1 && !c1.checked)) {
+          res.textContent = "Complétez votre prénom, un e-mail valide et cochez la ou les cases.";
+          return;
+        }
+        
+        var saisonEl = formBox.querySelector('[name=saison]');
+        var sais = saisonEl ? saisonEl.options[saisonEl.selectedIndex].text : "à définir";
+        
+        var data = {
+          formule: "Sérénité", 
+          pays: pays, 
+          sejour: sejour, 
+          depart: sais,
+          tarif_affiche: tarifConnu ? (eur(tarifTrouve) + " par personne") : "sans objet",
+          accord_tarif: !isDepart ? "sans objet" : (tarifConnu ? "oui" : "non : tarif en cours de calcul, souhaite être informé(e)"),
+          prenom: prenom, 
+          email: email.value,
+          sexe: formBox.querySelector('[name=sexe]').value,
+          age: formBox.querySelector('[name=age]').value,
+          accord_mise_en_relation: "oui"
+        };
+        
+        if (CONFIG.endpoint) {
+          fetch(CONFIG.endpoint, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data) })
+            .then(function (x) { if (!x.ok) throw 0; res.textContent = "Vous êtes enregistré ! Nous vous écrivons très vite."; })
+            .catch(function () { res.textContent = "Envoi impossible. Écrivez-nous à " + CONFIG.email + "."; });
+        } else {
+          var body = Object.keys(data).map(function (k) { return k + " : " + data[k]; }).join("\n");
+          location.href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Voyageur Tango – " + sejour + " – " + sais) + "&body=" + encodeURIComponent(body);
+          res.textContent = "Votre messagerie s'ouvre : envoyez le message pour valider.";
+        }
       });
     });
 
+    // Gestion du menu mobile
+    document.querySelector('.nav-toggle').addEventListener('click', function () {
+      document.querySelector('.nav-menu').classList.toggle('active');
+    });
+
+    // Gestion du bouton thématiques (conservé de votre code original)
     var btnThematiques = document.getElementById('btn-interet-thematiques');
     if (btnThematiques) {
       btnThematiques.addEventListener('click', function () {
@@ -529,6 +648,18 @@
         });
       });
     }
+
+    // Gestion de l'ouverture des pays (Accordéon)
+    document.querySelectorAll('[data-pays-toggle]').forEach(function(header) {
+      header.addEventListener('click', function() {
+        var code = this.dataset.paysToggle;
+        var map = { arg: "Argentine", col: "Colombie", cuba: "Cuba", esp: "Espagne", uru: "Uruguay", projets: "Projets" };
+        var card = document.getElementById("pays-" + map[code]);
+        if (card) card.classList.toggle("open");
+      });
+    });
+
+  })();
   </script>
 </body>
 </html>
