@@ -9,9 +9,34 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     :root { --blue: #2563eb; --orange: #E67E22; --ink: #1e293b; }
-    header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; width: 100%; }
-    body { padding-top: 104px; font-family: 'Inter', system-ui, sans-serif; background-color: #fafaf9; }
-    html { scroll-padding-top: 115px; }
+    /* ================= HEADER (identique à la page d'accueil) ================= */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 76px; width: 100%; background: linear-gradient(90deg,#1764df 0%,#2463d8 55%,#1d5bc8 100%); color: #fff; box-shadow: none; display: flex; align-items: center; }
+    header .container { height: 100%; display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .wow-logo { width: 200px; height: 46px; object-fit: contain; object-position: left center; display: block; margin: 0; background:#1764df; mix-blend-mode:lighten; }
+    .header-right { display:flex; align-items:center; gap:20px; height:100%; }
+    .nav-menu { display:flex; align-items:center; height:100%; }
+    .nav-menu ul { align-items:center; display:flex; flex-direction:row; gap:16px; margin:0; padding:0; list-style:none; height:100%; }
+    .nav-menu a { color:#fff; text-decoration:none; font-weight:700; font-size:14px; display:flex; align-items:center; height:100%; }
+    .nav-menu a:hover { text-decoration:none; opacity:.9; }
+    .header-phone { white-space:nowrap; font-weight:700; font-size:14px; display:flex; align-items:center; gap:5px; margin-left:10px; color:#fff; text-decoration:none; }
+    .header-phone:hover { text-decoration:underline; }
+    .nav-reviews { display:inline-flex; align-items:center; gap:5px; padding:5px 10px; border-radius:999px; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28); box-shadow:0 3px 10px rgba(0,0,0,.10); font-size:14px; }
+    .nav-reviews span { color:#ffd34d; font-size:1.05em; }
+    .nav-reviews:hover { background:#fff; color:#1764df !important; }
+    .nav-tango { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:999px; background:#fbbf24; color:#1a1a1a !important; font-weight:800; box-shadow:0 4px 12px rgba(251,191,36,.40); transition:.22s ease; height:auto; }
+    .nav-tango:hover { transform:translateY(-2px) scale(1.04); box-shadow:0 8px 22px rgba(251,191,36,.60); background:#f59e0b; opacity:1 !important; }
+    .nav-solo { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:999px; background:linear-gradient(135deg,#10b981 0%,#059669 100%); color:#fff !important; font-weight:800; box-shadow:0 4px 12px rgba(16,185,129,.40); transition:.22s ease; height:auto; }
+    .nav-solo:hover { transform:translateY(-2px) scale(1.04); box-shadow:0 8px 22px rgba(16,185,129,.55); opacity:1 !important; background:linear-gradient(135deg,#059669 0%,#047857 100%); }
+    .nav-solo.nav-current { box-shadow:0 0 0 2px #fff, 0 4px 12px rgba(16,185,129,.40); }
+    .nav-toggle { display:none; background:none; border:0; color:#fff; cursor:pointer; }
+    .nav-menu-mobile { display:none; position:absolute; top:100%; right:10px; width:250px; flex-direction:column; align-items:stretch; padding:12px; background:#1764df; border-radius:0 0 12px 12px; box-shadow:0 12px 24px rgba(0,0,0,.2); }
+    .nav-menu-mobile.active { display:flex; }
+    .nav-menu-mobile ul { display:flex; flex-direction:column; gap:9px; list-style:none; padding:0; margin:0; }
+    .nav-menu-mobile a { display:block; padding:6px 8px; color:#fff; text-decoration:none; font-weight:700; }
+    .nav-menu-mobile a.nav-solo, .nav-menu-mobile a.nav-tango { display:flex; justify-content:center; }
+    .nav-menu-mobile a.nav-tango { color:#1a1a1a; }
+    body { padding-top: 76px; font-family: 'Inter', system-ui, sans-serif; background-color: #fafaf9; }
+    html { scroll-padding-top: 90px; }
     h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; }
     
     .btn-orange { background: #E67E22; color: #FFFFFF; padding: 0.7rem 1.6rem; border-radius: 50px; font-size: 1rem; font-weight: 700; text-decoration: none; border: 2px solid #E67E22; transition: all 0.25s ease; display: inline-block; box-shadow: 0 6px 18px rgba(230,126,34,0.35); }
@@ -258,32 +283,15 @@
       .profil-statut-label { text-align: left; }
     }
     
-    .logo-btn { display:flex; align-items:center; padding:4px 16px 4px 8px; border:2px solid rgba(255,255,255,.85); border-radius:999px; background:rgba(255,255,255,.12); box-shadow:0 3px 10px rgba(0,0,0,.18); transition:.22s ease; }
-    .logo-btn:hover { background:rgba(255,255,255,.24); transform:translateY(-2px); box-shadow:0 6px 16px rgba(0,0,0,.28); }
-    .logo-btn img { background:#1764df; mix-blend-mode:lighten; border-radius:999px; }
-    .site-header { background: linear-gradient(90deg,#1764df 0%,#2463d8 55%,#1d5bc8 100%); padding: .4rem 0; box-shadow: 0 2px 12px rgba(0,0,0,.18); }
-    .nav-toggle { display: block; cursor: pointer; }
-    .nav-menu { display: none; flex-direction: column; align-items: stretch; gap: 6px; position: absolute; top: 100%; right: 10px; left: 10px; background: #1e4fc4; padding: 12px; border-radius: 12px; z-index: 50; box-shadow: 0 10px 25px rgba(0,0,0,.25); }
-    .nav-menu.active { display: flex; }
-    .nav-link { color: #fff; font-weight: 700; font-size: 1.02rem; padding: .5rem 1rem; border-radius: 999px; text-decoration: none; transition: background .2s, transform .2s; white-space: nowrap; display: inline-block; }
-    .nav-link:hover { background: rgba(255,255,255,.18); }
-    .nav-solo { background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 4px 12px rgba(5,150,105,.45); }
-    .nav-solo:hover { background: linear-gradient(135deg, #10b981, #059669); transform: translateY(-1px); }
-    .nav-tango { background: #fbbf24; color: #1a1a1a !important; box-shadow: 0 4px 12px rgba(251,191,36,.45); }
-    .nav-tango:hover { background: #f59e0b; transform: translateY(-1px); }
-    .nav-avis { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.35); }
-    .nav-current { outline: 2px solid #fff; outline-offset: 1px; }
-    .nav-contact { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
-    .nav-contact-links { display: flex; gap: 4px; }
-    .nav-tel { color: #fff; font-weight: 700; font-size: .95rem; padding: 0 1rem; text-decoration: none; white-space: nowrap; }
-    .nav-tel:hover { text-decoration: underline; }
-    
-    @media (min-width: 1024px) {
-      .nav-toggle { display: none; }
-      .nav-menu { display: flex; flex-direction: row; align-items: center; gap: 6px; position: static; background: none; padding: 0; box-shadow: none; border-radius: 0; }
-      .nav-contact { align-items: flex-end; }
-      .nav-contact .nav-link { padding: 0 .6rem; }
-      .nav-tel { padding: 0 .6rem; }
+    /* Bandeau : menu burger + mobile */
+    @media (max-width: 1199px) { .header-right { display:none; } .nav-toggle { display:block; } }
+    @media (min-width: 1200px) { .nav-menu-mobile { display:none !important; } }
+    @media (max-width: 639px) {
+      header { height:56px; }
+      body { padding-top:56px; }
+      html { scroll-padding-top:70px; }
+      header .container { padding-left:12px; padding-right:12px; }
+      .wow-logo { width:170px; height:40px; }
     }
     
     @media (max-width: 640px) { .btn-orange, .btn-blue { display: block; width: 100%; text-align: center; } }
@@ -319,29 +327,45 @@
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="site-header text-white">
-    <div class="container mx-auto px-4 flex justify-between items-center gap-4">
-      <a href="index.html" class="logo-btn shrink-0" title="Retour à l'accueil VPDVOYAGES">
-        <img src="Images/logo.png" alt="VPDVOYAGES - Patrick Daroque" class="h-12 md:h-14 w-auto object-contain">
+  <!-- HEADER (identique à la page d'accueil) -->
+  <header>
+    <div class="container mx-auto px-4">
+      <a href="index.html" class="flex items-center" title="Retour à l'accueil VPDVOYAGES">
+        <img src="Images/logo.png" alt="VPDVOYAGES - Patrick Daroque Travel Planner" width="290" height="68" class="wow-logo">
       </a>
-      <button class="nav-toggle text-white focus:outline-none" aria-label="Menu">
-        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+
+      <div class="header-right">
+        <nav class="nav-menu" aria-label="Navigation du site">
+          <ul>
+            <li><a href="index.html#home">Accueil</a></li>
+            <li><a href="index.html#destinations">Destinations</a></li>
+            <li><a href="voyage-tango.html" class="nav-tango" title="Découvrir tous nos voyages Tango">Tango argentin</a></li>
+            <li><a href="voyage-solo.html" class="nav-solo nav-current" title="Voyager seul(e) en petit groupe" aria-current="page">🧳 Voyager seul(e)</a></li>
+            <li><a href="cgv.html#cgv-autonomie">Formules</a></li>
+            <li><a href="https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site/" target="_blank" rel="noopener noreferrer" class="nav-reviews" title="Voir les avis clients VPDVOYAGES"><span>★</span> Avis clients</a></li>
+            <li><a href="index.html#about">À propos</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <a href="tel:+33610950984" class="header-phone"><span aria-hidden="true">☎</span><span>+33 6 10 95 09 84</span></a>
+      </div>
+
+      <button class="nav-toggle" aria-label="Menu principal">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>
-      <nav class="nav-menu ml-auto">
-        <a href="index.html#home" class="nav-link text-[15px]">Accueil</a>
-        <a href="index.html#destinations" class="nav-link text-[15px]">Destinations</a>
-        <a href="voyage-tango.html" class="nav-link nav-tango text-[15px]">Tango argentin</a>
-        <a href="voyage-solo.html" class="nav-link nav-solo nav-current text-[15px]">🧳 Voyager seul(e)</a>
-        <a href="cgv.html#cgv-autonomie" class="nav-link text-[15px]">Formules</a>
-        <a href="https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site/" target="_blank" rel="noopener noreferrer" class="nav-link nav-avis text-[15px]">⭐ Avis clients</a>
-        <span class="nav-contact">
-          <span class="nav-contact-links">
-            <a href="index.html#about" class="nav-link text-[15px]">À propos</a>
-            <a href="index.html#contact" class="nav-link text-[15px]">Contact</a>
-          </span>
-          <a href="tel:+33610950984" class="nav-tel text-[14px]">☎️ +33 6 10 95 09 84</a>
-        </span>
+
+      <nav class="nav-menu-mobile" aria-label="Navigation mobile">
+        <ul>
+          <li><a href="index.html#home">Accueil</a></li>
+          <li><a href="index.html#destinations">Destinations</a></li>
+          <li><a href="voyage-tango.html" class="nav-tango" title="Découvrir tous nos voyages Tango">Tango argentin</a></li>
+          <li><a href="voyage-solo.html" class="nav-solo nav-current" title="Voyager seul(e) en petit groupe" aria-current="page">🧳 Voyager seul(e)</a></li>
+          <li><a href="cgv.html#cgv-autonomie">Formules</a></li>
+          <li><a href="https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site/" target="_blank" rel="noopener noreferrer" class="nav-reviews" title="Voir les avis clients VPDVOYAGES"><span>★</span> Avis clients</a></li>
+          <li><a href="index.html#about">À propos</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="tel:+33610950984">☎ +33 6 10 95 09 84</a></li>
+        </ul>
       </nav>
     </div>
   </header>
@@ -651,7 +675,7 @@
         <!-- PAYS : URUGUAY -->
         <div class="country-card" id="pays-Uruguay">
           <div class="country-header" data-pays-toggle="uru">
-            <div style="position:absolute; inset:0; background-image:url('Images/argentine.jpg'); background-size:cover; background-position:center;"></div>
+            <div style="position:absolute; inset:0; background-image:url('Images/Panagea-ranch.jpg'); background-size:cover; background-position:center;"></div>
             <div class="country-header-content">
               <div>
                 <h3 class="text-2xl font-bold">Uruguay</h3>
@@ -724,7 +748,7 @@
               <tr>
                 <th>Destination</th>
                 <th>Séjour</th>
-                <th>Autonomie<br><span class="text-xs font-normal opacity-80">liberté</span></th>
+                <th>Prix affiché<br><span class="text-xs font-normal opacity-80">sur site</span></th>
                 <th>Sérénité<br><span class="text-xs font-normal opacity-80">accompagnement</span></th>
               </tr>
             </thead>
@@ -832,35 +856,35 @@
 
     var TARIFS = [
       { pays: "Argentine", sejours: [
-        { nom: "Rio de la Plata : le berceau du Tango", serenite: 3320, autonomie: 1287 },
-        { nom: "Tango et Bodegas", serenite: 3640, autonomie: 1538 },
-        { nom: "Buenos Aires & Iguazu : Ville et Nature en mouvement", cle: "Buenos Aires et Iguazu", serenite: 3775, autonomie: 1896 },
+        { nom: "Rio de la Plata : le berceau du Tango", serenite: 3320, autonomie: 1290 },
+        { nom: "Tango et Bodegas", serenite: 3640, autonomie: 1540 },
+        { nom: "Buenos Aires & Iguazu : Ville et Nature en mouvement", cle: "Buenos Aires et Iguazu", serenite: 3775, autonomie: 1900 },
         { nom: "Buenos Aires, Mendoza et les Andes", serenite: 0, autonomie: 0 }
       ]},
       { pays: "Colombie", sejours: [
-        { nom: "Le Triangle Magique", serenite: 0, autonomie: 0 },
+        { nom: "Le Triangle Magique", serenite: 0, autonomie: 1390 },
         { nom: "La Magie réaliste", serenite: 3250, autonomie: 1590 },
-        { nom: "Festival de tango Medellin", serenite: 0, autonomie: 0 },
+        { nom: "Festival de tango Medellin", serenite: 0, autonomie: 1475 },
         { nom: "Cali, capitale de la salsa", serenite: 0, autonomie: 0 }
       ]},
       { pays: "Cuba", sejours: [
         { nom: "Découverte, patrimoine et traditions", serenite: 3490, autonomie: 1490 },
-        { nom: "Festival de Tango de La Havane", serenite: 3025, autonomie: 1223 },
+        { nom: "Festival de Tango de La Havane", serenite: 3025, autonomie: 1220 },
         { nom: "Traversée de l'île à vélo", serenite: 0, autonomie: 0 },
         { nom: "Randonnee a Vinales et Trinidad", serenite: 0, autonomie: 0 }
       ]},
       { pays: "Espagne (escapades de 4 jours)", sejours: [
-        { nom: "La Rioja", serenite: 858, autonomie: 492 },
-        { nom: "Valence", serenite: 989, autonomie: 542 },
+        { nom: "La Rioja", serenite: 858, autonomie: 490 },
+        { nom: "Valence", serenite: 989, autonomie: 540 },
         { nom: "Les Pics d'Europe", serenite: 817, autonomie: 420 },
-        { nom: "Salamanque", serenite: 882, autonomie: 478 },
-        { nom: "Ribera del Duero", serenite: 810, autonomie: 464 },
-        { nom: "Matarraña", serenite: 747, autonomie: 428 },
-        { nom: "Bilbao", serenite: 0, autonomie: 0 },
+        { nom: "Salamanque", serenite: 882, autonomie: 480 },
+        { nom: "Ribera del Duero", serenite: 810, autonomie: 460 },
+        { nom: "Matarraña", serenite: 747, autonomie: 430 },
+        { nom: "Bilbao", serenite: 0, autonomie: 520 },
         { nom: "Barcelone", serenite: 0, autonomie: 0 }
       ]},
       { pays: "Uruguay", sejours: [
-        { nom: "Rio de la Plata : le berceau du Tango", serenite: 3320, autonomie: 1287 },
+        { nom: "Rio de la Plata : le berceau du Tango", serenite: 3320, autonomie: 1290 },
         { nom: "Uruguay avec les gauchos", serenite: 3590, autonomie: 1590 }
       ]}
     ];
@@ -887,14 +911,25 @@
       TARIFS.forEach(function (g) {
         h += '<tr class="tarif-pays"><td colspan="4">' + g.pays + '</td></tr>';
         g.sejours.forEach(function (s) {
-          var auto = Number(s.autonomie) || 0, sere = Number(s.serenite) || 0;
+          var auto = Number(s.autonomie) || 0;
+          var sere = Number(s.serenite) || 0;
+          
           h += '<tr><td></td><td>' + s.nom + '</td>';
-          if (!auto && !sere) {
-            h += '<td class="tarif-encours" colspan="2">' + TXT_TARIF_EN_COURS + '</td>';
+          
+          // Colonne Prix affiché (remplace Autonomie)
+          if (auto > 0) {
+            h += '<td class="tarif-prix">' + eur(auto) + '</td>';
           } else {
-            h += auto ? '<td class="tarif-prix">' + eur(auto) + '</td>' : '<td class="tarif-encours">' + TXT_TARIF_EN_COURS + '</td>';
-            h += sere ? '<td class="tarif-prix"><strong>' + eur(sere) + '</strong></td>' : '<td class="tarif-encours">' + TXT_TARIF_EN_COURS + '</td>';
+            h += '<td class="tarif-encours">' + TXT_TARIF_EN_COURS + '</td>';
           }
+          
+          // Colonne Sérénité
+          if (sere > 0) {
+            h += '<td class="tarif-prix"><strong>' + eur(sere) + '</strong></td>';
+          } else {
+            h += '<td class="tarif-encours">' + TXT_TARIF_EN_COURS + '</td>';
+          }
+          
           h += '</tr>';
         });
       });
@@ -1317,7 +1352,7 @@
         if (container.innerHTML !== '') { container.innerHTML = ''; return; }
 
         var html = '<div class="inline-form text-left mt-4 max-w-xl mx-auto">' +
-          '<strong>✨ Co-créez votre voyage Tango à Buenos Aires</strong>' +
+          '<strong>✨ Co-créutez votre voyage Tango à Buenos Aires</strong>' +
           '<label>Quelle(s) thématique(s) vous inspire(nt) ?' +
           '<select name="thematique_prefere">' +
           '<option value="Femmes seules">🌹 Voyage tango femmes seules : sécurité & liberté</option>' +
@@ -1507,7 +1542,10 @@
     });
 
     document.querySelector('.nav-toggle').addEventListener('click', function () {
-      document.querySelector('.nav-menu').classList.toggle('active');
+      document.querySelector('.nav-menu-mobile').classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-menu-mobile a').forEach(function (a) {
+      a.addEventListener('click', function () { document.querySelector('.nav-menu-mobile').classList.remove('active'); });
     });
 
     window.addEventListener('DOMContentLoaded', function() {

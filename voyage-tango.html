@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Voyages Tango en petit groupe | VPDVOYAGES</title>
-  <meta name="description" content="Découvrez nos voyages dédiés au Tango en Argentine, Uruguay, Cuba et Espagne. En petit groupe, seul(e) ou entre amis.">
+  <title>Voyage Thématique Tango (Argentine, Cuba, Colombie) | VPDVOYAGES</title>
+  <meta name="description" content="Partez en voyage thématique tango en petit groupe. Séjours exclusifs à Buenos Aires, Medellín, La Havane et en Espagne avec VPDVOYAGES.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
@@ -67,6 +67,10 @@
 
     body { padding-top: 76px; font-family: 'Inter', system-ui, sans-serif; background-color: #fafaf9; }
     html { scroll-padding-top: 76px; }
+    
+    /* RECALAGE DU DEFILEMENT POUR VOIR LA CARTE ENTIERE SUR ORDINATEUR */
+    #tango-sejours { scroll-margin-top: 78px; }
+    
     h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; }
     
     .btn-orange { background: #E67E22; color: #FFFFFF; padding: 0.7rem 1.6rem; border-radius: 50px; font-size: 1rem; font-weight: 700; text-decoration: none; border: 2px solid #E67E22; transition: all 0.25s ease; display: inline-block; box-shadow: 0 6px 18px rgba(230,126,34,0.35); }
@@ -134,7 +138,7 @@
       box-shadow: 0 8px 20px rgba(255,255,255,0.2);
     }
     
-    /* STYLES POUR LES FORMULAIRES (Ajoutés depuis voyage-solo.html) */
+    /* STYLES POUR LES FORMULAIRES */
     .inline-form { background: #fff; border: 2px solid #fdba74; border-radius: 12px; padding: 16px; margin-top: 14px; box-shadow: 0 4px 14px rgba(230,126,34,0.15); }
     .inline-form strong { display: block; margin-bottom: 10px; color: #c2410c; font-size: 1rem; }
     .inline-form label { display: block; margin: 8px 0 3px; font-size: 0.88rem; font-weight: 600; color: #1e293b; }
@@ -209,8 +213,9 @@
       <div class="w-full md:w-1/2 max-w-lg">
         <div class="hero-card-glass p-6 md:p-8 w-full text-center md:text-left flex flex-col items-center md:items-start">
           
-          <h1 class="text-3xl md:text-5xl font-bold tracking-tight mb-4 leading-tight hero-text-shadow text-white">
-            L'univers du Tango
+          <h1 class="text-2xl md:text-4xl font-bold tracking-tight mb-2 leading-tight hero-text-shadow text-white">
+            Voyages Thématiques Tango argentin
+            <span class="block text-xl md:text-2xl text-amber-300 mt-1 font-semibold">&amp; Immersion Culturelle</span>
           </h1>
 
           <div class="inline-flex items-center gap-2 hero-badge-bg px-4 py-1.5 rounded-full text-xs md:text-sm font-semibold mb-6 text-amber-200 hero-text-shadow">
@@ -219,10 +224,10 @@
 
           <div class="space-y-3 hero-text-shadow text-sm md:text-base mb-6">
             <p class="font-bold text-amber-400 text-lg md:text-xl">
-              Des séjours rythmés par la passion.
+              Vivez le Tango à sa source.
             </p>
             <p class="text-white/95 leading-relaxed">
-              Que vous soyez débutant ou danseur aguerri, voyagez en petit groupe pour vivre le Tango à sa source.
+              Que vous soyez débutant ou danseur passionné, participez à nos séjours thématiques en petit groupe (2 à 5 personnes) pour arpenter les milongas mythiques avec accompagnement sur mesure.
             </p>
           </div>
 
@@ -235,12 +240,19 @@
     </div>
   </section>
 
-  <section id="tango-sejours" class="py-14 bg-white">
+  <section id="tango-sejours" class="py-6 bg-white">
     <div class="container mx-auto px-4 max-w-5xl">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-3">Nos propositions Tango</h2>
-      <p class="text-center text-gray-500 mb-10">Cliquez sur une destination pour découvrir les détails</p>
+      <h2 class="text-2xl md:text-3xl font-bold text-center mb-1">Nos propositions Tango</h2>
+      <p class="text-center text-xs md:text-sm text-gray-500 mb-4">Cliquez sur une destination pour découvrir les détails</p>
       
-      <div id="pays-sections" class="space-y-6 mb-12">
+      <!-- BLOC DE TEXTE CONDENSÉ POUR UN AFFICHAGE REHAUSSÉ & SEO PARFAIT -->
+      <div class="bg-amber-50/60 border border-amber-200/80 rounded-xl p-4 md:p-5 mb-5 text-stone-800 leading-snug text-xs md:text-sm shadow-sm">
+        <p>
+          <strong>VPDVOYAGES (Patrick Daroque Travel Planner)</strong> conçoit vos <em>voyages thématiques tango sur mesure</em> en petit groupe (2 à 5 personnes) ou solo. De l'immersion dans les milongas secrètes de <strong>Buenos Aires</strong> aux festivals de <strong>Medellín</strong> en Colombie, en passant par l'alliance unique du <strong>Tango argentin, du Son et de la Salsa à La Havane (Cuba)</strong> ou nos escapades en Espagne, profitez d'un accompagnement personnalisé avec maestros locaux et immersion culturelle authentique.
+        </p>
+      </div>
+
+      <div id="pays-sections" class="space-y-5 mb-12">
         
         <!-- ARGENTINE -->
         <div class="country-card" id="pays-Argentine">
@@ -251,8 +263,8 @@
             </div>
             <div class="country-header-content">
               <div>
-                <h3 class="text-2xl font-bold">Argentine</h3>
-                <p class="text-sm text-white/90">Le berceau du Tango</p>
+                <h3 class="text-2xl font-bold">Argentine — Buenos Aires &amp; Bodegas</h3>
+                <p class="text-sm text-white/90">Le cœur battant du Tango mondial</p>
               </div>
               <span class="country-cta">
                 <span>Voir les séjours</span>
@@ -261,12 +273,12 @@
             </div>
           </div>
           <div class="country-body" id="body-arg">
-            <!-- CORRECTION ICI : Retrait de la classe "confirmed" et du texte en dur -->
             <div class="sej-card">
               <div class="sej-thumb" style="background-image:url('Images/Tango Bodegas.jpg');"></div>
               <div class="sej-body">
-                <h4 class="font-semibold">Tango et Bodegas</h4>
-                <p class="text-sm text-gray-600 mt-1">Dates envisagées : Automne 2027 · 12 – 29 octobre 2027</p>
+                <h4 class="font-semibold text-lg">Voyage Tango et Bodegas à Buenos Aires</h4>
+                <p class="text-xs text-gray-600 mt-1 mb-2">Immergez-vous dans l'ambiance des milongas de Buenos Aires tout en découvrant les meilleures caves et l'art de vivre argentin en petit groupe.</p>
+                <p class="text-sm font-semibold text-amber-700">Aucune date fixée — soyez à l’initiative !</p>
                 <button class="btn-lancer" data-pays="Argentine" data-sejour="Tango et Bodegas" style="background:#E67E22; color:white; padding:8px 18px; border-radius:50px; font-weight:bold; margin-top:8px; border:none;">🚀 Lancer ce séjour</button>
               </div>
             </div>
@@ -279,7 +291,7 @@
             <div style="position:absolute; inset:0; background-image:url('Images/tango-montevideo.jpeg'); background-size:cover; background-position:center;"></div>
             <div class="country-header-content">
               <div>
-                <h3 class="text-2xl font-bold">Uruguay</h3>
+                <h3 class="text-2xl font-bold">Uruguay — Montevideo</h3>
                 <p class="text-sm text-white/90">L'autre rive du Río de la Plata</p>
               </div>
               <span class="country-cta">
@@ -292,8 +304,9 @@
             <div class="sej-card">
               <div class="sej-thumb" style="background-image:url('Images/tango-montevideo.jpeg');"></div>
               <div class="sej-body">
-                <h4 class="font-semibold">Rio de la Plata - le berceau du Tango</h4>
-                <p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p>
+                <h4 class="font-semibold text-lg">Séjour Tango à Montevideo au Río de la Plata</h4>
+                <p class="text-xs text-gray-600 mt-1 mb-2">Découvrez l'histoire partagée du tango entre Montevideo et Buenos Aires lors d'une immersion au bord du Río de la Plata.</p>
+                <p class="text-sm font-semibold text-amber-700">Aucune date fixée — soyez à l’initiative !</p>
                 <button class="btn-lancer" data-pays="Uruguay" data-sejour="Rio de la Plata - le berceau du Tango" style="background:#E67E22; color:white; padding:8px 18px; border-radius:50px; font-weight:bold; margin-top:8px; border:none;">🚀 Lancer ce séjour</button>
               </div>
             </div>
@@ -306,8 +319,8 @@
             <div style="position:absolute; inset:0; background-image:url('Images/Cuba Découverte.jpg'); background-size:cover; background-position:center;"></div>
             <div class="country-header-content">
               <div>
-                <h3 class="text-2xl font-bold">Cuba</h3>
-                <p class="text-sm text-white/90">Salsa, Son & Tango</p>
+                <h3 class="text-2xl font-bold">Cuba — La Havane</h3>
+                <p class="text-sm text-white/90">Salsa, Son &amp; Tango Argentin</p>
               </div>
               <span class="country-cta">
                 <span>Voir les séjours</span>
@@ -319,8 +332,9 @@
             <div class="sej-card">
               <div class="sej-thumb" style="background-image:url('Images/Cuba Tango.jpg');"></div>
               <div class="sej-body">
-                <h4 class="font-semibold">Festival de Tango de La Havane</h4>
-                <p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p>
+                <h4 class="font-semibold text-lg">Festival de Tango &amp; Musique à La Havane</h4>
+                <p class="text-xs text-gray-600 mt-1 mb-2">Un voyage musical unique reliant les racines de la Habanera, du Son cubain et de la Salsa au Tango argentin à La Havane.</p>
+                <p class="text-sm font-semibold text-amber-700">Aucune date fixée — soyez à l’initiative !</p>
                 <button class="btn-lancer" data-pays="Cuba" data-sejour="Festival de Tango de La Havane" style="background:#E67E22; color:white; padding:8px 18px; border-radius:50px; font-weight:bold; margin-top:8px; border:none;">🚀 Lancer ce séjour</button>
               </div>
             </div>
@@ -333,8 +347,8 @@
             <div style="position:absolute; inset:0; background-image:url('Images/Colombie.jpg'); background-size:cover; background-position:center;"></div>
             <div class="country-header-content">
               <div>
-                <h3 class="text-2xl font-bold">Colombie</h3>
-                <p class="text-sm text-white/90">Le Tango à Medellin</p>
+                <h3 class="text-2xl font-bold">Colombie — Medellín</h3>
+                <p class="text-sm text-white/90">La capitale du Tango en Colombie</p>
               </div>
               <span class="country-cta">
                 <span>Voir les séjours</span>
@@ -346,8 +360,9 @@
             <div class="sej-card">
               <div class="sej-thumb" style="background-image:url('Images/Tango Medellino.jpeg');"></div>
               <div class="sej-body">
-                <h4 class="font-semibold">Festival de tango Medellin</h4>
-                <p class="text-sm text-gray-600 mt-1">Aucune date fixée — soyez à l’initiative !</p>
+                <h4 class="font-semibold text-lg">Festival de Tango &amp; Culture à Medellín</h4>
+                <p class="text-xs text-gray-600 mt-1 mb-2">Plongez dans l'héritage vivant de Carlos Gardel lors du Festival International de Tango de Medellín en Colombie.</p>
+                <p class="text-sm font-semibold text-amber-700">Aucune date fixée — soyez à l’initiative !</p>
                 <button class="btn-lancer" data-pays="Colombie" data-sejour="Festival de tango Medellin" style="background:#E67E22; color:white; padding:8px 18px; border-radius:50px; font-weight:bold; margin-top:8px; border:none;">🚀 Lancer ce séjour</button>
               </div>
             </div>
@@ -360,8 +375,8 @@
             <div style="position:absolute; inset:0; background-image:url('Images/Logrono.jpg'); background-size:cover; background-position:center;"></div>
             <div class="country-header-content">
               <div>
-                <h3 class="text-2xl font-bold">Espagne</h3>
-                <p class="text-sm text-white/90">Escapades Tango express</p>
+                <h3 class="text-2xl font-bold">Espagne — Escapades Tango Express</h3>
+                <p class="text-sm text-white/90">Stages et week-ends tango en Europe</p>
               </div>
               <span class="country-cta">
                 <span>Voir les escapades</span>
@@ -374,28 +389,28 @@
               <div class="sej-card">
                 <div class="sej-thumb" style="background-image:url('Images/valencia.jpg');"></div>
                 <div class="sej-body">
-                  <h4 class="font-semibold">Valence</h4>
+                  <h4 class="font-semibold">Valence — Escapade Tango</h4>
                   <button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Valence" style="background:#E67E22; color:white; padding:6px 14px; border-radius:50px; font-weight:bold; margin-top:8px; border:none;">🚀 Lancer ce séjour</button>
                 </div>
               </div>
               <div class="sej-card">
                 <div class="sej-thumb" style="background-image:url('Images/Salamanque.jpg');"></div>
                 <div class="sej-body">
-                  <h4 class="font-semibold">Valladolid</h4>
+                  <h4 class="font-semibold">Valladolid — Stage Tango</h4>
                   <button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Valladolid" style="background:#E67E22; color:white; padding:6px 14px; border-radius:50px; font-weight:bold; margin-top:8px; border:none;">🚀 Lancer ce séjour</button>
                 </div>
               </div>
               <div class="sej-card">
                 <div class="sej-thumb" style="background-image:url('Images/Matarraña.jpeg');"></div>
                 <div class="sej-body">
-                  <h4 class="font-semibold">Saragosse</h4>
+                  <h4 class="font-semibold">Saragosse — Immersion Tango</h4>
                   <button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Saragosse" style="background:#E67E22; color:white; padding:6px 14px; border-radius:50px; font-weight:bold; margin-top:8px; border:none;">🚀 Lancer ce séjour</button>
                 </div>
               </div>
               <div class="sej-card">
                 <div class="sej-thumb" style="background-image:url('Images/barcelone.jpg');"></div>
                 <div class="sej-body">
-                  <h4 class="font-semibold">Barcelone</h4>
+                  <h4 class="font-semibold">Barcelone — Milongas Express</h4>
                   <button class="btn-lancer text-sm" data-pays="Espagne" data-sejour="Barcelone" style="background:#E67E22; color:white; padding:6px 14px; border-radius:50px; font-weight:bold; margin-top:8px; border:none;">🚀 Lancer ce séjour</button>
                 </div>
               </div>
@@ -527,12 +542,11 @@
     </div>
   </footer>
 
-  <!-- SCRIPT COMPLET ET CORRIGÉ -->
+  <!-- SCRIPT JAVASCRIPT COMPLET -->
   <script>
   (function () {
     var CONFIG = { min: 2, max: 5, email: "contact@vpdvoyages.com", endpoint: "https://formspree.io/f/xzedqggz" };
     
-    // Tarifs indicatifs (à ajuster selon vos vrais tarifs)
     var TARIFS = {
       "Tango et Bodegas": 3640,
       "Rio de la Plata - le berceau du Tango": 3320,
@@ -546,7 +560,6 @@
 
     function eur(n) { return n.toLocaleString("fr-FR") + " €"; }
 
-    // Gestion du clic sur les boutons "Lancer" et "Rejoindre"
     document.addEventListener('click', function (e) {
       var btn = e.target.closest('.btn-lancer');
       if (!btn || btn.id === 'btn-interet-thematiques') return;
@@ -556,21 +569,17 @@
       var isDepart = btn.dataset.depart === "1";
       if (!pays) return;
 
-      // Trouver le conteneur parent (la carte du séjour)
       var parent = btn.closest('.sej-body');
       if (!parent) return;
 
-      // Fermer un éventuel formulaire déjà ouvert
       var existing = parent.querySelector('.inline-form');
       if (existing) { existing.remove(); return; }
       document.querySelectorAll('.inline-form').forEach(function (f) { f.remove(); });
 
-      // Récupérer le tarif
       var tarifTrouve = TARIFS[sejour] || 0;
       var tarifConnu = tarifTrouve > 0;
       var uid = (pays + "-" + sejour).replace(/[^A-Za-z0-9]/g, "");
 
-      // Bloc prix
       var boxPrix = '<div class="form-prix-box">' +
         '<strong>Tarif Sérénité</strong>' +
         (tarifConnu 
@@ -580,7 +589,6 @@
             '<span>Nous vous tiendrons informé(e) dès que le tarif sera défini.</span>') +
         '</div>';
 
-      // Construction du formulaire
       var formHtml = '<div class="inline-form">' +
         '<strong>' + (isDepart ? "Je m'intéresse à ce départ" : "Je suis intéressé(e) par ce séjour") + '</strong>' +
         (isDepart ? '' : '<label>Saison souhaitée<select name="saison"><option value="H">Hiver 2027</option><option value="P" selected>Printemps 2027</option><option value="E">Été 2027</option><option value="A">Automne 2027</option></select></label>') +
@@ -591,7 +599,7 @@
         boxPrix + 
         (isDepart ? '<div class="chk"><input type="checkbox" id="c1-' + uid + '" name="c1"><label for="c1-' + uid + '">' +
           (tarifConnu
-            ? 'J\'accepte le tarif de ce départ en formule Sérénité (' + eur(tarifTrouve) + ' par personne). Le départ est confirmed dès que ' + CONFIG.min + ' voyageurs ont accepté le tarif.'
+            ? 'J\'accepte le tarif de ce départ en formule Sérénité (' + eur(tarifTrouve) + ' par personne). Le départ est confirmé dès que ' + CONFIG.min + ' voyageurs ont accepté le tarif.'
             : 'Je souhaite être informé(e) du tarif de ce départ en formule Sérénité dès qu\'il est calculé. Aucun engagement : j\'accepterai ou non le tarif à ce moment-là.') +
           '</label></div>' : '') +
         '<div class="chk"><input type="checkbox" id="c2-' + uid + '" name="c2"><label for="c2-' + uid + '">J\'accepte que VPDVOYAGES me mette en relation avec d\'autres voyageurs intéressés.</label></div>' +
@@ -601,7 +609,6 @@
 
       parent.insertAdjacentHTML('beforeend', formHtml);
 
-      // Gestion de l'envoi du formulaire
       var formBox = parent.querySelector('.inline-form');
       formBox.querySelector('.submit-inline').addEventListener('click', function () {
         var prenom = formBox.querySelector('[name=prenom]').value.trim();
@@ -644,7 +651,6 @@
       });
     });
 
-    // Gestion du menu mobile
     var navToggle = document.querySelector('.nav-toggle');
     if (navToggle) {
       navToggle.addEventListener('click', function () {
@@ -653,7 +659,6 @@
       });
     }
 
-    // Gestion du bouton thématiques
     var btnThematiques = document.getElementById('btn-interet-thematiques');
     if (btnThematiques) {
       btnThematiques.addEventListener('click', function () {
@@ -699,7 +704,6 @@
       });
     }
 
-    // Gestion de l'ouverture des pays (Accordéon)
     document.querySelectorAll('[data-pays-toggle]').forEach(function(header) {
       header.addEventListener('click', function() {
         var code = this.dataset.paysToggle;
