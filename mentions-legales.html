@@ -6,34 +6,67 @@
   <title>Mentions Légales - VPDVOYAGES</title>
   <meta name="description" content="Mentions légales de Patrick Daroque - Travel Planner">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Indie+Flower&display=swap" rel="stylesheet">
   <style>
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      width: 100%;
-      background: linear-gradient(90deg,#1764df 0%,#2463d8 55%,#1d5bc8 100%);
+    * { box-sizing: border-box; }
+
+    /* ================= HEADER EXACT DE LA PAGE D'ACCUEIL ================= */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 76px; width: 100%; background: linear-gradient(90deg,#1764df 0%,#2463d8 55%,#1d5bc8 100%); color: #fff; box-shadow: none; display: flex; align-items: center; }
+    header .container { height: 100%; display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    
+    .wow-logo { width: 200px; height: 46px; object-fit: contain; object-position: left center; display: block; margin: 0; background:#1764df; mix-blend-mode:lighten; }
+    
+    .nav-menu { display:flex; align-items:center; height: 100%; }
+    .nav-menu ul { align-items:center; display:flex; flex-direction:row; gap:16px; margin:0; padding:0; list-style:none; height: 100%; }
+    .nav-menu a { color:#fff; text-decoration:none; font-weight:700; font-size: 14px; display: flex; align-items: center; height: 100%; }
+    .nav-menu a:hover { text-decoration:none; opacity:.9; }
+    
+    .nav-toggle { display:none; }
+    .header-phone { white-space:nowrap; font-weight:700; font-size: 14px; display: flex; align-items: center; gap: 5px; margin-left: 10px; }
+    .nav-reviews { display:inline-flex; align-items:center; gap:5px; padding: 5px 10px; border-radius:999px; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28); box-shadow:0 3px 10px rgba(0,0,0,.10); font-size: 14px; }
+    .nav-reviews span { color:#ffd34d; font-size:1.05em; }
+    .nav-reviews:hover { background:#fff; color:#1764df !important; }
+
+    /* BOUTONS BULLES NAV */
+    .nav-tango {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 999px;
+      background: #fbbf24; color: #1a1a1a !important; font-weight: 800;
+      box-shadow: 0 4px 12px rgba(251,191,36,.40);
+      transition: .22s ease;
+      height: auto; 
     }
+    .nav-tango:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 8px 22px rgba(251,191,36,.60); background: #f59e0b; opacity: 1 !important; }
+    
+    .nav-solo { display:inline-flex; align-items:center; gap:6px; padding: 6px 14px; border-radius:999px; background:linear-gradient(135deg,#10b981 0%,#059669 100%); color:#fff !important; font-weight:800; box-shadow:0 4px 12px rgba(16,185,129,.40); transition:.22s ease; height: auto; }
+    .nav-solo:hover { transform:translateY(-2px) scale(1.04); box-shadow:0 8px 22px rgba(16,185,129,.55); opacity:1 !important; background:linear-gradient(135deg,#059669 0%,#047857 100%); }
+
+    .header-right { display:flex; align-items:center; gap:20px; height: 100%; }
+    .nav-menu-mobile { display: none; }
+
+    /* ================= RESPONSIVE HEADER ================= */
+    @media (max-width:639px) {
+      html { scroll-padding-top:56px; }
+      body { padding-top:56px; }
+      header { height:56px; }
+      header .container { padding-left:12px; padding-right:12px; }
+      header img.image-check { width:170px !important; height:40px !important; object-fit:contain !important; object-position:left center !important; }
+      .nav-toggle { display:block; background:none; border:0; color:#fff; }
+      .header-phone { display:none; }
+      .header-right { display:none; }
+
+      .nav-menu-mobile { display: none; position: absolute; top: 56px; right: 10px; width: 230px; flex-direction: column; align-items: stretch; padding: 12px; background: #1764df; border-radius: 0 0 12px 12px; box-shadow: 0 12px 24px rgba(0,0,0,.2); z-index: 100; }
+      .nav-menu-mobile.active { display: flex; }
+      .nav-menu-mobile ul { display: flex; flex-direction: column; gap: 9px; list-style: none; padding: 0; margin: 0; }
+      .nav-menu-mobile a { display: block; padding: 6px 8px; color: #fff; text-decoration: none; font-weight: 700; }
+      .nav-menu-mobile a.nav-solo, .nav-menu-mobile a.nav-tango { justify-content: center; display: flex; }
+    }
+
     body {
       padding-top: 76px;
       font-size: 16px;
       background-color: white;
-    }
-    .wow-logo {
-      width: 275px;
-      height: 64px;
-      object-fit: contain;
-      object-position: left center;
-      display: block;
-    }
-    @media (max-width: 640px) {
-      .wow-logo {
-        width: 190px !important;
-        height: 46px !important;
-      }
+      font-family: 'Poppins', Arial, Helvetica, sans-serif;
     }
     .mentions-content {
       max-width: 900px;
@@ -64,15 +97,52 @@
       color: #374151;
     }
   </style>
+  <link rel="canonical" href="https://vpdvoyages.com/mentions-legales.html">
 </head>
 <body class="font-sans">
-  <header class="py-2">
-    <div class="container mx-auto px-4 flex justify-between items-center">
-      <a href="index.html" title="VPDVOYAGES – Accueil">
-        <img src="Images/logo.png" alt="VPDVOYAGES - Patrick Daroque Travel Planner" width="290" height="68" class="wow-logo">
-      </a>
-      <nav>
-        <a href="index.html" class="bg-white text-blue-600 font-semibold px-4 py-2 rounded hover:bg-gray-100 text-base inline-block">Retour</a>
+
+  <!-- HEADER IDENTIQUE À LA PAGE D'ACCUEIL -->
+  <header class="bg-blue-600 text-white">
+    <div class="container mx-auto px-4 flex justify-between items-center flex-wrap">
+      <div class="flex items-center">
+        <a href="index.html" title="Retour à l'accueil VPDVOYAGES">
+          <img src="Images/logo.png" alt="VPDVOYAGES - Patrick Daroque Travel Planner" width="290" height="68" class="wow-logo image-check">
+        </a>
+      </div>
+
+      <div class="header-right hidden md:flex">
+        <nav class="nav-menu" aria-label="Navigation du site">
+          <ul>
+            <li><a href="index.html#home">Accueil</a></li>
+            <li><a href="index.html#destinations">Destinations</a></li>
+            <li><a href="voyage-tango.html" class="nav-tango" title="Découvrir tous nos voyages Tango">Tango argentin</a></li>
+            <li><a href="voyage-solo.html" class="nav-solo" title="Voyager seul(e) en petit groupe">🧳 Voyager seul(e)</a></li>
+            <li><a href="cgv.html#cgv-autonomie">Formules</a></li>
+            <li><a href="https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site/" target="_blank" rel="noopener noreferrer" class="nav-reviews" title="Voir les avis clients VPDVOYAGES"><span>★</span> Avis clients</a></li>
+            <li><a href="index.html#about">À propos</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="header-phone">
+          <span aria-hidden="true">☎</span><span>+33 6 10 95 09 84</span>
+        </div>
+      </div>
+
+      <button class="nav-toggle text-white focus:outline-none md:hidden" aria-label="Menu principal">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+
+      <nav class="nav-menu-mobile" aria-label="Navigation mobile">
+        <ul>
+          <li><a href="index.html#home">Accueil</a></li>
+          <li><a href="index.html#destinations">Destinations</a></li>
+          <li><a href="voyage-tango.html" class="nav-tango" title="Découvrir tous nos voyages Tango">Tango argentin</a></li>
+          <li><a href="voyage-solo.html" class="nav-solo" title="Voyager seul(e) en petit groupe">🧳 Voyager seul(e)</a></li>
+          <li><a href="cgv.html#cgv-autonomie">Formules</a></li>
+          <li><a href="https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site/" target="_blank" rel="noopener noreferrer" class="nav-reviews" title="Voir les avis clients VPDVOYAGES"><span>★</span> Avis clients</a></li>
+          <li><a href="index.html#about">À propos</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
       </nav>
     </div>
   </header>
@@ -85,8 +155,7 @@
       <h2>1. ÉDITEUR DU SITE</h2>
       <p><strong>Nom ou raison sociale :</strong> VPDVOYAGES<br>
       <strong>Statut :</strong> Travel Planner indépendant<br>
-      <strong>SIRET :</strong> 52534368700030
-<br>
+      <strong>SIRET :</strong> 52534368700030<br>
       <strong>Adresse :</strong> 25, route de Pau - 64160 Gabaston<br>
       <strong>Téléphone :</strong> +33 6 10 95 09 84<br>
       <strong>Email :</strong> contact@vpdvoyages.com<br>
@@ -99,7 +168,6 @@
       <strong>Adresse :</strong> 21370 SW Langer Farms Parkway, Suite 142-429,
 Sherwood, OR 97140, États-Unis<br>
       <strong>Site web :</strong> https://porkbun.com</p>
-
     </section>
 
     <section>
@@ -146,7 +214,7 @@ Sherwood, OR 97140, États-Unis<br>
       <p>Vous disposez également du droit d'introduire une réclamation auprès de la CNIL (Commission Nationale de l'Informatique et des Libertés) : www.cnil.fr</p>
 
       <h3>4.7 Cookies</h3>
-      <p>Le site vpdvoyages.com n'utilise pas de cookies autres que ceux strictement nécessaires au fonctionnement du site (cookies techniques).</p>
+      <p>Le site vpdvoyages.com n'utilise pas de cookies autres que ceux strictly nécessaires au fonctionnement du site (cookies techniques).</p>
     </section>
 
     <section>
@@ -194,9 +262,14 @@ Sherwood, OR 97140, États-Unis<br>
 
   <footer class="bg-blue-600 py-2">
     <div class="container mx-auto px-4 text-center">
-      <p style="color: white; font-size: 1rem;">&copy; 2026 Patrick Daroque - Travel Planner. Tous droits réservés. | n° siret : 52534368700030
- | <a href="cgv.html" style="color: white; text-decoration: underline;">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;">Mentions légales</a></p>
+      <p style="color: white; font-size: 1rem;">&copy; 2026 Patrick Daroque - Travel Planner. Tous droits réservés. | n° siret : 52534368700030 | <a href="cgv.html" style="color: white; text-decoration: underline;">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;">Mentions légales</a></p>
     </div>
   </footer>
+
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function () {
+      document.querySelector('.nav-menu-mobile').classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
