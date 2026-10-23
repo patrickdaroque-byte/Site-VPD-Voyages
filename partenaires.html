@@ -1,100 +1,143 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Partenaires - VPDVOYAGES</title>
-  <meta name="description" content="Annuaires et portails référençant VPDVOYAGES.">
-  <meta name="robots" content="noindex, follow">
-  <meta name="author" content="Patrick Daroque">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-PT88MSGW');</script>
+<!-- End Google Tag Manager -->
+<title>Partenaires - VPDVOYAGES</title>
+<meta name="description" content="Annuaires et portails référençant VPDVOYAGES.">
+<meta name="robots" content="noindex, follow">
+<meta name="author" content="Patrick Daroque">
+<link rel="canonical" href="https://vpdvoyages.com/partenaires.html">
+<meta name="theme-color" content="#faf9f6">
+<style>
+:root{--ink:#173447;--muted:#52636b;--blue:#173e58;--accent:#b85132;--paper:#faf9f6;--line:#dce2df;--radius:18px;--header-height:68px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-height) + 20px)}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit}
+a,button{-webkit-tap-highlight-color:transparent}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:5px}
+img{display:block;max-width:100%}
+h1,h2,p{margin-top:0}
+h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.025em;line-height:1.15}
+h1{font-size:clamp(2rem,3.2vw,2.9rem);margin-bottom:10px}
+h2{font-size:clamp(1.5rem,2.4vw,1.9rem);margin:34px 0 14px}
+p{color:var(--muted);margin-bottom:12px}
+.wrap{width:min(880px,calc(100% - 44px));margin:auto}
+.skip{position:absolute;left:15px;top:-100px;background:white;padding:12px;z-index:100}
+.skip:focus{top:10px}
 
-  <script src="https://cdn.tailwindcss.com"></script>
+.header{background:rgba(250,249,246,.98);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.header-inner{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.brand{display:block;text-decoration:none;flex-shrink:0}
+.brand-logo{width:185px;height:56px;object-fit:contain;filter:url(#logo-ink);background:transparent}
+.nav{display:flex;align-items:center;gap:13px}
+.nav a{text-decoration:none;font-size:.82rem;font-weight:550;white-space:nowrap}
+.nav a:hover{color:var(--accent)}
+.nav .nav-feature{padding:8px 11px;border-radius:8px;border:1px solid}
+.nav a.theme-tango{background:#EDF4FF;color:#24549A;border-color:#A9BFDF}
+.nav a.theme-solo{background:#EDF6F0;color:#286044;border-color:#A5C4AF}
+.nav a.theme-tango:hover{background:#DFEAFC;color:#24549A;border-color:#7E9FCB}
+.nav a.theme-solo:hover{background:#DEEEE3;color:#286044;border-color:#7BA68A}
+.review-link span{color:#ac791c;margin-right:3px}
+.menu-toggle{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font:inherit;color:var(--ink)}
 
-  <style>
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      width: 100%;
-      background: linear-gradient(90deg,#1764df 0%,#2463d8 55%,#1d5bc8 100%);
-    }
-    body {
-      padding-top: 76px;
-      font-size: 16px;
-      background-color: white;
-    }
-    html {
-      scroll-padding-top: 76px;
-    }
-    .wow-logo {
-      width: 275px;
-      height: 64px;
-      object-fit: contain;
-      object-position: left center;
-      display: block;
-    }
-    @media (max-width: 640px) {
-      .wow-logo {
-        width: 190px !important;
-        height: 46px !important;
-      }
-    }
-    .partner-list a {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 16px;
-      border: 1px solid #e5e7eb;
-      border-radius: 8px;
-      color: #1f2937;
-      text-decoration: none;
-      transition: border-color 0.2s, background-color 0.2s;
-    }
-    .partner-list a:hover {
-      border-color: #2563eb;
-      background-color: #f8fafc;
-    }
-    .partner-list img {
-      width: 32px;
-      height: 32px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-    .partner-name {
-      font-weight: 600;
-    }
-    .partner-desc {
-      font-size: 0.85rem;
-      color: #6b7280;
-    }
-  </style>
+.page-intro{padding:10px 0 6px;max-width:1080px}
+.back-home{display:inline-block;margin-bottom:6px;color:var(--muted);font-size:.76rem;text-underline-offset:4px}
+.eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:.64rem;font-weight:700;color:var(--accent);margin-bottom:4px}
+
+.partner-list{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.partner-list a{display:flex;align-items:center;gap:16px;padding:16px 18px;background:white;border:1px solid var(--line);border-radius:var(--radius);text-decoration:none;transition:border-color .2s,box-shadow .2s}
+.partner-list a:hover{border-color:#d8b7a8;box-shadow:0 6px 18px rgba(23,52,71,.08)}
+.partner-list img{width:40px;height:40px;object-fit:contain;flex-shrink:0}
+.partner-name{display:block;font-weight:650;color:var(--ink);font-size:1rem}
+.partner-desc{display:block;font-size:.85rem;color:var(--muted);margin-top:2px}
+
+.cta{background:#edf1ed;border-radius:var(--radius);padding:28px 24px;text-align:center;margin:40px 0 50px}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:12px 24px;border-radius:7px;background:var(--accent);color:white;text-decoration:none;font-weight:650}
+.button:hover{background:#963e25}
+
+.footer{border-top:1px solid var(--line);padding:28px 0}
+.footer-inner{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.copyright{font-size:.82rem;line-height:1.65;margin:0}
+.footer-links{display:flex;flex-wrap:wrap;gap:11px 18px}
+.footer-links a{font-size:.83rem;text-underline-offset:4px}
+
+@media(max-width:1100px){
+  .nav{gap:8px}
+  .nav a{font-size:.74rem}
+  .nav .nav-feature{padding:7px}
+  .brand-logo{width:165px;height:50px}
+  .header-inner{gap:14px}
+}
+@media(min-width:781px) and (max-width:940px){
+  .header-inner{flex-wrap:wrap;justify-content:center;padding-bottom:8px;gap:2px}
+  .nav{justify-content:center;width:100%;gap:12px}
+  .brand-logo{height:52px}
+  .nav a{font-size:.78rem}
+}
+@media(max-width:780px){
+  .wrap{width:calc(100% - 32px)}
+  .header-inner{min-height:66px;flex-wrap:wrap;gap:0}
+  .brand-logo{width:190px;height:56px}
+  .menu-toggle{display:block}
+  .nav{display:none;flex-basis:100%;padding:16px 0;align-items:stretch;gap:0}
+  .nav.is-open{display:flex;flex-direction:column}
+  .nav a{padding:10px 0;font-size:.98rem;border-top:1px solid var(--line)}
+  .nav .nav-feature{margin:4px 0;padding:11px}
+}
+@media(max-width:600px){
+  .page-intro h1{font-size:2.15rem}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PT88MSGW" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
-  <header class="py-2 px-4">
-    <div class="container mx-auto flex items-center justify-between">
-      <a href="index.html" title="VPDVOYAGES – Accueil">
-        <img src="Images/logo.png" alt="VPDVOYAGES - Patrick Daroque Travel Planner" width="290" height="68" class="wow-logo">
-      </a>
-      <a href="index.html" class="bg-white text-blue-600 font-semibold px-4 py-2 rounded hover:bg-gray-100 text-base inline-block">Retour</a>
-    </div>
-  </header>
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" style="position:absolute;pointer-events:none"><defs><filter id="logo-ink" color-interpolation-filters="sRGB" x="-1%" y="-1%" width="102%" height="102%"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.063 3.576 .361 0 -3.5"/><feComponentTransfer><feFuncA type="gamma" amplitude="1" exponent="0.8" offset="0"/></feComponentTransfer></filter></defs></svg>
 
-  <main class="container mx-auto px-4 py-10 max-w-2xl">
-    <h1 class="text-2xl font-bold mb-4">Partenaires</h1>
-    <p class="text-gray-600 mb-8">
-      VPDVOYAGES est référencé sur les annuaires et portails suivants :
-    </p>
+<a class="skip" href="#contenu">Aller au contenu</a>
 
-    <ul class="partner-list space-y-3">
+<header class="header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html" aria-label="VPDVOYAGES — Accueil">
+      <img class="brand-logo" src="https://vpdvoyages.com/Images/logo.png" alt="VPDVOYAGES — Patrick Daroque" width="185" height="56">
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu</button>
+    <nav class="nav" id="navigation" aria-label="Navigation principale">
+      <a href="index.html#destinations">Destinations</a>
+      <a href="voyage-tango.html" class="nav-feature theme-tango">Tango argentin</a>
+      <a href="voyage-solo.html" class="nav-feature theme-solo">Voyager seul(e)</a>
+      <a href="formules.html">Formules</a>
+      <a href="avis-clients.html" class="review-link"><span aria-hidden="true">★</span> Avis clients</a>
+      <a href="index.html#about">À propos</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+  <section class="wrap page-intro" aria-labelledby="titre">
+    <a href="index.html" class="back-home">← Retour à l’accueil</a>
+    <p class="eyebrow">Référencement</p>
+    <h1 id="titre">Partenaires</h1>
+    <p>VPDVOYAGES est référencé sur les annuaires et portails suivants :</p>
+  </section>
+
+  <section class="wrap" aria-label="Liste des partenaires">
+    <ul class="partner-list">
       <li>
         <a href="https://www.annuaire-du-tourisme.fr/" rel="nofollow noopener" target="_blank">
           <img src="Images/partners/annuaire-du-tourisme.svg" alt="Annuaire du tourisme" onerror="this.style.display='none'">
           <span>
-            <span class="partner-name block">Annuaire du tourisme</span>
-            <span class="partner-desc block">Portail de référencement des professionnels du tourisme</span>
+            <span class="partner-name">Annuaire du tourisme</span>
+            <span class="partner-desc">Portail de référencement des professionnels du tourisme</span>
           </span>
         </a>
       </li>
@@ -102,8 +145,8 @@
         <a href="https://www.annuaire-tourisme-france.fr/" rel="nofollow noopener" target="_blank">
           <img src="Images/partners/annuaire-tourisme-france.svg" alt="Annuaire Tourisme France" onerror="this.style.display='none'">
           <span>
-            <span class="partner-name block">Annuaire Tourisme France</span>
-            <span class="partner-desc block">Guide touristique national, plus de 6 000 activités référencées</span>
+            <span class="partner-name">Annuaire Tourisme France</span>
+            <span class="partner-desc">Guide touristique national, plus de 6 000 activités référencées</span>
           </span>
         </a>
       </li>
@@ -111,24 +154,43 @@
         <a href="https://www.petitfute.com/" rel="nofollow noopener" target="_blank">
           <img src="Images/partners/petit-fute.svg" alt="Petit Futé" onerror="this.style.display='none'">
           <span>
-            <span class="partner-name block">Petit Futé</span>
-            <span class="partner-desc block">Guides et annuaire touristique de référence</span>
+            <span class="partner-name">Petit Futé</span>
+            <span class="partner-desc">Guides et annuaire touristique de référence</span>
           </span>
         </a>
       </li>
       <!-- Prochains partenaires à ajouter ici au même format -->
     </ul>
-  </main>
+  </section>
 
-  <!-- Espace avant le footer pour "descendre" le footer -->
-  <div style="height:80px;"></div>
+  <section class="wrap cta" aria-label="Retour">
+    <a class="button" href="index.html">Retour à l’accueil <span aria-hidden="true">→</span></a>
+  </section>
+</main>
 
-  <footer class="bg-blue-600 py-2">
-    <div class="container mx-auto px-4 text-center">
-      <p style="color: white; font-size: 1rem;">&copy; 2026 - VPDVOYAGES - Patrick Daroque - Travel Planner. Tous droits réservés. | SIRET : 52534368700030
-      | <a href="cgv.html" style="color: white; text-decoration: underline;" title="Consulter les Conditions Générales de Vente">CGV</a> | <a href="mentions-legales.html" style="color: white; text-decoration: underline;" title="Consulter les mentions légales">Mentions légales</a></p>
-    </div>
-  </footer>
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p class="copyright">© 2026 - VPDVOYAGES - Patrick Daroque - Travel Planner. Tous droits réservés. | SIRET : 52534368700030</p>
+    <nav class="footer-links" aria-label="Liens de pied de page">
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="cgv.html">CGV</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="avis-clients.html">Avis clients</a>
+      <a href="index.html">Accueil</a>
+    </nav>
+  </div>
+</footer>
 
+<script>
+const toggle=document.querySelector('.menu-toggle'),nav=document.getElementById('navigation');
+function closeMenu(){toggle.setAttribute('aria-expanded','false');nav.classList.remove('is-open');}
+toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));nav.classList.toggle('is-open',open);});
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&toggle.getAttribute('aria-expanded')==='true'){closeMenu();toggle.focus();}});
+window.addEventListener('pageshow',closeMenu);
+const header=document.querySelector('.header');
+function updateHeader(){document.documentElement.style.setProperty('--header-height',header.getBoundingClientRect().height+'px');}
+new ResizeObserver(updateHeader).observe(header);updateHeader();
+</script>
 </body>
 </html>
