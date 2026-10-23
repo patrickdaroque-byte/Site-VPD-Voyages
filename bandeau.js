@@ -65,11 +65,11 @@ document.addEventListener('DOMContentLoaded', function () {
       bandeau.innerHTML = `
         <div class="bandeau-ligne" style="font-size: 0.82rem; line-height: 1.4; font-weight: 400; letter-spacing: 0.01em;">
           <span style="color: #f6e05e; margin-right: 3px;">✦</span>
-          <span><strong style="color: #f6e05e; font-weight: 600;">Autonomie :</strong> Hébergement • Déjeuners • 3 dîners • Activités - <span class="highlight-text">Voyagez librement.</span></span>
+          <span><strong style="color: #f6e05e; font-weight: 600;">Autonomie :</strong> Hébergement • Petits-déjeuners • Déjeuners • 3 dîners • Activités • Certains transports sur place - <span class="highlight-text">Voyagez librement.</span></span>
         </div>
         <div class="bandeau-ligne" style="font-size: 0.82rem; line-height: 1.4; font-weight: 400; letter-spacing: 0.01em; margin-top: 2px;">
           <span style="color: #f6e05e; margin-right: 3px;">✦</span>
-          <span><strong style="color: #f6e05e; font-weight: 600;">Sérénité :</strong> Hébergement • Déjeuners • 3 dîners • Activités - <span class="highlight-text">${flagSvg} Accompagnement francophone + 🚐 Tous transports.</span></span>
+          <span><strong style="color: #f6e05e; font-weight: 600;">Sérénité :</strong> Hébergement • Petits-déjeuners • Déjeuners • 3 dîners • Activités - <span class="highlight-text">${flagSvg} Accompagnement francophone + 🚐 Tous transports.</span></span>
         </div>
       `;
     } else {
@@ -77,11 +77,11 @@ document.addEventListener('DOMContentLoaded', function () {
       bandeau.innerHTML = `
         <div class="bandeau-ligne" style="font-size: 0.82rem; line-height: 1.4; font-weight: 400; letter-spacing: 0.01em;">
           <span style="color: #f6e05e; margin-right: 3px;">✦</span>
-          <span><strong style="color: #f6e05e; font-weight: 600;">Autonomie :</strong> Hébergement • Déjeuners • 3 dîners • Activités <span class="highlight-text">Voyagez librement.</span></span>
+          <span><strong style="color: #f6e05e; font-weight: 600;">Autonomie :</strong> Hébergement • Petits-déjeuners • Déjeuners • 3 dîners • Activités • Certains transports sur place - <span class="highlight-text">Voyagez librement.</span></span>
         </div>
         <div class="bandeau-ligne" style="font-size: 0.82rem; line-height: 1.4; font-weight: 400; letter-spacing: 0.01em; margin-top: 2px;">
           <span style="color: #f6e05e; margin-right: 3px;">✦</span>
-          <span><strong style="color: #f6e05e; font-weight: 600;">Sérénité :</strong> Hébergement • Déjeuners • 3 dîners • Activités - <span class="highlight-text">${flagSvg} Accompagnement francophone + ✈️ Vols internationaux.</span></span>
+          <span><strong style="color: #f6e05e; font-weight: 600;">Sérénité :</strong> Hébergement • Petits-déjeuners • Déjeuners • 3 dîners • Activités - <span class="highlight-text">${flagSvg} Accompagnement francophone + ✈️ Vols internationaux.</span></span>
         </div>
       `;
     }

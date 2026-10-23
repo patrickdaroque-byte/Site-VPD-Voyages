@@ -6,79 +6,95 @@
     <title>Cuba : entre Salsa et Tango | VPDVOYAGES</title>
     <meta name="description" content="Cuba : entre Salsa et Tango. Deux danses, une même passion à La Havane. Cours, soirées et immersion culturelle avec VPDVOYAGES.">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            width: 100%;
-            background: #2563eb;
-        }
-        body {
-            padding-top: 80px;
-        }
-        html {
-            scroll-padding-top: 80px;
-        }
-        .nav-menu {
-            display: flex;
-        }
-        .nav-toggle {
-            display: none;
-        }
-        @media (max-width: 640px) {
-            .nav-menu {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 80px;
-                right: 10px;
-                background: #2563eb;
-                padding: 10px;
-                border-radius: 5px;
-                z-index: 50;
-            }
-            .nav-menu.active {
-                display: flex;
-            }
-            .nav-toggle {
-                display: block;
-                cursor: pointer;
-            }
-        }
+        /* ===== BANDEAU (identique à voyage-solo / accueil) ===== */
+    /* ================= HEADER (identique à la page d'accueil) ================= */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 76px; width: 100%; background: linear-gradient(90deg,#1764df 0%,#2463d8 55%,#1d5bc8 100%); color: #fff; box-shadow: none; display: flex; align-items: center; }
+    header .container { height: 100%; display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .wow-logo { width: 200px; height: 46px; object-fit: contain; object-position: left center; display: block; margin: 0; background:#1764df; mix-blend-mode:lighten; }
+    .header-right { display:flex; align-items:center; gap:20px; height:100%; }
+    .nav-menu { display:flex; align-items:center; height:100%; }
+    .nav-menu ul { align-items:center; display:flex; flex-direction:row; gap:16px; margin:0; padding:0; list-style:none; height:100%; }
+    .nav-menu a { color:#fff; text-decoration:none; font-weight:700; font-size:14px; display:flex; align-items:center; height:100%; }
+    .nav-menu a:hover { text-decoration:none; opacity:.9; }
+    .header-phone { white-space:nowrap; font-weight:700; font-size:14px; display:flex; align-items:center; gap:5px; margin-left:10px; color:#fff; text-decoration:none; }
+    .header-phone:hover { text-decoration:underline; }
+    .nav-reviews { display:inline-flex; align-items:center; gap:5px; padding:5px 10px; border-radius:999px; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28); box-shadow:0 3px 10px rgba(0,0,0,.10); font-size:14px; }
+    .nav-reviews span { color:#ffd34d; font-size:1.05em; }
+    .nav-reviews:hover { background:#fff; color:#1764df !important; }
+    .nav-tango { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:999px; background:#fbbf24; color:#1a1a1a !important; font-weight:800; box-shadow:0 4px 12px rgba(251,191,36,.40); transition:.22s ease; height:auto; }
+    .nav-tango:hover { transform:translateY(-2px) scale(1.04); box-shadow:0 8px 22px rgba(251,191,36,.60); background:#f59e0b; opacity:1 !important; }
+    .nav-solo { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:999px; background:linear-gradient(135deg,#10b981 0%,#059669 100%); color:#fff !important; font-weight:800; box-shadow:0 4px 12px rgba(16,185,129,.40); transition:.22s ease; height:auto; }
+    .nav-solo:hover { transform:translateY(-2px) scale(1.04); box-shadow:0 8px 22px rgba(16,185,129,.55); opacity:1 !important; background:linear-gradient(135deg,#059669 0%,#047857 100%); }
+    .nav-solo.nav-current { box-shadow:0 0 0 2px #fff, 0 4px 12px rgba(16,185,129,.40); }
+    .nav-toggle { display:none; background:none; border:0; color:#fff; cursor:pointer; }
+    .nav-menu-mobile { display:none; position:absolute; top:100%; right:10px; width:250px; flex-direction:column; align-items:stretch; padding:12px; background:#1764df; border-radius:0 0 12px 12px; box-shadow:0 12px 24px rgba(0,0,0,.2); }
+    .nav-menu-mobile.active { display:flex; }
+    .nav-menu-mobile ul { display:flex; flex-direction:column; gap:9px; list-style:none; padding:0; margin:0; }
+    .nav-menu-mobile a { display:block; padding:6px 8px; color:#fff; text-decoration:none; font-weight:700; }
+    .nav-menu-mobile a.nav-solo, .nav-menu-mobile a.nav-tango { display:flex; justify-content:center; }
+    .nav-menu-mobile a.nav-tango { color:#1a1a1a; }
+    header { font-family: 'Inter', system-ui, sans-serif; }
+    body { padding-top: 76px; }
+    html { scroll-padding-top: 90px; }
+    /* Bandeau : menu burger + mobile */
+    @media (max-width: 1199px) { .header-right { display:none; } .nav-toggle { display:block; } }
+    @media (min-width: 1200px) { .nav-menu-mobile { display:none !important; } }
+    @media (max-width: 639px) {
+      header { height:56px; }
+      body { padding-top:56px; }
+      html { scroll-padding-top:70px; }
+      header .container { padding-left:12px; padding-right:12px; }
+      .wow-logo { width:170px; height:40px; }
+    }
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
 
     <!-- HEADER -->
-    <header class="bg-blue-600 text-white py-4">
-        <div class="container mx-auto px-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <a href="/">
-                    <img src="Images/Logo VPDVOYAGES.COM.png" alt="VPDVOYAGES" class="h-12">
-                </a>
-                <div>
-                    <a href="/" class="text-xl font-bold tracking-tight">VPDVOYAGES</a>
-                    <p class="text-sm opacity-90">Patrick Daroque - Travel Planner</p>
-                </div>
-            </div>
-            <div class="flex items-center space-x-4">
-                <button class="nav-toggle text-2xl md:hidden">☰</button>
-                <nav class="nav-menu space-x-4 md:flex">
-                    <a href="/" class="hover:underline text-sm md:text-base">Accueil</a>
-                    <a href="/#destinations" class="hover:underline text-sm md:text-base">Les destinations</a>
-                    <a href="/#approche" class="hover:underline text-sm md:text-base">Qui suis-je ?</a>
-                    <a href="/#avis" class="hover:underline text-sm md:text-base">Avis des voyageurs</a>
-                    <a href="/#travel-planner" class="hover:underline text-sm md:text-base">Qu'est-ce qu'un Travel Planner ?</a>
-                    <a href="/#contact" class="hover:underline text-sm md:text-base">Contact</a>
-                </nav>
-                <a href="prochainement.html" class="hidden md:inline-block bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 text-sm">Retour</a>
-            </div>
-        </div>
+  <!-- BANDEAU (identique à voyage-solo) -->
+  <header>
+    <div class="container mx-auto px-4">
+      <a href="index.html" class="flex items-center" title="Retour à l'accueil VPDVOYAGES">
+        <img src="Images/logo.png" alt="VPDVOYAGES - Patrick Daroque Travel Planner" width="290" height="68" class="wow-logo">
+      </a>
 
-    </header>
+      <div class="header-right">
+        <nav class="nav-menu" aria-label="Navigation du site">
+          <ul>
+            <li><a href="index.html#home">Accueil</a></li>
+            <li><a href="index.html#destinations">Destinations</a></li>
+            <li><a href="voyage-tango.html" class="nav-tango" title="Découvrir tous nos voyages Tango">Tango argentin</a></li>
+            <li><a href="voyage-solo.html" class="nav-solo" title="Voyager seul(e) en petit groupe">🧳 Voyager seul(e)</a></li>
+            <li><a href="formules.html">Formules</a></li>
+            <li><a href="https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site/" target="_blank" rel="noopener noreferrer" class="nav-reviews" title="Voir les avis clients VPDVOYAGES"><span>★</span> Avis clients</a></li>
+            <li><a href="index.html#about">À propos</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <a href="tel:+33610950984" class="header-phone"><span aria-hidden="true">☎</span><span>+33 6 10 95 09 84</span></a>
+      </div>
+
+      <button class="nav-toggle" aria-label="Menu principal">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+
+      <nav class="nav-menu-mobile" aria-label="Navigation mobile">
+        <ul>
+          <li><a href="index.html#home">Accueil</a></li>
+          <li><a href="index.html#destinations">Destinations</a></li>
+          <li><a href="voyage-tango.html" class="nav-tango" title="Découvrir tous nos voyages Tango">Tango argentin</a></li>
+          <li><a href="voyage-solo.html" class="nav-solo" title="Voyager seul(e) en petit groupe">🧳 Voyager seul(e)</a></li>
+          <li><a href="formules.html">Formules</a></li>
+          <li><a href="https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site/" target="_blank" rel="noopener noreferrer" class="nav-reviews" title="Voir les avis clients VPDVOYAGES"><span>★</span> Avis clients</a></li>
+          <li><a href="index.html#about">À propos</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="tel:+33610950984">☎ +33 6 10 95 09 84</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
     <!-- CONTENU PRINCIPAL -->
     <section class="py-12">
@@ -153,7 +169,7 @@
                     Contacter Patrick sur WhatsApp
                 </a>
                 <p class="mt-4">
-                    <a href="prochainement.html" class="text-blue-600 hover:underline text-sm">← Retour aux propositions</a>
+                    <a href="cuba.html" class="text-blue-600 hover:underline text-sm">← Retour aux propositions</a>
                 </p>
             </div>
 
@@ -172,9 +188,15 @@
     </footer>
 
     <script>
-        document.querySelector('.nav-toggle')?.addEventListener('click', function () {
-            document.querySelector('.nav-menu')?.classList.toggle('active');
+      (function () {
+        var t = document.querySelector('.nav-toggle');
+        var m = document.querySelector('.nav-menu-mobile');
+        if (!t || !m) return;
+        t.addEventListener('click', function () { m.classList.toggle('active'); });
+        m.querySelectorAll('a').forEach(function (a) {
+          a.addEventListener('click', function () { m.classList.remove('active'); });
         });
+      })();
     </script>
 </body>
 </html>

@@ -11,21 +11,21 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VPDVOYAGES – Patrick Daroque | Voyages sur mesure Espagne & Amérique latine</title>
-  <meta name="description" content="VPDVOYAGES – Patrick Daroque, Travel Planner. Voyages sur mesure et en petit groupe (formules Autonomie ou Sérénité) en Espagne, Colombie, Argentine, Cuba et Uruguay.">
-  <meta name="keywords" content="Patrick Daroque, VPDVOYAGES, voyages Espagne, voyages Amérique latine, séjour personnalisé, travel planner, voyage solo, tango">
+  <title>VPDVOYAGES | Travel Planner Voyages sur Mesure Espagne & Amérique Latine</title>
+  <meta name="description" content="VPDVOYAGES – Patrick Daroque, Travel Planner spécialiste des voyages sur mesure et en petit groupe (2 à 5 personnes) en Espagne, Colombie, Argentine, Cuba et Uruguay.">
+  <meta name="keywords" content="Patrick Daroque, VPDVOYAGES, travel planner, voyage sur mesure Espagne, voyage sur mesure Amérique latine, voyage en petit groupe, voyage solo, voyage tango">
   <meta name="author" content="Patrick Daroque">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://vpdvoyages.com/">
 
-  <meta property="og:title" content="Patrick Daroque - Voyages sur mesure Espagne & Amérique latine">
-  <meta property="og:description" content="Voyagez différemment avec VPDVOYAGES. Séjours personnalisés en Espagne et Amérique latine avec Patrick Daroque.">
+  <meta property="og:title" content="VPDVOYAGES – Patrick Daroque | Travel Planner Espagne & Amérique latine">
+  <meta property="og:description" content="Voyagez différemment avec VPDVOYAGES. Séjours sur mesure et en petit groupe en Espagne et Amérique latine avec Patrick Daroque.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://vpdvoyages.com/">
   <meta property="og:image" content="https://vpdvoyages.com/Images/hero-image.jpg">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Patrick Daroque - Voyages sur mesure Espagne & Amérique latine">
+  <meta name="twitter:title" content="VPDVOYAGES – Patrick Daroque | Travel Planner Espagne & Amérique latine">
   <meta name="twitter:description" content="VPDVOYAGES - Vos séjours personnalisés avec Patrick Daroque en Espagne et Amérique latine.">
   <meta name="twitter:image" content="https://vpdvoyages.com/Images/hero-image.jpg">
 
@@ -97,7 +97,6 @@
     .nav-menu-mobile { display: none; }
 
     /* ================= BADGE NOUVEAU ================= */
-    /* LISIBILITÉ : badge remonté et décalé pour ne plus chevaucher le coin du cartouche */
     .new-badge { position:absolute; z-index:20; top:14px; right:3%; min-width:235px; padding:14px 18px 14px 20px; display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:12px; border:4px solid rgba(255,255,255,.78); border-radius:28px; color:#fff; text-decoration:none; background:linear-gradient(135deg,#ffb52b 0%,#ff6d22 100%); box-shadow:0 12px 26px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.35); transform:rotate(4deg); transition:.25s ease; }
     .new-badge::before, .new-badge::after { content:""; position:absolute; width:7px; height:28px; border-radius:8px; background:#ffb52b; top:-30px; opacity:.95; }
     .new-badge::before { left:55px; transform:rotate(-35deg); }
@@ -111,24 +110,17 @@
     #home { position:relative; min-height:455px; margin:0; overflow:visible; isolation:isolate; display:flex; align-items:center; justify-content:center; background-image: linear-gradient(rgba(0,0,0,.14),rgba(0,0,0,.18)), url('https://images.pexels.com/photos/37164319/pexels-photo-37164319.jpeg?auto=compress&cs=tinysrgb&w=2000'); background-size:cover; background-position:center 50%; }
     #home::after { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg,rgba(0,0,0,.02) 0%,rgba(0,0,0,.05) 55%,rgba(0,0,0,.16) 100%); pointer-events:none; }
 
-    /* LISIBILITÉ : cartouche beaucoup plus opaque + flou renforcé pour neutraliser le fond photo */
     .hero-panel { width:min(1000px,78vw); margin-top:8px; padding:22px 32px 14px; border:2px solid rgba(255,255,255,.95); border-radius:22px; background:rgba(255,255,255,.90); backdrop-filter:blur(16px) saturate(1.1); -webkit-backdrop-filter:blur(16px) saturate(1.1); box-shadow:0 16px 42px rgba(0,0,0,.30), inset 0 1px 0 rgba(255,255,255,.6); color:#12294a; }
 
-    /* LISIBILITÉ : sur-titre plus grand, moins espacé, bleu plus profond */
     .hero-kicker { margin:0 0 12px; color:#0f4bb8; font-size:13px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; text-shadow:none; }
 
     .hero-title-main { display:block; color:#12294a; font-size:clamp(2rem,3.7vw,3rem); line-height:1.02; font-weight:800; text-shadow:none; }
 
-    /* LISIBILITÉ : "vous attendent !" passe en bleu de marque, plus épais, bien contrasté.
-       (et ne concurrence plus le badge et le bouton orange)
-       Pour revenir à l'orange : remplacer #1764df par #d9560a */
     .hero-title-accent { display:block; margin-top:4px; color:#1764df; font-family:'Caveat',cursive; font-weight:700; font-size:clamp(2.7rem,5vw,4rem); line-height:1; text-shadow:none; }
 
-    /* LISIBILITÉ : phrase d'accroche plus grande, plus foncée, plus épaisse */
     .hero-panel > p:not(.hero-kicker) { margin:9px auto 14px; max-width:760px; color:#1e293b; font-size:18px; line-height:1.45; font-weight:500; text-shadow:none; }
     .hero-panel .hero-quote { display:flex; justify-content:flex-end; margin-top:4px; }
     
-    /* LISIBILITÉ : citation plus grosse, plus épaisse, couleur foncée */
     .daily-quote { width:100%; max-width:600px; margin-left:auto; color:#12294a !important; text-align:right; font-family:'Caveat',cursive; font-style:italic; font-weight:700; font-size:25px; line-height:1.2; text-shadow:none !important; }
     .daily-quote .quote-text { font-style:italic; }
     .daily-quote .quote-author { white-space:nowrap; margin-left:6px; font-size:0.8em; font-style:normal; font-weight:700; opacity:1; }
@@ -139,7 +131,6 @@
     .hero-panel a.bg-blue-600:hover { transform:translateY(-2px); background:#1767dc !important; }
     .hero-panel a.bg-white { background:transparent !important; border:2px solid #fff !important; color:#fff !important; }
     .hero-panel a.bg-white:hover { background:rgba(255,255,255,.16) !important; transform:translateY(-2px); }
-    /* LISIBILITÉ : séparateur plus visible */
     .hero-panel .hero-quote { border-top:1px solid rgba(23,54,95,.30); padding-top:7px; }
 
     .hero-panel a.cta-projet { min-height:62px !important; padding:0 34px 0 30px !important; border-radius:16px 28px 16px 28px !important; display:inline-flex !important; align-items:center !important; justify-content:center !important; gap:10px !important; font-size:18px !important; font-weight:900 !important; letter-spacing:.01em !important; text-decoration:none !important; white-space:nowrap !important; background:linear-gradient(135deg,#ffb52b 0%,#ff8a1a 45%,#ff5c1a 100%) !important; border:3px solid #fff !important; color:#1a1a1a !important; box-shadow: 0 12px 32px rgba(255,109,34,.52), 0 2px 0 rgba(180,60,0,.25), inset 0 1px 0 rgba(255,255,255,.55) !important; transition:transform .22s ease, box-shadow .22s ease, background .22s ease, border-radius .22s ease !important; animation: cta-pulse 3.2s ease-out infinite; }
@@ -161,7 +152,10 @@
     #destinations h2 { display:none; }
     #destinations .grid { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:12px; margin-top:28px; margin-bottom:18px; }
     #destinations .grid > div { min-width:0; }
-    #destinations .flag-container, #destinations .prochainement-btn { position:relative; display:block; width:100%; height:160px; min-height:160px; overflow:hidden; padding:0; border:0; border-radius:18px; background:#111; box-shadow:0 10px 24px rgba(0,0,0,.20); text-decoration:none; transition:transform .28s ease,box-shadow .28s ease; }
+    
+    /* CARTES lÉGÈREMENT RÉDUITES SUR ORDI (130px au lieu de 160px/220px) */
+    #destinations .flag-container, #destinations .prochainement-btn { position:relative; display:block; width:100%; height:130px; min-height:130px; overflow:hidden; padding:0; border:0; border-radius:18px; background:#111; box-shadow:0 10px 24px rgba(0,0,0,.20); text-decoration:none; transition:transform .28s ease,box-shadow .28s ease; }
+    
     #destinations .flag-container::before, #destinations .prochainement-btn::before { content:""; position:absolute; inset:0; z-index:1; background:linear-gradient(to bottom, rgba(0,0,0,.05) 25%, rgba(0,0,0,.25) 55%, rgba(0,0,0,.70) 100%); }
     #destinations .flag-container:hover, #destinations .prochainement-btn:hover { transform:translateY(-7px) scale(1.018); box-shadow:0 18px 34px rgba(0,0,0,.28); }
     #destinations img.destination-photo { position:absolute; inset:0; width:100%; height:100%; margin:0; object-fit:cover; transition:transform .45s ease; }
@@ -208,7 +202,6 @@
     @media (min-width:640px) {
       header { padding:0 !important; }
       .nav-menu { display:flex; }
-      /* ORDI : hero compacté pour que les cartes pays soient visibles en entier dès l'arrivée sur la page */
       #home { min-height:0; padding:58px 0 14px; }
       .hero-panel { margin-top:0; padding:18px 32px 10px; }
       #destinations .grid { margin-top:16px; margin-bottom:12px; }
@@ -250,7 +243,10 @@
       .hero-panel .flex.flex-wrap { flex-direction:column; }
       #destinations { padding-bottom:20px; }
       #destinations .grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:22px; margin-bottom:12px; }
+      
+      /* Hauteur mobile inchangée (138px) */
       #destinations .flag-container,#destinations .prochainement-btn { height:138px; min-height:138px; border-radius:14px; }
+      
       #destinations .destination-content { left:10px; right:10px; bottom:10px; }
       #destinations .destination-content p { font-size:16px; margin-bottom:6px; font-weight:900; }
       #destinations .destination-content p img { width:20px !important; height:14px !important; margin-right:6px !important; }
@@ -272,7 +268,9 @@
   <header class="bg-blue-600 text-white">
     <div class="container mx-auto px-4 flex justify-between items-center flex-wrap">
       <div class="flex items-center">
-        <img src="Images/logo.png" alt="VPDVOYAGES - Patrick Daroque Travel Planner" width="290" height="68" class="wow-logo image-check">
+        <a href="index.html" title="Accueil VPDVOYAGES - Travel Planner">
+          <img src="Images/logo.png" alt="VPDVOYAGES - Patrick Daroque Travel Planner" width="290" height="68" class="wow-logo image-check">
+        </a>
       </div>
 
       <div class="header-right hidden md:flex">
@@ -280,9 +278,9 @@
           <ul>
             <li><a href="#home" class="nav-home">Accueil</a></li>
             <li><a href="#destinations">Destinations</a></li>
-            <li><a href="voyage-tango.html" class="nav-tango" title="Découvrir tous nos voyages Tango">Tango argentin</a></li>
-            <li><a href="voyage-solo.html" class="nav-solo" title="Voyager seul(e) en petit groupe">🧳 Voyager seul(e)</a></li>
-            <li><a href="cgv.html#cgv-autonomie">Formules</a></li>
+            <li><a href="voyage-tango.html" class="nav-tango" title="Découvrir nos voyages thématiques Tango argentin">Tango argentin</a></li>
+            <li><a href="voyage-solo.html" class="nav-solo" title="Voyager seul(e) en petit groupe de 2 à 5 personnes">🧳 Voyager seul(e)</a></li>
+            <li><a href="formules.html">Formules</a></li>
             <li><a href="https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site/" target="_blank" rel="noopener noreferrer" class="nav-reviews" title="Voir les avis clients VPDVOYAGES"><span>★</span> Avis clients</a></li>
             <li><a href="#about">À propos</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -301,9 +299,9 @@
         <ul>
           <li><a href="#home">Accueil</a></li>
           <li><a href="#destinations">Destinations</a></li>
-          <li><a href="voyage-tango.html" class="nav-tango" title="Découvrir tous nos voyages Tango">Tango argentin</a></li>
-          <li><a href="voyage-solo.html" class="nav-solo" title="Voyager seul(e) en petit groupe">🧳 Voyager seul(e)</a></li>
-          <li><a href="cgv.html#cgv-autonomie">Formules</a></li>
+          <li><a href="voyage-tango.html" class="nav-tango" title="Découvrir nos voyages thématiques Tango argentin">Tango argentin</a></li>
+          <li><a href="voyage-solo.html" class="nav-solo" title="Voyager seul(e) en petit groupe de 2 à 5 personnes">🧳 Voyager seul(e)</a></li>
+          <li><a href="formules.html">Formules</a></li>
           <li><a href="https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site/" target="_blank" rel="noopener noreferrer" class="nav-reviews" title="Voir les avis clients VPDVOYAGES"><span>★</span> Avis clients</a></li>
           <li><a href="#about">À propos</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -314,23 +312,23 @@
 
   <main>
     <section id="home" class="flex flex-col items-center justify-center relative">
-      <a href="cgv.html#cgv-autonomie" class="new-badge" title="Découvrir les formules Autonomie et Sérénité">
+      <a href="formules.html" class="new-badge" title="Découvrir nos formules sur mesure Autonomie et Sérénité">
         <span class="new-badge-top">NOUVEAU</span>
         <span class="new-badge-bottom">Autonomie<br>&amp; Sérénité</span>
         <span class="new-badge-arrow">→</span>
       </a>
 
       <div class="hero-panel text-center text-white relative z-10">
-        <p class="hero-kicker">VOYAGES SUR MESURE &amp; EN PETIT GROUPE</p>
+        <p class="hero-kicker">TRAVEL PLANNER — VOYAGES SUR MESURE &amp; EN PETIT GROUPE</p>
         <h1 class="font-bold mb-3">
           <span class="hero-title-main">L&rsquo;Espagne &amp; l&rsquo;Amérique latine</span>
           <span class="hero-title-accent">vous attendent !</span>
         </h1>
-        <p class="mb-4">Des expériences authentiques, des rencontres uniques, des voyages qui ont du sens.</p>
+        <p class="mb-4">Des expériences authentiques sur mesure, des rencontres uniques et des séjours sur mesure qui ont du sens.</p>
         
         <div class="flex flex-col justify-center gap-3 mb-4 md:hidden">
-            <a href="voyage-tango.html" class="hero-btn-tango">💃 Spécial Tango</a>
-            <a href="voyage-solo.html" class="hero-btn-solo">🧳 Voyager seul(e) ou en groupe</a>
+            <a href="voyage-tango.html" class="hero-btn-tango" title="Voyages thématiques Tango argentin sur mesure">💃 Spécial Tango</a>
+            <a href="voyage-solo.html" class="hero-btn-solo" title="Voyager seul(e) ou entre amis en petit groupe">🧳 Voyager seul(e) ou en groupe</a>
         </div>
 
         <div class="flex flex-wrap justify-center items-center gap-3 md:gap-4">
@@ -338,7 +336,7 @@
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10.5c0 5.25-9 11-9 11s-9-5.75-9-11a9 9 0 1 1 18 0zm-9 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
             Nos destinations →
           </a>
-          <a href="#contact" class="cta-projet" title="Votre voyage commence ici — parler de mon projet avec VPDVOYAGES" aria-label="Votre voyage commence ici, aller à la rubrique Contactez-moi">
+          <a href="#contact" class="cta-projet" title="Votre voyage commence ici — parler de mon projet avec Patrick Daroque, Travel Planner" aria-label="Votre voyage commence ici, aller à la rubrique Contactez-moi">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.2H22l-6 4.8 2.4 7.2L12 16.8 5.6 21.2 8 14 2 9.2h7.6L12 2z"/></svg>
             <span class="hidden md:inline">VOTRE VOYAGE COMMENCE ICI</span><span class="md:hidden">COMMENCER MON VOYAGE</span> →
           </a>
@@ -349,15 +347,15 @@
 
     <section id="destinations" class="pt-0 pb-2 mt-0 bg-white">
       <div class="container mx-auto px-4">
-        <h2 class="text-2xl md:text-3xl font-bold text-center mb-4">Nos destinations d'exception</h2>
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-4">Nos destinations d'exception sur mesure</h2>
         <div class="grid mb-6">
-          <div class="espagne"><a href="espagne.html" class="flag-container"><img src="https://images.pexels.com/photos/30820126/pexels-photo-30820126.jpeg?cs=srgb&dl=pexels-gottapics-30820126.jpg&fm=jpg" alt="Espagne" class="destination-photo" loading="lazy"><div class="destination-content"><p><img src="https://flagcdn.com/w40/es.png" alt="" width="26" height="18" style="display:inline-block;vertical-align:middle;margin-right:8px;border-radius:3px;box-shadow:0 2px 4px rgba(0,0,0,.2);" loading="lazy">Espagne</p><span>Découvrir →</span></div></a></div>
-          <div class="cuba"><div class="cuba-with-badge"><div class="cuba-badge"><span class="cuba-badge-text">Départs selon l’actualité</span></div><a href="cuba.html" class="flag-container"><img src="https://images.pexels.com/photos/37224660/pexels-photo-37224660.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Cuba" class="destination-photo" loading="lazy"><div class="destination-content"><p><img src="https://flagcdn.com/w40/cu.png" alt="" width="26" height="18" style="display:inline-block;vertical-align:middle;margin-right:8px;border-radius:3px;box-shadow:0 2px 4px rgba(0,0,0,.2);" loading="lazy">Cuba</p><span>Découvrir →</span></div></a></div></div>
+          <div class="espagne"><a href="espagne.html" class="flag-container" title="Voyage sur mesure en Espagne"><img src="https://images.pexels.com/photos/30820126/pexels-photo-30820126.jpeg?cs=srgb&dl=pexels-gottapics-30820126.jpg&fm=jpg" alt="Voyage sur mesure Espagne" class="destination-photo" loading="lazy"><div class="destination-content"><p><img src="https://flagcdn.com/w40/es.png" alt="" width="26" height="18" style="display:inline-block;vertical-align:middle;margin-right:8px;border-radius:3px;box-shadow:0 2px 4px rgba(0,0,0,.2);" loading="lazy">Espagne</p><span>Découvrir →</span></div></a></div>
+          <div class="cuba"><div class="cuba-with-badge"><div class="cuba-badge"><span class="cuba-badge-text">Départs selon l’actualité</span></div><a href="cuba.html" class="flag-container" title="Voyage sur mesure à Cuba"><img src="https://images.pexels.com/photos/37224660/pexels-photo-37224660.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Voyage sur mesure Cuba" class="destination-photo" loading="lazy"><div class="destination-content"><p><img src="https://flagcdn.com/w40/cu.png" alt="" width="26" height="18" style="display:inline-block;vertical-align:middle;margin-right:8px;border-radius:3px;box-shadow:0 2px 4px rgba(0,0,0,.2);" loading="lazy">Cuba</p><span>Découvrir →</span></div></a></div></div>
           
-          <!-- CARTE ARGENTINE (SANS BADGE TANGO) -->
+          <!-- CARTE ARGENTINE -->
           <div class="argentine">
-            <a href="argentine.html" class="flag-container">
-              <img src="https://images.pexels.com/photos/37164319/pexels-photo-37164319.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Argentine" class="destination-photo" loading="lazy">
+            <a href="argentine.html" class="flag-container" title="Voyage sur mesure en Argentine">
+              <img src="https://images.pexels.com/photos/37164319/pexels-photo-37164319.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Voyage sur mesure Argentine" class="destination-photo" loading="lazy">
               <div class="destination-content">
                 <p><img src="https://flagcdn.com/w40/ar.png" alt="" width="26" height="18" style="display:inline-block;vertical-align:middle;margin-right:8px;border-radius:3px;box-shadow:0 2px 4px rgba(0,0,0,.2);" loading="lazy">Argentine</p>
                 <span>Découvrir →</span>
@@ -365,9 +363,9 @@
             </a>
           </div>
 
-          <div class="uruguay"><a href="uruguay.html" class="flag-container"><img src="Images/gauchos.jpeg" alt="Uruguay" class="destination-photo" loading="lazy"><div class="destination-content"><p><img src="https://flagcdn.com/w40/uy.png" alt="" width="26" height="18" style="display:inline-block;vertical-align:middle;margin-right:8px;border-radius:3px;box-shadow:0 2px 4px rgba(0,0,0,.2);" loading="lazy">Uruguay</p><span>Découvrir →</span></div></a></div>
-          <div class="colombie"><a href="colombie.html" class="flag-container"><img src="https://images.pexels.com/photos/36895093/pexels-photo-36895093.jpeg?cs=srgb&dl=pexels-diego-hg-2157656524-36895093.jpg&fm=jpg" alt="Colombie" class="destination-photo" loading="lazy"><div class="destination-content"><p><img src="https://flagcdn.com/w40/co.png" alt="" width="26" height="18" style="display:inline-block;vertical-align:middle;margin-right:8px;border-radius:3px;box-shadow:0 2px 4px rgba(0,0,0,.2);" loading="lazy">Colombie</p><span>Découvrir →</span></div></a></div>
-          <div class="prochainement"><a href="prochainement.html" class="prochainement-btn" aria-label="Découvrir les prochaines destinations"><img src="Images/prochainement.jpg" alt="Prochainement" class="destination-photo" loading="lazy"><div class="destination-content"><p>🌍 Prochainement…</p><span>À découvrir →</span></div></a></div>
+          <div class="uruguay"><a href="uruguay.html" class="flag-container" title="Voyage sur mesure en Uruguay"><img src="Images/gauchos.jpeg" alt="Voyage sur mesure Uruguay" class="destination-photo" loading="lazy"><div class="destination-content"><p><img src="https://flagcdn.com/w40/uy.png" alt="" width="26" height="18" style="display:inline-block;vertical-align:middle;margin-right:8px;border-radius:3px;box-shadow:0 2px 4px rgba(0,0,0,.2);" loading="lazy">Uruguay</p><span>Découvrir →</span></div></a></div>
+          <div class="colombie"><a href="colombie.html" class="flag-container" title="Voyage sur mesure en Colombie"><img src="https://images.pexels.com/photos/36895093/pexels-photo-36895093.jpeg?cs=srgb&dl=pexels-diego-hg-2157656524-36895093.jpg&fm=jpg" alt="Voyage sur mesure Colombie" class="destination-photo" loading="lazy"><div class="destination-content"><p><img src="https://flagcdn.com/w40/co.png" alt="" width="26" height="18" style="display:inline-block;vertical-align:middle;margin-right:8px;border-radius:3px;box-shadow:0 2px 4px rgba(0,0,0,.2);" loading="lazy">Colombie</p><span>Découvrir →</span></div></a></div>
+          <div class="prochainement"><a href="prochainement.html" class="prochainement-btn" aria-label="Découvrir les prochaines destinations de VPDVOYAGES"><img src="Images/prochainement.jpg" alt="Prochaines destinations sur mesure" class="destination-photo" loading="lazy"><div class="destination-content"><p>🌍 Prochainement…</p><span>À découvrir →</span></div></a></div>
         </div>
         <div class="text-center mb-2"><p class="text-gray-500 italic text-xs md:text-sm m-0">* Les départs sont proposés toute l'année selon l'actualité et les disponibilités.</p></div>
       </div>
@@ -375,7 +373,7 @@
 
     <section id="voyage-solo-promo" class="py-6">
       <div class="container mx-auto px-4">
-        <a href="voyage-solo.html" class="solo-card" title="Découvrir le voyage en petit groupe">
+        <a href="voyage-solo.html" class="solo-card" title="Découvrir nos séjours pour voyager seul(e) en petit groupe">
           <div class="solo-card-inner">
             <div class="solo-emoji">🧳</div>
             <div style="flex:1;">
@@ -395,7 +393,7 @@
     <section id="about" class="pt-4 pb-4 -mt-1 bg-gray-100">
       <div class="container mx-auto px-4">
         <div class="flex flex-col items-center">
-          <div class="mb-4"><img src="Images/Photo%20Patrick.JPG" alt="Patrick Daroque" width="120" height="120" class="h-28 w-28 object-cover rounded-full mx-auto image-check shadow-md" loading="lazy"></div>
+          <div class="mb-4"><img src="Images/Photo%20Patrick.JPG" alt="Patrick Daroque - Travel Planner pour l'Espagne et l'Amérique latine" width="120" height="120" class="h-28 w-28 object-cover rounded-full mx-auto image-check shadow-md" loading="lazy"></div>
           <h2 class="text-3xl font-bold text-center mb-4">Mon approche du voyage sur mesure</h2>
           <div>
             <h3 class="text-blue-600 font-bold text-lg mb-1">Une passion pour le monde hispanique</h3>
@@ -424,12 +422,12 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="text-center" id="contact">
             <h2 class="text-2xl font-bold text-center mb-2">Votre voyage<span class="mobile-br"><br></span><span class="desktop-space"> </span>commence ici</h2>
-            <p class="text-blue-600 font-semibold text-base mb-3">Contactez-moi pour parler de votre projet</p>
+            <p class="text-blue-600 font-semibold text-base mb-3">Contactez-moi pour parler de votre projet de voyage sur mesure</p>
             <div class="max-w-sm mx-auto bg-white p-4 rounded shadow-lg">
               <form id="contactForm" action="https://formspree.io/f/mblkkdrj" method="POST">
                 <div class="mb-2"><label for="name" class="block text-gray-600 text-base text-left">Nom</label><input type="text" id="name" name="name" class="w-full p-1 border rounded text-base" placeholder="Votre nom" required></div>
                 <div class="mb-2"><label for="email" class="block text-gray-600 text-base text-left">Email</label><input type="email" id="email" name="email" class="w-full p-1 border rounded text-base" placeholder="Votre email" required></div>
-                <div class="mb-2"><label for="message" class="block text-gray-600 text-base text-left">Message</label><textarea id="message" name="message" class="w-full p-1 border rounded text-base" rows="3" placeholder="Votre message" required></textarea></div>
+                <div class="mb-2"><label for="message" class="block text-gray-600 text-base text-left">Message</label><textarea id="message" name="message" class="w-full p-1 border rounded text-base" rows="3" placeholder="Votre message ou projet de voyage" required></textarea></div>
                 <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off">
                 <button type="submit" class="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 w-full text-base font-medium">Envoyer</button>
                 <p id="confirmation" class="text-green-600 font-bold mt-3" style="display:none;">Merci ! Votre message a bien été envoyé.</p>

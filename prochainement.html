@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prochainement – VPDVOYAGES | Voyages sur mesure</title>
-    <meta name="description" content="Découvrez les 6 prochaines destinations et expériences préparées par VPDVOYAGES : Jazz à La Havane, Tango thérapie, Salsa à Cali, Barcelone, Argentine authentique et Cuba entre Salsa et Tango.">
+    <meta name="description" content="Découvrez les 6 prochaines destinations et expériences préparées par VPDVOYAGES : Jazz à La Havane, Tango thérapie, Salsa à Cali, Barcelone, Argentine authentique et Festival de Tango à La Havane (octobre 2027).">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         header {
@@ -178,40 +178,91 @@
                 grid-template-columns: repeat(3, 1fr);
             }
         }
-    </style>
+    
+    /* ================= HEADER (identique à la page d'accueil) ================= */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 76px; width: 100%; background: linear-gradient(90deg,#1764df 0%,#2463d8 55%,#1d5bc8 100%); color: #fff; box-shadow: none; display: flex; align-items: center; }
+    header .container { height: 100%; display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .wow-logo { width: 200px; height: 46px; object-fit: contain; object-position: left center; display: block; margin: 0; background:#1764df; mix-blend-mode:lighten; }
+    .header-right { display:flex; align-items:center; gap:20px; height:100%; }
+    .nav-menu { display:flex; align-items:center; height:100%; }
+    .nav-menu ul { align-items:center; display:flex; flex-direction:row; gap:16px; margin:0; padding:0; list-style:none; height:100%; }
+    .nav-menu a { color:#fff; text-decoration:none; font-weight:700; font-size:14px; display:flex; align-items:center; height:100%; }
+    .nav-menu a:hover { text-decoration:none; opacity:.9; }
+    .header-phone { white-space:nowrap; font-weight:700; font-size:14px; display:flex; align-items:center; gap:5px; margin-left:10px; color:#fff; text-decoration:none; }
+    .header-phone:hover { text-decoration:underline; }
+    .nav-reviews { display:inline-flex; align-items:center; gap:5px; padding:5px 10px; border-radius:999px; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28); box-shadow:0 3px 10px rgba(0,0,0,.10); font-size:14px; }
+    .nav-reviews span { color:#ffd34d; font-size:1.05em; }
+    .nav-reviews:hover { background:#fff; color:#1764df !important; }
+    .nav-tango { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:999px; background:#fbbf24; color:#1a1a1a !important; font-weight:800; box-shadow:0 4px 12px rgba(251,191,36,.40); transition:.22s ease; height:auto; }
+    .nav-tango:hover { transform:translateY(-2px) scale(1.04); box-shadow:0 8px 22px rgba(251,191,36,.60); background:#f59e0b; opacity:1 !important; }
+    .nav-solo { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:999px; background:linear-gradient(135deg,#10b981 0%,#059669 100%); color:#fff !important; font-weight:800; box-shadow:0 4px 12px rgba(16,185,129,.40); transition:.22s ease; height:auto; }
+    .nav-solo:hover { transform:translateY(-2px) scale(1.04); box-shadow:0 8px 22px rgba(16,185,129,.55); opacity:1 !important; background:linear-gradient(135deg,#059669 0%,#047857 100%); }
+    .nav-toggle { display:none; background:none; border:0; color:#fff; cursor:pointer; }
+    .nav-menu-mobile { display:none; position:absolute; top:100%; right:10px; width:250px; flex-direction:column; align-items:stretch; padding:12px; background:#1764df; border-radius:0 0 12px 12px; box-shadow:0 12px 24px rgba(0,0,0,.2); }
+    .nav-menu-mobile.active { display:flex; }
+    .nav-menu-mobile ul { display:flex; flex-direction:column; gap:9px; list-style:none; padding:0; margin:0; }
+    .nav-menu-mobile a { display:block; padding:6px 8px; color:#fff; text-decoration:none; font-weight:700; }
+    .nav-menu-mobile a.nav-solo, .nav-menu-mobile a.nav-tango { display:flex; justify-content:center; }
+    .nav-menu-mobile a.nav-tango { color:#1a1a1a; }
+    body { padding-top: 76px; }
+    html { scroll-padding-top: 90px; }
+    @media (max-width: 1199px) { .header-right { display:none; } .nav-toggle { display:block; } }
+    @media (min-width: 1200px) { .nav-menu-mobile { display:none !important; } }
+    @media (max-width: 639px) {
+      header { height:56px; }
+      body { padding-top:56px; }
+      html { scroll-padding-top:70px; }
+      header .container { padding-left:12px; padding-right:12px; }
+      .wow-logo { width:170px; height:40px; }
+    }
+
+</style>
 </head>
 <body class="bg-gray-100 font-sans">
 
     <!-- HEADER -->
-    <header class="bg-blue-600 text-white py-4">
-        <div class="container mx-auto px-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <a href="index.html">
-                    <img src="Images/logo.jpg" alt="VPDVOYAGES" class="h-12 w-12 object-contain" onerror="this.style.display='none'">
-                </a>
-                <div>
-                    <a href="index.html" class="text-xl font-bold tracking-tight">VPDVOYAGES</a>
-                    <p class="text-sm opacity-90">Patrick Daroque - Travel Planner</p>
-                </div>
-            </div>
-            <div class="flex items-center space-x-4">
-                <button class="nav-toggle md:hidden text-white focus:outline-none" aria-label="Menu">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-                <nav class="nav-menu space-x-4">
-                    <a href="index.html#home" class="hover:underline text-sm md:text-base">Accueil</a>
-                    <a href="index.html#destinations" class="hover:underline text-sm md:text-base">Les destinations</a>
-                    <a href="index.html#about" class="hover:underline text-sm md:text-base">Qui suis-je ?</a>
-                    <a href="index.html#reviews" class="hover:underline text-sm md:text-base">Avis des voyageurs</a>
-                    <a href="index.html#travel-planner" class="hover:underline text-sm md:text-base">Qu'est-ce qu'un Travel Planner ?</a>
-                    <a href="index.html#contact" class="hover:underline text-sm md:text-base">Contact</a>
-                </nav>
-                <a href="index.html#destinations" class="hidden md:inline-block bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 text-sm">Retour</a>
-            </div>
-        </div>
-    </header>
+      <header>
+    <div class="container mx-auto px-4">
+      <a href="index.html" class="flex items-center" title="Retour à l'accueil VPDVOYAGES">
+        <img src="Images/logo.png" alt="VPDVOYAGES - Patrick Daroque Travel Planner" width="290" height="68" class="wow-logo">
+      </a>
+
+      <div class="header-right">
+        <nav class="nav-menu" aria-label="Navigation du site">
+          <ul>
+            <li><a href="index.html#home">Accueil</a></li>
+            <li><a href="index.html#destinations">Destinations</a></li>
+            <li><a href="voyage-tango.html" class="nav-tango" title="Découvrir tous nos voyages Tango">Tango argentin</a></li>
+            <li><a href="voyage-solo.html" class="nav-solo" title="Voyager seul(e) en petit groupe">🧳 Voyager seul(e)</a></li>
+            <li><a href="formules.html">Formules</a></li>
+            <li><a href="https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site/" target="_blank" rel="noopener noreferrer" class="nav-reviews" title="Voir les avis clients VPDVOYAGES"><span>★</span> Avis clients</a></li>
+            <li><a href="index.html#about">À propos</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <a href="tel:+33610950984" class="header-phone"><span aria-hidden="true">☎</span><span>+33 6 10 95 09 84</span></a>
+      </div>
+
+      <button class="nav-toggle" aria-label="Menu principal">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+
+      <nav class="nav-menu-mobile" aria-label="Navigation mobile">
+        <ul>
+          <li><a href="index.html#home">Accueil</a></li>
+          <li><a href="index.html#destinations">Destinations</a></li>
+          <li><a href="voyage-tango.html" class="nav-tango" title="Découvrir tous nos voyages Tango">Tango argentin</a></li>
+          <li><a href="voyage-solo.html" class="nav-solo" title="Voyager seul(e) en petit groupe">🧳 Voyager seul(e)</a></li>
+          <li><a href="formules.html">Formules</a></li>
+          <li><a href="https://5f9fdb56b0fd4dfb91d8cccab27982c5.elf.site/" target="_blank" rel="noopener noreferrer" class="nav-reviews" title="Voir les avis clients VPDVOYAGES"><span>★</span> Avis clients</a></li>
+          <li><a href="index.html#about">À propos</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="tel:+33610950984">☎ +33 6 10 95 09 84</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
 
     <!-- CONTENU -->
     <section class="py-12">
@@ -314,16 +365,16 @@
                     </div>
                 </a>
 
-                <!-- 6. Cuba entre Salsa et Tango -->
-                <a href="cuba-salsa-tango.html" class="trip-card bg-white rounded shadow-lg overflow-hidden">
+                <!-- 6. Festival de Tango à La Havane -->
+                <a href="presentation/lecteur.html?pdf=../PDF/Cuba_Festival_Tango_La_Havane.pdf&retour=../prochainement.html" data-href-mobile="PDF_mobile/Cuba_Festival_Tango/programme.html" class="trip-card bg-white rounded shadow-lg overflow-hidden">
                     <div class="bg-gray-200">
-                        <img src="Images/cuba-salsa-tango.jpg" alt="Cuba entre Salsa et Tango" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23e5e7eb%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%236b7280%22 font-size=%2220%22 font-family=%22sans-serif%22%3ECuba%20Salsa%20Tango%3C/text%3E%3C/svg%3E'">
+                        <img src="Images/cuba tango.jpg" alt="Festival de Tango à La Havane" class="w-full h-48 object-cover" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23e5e7eb%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%236b7280%22 font-size=%2220%22 font-family=%22sans-serif%22%3EFestival%20de%20Tango%20%C3%A0%20La%20Havane%3C/text%3E%3C/svg%3E'">
                     </div>
                     <div class="p-4 card-content">
-                        <h3 class="text-xl font-semibold">Cuba : entre Salsa et Tango</h3>
-                        <p class="text-sm text-amber-600 font-medium mt-1">La Havane</p>
+                        <h3 class="text-xl font-semibold">Festival de Tango à La Havane</h3>
+                        <p class="text-sm text-amber-600 font-medium mt-1">Octobre 2027</p>
                         <p class="text-gray-600 mt-2 description">
-                            Deux danses, une même passion. Alternance de cours et soirées salsa et tango à La Havane, rencontres avec des danseurs et immersion dans l'ambiance nocturne et culturelle de la ville.
+                            Vivez le Festival de Tango à La Havane. Découvrez spectacles, ateliers avec maestros et milongas sous les étoiles. Explorez les quartiers historiques vibrants de culture cubaine. Un voyage mêlant l'élégance du tango et la chaleur de Cuba pour une expérience inoubliable.
                         </p>
                         <div class="flex justify-center space-x-2 mt-3">
                             <button class="read-more" onclick="event.stopPropagation(); event.preventDefault();">+</button>
@@ -374,6 +425,13 @@
             }
         });
 
+        // Cartes avec programme PDF : version mobile du programme sur petit écran
+        document.querySelectorAll('[data-href-mobile]').forEach(function (a) {
+            if (window.matchMedia('(max-width: 768px)').matches) {
+                a.setAttribute('href', a.getAttribute('data-href-mobile'));
+            }
+        });
+
         // Système "Lire plus / Moins"
         document.querySelectorAll('.read-more').forEach(button => {
             button.addEventListener('click', function (e) {
@@ -387,5 +445,18 @@
             });
         });
     </script>
+
+    <script>
+      (function () {
+        var t = document.querySelector('.nav-toggle');
+        var m = document.querySelector('.nav-menu-mobile');
+        if (!t || !m) return;
+        t.addEventListener('click', function () { m.classList.toggle('active'); });
+        m.querySelectorAll('a').forEach(function (a) {
+          a.addEventListener('click', function () { m.classList.remove('active'); });
+        });
+      })();
+    </script>
+
 </body>
 </html>

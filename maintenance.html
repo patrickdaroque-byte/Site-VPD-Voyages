@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPDVoyages - Pause technique</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 16px;
+            max-width: 550px;
+            width: 100%;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        .icon { font-size: 50px; margin-bottom: 15px; }
+        h1 { font-size: 1.8rem; margin-bottom: 15px; font-weight: 600; }
+        p { font-size: 1.05rem; line-height: 1.6; margin-bottom: 25px; color: #f0f0f0; }
+        .contact-box {
+            background: rgba(0, 0, 0, 0.25);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .contact-box h2 { font-size: 1.1rem; margin-bottom: 10px; color: #ffffff; }
+        .contact-box ul { list-style: none; }
+        .contact-box li { margin-bottom: 8px; font-size: 0.95rem; }
+        .contact-box a { color: #ffd166; text-decoration: none; font-weight: bold; }
+        .footer-note { font-size: 0.85rem; opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="icon">✈️</div>
+        <h1>Oups, nous refaisons nos valises !</h1>
+        <p>Le site <strong>VPDVoyages</strong> fait une très courte pause pour faire peau neuve et vous préparer de nouvelles aventures encore plus belles.</p>
+        
+        <div class="contact-box">
+            <h2>Pendant cette courte pause :</h2>
+            <ul>
+                <li>📞 Téléphone : <a href="tel:+33610950984">06 10 95 09 84</a></li>
+                <li>✉️ Email : <a href="mailto:contact@vpdvoyages.com">contact@vpdvoyages.com</a></li>
+            </ul>
+        </div>
+
+        <p class="footer-note">Merci de votre patience, nous serons de retour très vite !</p>
+    </div>
+</body>
+</html>
