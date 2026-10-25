@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Voyage en petit groupe - Colombie La Magie Réaliste - Bogotá, Medellín, Carthagène, Îles du Rosaire">
+  <title>Colombie · La Magie Réaliste</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rouge: #c41e3a;
+      --rouge-fonce: #8b1528;
+      --noir: #1a1a1a;
+      --creme: #faf7f2;
+      --or: #c9a227;
+      --turquoise: #0d7377;
+      --gris: #5a5a5a;
+      --blanc: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--creme);
+      color: var(--noir);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: #f5f0e8;
+      color: var(--noir);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(245,240,232,0.05) 0%, rgba(245,240,232,0.25) 40%, rgba(245,240,232,0.88) 100%),
+                  url('images/cover.jpg') center/cover no-repeat;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 2rem 1.25rem 3rem;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--rouge);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+    .hero-title-box {
+      display: inline-block;
+      background: rgba(255,255,255,0.92);
+      border: 2px solid var(--or);
+      border-radius: 8px;
+      padding: 0.85rem 1.25rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0;
+      color: var(--noir);
+    }
+    .hero h1 span {
+      color: #b8860b;
+    }
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: #444;
+      margin-bottom: 1.5rem;
+    }
+    .hero-list { list-style: none; margin-bottom: 1.75rem; }
+    .hero-list li {
+      font-size: 0.9rem;
+      padding: 0.35rem 0;
+      padding-left: 1.1rem;
+      position: relative;
+      color: var(--noir);
+    }
+    .hero-list li::before {
+      content: "•";
+      color: var(--rouge);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+    .site-link {
+      font-size: 0.8rem;
+      color: var(--rouge);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+    }
+
+    /* ===== NAV ===== */
+    .nav-sticky {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(26,26,26,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .nav-sticky::-webkit-scrollbar { display: none; }
+    .nav-inner {
+      display: flex;
+      gap: 0;
+      padding: 0 0.5rem;
+      min-width: max-content;
+    }
+    .nav-inner a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.9rem 0.85rem;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .nav-inner a:hover, .nav-inner a:active { color: var(--or); }
+
+    /* ===== SECTIONS ===== */
+    section { padding: 2.75rem 1.25rem; }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rouge);
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 1.25rem;
+      color: var(--noir);
+    }
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+    p {
+      font-size: 0.95rem;
+      color: var(--gris);
+      margin-bottom: 1rem;
+    }
+    .divider {
+      width: 40px;
+      height: 3px;
+      background: var(--rouge);
+      margin: 0 0 1.5rem;
+    }
+
+    /* ===== PRESENTATION ===== */
+    .presentation { background: var(--blanc); }
+    .cards-grid {
+      display: grid;
+      gap: 1rem;
+    }
+    .card {
+      background: var(--creme);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+    .card-body { padding: 1rem 1.1rem 1.2rem; }
+    .card-body h3 { font-size: 1.05rem; margin-bottom: 0.35rem; }
+    .card-body p { font-size: 0.85rem; margin-bottom: 0; }
+
+    /* ===== REGIONS ===== */
+    .regions {
+      background: var(--noir);
+      color: var(--blanc);
+    }
+    .regions h2 { color: var(--blanc); }
+    .regions .section-label { color: var(--or); }
+    .region-block { margin-bottom: 2rem; }
+    .region-block:last-child { margin-bottom: 0; }
+    .region-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--or);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid rgba(201,162,39,0.3);
+    }
+    .region-list { list-style: none; }
+    .region-list li {
+      font-size: 0.9rem;
+      padding: 0.4rem 0;
+      padding-left: 1rem;
+      position: relative;
+      color: rgba(255,255,255,0.85);
+    }
+    .region-list li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: var(--or);
+    }
+    .map-img {
+      border-radius: 10px;
+      margin-top: 1.5rem;
+      width: 100%;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    /* ===== DEST SECTIONS ===== */
+    .dest-section { background: var(--creme); }
+    .dest-section.alt { background: var(--blanc); }
+    .img-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      margin: 1.25rem 0 1.5rem;
+    }
+    .img-gallery.full { grid-template-columns: 1fr; }
+    .img-gallery img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .img-gallery.full img { height: 200px; }
+    .img-gallery.triple { grid-template-columns: 1fr 1fr 1fr; }
+    .img-gallery.triple img { height: 110px; }
+
+    .highlight-box {
+      background: var(--noir);
+      color: white;
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-top: 1rem;
+    }
+    .highlight-box h3 { color: var(--or); font-size: 1.1rem; }
+    .highlight-box p {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+
+    .points-list {
+      list-style: none;
+      margin-top: 1rem;
+    }
+    .points-list li {
+      font-size: 0.9rem;
+      padding: 0.45rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+      color: var(--gris);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .points-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--rouge);
+      font-weight: 600;
+    }
+
+    /* ===== CARAIBES ===== */
+    .caraibes {
+      background: linear-gradient(180deg, #0a4d4f 0%, #0d7377 100%);
+      color: white;
+    }
+    .caraibes h2 { color: white; }
+    .caraibes .section-label { color: #7dd3d8; }
+    .caraibes .divider { background: #7dd3d8; }
+    .caraibes p { color: rgba(255,255,255,0.85); }
+    .caraibes-features {
+      list-style: none;
+      margin: 1.25rem 0;
+    }
+    .caraibes-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 0;
+      font-size: 0.95rem;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .caraibes-features li:last-child { border-bottom: none; }
+    .caraibes-icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    /* ===== PROGRAMME ===== */
+    .programme { background: var(--blanc); }
+    .prog-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .prog-card {
+      background: var(--creme);
+      border-radius: 10px;
+      padding: 1.15rem;
+      border-left: 3px solid var(--rouge);
+    }
+    .prog-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--rouge);
+      margin-bottom: 0.6rem;
+    }
+    .prog-card ul {
+      list-style: none;
+    }
+    .prog-card li {
+      font-size: 0.88rem;
+      padding: 0.25rem 0;
+      color: var(--gris);
+      padding-left: 0.9rem;
+      position: relative;
+    }
+    .prog-card li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: var(--or);
+      font-weight: bold;
+    }
+
+    /* ===== INFOS PRATIQUES ===== */
+    .infos { background: var(--creme); }
+    .info-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+    .info-item {
+      background: var(--blanc);
+      border-radius: 10px;
+      padding: 1.15rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .info-item h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--rouge-fonce);
+    }
+    .info-item p {
+      font-size: 0.85rem;
+      margin: 0;
+    }
+    .info-item a {
+      color: var(--rouge);
+      text-decoration: none;
+    }
+
+    /* ===== SECURITE ===== */
+    .securite { background: var(--blanc); }
+    .secu-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+    .secu-item {
+      background: var(--creme);
+      border-radius: 10px;
+      padding: 1.15rem;
+    }
+    .secu-item h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--rouge-fonce);
+    }
+    .secu-item p {
+      font-size: 0.85rem;
+      margin: 0;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--noir);
+      color: white;
+      text-align: center;
+      padding: 3rem 1.25rem 2.5rem;
+    }
+    .footer-img {
+      width: 100%;
+      max-width: 280px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .footer h2 {
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 0.4rem;
+    }
+    .footer p {
+      color: rgba(255,255,255,0.7);
+      font-style: italic;
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+    }
+    .footer-info {
+      font-size: 0.8rem;
+      color: var(--or);
+      letter-spacing: 0.04em;
+      margin-bottom: 1.5rem;
+    }
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+    .footer-logo {
+      max-width: 140px;
+      height: auto;
+      display: block;
+    }
+    .footer a {
+      color: var(--or);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
+    @media (min-width: 480px) {
+      .hero h1 { font-size: 2.8rem; }
+      .cards-grid { grid-template-columns: 1fr 1fr; }
+      .img-gallery img { height: 160px; }
+      .prog-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HERO ========== -->
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <span class="badge">Idée voyage en petit groupe</span>
+      <div class="hero-title-box">
+        <h1>Colombie<br><span>La Magie Réaliste</span></h1>
+      </div>
+      <p class="hero-subtitle">Un voyage au cœur de la Colombie</p>
+      <ul class="hero-list">
+        <li>Bogotá &amp; la Candelaria</li>
+        <li>Cathédrale de Sel de Zipaquirá</li>
+        <li>Medellín &amp; Comuna 13</li>
+        <li>Guatapé &amp; ses 740 marches</li>
+        <li>Carthagène des Indes</li>
+        <li>Les Îles du Rosaire</li>
+      </ul>
+      <a href="https://vpdvoyages.com" class="site-link" target="_blank" rel="noopener">vpdvoyages.com</a>
+    </div>
+  </header>
+
+  <!-- ========== NAV ========== -->
+  <nav class="nav-sticky">
+    <div class="nav-inner">
+      <a href="#presentation">Présentation</a>
+      <a href="#regions">Régions</a>
+      <a href="#bogota">Bogotá</a>
+      <a href="#medellin">Medellín</a>
+      <a href="#guatape">Guatapé</a>
+      <a href="#carthagene">Carthagène</a>
+      <a href="#rosaire">Îles du Rosaire</a>
+      <a href="#programme">Programme</a>
+      <a href="#infos">Infos</a>
+      <a href="#securite">Sécurité</a>
+    </div>
+  </nav>
+
+  <!-- ========== PRESENTATION ========== -->
+  <section class="presentation" id="presentation">
+    <span class="section-label">Présentation</span>
+    <h2>Le voyage en un coup d'œil</h2>
+    <div class="divider"></div>
+    <p>Plongez dans une aventure inoubliable en Colombie, où la magie prend vie à chaque étape ! Explorez la vibrante Bogotá, émerveillez-vous devant la Cathédrale de sel de Zipaquirá, découvrez la renaissance de Medellín, et succombez au charme colonial de Carthagène des Indes.</p>
+
+    <div class="cards-grid" style="margin-top:1.5rem;">
+      <div class="card">
+        <img src="images/Bogota.jpg" alt="Bogotá – La Candelaria">
+        <div class="card-body">
+          <h3>Bogotá</h3>
+          <p>La Candelaria, Musée de l'Or, Monserrate, Zipaquirá</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/metrocable.jpg" alt="Medellín – Metrocable">
+        <div class="card-body">
+          <h3>Medellín</h3>
+          <p>Comuna 13, Metrocable, Guatapé, Musée d'Antioquia</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/carthagene.jpg" alt="Carthagène des Indes">
+        <div class="card-body">
+          <h3>Carthagène</h3>
+          <p>Centre historique, Getsemaní, Îles du Rosaire</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/iles-rosaire1.jpg" alt="Îles du Rosaire">
+        <div class="card-body">
+          <h3>Îles du Rosaire</h3>
+          <p>Snorkelling, plages, plancton lumineux</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/penon-guatape.jpg" alt="Guatapé">
+        <div class="card-body">
+          <h3>Guatapé</h3>
+          <p>Le Peñol et ses 740 marches</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/getsemani.jpg" alt="Getsemaní">
+        <div class="card-body">
+          <h3>Getsemaní</h3>
+          <p>Quartier coloré et authentique de Carthagène</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== REGIONS ========== -->
+  <section class="regions" id="regions">
+    <span class="section-label">Les régions visitées</span>
+    <h2>Trois régions, une seule magie</h2>
+    <div class="divider" style="background:var(--or)"></div>
+
+    <div class="region-block">
+      <div class="region-title">Cundinamarca – Bogotá &amp; Zipaquirá</div>
+      <ul class="region-list">
+        <li>La Capitale andine</li>
+        <li>La Candelaria</li>
+        <li>Le Musée de l'Or</li>
+        <li>La Cathédrale de Sel</li>
+        <li>Le Lac Guatavita</li>
+      </ul>
+    </div>
+
+    <div class="region-block">
+      <div class="region-title">Antioquia – Medellín &amp; Guatapé</div>
+      <ul class="region-list">
+        <li>La Cité de l'éternel printemps</li>
+        <li>La Comuna 13</li>
+        <li>Le Metrocable</li>
+        <li>Le Rocher de Guatapé</li>
+      </ul>
+    </div>
+
+    <div class="region-block">
+      <div class="region-title">Côte Caraïbe – Carthagène &amp; Îles du Rosaire</div>
+      <ul class="region-list">
+        <li>Ville coloniale fortifiée (UNESCO)</li>
+        <li>Le quartier Getsemaní</li>
+        <li>Les îles tropicales</li>
+        <li>Snorkelling et plancton lumineux</li>
+      </ul>
+    </div>
+
+    <img src="images/carte-villes-colombie.jpg" alt="Carte des villes visitées en Colombie" class="map-img">
+  </section>
+
+  <!-- ========== BOGOTA ========== -->
+  <section class="dest-section" id="bogota">
+    <span class="section-label">Bogotá</span>
+    <h2>Capitale andine, histoire et culture</h2>
+    <div class="divider"></div>
+
+    <div class="img-gallery">
+      <img src="images/Bogota.jpg" alt="Bogotá – La Candelaria">
+      <img src="images/musee-de-l'or.jpg" alt="Musée de l'Or">
+    </div>
+
+    <p>Visite de la Candelaria, quartier colonial au cœur de la capitale. Musée de l'Or (collection précolombienne exceptionnelle) et ascension du Monserrate pour une vue panoramique sur la ville.</p>
+
+    <h3 style="font-size:1.05rem;margin-top:1.25rem;color:var(--rouge);">À ne pas manquer</h3>
+    <ul class="points-list">
+      <li>Quartier de la Candelaria</li>
+      <li>Musée de l'Or</li>
+      <li>Mirador de Monserrate</li>
+      <li>Plaza de Bolívar</li>
+      <li>Appartement en centre-ville</li>
+    </ul>
+  </section>
+
+  <!-- ========== CUNDINAMARCA ========== -->
+  <section class="dest-section alt" id="cundinamarca">
+    <span class="section-label">Cundinamarca</span>
+    <h2>Cathédrale de Sel &amp; Guatavita</h2>
+    <div class="divider"></div>
+
+    <div class="highlight-box" style="margin-bottom:1rem;">
+      <h3>Cathédrale de Sel – Zipaquirá</h3>
+      <p>Une cathédrale souterraine creusée dans une mine de sel. Architecture spectaculaire, lumière mystique et acoustique unique — l'une des merveilles de Colombie.</p>
+    </div>
+
+    <img src="images/Catedral_de_Sal_de_Zipaquira.jpg" alt="Cathédrale de Sel de Zipaquirá" style="width:100%;height:200px;object-fit:cover;border-radius:10px;margin-bottom:1rem;">
+
+    <div class="highlight-box" style="margin-bottom:1rem;">
+      <h3>Guatavita – Repas champêtre</h3>
+      <p>Le Lac sacré des Muiscas et la légende de l'Eldorado. Balade et repas champêtre près de la Casa Loca — une parenthèse authentique en pleine nature.</p>
+    </div>
+
+    <div class="img-gallery">
+      <img src="images/casa-loca.jpg" alt="Casa Loca">
+      <img src="images/laguna-guatavita.jpg" alt="Lagune de Guatavita">
+    </div>
+  </section>
+
+  <!-- ========== MEDELLIN ========== -->
+  <section class="dest-section" id="medellin">
+    <span class="section-label">Medellín</span>
+    <h2>La renaissance d'une ville</h2>
+    <div class="divider"></div>
+
+    <div class="img-gallery">
+      <img src="images/metrocable.jpg" alt="Metrocable">
+      <img src="images/comuna-13.jpg" alt="Comuna 13">
+    </div>
+
+    <p>Cité de l'éternel printemps. Metrocable, Comuna 13 (street art et transformation sociale), Musée d'Antioquia, Place Botero, Bibliothèque España et Musée de la Mémoire.</p>
+
+    <h3 style="font-size:1.05rem;margin-top:1.25rem;color:var(--rouge);">Points forts</h3>
+    <ul class="points-list">
+      <li>Metrocable &amp; Comuna 13</li>
+      <li>Musée d'Antioquia &amp; Place Botero</li>
+      <li>Cerro Nutibara</li>
+      <li>Bibliothèque España</li>
+      <li>Musée de la Mémoire</li>
+    </ul>
+  </section>
+
+  <!-- ========== GUATAPE ========== -->
+  <section class="dest-section alt" id="guatape">
+    <span class="section-label">Excursion</span>
+    <h2>Guatapé - 740 marches !</h2>
+    <div class="divider"></div>
+
+    <img src="images/penon-guatape.jpg" alt="Piedra del Peñol" style="width:100%;height:220px;object-fit:cover;border-radius:10px;margin-bottom:1.25rem;">
+
+    <h3 style="color:var(--rouge);">Le Peñol de Guatapé</h3>
+    <p>Un monolithe de granit de 200 m de haut. <strong>740 marches</strong> pour atteindre le sommet et admirer un panorama exceptionnel sur le lac et les îles.</p>
+    <p>Le village de Guatapé, aux façades colorées et <em>zócalos</em> peints, complète cette excursion inoubliable.</p>
+  </section>
+
+  <!-- ========== CARTHAGENE ========== -->
+  <section class="dest-section" id="carthagene">
+    <span class="section-label">Carthagène des Indes</span>
+    <h2>Charme colonial envoûtant</h2>
+    <div class="divider"></div>
+
+    <div class="img-gallery">
+      <img src="images/carthagene.jpg" alt="Carthagène des Indes">
+      <img src="images/getsemani.jpg" alt="Getsemaní">
+    </div>
+    <div class="img-gallery" style="margin-top:0.6rem;">
+      <img src="images/Carthagene-des-Indes-Colombie-13.jpg" alt="Vue de Carthagène">
+      <img src="images/Cartagena-Botero.jpg" alt="Botero à Carthagène">
+    </div>
+
+    <p>Ville fortifiée classée UNESCO. Centre historique, Getsemaní, Musée de l'Inquisition, Forteresse de San Felipe, Cerro de la Popa, quartier de San Diego…</p>
+
+    <ul class="points-list">
+      <li>Centre historique fortifié</li>
+      <li>Quartier Getsemaní</li>
+      <li>Forteresse de San Felipe</li>
+      <li>Cerro de la Popa</li>
+      <li>Quartier de San Diego</li>
+    </ul>
+  </section>
+
+  <!-- ========== ILES DU ROSAIRE ========== -->
+  <section class="caraibes" id="rosaire">
+    <span class="section-label">Nature &amp; Caraïbes</span>
+    <h2>Les Îles du Rosaire</h2>
+    <div class="divider"></div>
+
+    <div class="img-gallery">
+      <img src="images/iles-rosaire1.jpg" alt="Îles du Rosaire 1">
+      <img src="images/iles-rosaire2.jpg" alt="Îles du Rosaire 2">
+    </div>
+
+    <h3 style="color:#7dd3d8;font-size:1.15rem;">Paradis tropical</h3>
+    <p>Archipel de 27 îles coralliennes. Départ en bateau rapide depuis Baru — une journée de rêve caraïbe.</p>
+
+    <ul class="caraibes-features">
+      <li><span class="caraibes-icon">🌊</span> Snorkelling</li>
+      <li><span class="caraibes-icon">🏖</span> Plage de sable blanc</li>
+      <li><span class="caraibes-icon">💎</span> Eaux turquoises</li>
+      <li><span class="caraibes-icon">✨</span> Plancton lumineux à la tombée de la nuit</li>
+    </ul>
+  </section>
+
+  <!-- ========== PROGRAMME ========== -->
+  <section class="programme" id="programme">
+    <span class="section-label">Programme</span>
+    <h2>Itinéraire indicatif</h2>
+    <div class="divider"></div>
+
+    <div class="prog-grid">
+      <div class="prog-card">
+        <h4>Bogotá</h4>
+        <ul>
+          <li>Candelaria</li>
+          <li>Musée de l'Or</li>
+          <li>Monserrate</li>
+          <li>Zipaquirá</li>
+          <li>Guatavita</li>
+        </ul>
+      </div>
+      <div class="prog-card">
+        <h4>Medellín</h4>
+        <ul>
+          <li>Musée d'Antioquia</li>
+          <li>Comuna 13</li>
+          <li>Metrocable</li>
+          <li>Guatapé</li>
+          <li>Musée de la Mémoire</li>
+        </ul>
+      </div>
+      <div class="prog-card">
+        <h4>Carthagène</h4>
+        <ul>
+          <li>Centre historique</li>
+          <li>Getsemaní</li>
+          <li>San Felipe</li>
+          <li>San Diego</li>
+          <li>Plages</li>
+        </ul>
+      </div>
+      <div class="prog-card">
+        <h4>Îles du Rosaire</h4>
+        <ul>
+          <li>Îles du Rosaire</li>
+          <li>Snorkelling</li>
+          <li>Plancton lumineux</li>
+          <li>El Paraíso</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== INFOS PRATIQUES ========== -->
+  <section class="infos" id="infos">
+    <span class="section-label">Informations pratiques</span>
+    <h2>Avant le départ &amp; sur place</h2>
+    <div class="divider"></div>
+
+    <div class="info-grid">
+      <div class="info-item">
+        <h4>Passeport</h4>
+        <p>Valable 6 mois après le retour. Photocopie à conserver séparément. Formulaire Check-Mig avant l'arrivée.</p>
+      </div>
+      <div class="info-item">
+        <h4>Monnaie</h4>
+        <p>Peso colombien (COP). 1 € ≈ 4 780 COP. Cartes de crédit et dollars acceptés. Préférer les casas de cambio.</p>
+      </div>
+      <div class="info-item">
+        <h4>Langue &amp; décalage</h4>
+        <p>Espagnol. Décalage −6 h (hiver) / −5 h (été) par rapport à Paris.</p>
+      </div>
+      <div class="info-item">
+        <h4>Ambassade de France à Bogotá</h4>
+        <p>Carrera 11 N° 93-12 (110221) Bogotá<br>
+        Tél. : (00 57) 60 13 09 96 67<br>
+        <a href="http://www.ambafrance-co.org/" target="_blank" rel="noopener">ambafrance-co.org</a></p>
+      </div>
+      <div class="info-item">
+        <h4>Sauvegarde papiers</h4>
+        <p>mon.service-public.fr (en cas de perte ou vol)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECURITE ========== -->
+  <section class="securite" id="securite">
+    <span class="section-label">Sécurité &amp; bon sens</span>
+    <h2>Quelques précautions</h2>
+    <div class="divider"></div>
+
+    <div class="secu-grid">
+      <div class="secu-item">
+        <h4>Ne pas marcher seul(e) le soir</h4>
+        <p>Surtout dans la Candelaria. Faire appeler un taxi par l'hôtel.</p>
+      </div>
+      <div class="secu-item">
+        <h4>Photocopie du passeport</h4>
+        <p>Toujours sur soi, originaux en lieu sûr.</p>
+      </div>
+      <div class="secu-item">
+        <h4>Bijoux &amp; argent</h4>
+        <p>Pas de bijoux ostentatoires. Éviter de porter de grosses sommes.</p>
+      </div>
+      <div class="secu-item">
+        <h4>Distributeurs</h4>
+        <p>Uniquement en journée, lieux fréquentés. Attention au clonage.</p>
+      </div>
+      <div class="secu-item">
+        <h4>Taxis &amp; Uber</h4>
+        <p>Réserver via l'hôtel ou Uber plutôt que de héler dans la rue la nuit.</p>
+      </div>
+      <div class="secu-item">
+        <h4>Restaurants &amp; transports</h4>
+        <p>Ne jamais laisser verre/plat sans surveillance. Attention aux pickpockets.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <img src="images/iles-rosaire2.jpg" alt="Îles du Rosaire" class="footer-img">
+    <h2>Bon séjour en Colombie,</h2>
+    <p>… version Caraïbes !</p>
+    <div class="footer-info">Bogotá · Medellín · Carthagène · Îles du Rosaire</div>
+    <div class="footer-brand">
+      <img src="images/logo.jpg" alt="VPD Voyages" class="footer-logo">
+      <a href="https://vpdvoyages.com" target="_blank" rel="noopener">vpdvoyages.com</a>
+    </div>
+  </footer>
+
+</body>
+</html>

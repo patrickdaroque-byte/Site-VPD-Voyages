@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Voyage en petit groupe - Colombie Le Triangle Magique - Bogotá, Villa de Leyva, Barichara, Girón, Medellín">
+  <title>Colombie · Le Triangle Magique</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rouge: #c41e3a;
+      --rouge-fonce: #8b1528;
+      --noir: #1a1a1a;
+      --creme: #faf7f2;
+      --or: #c9a227;
+      --gris: #1a1a1a;
+      --blanc: #ffffff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--creme);
+      color: var(--noir);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
+      background: #f5f0e8;
+      color: var(--noir);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(245,240,232,0.05) 0%, rgba(245,240,232,0.25) 40%, rgba(245,240,232,0.9) 100%),
+                  url('images/villa-de-leyva.jpg') center/cover no-repeat;
+    }
+    .hero-content { position: relative; z-index: 2; padding: 2rem 1.25rem 3rem; }
+    .badge {
+      display: inline-block;
+      background: var(--rouge);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+    .hero-title-box {
+      display: inline-block;
+      background: rgba(255,255,255,0.94);
+      border: 2px solid var(--or);
+      border-radius: 8px;
+      padding: 0.85rem 1.25rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0;
+      color: var(--noir);
+    }
+    .hero h1 span { color: #b8860b; }
+    .hero-text-box {
+      background: rgba(255,255,255,0.95);
+      border: 2px solid var(--or);
+      border-radius: 10px;
+      padding: 1rem 1.15rem 1.1rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+    }
+    .hero-text-box .hero-subtitle {
+      margin-bottom: 0.75rem;
+    }
+    .hero-text-box .hero-list {
+      margin-bottom: 0;
+    }
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: #000;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .hero-list { list-style: none; margin-bottom: 1.75rem; }
+    .hero-list li {
+      font-size: 1.05rem;
+      padding: 0.4rem 0;
+      padding-left: 1.15rem;
+      position: relative;
+      color: #000;
+      font-weight: 500;
+    }
+    .hero-list li::before {
+      content: "•";
+      color: var(--rouge);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+    .site-link-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .site-link-row .site-logo {
+      max-width: 36px;
+      height: auto;
+      display: block;
+    }
+    .site-link {
+      font-size: 0.9rem;
+      color: var(--rouge);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+    .pres-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .pres-brand img {
+      max-width: 90px;
+      height: auto;
+    }
+    .pres-brand a {
+      color: var(--rouge);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .nav-sticky {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(26,26,26,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .nav-sticky::-webkit-scrollbar { display: none; }
+    .nav-inner { display: flex; padding: 0 0.5rem; min-width: max-content; }
+    .nav-inner a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.9rem 0.85rem;
+      white-space: nowrap;
+    }
+    .nav-inner a:hover, .nav-inner a:active { color: var(--or); }
+
+    section { padding: 2.75rem 1.25rem; }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rouge);
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 1.25rem;
+      color: var(--noir);
+    }
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+    p { font-size: 0.95rem; color: var(--gris); margin-bottom: 1rem; }
+    .divider { width: 40px; height: 3px; background: var(--rouge); margin: 0 0 1.5rem; }
+
+    .presentation { background: var(--blanc); }
+    .cards-grid { display: grid; gap: 1rem; }
+    .card {
+      background: var(--creme);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .card img { width: 100%; height: 150px; object-fit: cover; }
+    .card-body { padding: 1rem 1.1rem 1.2rem; }
+    .card-body h3 { font-size: 1.05rem; margin-bottom: 0.35rem; }
+    .card-body p { font-size: 0.85rem; margin-bottom: 0; }
+
+    .regions { background: var(--noir); color: var(--blanc); }
+    .regions h2 { color: var(--blanc); }
+    .regions .section-label { color: var(--or); }
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+    .stat {
+      text-align: center;
+      padding: 1rem 0.5rem;
+      background: rgba(255,255,255,0.06);
+      border-radius: 8px;
+    }
+    .stat .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--or);
+      display: block;
+    }
+    .stat .label { font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-top: 0.25rem; }
+    .map-img {
+      border-radius: 10px;
+      margin-top: 1.5rem;
+      width: 100%;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    .dest-section { background: var(--creme); }
+    .dest-section.alt { background: var(--blanc); }
+    .img-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      margin: 1.25rem 0 1.5rem;
+    }
+    .img-gallery img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .highlight-box {
+      background: var(--noir);
+      color: white;
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .highlight-box h3 { color: var(--or); font-size: 1.1rem; }
+    .highlight-box p { color: rgba(255,255,255,0.85); font-size: 0.9rem; margin-bottom: 0; }
+    .points-list { list-style: none; margin-top: 1rem; }
+    .points-list li {
+      font-size: 0.9rem;
+      padding: 0.45rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+      color: var(--gris);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .points-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--rouge);
+      font-weight: 600;
+    }
+
+    .programme { background: var(--blanc); }
+    .week-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--rouge);
+      margin: 1.75rem 0 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--rouge);
+    }
+    .week-title:first-of-type { margin-top: 0.5rem; }
+    .day-card {
+      display: flex;
+      gap: 1rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .day-card:last-child { border-bottom: none; }
+    .day-num { flex-shrink: 0; width: 48px; text-align: center; }
+    .day-num .label {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--rouge);
+    }
+    .day-num .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--noir);
+    }
+    .day-content h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.15rem; }
+    .day-content p { font-size: 0.85rem; margin: 0; color: var(--gris); }
+
+    .infos { background: var(--creme); }
+    .securite { background: var(--blanc); }
+    .info-grid, .secu-grid { display: grid; gap: 1rem; margin-top: 1.25rem; }
+    .info-item, .secu-item {
+      background: var(--blanc);
+      border-radius: 10px;
+      padding: 1.15rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .secu-item { background: var(--creme); box-shadow: none; }
+    .info-item h4, .secu-item h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--rouge-fonce);
+    }
+    .info-item p, .secu-item p { font-size: 0.85rem; margin: 0; }
+    .info-item a { color: var(--rouge); text-decoration: none; }
+
+    .footer {
+      background: var(--noir);
+      color: white;
+      text-align: center;
+      padding: 3rem 1.25rem 2.5rem;
+    }
+    .footer h2 { color: white; font-size: 1.5rem; margin-bottom: 0.4rem; }
+    .footer p { color: rgba(255,255,255,0.7); font-style: italic; font-size: 0.95rem; margin-bottom: 1rem; }
+    .footer-info { font-size: 0.8rem; color: var(--or); letter-spacing: 0.04em; margin-bottom: 1.5rem; }
+    .footer-brand { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 0.75rem; }
+    .footer-logo { max-width: 72px; height: auto; display: block; }
+    .footer a { color: var(--or); text-decoration: none; font-size: 0.95rem; font-weight: 500; }
+
+    @media (min-width: 480px) {
+      .hero h1 { font-size: 2.6rem; }
+      .cards-grid { grid-template-columns: 1fr 1fr; }
+      .img-gallery img { height: 160px; }
+      .stats { grid-template-columns: repeat(4, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <span class="badge">Idée voyage en petit groupe</span>
+      <div class="hero-title-box">
+        <h1>Colombie<br><span>Le Triangle Magique</span></h1>
+      </div>
+      <div class="hero-text-box">
+        <p class="hero-subtitle">Bogotá · Villa de Leyva · Barichara · Girón · Medellín</p>
+        <ul class="hero-list">
+          <li>La Candelaria &amp; Musée de l'Or</li>
+          <li>La Cathédrale de Sel &amp; Guatavita</li>
+          <li>Villa de Leyva &amp; Barichara</li>
+          <li>Camino Real jusqu'à Guane</li>
+          <li>Girón colonial</li>
+          <li>Medellín &amp; Comuna 13</li>
+        </ul>
+      </div>
+      <div class="site-link-row">
+        <img src="images/logo.jpg" alt="VPD Voyages" class="site-logo">
+        <a href="https://vpdvoyages.com" class="site-link" target="_blank" rel="noopener">vpdvoyages.com</a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="nav-sticky">
+    <div class="nav-inner">
+      <a href="#presentation">Présentation</a>
+      <a href="#pays">Le pays</a>
+      <a href="#programme">Programme</a>
+      <a href="#bogota">Bogotá</a>
+      <a href="#excursions">Excursions</a>
+      <a href="#santander">Santander</a>
+      <a href="#giron">Girón</a>
+      <a href="#medellin">Medellín</a>
+      <a href="#infos">Infos</a>
+      <a href="#securite">Sécurité</a>
+    </div>
+  </nav>
+
+  <section class="presentation" id="presentation">
+    <span class="section-label">Présentation</span>
+    <h2>Le Triangle Magique</h2>
+    <div class="divider"></div>
+    <p>Plongez dans l'âme vibrante de la Colombie avec ce circuit captivant. À Bogotá, explorez La Candelaria et le Musée de l'Or. À Medellín, découvrez une ville transformée. Barichara, joyau colonial, et son Camino Real jusqu'à Guane. Villa de Leyva et Girón complètent cette aventure culturelle alliant histoire, nature et rencontres authentiques.</p>
+    <div class="cards-grid" style="margin-top:1.5rem;">
+      <div class="card">
+        <img src="images/Bogota.jpg" alt="Bogotá">
+        <div class="card-body">
+          <h3>Bogotá</h3>
+          <p>Candelaria, Musée de l'Or, Monserrate, Zipaquirá, Guatavita</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/villa-de-leyva.jpg" alt="Villa de Leyva">
+        <div class="card-body">
+          <h3>Santander colonial</h3>
+          <p>Villa de Leyva, Barichara, Camino Real, Guane, Girón</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/metrocable.jpg" alt="Medellín">
+        <div class="card-body">
+          <h3>Medellín</h3>
+          <p>Musée d'Antioquia, Metrocable, Comuna 13, street-art</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/parapente.jpg" alt="Nature & culture">
+        <div class="card-body">
+          <h3>Nature &amp; culture</h3>
+          <p>Lagune de Guatavita, Piedra del Peñol, parapente optionnel</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="regions" id="pays">
+    <span class="section-label">Le pays</span>
+    <h2>Colombie, entre Caraïbes et Pacifique</h2>
+    <div class="divider" style="background:var(--or)"></div>
+    <div class="stats">
+      <div class="stat"><span class="num">3 500 km</span><div class="label">du Nord au Sud</div></div>
+      <div class="stat"><span class="num">2 900 km</span><div class="label">de côtes</div></div>
+      <div class="stat"><span class="num">53 M</span><div class="label">d'habitants</div></div>
+      <div class="stat"><span class="num">8 M</span><div class="label">à Bogotá</div></div>
+    </div>
+    <p style="color:rgba(255,255,255,0.85);">Ce circuit relie Bogotá (capitale andine), la région de Santander (Villa de Leyva, Barichara, Girón — villages coloniaux parmi les plus beaux de Colombie) et Medellín (métropole transformée). Histoire précolombienne, architecture coloniale, nature andine et dynamisme urbain se côtoient sur un même voyage.</p>
+    <img src="images/carte-villes-colombie.jpg" alt="Carte du Triangle Magique" class="map-img">
+  </section>
+
+  <section class="programme" id="programme">
+    <span class="section-label">Programme</span>
+    <h2>Itinéraire jour par jour</h2>
+    <div class="divider"></div>
+    <div class="week-title">1<sup>re</sup> semaine — Bogotá &amp; Villa de Leyva</div>
+    <div class="day-card"><div class="day-num"><div class="label">Jour</div><div class="num">2</div></div><div class="day-content"><h4>Arrivée</h4><p>Formalités · Candelaria</p></div></div>
+    <div class="day-card"><div class="day-num"><div class="label">Jour</div><div class="num">3</div></div><div class="day-content"><h4>Bogotá</h4><p>Musée de l'Or · Monserrate</p></div></div>
+    <div class="day-card"><div class="day-num"><div class="label">Jour</div><div class="num">4</div></div><div class="day-content"><h4>Zipaquirá</h4><p>Cathédrale de Sel</p></div></div>
+    <div class="day-card"><div class="day-num"><div class="label">Jour</div><div class="num">5</div></div><div class="day-content"><h4>Bogotá</h4><p>Musée National · Usaquén</p></div></div>
+    <div class="day-card"><div class="day-num"><div class="label">Jour</div><div class="num">6</div></div><div class="day-content"><h4>Guatavita</h4><p>Lagune · Repas nature</p></div></div>
+    <div class="day-card"><div class="day-num"><div class="label">Jour</div><div class="num">7</div></div><div class="day-content"><h4>Culture</h4><p>Fondation Botero · García Márquez</p></div></div>
+    <div class="day-card"><div class="day-num"><div class="label">Jour</div><div class="num">8</div></div><div class="day-content"><h4>Villa de Leyva</h4><p>Départ · Visite de la ville</p></div></div>
+    <div class="week-title">2<sup>e</sup> semaine — Barichara, Girón &amp; Medellín</div>
+    <div class="day-card"><div class="day-num"><div class="label">Jour</div><div class="num">9</div></div><div class="day-content"><h4>Barichara</h4><p>Départ · Visite de la ville</p></div></div>
+    <div class="day-card"><div class="day-num"><div class="label">Jour</div><div class="num">10</div></div><div class="day-content"><h4>Guane</h4><p>Camino Real · Parapente (opt.)</p></div></div>
+    <div class="day-card"><div class="day-num"><div class="label">Jour</div><div class="num">11</div></div><div class="day-content"><h4>Girón</h4><p>Ville coloniale · Centre historique</p></div></div>
+    <div class="day-card"><div class="day-num"><div class="label">Jour</div><div class="num">12</div></div><div class="day-content"><h4>Vers Medellín</h4><p>Bucaramanga · Vol Medellín</p></div></div>
+    <div class="day-card"><div class="day-num"><div class="label">Jour</div><div class="num">13</div></div><div class="day-content"><h4>Medellín</h4><p>Musée Antioquia · Metrocable · Comuna 13</p></div></div>
+    <div class="day-card"><div class="day-num"><div class="label">Jour</div><div class="num">14</div></div><div class="day-content"><h4>Bogotá</h4><p>Vol Bogotá · Temps libre</p></div></div>
+    <div class="day-card"><div class="day-num"><div class="label">Jour</div><div class="num">15</div></div><div class="day-content"><h4>Retour</h4><p>Vol retour France</p></div></div>
+  </section>
+
+  <section class="dest-section" id="bogota">
+    <span class="section-label">Bogotá</span>
+    <h2>Capitale andine &amp; trésors précolombiens</h2>
+    <div class="divider"></div>
+    <div class="img-gallery">
+      <img src="images/Bogota.jpg" alt="Bogotá – La Candelaria">
+      <img src="images/musee-de-l'or.jpg" alt="Musée de l'Or">
+    </div>
+    <ul class="points-list">
+      <li><strong>La Candelaria</strong> — Quartier historique, ruelles coloniales</li>
+      <li><strong>Le Musée de l'Or</strong> — Orfèvrerie précolombienne exceptionnelle</li>
+      <li><strong>Monserrate</strong> — Mirador à 3 152 m</li>
+      <li><strong>Usaquén</strong> — Quartier bohème, marché</li>
+      <li><strong>Fondation Botero</strong> — Œuvres du maître colombien</li>
+      <li><strong>Centre García Márquez</strong> — Hommage au Prix Nobel</li>
+    </ul>
+  </section>
+
+  <section class="dest-section alt" id="excursions">
+    <span class="section-label">Excursions depuis Bogotá</span>
+    <h2>Cathédrale de Sel &amp; Lagune de Guatavita</h2>
+    <div class="divider"></div>
+    <div class="highlight-box">
+      <h3>La Cathédrale de Sel – Zipaquirá</h3>
+      <p>Cathédrale souterraine creusée dans une mine de sel. Architecture spectaculaire et lumière mystique — l'une des merveilles de Colombie.</p>
+    </div>
+    <img src="images/Catedral_de_Sal_de_Zipaquira.jpg" alt="Cathédrale de Sel de Zipaquirá" style="width:100%;height:200px;object-fit:cover;border-radius:10px;margin:0 0 1rem;">
+    <div class="highlight-box">
+      <h3>La Lagune de Guatavita</h3>
+      <p>Lac sacré des Muiscas, légende de l'Eldorado. Repas champêtre à La Casa Loca et après-midi nature.</p>
+    </div>
+    <div class="img-gallery">
+      <img src="images/casa-loca.jpg" alt="Casa Loca">
+      <img src="images/laguna-guatavita.jpg" alt="Lagune de Guatavita">
+    </div>
+  </section>
+
+  <section class="dest-section" id="santander">
+    <span class="section-label">Santander colonial</span>
+    <h2>Villa de Leyva &amp; Barichara</h2>
+    <div class="divider"></div>
+    <div class="img-gallery">
+      <img src="images/villa-de-leyva.jpg" alt="Villa de Leyva">
+      <img src="images/villa-terracota.jpg" alt="Villa Terracota">
+    </div>
+    <div class="highlight-box">
+      <h3>Villa de Leyva</h3>
+      <p>Plaza Mayor immense, architecture coloniale préservée, ambiance intemporelle. Maisons blanches aux toits orangés.</p>
+    </div>
+    <img src="images/barichara.jpg" alt="Barichara" style="width:100%;height:180px;object-fit:cover;border-radius:10px;margin:1rem 0;">
+    <div class="highlight-box">
+      <h3>Barichara</h3>
+      <p>Joyau colonial. Camino Real jusqu'au village de Guane. Option parapente pour les plus aventureux.</p>
+    </div>
+    <img src="images/parapente.jpg" alt="Parapente" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin-top:0.5rem;">
+  </section>
+
+  <section class="dest-section alt" id="giron">
+    <span class="section-label">Girón</span>
+    <h2>Le charme colonial</h2>
+    <div class="divider"></div>
+    <img src="images/giron.jpg" alt="Girón" style="width:100%;height:200px;object-fit:cover;border-radius:10px;margin-bottom:1.25rem;">
+    <p>Centre historique paisible, architecture coloniale, places ombragées. Une étape tranquille qui complète le triangle culturel du Santander.</p>
+  </section>
+
+  <section class="dest-section" id="medellin">
+    <span class="section-label">Medellín</span>
+    <h2>La ville transformée</h2>
+    <div class="divider"></div>
+    <div class="img-gallery">
+      <img src="images/metrocable.jpg" alt="Metrocable">
+      <img src="images/comuna-13.jpg" alt="Comuna 13">
+    </div>
+    <p>Musée d'Antioquia, Metrocable, Comuna 13 et street-art. Une ville transformée, symbole de renaissance urbaine et de créativité colombienne.</p>
+    <img src="images/penon-guatape.jpg" alt="Piedra del Peñol" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin-top:1rem;">
+    <p style="font-size:0.85rem;margin-top:0.5rem;color:var(--gris);">Option possible : excursion à la Piedra del Peñol (Guatapé).</p>
+  </section>
+
+  <section class="infos" id="infos">
+    <span class="section-label">Informations pratiques</span>
+    <h2>Avant le départ &amp; sur place</h2>
+    <div class="divider"></div>
+    <div class="info-grid">
+      <div class="info-item"><h4>Passeport</h4><p>Valable 6 mois après le retour. Photocopie obligatoire. Formulaire Check-Mig avant l'arrivée.</p></div>
+      <div class="info-item"><h4>Décalage horaire</h4><p>−6 h l'hiver / −5 h l'été par rapport à Paris.</p></div>
+      <div class="info-item"><h4>Langue</h4><p>Espagnol + environ 68 langues autochtones.</p></div>
+      <div class="info-item"><h4>Monnaie</h4><p>Peso colombien (COP). 1 € ≈ 4 780 COP. Cartes et dollars acceptés. Préférer les Casas de Cambio.</p></div>
+      <div class="info-item"><h4>Ambassade de France à Bogotá</h4><p>Carrera 11, n° 93-12<br>Ambassade : 571 638 14 00 · Consulat : 571 638 14 48<br>Urgences : (571) 638 15 64<br><a href="https://www.ambafrance-co.org" target="_blank" rel="noopener">ambafrance-co.org</a></p></div>
+    </div>
+  </section>
+
+  <section class="securite" id="securite">
+    <span class="section-label">Sécurité &amp; bon sens</span>
+    <h2>Quelques précautions</h2>
+    <div class="divider"></div>
+    <div class="secu-grid">
+      <div class="secu-item"><h4>Ne pas marcher seul(e) le soir</h4><p>Surtout dans la Candelaria. Faire appeler un taxi (Cabify / Uber).</p></div>
+      <div class="secu-item"><h4>Bijoux &amp; argent</h4><p>Pas de bijoux ostentatoires. Contrôler le rendu de monnaie.</p></div>
+      <div class="secu-item"><h4>Distributeurs</h4><p>Uniquement en journée, lieux fréquentés.</p></div>
+      <div class="secu-item"><h4>Transports</h4><p>Attention aux pickpockets dans bus et métro.</p></div>
+      <div class="secu-item"><h4>Restaurants</h4><p>Ne jamais laisser plat ou verre sans surveillance.</p></div>
+      <div class="secu-item"><h4>En cas d'agression</h4><p>Donner ce qui est demandé sans protester.</p></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <h2>Bon séjour en Colombie !</h2>
+    <p>Le Triangle Magique</p>
+    <div class="footer-info">Bogotá · Villa de Leyva · Barichara · Girón · Medellín</div>
+    <div class="footer-brand">
+      <img src="images/logo.jpg" alt="VPD Voyages" class="footer-logo">
+      <a href="https://vpdvoyages.com" target="_blank" rel="noopener">vpdvoyages.com</a>
+    </div>
+  </footer>
+
+</body>
+</html>
