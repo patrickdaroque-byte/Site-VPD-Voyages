@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Argentine - Passion, Vin et Altitude</title>
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --cream: #F3ECE2;
+      --paleteal: #E7EFEE;
+      --text: #2A211C;
+      --soft: #6B5E54;
+      --accent: #C1502E;
+      --accentdark: #9C2B2B;
+      --teal: #0F5C56;
+      --gold: #C9A24B;
+      --font-head: Georgia, "Liberation Serif", "Times New Roman", serif;
+      --font-body: Arial, "Liberation Sans", Helvetica, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--bg);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding: 20px 0;
+    }
+
+    .main-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: 0 0 15px rgba(0,0,0,0.06);
+    }
+
+    .section {
+      padding: 24px 24px 16px 24px;
+      position: relative;
+      border-bottom: 1px solid var(--paleteal);
+    }
+
+    .eyebrow {
+      font-weight: bold;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 4px 0;
+    }
+
+    h1.title {
+      font-family: var(--font-head);
+      font-weight: normal;
+      font-size: 26px;
+      line-height: 1.1;
+      color: var(--text);
+      margin: 0 0 10px 0;
+    }
+
+    p.lead {
+      font-size: 15px;
+      color: var(--soft);
+      margin: 0 0 12px 0;
+    }
+
+    .hero {
+      width: 100%;
+      border-radius: 4px;
+      display: block;
+      margin: 0 0 12px 0;
+      object-fit: cover;
+    }
+
+    .photo-row {
+      display: flex;
+      gap: 10px;
+      margin: 0 0 12px 0;
+    }
+
+    .photo-row img {
+      width: 100%;
+      border-radius: 4px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .photo-row.two img { height: 210px; }
+
+    .item { margin: 0 0 14px 0; }
+
+    .item .item-title {
+      font-family: var(--font-head);
+      font-size: 17px;
+      color: var(--accent);
+      margin: 0 0 3px 0;
+    }
+
+    .item .item-desc { font-size: 14.5px; }
+
+    .card {
+      background: var(--cream);
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin: 0 0 12px 0;
+    }
+
+    .card.teal { background: var(--paleteal); }
+
+    .card .card-title {
+      font-family: var(--font-head);
+      font-size: 16px;
+      color: var(--teal);
+      margin: 0 0 4px 0;
+      font-weight: bold;
+    }
+
+    .card .card-body { font-size: 14.5px; }
+
+    ul.bullets {
+      margin: 6px 0 0 0;
+      padding-left: 18px;
+    }
+
+    ul.bullets li {
+      margin-bottom: 6px;
+      font-size: 14.5px;
+    }
+
+    .stat-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--paleteal);
+    }
+
+    .stat-row .stat-num {
+      font-family: var(--font-head);
+      font-size: 22px;
+      color: var(--accent);
+      min-width: 90px;
+      font-weight: bold;
+    }
+
+    .stat-row .stat-label {
+      font-size: 14px;
+      color: var(--soft);
+    }
+
+    .day {
+      display: flex;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--paleteal);
+    }
+
+    .day:last-child { border-bottom: none; }
+
+    .day .day-num {
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: bold;
+      color: #FFFFFF;
+      background: var(--accent);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .day .day-body {
+      font-size: 14.5px;
+      padding-top: 2px;
+    }
+
+    .day .day-body .day-title {
+      font-weight: bold;
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .footer-bar {
+      margin-top: 18px;
+      padding-top: 10px;
+      border-top: 1px solid var(--gold);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bar .brand {
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--soft);
+      font-weight: bold;
+    }
+
+    .footer-bar .pagenum {
+      font-size: 9.5px;
+      color: var(--soft);
+    }
+
+    .cover-hero {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .cover-body {
+      padding: 20px 24px 16px 24px;
+    }
+
+    .cover-eyebrow {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: bold;
+      margin: 0 0 4px 0;
+    }
+
+    .cover-title {
+      font-family: var(--font-head);
+      font-size: 38px;
+      color: var(--text);
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    .cover-title-spacer {
+      display: block;
+      height: 8px;
+    }
+
+    .cover-sub {
+      font-family: var(--font-head);
+      font-style: italic;
+      font-size: 20px;
+      color: var(--accent);
+      margin: 6px 0 10px 0;
+    }
+
+    .cover-intro {
+      font-size: 15px;
+      color: var(--text);
+      margin: 4px 0 8px 0;
+      font-weight: bold;
+    }
+
+    .cover-list {
+      margin: 0 0 12px 0;
+      padding-left: 18px;
+    }
+
+    .cover-list li {
+      font-size: 14.5px;
+      margin-bottom: 4px;
+    }
+
+    .cover-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid var(--paleteal);
+      padding-top: 12px;
+    }
+
+    .cover-logo-row img {
+      width: 44px;
+      height: 44px;
+    }
+
+    .back {
+      text-align: center;
+      padding: 40px 24px;
+    }
+
+    .back .back-msg {
+      font-family: var(--font-head);
+      font-size: 22px;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    .back img.back-logo {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 8px;
+    }
+
+    .back .site {
+      font-size: 14px;
+      color: var(--teal);
+      font-weight: bold;
+    }
+
+    @media (max-width: 680px) {
+      body { padding: 0; }
+      .main-container { box-shadow: none; }
+      .section { padding: 18px 16px; }
+      .photo-row { flex-direction: column; }
+      .photo-row.two img { height: auto; }
+      .cover-title { font-size: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- COVER -->
+    <div class="section" style="padding:0;">
+      <img class="cover-hero" src="images/photo01.jpg" alt="Argentine - Passion, Vin et Altitude" />
+      <div class="cover-body">
+        <div class="cover-eyebrow">Idée voyage en petit groupe !</div>
+        <h1 class="cover-title">Argentine</h1>
+        <span class="cover-title-spacer"></span>
+        <div class="cover-sub">Passion, Vin &amp; Altitude</div>
+        <p class="cover-intro">Buenos Aires · Mendoza · Andes</p>
+        <ul class="cover-list">
+          <li>Tango, asados &amp; quartiers historiques</li>
+          <li>Initiation tango à Buenos Aires</li>
+          <li>Vignobles &amp; Malbec à Mendoza</li>
+          <li>Cerro de la Gloria &amp; oasis andine</li>
+          <li>Aconcagua &amp; Pont de l'Inca</li>
+          <li>Bus-lit de nuit Buenos Aires → Mendoza</li>
+        </ul>
+        <div class="cover-logo-row">
+          <img src="images/photo02.jpg" alt="vpdvoyages" />
+          <div class="site">vpdvoyages.com</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRÉSENTATION -->
+    <div class="section">
+      <div class="eyebrow">Présentation</div>
+      <h1 class="title">Buenos Aires &amp; Mendoza à parts égales</h1>
+      <p class="lead">Découvrez l'Argentine entre culture urbaine et grands espaces viticoles. À Buenos Aires : quartiers historiques, asados et tango. À Mendoza : vignobles Malbec, paysages andins et Aconcagua. Un circuit qui allie passion, vin et altitude.</p>
+      <div class="photo-row two">
+        <img src="images/photo03.jpg" alt="Buenos Aires" />
+        <img src="images/photo04.jpg" alt="Mendoza" />
+      </div>
+      <div class="item">
+        <div class="item-title">Buenos Aires</div>
+        <div class="item-desc">San Telmo, Recoleta, La Boca, initiation tango, Delta du Tigre</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Bus-lit Premium de nuit</div>
+        <div class="item-desc">Buenos Aires → Mendoza · 1 049 km · 13 h</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Mendoza</div>
+        <div class="item-desc">Bodegas, Malbec, Cerro de la Gloria, oasis andine</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Andes</div>
+        <div class="item-desc">Aconcagua 6 962 m, Pont de l'Inca, panoramas d'altitude</div>
+      </div>
+      <div class="footer-bar">
+        <div class="brand">Argentine · Passion, Vin &amp; Altitude</div>
+        <div class="pagenum">01</div>
+      </div>
+    </div>
+
+    <!-- LE PAYS -->
+    <div class="section">
+      <div class="eyebrow">Le pays</div>
+      <h1 class="title">Argentina, Argentina !</h1>
+      <div class="stat-row">
+        <div class="stat-num">3 500 km</div>
+        <div class="stat-label">du nord au sud</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-num">46 M</div>
+        <div class="stat-label">d'habitants</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-num">32</div>
+        <div class="stat-label">parcs nationaux</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-num">6 962 m</div>
+        <div class="stat-label">Aconcagua</div>
+      </div>
+      <p class="lead" style="margin-top:12px;">Deux mondes, un même voyage : Buenos Aires, capitale culturelle et berceau du tango. Mendoza, oasis viticole au pied des Andes, berceau du Malbec argentin. Entre les deux : une nuit à travers la Pampa.</p>
+      <div class="footer-bar">
+        <div class="brand">Argentine · Passion, Vin &amp; Altitude</div>
+        <div class="pagenum">02</div>
+      </div>
+    </div>
+
+    <!-- PROGRAMME 1ÈRE SEMAINE -->
+    <div class="section">
+      <div class="eyebrow">Exemple de programme</div>
+      <h1 class="title">1ère semaine – Buenos Aires</h1>
+      <p class="lead">Départ France · Arrivée BsAs</p>
+      <div class="day">
+        <div class="day-num">J1</div>
+        <div class="day-body">
+          <span class="day-title">Arrivée &amp; San Telmo</span>
+          Change argent · San Telmo &amp; marché · Initiation tango 2 h
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-num">J2</div>
+        <div class="day-body">
+          <span class="day-title">Microcentro</span>
+          Plaza de Mayo · Café Tortoni · Edificio Barolo · Pré-milonga
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-num">J3</div>
+        <div class="day-body">
+          <span class="day-title">Recoleta</span>
+          Cimetière · El Ateneo · Abasto / Gardel · Asado du soir
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-num">J4</div>
+        <div class="day-body">
+          <span class="day-title">La Boca</span>
+          Caminito · Bombonera · Soirée tango-show
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-num">J5</div>
+        <div class="day-body">
+          <span class="day-title">Puerto Madero</span>
+          Costanera Sur · Frégate Sarmiento · Milonga libre
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-num">J6</div>
+        <div class="day-body">
+          <span class="day-title">Delta du Tigre</span>
+          Train Mitre · Bateau-bus · Canaux &amp; nature
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-num">J7</div>
+        <div class="day-body">
+          <span class="day-title">Trajet de nuit</span>
+          Journée libre BA · Départ bus-lit BsAs → Mendoza
+        </div>
+      </div>
+      <div class="footer-bar">
+        <div class="brand">Argentine · Passion, Vin &amp; Altitude</div>
+        <div class="pagenum">03</div>
+      </div>
+    </div>
+
+    <!-- PROGRAMME 2ÈM SEMAINE -->
+    <div class="section">
+      <div class="eyebrow">Exemple de programme</div>
+      <h1 class="title">2ème semaine – Mendoza &amp; Andes</h1>
+      <p class="lead">Retour France</p>
+      <div class="day">
+        <div class="day-num">J8</div>
+        <div class="day-body">
+          <span class="day-title">Arrivée Mendoza</span>
+          Installation hôtel · Centre-ville · Cerro de la Gloria
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-num">J9</div>
+        <div class="day-body">
+          <span class="day-title">Route des vins</span>
+          Bodega La Rural · Musée du Vin · Dégustation Malbec
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-num">J10</div>
+        <div class="day-body">
+          <span class="day-title">Vallée de Uco</span>
+          Deuxième bodega · Déjeuner vignoble · Paysages viticoles
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-num">J11</div>
+        <div class="day-body">
+          <span class="day-title">Andes</span>
+          Aconcagua · Pont de l'Inca · Panoramas d'altitude · Frontière Chili
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-num">J12</div>
+        <div class="day-body">
+          <span class="day-title">Mendoza ville</span>
+          Parques &amp; places · Marché · Temps libre
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-num">J13</div>
+        <div class="day-body">
+          <span class="day-title">Dernière bodega</span>
+          Dégustation finale · Achats de vins · Dîner d'adieu
+        </div>
+      </div>
+      <div class="day">
+        <div class="day-num">J14</div>
+        <div class="day-body">
+          <span class="day-title">Retour</span>
+          Vol Mendoza → Buenos Aires · Vol retour France
+        </div>
+      </div>
+      <div class="footer-bar">
+        <div class="brand">Argentine · Passion, Vin &amp; Altitude</div>
+        <div class="pagenum">04</div>
+      </div>
+    </div>
+
+    <!-- BUENOS AIRES -->
+    <div class="section">
+      <div class="eyebrow">Buenos Aires</div>
+      <h1 class="title">Capitale du tango et de la culture</h1>
+      <img class="hero" src="images/photo08.jpg" alt="Buenos Aires" />
+      <div class="item">
+        <div class="item-title">San Telmo</div>
+        <div class="item-desc">Quartier historique, marché, milongas, logement de référence</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Recoleta &amp; Abasto</div>
+        <div class="item-desc">Le Petit Paris, Cimetière, El Ateneo, Musée Carlos Gardel</div>
+      </div>
+      <div class="item">
+        <div class="item-title">La Boca</div>
+        <div class="item-desc">Caminito, Bombonera, couleurs et tango populaire</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Puerto Madero</div>
+        <div class="item-desc">Río de la Plata, Costanera Sur, modernité</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Microcentro</div>
+        <div class="item-desc">Plaza de Mayo, Café Tortoni, Edificio Barolo</div>
+      </div>
+      <div class="footer-bar">
+        <div class="brand">Argentine · Passion, Vin &amp; Altitude</div>
+        <div class="pagenum">05</div>
+      </div>
+    </div>
+
+    <!-- MENDOZA -->
+    <div class="section">
+      <div class="eyebrow">Mendoza</div>
+      <h1 class="title">Oasis viticole au pied des Andes</h1>
+      <p class="lead">320 jours de soleil par an. Ville reconstruite après le séisme de 1861, Mendoza vit au rythme du vin. Vignerons français, italiens et espagnols y ont planté les cépages qui donnent les ¾ du vin argentin. La meilleure vue : le Cerro de la Gloria.</p>
+      <img class="hero" src="images/photo11.jpg" alt="Mendoza" />
+      <div class="item">
+        <div class="item-title">Centre &amp; Cerro de la Gloria</div>
+        <div class="item-desc">Flâneries, parcs, panorama sur l'oasis</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Bodega La Rural</div>
+        <div class="item-desc">Musée du Vin + dégustation Malbec</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Vallée de Uco</div>
+        <div class="item-desc">Paysages viticoles d'exception</div>
+      </div>
+      <div class="footer-bar">
+        <div class="brand">Argentine · Passion, Vin &amp; Altitude</div>
+        <div class="pagenum">06</div>
+      </div>
+    </div>
+
+    <!-- VIN & ALTITUDE -->
+    <div class="section">
+      <div class="eyebrow">Vin &amp; Altitude</div>
+      <h1 class="title">Malbec &amp; Aconcagua</h1>
+      <div class="photo-row two">
+        <img src="images/photo17.jpg" alt="Dégustation Malbec" />
+        <img src="images/photo13.jpg" alt="Aconcagua" />
+      </div>
+      <div class="item">
+        <div class="item-title">Le Malbec argentin</div>
+        <div class="item-desc">Musée du Vin Bodega La Rural, dégustations guidées. Le cépage star de Mendoza, né en France mais sublimé ici.</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Aconcagua &amp; Pont de l'Inca</div>
+        <div class="item-desc">Plus haut sommet des Amériques (6 962 m). Le Pont de l'Inca à 2 700 m. Une journée d'altitude au cœur des Andes mendocines.</div>
+      </div>
+      <div class="footer-bar">
+        <div class="brand">Argentine · Passion, Vin &amp; Altitude</div>
+        <div class="pagenum">07</div>
+      </div>
+    </div>
+
+    <!-- INFORMATIONS PRATIQUES -->
+    <div class="section">
+      <div class="eyebrow">Informations pratiques</div>
+      <h1 class="title">Avant le départ &amp; sur place</h1>
+      <div class="item">
+        <div class="item-title">Passeport &amp; visa</div>
+        <div class="item-desc">Aucun visa nécessaire. Photocopie du passeport toujours en poche.</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Décalage &amp; langue</div>
+        <div class="item-desc">- 5 h par rapport à Paris. Espagnol.</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Monnaie</div>
+        <div class="item-desc">Peso argentin (ARS). Ne pas changer à l'aéroport. Casas de cambio.</div>
+      </div>
+      <div class="item">
+        <div class="item-title">Pratique</div>
+        <div class="item-desc">Bonnes chaussures (ville + Mendoza). Prises UE 220 V.</div>
+      </div>
+      <div class="footer-bar">
+        <div class="brand">Argentine · Passion, Vin &amp; Altitude</div>
+        <div class="pagenum">08</div>
+      </div>
+    </div>
+
+    <!-- BACK -->
+    <div class="section back">
+      <div class="back-msg">Bon séjour en Argentine !<br />Passion, Vin et Altitude</div>
+      <div style="font-size:18px; font-family:var(--font-head); color:var(--accent); margin-bottom:16px;">Buenos Aires · Mendoza · Andes</div>
+      
+      <div style="display:flex; justify-content:center; align-items:center; gap:20px; margin-bottom:20px;">
+        <img src="images/drapeau-argentine.jpg" alt="Drapeau Argentine" style="width:70px; height:auto; border-radius:4px; border:1px solid #ccc;" />
+      </div>
+
+      <img class="back-logo" src="images/photo23.jpg" alt="Logo" style="width:90px; height:60px; border-radius:2px;" />
+      <div class="site" style="margin-top: 8px;">vpdvoyages.com</div>
+    </div>
+
+  </div>
+
+</body>
+</html>
