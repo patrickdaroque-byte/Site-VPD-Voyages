@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Rioja - Escapade Vin et Architecture</title>
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --cream: #F3ECE2;
+      --paleteal: #E7EFEE;
+      --text: #2A211C;
+      --soft: #6B5E54;
+      --accent: #C1502E;
+      --accentdark: #9C2B2B;
+      --teal: #0F5C56;
+      --gold: #C9A24B;
+      --font-head: Georgia, "Liberation Serif", "Times New Roman", serif;
+      --font-body: Arial, "Liberation Sans", Helvetica, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--bg);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .section {
+      padding: 20px 18px 14px 18px;
+      position: relative;
+      min-height: auto;
+      page-break-before: always;
+    }
+
+    .section:first-child { page-break-before: auto; }
+
+    .eyebrow {
+      font-weight: bold;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 4px 0;
+    }
+
+    h1.title {
+      font-family: var(--font-head);
+      font-weight: normal;
+      font-size: 26px;
+      line-height: 1.1;
+      color: var(--text);
+      margin: 0 0 10px 0;
+    }
+
+    p.lead {
+      font-size: 15px;
+      color: var(--soft);
+      margin: 0 0 12px 0;
+    }
+
+    .hero {
+      width: 100%;
+      border-radius: 4px;
+      display: block;
+      margin: 0 0 12px 0;
+    }
+
+    .photo-row {
+      display: flex;
+      gap: 8px;
+      margin: 0 0 10px 0;
+    }
+
+    .photo-row img {
+      width: 100%;
+      border-radius: 3px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .photo-row.two img {
+      width: 50%;
+      height: 195px;
+    }
+
+    .photo-row.three img { height: 156px; }
+    .photo-row.four img { height: 137px; }
+
+    .caption {
+      font-family: var(--font-head);
+      font-style: italic;
+      font-size: 13.5px;
+      color: var(--soft);
+      margin: 0 0 12px 0;
+      text-align: center;
+    }
+
+    .item { margin: 0 0 12px 0; }
+
+    .item .item-title {
+      font-family: var(--font-head);
+      font-size: 17px;
+      color: var(--accent);
+      margin: 0 0 3px 0;
+    }
+
+    .item .item-desc { font-size: 14.5px; }
+
+    .card {
+      background: var(--cream);
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin: 0 0 12px 0;
+    }
+
+    .card.teal { background: var(--paleteal); }
+
+    .card .card-title {
+      font-family: var(--font-head);
+      font-size: 16px;
+      color: var(--teal);
+      margin: 0 0 4px 0;
+      font-weight: bold;
+    }
+
+    .card .card-body { font-size: 14.5px; }
+
+    ul.bullets {
+      margin: 6px 0 0 0;
+      padding-left: 18px;
+    }
+
+    ul.bullets li {
+      margin-bottom: 6px;
+      font-size: 14.5px;
+    }
+
+    .stat-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--paleteal);
+    }
+
+    .stat-row .stat-num {
+      font-family: var(--font-head);
+      font-size: 22px;
+      color: var(--accent);
+      min-width: 82px;
+    }
+
+    .stat-row .stat-label {
+      font-size: 14px;
+      color: var(--soft);
+    }
+
+    .day {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--paleteal);
+    }
+
+    .day:last-child { border-bottom: none; }
+
+    .day .day-num {
+      font-family: var(--font-head);
+      font-size: 14px;
+      font-weight: bold;
+      color: #FFFFFF;
+      background: var(--accent);
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    .day .day-body {
+      font-size: 14.5px;
+      padding-top: 3px;
+    }
+
+    .day .day-body .day-title {
+      font-weight: bold;
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .subhead {
+      font-family: var(--font-head);
+      font-size: 15px;
+      color: var(--teal);
+      font-weight: bold;
+      margin: 12px 0 4px 0;
+    }
+
+    .footer-bar {
+      margin-top: 18px;
+      padding-top: 10px;
+      border-top: 1px solid var(--gold);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bar .brand {
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--soft);
+      font-weight: bold;
+    }
+
+    .footer-bar .pagenum {
+      font-size: 9.5px;
+      color: var(--soft);
+    }
+
+    .cover-hero {
+      width: 100%;
+      display: block;
+    }
+
+    .cover-body {
+      padding: 12px 18px 6px 18px;
+      min-height: auto;
+    }
+
+    .cover-eyebrow {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: bold;
+      margin: 0 0 4px 0;
+    }
+
+    .cover-title {
+      font-family: var(--font-head);
+      font-size: 40px;
+      color: var(--text);
+      margin: 0;
+      line-height: 1;
+    }
+
+    .cover-title-spacer {
+      display: block;
+      height: 8px;
+    }
+
+    .cover-sub {
+      font-family: var(--font-head);
+      font-style: italic;
+      font-size: 20px;
+      color: var(--accent);
+      margin: 0;
+      line-height: 1;
+    }
+
+    .cover-sub-spacer {
+      display: block;
+      height: 8px;
+    }
+
+    .cover-intro {
+      font-size: 14.5px;
+      color: var(--text);
+      margin: 4px 0 6px 0;
+    }
+
+    .cover-list {
+      margin: 0 0 8px 0;
+      padding-left: 18px;
+    }
+
+    .cover-list li {
+      font-size: 14.5px;
+      margin-bottom: 4px;
+    }
+
+    .cover-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid var(--paleteal);
+      padding-top: 8px;
+      margin-top: 0;
+    }
+
+    .cover-logo-row img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .back {
+      text-align: center;
+      padding: 60px 24px;
+    }
+
+    .back .back-msg {
+      font-family: var(--font-head);
+      font-size: 22px;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 16px;
+    }
+
+    .back .back-logo {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 8px;
+      border-radius: 2px;
+    }
+
+    .back .site {
+      font-size: 13px;
+      color: var(--teal);
+      font-weight: bold;
+    }
+
+    .back .full-content {
+      font-size: 12px;
+      color: var(--soft);
+      margin-top: 20px;
+      border-top: 1px solid var(--paleteal);
+      padding-top: 16px;
+    }
+
+    .item, .card, .photo-row, .day, .stat-row, .cover-logo-row, .footer-bar, h1.title, .eyebrow, .subhead, .caption {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .eyebrow, h1.title {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    @media (max-width: 640px) {
+      .section {
+        padding: 16px 18px 12px 18px;
+        min-height: auto;
+      }
+      .cover-body {
+        padding: 10px 18px 6px 18px;
+      }
+
+      .photo-row.two {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .photo-row.two img {
+        width: 100%;
+        height: 160px;
+      }
+
+      .photo-row.three {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .photo-row.three img {
+        width: 100%;
+        height: 140px;
+      }
+
+      .photo-row.four {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .photo-row.four img {
+        width: 100%;
+        height: 130px;
+      }
+
+      .hero {
+        max-width: 100% !important;
+        width: 100%;
+      }
+
+      .cover-title {
+        font-size: 32px;
+      }
+
+      .cover-sub {
+        font-size: 17px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .photo-row.two img {
+        height: 130px;
+      }
+
+      .photo-row.three img {
+        height: 120px;
+      }
+
+      .photo-row.four img {
+        height: 110px;
+      }
+
+      .cover-title {
+        font-size: 28px;
+      }
+    }
+      @media (min-width:900px){.photo-row.two img{height:170px}.photo-row.three img{height:140px}.photo-row.four img{height:120px}}
+  </style>
+</head>
+<body>
+
+  <!-- ==================== COVER ==================== -->
+  <div class="section" style="padding:0;">
+    <img class="cover-hero" src="images/marques-de-riscal.jpg" alt="La Rioja - Vin et Architecture" />
+    <div class="cover-body">
+      <div class="cover-eyebrow">LA RIOJA</div>
+      <h1 class="cover-title">Histoire, Vin et Architectures</h1>
+      <span class="cover-title-spacer"></span>
+      <div class="cover-sub">Escapade de 4 jours · Logroño &amp; Rioja Alavesa</div>
+      <span class="cover-sub-spacer"></span>
+      <div class="cover-logo-row">
+        <img src="images/Logo_VPD_Voyages.png" alt="VPDVOYAGES" />
+        <div class="site">vpdvoyages.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== INTRODUCTION ==================== -->
+  <div class="section">
+    <div class="eyebrow">Introduction</div>
+    <h1 class="title">Une région d'exception</h1>
+    <p class="lead">Logroño, capitale conviviale de La Rioja, est le point de départ idéal pour explorer les vignobles, les monastères classés à l'UNESCO, les villages médiévaux et les bodegas prestigieuses.</p>
+    <p class="lead">Entre pintxos, vins d'exception et paysages enchanteurs, cette escapade offre une immersion totale dans l'une des régions les plus fascinantes d'Espagne.</p>
+    <div class="footer-bar">
+      <div class="brand">La Rioja · Escapade</div>
+      <div class="pagenum">01</div>
+    </div>
+  </div>
+
+  <!-- ==================== LA RIOJA ==================== -->
+  <div class="section">
+    <div class="eyebrow">La Rioja</div>
+    <h1 class="title">Au cœur du Nord de l'Espagne</h1>
+    <img class="hero" src="images/Carte_Localisation_Espagne.jpg" alt="Carte de La Rioja" style="max-width:70%; margin:0 auto 16px auto;" />
+    <div class="item">
+      <div class="item-title">Situation</div>
+      <div class="item-desc">Entre Navarre, Aragon et Castille-et-León, La Rioja est une terre de vignobles, de monastères et de villages médiévaux.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Capitale</div>
+      <div class="item-desc">Logroño</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Vignobles</div>
+      <div class="item-desc">Rioja Alta, Alavesa, Baja</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Patrimoine UNESCO</div>
+      <div class="item-desc">Monastères de San Millán de la Cogolla</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">La Rioja · Escapade</div>
+      <div class="pagenum">02</div>
+    </div>
+  </div>
+
+  <!-- ==================== AMBIANCE LOCALE ==================== -->
+  <div class="section">
+    <div class="eyebrow">Ambiance locale</div>
+    <h1 class="title">Ambiance locale &amp; patrimoine</h1>
+    <div class="photo-row two">
+      <img src="images/Cafe_typique_Logrono.jpg" alt="Café typique" />
+      <img src="images/laurel.jpg" alt="Calle Laurel" />
+    </div>
+    <ul class="bullets">
+      <li>Cocathédrale Santa María de la Redonda</li>
+      <li>Pont de Pierre sur l'Ebre</li>
+      <li>Parc de l'Ebre</li>
+      <li>Fontaine des Pèlerins</li>
+      <li>Ruavieja</li>
+      <li>Chemin de Compostelle</li>
+    </ul>
+    <div class="footer-bar">
+      <div class="brand">La Rioja · Escapade</div>
+      <div class="pagenum">03</div>
+    </div>
+  </div>
+
+  <!-- ==================== PINTXOS ==================== -->
+  <div class="section">
+    <div class="eyebrow">Gastronomie</div>
+    <h1 class="title">Une des rues les plus célèbres d'Espagne pour les tapas</h1>
+    <div class="photo-row two">
+      <img src="images/laurel.jpg" alt="Calle Laurel" />
+      <img src="images/chamoi-laurel.jpeg" alt="Champis con camarón" />
+    </div>
+    <div class="item">
+      <div class="item-title">Champis con camarón</div>
+      <div class="item-desc">Champignons &amp; crevettes</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Patatas bravas</div>
+      <div class="item-desc">Classique revisité</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Matrimonio</div>
+      <div class="item-desc">Anchois &amp; boquerones</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Foie gras</div>
+      <div class="item-desc">Signature locale</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Pintxos variés</div>
+      <div class="item-desc">Créativité sans limites</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">La Rioja · Escapade</div>
+      <div class="pagenum">04</div>
+    </div>
+  </div>
+
+  <!-- ==================== JOUR 2 - SAN MILLÁN ==================== -->
+  <div class="section">
+    <div class="eyebrow">Jour 2</div>
+    <h1 class="title">San Millán de la Cogolla - UNESCO</h1>
+    <p class="lead">Berceau de la langue espagnole</p>
+    <div class="photo-row two">
+      <img src="images/monasterio_yuso_san_millan_cogolla_s_607585061.avif" alt="Monastère de Yuso" />
+      <img src="images/glosas.jpeg" alt="Glosas Emilianenses" />
+    </div>
+    <div class="item">
+      <div class="item-title">Suso</div>
+      <div class="item-desc">Glosas Emilianenses - premiers mots en castillan</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Yuso</div>
+      <div class="item-desc">Bibliothèque &amp; manuscrits exceptionnels</div>
+    </div>
+    <div class="item">
+      <div class="item-title">UNESCO</div>
+      <div class="item-desc">Ensemble monastique classé patrimoine mondial</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">La Rioja · Escapade</div>
+      <div class="pagenum">05</div>
+    </div>
+  </div>
+
+  <!-- ==================== SANTO DOMINGO ==================== -->
+  <div class="section">
+    <div class="eyebrow">Santo Domingo</div>
+    <h1 class="title">Santo Domingo de la Calzada</h1>
+    <p class="lead">Cathédrale, légende du Coq et de la Poule &amp; Chemin de St Jacques de Compostelle</p>
+    <div class="photo-row two">
+      <img src="images/plaza-de-espana-en-santo.jpg" alt="Place d'Espagne" />
+      <img src="images/Porte_Coq_Poule_Santo_Domingo.jpg" alt="Porte Coq et Poule" />
+    </div>
+    <div class="item">
+      <div class="item-title">Cathédrale</div>
+      <div class="item-desc">Crypte &amp; tombeau de Saint Dominique</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Tour-clocher isolée</div>
+      <div class="item-desc">Place d'Espagne</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Brasería traditionnelle</div>
+      <div class="item-desc">Légende du coq et de la poule</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">La Rioja · Escapade</div>
+      <div class="pagenum">06</div>
+    </div>
+  </div>
+
+  <!-- ==================== VIVANCO ==================== -->
+  <div class="section">
+    <div class="eyebrow">Jour 3</div>
+    <h1 class="title">Vivanco - Musée du vin le plus prestigieux</h1>
+    <div class="photo-row two">
+      <img src="images/Musee_Vivanco_Exterieur.jpg" alt="Musée Vivanco - Extérieur" />
+      <img src="images/Musee_Vin_Vivanco_Tirebouchons.jpg" alt="Musée Vivanco - Tire-bouchons" />
+    </div>
+    <div class="stat-row">
+      <div class="stat-num" style="font-size:15px; min-width:100px;">4 000 m²</div>
+      <div class="stat-label">d'expositions immersives</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-num" style="font-size:15px; min-width:100px;">Art &amp; Vin</div>
+      <div class="stat-label">Sorolla, Picasso, Miró, Dalí</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-num" style="font-size:15px; min-width:100px;">Jardin de Bacchus</div>
+      <div class="stat-label">220 cépages du monde</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-num" style="font-size:15px; min-width:100px;">Dégustation</div>
+      <div class="stat-label">Vins d'exception</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">La Rioja · Escapade</div>
+      <div class="pagenum">07</div>
+    </div>
+  </div>
+
+  <!-- ==================== ELCIEGO & RIOJA ALAVESA ==================== -->
+  <div class="section">
+    <div class="eyebrow">Elciego</div>
+    <h1 class="title">Elciego &amp; Rioja Alavesa</h1>
+    <p class="lead">Architecture iconique &amp; bodegas historiques</p>
+    <div class="photo-row two">
+      <img src="images/marques-de-riscal.jpg" alt="Marqués de Riscal" />
+      <img src="images/vistas-valdelanael-jardin.jpg" alt="Vignobles de Rioja Alavesa" />
+    </div>
+    <div class="item">
+      <div class="item-title">Marqués de Riscal</div>
+      <div class="item-desc">Frank Gehry - architecture iconique</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Bodegas Valdelana</div>
+      <div class="item-desc">Caves du 15ème siècle</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Jardin des cépages</div>
+      <div class="item-desc">Découverte ampélographique</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Dégustation</div>
+      <div class="item-desc">Vins &amp; huiles d'olive d'exception</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">La Rioja · Escapade</div>
+      <div class="pagenum">08</div>
+    </div>
+  </div>
+
+  <!-- ==================== JOUR 4 - LAGUARDIA ==================== -->
+  <div class="section">
+    <div class="eyebrow">Jour 4</div>
+    <h1 class="title">Laguardia &amp; Peñacerrada</h1>
+    <div class="photo-row two">
+      <img src="images/laguardia.jpg" alt="Laguardia" />
+      <img src="images/ysios.jpeg" alt="Village typique" />
+    </div>
+    <div class="item">
+      <div class="item-title">Laguardia</div>
+      <div class="item-desc">Cité fortifiée médiévale · Horloge-carillon · Spectacle unique · Portail polychrome · Joyau artistique</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Dolmen Alto de la Huesera</div>
+      <div class="item-desc">Site mégalithique</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Balcon de La Rioja</div>
+      <div class="item-desc">Peñacerrada – panoramas</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Labastida</div>
+      <div class="item-desc">Restaurant typique</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">La Rioja · Escapade</div>
+      <div class="pagenum">09</div>
+    </div>
+  </div>
+
+  <!-- ==================== HÉBERGEMENT (déplacé ici) ==================== -->
+  <div class="section">
+    <div class="eyebrow">Hébergement</div>
+    <h1 class="title">Votre duplex premium au cœur de Logroño</h1>
+    <div class="photo-row two">
+      <img src="images/Logement_Salon.jpg" alt="Salon du duplex" />
+      <img src="images/Logement_Chambre.jpg" alt="Chambre du duplex" />
+    </div>
+    <div class="stat-row">
+      <div class="stat-num" style="font-size:15px; min-width:100px;">140 m²</div>
+      <div class="stat-label">Duplex spacieux</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-num" style="font-size:15px; min-width:100px;">4 chambres</div>
+      <div class="stat-label">Confort optimal</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-num" style="font-size:15px; min-width:100px;">2 salles de bains</div>
+      <div class="stat-label">Confort premium</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-num" style="font-size:15px; min-width:100px;">Centre historique</div>
+      <div class="stat-label">À 2 pas des rues Laurel &amp; San Juan</div>
+    </div>
+    <div class="footer-bar">
+      <div class="brand">La Rioja · Escapade</div>
+      <div class="pagenum">10</div>
+    </div>
+  </div>
+
+  <!-- ==================== ITINÉRAIRE RÉCAPITULATIF ==================== -->
+  <div class="section">
+    <div class="eyebrow">Récapitulatif</div>
+    <h1 class="title">Votre escapade en 4 jours</h1>
+    <div class="day">
+      <div class="day-num">J1</div>
+      <div class="day-body">
+        <span class="day-title">Logroño</span>
+        Centre historique · pintxos Calle Laurel
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-num">J2</div>
+      <div class="day-body">
+        <span class="day-title">San Millán de la Cogolla</span>
+        Monastères UNESCO · Santo Domingo · brasería
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-num">J3</div>
+      <div class="day-body">
+        <span class="day-title">Briones &amp; Elciego</span>
+        Vivanco - Musée du vin · Marqués de Riscal
+      </div>
+    </div>
+    <div class="day">
+      <div class="day-num">J4</div>
+      <div class="day-body">
+        <span class="day-title">Laguardia &amp; retour</span>
+        Laguardia · Peñacerrada · Labastida
+      </div>
+    </div>
+    <div class="footer-bar" style="border-top: none;">
+      <div class="brand">La Rioja · Escapade</div>
+    </div>
+  </div>
+
+  <!-- ==================== CONCLUSION (sans photo) ==================== -->
+  <div class="section">
+    <div class="eyebrow">Conclusion</div>
+    <h1 class="title"></h1>
+    <p class="lead">La Rioja, avec son mélange unique de vignobles d'exception, de patrimoine classé à l'UNESCO et de gastronomie raffinée, promet une escapade vibrante et authentique.</p>
+    <p class="lead">Repartez avec des souvenirs plein les yeux et le goût des saveurs de La Rioja !</p>
+    <div class="footer-bar">
+      <div class="brand">La Rioja · Escapade</div>
+      <div class="pagenum">11</div>
+    </div>
+  </div>
+
+  <!-- ==================== BACK ==================== -->
+  <div class="section back">
+    <div class="back-msg">Bon séjour dans La Rioja !</div>
+    <div style="font-size:18px; font-family:var(--font-head); color:var(--accent); margin-bottom:12px;">Histoire, Vin et Architectures</div>
+    <div style="font-size:14px; color:var(--soft); margin-bottom:16px;">Escapade de 4 jours · Logroño &amp; Rioja Alavesa</div>
+    <img class="back-logo" src="images/Logo_VPD_Voyages.png" alt="Logo VPDVOYAGES" />
+    <div class="site">vpdvoyages.com</div>
+    <div class="full-content">Contenu intégral sur vpdvoyages.com (ordinateur).</div>
+  </div>
+
+</body>
+</html>
