@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Uruguay - Montevideo, Gauchos &amp; Bodegas</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, 'Liberation Sans', Helvetica, sans-serif;
+      background: #f5f2eb;
+      color: #1e2b2c;
+      font-size: 16px;
+      line-height: 1.4;
+      padding: 0 0 1rem 0;
+    }
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      background: #ffffff;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+    .section {
+      padding: 14px 18px 12px 18px;
+      border-bottom: 6px solid #f0ebe3;
+    }
+    .section:last-child {
+      border-bottom: none;
+    }
+    h1, h2, h3 {
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .hero {
+      background: #1e3b3c;
+      color: #ffffff;
+      padding: 1.4rem 1.2rem 1.2rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2rem;
+      line-height: 1.2;
+      margin-bottom: 0.2rem;
+    }
+    .hero .sub {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+    .badge {
+      background: #d9b382;
+      color: #1e2b2c;
+      display: inline-block;
+      padding: 0.2rem 0.9rem;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      margin-top: 0.4rem;
+    }
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 0.4rem;
+    }
+    .section-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title span {
+      background: #d9b382;
+      color: #1e2b2c;
+      font-size: 0.8rem;
+      padding: 0.1rem 0.7rem;
+      border-radius: 30px;
+    }
+    .image-fit {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      margin: 0.6rem 0 0.5rem;
+      display: block;
+      background: #ddd6cc;
+      object-fit: cover;
+      aspect-ratio: 16/9;
+    }
+    .image-fit.small {
+      aspect-ratio: 4/3;
+    }
+    .image-fit.cover {
+      aspect-ratio: 16/10;
+    }
+    .photo-row {
+      display: flex;
+      gap: 6px;
+      margin: 0.4rem 0 0.5rem;
+    }
+    .photo-row img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      object-fit: cover;
+    }
+    .photo-row.two img {
+      height: 130px;
+    }
+    .photo-row.three img {
+      height: 100px;
+    }
+    .photo-row.four img {
+      height: 85px;
+    }
+    .caption {
+      font-style: italic;
+      font-size: 0.8rem;
+      color: #6b5e54;
+      text-align: center;
+      margin: 0 0 0.5rem 0;
+    }
+    .item {
+      margin: 0 0 0.5rem 0;
+    }
+    .item .item-title {
+      font-size: 1rem;
+      color: #c1502e;
+      font-weight: 700;
+      margin: 0 0 1px 0;
+    }
+    .item .item-desc {
+      font-size: 0.85rem;
+      color: #1e2b2c;
+    }
+    .card {
+      background: #f3ece2;
+      border-radius: 10px;
+      padding: 0.7rem 0.9rem;
+      margin: 0 0 0.5rem 0;
+    }
+    .card.teal {
+      background: #e7efee;
+    }
+    .card .card-title {
+      font-size: 0.95rem;
+      color: #0f5c56;
+      margin: 0 0 2px 0;
+      font-weight: 700;
+    }
+    .card .card-body {
+      font-size: 0.85rem;
+    }
+    ul.bullets {
+      margin: 3px 0 0 0;
+      padding-left: 18px;
+    }
+    ul.bullets li {
+      margin-bottom: 3px;
+      font-size: 0.85rem;
+    }
+    .stat-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 4px 0;
+      border-bottom: 1px solid #e7efee;
+    }
+    .stat-row .stat-num {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #c1502e;
+      min-width: 75px;
+    }
+    .stat-row .stat-label {
+      font-size: 0.85rem;
+      color: #6b5e54;
+    }
+    .day {
+      display: flex;
+      gap: 10px;
+      padding: 5px 0;
+      border-bottom: 1px solid #e7efee;
+    }
+    .day:last-child {
+      border-bottom: none;
+    }
+    .day .day-num {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: #c1502e;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      min-width: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 1.1;
+    }
+    .day .day-body {
+      font-size: 0.85rem;
+      padding-top: 1px;
+    }
+    .day .day-body .day-title {
+      font-weight: 700;
+      color: #1e2b2c;
+      display: block;
+      margin-bottom: 1px;
+    }
+    .subhead {
+      font-size: 0.95rem;
+      color: #0f5c56;
+      font-weight: 700;
+      margin: 6px 0 2px 0;
+    }
+    .footer-logo-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.4rem;
+    }
+    .footer-logo-block img {
+      max-width: 70px;
+      height: auto;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .footer-logo-block .site-name {
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      opacity: 0.9;
+    }
+    .footer-brand {
+      text-align: center;
+      padding: 1.2rem 1rem 1rem;
+      background: #1e3b3c;
+      color: #f0ebe3;
+      border-radius: 24px 24px 0 0;
+      margin-top: 0.5rem;
+    }
+    .info-tag {
+      background: #f0ebe3;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      display: inline-block;
+    }
+    .cover-hero {
+      width: 100%;
+      display: block;
+      max-height: 180px;
+      object-fit: cover;
+    }
+    .cover-body {
+      padding: 0.8rem 1.2rem 0.8rem;
+    }
+    .cover-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #c9a24b;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .cover-title {
+      font-size: 2.2rem;
+      color: #1e2b2c;
+      margin: 0;
+      line-height: 1;
+    }
+    .cover-sub {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #c1502e;
+      margin: 2px 0 4px 0;
+    }
+    .cover-intro {
+      font-size: 0.85rem;
+      color: #1e2b2c;
+      margin-bottom: 3px;
+    }
+    .cover-list {
+      margin: 3px 0 8px 0;
+      padding-left: 18px;
+    }
+    .cover-list li {
+      font-size: 0.85rem;
+      margin-bottom: 2px;
+    }
+    .cover-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-top: 1px solid #e7efee;
+      padding-top: 6px;
+    }
+    .cover-logo-row img {
+      width: 32px;
+      height: 32px;
+    }
+    .cover-logo-row .site {
+      font-size: 0.8rem;
+      color: #0f5c56;
+      font-weight: 700;
+    }
+    .tight-top { padding-top: 4px; }
+    .tight-bottom { padding-bottom: 6px; }
+    .tight-both { padding-top: 4px; padding-bottom: 6px; }
+    @media (min-width:900px){.container{max-width:640px}.image-fit{max-height:250px}.cover-hero{max-height:140px}.photo-row.two img{height:110px}.photo-row.three img{height:85px}.photo-row.four img{height:72px}}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- COVER -->
+  <div style="padding:0;">
+    <img class="cover-hero" src="images/juan-panagea.jpg" style="max-height:160px;object-fit:cover;"/>
+    <div class="cover-body">
+      <div class="cover-eyebrow">Idée voyage en petit groupe !</div>
+      <h1 class="cover-title">Uruguay</h1>
+      <div class="cover-sub">Montevideo, Gauchos &amp; Bodegas</div>
+      <p class="cover-intro">À la découverte d'un pays authentique :</p>
+      <ul class="cover-list">
+        <li>Montevideo - Plazas &amp; patrimoine</li>
+        <li>Estancia avec les gauchos (cheval, asado)</li>
+        <li>Punta del Este - Plages</li>
+        <li>Bodegas Moizo &amp; Los Pinos</li>
+        <li>Colonia del Sacramento UNESCO</li>
+      </ul>
+      <div class="cover-logo-row">
+        <img src="images/logo-vpd.jpg"/>
+        <div class="site">vpdvoyages.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRÉSENTATION -->
+  <div class="section">
+    <div class="section-title">📖 PRÉSENTATION</div>
+    <p style="font-size:0.9rem;">Montevideo et son patrimoine, Punta del Este et ses plages, immersion gaucho en estancia (cheval, bétail, asado), bodegas et Colonia del Sacramento UNESCO. Un circuit au cœur de l'Uruguay authentique.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:0.5rem;">
+      <span class="info-tag">🏛️ Montevideo</span>
+      <span class="info-tag">🐴 Estancia gaucho</span>
+      <span class="info-tag">🏖️ Punta del Este</span>
+      <span class="info-tag">🍷 Bodegas</span>
+      <span class="info-tag">🏛️ Colonia UNESCO</span>
+    </div>
+  </div>
+
+  <!-- LE CIRCUIT -->
+  <div class="section">
+    <div class="section-title">🗺️ LE CIRCUIT</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:0.3rem;">
+      <span class="info-tag">1. Montevideo</span>
+      <span class="info-tag">2. Tacuarembó</span>
+      <span class="info-tag">3. Estancia</span>
+      <span class="info-tag">4. Punta del Este</span>
+      <span class="info-tag">5. Bodegas</span>
+      <span class="info-tag">6. Colonia</span>
+    </div>
+    <p style="font-size:0.85rem;color:#6b5e54;">Montevideo → Tacuarembó → Punta del Este → Colonia</p>
+    <img class="image-fit" src="images/carte-uruguay.png" alt="Carte Uruguay"/>
+  </div>
+
+  <!-- EXEMPLE DE PROGRAMME - 1ère semaine -->
+  <div class="section">
+    <div class="section-title">📅 PROGRAMME <span>1ère semaine</span></div>
+    <div class="day"><div class="day-num">2</div><div class="day-body"><span class="day-title">Jour 2</span>Montevideo · Formalités · Av. 18 Julio · Rambla · Palacio Salvo</div></div>
+    <div class="day"><div class="day-num">3</div><div class="day-body"><span class="day-title">Jour 3</span>Vieille Ville · Plaza Matriz · Musée Tango · Palacio Taranco · Plaza Independencia</div></div>
+    <div class="day"><div class="day-num">4</div><div class="day-body"><span class="day-title">Jour 4</span>Vers Tacuarembó · Route via Florida · Durazno · Paso de los Toros · Musée Gardel</div></div>
+    <div class="day"><div class="day-num">5-7</div><div class="day-body"><span class="day-title">Jours 5 à 7</span>Estancia · Vie de gaucho · Cheval, bétail · Asado · Soirées étoiles</div></div>
+    <div class="day"><div class="day-num">8</div><div class="day-body"><span class="day-title">Jour 8</span>Punta del Este · Route vers PDE · Installation · Plages</div></div>
+    <div class="day"><div class="day-num">9</div><div class="day-body"><span class="day-title">Jour 9</span>Punta del Este · Pain de Sucre · Casapueblo · Punta Ballena</div></div>
+    <div class="day"><div class="day-num">10</div><div class="day-body"><span class="day-title">Jour 10</span>Côte · El Águila · Villa Argentina · Temps libre plage</div></div>
+  </div>
+
+  <!-- IMAGE : Punta del Este -->
+  <div style="padding:0 1.2rem;">
+    <img class="image-fit" src="images/punta-del-este.jpg" alt="Punta del Este"/>
+  </div>
+
+  <!-- EXEMPLE DE PROGRAMME - 2ème semaine -->
+  <div class="section">
+    <div class="section-title">📅 PROGRAMME <span>2ème semaine</span></div>
+    <div class="day"><div class="day-num">11</div><div class="day-body"><span class="day-title">Jour 11</span>Bodega Moizo · Progreso · Visite &amp; dégustation · Repas vignoble</div></div>
+    <div class="day"><div class="day-num">12</div><div class="day-body"><span class="day-title">Jour 12</span>Vers Colonia · Route Colonia · Nueva Helvecia · Côte rioplatense</div></div>
+    <div class="day"><div class="day-num">13</div><div class="day-body"><span class="day-title">Jour 13</span>Colonia · Vieille ville UNESCO · Real de San Carlos · Fortaleza</div></div>
+    <div class="day"><div class="day-num">14</div><div class="day-body"><span class="day-title">Jour 14</span>Bodega Los Pinos · Dégustation · Retour Montevideo</div></div>
+    <div class="day"><div class="day-num">15</div><div class="day-body"><span class="day-title">Jour 15</span>Montevideo · Cerro / Fortaleza · Palermo, Parc Rodó · Castillo Pittamiglio</div></div>
+    <div class="day"><div class="day-num">16</div><div class="day-body"><span class="day-title">Jour 16</span>Montevideo · Marché du Port · Théâtre Solís · Pocitos / Ramírez</div></div>
+    <div class="day"><div class="day-num">17</div><div class="day-body"><span class="day-title">Jour 17</span>Départ · Temps libre · Aéroport Carrasco · Vol retour</div></div>
+  </div>
+
+  <!-- MONTEVIDEO -->
+  <div class="section tight-top">
+    <div class="section-title">🏛️ MONTEVIDEO <span>Capitale vibrante</span></div>
+    <img class="image-fit" src="images/palacio-salvo.jpg" alt="Palacio Salvo"/>
+    <div style="display:flex;flex-wrap:wrap;gap:4px;">
+      <span class="info-tag">Plaza Independencia</span>
+      <span class="info-tag">Palacio Salvo</span>
+      <span class="info-tag">Puerta de la Ciudadela</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;">
+      <span class="info-tag">Vieille Ville</span>
+      <span class="info-tag">Plaza Matriz</span>
+      <span class="info-tag">Calle Sarandí</span>
+      <span class="info-tag">Cathédrale</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;">
+      <span class="info-tag">Rambla</span>
+      <span class="info-tag">Musée du Tango</span>
+      <span class="info-tag">Marché du Port</span>
+      <span class="info-tag">Palermo &amp; Pocitos</span>
+    </div>
+  </div>
+
+  <!-- IMMERSION GAUCHO -->
+  <div class="section">
+    <div class="section-title">🐴 IMMERSION GAUCHO <span>Estancia</span></div>
+    <img class="image-fit" src="images/campo-cheval.jpg" alt="Campo et cheval"/>
+    <p style="font-size:0.9rem;font-weight:700;color:#c1502e;">Chez Juan - Estancia</p>
+    <p style="font-size:0.85rem;">Participation à la vie du ranch. ~1 000 vaches · ~2 000 moutons · Centaine de chevaux. Monter comme un gaucho (cheval au pas), gestion du bétail, asado au feu de bois, récits sous les étoiles.</p>
+    <div class="card teal">
+      <div class="card-title">3 nuits d'immersion</div>
+      <ul class="bullets">
+        <li>Cheval au pas</li>
+        <li>Gestion du bétail</li>
+        <li>Asado au feu de bois</li>
+        <li>Récits sous les étoiles</li>
+      </ul>
+    </div>
+    <div class="photo-row two">
+      <img src="images/asado02.jpg" alt="Asado"/>
+      <img src="images/pampa-campo.jpg" alt="Pampa"/>
+    </div>
+  </div>
+
+  <!-- CÔTE & COLONIA -->
+  <div class="section tight-top">
+    <div class="section-title">🏖️ CÔTE &amp; COLONIA</div>
+    <p style="font-size:0.9rem;font-weight:700;color:#0f5c56;">Punta del Este</p>
+    <p style="font-size:0.85rem;">Perle balnéaire. Plages dorées, Casapueblo (Carlos Páez Vilaró), Pain de Sucre, Punta Ballena. Élégance et couchers de soleil.</p>
+    <div class="photo-row two">
+      <img src="images/uruguay-punta-de-este.jpg" alt="Punta del Este"/>
+      <img src="images/casapueblo.webp" alt="Casapueblo"/>
+    </div>
+    <p style="font-size:0.9rem;font-weight:700;color:#0f5c56;margin-top:0.5rem;">Colonia del Sacramento</p>
+    <p style="font-size:0.85rem;">Ville coloniale UNESCO. Ruelles pavées, Real de San Carlos, phare, charme intemporel sur le Río de la Plata.</p>
+    <div class="photo-row two">
+      <img src="images/colonia.jpg" alt="Colonia"/>
+      <img src="images/colonia-auto.jpg" alt="Colonia"/>
+    </div>
+  </div>
+
+  <!-- VIGNOBLES -->
+  <div class="section tight-top">
+    <div class="section-title">🍷 VIGNOBLES <span>Tannat &amp; terroir</span></div>
+    <p style="font-size:0.9rem;font-weight:700;color:#c1502e;">Bodegas Moizo &amp; Los Pinos</p>
+    <p style="font-size:0.85rem;">Visites, dégustations et repas dans les bodegas de Progreso (Moizo) et Nueva Helvecia (Los Pinos). Le cépage Tannat, originaire de Madiran dans le Sud-Ouest de la France, signature de l'Uruguay.</p>
+    <div class="photo-row two">
+      <img src="images/moizo.jpg" alt="Bodega Moizo"/>
+      <img src="images/famille-moizo.jpg" alt="Famille Moizo"/>
+    </div>
+    <div class="photo-row two" style="margin-top:6px;">
+      <img src="images/lospinos.jpg" alt="Bodega Los Pinos"/>
+      <img src="images/uruguay-flag.png" alt="Drapeau Uruguay"/>
+    </div>
+  </div>
+
+  <!-- INFORMATIONS PRATIQUES -->
+  <div class="section tight-top">
+    <div class="section-title">ℹ️ INFORMATIONS PRATIQUES</div>
+    <div class="item">
+      <div class="item-title">Passeport</div>
+      <div class="item-desc">Valide 6 mois après le retour. Pas de vaccins obligatoires.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Décalage &amp; langue</div>
+      <div class="item-desc">- 4 ou - 5 h (pas d'heure d'été). Espagnol.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Monnaie</div>
+      <div class="item-desc">Peso uruguayen. Change casas de cambio. Pas à l'aéroport.</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Inclus</div>
+      <div class="item-desc">Tous les PDJ et déjeuners, 3 dîners. Wi-Fi (sauf estancia).</div>
+    </div>
+  </div>
+
+  <!-- CONSEILS -->
+  <div class="section tight-top">
+    <div class="section-title">💡 CONSEILS <span>Pratique &amp; budget</span></div>
+    <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:0.3rem;">
+      <span class="info-tag">Chaussures</span>
+      <span class="info-tag">Prises 110/220V</span>
+      <span class="info-tag">Sécurité</span>
+      <span class="info-tag">Répulsif</span>
+    </div>
+    <p style="font-size:0.85rem;">Coût de la vie ≈ - 15 % vs France. L'Uruguay n'est pas un pays bon marché.</p>
+    <div class="card">
+      <div class="card-title">Prix indicatifs</div>
+      <ul class="bullets">
+        <li>Déjeuner ~15 €</li>
+        <li>Bière 50 cl ~3,20 €</li>
+        <li>Essence ~1,70 €/L</li>
+        <li>Wi-Fi partout sauf Estancia</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-brand">
+    <div style="font-size:1.2rem;font-weight:300;">Bon séjour en Uruguay,</div>
+    <div style="margin:0.2rem 0;opacity:0.8;">le plus petit pays d'Amérique du Sud !</div>
+    <div style="display:flex;justify-content:center;gap:0.8rem;flex-wrap:wrap;margin-top:0.3rem;font-size:0.8rem;opacity:0.8;">
+      <span>Montevideo</span>
+      <span>·</span>
+      <span>Estancia</span>
+      <span>·</span>
+      <span>Punta del Este</span>
+      <span>·</span>
+      <span>Colonia</span>
+    </div>
+    <div class="footer-logo-block">
+      <img src="images/logo-vpd.jpg" alt="Logo VPD Voyages"/>
+      <span class="site-name">vpdvoyages.com</span>
+    </div>
+    <div style="margin-top:0.5rem;display:flex;justify-content:center;gap:6px;flex-wrap:wrap;">
+      <span class="info-tag" style="background:#2a4b4c;color:white;">🐴 Gauchos</span>
+      <span class="info-tag" style="background:#2a4b4c;color:white;">🍷 Bodegas</span>
+      <span class="info-tag" style="background:#2a4b4c;color:white;">🇺🇾 Uruguay</span>
+    </div>
+  </div>
+
+  <div style="text-align:center;font-size:0.55rem;color:#7a7166;padding:0.5rem 1rem;">Photos : dossier images/ · Uruguay - Montevideo, Gauchos &amp; Bodegas</div>
+
+</div>
+</body>
+</html>
