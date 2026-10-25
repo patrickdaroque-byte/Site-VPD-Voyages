@@ -77,5 +77,17 @@ function openHash(){if(location.hash.startsWith('#pays-')){try{openCountry(decod
 window.addEventListener('hashchange',openHash);openHash();
 })();
 </script>
+<audio id="tango-audio" src="Musique/la-bien-amada.mp3" loop preload="none"></audio>
+<button type="button" id="tango-music-btn" aria-pressed="false" aria-label="Activer ou désactiver la musique tango" style="position:fixed;bottom:18px;right:18px;z-index:40;display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:10px 16px;border:0;border-radius:999px;background:var(--accent);color:#fff;font:650 .82rem/1.4 system-ui,-apple-system,sans-serif;cursor:pointer;box-shadow:0 4px 14px rgba(23,52,71,.28)">♪ Tango <span id="tango-music-state" aria-hidden="true">off</span></button>
+<script>
+(function(){
+  const audio=document.getElementById('tango-audio'),btn=document.getElementById('tango-music-btn'),state=document.getElementById('tango-music-state');
+  audio.volume=.35;
+  function refresh(){state.textContent=audio.paused?'off':'on';btn.setAttribute('aria-pressed',String(!audio.paused));}
+  btn.addEventListener('click',()=>{if(audio.paused){audio.play().then(refresh).catch(()=>{});}else{audio.pause();refresh();}});
+  audio.addEventListener('pause',refresh);audio.addEventListener('play',refresh);
+  refresh();
+})();
+</script>
 </body>
 </html>
