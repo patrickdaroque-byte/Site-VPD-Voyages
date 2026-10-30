@@ -161,7 +161,21 @@ h2{font-size:clamp(1.7rem,2.8vw,2.3rem)}
 .text-link-small{display:inline-flex;align-items:center;color:var(--blue);font-size:.7rem;font-weight:600;text-underline-offset:3px}
 .text-link-small:hover{color:var(--accent)}
 
-.tarifs-note{max-width:1080px;margin:0 auto 50px;color:var(--muted);font-size:.85rem}
+/* Styles ajoutés pour le pavé Tarifs */
+.tarifs-section{padding:0 0 50px}
+.tarifs-box{max-width:1080px;margin:auto;background:white;border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.tarifs-box h2{font-size:1.65rem;margin-bottom:14px}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;min-width:620px}
+thead th{padding:16px 18px;text-align:left;font-size:.87rem;font-weight:650;border-bottom:1px solid var(--line);background:#f2f3f0;color:var(--muted)}
+thead th:nth-child(2){background:#f4ece3;color:#654b32}
+thead th:nth-child(3){background:#eaf0f0;color:#244d5d}
+tbody th,tbody td{padding:13px 18px;border-bottom:1px solid #e7ebe8;font-size:.89rem;text-align:left;vertical-align:middle}
+tbody th{font-weight:550}
+tbody td{white-space:nowrap}
+tbody tr:last-child>*{border-bottom:0}
+.tarifs-note{margin:15px 0 0;color:var(--muted);font-size:.85rem}
+.tarifs-note a{color:var(--blue);font-weight:600;text-underline-offset:4px}
 
 .cta-section{padding:28px;text-align:center;background:#edf1ed;border-radius:18px;margin-bottom:50px}
 .cta-section h2{max-width:700px;margin:0 auto 12px}
@@ -178,6 +192,40 @@ h2{font-size:clamp(1.7rem,2.8vw,2.3rem)}
 .copyright{font-size:.82rem;line-height:1.65;margin:0}
 .footer-links{display:flex;flex-wrap:wrap;gap:11px 18px}
 .footer-links a{font-size:.83rem;text-underline-offset:4px}
+
+/* =========================================
+   CORRECTION DE LA POPUP (Format Cuba)
+   ========================================= */
+#tarif-detail {
+  max-width: 560px;
+  width: calc(100% - 32px);
+  max-height: 85vh; /* Empêche de dépasser de l'écran */
+  border: 0;
+  border-radius: var(--radius);
+  padding: 28px;
+  color: var(--ink);
+  overflow-y: auto; /* Ajoute le défilement interne si besoin */
+}
+#tarif-detail::backdrop { background: rgba(23,52,71,.45); }
+#tarif-detail p {
+  color: var(--muted);
+  font-size: .9rem;
+  margin-bottom: 11px;
+  line-height: 1.5;
+}
+#tarif-detail strong { color: var(--ink); }
+#tarif-detail a { color: var(--blue); font-weight: 600; }
+#tarif-detail button[data-close] {
+  margin-top: 6px;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--accent);
+  color: white;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
 
 @media(max-width:1100px){
   .stays-grid{grid-template-columns:repeat(2,1fr)}
@@ -203,6 +251,7 @@ h2{font-size:clamp(1.7rem,2.8vw,2.3rem)}
   .nav a{padding:10px 0;font-size:.98rem;border-top:1px solid var(--line)}
   .nav .nav-feature{margin:4px 0;padding:11px}
   .page-intro{padding-top:14px}
+  .tarifs-box{padding:20px}
   .cta-section{padding:26px 18px;margin-bottom:42px}
 }
 @media(max-width:680px){
@@ -220,6 +269,7 @@ h2{font-size:clamp(1.7rem,2.8vw,2.3rem)}
   .cta-buttons{flex-direction:column}
   .button{width:100%;max-width:340px}
   .page-intro h1{font-size:2.15rem}
+  .table-wrap{border-radius:12px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
 </style>
@@ -285,8 +335,9 @@ h2{font-size:clamp(1.7rem,2.8vw,2.3rem)}
           <p>Buenos Aires, milongas et cours de tango, puis Mendoza : dégustations de Malbec et paysages des Andes.</p>
           <div class="stay-meta">
             <div class="price-line">
-              <span class="price">1 540 €</span>
-              <span class="price-note">Autonomie · 18 j / 16 n · base 5 pers.</span>
+              <span class="price">3 440 €</span>
+              <span class="price-note">Autonomie · 18 j / 16 n · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
+              <button type="button" class="info-tarif" aria-haspopup="dialog">ⓘ</button>
             </div>
             <div class="stay-actions">
               <a class="button-small" href="programmes/tango-bodegas/programme.html">Voir le programme</a>
@@ -308,8 +359,9 @@ h2{font-size:clamp(1.7rem,2.8vw,2.3rem)}
           <p>Pour danseurs confirmés : Buenos Aires, milongas, traversée du Río de la Plata et Montevideo.</p>
           <div class="stay-meta">
             <div class="price-line">
-              <span class="price">1 290 €</span>
-              <span class="price-note">Autonomie · 17 j / 15 n · base 5 pers.</span>
+              <span class="price">3 150 €</span>
+              <span class="price-note">Autonomie · 17 j / 15 n · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
+              <button type="button" class="info-tarif" aria-haspopup="dialog">ⓘ</button>
             </div>
             <div class="stay-actions">
               <a class="button-small" href="programmes/rio-de-la-plata/programme.html">Voir le programme</a>
@@ -331,8 +383,9 @@ h2{font-size:clamp(1.7rem,2.8vw,2.3rem)}
           <p>Buenos Aires et les chutes d’Iguazu : énergie urbaine, cascades et immersion dans la nature.</p>
           <div class="stay-meta">
             <div class="price-line">
-              <span class="price">1 900 €</span>
-              <span class="price-note">Autonomie · 20 j / 18 n · base 5 pers.</span>
+              <span class="price">3 190 €</span>
+              <span class="price-note">Autonomie · 20 j / 18 n · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
+              <button type="button" class="info-tarif" aria-haspopup="dialog">ⓘ</button>
             </div>
             <div class="stay-actions">
               <a class="button-small" href="programmes/ville-et-nature/programme.html">Voir le programme</a>
@@ -366,10 +419,38 @@ h2{font-size:clamp(1.7rem,2.8vw,2.3rem)}
     </div>
   </section>
 
-  <p class="wrap tarifs-note">*Prix indicatif en Formule Autonomie, variable selon le groupe.</p>
+  <!-- Pavé Tarifs -->
+  <section class="wrap tarifs-section" aria-labelledby="tarifs-title">
+    <div class="tarifs-box">
+      <h2 id="tarifs-title">Nos tarifs par séjour</h2>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Tarifs des séjours en Argentine">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Séjour</th>
+              <th scope="col">Sérénité</th>
+              <th scope="col">Autonomie</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Tango et Bodegas (18 jours / 16 nuits)</th><td>4 530</td><td>3 440 €</td></tr>
+            <tr><th scope="row">Río de la Plata - Le berceau du tango (17 jours / 15 nuits)</th><td>3 960 €</td><td>3 150 €</td></tr>
+            <tr><th scope="row">Ville et Nature en mouvement (20 jours / 18 nuits)</th><td>4 230 €</td><td>3 190 €</td></tr>
+            <tr><th scope="row">Buenos Aires, Mendoza et les Andes</th><td>sur demande</td><td>sur demande</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="tarifs-note">
+        Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.
+        <button type="button" class="info-tarif" aria-haspopup="dialog">ⓘ Ce que comprend ce tarif</button><br>
+        Pour un groupe de 4, 3 ou 2 voyageurs, le tarif par personne est plus élevé :
+        <a href="index.html#contact">demander le tarif pour mon groupe</a>.
+      </p>
+    </div>
+  </section>
 
   <section class="wrap cta-section" aria-labelledby="cta-title">
-    <h2 id="cta-title">Et si nous personnalisions votre Argentine ?</h2>
+    <h2 id="cta-title">L'Argentine est diverse :<br>créons ensemble votre itinéraire !</h2>
     <p>Ces séjours sont des points de départ. Parlons de vos dates, de votre rythme et de vos envies pour construire votre voyage.</p>
     <div class="cta-buttons">
       <a class="button" href="index.html#contact">Parler de mon projet <span aria-hidden="true">→</span></a>
@@ -391,6 +472,47 @@ h2{font-size:clamp(1.7rem,2.8vw,2.3rem)}
     </nav>
   </div>
 </footer>
+
+<!-- Popup avec structure et présentation identiques à la page Cuba -->
+<dialog id="tarif-detail" aria-labelledby="tarif-detail-titre">
+
+  <p>
+    <strong>Ce tarif comprend :</strong> vos hébergements, les repas,
+    les activités et visites prévues, les transports prévus dans le programme
+    (transferts, déplacements locaux et éventuels vols intérieurs selon la destination),
+    votre road-book détaillé, une assistance voyage 24h/24 et 7j/7 ainsi que les
+    honoraires d'organisation et d'assistance.
+  </p>
+
+  <p>
+    Ce tarif est établi sur la base de 5 participants et confirmé dans votre devis personnalisé.
+  </p>
+
+  <p>
+    Vous réservez à votre nom et réglez directement les prestataires. Nous préparons vos
+    réservations et vous accompagnons à toutes les étapes : recherche des prestations,
+    contacts, e-mails, réservations et démarches pratiques.
+  </p>
+
+  <p>
+    <strong>Formule Sérénité :</strong> même programme, avec en plus la présence permanente
+    d'un guide francophone VPDVOYAGES pendant toute la durée du séjour.
+  </p>
+
+  <p>
+    Les tarifs sont calculés à partir des conditions connues au moment de leur élaboration.
+    Comme dans tout voyage sur mesure, certains prestataires peuvent faire évoluer leurs prix
+    avant la confirmation définitive du séjour. Nous veillons en permanence à limiter l'impact
+    de ces variations et à respecter au mieux le budget annoncé.
+  </p>
+
+  <p>
+    Pour un groupe de 4, 3 ou 2 voyageurs, le tarif par personne est plus élevé :
+    <a href="index.html#contact">demander le tarif pour mon groupe</a>.
+  </p>
+
+  <button type="button" data-close>Fermer</button>
+</dialog>
 
 <script>
 const toggle=document.querySelector('.menu-toggle'),nav=document.getElementById('navigation');
@@ -420,10 +542,18 @@ new ResizeObserver(updateHeader).observe(header);updateHeader();
     grid.style.gridAutoRows = Math.max(available, minHeight) + 'px';
   }
 
-    window.addEventListener('resize', updateRowHeight);
-    window.addEventListener('load', updateRowHeight);
-    updateRowHeight();
-  })();
-  </script>
-  </body>
-  </html>
+  window.addEventListener('resize', updateRowHeight);
+  window.addEventListener('load', updateRowHeight);
+  updateRowHeight();
+})();
+
+const dialog=document.getElementById('tarif-detail');
+document.querySelectorAll('.info-tarif').forEach(button=>{
+  button.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();dialog.showModal();});
+});
+dialog.addEventListener('click',event=>{
+  if(event.target===dialog||event.target.hasAttribute('data-close'))dialog.close();
+});
+</script>
+</body>
+</html>

@@ -22,23 +22,53 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--creme);
+      background: #faf9f6;
       color: var(--noir);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
     img { max-width: 100%; height: auto; display: block; }
 
+    /* Conteneur principal pour centrer et limiter la largeur sur ordinateur */
+    body > section, body > header, body > nav, body > footer {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--creme);
+    }
+
+    body > header, body > section:nth-of-type(odd), body > section:nth-of-type(even) {
+      background: var(--creme);
+      border-left: 1px solid #dce2df;
+      border-right: 1px solid #dce2df;
+    }
+
+    body > section.presentation, 
+    body > section.dest-section.alt,
+    body > section.programme,
+    body > section.securite {
+      background: var(--blanc);
+    }
+
+    body > section.regions {
+      background: var(--noir);
+    }
+
+    body > footer {
+      background: var(--noir);
+      border-left: 1px solid #dce2df;
+      border-right: 1px solid #dce2df;
+    }
+
     .hero {
       position: relative;
-      min-height: 100vh;
-      min-height: 100dvh;
       background: #f5f0e8;
       color: var(--noir);
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       overflow: hidden;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
     }
     .hero-bg {
       position: absolute;
@@ -46,7 +76,7 @@
       background: linear-gradient(180deg, rgba(245,240,232,0.05) 0%, rgba(245,240,232,0.25) 40%, rgba(245,240,232,0.9) 100%),
                   url('images/villa-de-leyva.jpg') center/cover no-repeat;
     }
-    .hero-content { position: relative; z-index: 2; padding: 2rem 1.25rem 3rem; }
+    .hero-content { position: relative; z-index: 2; padding: 3rem 24px 3rem; }
     .badge {
       display: inline-block;
       background: var(--rouge);
@@ -70,7 +100,7 @@
     }
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
+      font-size: 2.8rem;
       font-weight: 700;
       line-height: 1.2;
       margin-bottom: 0;
@@ -81,7 +111,7 @@
       background: rgba(255,255,255,0.95);
       border: 2px solid var(--or);
       border-radius: 10px;
-      padding: 1rem 1.15rem 1.1rem;
+      padding: 1.25rem;
       margin-bottom: 1.25rem;
       box-shadow: 0 4px 18px rgba(0,0,0,0.1);
     }
@@ -166,7 +196,7 @@
       scrollbar-width: none;
     }
     .nav-sticky::-webkit-scrollbar { display: none; }
-    .nav-inner { display: flex; padding: 0 0.5rem; min-width: max-content; }
+    .nav-inner { display: flex; padding: 0 1rem; min-width: max-content; }
     .nav-inner a {
       color: rgba(255,255,255,0.7);
       text-decoration: none;
@@ -179,7 +209,7 @@
     }
     .nav-inner a:hover, .nav-inner a:active { color: var(--or); }
 
-    section { padding: 2.75rem 1.25rem; }
+    section { padding: 40px 24px; }
     .section-label {
       font-size: 0.7rem;
       font-weight: 600;
@@ -190,7 +220,7 @@
     }
     h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.75rem;
+      font-size: 2rem;
       font-weight: 700;
       line-height: 1.25;
       margin-bottom: 1.25rem;
@@ -206,24 +236,24 @@
     .divider { width: 40px; height: 3px; background: var(--rouge); margin: 0 0 1.5rem; }
 
     .presentation { background: var(--blanc); }
-    .cards-grid { display: grid; gap: 1rem; }
+    .cards-grid { display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr); }
     .card {
       background: var(--creme);
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
-    .card img { width: 100%; height: 150px; object-fit: cover; }
-    .card-body { padding: 1rem 1.1rem 1.2rem; }
-    .card-body h3 { font-size: 1.05rem; margin-bottom: 0.35rem; }
-    .card-body p { font-size: 0.85rem; margin-bottom: 0; }
+    .card img { width: 100%; height: 180px; object-fit: cover; }
+    .card-body { padding: 1.1rem 1.25rem 1.25rem; }
+    .card-body h3 { font-size: 1.1rem; margin-bottom: 0.35rem; }
+    .card-body p { font-size: 0.9rem; margin-bottom: 0; }
 
     .regions { background: var(--noir); color: var(--blanc); }
     .regions h2 { color: var(--blanc); }
     .regions .section-label { color: var(--or); }
     .stats {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
       margin-bottom: 1.75rem;
     }
@@ -253,12 +283,12 @@
     .img-gallery {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.6rem;
+      gap: 12px;
       margin: 1.25rem 0 1.5rem;
     }
     .img-gallery img {
       width: 100%;
-      height: 140px;
+      height: 220px;
       object-fit: cover;
       border-radius: 8px;
     }
@@ -273,7 +303,7 @@
     .highlight-box p { color: rgba(255,255,255,0.85); font-size: 0.9rem; margin-bottom: 0; }
     .points-list { list-style: none; margin-top: 1rem; }
     .points-list li {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       padding: 0.45rem 0;
       padding-left: 1.2rem;
       position: relative;
@@ -291,7 +321,7 @@
     .programme { background: var(--blanc); }
     .week-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       color: var(--rouge);
       margin: 1.75rem 0 1rem;
       padding-bottom: 0.4rem;
@@ -320,33 +350,35 @@
       line-height: 1.2;
       color: var(--noir);
     }
-    .day-content h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.15rem; }
-    .day-content p { font-size: 0.85rem; margin: 0; color: var(--gris); }
+    .day-content h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.15rem; }
+    .day-content p { font-size: 0.9rem; margin: 0; color: var(--gris); }
 
     .infos { background: var(--creme); }
     .securite { background: var(--blanc); }
-    .info-grid, .secu-grid { display: grid; gap: 1rem; margin-top: 1.25rem; }
+    .info-grid, .secu-grid { display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr); margin-top: 1.25rem; }
     .info-item, .secu-item {
       background: var(--blanc);
       border-radius: 10px;
-      padding: 1.15rem;
+      padding: 1.25rem;
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
     .secu-item { background: var(--creme); box-shadow: none; }
     .info-item h4, .secu-item h4 {
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 600;
       margin-bottom: 0.4rem;
       color: var(--rouge-fonce);
     }
-    .info-item p, .secu-item p { font-size: 0.85rem; margin: 0; }
+    .info-item p, .secu-item p { font-size: 0.9rem; margin: 0; }
     .info-item a { color: var(--rouge); text-decoration: none; }
 
     .footer {
       background: var(--noir);
       color: white;
       text-align: center;
-      padding: 3rem 1.25rem 2.5rem;
+      padding: 40px 24px;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
     }
     .footer h2 { color: white; font-size: 1.5rem; margin-bottom: 0.4rem; }
     .footer p { color: rgba(255,255,255,0.7); font-style: italic; font-size: 0.95rem; margin-bottom: 1rem; }
@@ -355,13 +387,19 @@
     .footer-logo { max-width: 72px; height: auto; display: block; }
     .footer a { color: var(--or); text-decoration: none; font-size: 0.95rem; font-weight: 500; }
 
-    @media (min-width: 480px) {
-      .hero h1 { font-size: 2.6rem; }
-      .cards-grid { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 640px) {
+      .cards-grid, .info-grid, .secu-grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .hero h1 { font-size: 2.2rem; }
       .img-gallery img { height: 160px; }
-      .stats { grid-template-columns: repeat(4, 1fr); }
+      body > section, body > header, body > nav, body > footer {
+        max-width: 100%;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+      }
+      .hero, .footer { border-radius: 0; }
     }
-      @media (min-width:900px){.card img{height:260px}.img-gallery img{height:260px}.img-gallery.full img{height:380px}.img-gallery.triple img{height:210px}.festival-hero-img{height:420px}.footer-img{height:220px}.map-img{max-width:880px;margin:1.5rem auto 0}.wide-img{height:360px!important}}
   </style>
 </head>
 <body>
@@ -505,7 +543,7 @@
       <h3>La Cathédrale de Sel – Zipaquirá</h3>
       <p>Cathédrale souterraine creusée dans une mine de sel. Architecture spectaculaire et lumière mystique — l'une des merveilles de Colombie.</p>
     </div>
-    <img src="images/Catedral_de_Sal_de_Zipaquira.jpg" alt="Cathédrale de Sel de Zipaquirá" class="wide-img" style="width:100%;height:200px;object-fit:cover;border-radius:10px;margin:0 0 1rem;">
+    <img src="images/Catedral_de_Sal_de_Zipaquira.jpg" alt="Cathédrale de Sel de Zipaquirá" class="wide-img" style="width:100%;height:260px;object-fit:cover;border-radius:10px;margin:0 0 1rem;">
     <div class="highlight-box">
       <h3>La Lagune de Guatavita</h3>
       <p>Lac sacré des Muiscas, légende de l'Eldorado. Repas champêtre à La Casa Loca et après-midi nature.</p>
@@ -528,19 +566,19 @@
       <h3>Villa de Leyva</h3>
       <p>Plaza Mayor immense, architecture coloniale préservée, ambiance intemporelle. Maisons blanches aux toits orangés.</p>
     </div>
-    <img src="images/barichara.jpg" alt="Barichara" class="wide-img" style="width:100%;height:180px;object-fit:cover;border-radius:10px;margin:1rem 0;">
+    <img src="images/barichara.jpg" alt="Barichara" class="wide-img" style="width:100%;height:260px;object-fit:cover;border-radius:10px;margin:1rem 0;">
     <div class="highlight-box">
       <h3>Barichara</h3>
       <p>Joyau colonial. Camino Real jusqu'au village de Guane. Option parapente pour les plus aventureux.</p>
     </div>
-    <img src="images/parapente.jpg" alt="Parapente" class="wide-img" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin-top:0.5rem;">
+    <img src="images/parapente.jpg" alt="Parapente" class="wide-img" style="width:100%;height:220px;object-fit:cover;border-radius:10px;margin-top:0.5rem;">
   </section>
 
   <section class="dest-section alt" id="giron">
     <span class="section-label">Girón</span>
     <h2>Le charme colonial</h2>
     <div class="divider"></div>
-    <img src="images/giron.jpg" alt="Girón" class="wide-img" style="width:100%;height:200px;object-fit:cover;border-radius:10px;margin-bottom:1.25rem;">
+    <img src="images/giron.jpg" alt="Girón" class="wide-img" style="width:100%;height:280px;object-fit:cover;border-radius:10px;margin-bottom:1.25rem;">
     <p>Centre historique paisible, architecture coloniale, places ombragées. Une étape tranquille qui complète le triangle culturel du Santander.</p>
   </section>
 
@@ -553,8 +591,8 @@
       <img src="images/comuna-13.jpg" alt="Comuna 13">
     </div>
     <p>Musée d'Antioquia, Metrocable, Comuna 13 et street-art. Une ville transformée, symbole de renaissance urbaine et de créativité colombienne.</p>
-    <img src="images/penon-guatape.jpg" alt="Piedra del Peñol" class="wide-img" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin-top:1rem;">
-    <p style="font-size:0.85rem;margin-top:0.5rem;color:var(--gris);">Option possible : excursion à la Piedra del Peñol (Guatapé).</p>
+    <img src="images/penon-guatape.jpg" alt="Piedra del Peñol" class="wide-img" style="width:100%;height:240px;object-fit:cover;border-radius:10px;margin-top:1rem;">
+    <p style="font-size:0.9rem;margin-top:0.5rem;color:var(--gris);">Option possible : excursion à la Piedra del Peñol (Guatapé).</p>
   </section>
 
   <section class="infos" id="infos">
@@ -566,7 +604,7 @@
       <div class="info-item"><h4>Décalage horaire</h4><p>−6 h l'hiver / −5 h l'été par rapport à Paris.</p></div>
       <div class="info-item"><h4>Langue</h4><p>Espagnol + environ 68 langues autochtones.</p></div>
       <div class="info-item"><h4>Monnaie</h4><p>Peso colombien (COP). 1 € ≈ 4 780 COP. Cartes et dollars acceptés. Préférer les Casas de Cambio.</p></div>
-      <div class="info-item"><h4>Ambassade de France à Bogotá</h4><p>Carrera 11, n° 93-12<br>Ambassade : 571 638 14 00 · Consulat : 571 638 14 48<br>Urgences : (571) 638 15 64<br><a href="https://www.ambafrance-co.org" target="_blank" rel="noopener">ambafrance-co.org</a></p></div>
+      <div class="info-item" style="grid-column: 1 / -1;"><h4>Ambassade de France à Bogotá</h4><p>Carrera 11, n° 93-12<br>Ambassade : 571 638 14 00 · Consulat : 571 638 14 48<br>Urgences : (571) 638 15 64<br><a href="https://www.ambafrance-co.org" target="_blank" rel="noopener">ambafrance-co.org</a></p></div>
     </div>
   </section>
 

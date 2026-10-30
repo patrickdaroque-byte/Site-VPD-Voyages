@@ -24,20 +24,29 @@
     body {
       font-family: var(--font-body);
       color: var(--text);
-      background: var(--bg);
+      background: #faf9f6;
       font-size: 16px;
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
 
-    .section {
-      padding: 20px 18px 14px 18px;
-      position: relative;
-      min-height: auto;
-      page-break-before: always;
+    /* Conteneur principal pour centrer et limiter la largeur sur ordinateur */
+    body > .section {
+      max-width: 900px;
+      margin: 20px auto;
+      background: var(--bg);
+      border: 1px solid #dce2df;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
     }
 
-    .section:first-child { page-break-before: auto; }
+    .section {
+      padding: 30px 24px 20px 24px;
+      position: relative;
+      min-height: auto;
+      page-break-before: auto;
+      break-before: auto;
+    }
 
     .eyebrow {
       font-weight: bold;
@@ -51,7 +60,7 @@
     h1.title {
       font-family: var(--font-head);
       font-weight: normal;
-      font-size: 26px;
+      font-size: 28px;
       line-height: 1.1;
       color: var(--text);
       margin: 0 0 10px 0;
@@ -72,24 +81,24 @@
 
     .photo-row {
       display: flex;
-      gap: 8px;
-      margin: 0 0 10px 0;
+      gap: 12px;
+      margin: 0 0 16px 0;
     }
 
     .photo-row img {
       width: 100%;
-      border-radius: 3px;
+      border-radius: 6px;
       display: block;
       object-fit: cover;
     }
 
     .photo-row.two img {
       width: 50%;
-      height: 195px;
+      height: 260px;
     }
 
-    .photo-row.three img { height: 156px; }
-    .photo-row.four img { height: 137px; }
+    .photo-row.three img { height: 180px; }
+    .photo-row.four img { height: 150px; }
 
     .caption {
       font-family: var(--font-head);
@@ -231,10 +240,12 @@
     .cover-hero {
       width: 100%;
       display: block;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
     }
 
     .cover-body {
-      padding: 12px 18px 6px 18px;
+      padding: 20px 24px 12px 24px;
       min-height: auto;
     }
 
@@ -280,23 +291,13 @@
       margin: 4px 0 6px 0;
     }
 
-    .cover-list {
-      margin: 0 0 8px 0;
-      padding-left: 18px;
-    }
-
-    .cover-list li {
-      font-size: 14.5px;
-      margin-bottom: 4px;
-    }
-
     .cover-logo-row {
       display: flex;
       align-items: center;
       gap: 10px;
       border-top: 1px solid var(--paleteal);
-      padding-top: 8px;
-      margin-top: 0;
+      padding-top: 12px;
+      margin-top: 15px;
     }
 
     .cover-logo-row img {
@@ -306,7 +307,7 @@
 
     .back {
       text-align: center;
-      padding: 60px 24px;
+      padding: 40px 24px;
     }
 
     .back .back-msg {
@@ -320,7 +321,7 @@
     .back .back-logo {
       width: 56px;
       height: 56px;
-      margin-bottom: 8px;
+      margin: 0 auto 8px auto;
       border-radius: 2px;
     }
 
@@ -338,87 +339,35 @@
       padding-top: 16px;
     }
 
-    .item, .card, .photo-row, .day, .stat-row, .cover-logo-row, .footer-bar, h1.title, .eyebrow, .subhead, .caption {
-      page-break-inside: avoid;
-      break-inside: avoid;
-    }
-
-    .eyebrow, h1.title {
-      page-break-after: avoid;
-      break-after: avoid;
-    }
-
     @media (max-width: 640px) {
+      body > .section {
+        max-width: 100%;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+      }
       .section {
         padding: 16px 18px 12px 18px;
-        min-height: auto;
       }
       .cover-body {
-        padding: 10px 18px 6px 18px;
+        padding: 15px 18px 10px 18px;
       }
-
       .photo-row.two {
         flex-direction: column;
         gap: 8px;
       }
-
       .photo-row.two img {
         width: 100%;
-        height: 160px;
+        height: 200px;
       }
-
-      .photo-row.three {
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .photo-row.three img {
-        width: 100%;
-        height: 140px;
-      }
-
-      .photo-row.four {
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .photo-row.four img {
-        width: 100%;
-        height: 130px;
-      }
-
-      .hero {
-        max-width: 100% !important;
-        width: 100%;
-      }
-
       .cover-title {
         font-size: 32px;
       }
-
       .cover-sub {
         font-size: 17px;
       }
     }
-
-    @media (max-width: 400px) {
-      .photo-row.two img {
-        height: 130px;
-      }
-
-      .photo-row.three img {
-        height: 120px;
-      }
-
-      .photo-row.four img {
-        height: 110px;
-      }
-
-      .cover-title {
-        font-size: 28px;
-      }
-    }
-      @media (min-width:900px){.photo-row.two img{height:170px}.photo-row.three img{height:140px}.photo-row.four img{height:120px}}
   </style>
 </head>
 <body>
