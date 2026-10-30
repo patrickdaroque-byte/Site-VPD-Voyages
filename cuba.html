@@ -176,13 +176,39 @@ tbody tr:last-child>*{border-bottom:0}
 .tarifs-note{margin:15px 0 0;color:var(--muted);font-size:.85rem}
 .tarifs-note a{color:var(--blue);font-weight:600;text-underline-offset:4px}
 
-#tarif-detail{max-width:560px;width:calc(100% - 32px);border:0;border-radius:var(--radius);padding:28px;color:var(--ink)}
-#tarif-detail::backdrop{background:rgba(23,52,71,.45)}
-#tarif-detail h3{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:1.45rem;margin-bottom:12px}
-#tarif-detail p{color:var(--muted);font-size:.9rem;margin-bottom:11px}
-#tarif-detail strong{color:var(--ink)}
-#tarif-detail a{color:var(--blue);font-weight:600}
-#tarif-detail button[data-close]{margin-top:6px;padding:10px 18px;border:0;border-radius:7px;background:var(--accent);color:white;font:inherit;font-weight:650;cursor:pointer}
+/* =========================================
+   POPUP HAUTEUR AJUSTÉE
+   ========================================= */
+#tarif-detail {
+  max-width: 560px;
+  width: calc(100% - 32px);
+  max-height: 95vh; /* Empêche de dépasser de l'écran */
+  border: 0;
+  border-radius: var(--radius);
+  padding: 28px;
+  color: var(--ink);
+  overflow-y: auto;
+}
+#tarif-detail::backdrop { background: rgba(23,52,71,.45); }
+#tarif-detail p {
+  color: var(--muted);
+  font-size: .9rem;
+  margin-bottom: 11px;
+  line-height: 1.5;
+}
+#tarif-detail strong { color: var(--ink); }
+#tarif-detail a { color: var(--blue); font-weight: 600; }
+#tarif-detail button[data-close] {
+  margin-top: 6px;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--accent);
+  color: white;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
 
 .cta-section{padding:28px;text-align:center;background:#edf1ed;border-radius:18px;margin-bottom:50px}
 .cta-section h2{max-width:700px;margin:0 auto 12px}
@@ -307,8 +333,8 @@ tbody tr:last-child>*{border-bottom:0}
           <p>17 jours entre La Havane, Trinidad et Viñales : salsa, patrimoine colonial, mogotes, tabac et rencontres cubaines.</p>
           <div class="stay-meta">
             <div class="price-line">
-              <span class="price">2 520 €</span>
-              <span class="price-note">Autonomie · 17 j / 16 n · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
+              <span class="price">2 520 € · Formule Autonomie</span>
+              <span class="price-note">17 j / 16 n · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
               <button type="button" class="info-tarif" aria-haspopup="dialog">ⓘ</button>
             </div>
             <div class="stay-actions">
@@ -331,8 +357,8 @@ tbody tr:last-child>*{border-bottom:0}
           <p>Cours et soirées salsa et tango à La Havane, rencontres avec des danseurs et immersion culturelle.</p>
           <div class="stay-meta">
             <div class="price-line">
-              <span class="price">2 630 €</span>
-              <span class="price-note">Autonomie · prochainement · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
+              <span class="price">2 630 € · Formule Autonomie</span>
+              <span class="price-note">prochainement · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
               <button type="button" class="info-tarif" aria-haspopup="dialog">ⓘ</button>
             </div>
             <div class="stay-actions">
@@ -467,7 +493,7 @@ tbody tr:last-child>*{border-bottom:0}
 <dialog id="tarif-detail" aria-labelledby="tarif-detail-titre">
 
   <p>
-    <strong>Ce tarif comprend :</strong> vos hébergements, les repas,
+    <strong>Le tarif en Formule Autonomie comprend :</strong> vos hébergements, les repas,
     les activités et visites prévues, les transports prévus dans le programme
     (transferts, déplacements locaux et éventuels vols intérieurs selon la destination),
     votre road-book détaillé, une assistance voyage 24h/24 et 7j/7 ainsi que les
@@ -532,7 +558,7 @@ dialog.addEventListener('click',event=>{
     if (window.matchMedia('(max-width:1100px)').matches) { grid.style.gridAutoRows = 'auto'; return; }
     grid.style.gridAutoRows = 'auto';
 
-    const top = grid.getBoundingClientRect().top;
+    const top = grid.getBoundingClientRect().top + window.scrollY; /* position dans la page, indépendante du défilement */
     const bottomMargin = 20;
     const available = window.innerHeight - top - bottomMargin;
     const minHeight = 360;
@@ -542,6 +568,7 @@ dialog.addEventListener('click',event=>{
 
   window.addEventListener('resize', updateRowHeight);
   window.addEventListener('load', updateRowHeight);
+  window.addEventListener('pageshow', updateRowHeight); /* retour arrière du navigateur */
   updateRowHeight();
 })();
 </script>

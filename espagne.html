@@ -174,13 +174,39 @@ tbody tr:last-child>*{border-bottom:0}
 .tarifs-note{margin:15px 0 0;color:var(--muted);font-size:.85rem}
 .tarifs-note a{color:var(--blue);font-weight:600;text-underline-offset:4px}
 
-#tarif-detail{max-width:560px;width:calc(100% - 32px);border:0;border-radius:var(--radius);padding:28px;color:var(--ink)}
-#tarif-detail::backdrop{background:rgba(23,52,71,.45)}
-#tarif-detail h3{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:1.45rem;margin-bottom:12px}
-#tarif-detail p{color:var(--muted);font-size:.9rem;margin-bottom:11px}
-#tarif-detail strong{color:var(--ink)}
-#tarif-detail a{color:var(--blue);font-weight:600}
-#tarif-detail button[data-close]{margin-top:6px;padding:10px 18px;border:0;border-radius:7px;background:var(--accent);color:white;font:inherit;font-weight:650;cursor:pointer}
+/* =========================================
+   POPUP HAUTEUR AJUSTÉE
+   ========================================= */
+#tarif-detail {
+  max-width: 560px;
+  width: calc(100% - 32px);
+  max-height: 95vh; /* Empêche de dépasser de l'écran */
+  border: 0;
+  border-radius: var(--radius);
+  padding: 28px;
+  color: var(--ink);
+  overflow-y: auto;
+}
+#tarif-detail::backdrop { background: rgba(23,52,71,.45); }
+#tarif-detail p {
+  color: var(--muted);
+  font-size: .9rem;
+  margin-bottom: 11px;
+  line-height: 1.5;
+}
+#tarif-detail strong { color: var(--ink); }
+#tarif-detail a { color: var(--blue); font-weight: 600; }
+#tarif-detail button[data-close] {
+  margin-top: 6px;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--accent);
+  color: white;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
 
 .cta-section{padding:28px;text-align:center;background:#edf1ed;border-radius:18px;margin-bottom:50px}
 .cta-section h2{max-width:700px;margin:0 auto 12px}
@@ -306,8 +332,8 @@ tbody tr:last-child>*{border-bottom:0}
           <p>4 jours depuis Logroño : bodegas prestigieuses, vins rioja, villages médiévaux, pintxos et monastères UNESCO de San Millán.</p>
           <div class="stay-meta">
             <div class="price-line">
-              <span class="price">540 €</span>
-              <span class="price-note">Autonomie · 4 j / 3 n · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
+              <span class="price">540 € · Formule Autonomie</span>
+              <span class="price-note">4 j / 3 n · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
               <button type="button" class="info-tarif" aria-haspopup="dialog">ⓘ</button>
             </div>
             <div class="stay-actions">
@@ -329,8 +355,8 @@ tbody tr:last-child>*{border-bottom:0}
           <p>4 jours entre plages, patrimoine et gastronomie : cathédrale, Lonja de la Seda, Ruzafa, Malvarrosa et Albufera.</p>
           <div class="stay-meta">
             <div class="price-line">
-              <span class="price">540 €</span>
-              <span class="price-note">Autonomie · 4 j / 3 n · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
+              <span class="price">540 € · Formule Autonomie</span>
+              <span class="price-note">4 j / 3 n · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
               <button type="button" class="info-tarif" aria-haspopup="dialog">ⓘ</button>
             </div>
             <div class="stay-actions">
@@ -352,8 +378,8 @@ tbody tr:last-child>*{border-bottom:0}
           <p>4 jours entre paysages grandioses, belles balades et villages pittoresques, au cœur de la nature.</p>
           <div class="stay-meta">
             <div class="price-line">
-              <span class="price">470 €</span>
-              <span class="price-note">Autonomie · 4 j / 3 n · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
+              <span class="price">470 € · Formule Autonomie</span>
+              <span class="price-note">4 j / 3 n · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
               <button type="button" class="info-tarif" aria-haspopup="dialog">ⓘ</button>
             </div>
             <div class="stay-actions">
@@ -375,8 +401,8 @@ tbody tr:last-child>*{border-bottom:0}
           <p>4 jours à Salamanque : Plaza Mayor, université historique, cathédrale, gastronomie castillane et Tordesillas.</p>
           <div class="stay-meta">
             <div class="price-line">
-              <span class="price">500 €</span>
-              <span class="price-note">Autonomie · 4 j / 3 n · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
+              <span class="price">500 € · Formule Autonomie</span>
+              <span class="price-note">4 j / 3 n · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
               <button type="button" class="info-tarif" aria-haspopup="dialog">ⓘ</button>
             </div>
             <div class="stay-actions">
@@ -398,8 +424,8 @@ tbody tr:last-child>*{border-bottom:0}
           <p>4 jours depuis Aranda de Duero : bodegas renommées, villages historiques, cuisine castillane et paysages viticoles.</p>
           <div class="stay-meta">
             <div class="price-line">
-              <span class="price">510 €</span>
-              <span class="price-note">Autonomie · 4 j / 3 n · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
+              <span class="price">510 € · Formule Autonomie</span>
+              <span class="price-note">4 j / 3 n · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
               <button type="button" class="info-tarif" aria-haspopup="dialog">ⓘ</button>
             </div>
             <div class="stay-actions">
@@ -421,8 +447,8 @@ tbody tr:last-child>*{border-bottom:0}
           <p>4 jours depuis Valderrobres ou Calaceite : villages médiévaux, oliveraies, gorges, huile d’olive et truffes.</p>
           <div class="stay-meta">
             <div class="price-line">
-              <span class="price">570 €</span>
-              <span class="price-note">Autonomie · 4 j / 3 n · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
+              <span class="price">570 € · Formule Autonomie</span>
+              <span class="price-note">4 j / 3 n · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
               <button type="button" class="info-tarif" aria-haspopup="dialog">ⓘ</button>
             </div>
             <div class="stay-actions">
@@ -444,8 +470,8 @@ tbody tr:last-child>*{border-bottom:0}
           <p>4 jours entre modernité et traditions basques : Guggenheim, casco viejo, pintxos, Guernica et côte basque.</p>
           <div class="stay-meta">
             <div class="price-line">
-              <span class="price">520 €</span>
-              <span class="price-note">Autonomie · septembre 2027 · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
+              <span class="price">520 € · Formule Autonomie</span>
+              <span class="price-note">septembre 2027 · Tarif indicatif par personne, établi sur une base de 5 participants et confirmé dans votre devis personnalisé.</span>
               <button type="button" class="info-tarif" aria-haspopup="dialog">ⓘ</button>
             </div>
             <div class="stay-actions">
@@ -600,7 +626,7 @@ dialog.addEventListener('click',event=>{
     if (window.matchMedia('(max-width:1100px)').matches) { grid.style.gridAutoRows = 'auto'; return; }
     grid.style.gridAutoRows = 'auto';
 
-    const top = grid.getBoundingClientRect().top;
+    const top = grid.getBoundingClientRect().top + window.scrollY; /* position dans la page, indépendante du défilement */
     const bottomMargin = 20;
     const available = window.innerHeight - top - bottomMargin;
     const minHeight = 360;
@@ -610,6 +636,7 @@ dialog.addEventListener('click',event=>{
 
   window.addEventListener('resize', updateRowHeight);
   window.addEventListener('load', updateRowHeight);
+  window.addEventListener('pageshow', updateRowHeight); /* retour arrière du navigateur */
   updateRowHeight();
 })();
 </script>
