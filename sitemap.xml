@@ -1,53 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
+  
   <!-- Page d'accueil -->
   <url>
     <loc>https://vpdvoyages.com/</loc>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Pages principales -->
+  <!-- Pages Destinations -->
   <url>
-    <loc>https://vpdvoyages.com/voyage-solo.html</loc>
+    <loc>https://vpdvoyages.com/espagne</loc>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vpdvoyages.com/cuba</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vpdvoyages.com/argentine</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vpdvoyages.com/colombie</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vpdvoyages.com/barcelone</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
+  <!-- Pages Thématiques & Nouvelles -->
+  <url>
+    <loc>https://vpdvoyages.com/voyage-solo</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vpdvoyages.com/prochainement</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Ta nouvelle page Festival (Très important !) -->
+  <url>
+    <loc>https://vpdvoyages.com/programme.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Pages légales -->
+  <url>
+    <loc>https://vpdvoyages.com/mentions-legales</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
   <url>
     <loc>https://vpdvoyages.com/cgv.html</loc>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>yearly</changefreq>
-  </url>
-
-  <url>
-    <loc>https://vpdvoyages.com/mentions-legales.html</loc>
-    <changefreq>yearly</changefreq>
-  </url>
-
-  <!-- Pages pays -->
-  <url>
-    <loc>https://vpdvoyages.com/argentine.html</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-
-  <url>
-    <loc>https://vpdvoyages.com/cuba.html</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-
-  <url>
-    <loc>https://vpdvoyages.com/uruguay.html</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-
-  <url>
-    <loc>https://vpdvoyages.com/espagne.html</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-
-  <url>
-    <loc>https://vpdvoyages.com/colombie.html</loc>
-    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
   </url>
 
 </urlset>
