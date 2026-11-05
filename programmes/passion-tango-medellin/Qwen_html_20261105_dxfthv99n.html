@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- OPTIMISATION SEO -->
+  <title>Festival Tango Medellín 2027 | Voyage Colombie sur mesure | VPD Voyages</title>
+  <meta name="description" content="Vivez le Festitango Medellín 2027 en petit groupe. 16 jours : Bogotá, Guatapé, Comuna 13 et milongas. Itinéraire sur mesure. Devis gratuit avec VPD Voyages.">
+  
+  <!-- POLICES D'ÉCRITURE -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* --- VARIABLES & RESET --- */
+    :root {
+      --primary: #8B1E1E; /* Rouge Tango */
+      --primary-dark: #6B1515;
+      --accent: #D4A017; /* Or Colombie */
+      --text: #2D3748;
+      --text-light: #4A5568;
+      --bg: #FAFAFA;
+      --white: #FFFFFF;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --radius: 8px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background-color: var(--bg);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary);
+      line-height: 1.3;
+    }
+
+    a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+    a:hover { color: var(--primary); }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* --- HERO SECTION --- */
+    .hero {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+      color: var(--white);
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+    .hero h1 {
+      color: var(--white);
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+    .hero .subtitle {
+      font-size: 1.25rem;
+      font-weight: 300;
+      opacity: 0.9;
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+    .btn {
+      display: inline-block;
+      background-color: var(--accent);
+      color: var(--primary-dark);
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+      color: var(--primary-dark);
+    }
+
+    /* --- SECTIONS GÉNÉRALES --- */
+    section { padding: 60px 0; }
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background-color: var(--accent);
+      margin: 16px auto 0;
+    }
+
+    /* --- INTRODUCTION --- */
+    .intro {
+      background-color: var(--white);
+      text-align: center;
+      max-width: 800px;
+      margin: -40px auto 0;
+      padding: 40px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      z-index: 10;
+    }
+    .intro p { font-size: 1.1rem; color: var(--text-light); }
+    .intro .highlight { color: var(--primary); font-weight: 600; }
+
+    /* --- GRILLE DES RÉGIONS (Desktop friendly) --- */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .card {
+      background: var(--white);
+      padding: 32px 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border-top: 4px solid var(--accent);
+      transition: transform 0.3s ease;
+    }
+    .card:hover { transform: translateY(-5px); }
+    .card h3 { font-size: 1.4rem; margin-bottom: 16px; }
+    .card ul { list-style: none; padding-left: 0; }
+    .card ul li {
+      padding: 6px 0;
+      color: var(--text-light);
+      position: relative;
+      padding-left: 20px;
+    }
+    .card ul li::before {
+      content: '•';
+      color: var(--primary);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    /* --- PROGRAMME / TIMELINE --- */
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      padding-left: 30px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background-color: #E2E8F0;
+    }
+    .timeline-phase {
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .timeline-phase h3 {
+      background-color: var(--primary);
+      color: var(--white);
+      display: inline-block;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+    }
+    .timeline-item {
+      background: var(--white);
+      padding: 20px 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -36px;
+      top: 24px;
+      width: 15px;
+      height: 15px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      border: 3px solid var(--white);
+    }
+    .timeline-item .days {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .timeline-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
+    .timeline-item p { font-size: 0.95rem; color: var(--text-light); margin: 0; }
+
+    /* --- SÉCURITÉ --- */
+    .security {
+      background-color: #F0FFF4; /* Vert très pâle rassurant */
+      border: 1px solid #C6F6D5;
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-top: 40px;
+    }
+    .security h3 { color: #276749; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .security ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+    .security li {
+      padding-left: 28px;
+      position: relative;
+      color: #2F855A;
+      font-weight: 500;
+    }
+    .security li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      background-color: var(--text);
+      color: var(--white);
+      text-align: center;
+      padding: 40px 0;
+      margin-top: 60px;
+    }
+    footer p { opacity: 0.8; font-size: 0.9rem; }
+    footer a { color: var(--accent); }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .intro { margin: 20px; padding: 24px; }
+      .timeline { padding-left: 20px; }
+      .timeline-item::before { left: -26px; width: 12px; height: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Idée voyage en petit groupe</p>
+      <h1>Colombie · Festitango Medellín 2027</h1>
+      <p class="subtitle">Tango & Printemps éternel</p>
+      <a href="https://vpdvoyages.com/contact" class="btn">Demander un devis gratuit</a>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <!-- INTRODUCTION -->
+    <section class="intro">
+      <h2 style="margin-bottom: 20px;">Gardel, Tango et découvertes colombiennes</h2>
+      <p>
+        Vivez une expérience unique au <span class="highlight">Festival International de Tango de Medellín</span>, l'un des plus prestigieux d'Amérique latine. 
+        Medellín n'est pas une ville de tango par hasard : c'est ici que <strong>Carlos Gardel</strong>, la légende du tango, a trouvé la mort en 1935, 
+        faisant de cette ville le sanctuaire de sa mémoire et le berceau du tango colombien.
+      </p>
+    </section>
+
+    <!-- LES RÉGIONS VISITÉES (GRID) -->
+    <section>
+      <h2 class="section-title">Les régions visitées</h2>
+      <div class="grid-4">
+        <div class="card">
+          <h3>🎶 Le Festival</h3>
+          <ul>
+            <li>Milongas sous les étoiles</li>
+            <li>Cours avec maestros internationaux</li>
+            <li>Spectacles de haut niveau & Tangovia</li>
+            <li>Inauguration & Despedida</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🏛️ Bogotá</h3>
+          <ul>
+            <li>Quartier colonial de la Candelaria</li>
+            <li>Musée de l'Or (trésors précolombiens)</li>
+            <li>Mirador de Monserrate (3 152 m)</li>
+            <li>Cathédrale de Sel de Zipaquirá</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🌸 Medellín</h3>
+          <ul>
+            <li>Musée d'Antioquia & Place Botero</li>
+            <li>Metrocable & Comuna 13</li>
+            <li>Musée de la Mémoire</li>
+            <li>Parc Arví & nature</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🏞️ Guatapé</h3>
+          <ul>
+            <li>Piedra del Peñol (740 marches)</li>
+            <li>Panorama exceptionnel sur le lac</li>
+            <li>Village aux façades colorées</li>
+            <li>Zócalos peints traditionnels</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMME DÉTAILLÉ (TIMELINE) -->
+    <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
+      <h2 class="section-title">Votre itinéraire jour par jour</h2>
+      
+      <div class="timeline">
+        <!-- SEMAINE 1 -->
+        <div class="timeline-phase">
+          <h3>1re semaine : Bogotá & Début du Festival</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Jours 1 & 2</div>
+            <h4>Arrivée à Bogotá</h4>
+            <p>Formalités d'arrivée et première découverte à votre rythme du quartier historique de la Candelaria.</p>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="days">Jour 3</div>
+            <h4>Cœur culturel de Bogotá</h4>
+            <p>Visite du célèbre Musée de l'Or et montée au Mirador de Monserrate pour une vue panoramique.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 4</div>
+            <h4>Excursion à Zipaquirá</h4>
+            <p>Découverte de la spectaculaire Cathédrale de Sel, architecture souterraine et lumière mystique.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 5</div>
+            <h4>Légende de l'Eldorado</h4>
+            <p>Direction la lagune sacrée de Guatavita et repas champêtre près de la « Maison folle » (La Casa Loca).</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 6</div>
+            <h4>Quartier El Paraíso</h4>
+            <p>Visite guidée de ce quartier emblématique pour comprendre les contrastes et la richesse de la capitale.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 7</div>
+            <h4>Cap sur Medellín</h4>
+            <p>Vol intérieur Bogotá → Medellín. En soirée : Inauguration officielle du Festitango.</p>
+          </div>
+        </div>
+
+        <!-- SEMAINE 2 -->
+        <div class="timeline-phase">
+          <h3>2e semaine : Festival, Guatapé & Retour</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Jours 8, 9 & 10</div>
+            <h4>Immersion au Festitango</h4>
+            <p>Milongas, spectacles de haut niveau, cours avec des maestros et ambiance de la Tangovia.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 11</div>
+            <h4>L'art à Medellín</h4>
+            <p>Découverte du Musée d'Antioquia et de l'emblématique Place Botero.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 12</div>
+            <h4>Transformation urbaine</h4>
+            <p>Trajet en Metrocable, visite de la Comuna 13, du Musée de la Mémoire et du Parc Arví.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 13</div>
+            <h4>Excursion à Guatapé</h4>
+            <p>Ascension des 740 marches de la Piedra del Peñol et balade dans le village aux zócalos colorés.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 14</div>
+            <h4>Despedida</h4>
+            <p>Dernières milongas et cérémonie de clôture du Festival.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jours 15 & 16</div>
+            <h4>Retour</h4>
+            <p>Vol Medellín → Bogotá, puis vol international de retour vers la France.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SÉCURITÉ -->
+    <section class="security">
+      <h3>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        Voyagez l'esprit tranquille : Zones sécurisées
+      </h3>
+      <p style="margin-bottom: 20px; color: #2F855A;">
+        Si certains endroits de Colombie restent à éviter, <strong>toutes les zones visitées lors de ce voyage sont parfaitement sûres pour les touristes</strong>. Nous appliquons les règles de bon sens suivantes :
+      </p>
+      <ul>
+        <li>Ne pas marcher seul(e) tard le soir dans les rues désertes.</li>
+        <li>Faire appeler un taxi (Cabify / Uber) par votre hôtel.</li>
+        <li>Éviter les attitudes ostentatoires (bijoux, argent visible).</li>
+        <li>Utiliser les distributeurs uniquement en journée, dans des lieux fréquentés.</li>
+        <li>Redoubler de vigilance contre les pickpockets dans les transports en commun.</li>
+      </ul>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section style="text-align: center; padding-bottom: 20px;">
+      <h2 style="margin-bottom: 16px;">Prêt à danser à Medellín ?</h2>
+      <p style="margin-bottom: 32px; color: var(--text-light);">Construisons ensemble votre itinéraire sur mesure pour le Festitango 2027.</p>
+      <a href="https://vpdvoyages.com/contact" class="btn">Parlons de votre projet →</a>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p style="font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 8px;">VPD Voyages</p>
+      <p>Votre travel planner spécialisé en Espagne et Amérique latine.</p>
+      <p style="margin-top: 16px;">
+        <a href="https://vpdvoyages.com">Retour à l'accueil</a> · 
+        <a href="https://vpdvoyages.com/mentions-legales">Mentions légales</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
