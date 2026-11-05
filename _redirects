@@ -1,2 +1,9 @@
-/maintenance.html  /maintenance.html  200
-/*                 /maintenance.html  302
+# ==========================================
+# MODE MAINTENANCE
+# ==========================================
+# Pour ACTIVER : supprime le # ci-dessous
+# Pour DÉSACTIVER : ajoute un # ci-dessous
+
+# /* /maintenance.html 302
+
+/maintenance.html /maintenance.html 200
