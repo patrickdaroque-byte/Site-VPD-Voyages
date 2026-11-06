@@ -1,319 +1,446 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Río de la Plata - Le berceau du Tango</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            font-family: Arial, Helvetica, sans-serif; 
-            background-color: #f8f8f8; 
-            color: #333; 
-            line-height: 1.6; 
-            padding: 20px 0 40px 0; 
-        }
-        
-        .container { 
-            width: 100%;
-            max-width: 900px; 
-            margin: 0 auto; 
-            background: #fff; 
-            padding: 24px 20px; 
-            box-shadow: 0 0 15px rgba(0,0,0,0.06); 
-            border-radius: 8px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- OPTIMISATION SEO -->
+  <title>Río de la Plata - Le berceau du Tango | Buenos Aires & Montevideo | VPD Voyages</title>
+  <meta name="description" content="Voyage tango sur mesure de Buenos Aires à Montevideo et Colonia. Ateliers avec maestros, milongas emblématiques et traversée du Río de la Plata. Devis gratuit avec VPD Voyages.">
+  
+  <!-- POLICES D'ÉCRITURE -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-        h1 { font-size: 30px; color: #1a237e; margin-bottom: 4px; font-weight: bold; text-align: center; }
-        h2 { font-size: 22px; color: #1a237e; margin-top: 28px; margin-bottom: 10px; border-bottom: 2px solid #fbc02d; padding-bottom: 4px; }
-        h3 { font-size: 18px; color: #c62828; margin-top: 18px; margin-bottom: 6px; }
-        .subtitle { text-align: center; font-size: 20px; font-style: italic; color: #c62828; margin-bottom: 12px; }
-        p { margin-bottom: 12px; font-size: 15px; }
-        
-        /* Grilles d'images responsives */
-        .img-grid-two {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin: 14px 0;
-        }
+  <!-- CSS LEAFLET POUR LA CARTE -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
-        .img-container { 
-            width: 100%; 
-            margin: 8px 0; 
-            border-radius: 6px; 
-            overflow: hidden; 
-            background: #eee; 
-        }
-        
-        .img-grid-two .img-container { margin: 0; }
-        .img-container img { width: 100%; height: 220px; object-fit: cover; display: block; }
-        
-        ul { list-style: none; padding-left: 0; margin: 8px 0 16px 0; }
-        ul li { padding-left: 24px; position: relative; margin-bottom: 8px; font-size: 15px; }
-        ul li::before { content: "•"; position: absolute; left: 6px; color: #fbc02d; font-weight: bold; font-size: 20px; }
-        
-        /* Grille des jours adaptée */
-        .grid-days { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 12px; 
-            margin: 12px 0; 
-        }
-        
-        .grid-days > div { 
-            background: #f9f9f9; 
-            padding: 10px 12px; 
-            border-radius: 6px; 
-            border: 1px solid #eee; 
-            font-size: 14px; 
-        }
-        
-        .grid-days > div strong { display: block; color: #1a237e; margin-bottom: 2px; }
-        
-        .stat-row { display: flex; align-items: baseline; padding: 10px 0; border-bottom: 1px solid #eee; }
-        .stat-row .stat-num { font-family: Georgia, serif; font-size: 22px; color: #c62828; min-width: 90px; font-weight: bold; }
-        .stat-row .stat-label { font-size: 14px; color: #555; }
-        
-        .footer-bar { margin-top: 35px; padding-top: 16px; border-top: 2px solid #fbc02d; text-align: center; font-size: 12px; color: #777; }
-        .flags-container { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 12px; }
-        .flags-container img { width: 60px; height: auto; border-radius: 4px; border: 1px solid #ccc; }
+  <style>
+    :root {
+      --primary: #8B1E1E;
+      --primary-dark: #6B1515;
+      --accent: #D4A017;
+      --text: #2D3748;
+      --text-light: #4A5568;
+      --bg: #FAFAFA;
+      --white: #FFFFFF;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --radius: 8px;
+    }
 
-        /* Adapte proprement pour mobile */
-        @media (max-width: 680px) {
-            body { padding: 0; }
-            .container { padding: 16px; border-radius: 0; box-shadow: none; }
-            .img-grid-two { grid-template-columns: 1fr; }
-            .img-container img { height: auto; }
-            .grid-days { grid-template-columns: 1fr; }
-        }
-    </style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background-color: var(--bg); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1.3; }
+    a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+    a:hover { color: var(--primary); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    .hero {
+      position: relative;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/cover.jpg') center/cover no-repeat;
+      color: var(--white);
+      padding: 120px 0 80px;
+      text-align: center;
+    }
+    .hero h1 { color: var(--white); font-size: 3.2rem; margin-bottom: 16px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero .subtitle { font-size: 1.4rem; font-weight: 300; opacity: 0.95; margin-bottom: 32px; font-style: italic; }
+    .btn { display: inline-block; background-color: var(--accent); color: var(--primary-dark); padding: 16px 36px; border-radius: 50px; font-weight: 600; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); color: var(--primary-dark); }
+
+    section { padding: 60px 0; }
+    .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; position: relative; }
+    .section-title::after { content: ''; display: block; width: 60px; height: 3px; background-color: var(--accent); margin: 16px auto 0; }
+
+    .intro { background-color: var(--white); text-align: center; max-width: 800px; margin: -40px auto 0; padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); position: relative; z-index: 10; }
+    .intro p { font-size: 1.1rem; color: var(--text-light); }
+    .intro .highlight { color: var(--primary); font-weight: 600; }
+
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
+    .card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border-top: 4px solid var(--accent); transition: transform 0.3s ease; }
+    .card:hover { transform: translateY(-5px); }
+    .card img { width: 100%; height: 220px; object-fit: cover; }
+    .card-content { padding: 24px; }
+    .card h3 { font-size: 1.4rem; margin-bottom: 16px; }
+    .card ul { list-style: none; padding-left: 0; }
+    .card ul li { padding: 6px 0; color: var(--text-light); position: relative; padding-left: 20px; }
+    .card ul li::before { content: '•'; color: var(--primary); font-weight: bold; position: absolute; left: 0; }
+
+    .pause-visuelle { position: relative; height: 400px; background-size: cover; background-position: center; background-attachment: fixed; border-radius: var(--radius); overflow: hidden; margin: 40px 0; }
+    .pause-naturelle::before { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)); }
+    .pause-visuelle .caption { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--white); text-align: center; padding: 40px; }
+    .pause-visuelle .caption h2 { color: var(--white); font-size: 2.5rem; margin-bottom: 16px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
+    .pause-visuelle .caption p { font-size: 1.2rem; max-width: 600px; font-style: italic; text-shadow: 1px 1px 4px rgba(0,0,0,0.5); }
+    @media (max-width: 768px) { .pause-visuelle { background-attachment: scroll; height: 300px; } .pause-visuelle .caption h2 { font-size: 1.8rem; } }
+
+    .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 30px; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background-color: #E2E8F0; }
+    .timeline-phase { margin-bottom: 40px; position: relative; }
+    .timeline-phase h3 { background-color: var(--primary); color: var(--white); display: inline-block; padding: 8px 20px; border-radius: 50px; font-size: 1.1rem; margin-bottom: 20px; font-family: 'Inter', sans-serif; font-weight: 600; }
+    .timeline-item { background: var(--white); padding: 20px 24px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 16px; position: relative; }
+    .timeline-item::before { content: ''; position: absolute; left: -36px; top: 24px; width: 15px; height: 15px; background-color: var(--accent); border-radius: 50%; border: 3px solid var(--white); }
+    .timeline-item .days { font-size: 0.85rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .timeline-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
+    .timeline-item p { font-size: 0.95rem; color: var(--text-light); margin: 0; }
+
+    .carte-section { background-color: var(--white); border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow); margin-top: 20px; }
+    #map { width: 100%; height: 500px; border-radius: 8px; z-index: 1; }
+    .custom-icon { background: transparent !important; border: none !important; }
+
+    .pratiques { background-color: #F8FAFC; border-radius: var(--radius); padding: 40px; margin-top: 40px; }
+    .pratiques h3 { margin-bottom: 20px; }
+    .pratiques-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .pratique-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--primary); }
+    .pratique-item p, .pratique-item ul { font-size: 0.95rem; color: var(--text-light); margin: 0; }
+    .pratique-item ul { padding-left: 20px; }
+
+    footer { background-color: var(--primary-dark); color: var(--white); text-align: center; padding: 40px 0; margin-top: 60px; }
+    footer p { opacity: 0.8; font-size: 0.9rem; }
+    footer a { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .intro { margin: 20px; padding: 24px; }
+      .timeline { padding-left: 20px; }
+      .timeline-item::before { left: -26px; width: 12px; height: 12px; }
+      #map { height: 350px; }
+    }
+  </style>
 </head>
 <body>
+
+  <header class="hero">
     <div class="container">
-
-        <!-- ==================== EN-TÊTE ==================== -->
-        <div style="text-align: center; margin-bottom: 20px;">
-            <h1>Río de la Plata</h1>
-            <div class="subtitle">Le berceau du Tango</div>
-            <p style="font-weight: bold; color: #1a237e;">De Buenos Aires à Montevideo</p>
-        </div>
-
-        <ul>
-            <li>Buenos Aires et le Rio de la Plata</li>
-            <li>Montevideo &amp; tango intime</li>
-            <li>Ateliers avancés avec maestros</li>
-            <li>Milongas emblématiques de BA</li>
-            <li>Spectacles d'exception</li>
-            <li>Traversée du Río de la Plata</li>
-            <li>Colonia del Sacramento</li>
-        </ul>
-
-        <div class="img-grid-two">
-            <div class="img-container">
-                <img src="images/buenos-aires-la-boca.jpg" alt="La Boca - Buenos Aires">
-            </div>
-            <div class="img-container">
-                <img src="images/obelisque.jpg" alt="Obélisque de Buenos Aires">
-            </div>
-        </div>
-
-        <!-- ==================== PRÉSENTATION ==================== -->
-        <h2>Immersion tango sur les deux rives</h2>
-        <p>Un voyage d'exception au cœur du tango, conçu pour danseurs passionnés. À Buenos Aires, perfectionnez votre style dans des ateliers avancés avec des maestros renommés, découvrez les milongas les plus emblématiques et laissez-vous inspirer par des spectacles d'exception. Puis traversez le Río de la Plata vers Montevideo, où l'atmosphère plus intime révèle un tango raffiné et authentique.</p>
-
-        <div style="margin: 15px 0;">
-            <p><strong style="color: #fbc02d;">•</strong> <strong>Buenos Aires</strong><br>Ateliers, milongas, San Telmo, Recoleta, La Boca, shows</p>
-            <p><strong style="color: #fbc02d;">•</strong> <strong>Pratique intensive</strong><br>Cours privés et pre-milonga avec maestros locaux</p>
-            <p><strong style="color: #fbc02d;">•</strong> <strong>Montevideo</strong><br>Tango intime, salons élégants, danseurs locaux</p>
-        </div>
-
-        <!-- ==================== ARGENTINE ==================== -->
-        <h2>Argentina, Argentina !</h2>
-        <div class="stat-row">
-            <div class="stat-num">3 500 km</div>
-            <div class="stat-label">du nord au sud</div>
-        </div>
-        <div class="stat-row">
-            <div class="stat-num">46 M</div>
-            <div class="stat-label">d'habitants</div>
-        </div>
-        <div class="stat-row">
-            <div class="stat-num">16 M</div>
-            <div class="stat-label">agglo. Buenos Aires</div>
-        </div>
-        <p style="margin-top: 12px;"><strong>Une géographie d'aventure</strong><br>Les Andes, la Pampa, la Patagonie, la Terre de Feu... Parmi les 32 parcs nationaux, celui d'Aconcagua culmine à 6 900 m. Buenos Aires, capitale du tango, concentre 16 millions d'habitants dans son agglomération – le point de départ idéal pour explorer le berceau du tango.</p>
-
-        <!-- ==================== QUARTIERS ==================== -->
-        <h2>Les quartiers emblématiques</h2>
-        <ul>
-            <li><strong>San Telmo</strong> : Cœur historique, marché, milongas, logement de référence</li>
-            <li><strong>Recoleta et Abasto</strong> : Le Petit Paris, Cimetière, El Ateneo, Musée Carlos Gardel</li>
-            <li><strong>La Boca</strong> : Caminito, Bombonera, couleurs et tango populaire</li>
-            <li><strong>Puerto Madero / Microcentro</strong> : Río de la Plata, modernité, Costanera Sur</li>
-            <li><strong>Palermo</strong> : Plaza Serrano, nightlife, boutiques et parcs</li>
-        </ul>
-        <p>Plaza de Mayo, Edificio Barolo, Café Tortoni</p>
-
-        <!-- ==================== MILONGAS ==================== -->
-        <h2>Les temples du tango à Buenos Aires</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; font-weight: bold; font-size: 14px; margin: 10px 0;">
-            <div style="background:#f5f5f5; padding: 12px; text-align:center; border-radius:4px;">La Catedral</div>
-            <div style="background:#f5f5f5; padding: 12px; text-align:center; border-radius:4px;">El Beso</div>
-            <div style="background:#f5f5f5; padding: 12px; text-align:center; border-radius:4px;">Lo de Celia</div>
-            <div style="background:#f5f5f5; padding: 12px; text-align:center; border-radius:4px;">Gricel</div>
-            <div style="background:#f5f5f5; padding: 12px; text-align:center; border-radius:4px;">Muy Lunes Tango</div>
-            <div style="background:#f5f5f5; padding: 12px; text-align:center; border-radius:4px;">Parakultural</div>
-            <div style="background:#f5f5f5; padding: 12px; text-align:center; border-radius:4px;">Gallo Rojo</div>
-            <div style="background:#f5f5f5; padding: 12px; text-align:center; border-radius:4px;">Cochabamba</div>
-        </div>
-
-        <p><strong>Visites programmées</strong> : Plaza de Mayo · Puerto Madero · La Boca · La Recoleta · San Telmo · Florida &amp; Lavalle</p>
-
-        <!-- ==================== GALERIE 1 ==================== -->
-        <div class="img-grid-two">
-            <div class="img-container">
-                <img src="images/campo-pampa.jpg" alt="Parc promenade">
-            </div>
-            <div class="img-container">
-                <img src="images/la-boca.jpg" alt="Spectacle Taconeando">
-            </div>
-            <div class="img-container">
-                <img src="images/rio-de-la-plata.jpg" alt="Puerto Madero pont">
-            </div>
-            <div class="img-container">
-                <img src="images/tigre01.jpg" alt="Bateau Delta Tigre">
-            </div>
-        </div>
-
-        <!-- ==================== COURS & SHOWS ==================== -->
-        <h2>Cours de tango &amp; soirées show</h2>
-        <div class="img-grid-two">
-            <div class="img-container">
-                <img src="images/omar.jpg" alt="Danseurs Omar et Graciela">
-            </div>
-            <div class="img-container">
-                <img src="images/rafa.jpg" alt="Danseurs Montevideo">
-            </div>
-            <div class="img-container">
-                <img src="images/tangoshow.jpg" alt="Danseurs spectacle">
-            </div>
-            <div class="img-container">
-                <img src="images/mocona.jpg" alt="Musicien bandonéon">
-            </div>
-        </div>
-
-        <h3>Cours privés &amp; pré-milongas</h3>
-        <p>Ateliers avancés avec maestros renommés. Perfectionnement du style, technique et improvisation - spécialement conçus pour danseurs passionnés.</p>
-        <h3>Soirée Tango-show</h3>
-        <p>Spectacle d'exception dans un des plus beaux lieux de Buenos Aires. Une immersion dans l'âme du tango porteño.</p>
-
-        <!-- ==================== TIGRE ==================== -->
-        <h2>Delta du Tigre</h2>
-        <h3>Labyrinthe de canaux</h3>
-        <p>À une heure de Buenos Aires, le Delta du Tigre offre un paysage unique de canaux, d'îles et de maisons sur pilotis.</p>
-        <div class="img-container" style="max-width: 600px; margin: 12px auto;">
-            <img src="images/tigre01.jpg" alt="Maison sur pilotis Delta" style="height: auto;">
-        </div>
-        <p>Navigation, nature et pause loin de la ville - une parenthèse idéale entre deux milongas.</p>
-
-        <!-- ==================== URUGUAY ==================== -->
-        <h2>Buenos Aires → Montevideo → Colonia</h2>
-        <div style="margin: 15px 0;">
-            <p><strong style="color: #1a237e;">•</strong> <strong>Traversée BsAs → Montevideo</strong><br>Ferry pour rejoindre la rive uruguayenne</p>
-            <p><strong style="color: #fbc02d;">•</strong> <strong>Montevideo</strong><br>Tango intime, salons élégants, danseurs locaux, centre historique</p>
-            <p><strong style="color: #1a237e;">•</strong> <strong>Bodegas</strong><br>Vignobles de Canelones, cépage tannat, dégustations</p>
-            <p><strong style="color: #fbc02d;">•</strong> <strong>Colonia del Sacramento</strong><br>Ville coloniale UNESCO, charme intemporel</p>
-            <p><strong style="color: #1a237e;">•</strong> <strong>Retour Colonia → BsAs</strong><br>Traversée retour vers Buenos Aires</p>
-        </div>
-
-        <h2>Montevideo &amp; Colonia del Sacramento</h2>
-        <div class="img-container" style="max-width: 600px; margin: 12px auto;">
-            <img src="images/palacio-salvo.jpg" alt="Palacio Salvo Montevideo" style="height: auto;">
-        </div>
-        <h3>Montevideo</h3>
-        <p>Capitale uruguayenne au tango plus intime et raffiné. Salons élégants, danseurs locaux et atmosphère authentique – le pendant parfait de Buenos Aires.</p>
-        <h3>Colonia del Sacramento</h3>
-        <p>Ville coloniale classée UNESCO. Ruelles pavées, phare, remparts et charme intemporel – une étape incontournable sur le Río de la Plata.</p>
-
-        <!-- ==================== BODEGAS ==================== -->
-        <h2>Les bodegas uruguayennes</h2>
-        <div class="img-grid-two">
-            <div class="img-container">
-                <img src="images/colonia.jpg" alt="Bodega Uruguay">
-            </div>
-            <div class="img-container">
-                <img src="images/moizo.jpg" alt="Bouteille Tannat Don Manuel">
-            </div>
-        </div>
-        <h3>Tannat &amp; terroir</h3>
-        <p>Cépage emblématique de l'Uruguay (originaire de Gascogne). Visites de bodegas à Canelones et Colonia Suiza – dégustations et paysages viticoles.</p>
-
-        <!-- ==================== INFOS & CONSEILS ==================== -->
-        <h2>Avant le départ &amp; sur place</h2>
-        <ul>
-            <li><strong>Passeport</strong> : Valide 6 mois après le retour. Pas de vaccins obligatoires.</li>
-            <li><strong>Langue &amp; décalage</strong> : Espagnol. Décalage - 4 ou - 5 h (pas d'heure d'été en Uruguay).</li>
-            <li><strong>Monnaie</strong> : Peso argentin (ARS) &amp; peso uruguayen (UYU). Ne pas changer à l'aéroport.</li>
-            <li><strong>Inclus</strong> : Tous les petits-déjeuners et déjeuners, 3 dîners inclus.</li>
-        </ul>
-
-        <h2>Conseils pratiques</h2>
-        <ul>
-            <li><strong>Chaussures</strong> : Bonnes chaussures pour la ville + chaussures de tango pour les milongas</li>
-            <li><strong>Électricité</strong> : Prises 110 V / 220 V - normes UE également présentes</li>
-            <li><strong>Tenue du soir</strong> : Tenue vestimentaire correcte pour les milongas et shows</li>
-            <li><strong>Wi-Fi &amp; docs</strong> : Wi-Fi dans tous les logements. Photocopie / scan du passeport</li>
-            <li><strong>Eau &amp; moustiques</strong> : Eau potable. Répulsif anti-moustique pour zones humides (Tigre)</li>
-            <li><strong>Sac léger</strong> : Sac à dos pour sorties (appareil photo, eau...)</li>
-        </ul>
-
-        <!-- ==================== ITINÉRAIRE ==================== -->
-        <h2 style="margin-top: 30px;">1ère semaine - Buenos Aires</h2>
-        <div class="grid-days">
-            <div><strong>Jour 1</strong>Change argent<br>Florida &amp; Lavalle<br><em>Chaussures Flabella<br>17:30-19:30 Practica<br>Academia Nac. del Tango</em><br>Bar Paulin</div>
-            <div><strong>Jour 2</strong>Microcentro<br>9 de Julio<br>Autour du Congrès<br><em>Plaza de Mayo<br>Av. de Mayo<br>Edificio Barolo<br>Café Tortoni</em><br>Pizzeria Güerrin</div>
-            <div><strong>Jour 3</strong>Parque San Martín<br>Cimetière Recoleta<br>El Ateneo<br><em>Quartier de l'Abasto<br>Musée Carlos Gardel<br>ou Shopping</em><br>Rest. del Pilar</div>
-            <div><strong>Jour 4</strong>La Boca<br>Av. Almirante Brown<br>Casa Amarilla<br><em>Caminito<br>Stade Bombonera</em><br>Bodegón Buena Medida</div>
-            <div><strong>Jour 5</strong>San Telmo<br>Parc Lezama<br>Rue Defensa<br>Marché aux puces<br><em>El Zanjón<br>Casa Minima</em><br>El Desnivel</div>
-            <div><strong>Jour 6</strong>Puerto Madero<br>Réserve Costanera Sur<br><em>Frégate Sarmiento<br>Autour des Diques</em><br>Restaurant ambulant</div>
-            <div><strong>Jour 7</strong>Delta du Tigre<br>Train Mitre Tres Bocas<br>Balade en bateau-bus<br><em>Lo de Celia 18:00 - 1:00</em><br>El Hornero</div>
-        </div>
-
-        <h2>2ème semaine - Montevideo, Colonia &amp; retour</h2>
-        <div class="grid-days">
-            <div><strong>Jour 8</strong>Palermo<br>Découverte Soho<br>Place Cortázar<br><em>Pré-milonga 19:30<br>Salon Marabu</em><br>La Nacional</div>
-            <div><strong>Jour 9</strong>7:30-10:00 Traversée<br>BsAs - Montevideo<br>Change argent<br><em>Vieille Ville<br>Cabildo<br>Palacio Salvo</em><br>Lo de Bebe</div>
-            <div><strong>Jour 10</strong>Vieille Ville<br>Ligne 706<br>Place Indépendance<br>Av. 18 de Julio<br><em>Musée du Tango</em><br>Rest. quartier</div>
-            <div><strong>Jour 11</strong>Palacio Taranco<br>Cathédrale<br><em>Cours tango 18:00</em><br>Marché du Port</div>
-            <div><strong>Jour 12</strong>Palermo<br>Parque Rodó<br>Balade Rambla<br><em>13:30 Cours tango<br>Temps libre</em><br>Marché Ferrando</div>
-            <div><strong>Jour 13</strong>Forteresse du Cerro<br><em>18:00 Loc. Minivan</em><br>Rest. quartier</div>
-            <div><strong>Jour 14</strong>Vignoble Los Pinos<br>(Nueva Helvecia)<br><em>10:16-11:31 Traversée<br>Colonia - BsAs<br>Despedida groupe</em><br>Retour France</div>
-        </div>
-
-        <p style="font-size: 14px; font-style: italic; text-align: center; margin-top: 20px;">
-            <strong>Soirées milongas :</strong> Pré-milonga 19:30 Gricel · 20:30 Muy Lunes Tango · 22:00 La Catedral<br>
-            El Beso, El Chamuyo, Joven Tango, La Viruta...
-        </p>
-
-        <!-- ==================== PIED DE PAGE ==================== -->
-        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #fbc02d;">
-            <h2 style="border: none; font-size: 22px; color: #1a237e; margin-top:0;">Bon séjour sur les rives du</h2>
-            <div class="subtitle" style="font-size: 26px; margin-bottom: 12px;">Río de la Plata !</div>
-            <p style="font-size: 18px; font-weight: bold; color: #c62828;">Buenos Aires · Montevideo · Colonia del Sacramento</p>
-            <div style="background: #1a237e; color: white; padding: 6px 14px; display: inline-block; border-radius: 4px; font-weight: bold; margin: 10px 0;">vpdvoyages.com</div>
-            <p style="font-size: 12px; letter-spacing: 1px; margin-top: 8px;">RIO DE LA PLATA · LE BERCEAU DU TANGO</p>
-
-            <div class="flags-container">
-                <img src="images/drapeau-argentine.jpg" alt="Drapeau Argentine">
-                <img src="images/uruguay-flag.png" alt="Drapeau Uruguay">
-            </div>
-        </div>
-
-        <div class="footer-bar">
-            VPDVOYAGES · Patrick Daroque
-        </div>
-
+      <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Voyage sur mesure · 14 jours / 13 nuits</p>
+      <h1>Río de la Plata · Le berceau du Tango</h1>
+      <p class="subtitle">De Buenos Aires à Montevideo et Colonia</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
     </div>
+  </header>
+
+  <main class="container">
+    
+    <section class="intro">
+      <h2 style="margin-bottom: 20px;">Un voyage d'exception au cœur du tango</h2>
+      <p>
+        Conçu pour les danseurs passionnés, ce séjour vous emmène de <span class="highlight">Buenos Aires</span> à <span class="highlight">Montevideo</span>. 
+        Perfectionnez votre style dans des ateliers avancés avec des maestros renommés, découvrez les milongas les plus emblématiques et laissez-vous inspirer par des spectacles d'exception. 
+        Puis, traversez le Río de la Plata vers l'Uruguay, où l'atmosphère plus intime révèle un tango raffiné et authentique.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="section-title">Les temps forts de votre séjour</h2>
+      <div class="grid-4">
+        
+        <div class="card">
+          <img src="images/buenos-aires-la-boca.jpg" alt="Quartier de La Boca à Buenos Aires">
+          <div class="card-content">
+            <h3>🇦🇷 Buenos Aires</h3>
+            <ul>
+              <li>Ateliers et milongas emblématiques</li>
+              <li>San Telmo, Recoleta, La Boca</li>
+              <li>Spectacles d'exception</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/tangoshow.jpg" alt="Spectacle de tango à Buenos Aires">
+          <div class="card-content">
+            <h3>💃 Pratique intensive</h3>
+            <ul>
+              <li>Cours privés et pre-milongas</li>
+              <li>Maestros locaux renommés</li>
+              <li>Perfectionnement et improvisation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/palacio-salvo.jpg" alt="Palacio Salvo à Montevideo">
+          <div class="card-content">
+            <h3>🇺🇾 Montevideo</h3>
+            <ul>
+              <li>Tango intime et salons élégants</li>
+              <li>Rencontres avec danseurs locaux</li>
+              <li>Centre historique et Rambla</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/colonia.jpg" alt="Ruelles pavées de Colonia del Sacramento">
+          <div class="card-content">
+            <h3>🏛️ Colonia del Sacramento</h3>
+            <ul>
+              <li>Ville coloniale classée UNESCO</li>
+              <li>Charme intemporel et remparts</li>
+              <li>Traversée en ferry depuis BsAs</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CARTE MILONGAS -->
+        <div class="card">
+          <img src="images/milonga-gricel-Buenos-Aires.jpg" alt="Milonga Gricel à Buenos Aires">
+          <div class="card-content">
+            <h3>🎶 Les Milongas</h3>
+            <ul>
+              <li>Gricel, La Catedral, El Beso</li>
+              <li>Ambiance authentique porteña</li>
+              <li>Pré-milongas et soirées légendaires</li>
+              <li>Rencontres avec danseurs locaux</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CARTE VIGNOBLES -->
+        <div class="card">
+          <img src="images/los-pinos.jpg" alt="Vignoble Los Pinos en Uruguay">
+          <div class="card-content">
+            <h3>🍷 Vignobles d'Uruguay</h3>
+            <ul>
+              <li>Cépage Tannat, originaire de Gascogne</li>
+              <li>Bodegas de Canelones et Colonia Suiza</li>
+              <li>Dégustations et paysages viticoles</li>
+              <li>Terroir uruguayen d'exception</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/tigre01.jpg');">
+      <div class="caption">
+        <h2>Le Delta du Tigre</h2>
+        <p>À une heure de Buenos Aires, un paysage unique de canaux, d'îles et de maisons sur pilotis. Une parenthèse idéale entre deux milongas.</p>
+      </div>
+    </div>
+
+    <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
+      <h2 class="section-title">Votre itinéraire jour par jour</h2>
+      
+      <div class="timeline">
+        
+        <div class="timeline-phase">
+          <h3>1ère semaine : Buenos Aires</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Jour 1</div>
+            <h4>Arrivée et immersion</h4>
+            <p>Change d'argent (Florida & Lavalle). Achat de chaussures de tango (Flabella). 17h30-19h30 : Práctica à l'Academia Nacional del Tango. Soirée au Bar Paulín.</p>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="days">Jour 2</div>
+            <h4>Microcentro et Histoire</h4>
+            <p>9 de Julio, autour du Congrès, Plaza de Mayo, Av. de Mayo, Edificio Barolo. Pause au Café Tortoni et déjeuner à la Pizzeria Güerrín.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 3</div>
+            <h4>Recoleta et Abasto</h4>
+            <p>Parque San Martín, Cimetière de la Recoleta, librairie El Ateneo. Quartier de l'Abasto : Musée Carlos Gardel ou shopping. Dîner au Rest. del Pilar.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 4</div>
+            <h4>La Boca et le Tango populaire</h4>
+            <p>Av. Almirante Brown, Casa Amarilla, Caminito, Stade Bombonera. Déjeuner au Bodegón Buena Medida.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 5</div>
+            <h4>San Telmo, cœur historique</h4>
+            <p>Parc Lezama, rue Defensa, marché aux puces. Visites : El Zanjón, Casa Mínima. Dîner au célèbre restaurant El Desnivel.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 6</div>
+            <h4>Puerto Madero et modernité</h4>
+            <p>Réserve naturelle Costanera Sur, Frégate Sarmiento, promenade autour des Diques. Dîner dans un restaurant ambulant.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 7</div>
+            <h4>Excursion au Delta du Tigre</h4>
+            <p>Train Mitre jusqu'à Tres Bocas, balade en bateau-bus. Soirée : Milonga "Lo de Celia" (18h00 - 1h00) puis dîner à El Hornero.</p>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <h3>2ème semaine : Montevideo, Colonia & Retour</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Jour 8</div>
+            <h4>Dernier jour à Buenos Aires</h4>
+            <p>Découverte de Palermo et Soho, Place Cortázar. Pré-milonga à 19h30, puis soirée au Salon Marabu ou La Nacional.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 9</div>
+            <h4>Traversée vers l'Uruguay</h4>
+            <p>7h30-10h00 : Ferry Buenos Aires → Montevideo. Change d'argent. Visite de la Vieille Ville, Cabildo, Palacio Salvo. Soirée : Lo de Bebe.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 10</div>
+            <h4>Montevideo historique</h4>
+            <p>Vieille Ville, ligne 706, Place Indépendance, Av. 18 de Julio. Visite du Musée du Tango et dîner dans un restaurant de quartier.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 11</div>
+            <h4>Culture et Marché</h4>
+            <p>Palacio Taranco, Cathédrale. Cours de tango à 18h00. Soirée et dégustation au Marché du Port.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 12</div>
+            <h4>Palermo et Rambla</h4>
+            <p>Parque Rodó, balade sur la Rambla. Déjeuner à 13h30, cours de tango l'après-midi, temps libre et visite du Marché Ferrando.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 13</div>
+            <h4>Forteresse du Cerro</h4>
+            <p>Visite de la Forteresse du Cerro avec vue panoramique. 18h00 : Location de minivan pour un dîner de quartier.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 14</div>
+            <h4>Vignobles et Retour</h4>
+            <p>Matinée : Vignoble Los Pinos (Nueva Helvecia). 10h16-11h31 : Traversée en ferry Colonia → Buenos Aires. Despedida du groupe et retour vers la France.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/rio-de-la-plata.jpg');">
+      <div class="caption">
+        <h2>Le Río de la Plata</h2>
+        <p>Entre Buenos Aires et Montevideo, ce fleuve immense relie deux cultures tango. Une traversée en ferry, un moment suspendu entre deux rives.</p>
+      </div>
+    </div>
+
+    <section class="pratiques">
+      <h2 class="section-title">Avant le départ & sur place</h2>
+      <div class="pratiques-grid">
+        <div class="pratique-item">
+          <h4>📄 Administratif</h4>
+          <p>Passeport valide 6 mois après le retour. Pas de vaccins obligatoires.</p>
+        </div>
+        <div class="pratique-item">
+          <h4>🗣️ Langue & Décalage</h4>
+          <p>Espagnol. Décalage horaire : -4h ou -5h (pas d'heure d'été en Uruguay).</p>
+        </div>
+        <div class="pratique-item">
+          <h4>💰 Monnaie</h4>
+          <p>Peso argentin (ARS) & peso uruguayen (UYU). Conseil : ne pas changer à l'aéroport.</p>
+        </div>
+        <div class="pratique-item">
+          <h4>🎒 Conseils pratiques</h4>
+          <ul>
+            <li><strong>Chaussures :</strong> Bonnes chaussures de ville + chaussures de tango</li>
+            <li><strong>Tenue :</strong> Correcte et élégante pour les milongas et shows</li>
+            <li><strong>Électricité :</strong> 110V/220V, normes UE également présentes</li>
+            <li><strong>Sac léger :</strong> Sac à dos pour les sorties (appareil photo, eau...)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="carte-section">
+      <h2 class="section-title">Votre itinéraire sur la carte</h2>
+      <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+        De l'effervescence de Buenos Aires au charme colonial de l'Uruguay : cliquez sur chaque point doré pour découvrir les étapes de votre voyage.
+      </p>
+      <div id="map"></div>
+      <div style="text-align: center; margin-top: 20px;">
+        <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
+      </div>
+    </section>
+
+    <section style="text-align: center; padding-bottom: 20px;">
+      <h2 style="margin-bottom: 16px;">Prêt à danser sur les rives du Río de la Plata ?</h2>
+      <p style="margin-bottom: 32px; color: var(--text-light);">Construisons ensemble votre itinéraire sur mesure entre Buenos Aires, Montevideo et Colonia.</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p style="font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 8px;">VPD Voyages</p>
+      <p>Votre travel planner spécialisé en Espagne et Amérique latine.</p>
+      <p style="margin-top: 16px;">
+        <a href="https://vpdvoyages.com">Retour à l'accueil</a> · 
+        <a href="https://vpdvoyages.com/mentions-legales.html">Mentions légales</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <script>
+    const map = L.map('map').setView([-34.7, -57.5], 7);
+
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+    }).addTo(map);
+
+    // ORDRE MODIFIÉ : Montevideo → Progreso → Nueva Helvecia → Colonia
+    const etapes = [
+      { nom: "Buenos Aires", coords: [-34.6037, -58.3816], desc: "Capitale du Tango · San Telmo · Recoleta" },
+      { nom: "Delta du Tigre", coords: [-34.4264, -58.5794], desc: "Canaux, îles et maisons sur pilotis" },
+      { nom: "Montevideo", coords: [-34.9011, -56.1645], desc: "Tango intime · Vieille Ville · Rambla" },
+      { nom: "Progreso", coords: [-34.7333, -56.2167], desc: "Ville viticole · Bodegas de Canelones" },
+      { nom: "Nueva Helvecia", coords: [-34.3833, -57.2833], desc: "Vignoble Los Pinos · Cépage Tannat" },
+      { nom: "Colonia del Sacramento", coords: [-34.4631, -57.8394], desc: "Ville coloniale classée UNESCO" }
+    ];
+
+    const iconeTango = L.divIcon({
+        className: 'custom-icon',
+        html: '<div style="background-color: #D4A017; width: 16px; height: 16px; border-radius: 50%; border: 3px solid #FFFFFF; box-shadow: 0 0 0 3px #8B1E1E, 0 4px 8px rgba(0,0,0,0.5);"></div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11]
+    });
+
+    const marqueurs = [];
+    etapes.forEach((etape, index) => {
+      const marker = L.marker(etape.coords, {icon: iconeTango}).addTo(map);
+      marker.bindPopup(`<b style="font-family: 'Playfair Display', serif; color: #8B1E1E; font-size: 1.1rem;">${index + 1}. ${etape.nom}</b><br><span style="color: #4A5568; font-size: 0.9rem;">${etape.desc}</span>`);
+      marqueurs.push(marker);
+    });
+
+    const trace = etapes.map(e => e.coords);
+    
+    L.polyline(trace, {
+        color: '#FFFFFF', 
+        weight: 8, 
+        opacity: 0.9,
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    L.polyline(trace, {
+        color: '#8B1E1E', 
+        weight: 4, 
+        opacity: 1, 
+        dashArray: '10, 8',
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    function resetMap() {
+      map.setView([-34.7, -57.5], 7);
+    }
+
+    const groupe = L.featureGroup(marqueurs);
+    map.fitBounds(groupe.getBounds().pad(0.2));
+  </script>
+
 </body>
 </html>
