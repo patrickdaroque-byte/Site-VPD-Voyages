@@ -13,6 +13,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+  <!-- CSS LEAFLET POUR LA CARTE -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
   <style>
     /* --- VARIABLES & RESET (Thème Tango) --- */
     :root {
@@ -52,10 +55,9 @@
       padding: 0 24px;
     }
 
-    /* --- HERO SECTION (SANS FILTRE BLEU) --- */
+    /* --- HERO SECTION --- */
     .hero {
       position: relative;
-      /* Filtre noir neutre pour respecter les couleurs de ta photo */
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/hero.jpg') center/cover no-repeat;
       color: var(--white);
       padding: 120px 0 80px;
@@ -126,7 +128,7 @@
     /* --- GRILLE DES RÉGIONS AVEC PHOTOS --- */
     .grid-4 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 24px;
       margin-top: 40px;
     }
@@ -141,7 +143,7 @@
     .card:hover { transform: translateY(-5px); }
     .card img {
       width: 100%;
-      height: 200px;
+      height: 220px;
       object-fit: cover;
     }
     .card-content { padding: 24px; }
@@ -159,6 +161,52 @@
       font-weight: bold;
       position: absolute;
       left: 0;
+    }
+
+    /* --- PAUSE VISUELLE --- */
+    .pause-visuelle {
+      position: relative;
+      height: 400px;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 40px 0;
+    }
+    .pause-visuelle::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(107, 21, 21, 0.5), rgba(107, 21, 21, 0.5));
+    }
+    .pause-visuelle .caption {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: var(--white);
+      text-align: center;
+      padding: 40px;
+    }
+    .pause-visuelle .caption h2 {
+      color: var(--white);
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+    .pause-visuelle .caption p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      font-style: italic;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    }
+    @media (max-width: 768px) {
+      .pause-visuelle { background-attachment: scroll; height: 300px; }
+      .pause-visuelle .caption h2 { font-size: 1.8rem; }
     }
 
     /* --- PROGRAMME / TIMELINE --- */
@@ -222,6 +270,25 @@
     .timeline-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
     .timeline-item p { font-size: 0.95rem; color: var(--text-light); margin: 0; }
 
+    /* --- CARTE INTERACTIVE --- */
+    .carte-section {
+      background-color: var(--white);
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: var(--shadow);
+      margin-top: 20px;
+    }
+    #map {
+      width: 100%;
+      height: 500px;
+      border-radius: 8px;
+      z-index: 1;
+    }
+    .custom-icon {
+      background: transparent !important;
+      border: none !important;
+    }
+
     /* --- SÉCURITÉ --- */
     .security {
       background-color: #F0FFF4;
@@ -262,6 +329,7 @@
       .intro { margin: 20px; padding: 24px; }
       .timeline { padding-left: 20px; }
       .timeline-item::before { left: -26px; width: 12px; height: 12px; }
+      #map { height: 350px; }
     }
   </style>
 </head>
@@ -270,10 +338,9 @@
   <!-- HERO -->
   <header class="hero">
     <div class="container">
-      <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Idée voyage en petit groupe</p>
+      <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Idée voyage en petit groupe · 16 jours / 15 nuits</p>
       <h1>Colombie · Festitango Medellín 2027</h1>
       <p class="subtitle">Tango & Printemps éternel</p>
-      <!-- Lien corrigé vers la section contact de l'accueil -->
       <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
     </div>
   </header>
@@ -290,12 +357,13 @@
       </p>
     </section>
 
-    <!-- LES RÉGIONS VISITÉES (GRID AVEC PHOTOS) -->
+    <!-- LES RÉGIONS VISITÉES (GRID AVEC 5 PHOTOS) -->
     <section>
       <h2 class="section-title">Les régions visitées</h2>
       <div class="grid-4">
+        
+        <!-- Carte 1 : Le Festival -->
         <div class="card">
-          <!-- Assure-toi que l'image s'appelle bien festival.jpg -->
           <img src="images/festival.jpg" alt="Milongas et spectacles au Festival de Tango de Medellín">
           <div class="card-content">
             <h3>💃 Le Festival</h3>
@@ -307,6 +375,8 @@
             </ul>
           </div>
         </div>
+
+        <!-- Carte 2 : Bogotá -->
         <div class="card">
           <img src="images/bogota.jpg" alt="Quartier colonial de la Candelaria à Bogotá">
           <div class="card-content">
@@ -319,6 +389,8 @@
             </ul>
           </div>
         </div>
+
+        <!-- Carte 3 : Medellín -->
         <div class="card">
           <img src="images/medellin.jpg" alt="Vue sur Medellín la ville du printemps éternel">
           <div class="card-content">
@@ -331,6 +403,8 @@
             </ul>
           </div>
         </div>
+
+        <!-- Carte 4 : Guatapé -->
         <div class="card">
           <img src="images/guatape.jpg" alt="Vue panoramique depuis la Piedra del Peñol à Guatapé">
           <div class="card-content">
@@ -343,8 +417,17 @@
             </ul>
           </div>
         </div>
+
       </div>
     </section>
+
+    <!-- 🌟 PAUSE VISUELLE 1 : Couple de tango -->
+    <div class="pause-visuelle" style="background-image: url('images/couple-tango.jpg');">
+      <div class="caption">
+        <h2>L'âme du tango à Medellín</h2>
+        <p>Danser au cœur de la ville qui a vu naître le tango colombien, là où Gardel a laissé son empreinte éternelle.</p>
+      </div>
+    </div>
 
     <!-- PROGRAMME DÉTAILLÉ (TIMELINE) -->
     <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
@@ -435,6 +518,26 @@
       </div>
     </section>
 
+    <!-- 🌟 PAUSE VISUELLE 2 : Gardel -->
+    <div class="pause-visuelle" style="background-image: url('images/gardel.jpg');">
+      <div class="caption">
+        <h2>Sur les pas de Carlos Gardel</h2>
+        <p>Medellín, ville d'adoption du plus grand tanguero de tous les temps. Un pèlerinage pour les amoureux du tango.</p>
+      </div>
+    </div>
+
+    <!-- 🗺️ CARTE INTERACTIVE -->
+    <section class="carte-section">
+      <h2 class="section-title">Votre itinéraire sur la carte</h2>
+      <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+        Cliquez sur chaque point doré pour découvrir les étapes de votre voyage. La ligne rouge trace votre parcours à travers les Andes colombiennes, sur les traces du tango.
+      </p>
+      <div id="map"></div>
+      <div style="text-align: center; margin-top: 20px;">
+        <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
+      </div>
+    </section>
+
     <!-- SÉCURITÉ -->
     <section class="security">
       <h3>
@@ -457,7 +560,6 @@
     <section style="text-align: center; padding-bottom: 20px;">
       <h2 style="margin-bottom: 16px;">Prêt à danser à Medellín ?</h2>
       <p style="margin-bottom: 32px; color: var(--text-light);">Construisons ensemble votre itinéraire sur mesure pour le Festitango 2027.</p>
-      <!-- Lien corrigé vers la section contact de l'accueil -->
       <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
     </section>
 
@@ -474,6 +576,75 @@
       </p>
     </div>
   </footer>
+
+  <!-- SCRIPT LEAFLET POUR LA CARTE -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <script>
+    // Initialisation de la carte centrée sur la Colombie
+    const map = L.map('map').setView([6.0, -74.0], 6);
+
+    // Tuiles ESRI World Street Map (le meilleur fond gratuit)
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+    }).addTo(map);
+
+    // Les étapes du voyage avec coordonnées GPS
+    const etapes = [
+      { nom: "Bogotá", coords: [4.7110, -74.0721], desc: "Arrivée · Candelaria · Musée de l'Or" },
+      { nom: "Zipaquirá", coords: [5.0167, -74.0000], desc: "Cathédrale de Sel" },
+      { nom: "Guatavita", coords: [4.9333, -73.8333], desc: "Lagune sacrée de l'Eldorado" },
+      { nom: "Medellín", coords: [6.2476, -75.5658], desc: "Printemps Éternel · Festitango" },
+      { nom: "Guatapé", coords: [6.2308, -75.1617], desc: "Piedra del Peñol · 740 marches" }
+    ];
+
+    // Icône personnalisée dorée avec effet 3D
+    const iconeDoree = L.divIcon({
+        className: 'custom-icon',
+        html: '<div style="background-color: #D4A017; width: 16px; height: 16px; border-radius: 50%; border: 3px solid #FFFFFF; box-shadow: 0 0 0 3px #8B1E1E, 0 4px 8px rgba(0,0,0,0.5);"></div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11]
+    });
+
+    // Ajout des marqueurs
+    const marqueurs = [];
+    etapes.forEach((etape, index) => {
+      const marker = L.marker(etape.coords, {icon: iconeDoree}).addTo(map);
+      marker.bindPopup(`<b style="font-family: 'Playfair Display', serif; color: #8B1E1E; font-size: 1.1rem;">${index + 1}. ${etape.nom}</b><br><span style="color: #4A5568; font-size: 0.9rem;">${etape.desc}</span>`);
+      marqueurs.push(marker);
+    });
+
+    // Tracé de l'itinéraire avec effet "Halo"
+    const trace = etapes.map(e => e.coords);
+
+    // A. Le "Halo" blanc
+    L.polyline(trace, {
+        color: '#FFFFFF', 
+        weight: 8, 
+        opacity: 0.9,
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    // B. La ligne principale rouge Tango
+    L.polyline(trace, {
+        color: '#8B1E1E', 
+        weight: 4, 
+        opacity: 1, 
+        dashArray: '10, 8',
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    // Fonction pour recentrer la carte
+    function resetMap() {
+      map.setView([6.0, -74.0], 6);
+    }
+
+    // Ajuster la carte pour voir tous les marqueurs au chargement
+    const groupe = L.featureGroup(marqueurs);
+    map.fitBounds(groupe.getBounds().pad(0.2));
+  </script>
 
 </body>
 </html>
