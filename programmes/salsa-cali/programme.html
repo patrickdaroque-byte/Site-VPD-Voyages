@@ -6,7 +6,7 @@
   
   <!-- OPTIMISATION SEO -->
   <title>Salsa à Cali – Colombie | Festival Mundial de Salsa | VPD Voyages</title>
-  <meta name="description" content="Vivez le Festival Mundial de Salsa à Cali en petit groupe. 16 jours : Bogotá, cours de salsa, excursions (Popayán, finca cafetière, Cathédrale de Sel) et immersion salsera. Devis gratuit avec VPD Voyages.">
+  <meta name="description" content="Vivez le Festival Mundial de Salsa à Cali en petit groupe. 16 jours : Bogotá, cours de salsa, excursions (Popayán, finca cafetière) et immersion salsera. Devis gratuit avec VPD Voyages.">
   
   <!-- POLICES D'ÉCRITURE -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,6 +36,7 @@
     a:hover { color: var(--primary); }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
+    /* HERO AVEC PHOTO */
     .hero {
       position: relative;
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/hero.jpg') center/cover no-repeat;
@@ -66,9 +67,9 @@
     .card ul li { padding: 6px 0; color: var(--text-light); position: relative; padding-left: 20px; }
     .card ul li::before { content: '•'; color: var(--primary); font-weight: bold; position: absolute; left: 0; }
 
+    /* PAUSES VISUELLES */
     .pause-visuelle { position: relative; height: 400px; background-size: cover; background-position: center; background-attachment: fixed; border-radius: var(--radius); overflow: hidden; margin: 40px 0; }
     .pause-visuelle::before { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(184, 42, 21, 0.5), rgba(184, 42, 21, 0.5)); }
-    /* Classe pour les pauses avec couleurs naturelles */
     .pause-naturelle::before { background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)); }
     
     .pause-visuelle .caption { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--white); text-align: center; padding: 40px; }
@@ -105,6 +106,7 @@
 </head>
 <body>
 
+  <!-- HERO AVEC PHOTO hero.jpg -->
   <header class="hero">
     <div class="container">
       <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Idée voyage en petit groupe · 16 jours / 15 nuits</p>
@@ -193,7 +195,6 @@
           </div>
         </div>
 
-        <!-- 6ème carte : Cathédrale de Sel -->
         <div class="card">
           <img src="images/catedralsal.jpeg" alt="Cathédrale de Sel de Zipaquirá">
           <div class="card-content">
@@ -210,8 +211,8 @@
       </div>
     </section>
 
-    <!-- PAUSE VISUELLE 1 : Salsa Calena -->
-    <div class="pause-visuelle" style="background-image: url('images/salsa-calena.jpg');">
+    <!-- 🌟 PAUSE VISUELLE 1 : COULEURS NATURELLES (salsa-calena.jpg) -->
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/salsa-calena.jpg');">
       <div class="caption">
         <h2>Vivez la salsa caleña</h2>
         <p>À Cali, la salsa n'est pas qu'une danse, c'est un mode de vie. Laissez-vous emporter par le rythme endiablé de la capitale mondiale de la salsa.</p>
@@ -327,7 +328,7 @@
       </div>
     </section>
 
-    <!-- PAUSE VISUELLE 2 : Couleurs naturelles -->
+    <!-- 🌟 PAUSE VISUELLE 2 : COULEURS NATURELLES (cali.jpg) -->
     <div class="pause-visuelle pause-naturelle" style="background-image: url('images/cali.jpg');">
       <div class="caption">
         <h2>Cali, ville de fête et de passion</h2>
@@ -365,6 +366,7 @@
     </div>
   </footer>
 
+  <!-- SCRIPT LEAFLET POUR LA CARTE -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
   <script>
