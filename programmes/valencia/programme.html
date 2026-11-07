@@ -1,746 +1,489 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Valencia - Escapade méditerranéenne</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- OPTIMISATION SEO -->
+  <title>Valence · Escapade 4 jours & Albufera | Méditerranée espagnole | VPD Voyages</title>
+  <meta name="description" content="Escapade à Valence en 4 jours : centre historique, Cité des Arts, Albufera, paella valencienne, Calamocha et Zaragoza. Devis gratuit avec VPD Voyages.">
+  
+  <!-- POLICES D'ÉCRITURE -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS LEAFLET POUR LA CARTE -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
   <style>
     :root {
-      --bg: #FFFFFF;
-      --cream: #F3ECE2;
-      --paleteal: #E7EFEE;
-      --text: #2A211C;
-      --soft: #6B5E54;
-      --accent: #C1502E;
-      --accentdark: #9C2B2B;
-      --teal: #0F5C56;
-      --gold: #C9A24B;
-      --font-head: Georgia, "Liberation Serif", "Times New Roman", serif;
-      --font-body: Arial, "Liberation Sans", Helvetica, sans-serif;
+      --primary: #8B1E1E;
+      --primary-dark: #6B1515;
+      --accent: #D4A017;
+      --text: #2D3748;
+      --text-light: #4A5568;
+      --bg: #FAFAFA;
+      --white: #FFFFFF;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --radius: 8px;
     }
 
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      font-family: var(--font-body);
-      color: var(--text);
-      background: #faf9f6;
-      font-size: 16px;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Conteneur principal pour centrer et limiter la largeur sur ordinateur */
-    body > .section {
-      max-width: 900px;
-      margin: 20px auto;
-      background: var(--bg);
-      border: 1px solid #dce2df;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-    }
-
-    .section {
-      padding: 30px 24px 20px 24px;
-      position: relative;
-      min-height: auto;
-      page-break-before: auto;
-      break-before: auto;
-    }
-
-    .eyebrow {
-      font-weight: bold;
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 0 0 4px 0;
-    }
-
-    h1.title {
-      font-family: var(--font-head);
-      font-weight: normal;
-      font-size: 28px;
-      line-height: 1.1;
-      color: var(--text);
-      margin: 0 0 10px 0;
-    }
-
-    p.lead {
-      font-size: 15px;
-      color: var(--soft);
-      margin: 0 0 12px 0;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background-color: var(--bg); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1.3; }
+    a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+    a:hover { color: var(--primary); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
     .hero {
-      width: 100%;
-      border-radius: 4px;
-      display: block;
-      margin: 0 0 12px 0;
-    }
-
-    .photo-row {
-      display: flex;
-      gap: 12px;
-      margin: 0 0 16px 0;
-    }
-
-    .photo-row img {
-      width: 100%;
-      border-radius: 6px;
-      display: block;
-      object-fit: cover;
-    }
-
-    .photo-row.two img {
-      width: 50%;
-      height: 260px;
-    }
-
-    .photo-row.three img { height: 180px; }
-    .photo-row.four img { height: 150px; }
-
-    .caption {
-      font-family: var(--font-head);
-      font-style: italic;
-      font-size: 13.5px;
-      color: var(--soft);
-      margin: 0 0 12px 0;
+      position: relative;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/hero.jpg') center/cover no-repeat;
+      color: var(--white);
+      padding: 120px 0 80px;
       text-align: center;
     }
+    .hero h1 { color: var(--white); font-size: 3.2rem; margin-bottom: 16px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero .subtitle { font-size: 1.4rem; font-weight: 300; opacity: 0.95; margin-bottom: 32px; font-style: italic; }
+    .btn { display: inline-block; background-color: var(--accent); color: var(--primary-dark); padding: 16px 36px; border-radius: 50px; font-weight: 600; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); color: var(--primary-dark); }
 
-    .item { margin: 0 0 12px 0; }
+    section { padding: 60px 0; }
+    .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; position: relative; }
+    .section-title::after { content: ''; display: block; width: 60px; height: 3px; background-color: var(--accent); margin: 16px auto 0; }
 
-    .item .item-title {
-      font-family: var(--font-head);
-      font-size: 17px;
-      color: var(--accent);
-      margin: 0 0 3px 0;
-    }
+    .intro { background-color: var(--white); text-align: center; max-width: 800px; margin: -40px auto 0; padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); position: relative; z-index: 10; }
+    .intro p { font-size: 1.1rem; color: var(--text-light); }
+    .intro .highlight { color: var(--primary); font-weight: 600; }
 
-    .item .item-desc { font-size: 14.5px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
+    .card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border-top: 4px solid var(--accent); transition: transform 0.3s ease; }
+    .card:hover { transform: translateY(-5px); }
+    .card img { width: 100%; height: 220px; object-fit: cover; }
+    .card-content { padding: 24px; }
+    .card h3 { font-size: 1.4rem; margin-bottom: 16px; }
+    .card ul { list-style: none; padding-left: 0; }
+    .card ul li { padding: 6px 0; color: var(--text-light); position: relative; padding-left: 20px; }
+    .card ul li::before { content: '•'; color: var(--primary); font-weight: bold; position: absolute; left: 0; }
 
-    .card {
-      background: var(--cream);
-      border-radius: 6px;
-      padding: 14px 16px;
-      margin: 0 0 12px 0;
-    }
+    .pause-visuelle { position: relative; height: 400px; background-size: cover; background-position: center; background-attachment: fixed; border-radius: var(--radius); overflow: hidden; margin: 40px 0; }
+    .pause-naturelle::before { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)); }
+    .pause-visuelle .caption { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--white); text-align: center; padding: 40px; }
+    .pause-visuelle .caption h2 { color: var(--white); font-size: 2.5rem; margin-bottom: 16px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
+    .pause-visuelle .caption p { font-size: 1.2rem; max-width: 600px; font-style: italic; text-shadow: 1px 1px 4px rgba(0,0,0,0.5); }
+    @media (max-width: 768px) { .pause-visuelle { background-attachment: scroll; height: 300px; } .pause-visuelle .caption h2 { font-size: 1.8rem; } }
 
-    .card.teal { background: var(--paleteal); }
+    .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 30px; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background-color: #E2E8F0; }
+    .timeline-phase { margin-bottom: 40px; position: relative; }
+    .timeline-phase h3 { background-color: var(--primary); color: var(--white); display: inline-block; padding: 8px 20px; border-radius: 50px; font-size: 1.1rem; margin-bottom: 20px; font-family: 'Inter', sans-serif; font-weight: 600; }
+    .timeline-item { background: var(--white); padding: 20px 24px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 16px; position: relative; }
+    .timeline-item::before { content: ''; position: absolute; left: -36px; top: 24px; width: 15px; height: 15px; background-color: var(--accent); border-radius: 50%; border: 3px solid var(--white); }
+    .timeline-item .days { font-size: 0.85rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .timeline-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
+    .timeline-item p { font-size: 0.95rem; color: var(--text-light); margin: 0; }
 
-    .card .card-title {
-      font-family: var(--font-head);
-      font-size: 16px;
-      color: var(--teal);
-      margin: 0 0 4px 0;
-      font-weight: bold;
-    }
+    .carte-section { background-color: var(--white); border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow); margin-top: 20px; }
+    #map { width: 100%; height: 500px; border-radius: 8px; z-index: 1; }
+    .custom-icon { background: transparent !important; border: none !important; }
 
-    .card .card-body { font-size: 14.5px; }
+    .pratiques { background-color: #F8FAFC; border-radius: var(--radius); padding: 40px; margin-top: 40px; }
+    .pratiques h3 { margin-bottom: 20px; }
+    .pratiques-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .pratique-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--primary); }
+    .pratique-item p, .pratique-item ul { font-size: 0.95rem; color: var(--text-light); margin: 0; }
+    .pratique-item ul { padding-left: 20px; }
 
-    ul.bullets {
-      margin: 6px 0 0 0;
-      padding-left: 18px;
-    }
+    footer { background-color: var(--primary-dark); color: var(--white); text-align: center; padding: 40px 0; margin-top: 60px; }
+    footer p { opacity: 0.8; font-size: 0.9rem; }
+    footer a { color: var(--accent); }
 
-    ul.bullets li {
-      margin-bottom: 6px;
-      font-size: 14.5px;
-    }
-
-    .stat-row {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--paleteal);
-    }
-
-    .stat-row .stat-num {
-      font-family: var(--font-head);
-      font-size: 22px;
-      color: var(--accent);
-      min-width: 82px;
-    }
-
-    .stat-row .stat-label {
-      font-size: 14px;
-      color: var(--soft);
-    }
-
-    .day {
-      display: flex;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--paleteal);
-    }
-
-    .day:last-child { border-bottom: none; }
-
-    .day .day-num {
-      font-family: var(--font-head);
-      font-size: 14px;
-      font-weight: bold;
-      color: #FFFFFF;
-      background: var(--accent);
-      border-radius: 50%;
-      width: 38px;
-      height: 38px;
-      min-width: 38px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      line-height: 1.1;
-    }
-
-    .day .day-body {
-      font-size: 14.5px;
-      padding-top: 3px;
-    }
-
-    .day .day-body .day-title {
-      font-weight: bold;
-      color: var(--text);
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    .subhead {
-      font-family: var(--font-head);
-      font-size: 15px;
-      color: var(--teal);
-      font-weight: bold;
-      margin: 12px 0 4px 0;
-    }
-
-    .footer-bar {
-      margin-top: 18px;
-      padding-top: 10px;
-      border-top: 1px solid var(--gold);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-bar .brand {
-      font-size: 9.5px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--soft);
-      font-weight: bold;
-    }
-
-    .footer-bar .pagenum {
-      font-size: 9.5px;
-      color: var(--soft);
-    }
-
-    .cover-hero {
-      width: 100%;
-      display: block;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
-    }
-
-    .cover-body {
-      padding: 20px 24px 12px 24px;
-      min-height: auto;
-    }
-
-    .cover-eyebrow {
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: bold;
-      margin: 0 0 4px 0;
-    }
-
-    .cover-title {
-      font-family: var(--font-head);
-      font-size: 40px;
-      color: var(--text);
-      margin: 0;
-      line-height: 1;
-    }
-
-    .cover-title-spacer {
-      display: block;
-      height: 8px;
-    }
-
-    .cover-sub {
-      font-family: var(--font-head);
-      font-style: italic;
-      font-size: 20px;
-      color: var(--accent);
-      margin: 0;
-      line-height: 1;
-    }
-
-    .cover-sub-spacer {
-      display: block;
-      height: 8px;
-    }
-
-    .cover-intro {
-      font-size: 14.5px;
-      color: var(--text);
-      margin: 4px 0 6px 0;
-    }
-
-    .cover-list {
-      margin: 0 0 8px 0;
-      padding-left: 18px;
-    }
-
-    .cover-list li {
-      font-size: 14.5px;
-      margin-bottom: 4px;
-    }
-
-    .cover-logo-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-top: 1px solid var(--paleteal);
-      padding-top: 12px;
-      margin-top: 15px;
-    }
-
-    .cover-logo-row img {
-      width: 40px;
-      height: 40px;
-    }
-
-    .back {
-      text-align: center;
-      padding: 40px 24px;
-    }
-
-    .back .back-msg {
-      font-family: var(--font-head);
-      font-size: 22px;
-      color: var(--text);
-      line-height: 1.35;
-      margin-bottom: 16px;
-    }
-
-    .back .back-logo {
-      width: 56px;
-      height: 56px;
-      margin: 0 auto 8px auto;
-      border-radius: 2px;
-    }
-
-    .back .site {
-      font-size: 13px;
-      color: var(--teal);
-      font-weight: bold;
-    }
-
-    .back .full-content {
-      font-size: 12px;
-      color: var(--soft);
-      margin-top: 20px;
-      border-top: 1px solid var(--paleteal);
-      padding-top: 16px;
-    }
-
-    @media (max-width: 640px) {
-      body > .section {
-        max-width: 100%;
-        margin: 0;
-        border: none;
-        border-radius: 0;
-        box-shadow: none;
-      }
-      .section {
-        padding: 16px 18px 12px 18px;
-      }
-      .cover-body {
-        padding: 15px 18px 10px 18px;
-      }
-      .photo-row.two {
-        flex-direction: column;
-        gap: 8px;
-      }
-      .photo-row.two img {
-        width: 100%;
-        height: 200px;
-      }
-      .cover-title {
-        font-size: 32px;
-      }
-      .cover-sub {
-        font-size: 17px;
-      }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .intro { margin: 20px; padding: 24px; }
+      .timeline { padding-left: 20px; }
+      .timeline-item::before { left: -26px; width: 12px; height: 12px; }
+      #map { height: 350px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ==================== COVER ==================== -->
-  <div class="section" style="padding:0;">
-    <img class="cover-hero" src="images/valencia-august-10-2022-beautiful-sunset-famous-city-arts-sciences-with-its-avantgarde-architecture-palau-de-las-artes-reina-sofia-principe-felipe-museum_1033579-181754.avif" alt="Valencia - Escapade méditerranéenne" />
-    <div class="cover-body">
-      <div class="cover-eyebrow">02</div>
-      <h1 class="cover-title">VALENCIA</h1>
-      <span class="cover-title-spacer"></span>
-      <div class="cover-sub">&amp; LA ALBUFERA</div>
-      <p class="cover-intro">Escapade méditerranéenne · 4 jours</p>
-      <div class="cover-logo-row">
-        <img src="images/logo_VPD_Voyages.png" alt="VPDVOYAGES" />
-        <div class="site">vpdvoyages.com</div>
+  <header class="hero">
+    <div class="container">
+      <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Escapade en petit groupe · 4 jours · Méditerranée espagnole</p>
+      <h1>Valence · La cité de la lumière</h1>
+      <p class="subtitle">Centre historique · Cité des Arts · Albufera · Paella valencienne</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <section class="intro">
+      <h2 style="margin-bottom: 20px;">Une immersion lumineuse au cœur de la Méditerranée</h2>
+      <p>
+        Valence séduit par son énergie, son architecture futuriste, ses ruelles historiques et ses saveurs authentiques. 
+        Entre mer, lagunes, jardins et gastronomie, cette escapade vous plonge dans une Espagne vibrante, chaleureuse et profondément méditerranéenne. 
+        De la <span class="highlight">paella authentique d'El Palmar</span> au Tribunal des Eaux millénaire, chaque instant raconte la Valence éternelle.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="section-title">Le voyage en un coup d'œil</h2>
+      <div class="grid-4">
+        
+        <div class="card">
+          <img src="images/Cathedrale_Valence.jpg" alt="Cathédrale de Valence">
+          <div class="card-content">
+            <h3>⛪ Cathédrale & Tribunal des Eaux</h3>
+            <ul>
+              <li>Le Saint Graal, trésor unique en Europe</li>
+              <li>Tribunal des Eaux (UNESCO, 960 ans d'histoire)</li>
+              <li>Plaza de la Virgen & Plaza Redonda</li>
+              <li>Lonja de la Seda (gothique civil UNESCO)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/hemisferic.jpeg" alt="Cité des Arts et des Sciences">
+          <div class="card-content">
+            <h3>🏛️ Cité des Arts et des Sciences</h3>
+            <ul>
+              <li>L'Hemisfèric, l'Umbracle, le Musée des Sciences</li>
+              <li>L'Oceanogràfic, plus grand aquarium d'Europe</li>
+              <li>Architecture futuriste de Santiago Calatrava</li>
+              <li>Pont de l'Assut de l'Or</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/Paella-valenciana.jpg" alt="Paella valencienne authentique">
+          <div class="card-content">
+            <h3>🥘 La vraie Paella valencienne</h3>
+            <ul>
+              <li>Poulet, lapin, garrofó, riz bomba, safran</li>
+              <li>Cuite au feu de bois d'oranger</li>
+              <li>À El Palmar, village d'origine</li>
+              <li>Tradition ancestrale valencienne</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/El-Palmar-Valencia-Albufera-Park-6.jpg" alt="El Palmar et l'Albufera">
+          <div class="card-content">
+            <h3>🌊 L'Albufera & El Palmar</h3>
+            <ul>
+              <li>24 km² de lagune, « miroir du soleil »</li>
+              <li>223 km² de rizières</li>
+              <li>Balades en barque traditionnelle</li>
+              <li>Barracas, maisons typiques</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/jambon-calamocha.webp" alt="Jambon de Calamocha">
+          <div class="card-content">
+            <h3>🍖 Calamocha · Jambon de Teruel</h3>
+            <ul>
+              <li>Capitale du jambon AOP de Teruel</li>
+              <li>Halte gastronomique J1</li>
+              <li>Cuisine traditionnelle aragonaise</li>
+              <li>Ambiance villageoise authentique</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/Perfil-Pilar-Zaragoza-2.jpg" alt="Basilique del Pilar à Zaragoza">
+          <div class="card-content">
+            <h3>🏛️ Zaragoza · Trois héritages</h3>
+            <ul>
+              <li>Romaine : Caesaraugusta</li>
+              <li>Musulmane : Palais de l'Aljafería</li>
+              <li>Chrétienne : Basilique del Pilar</li>
+              <li>Déjeuner au musée-restaurant El Fuelle</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PAUSE VISUELLE 1 : ALBUFERA -->
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/albufera.webp');">
+      <div class="caption">
+        <h2>L'Albufera, le miroir du soleil</h2>
+        <p>24 km² de lagune, 223 km² de rizières, 1 mètre de profondeur. Un écosystème unique où naquit la paella valencienne.</p>
       </div>
     </div>
-  </div>
 
-  <!-- ==================== INTRODUCTION ==================== -->
-  <div class="section">
-    <div class="eyebrow">Introduction</div>
-    <h1 class="title">Une immersion lumineuse au cœur de la Méditerranée</h1>
-    <p class="lead">Valencia séduit par son énergie, son architecture futuriste, ses ruelles historiques et ses saveurs authentiques. Entre mer, lagunes, jardins et gastronomie, cette escapade vous plonge dans une Espagne vibrante, chaleureuse et profondément méditerranéenne.</p>
-    <div class="footer-bar">
-      <div class="brand">Valencia · Escapade</div>
-      <div class="pagenum">01</div>
-    </div>
-  </div>
+    <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
+      <h2 class="section-title">Votre itinéraire jour par jour</h2>
+      
+      <div class="timeline">
+        
+        <div class="timeline-phase">
+          <h3>Jour 1 · Calamocha · Capitale du jambon</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Matin</div>
+            <h4>Départ du Sud-Ouest</h4>
+            <p>Route vers la Méditerranée à travers les paysages aragonais.</p>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="days">Midi</div>
+            <h4>Calamocha · Jambon AOP de Teruel</h4>
+            <p>Première halte gastronomique dans ce village réputé pour son jambon AOP. Ambiance locale, cuisine généreuse, immersion dans l'Espagne intérieure. Dégustation de jambon de Teruel, spécialité reconnue dans toute l'Espagne.</p>
+          </div>
 
-  <!-- ==================== VALENCE ==================== -->
-  <div class="section">
-    <div class="eyebrow">Valence</div>
-    <h1 class="title">Au cœur de la côte méditerranéenne</h1>
-    <img class="hero" src="images/Carte_Localisation_Valence.jpg" alt="Carte de Valence" style="max-width:60%; margin:0 auto 16px auto;" />
-    <div class="item">
-      <div class="item-title">Albufera</div>
-      <div class="item-desc">Lagune &amp; rizières</div>
-    </div>
-    <div class="item">
-      <div class="item-title">El Palmar</div>
-      <div class="item-desc">Village où fut inventée la paella</div>
-    </div>
-    <div class="item">
-      <div class="item-title">Cité des Arts</div>
-      <div class="item-desc">Architecture futuriste</div>
-    </div>
-    <div class="item">
-      <div class="item-title">Plages</div>
-      <div class="item-desc">Malvarrosa &amp; plus</div>
-    </div>
-    <p class="lead">Une région ouverte sur la mer, riche de traditions, de modernité et de paysages uniques.</p>
-    <div class="footer-bar">
-      <div class="brand">Valencia · Escapade</div>
-      <div class="pagenum">02</div>
-    </div>
-  </div>
+          <div class="timeline-item">
+            <div class="days">Après-midi</div>
+            <h4>Arrivée à Valence</h4>
+            <p>Installation à l'hôtel ou appartement dans le centre historique. Charme authentique, architecture élégante, accès immédiat aux monuments à pied. Première balade pour prendre le pouls de la ville.</p>
+          </div>
 
-  <!-- ==================== JOUR 1 - CALAMOCHA ==================== -->
-  <div class="section">
-    <div class="eyebrow">Jour 1</div>
-    <h1 class="title">Calamocha - Capitale du jambon de Teruel</h1>
-    <div class="photo-row two">
-      <img src="images/jambon-calomocha.png" alt="Jambon de Teruel" />
-    </div>
-    <p class="lead">Première halte gastronomique dans un village réputé pour son jambon AOP. Ambiance locale, cuisine généreuse, immersion dans l'Espagne intérieure.</p>
-    <ul class="bullets">
-      <li>Jambon AOP de Teruel</li>
-      <li>Cuisine traditionnelle</li>
-      <li>Ambiance villageoise authentique</li>
-    </ul>
-    <div class="footer-bar">
-      <div class="brand">Valencia · Escapade</div>
-      <div class="pagenum">03</div>
-    </div>
-  </div>
+          <div class="timeline-item">
+            <div class="days">Soir</div>
+            <h4>Tapas & ambiance valencienne</h4>
+            <p>Découverte des quartiers tapas : Ruzafa (branché & créatif), El Carmen (historique & authentique), Colón (élégance & modernité). Soirée de tapas dans l'ambiance vivante de Valence.</p>
+          </div>
+        </div>
 
-  <!-- ==================== HÉBERGEMENT ==================== -->
-  <div class="section">
-    <div class="eyebrow">Hébergement</div>
-    <h1 class="title">Votre séjour au cœur de Valence</h1>
-    <div class="photo-row two">
-      <img src="images/place café.webp" alt="Café typique" />
-    </div>
-    <p class="lead">Hôtel ou appartement dans le centre historique</p>
-    <ul class="bullets">
-      <li>Charme authentique - Architecture &amp; élégance</li>
-      <li>Accès immédiat - Monuments à pied</li>
-      <li>Ambiance vivante - Quartiers raffinés</li>
-      <li>Idéal pour rayonner - Tout à portée de main</li>
-    </ul>
-    <div class="footer-bar">
-      <div class="brand">Valencia · Escapade</div>
-      <div class="pagenum">04</div>
-    </div>
-  </div>
+        <div class="timeline-phase">
+          <h3>Jour 2 · Les incontournables du centre historique</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Matin</div>
+            <h4>Cathédrale & Saint Graal</h4>
+            <p>Visite de la Cathédrale de Valence qui abrite le Saint Graal, trésor unique en Europe. Puis la Plaza Redonda, architecture circulaire remarquable, et la Lonja de la Seda, chef-d'œuvre du gothique civil classé UNESCO.</p>
+          </div>
 
-  <!-- ==================== TAPAS ==================== -->
-  <div class="section">
-    <div class="eyebrow">Tapas</div>
-    <h1 class="title">Tapas &amp; ambiance valencienne</h1>
-    <div class="photo-row two">
-      <img src="images/Tapas.jpg" alt="Tapas" />
-      <img src="images/table-full-of-tapas.jpg" alt="Table de tapas" />
-    </div>
-    <div class="item">
-      <div class="item-title">Ruzafa</div>
-      <div class="item-desc">Branché &amp; créatif</div>
-    </div>
-    <div class="item">
-      <div class="item-title">El Carmen</div>
-      <div class="item-desc">Historique &amp; authentique</div>
-    </div>
-    <div class="item">
-      <div class="item-title">Colón</div>
-      <div class="item-desc">Élégance &amp; modernité</div>
-    </div>
-    <div class="footer-bar">
-      <div class="brand">Valencia · Escapade</div>
-      <div class="pagenum">05</div>
-    </div>
-  </div>
+          <div class="timeline-item">
+            <div class="days">Midi</div>
+            <h4>Marché Central</h4>
+            <p>Le Temple de la gastronomie valencienne. Un des plus grands marchés d'Europe, architecture moderniste, produits frais, ambiance colorée. Déjeuner de tapas ou de produits du marché.</p>
+          </div>
 
-  <!-- ==================== JOUR 2 ==================== -->
-  <div class="section">
-    <div class="eyebrow">Jour 2</div>
-    <h1 class="title">Les incontournables du centre historique</h1>
-    <div class="photo-row two">
-      <img src="images/Cathedrale_Valence.jpg" alt="Cathédrale de Valence" />
-      <img src="images/plaza redonda.jpg" alt="Plaza Redonda" />
-    </div>
-    <div class="item">
-      <div class="item-title">01 - Cathédrale &amp; le Saint Graal</div>
-      <div class="item-desc">Trésor unique en Europe</div>
-    </div>
-    <div class="item">
-      <div class="item-title">02 - La Place Ronde</div>
-      <div class="item-desc">Architecture circulaire</div>
-    </div>
-    <div class="item">
-      <div class="item-title">03 - Lonja de la Seda</div>
-      <div class="item-desc">UNESCO - gothique civil</div>
-    </div>
-    <div class="item">
-      <div class="item-title">04 - Marché Central</div>
-      <div class="item-desc">Temple de la gastronomie</div>
-    </div>
-    <div class="footer-bar">
-      <div class="brand">Valencia · Escapade</div>
-      <div class="pagenum">06</div>
-    </div>
-  </div>
+          <div class="timeline-item">
+            <div class="days">Après-midi</div>
+            <h4>Tribunal des Eaux & Tours</h4>
+            <p>Chaque jeudi à 12h, lorsque sonnent les cloches du Miguelete, se réunit l'un des plus anciens tribunaux d'Europe : le Tribunal des Eaux, 960 ans d'histoire, patrimoine UNESCO. Puis découverte des Tours de Quart et des Tours des Serranos, vestiges des remparts médiévaux.</p>
+          </div>
 
-  <!-- ==================== TRIBUNAL DES EAUX ==================== -->
-  <div class="section">
-    <div class="eyebrow">Patrimoine UNESCO</div>
-    <h1 class="title">Une institution millénaire</h1>
-    <div class="photo-row two">
-      <img src="images/Tribunal_de_les_Aigües_Valencia.JPG" alt="Tribunal des Eaux" />
-      <img src="images/Tribunal_des_Eaux.jpg" alt="Jugement du Tribunal des Eaux" />
-    </div>
-    <p class="lead">Chaque jeudi à 12h, lorsque sonnent les cloches du Miguelete, se réunit l'un des plus anciens tribunaux d'Europe.</p>
-    <div class="stat-row">
-      <div class="stat-num" style="font-size:15px; min-width:100px;">960 ans</div>
-      <div class="stat-label">d'histoire</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-num" style="font-size:15px; min-width:100px;">Jeudi 12h</div>
-      <div class="stat-label">chaque semaine</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-num" style="font-size:15px; min-width:100px;">UNESCO</div>
-      <div class="stat-label">patrimoine mondial</div>
-    </div>
-    <div class="footer-bar">
-      <div class="brand">Valencia · Escapade</div>
-      <div class="pagenum">07</div>
-    </div>
-  </div>
+          <div class="timeline-item">
+            <div class="days">Soir</div>
+            <h4>Flamenco, lumière & tapas nocturnes</h4>
+            <p>Soirée festive dans le quartier d'El Carmen ou sur la Plaza de la Virgen. Spectacle de flamenco ou tapas dans les bars à vin. La nuit valencienne s'anime.</p>
+          </div>
+        </div>
 
-  <!-- ==================== VALENCE MODERNE ==================== -->
-  <div class="section">
-    <div class="eyebrow">Valence moderne</div>
-    <h1 class="title">Valence moderne : mer &amp; architecture futuriste</h1>
-    <div class="photo-row two">
-      <img src="images/playa.jpg" alt="Coucher de soleil sur Valence" />
-      <img src="images/hemisferic.jpeg" alt="L'Hemisfèric" />
-    </div>
-    <ul class="bullets">
-      <li>Paseo Marítimo</li>
-      <li>Jardins du Real</li>
-      <li>Dame Ibérique</li>
-      <li>Plage de la Malvarrosa</li>
-      <li>Pont de l'Assut de l'Or</li>
-      <li>America's Cup</li>
-      <li>Tours des Serranos</li>
-    </ul>
-    <div class="footer-bar">
-      <div class="brand">Valencia · Escapade</div>
-      <div class="pagenum">08</div>
-    </div>
-  </div>
+        <div class="timeline-phase">
+          <h3>Jour 3 · Cité des Arts & Albufera</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Matin</div>
+            <h4>La Cité des Arts et des Sciences</h4>
+            <p>Chef-d'œuvre architectural de Santiago Calatrava : L'Hemisfèric (œil de Valence), l'Umbracle (jardin suspendu), le Musée des Sciences Prince Philippe et L'Oceanogràfic, plus grand aquarium d'Europe. Pont de l'Assut de l'Or reliant les deux rives du Turia.</p>
+          </div>
 
-  <!-- ==================== FLAMENCO ==================== -->
-  <div class="section">
-    <div class="eyebrow">Soirée</div>
-    <h1 class="title">Flamenco, lumière &amp; tapas nocturnes</h1>
-    <div class="footer-bar">
-      <div class="brand">Valencia · Escapade</div>
-      <div class="pagenum">09</div>
-    </div>
-  </div>
+          <div class="timeline-item">
+            <div class="days">Midi</div>
+            <h4>El Palmar · La vraie Paella valencienne</h4>
+            <p>Déjeuner à El Palmar, village où fut inventée la paella. La recette authentique : poulet, lapin, garrofó (haricot blanc), riz bomba, safran, cuite au feu de bois d'oranger. Accompagnée d'all i pebre (anguille, ail, paprika, pommes de terre), spécialité de l'Albufera.</p>
+          </div>
 
-  <!-- ==================== CITÉ DES ARTS ==================== -->
-  <div class="section">
-    <div class="eyebrow">Jour 3</div>
-    <h1 class="title">La Cité des Arts et des Sciences</h1>
-    <div class="photo-row two">
-      <img src="images/assut-de-l-or-bridge.jpg" alt="Cité des Arts" />
-      <img src="images/cité des arts.jpg" alt="Cité des Arts" />
-    </div>
-    <div class="footer-bar">
-      <div class="brand">Valencia · Escapade</div>
-      <div class="pagenum">10</div>
-    </div>
-  </div>
+          <div class="timeline-item">
+            <div class="days">Après-midi</div>
+            <h4>Balade en barque sur l'Albufera</h4>
+            <p>24 km² de lagune, « le miroir du soleil ». Balade traditionnelle en barque à fond plat entre les rizières. Découverte des barracas (maisons typiques) et de l'écosystème unique. Coucher de soleil sur l'Albufera, moment magique.</p>
+          </div>
 
-  <!-- ==================== PAELLA & ALBUFERA ==================== -->
-  <div class="section">
-    <div class="eyebrow">Gastronomie</div>
-    <h1 class="title">La vraie Paella valencienne &amp; l'All i pebre</h1>
-    <div class="photo-row two">
-      <img src="images/Paella-valenciana.jpg" alt="Paella valencienne" />
-      <img src="images/anguila-all-i-pebre-cocinada-en-cazuela-de-barro.jpg" alt="All i pebre" />
-    </div>
-    <div class="item">
-      <div class="item-title">PAELLA VALENCIENNE</div>
-      <div class="item-desc">Poulet · lapin · garrofó · riz bomba · safran</div>
-    </div>
-    <div class="item">
-      <div class="item-title">ALL I PEBRE</div>
-      <div class="item-desc">Anguille · ail · paprika · pommes de terre</div>
-    </div>
-    <div class="footer-bar">
-      <div class="brand">Valencia · Escapade</div>
-      <div class="pagenum">11</div>
-    </div>
-  </div>
+          <div class="timeline-item">
+            <div class="days">Soir</div>
+            <h4>Plage de la Malvarrosa</h4>
+            <p>Soirée sur la plage de la Malvarrosa, promenade sur le Paseo Marítimo, dîner de fruits de mer face à la Méditerranée.</p>
+          </div>
+        </div>
 
-  <!-- ==================== LA ALBUFERA ==================== -->
-  <div class="section">
-    <div class="eyebrow">La Albufera</div>
-    <h1 class="title">« Le miroir du soleil » - 24 km² de lagune</h1>
-    <div class="photo-row two">
-      <img src="images/barraca.jpg" alt="Carte vers l'Albufera" />
-      <img src="images/El-Palmar-Valencia-Albufera-Park-6.jpg" alt="El Palmar" />
-    </div>
-    <div class="stat-row">
-      <div class="stat-num" style="font-size:15px; min-width:100px;">223 km²</div>
-      <div class="stat-label">de rizières</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-num" style="font-size:15px; min-width:100px;">1 m</div>
-      <div class="stat-label">profondeur</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-num" style="font-size:15px; min-width:100px;">Bateaux</div>
-      <div class="stat-label">balades traditionnelles</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-num" style="font-size:15px; min-width:100px;">Barracas</div>
-      <div class="stat-label">maisons typiques</div>
-    </div>
-    <div class="footer-bar">
-      <div class="brand">Valencia · Escapade</div>
-      <div class="pagenum">12</div>
-    </div>
-  </div>
+        <div class="timeline-phase">
+          <h3>Jour 4 · Zaragoza & retour</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Matin</div>
+            <h4>Route vers Zaragoza</h4>
+            <p>Départ de Valence en direction de Zaragoza, capitale de l'Aragon.</p>
+          </div>
 
-  <!-- ==================== JOUR 4 - ZARAGOZA ==================== -->
-  <div class="section">
-    <div class="eyebrow">Jour 4</div>
-    <h1 class="title">Zaragoza : romaine, musulmane, chrétienne</h1>
-    <div class="photo-row two">
-      <img src="images/Aljaferia_Zaragoza.jpg" alt="Aljafería - Zaragoza" />
-      <img src="images/Perfil-Pilar-Zaragoza-2.jpg" alt="Basílica del Pilar" />
-    </div>
-    <p class="lead">Découverte des trois héritages majeurs de la ville. Déjeuner au musée-restaurant El Fuelle.</p>
-    <div class="item">
-      <div class="item-title">Romaine</div>
-      <div class="item-desc">Caesaraugusta</div>
-    </div>
-    <div class="item">
-      <div class="item-title">Musulmane</div>
-      <div class="item-desc">Aljafería</div>
-    </div>
-    <div class="item">
-      <div class="item-title">Chrétienne</div>
-      <div class="item-desc">Basílica del Pilar</div>
-    </div>
-    <div class="footer-bar">
-      <div class="brand">Valencia · Escapade</div>
-      <div class="pagenum">13</div>
-    </div>
-  </div>
+          <div class="timeline-item">
+            <div class="days">Midi</div>
+            <h4>Zaragoza · Trois héritages</h4>
+            <p>Découverte des trois héritages majeurs de la ville : romain (Caesaraugusta), musulman (Palais de l'Aljafería, XIe siècle) et chrétien (Basilique del Pilar, baroque). Déjeuner au musée-restaurant El Fuelle.</p>
+          </div>
 
-  <!-- ==================== ITINÉRAIRE RÉCAPITULATIF ==================== -->
-  <div class="section">
-    <div class="eyebrow">Récapitulatif</div>
-    <h1 class="title">Votre escapade en 4 jours</h1>
-    <div class="day">
-      <div class="day-num">J1</div>
-      <div class="day-body">
-        <span class="day-title">Départ &amp; Calamocha</span>
-        Départ Sud-Ouest → Calamocha → Installation → Tapas
+          <div class="timeline-item">
+            <div class="days">Après-midi</div>
+            <h4>Route du retour</h4>
+            <p>Route du retour vers le Sud-Ouest avec les images de Valence en tête et le goût de la paella sur les lèvres.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAUSE VISUELLE 2 : CITÉ DES ARTS AU COUCHER DE SOLEIL -->
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/le lac de la cité des arts et des sciences est un incontournable pour profiter du coucher de soleil.jpg');">
+      <div class="caption">
+        <h2>La Cité des Arts au coucher du soleil</h2>
+        <p>Quand la lumière dorée de Valence baigne l'architecture futuriste de Santiago Calatrava. Un spectacle à couper le souffle.</p>
       </div>
     </div>
-    <div class="day">
-      <div class="day-num">J2</div>
-      <div class="day-body">
-        <span class="day-title">Valence historique</span>
-        Centre historique → Tribunal des Eaux → Tour panoramique → Soirée festive
-      </div>
-    </div>
-    <div class="day">
-      <div class="day-num">J3</div>
-      <div class="day-body">
-        <span class="day-title">Cité des Arts &amp; Albufera</span>
-        Cité des Arts → El Palmar → Paella → Albufera
-      </div>
-    </div>
-    <div class="day">
-      <div class="day-num">J4</div>
-      <div class="day-body">
-        <span class="day-title">Zaragoza &amp; retour</span>
-        Zaragoza → Retour Sud-Ouest
-      </div>
-    </div>
-    <div class="footer-bar" style="border-top: none;">
-      <div class="brand">Valencia · Escapade</div>
-    </div>
-  </div>
 
-  <!-- ==================== CONCLUSION ==================== -->
-  <div class="section">
-    <div class="eyebrow">Conclusion</div>
-    <h1 class="title"> </h1>
-    <div class="footer-bar">
-      <div class="brand">Valencia · Escapade</div>
-      <div class="pagenum">14</div>
-    </div>
-  </div>
+    <section class="pratiques">
+      <h2 class="section-title">Gastronomie valencienne</h2>
+      <div class="pratiques-grid">
+        <div class="pratique-item">
+          <img src="images/Paella-valenciana.jpg" alt="Paella valencienne" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+          <h4>🥘 Paella valencienne</h4>
+          <p>Poulet, lapin, garrofó, riz bomba, safran. La recette authentique cuite au feu de bois d'oranger à El Palmar.</p>
+        </div>
+        <div class="pratique-item">
+          <img src="images/anguila-all-i-pebre-cocinada-en-cazuela-de-barro.jpg" alt="All i pebre, anguille de l'Albufera" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+          <h4>🐟 All i pebre</h4>
+          <p>Anguille de l'Albufera, ail, paprika, pommes de terre. Spécialité traditionnelle des pêcheurs du lac.</p>
+        </div>
+        <div class="pratique-item">
+          <img src="images/Tapas.jpg" alt="Tapas valenciennes" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+          <h4>🍷 Tapas & vins</h4>
+          <p>Ruzafa, El Carmen, Colón : les quartiers tapas de Valence. Vins de la Communauté valencienne.</p>
+        </div>
+        <div class="pratique-item">
+          <img src="images/Grillades.jpg" alt="Grillades valenciennes" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+          <h4>🔥 Grillades & fruits de mer</h4>
+          <p>Sur la Malvarrosa : poissons, fruits de mer et grillades face à la Méditerranée.</p>
+        </div>
+      </div>
+    </section>
 
-  <!-- ==================== BACK ==================== -->
-  <div class="section back">
-    <div class="back-msg">Bon séjour à Valencia !</div>
-    <div style="font-size:18px; font-family:var(--font-head); color:var(--accent); margin-bottom:12px;">Valencia &amp; La Albufera</div>
-    <div style="font-size:14px; color:var(--soft); margin-bottom:16px;">Escapade méditerranéenne · 4 jours</div>
-    <img class="back-logo" src="images/logo_VPD_Voyages.png" alt="Logo VPDVOYAGES" />
-    <div class="site">vpdvoyages.com</div>
-    <div class="full-content">Contenu intégral sur vpdvoyages.com (ordinateur).</div>
-  </div>
+    <section class="pratiques">
+      <h2 class="section-title">L'esprit du voyage</h2>
+      <div class="pratiques-grid">
+        <div class="pratique-item">
+          <h4>🏛️ Patrimoine UNESCO</h4>
+          <p>Lonja de la Seda · Tribunal des Eaux · Centre historique</p>
+        </div>
+        <div class="pratique-item">
+          <h4>🎨 Architecture futuriste</h4>
+          <p>Cité des Arts · Calatrava · L'Hemisfèric · L'Oceanogràfic</p>
+        </div>
+        <div class="pratique-item">
+          <h4>🥘 Gastronomie</h4>
+          <p>Paella authentique · All i pebre · Tapas · Fruits de mer</p>
+        </div>
+        <div class="pratique-item">
+          <h4>✨ La philosophie VPDVOYAGES</h4>
+          <ul>
+            <li><strong>Sélection :</strong> Des étapes qui ont du sens dans le rythme global</li>
+            <li><strong>Équilibre :</strong> Culture + gastronomie + nature + architecture</li>
+            <li><strong>Personnalisation :</strong> Le programme évolue selon vos envies</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top: 24px; text-align: center; font-style: italic; color: var(--text-light);">
+        Valence, avec son mélange unique de patrimoine millénaire, d'architecture futuriste et de gastronomie méditerranéenne, promet une escapade lumineuse et authentique.
+      </p>
+    </section>
+
+    <section class="carte-section">
+      <h2 class="section-title">Votre itinéraire sur la carte</h2>
+      <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+        De Calamocha à Zaragoza, en passant par Valence et l'Albufera : cliquez sur chaque point doré pour découvrir les étapes de votre escapade.
+      </p>
+      <div id="map"></div>
+      <div style="text-align: center; margin-top: 20px;">
+        <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
+      </div>
+    </section>
+
+    <section style="text-align: center; padding-bottom: 20px;">
+      <h2 style="margin-bottom: 16px;">Bon séjour à Valence !</h2>
+      <p style="margin-bottom: 32px; color: var(--text-light);">Valence & La Albufera · Escapade méditerranéenne · 4 jours</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p style="font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 8px;">VPD Voyages</p>
+      <p>Votre travel planner spécialisé en Espagne et Amérique latine.</p>
+      <p style="margin-top: 16px;">
+        <a href="https://vpdvoyages.com">Retour à l'accueil</a> · 
+        <a href="https://vpdvoyages.com/mentions-legales.html">Mentions légales</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <script>
+    const map = L.map('map').setView([40.0, -1.0], 7);
+
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+    }).addTo(map);
+
+    const etapes = [
+      { nom: "Calamocha", coords: [40.9167, -1.2833], desc: "Capitale du jambon AOP de Teruel" },
+      { nom: "Valence", coords: [39.4699, -0.3763], desc: "Cathédrale · Cité des Arts · Centre historique" },
+      { nom: "El Palmar / Albufera", coords: [39.3500, -0.3333], desc: "Paella authentique · Lagune · Rizières" },
+      { nom: "Zaragoza", coords: [41.6488, -0.8891], desc: "Aljafería · Basilique del Pilar · Caesaraugusta" }
+    ];
+
+    const iconeTango = L.divIcon({
+        className: 'custom-icon',
+        html: '<div style="background-color: #D4A017; width: 16px; height: 16px; border-radius: 50%; border: 3px solid #FFFFFF; box-shadow: 0 0 0 3px #8B1E1E, 0 4px 8px rgba(0,0,0,0.5);"></div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11]
+    });
+
+    const marqueurs = [];
+    etapes.forEach((etape, index) => {
+      const marker = L.marker(etape.coords, {icon: iconeTango}).addTo(map);
+      marker.bindPopup(`<b style="font-family: 'Playfair Display', serif; color: #8B1E1E; font-size: 1.1rem;">${index + 1}. ${etape.nom}</b><br><span style="color: #4A5568; font-size: 0.9rem;">${etape.desc}</span>`);
+      marqueurs.push(marker);
+    });
+
+    const trace = etapes.map(e => e.coords);
+    
+    L.polyline(trace, {
+        color: '#FFFFFF', 
+        weight: 8, 
+        opacity: 0.9,
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    L.polyline(trace, {
+        color: '#8B1E1E', 
+        weight: 4, 
+        opacity: 1, 
+        dashArray: '10, 8',
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    function resetMap() {
+      map.setView([40.0, -1.0], 7);
+    }
+
+    const groupe = L.featureGroup(marqueurs);
+    map.fitBounds(groupe.getBounds().pad(0.2));
+  </script>
 
 </body>
 </html>

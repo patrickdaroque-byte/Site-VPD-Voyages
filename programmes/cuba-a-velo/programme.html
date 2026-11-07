@@ -2,419 +2,431 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Cuba à vélo · Santiago → La Havane</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- OPTIMISATION SEO -->
+  <title>Cuba à vélo · Santiago → La Havane | 1 007 km en petit groupe | VPD Voyages</title>
+  <meta name="description" content="Voyage à vélo à Cuba : 22 jours, 1 007 km de Santiago à La Havane. Sierra Maestra, Trinidad, Viñales. Nuits chez l'habitant, voiture suiveuse. Devis gratuit avec VPD Voyages.">
+  
+  <!-- POLICES D'ÉCRITURE -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS LEAFLET POUR LA CARTE -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --primary: #8B1E1E;
+      --primary-dark: #6B1515;
+      --accent: #D4A017;
+      --text: #2D3748;
+      --text-light: #4A5568;
+      --bg: #FAFAFA;
+      --white: #FFFFFF;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --radius: 8px;
     }
-    body {
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background: #f5f2eb;
-      color: #1e2b2c;
-      line-height: 1.5;
-      padding: 0 0 2rem 0;
-    }
-    .container {
-      max-width: 480px;
-      margin: 0 auto;
-      background: white;
-      box-shadow: 0 0 20px rgba(0,0,0,0.05);
-    }
-    .card {
-      padding: 1.25rem 1.2rem;
-      border-bottom: 6px solid #f0ebe3;
-    }
-    .card:last-child {
-      border-bottom: none;
-    }
-    h1, h2, h3 {
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background-color: var(--bg); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1.3; }
+    a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+    a:hover { color: var(--primary); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
     .hero {
-      background: #1e3b3c;
-      color: white;
-      padding: 1.8rem 1.2rem 1.5rem;
+      position: relative;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/velo_drapeau_cubain_caleche.jpg') center/cover no-repeat;
+      color: var(--white);
+      padding: 120px 0 80px;
       text-align: center;
     }
-    .hero h1 {
-      font-size: 2.1rem;
-      line-height: 1.2;
-      margin-bottom: 0.2rem;
+    .hero h1 { color: var(--white); font-size: 3.2rem; margin-bottom: 16px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero .subtitle { font-size: 1.4rem; font-weight: 300; opacity: 0.95; margin-bottom: 32px; font-style: italic; }
+    .btn { display: inline-block; background-color: var(--accent); color: var(--primary-dark); padding: 16px 36px; border-radius: 50px; font-weight: 600; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); color: var(--primary-dark); }
+
+    section { padding: 60px 0; }
+    .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; position: relative; }
+    .section-title::after { content: ''; display: block; width: 60px; height: 3px; background-color: var(--accent); margin: 16px auto 0; }
+
+    .intro { background-color: var(--white); text-align: center; max-width: 800px; margin: -40px auto 0; padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); position: relative; z-index: 10; }
+    .intro p { font-size: 1.1rem; color: var(--text-light); }
+    .intro .highlight { color: var(--primary); font-weight: 600; }
+
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
+    .card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border-top: 4px solid var(--accent); transition: transform 0.3s ease; }
+    .card:hover { transform: translateY(-5px); }
+    .card img { width: 100%; height: 220px; object-fit: cover; }
+    .card-content { padding: 24px; }
+    .card h3 { font-size: 1.4rem; margin-bottom: 16px; }
+    .card ul { list-style: none; padding-left: 0; }
+    .card ul li { padding: 6px 0; color: var(--text-light); position: relative; padding-left: 20px; }
+    .card ul li::before { content: '•'; color: var(--primary); font-weight: bold; position: absolute; left: 0; }
+
+    .pause-visuelle { position: relative; height: 400px; background-size: cover; background-position: center; background-attachment: fixed; border-radius: var(--radius); overflow: hidden; margin: 40px 0; }
+    .pause-naturelle::before { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)); }
+    .pause-visuelle .caption { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--white); text-align: center; padding: 40px; }
+    .pause-visuelle .caption h2 { color: var(--white); font-size: 2.5rem; margin-bottom: 16px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
+    .pause-visuelle .caption p { font-size: 1.2rem; max-width: 600px; font-style: italic; text-shadow: 1px 1px 4px rgba(0,0,0,0.5); }
+    @media (max-width: 768px) { .pause-visuelle { background-attachment: scroll; height: 300px; } .pause-visuelle .caption h2 { font-size: 1.8rem; } }
+
+    .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 30px; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background-color: #E2E8F0; }
+    .timeline-phase { margin-bottom: 40px; position: relative; }
+    .timeline-phase h3 { background-color: var(--primary); color: var(--white); display: inline-block; padding: 8px 20px; border-radius: 50px; font-size: 1.1rem; margin-bottom: 20px; font-family: 'Inter', sans-serif; font-weight: 600; }
+    .timeline-item { background: var(--white); padding: 20px 24px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 16px; position: relative; }
+    .timeline-item::before { content: ''; position: absolute; left: -36px; top: 24px; width: 15px; height: 15px; background-color: var(--accent); border-radius: 50%; border: 3px solid var(--white); }
+    .timeline-item .days { font-size: 0.85rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .timeline-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
+    .timeline-item p { font-size: 0.95rem; color: var(--text-light); margin: 0; }
+
+    .carte-section { background-color: var(--white); border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow); margin-top: 20px; }
+    #map { width: 100%; height: 500px; border-radius: 8px; z-index: 1; }
+    .custom-icon { background: transparent !important; border: none !important; }
+
+    .pratiques { background-color: #F8FAFC; border-radius: var(--radius); padding: 40px; margin-top: 40px; }
+    .pratiques h3 { margin-bottom: 20px; }
+    .pratiques-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .pratique-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--primary); }
+    .pratique-item p, .pratique-item ul { font-size: 0.95rem; color: var(--text-light); margin: 0; }
+    .pratique-item ul { padding-left: 20px; }
+
+    footer { background-color: var(--primary-dark); color: var(--white); text-align: center; padding: 40px 0; margin-top: 60px; }
+    footer p { opacity: 0.8; font-size: 0.9rem; }
+    footer a { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .intro { margin: 20px; padding: 24px; }
+      .timeline { padding-left: 20px; }
+      .timeline-item::before { left: -26px; width: 12px; height: 12px; }
+      #map { height: 350px; }
     }
-    .hero .sub {
-      font-size: 1rem;
-      opacity: 0.85;
-      font-weight: 400;
-      letter-spacing: 1px;
-    }
-    .badge {
-      background: #d9b382;
-      color: #1e2b2c;
-      display: inline-block;
-      padding: 0.2rem 1rem;
-      border-radius: 30px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      margin-top: 0.5rem;
-    }
-    .section-title {
-      font-size: 1.5rem;
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .section-title span {
-      background: #d9b382;
-      color: #1e2b2c;
-      font-size: 0.9rem;
-      padding: 0.1rem 0.7rem;
-      border-radius: 30px;
-    }
-    .stat-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 10px;
-      margin: 1rem 0 0.5rem;
-    }
-    .stat-item {
-      background: #f7f4ef;
-      border-radius: 20px;
-      padding: 0.8rem 0.3rem;
-      text-align: center;
-    }
-    .stat-item .number {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #1e3b3c;
-    }
-    .stat-item .label {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      opacity: 0.7;
-      letter-spacing: 0.3px;
-    }
-    .etape-list {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-top: 0.5rem;
-    }
-    .etape-row {
-      display: flex;
-      justify-content: space-between;
-      background: #f9f6f1;
-      padding: 0.5rem 0.9rem;
-      border-radius: 40px;
-      font-size: 0.9rem;
-      border: 1px solid #e8e0d6;
-    }
-    .etape-row strong {
-      font-weight: 600;
-    }
-    .etape-row .km {
-      background: #d9b38230;
-      padding: 0 0.6rem;
-      border-radius: 30px;
-      font-weight: 500;
-    }
-    .image-fit {
-      width: 100%;
-      height: auto;
-      border-radius: 24px;
-      margin: 1rem 0 0.5rem;
-      display: block;
-      background: #ddd6cc;
-      object-fit: cover;
-      aspect-ratio: 16/9;
-    }
-    .img-placeholder {
-      background: #d9d0c2;
-      border-radius: 24px;
-      width: 100%;
-      aspect-ratio: 16/9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #3f3a32;
-      font-size: 0.8rem;
-      font-weight: 300;
-    }
-    .inline-icon {
-      display: inline-block;
-      margin-right: 4px;
-    }
-    .list-bullet {
-      list-style: none;
-      padding: 0;
-    }
-    .list-bullet li {
-      padding: 0.4rem 0 0.4rem 1.8rem;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%231e3b3c" stroke-width="2"><circle cx="12" cy="12" r="6"/></svg>') left center no-repeat;
-      background-size: 1.2rem;
-    }
-    .grid-2col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin: 0.8rem 0;
-    }
-    .info-tag {
-      background: #f0ebe3;
-      padding: 0.3rem 1rem;
-      border-radius: 30px;
-      font-size: 0.75rem;
-      display: inline-block;
-    }
-    .separator {
-      height: 2px;
-      background: linear-gradient(90deg, #d9b382, #e8ddd0);
-      margin: 1.2rem 0 1rem;
-      width: 40%;
-    }
-    .footer-brand {
-      text-align: center;
-      padding: 1.5rem 1rem 1rem;
-      background: #1e3b3c;
-      color: #f0ebe3;
-      border-radius: 30px 30px 0 0;
-      margin-top: 1rem;
-    }
-    .footer-brand small {
-      opacity: 0.7;
-    }
-    .btn-outline {
-      border: 1px solid #d9b382;
-      background: transparent;
-      color: #d9b382;
-      padding: 0.3rem 1.2rem;
-      border-radius: 40px;
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
-    /* nouveau style pour logo + texte centré */
-    .footer-logo-block {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-top: 0.5rem;
-    }
-    .footer-logo-block img {
-      max-width: 80px;
-      height: auto;
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-    .footer-logo-block .site-name {
-      font-size: 1rem;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      opacity: 0.9;
-    }
-    @media (min-width:900px){.container{max-width:640px}.image-fit{max-height:250px}}
-</style>
+  </style>
 </head>
 <body>
-<div class="container">
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="sub">IDÉE VOYAGE EN PETIT GROUPE</div>
-    <h1>Cuba à vélo</h1>
-    <div style="font-size:1.2rem; font-weight:300;">Santiago → La Havane</div>
-    <div style="margin-top:0.6rem; display:flex; flex-wrap:wrap; justify-content:center; gap:8px;">
-      <span class="badge">🚴 12 étapes · 1 007 km</span>
-      <span class="badge">🏔️ Sierra Maestra</span>
+  <header class="hero">
+    <div class="container">
+      <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Idée voyage en petit groupe · 22 jours · Cyclistes confirmés</p>
+      <h1>Cuba à vélo · Santiago → La Havane</h1>
+      <p class="subtitle">12 étapes · 1 007 km · Sierra Maestra · Nuits chez l'habitant</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
     </div>
-    <div style="margin-top:1rem; font-size:0.9rem; opacity:0.9;">Nuits chez l'habitant · Voiture suiveuse · ¡Vamos!</div>
-    <div style="margin-top:0.5rem; font-size:0.8rem; background:#2a4b4c; padding:0.2rem 1rem; border-radius:40px; display:inline-block;">vpdvoyages.com</div>
-  </div>
+  </header>
 
-  <!-- IMAGE : velo_drapeau_cubain_caleche.jpg -->
-  <div style="padding:0.2rem 1.2rem 0;">
-    <img src="images/velo_drapeau_cubain_caleche.jpg" alt="Vélo et drapeau cubain" class="image-fit" style="margin-top:0.4rem;">
-  </div>
+  <main class="container">
+    
+    <section class="intro">
+      <h2 style="margin-bottom: 20px;">¡Vamos a pedalear por Cuba!</h2>
+      <p>
+        22 jours, plus de <span class="highlight">1 000 km de paysages</span> pour cyclistes confirmés. Des montagnes de la Sierra Maestra aux rues de La Havane, avec un détour possible par les mogotes de Viñales. 
+        Montées exigeantes, routes ondulantes, chaleur tropicale – chaque coup de pédale révèle la beauté brute de l'île « crocodile ». Programme validé à l'unanimité par notre groupe de passionnés.
+      </p>
+    </section>
 
-  <!-- LE CONCEPT -->
-  <div class="card">
-    <div class="section-title">🚵 LE CONCEPT <span>Est → Ouest</span></div>
-    <p style="font-weight:400;">22 jours, plus de 1 000 km de paysages pour cyclistes confirmés. Des montagnes de la Sierra Maestra aux rues de La Havane, avec un détour possible par les mogotes de Viñales. Montées exigeantes, routes ondulantes, chaleur tropicale – chaque coup de pédale révèle la beauté brute de l'île « crocodile ».</p>
-    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:0.8rem;">
-      <span class="info-tag">✅ Cyclistes confirmés</span>
-      <span class="info-tag">🔥 12 étapes 40–125 km</span>
-      <span class="info-tag">🏡 Immersion totale</span>
-      <span class="info-tag">🚗 Voiture suiveuse</span>
-    </div>
-    <div style="margin-top:0.8rem; background:#f0ebe3; border-radius:40px; padding:0.4rem 1rem; font-size:0.9rem;"><strong>Programme validé</strong> à l'unanimité</div>
-  </div>
+    <section>
+      <h2 class="section-title">Le voyage en un coup d'œil</h2>
+      <div class="grid-4">
+        
+        <div class="card">
+          <img src="images/Carte-Parcours.png" alt="Carte du parcours Cuba à vélo">
+          <div class="card-content">
+            <h3>🗺️ Le Concept : Est → Ouest</h3>
+            <ul>
+              <li>1 007 km en 12 étapes vélo</li>
+              <li>23 nuits chez l'habitant</li>
+              <li>Voiture suiveuse (bagages, mécanique)</li>
+              <li>Parcours Santiago → La Havane</li>
+            </ul>
+          </div>
+        </div>
 
-  <!-- EN CHIFFRES -->
-  <div class="card">
-    <div class="section-title">📊 EN CHIFFRES</div>
-    <div class="stat-grid">
-      <div class="stat-item"><div class="number">1 007</div><div class="label">km</div></div>
-      <div class="stat-item"><div class="number">12</div><div class="label">étapes vélo</div></div>
-      <div class="stat-item"><div class="number">23</div><div class="label">nuits chez l'hab.</div></div>
-    </div>
-    <div style="font-size:0.85rem; margin:0.5rem 0 0.2rem;"><strong>Parcours type</strong> Santiago → Chivirico → Pilón → Niquero → Manzanillo → Bayamo → Holguín → (transfert) Sancti Spíritus → Trinidad → Manicaragua → Cascajal → Matanzas → La Havane.</div>
-    <div><span class="info-tag">📍 Option Viñales</span> <span class="info-tag">🚴 39 à 123 km</span></div>
-  </div>
+        <div class="card">
+          <img src="images/route granma.jpg" alt="Route dans la province de Granma">
+          <div class="card-content">
+            <h3>🏔️ Sierra Maestra & Granma</h3>
+            <ul>
+              <li>Étapes 1 à 6 : Santiago → Holguín</li>
+              <li>Paysages montagneux du Granma</li>
+              <li>Immersion totale en campagne</li>
+              <li>Étapes de 39 à 111 km</li>
+            </ul>
+          </div>
+        </div>
 
-  <!-- IMAGE : carte parcours -->
-  <div style="padding:0 1.2rem;">
-    <img src="images/Carte-Parcours.png" alt="Carte parcours Cuba" class="image-fit">
-  </div>
+        <div class="card">
+          <img src="images/Guardalavaca.jpg" alt="Plage de Guardalavaca">
+          <div class="card-content">
+            <h3>🌊 Guardalavaca & Centre</h3>
+            <ul>
+              <li>Étape 7 : Holguín → Guardalavaca A/R</li>
+              <li>110 km de côte et de nature</li>
+              <li>Transfert vers Sancti Spíritus</li>
+              <li>Cœur historique de Cuba</li>
+            </ul>
+          </div>
+        </div>
 
-  <!-- LES ÉTAPES (première moitié) -->
-  <div class="card">
-    <div class="section-title">🗺️ LES ÉTAPES <span>Est</span></div>
-    <div class="etape-list">
-      <div class="etape-row"><span><strong>1</strong> Santiago → Chivirico</span> <span class="km">78 km</span></div>
-      <div class="etape-row"><span><strong>2</strong> Chivirico → Pilón</span> <span class="km">111 km</span></div>
-      <div class="etape-row"><span><strong>3</strong> Pilón → Niquero</span> <span class="km">39 km</span></div>
-      <div class="etape-row"><span><strong>4</strong> Niquero → Manzanillo</span> <span class="km">72 km</span></div>
-      <div class="etape-row"><span><strong>5</strong> Manzanillo → Bayamo</span> <span class="km">67 km</span></div>
-      <div class="etape-row"><span><strong>6</strong> Bayamo → Holguín</span> <span class="km">72 km</span></div>
-    </div>
-    <div style="margin-top:0.5rem; background:#f7f4ef; padding:0.4rem 1rem; border-radius:40px; font-size:0.8rem;">🚌 <strong>Transfert</strong> Holguín → Sancti Spíritus (jour 9)</div>
-  </div>
+        <div class="card">
+          <img src="images/trinidad_toits_clocher_montagnes.jpg" alt="Toits de Trinidad et montagnes">
+          <div class="card-content">
+            <h3>🏛️ Trinidad & Patrimoine</h3>
+            <ul>
+              <li>Étapes 8 à 10 : Sancti Spíritus → Cascajal</li>
+              <li>Ville coloniale classée UNESCO</li>
+              <li>Topes de Collantes (montagnes)</li>
+              <li>Architecture et histoire</li>
+            </ul>
+          </div>
+        </div>
 
-  <!-- IMAGE route granma -->
-  <div style="padding:0 1.2rem;">
-    <img src="images/route granma.jpg" alt="Route Granma" class="image-fit">
-  </div>
+        <div class="card">
+          <img src="images/h-nacional.jpg" alt="Hôtel Nacional de Cuba à La Havane">
+          <div class="card-content">
+            <h3>🏙️ La Havane & Viñales</h3>
+            <ul>
+              <li>Étapes 11-12 : Matanzas → La Havane</li>
+              <li>Arrivée triomphale dans la capitale</li>
+              <li>Option Viñales (mogotes)</li>
+              <li>2 à 3 jours d'exploration urbaine</li>
+            </ul>
+          </div>
+        </div>
 
-  <!-- LES ÉTAPES (seconde moitié) -->
-  <div class="card">
-    <div class="section-title">🗺️ LES ÉTAPES <span>Centre & Ouest</span></div>
-    <div class="etape-list">
-      <div class="etape-row"><span><strong>7</strong> Holguín → Guardalavaca A/R</span> <span class="km">110 km</span></div>
-      <div class="etape-row" style="background:#e8ddd0;"><span><strong>T</strong> Holguín → Sancti Spíritus</span> <span class="km">transfert</span></div>
-      <div class="etape-row"><span><strong>8</strong> Sancti Spíritus → Trinidad</span> <span class="km">71 km</span></div>
-      <div class="etape-row"><span><strong>9</strong> Trinidad → Manicaragua</span> <span class="km">61–79 km</span></div>
-      <div class="etape-row"><span><strong>10</strong> Manicaragua → Cascajal</span> <span class="km">99–103 km</span></div>
-      <div class="etape-row"><span><strong>11-12</strong> Cascajal → Matanzas → La Havane</span> <span class="km">123 + 104 km</span></div>
-    </div>
-  </div>
+        <div class="card">
+          <img src="images/Santeria-Cuba.jpg" alt="Culture et Santería à Cuba">
+          <div class="card-content">
+            <h3>🥁 Culture & Santería</h3>
+            <ul>
+              <li>Immersion chez l'habitant</li>
+              <li>Soirée cubaine & journée paysanne</li>
+              <li>Cochon de lait (despedida)</li>
+              <li>Rencontres authentiques</li>
+            </ul>
+          </div>
+        </div>
 
-  <!-- IMAGE Trinidad toits -->
-  <div style="padding:0 1.2rem;">
-    <img src="images/trinidad_toits_clocher_montagnes.jpg" alt="Trinidad toits et montagne" class="image-fit">
-  </div>
+      </div>
+    </section>
 
-  <!-- EXEMPLE DE PROGRAMME -->
-  <div class="card">
-    <div class="section-title">📅 EXEMPLE DE PROGRAMME <span>22 jours</span></div>
-    <div style="display:flex; flex-direction:column; gap:10px;">
-      <div><span class="info-tag">Jours 1–2</span> Arrivée Santiago · Visite ville</div>
-      <div><span class="info-tag">Jours 3–8</span> Étapes 1 à 6 · Santiago → Holguín</div>
-      <div><span class="info-tag">Jour 9</span> Transfert Holguín → Sancti Spíritus</div>
-      <div><span class="info-tag">Jours 10–14</span> Étapes 8 à 12 · Trinidad → La Havane</div>
-      <div><span class="info-tag">Jours 15–20</span> La Havane + option Viñales</div>
-      <div><span class="info-tag">Jours 21–22</span> Fin de séjour · Vol retour</div>
-    </div>
-  </div>
-
-  <!-- IMAGE havane voiture ancienne -->
-  <div style="padding:0 1.2rem;">
-    <img src="images/havane_voiture_ancienne_malecon.jpg" alt="La Havane voiture ancienne" class="image-fit">
-  </div>
-
-  <!-- LOGEMENT & ASSISTANCE -->
-  <div class="card">
-    <div class="section-title">🏠 LOGEMENT & ASSISTANCE</div>
-    <div class="grid-2col">
-      <div><span style="font-weight:600;">23 nuits</span> chez l'habitant<br><span style="font-size:0.75rem;">chambre double (matrimonial/twin)</span></div>
-      <div><span style="font-weight:600;">🚗 Voiture suiveuse</span><br><span style="font-size:0.75rem;">bagages, mécanique, ravitaillement</span></div>
-    </div>
-    <div style="margin:0.2rem 0;"><span style="font-weight:600;">Repas</span> · tous les déjeuners ensemble, soirées libres sauf 3 (soirée cubaine, despedida, journée paysanne)</div>
-    <div style="background:#f0ebe3; padding:0.4rem 1rem; border-radius:40px; margin-top:0.5rem;">👥 Petit groupe · programme validé à l'unanimité · guide expérimenté</div>
-  </div>
-
-  <!-- AVANT LE DÉPART -->
-  <div class="card">
-    <div class="section-title">🛂 AVANT LE DÉPART</div>
-    <ul class="list-bullet">
-      <li><strong>Passeport & visa</strong> – valable 6 mois après retour, carte de tourisme</li>
-      <li><strong>Assurance santé</strong> obligatoire (attestation via carte Visa)</li>
-      <li><strong>Vélo</strong> – carton de transport, entretien et pièces recommandés</li>
-      <li><strong>Niveau</strong> cyclistes confirmés (étapes jusqu'à 125 km, dénivelés Sierra & Topes de Collantes)</li>
-    </ul>
-  </div>
-
-  <!-- IMAGE velos.png -->
-  <div style="padding:0 1.2rem;">
-    <img src="images/velos.png" alt="Vélos Cuba" class="image-fit">
-  </div>
-
-  <!-- SUR PLACE -->
-  <div class="card">
-    <div class="section-title">💵 SUR PLACE</div>
-    <div><span class="info-tag">Monnaie</span> Pesos cubains (CUP) – change en banque/Cadeca</div>
-    <div><span class="info-tag">Prises</span> américaine (double plat) 110/220 V – adaptateur recommandé</div>
-    <div><span class="info-tag">Sécurité</span> Cuba = pays le plus sécuritaire d'Amérique latine</div>
-    <div><span class="info-tag">Ambassade</span> Calle 14 n°312, Miramar (Playa), La Havane</div>
-  </div>
-
-  <!-- IMAGE Santeria ou autre -->
-  <div style="padding:0 1.2rem;">
-    <img src="images/Santeria-Cuba.jpg" alt="Santeria Cuba" class="image-fit">
-  </div>
-
-  <!-- FORMULE INCLUS -->
-  <div class="card">
-    <div class="section-title">✅ FORMULE <span>sérénité</span></div>
-    <div style="display:flex; flex-wrap:wrap; gap:6px;">
-      <span class="info-tag">✈️ Vol A/R</span>
-      <span class="info-tag">🎫 Carte de tourisme</span>
-      <span class="info-tag">🚐 Transferts aéroport</span>
-      <span class="info-tag">🏡 23 nuits chez l'hab.</span>
-      <span class="info-tag">🍳 petits-déjeuners + 21 déjeuners</span>
-      <span class="info-tag">🚴 12 étapes vélo + 1 transfert</span>
-      <span class="info-tag">🚗 Voiture suiveuse</span>
-      <span class="info-tag">🎶 Soirée cubaine + despedida</span>
-      <span class="info-tag">🐖 Journée paysanne (cochon de lait)</span>
-      <span class="info-tag">🏛️ Visites des villes étapes</span>
-      <span class="info-tag">🧭 Guide accompagnateur</span>
-      <span class="info-tag">🌿 Option Viñales</span>
-    </div>
-  </div>
-
-  <!-- FOOTER avec logo + vpdvoyages.com centrés l'un au dessus de l'autre -->
-  <div class="footer-brand">
-    <div style="font-size:1.4rem; font-weight:300;">¡Vamos a pedalear por Cuba!</div>
-    <div style="margin:0.3rem 0; opacity:0.8;">Bon coup de pédale sur les routes des Caraïbes</div>
-    <div style="display:flex; justify-content:center; gap:1.2rem; flex-wrap:wrap; margin-top:0.5rem; font-size:0.85rem;">
-      <span>Santiago · Trinidad · La Havane</span>
-      <span><strong>1 007 km</strong></span>
+    <!-- PAUSE VISUELLE 1 : CAMPAGNE CUBAINE -->
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/cavalier_cheval_voiture_ancienne_campagne.jpg');">
+      <div class="caption">
+        <h2>L'âme de Cuba</h2>
+        <p>Entre classic cars, chevaux et campagnes verdoyantes. Chaque kilomètre est une leçon d'histoire et de résilience.</p>
+      </div>
     </div>
 
-    <!-- Bloc logo + nom du site centrés -->
-    <div class="footer-logo-block">
-      <img src="images/logo_vpd_voyages_grand.jpg" alt="Logo VPD Voyages">
-      <span class="site-name">vpdvoyages.com</span>
+    <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
+      <h2 class="section-title">Votre itinéraire jour par jour</h2>
+      
+      <div class="timeline">
+        
+        <div class="timeline-phase">
+          <h3>Phase 1 : L'Est (Santiago → Holguín)</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Jours 1-2</div>
+            <h4>Arrivée à Santiago de Cuba</h4>
+            <p>Accueil, installation et visite de la ville. Santiago, berceau de la révolution et capitale culturelle de l'Est, vibre au rythme du son et de la salsa.</p>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="days">Jours 3-8</div>
+            <h4>Les 6 premières étapes (78 à 111 km)</h4>
+            <p>Santiago → Chivirico → Pilón → Niquero → Manzanillo → Bayamo → Holguín. Traversée de la Sierra Maestra et de la province de Granma. Montées exigeantes, routes ondulantes, paysages à couper le souffle. Nuits chez l'habitant.</p>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <h3>Phase 2 : Le Centre (Holguín → Trinidad)</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Jour 9</div>
+            <h4>Transfert Holguín → Sancti Spíritus</h4>
+            <p>Journée de transfert en véhicule pour rejoindre le centre de l'île. Repos et préparation pour la suite de l'aventure.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jours 10-14</div>
+            <h4>Étapes 8 à 12 (61 à 123 km)</h4>
+            <p>Sancti Spíritus → Trinidad → Manicaragua → Cascajal. Découverte de Trinidad (UNESCO), montée vers les Topes de Collantes. Paysages de montagnes, vallées et plantations.</p>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <h3>Phase 3 : L'Ouest (Cascajal → La Havane)</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Jours 15-18</div>
+            <h4>Cascajal → Matanzas → La Havane</h4>
+            <p>Les dernières grandes étapes (123 + 104 km). Traversée des plaines sucrières et arrivée triomphale dans la capitale. Installation à La Havane.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jours 19-20</div>
+            <h4>La Havane & Option Viñales</h4>
+            <p>Exploration de La Havane : Malecón, Vieille Havane, classic cars. Option Viñales pour découvrir les mogotes et les plantations de tabac.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jours 21-22</div>
+            <h4>Fin de séjour & Vol retour</h4>
+            <p>Derniers achats, despedida avec le groupe (journée paysanne, cochon de lait). Transfert aéroport et vol retour avec la salsa dans les jambes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAUSE VISUELLE 2 : CLASSIC CARS & VÉLOS -->
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/auto-velo.JPG');">
+      <div class="caption">
+        <h2>Entre classic cars et vélos</h2>
+        <p>La voiture suiveuse assure bagages, mécanique et ravitaillement. Vous ne gardez que l'essentiel pour pédaler l'esprit libre.</p>
+      </div>
     </div>
 
-    <div style="margin-top:0.8rem; display:flex; justify-content:center; gap:8px; flex-wrap:wrap;">
-      <span class="info-tag" style="background:#2a4b4c; color:white;">🚴‍♂️ cyclistes confirmés</span>
-      <span class="info-tag" style="background:#2a4b4c; color:white;">🇨🇺 Cuba</span>
+    <section class="pratiques">
+      <h2 class="section-title">Formule Sérénité & Infos pratiques</h2>
+      <div class="pratiques-grid">
+        <div class="pratique-item">
+          <h4>✅ Formule Sérénité incluse</h4>
+          <ul>
+            <li>✈️ Vol A/R & Carte de tourisme</li>
+            <li>🚐 Transferts aéroport</li>
+            <li>🏡 23 nuits chez l'habitant (chambre double)</li>
+            <li>🍳 Petits-déjeuners + 21 déjeuners</li>
+            <li>🚴 12 étapes vélo + 1 transfert</li>
+            <li>🚗 Voiture suiveuse (bagages, mécanique)</li>
+            <li>🎶 Soirée cubaine + despedida (cochon de lait)</li>
+            <li>🏛️ Visites des villes étapes</li>
+            <li>🧭 Guide accompagnateur expérimenté</li>
+          </ul>
+        </div>
+        <div class="pratique-item">
+          <h4>🛂 Avant le départ</h4>
+          <ul>
+            <li><strong>Passeport & visa :</strong> Valable 6 mois après retour, carte de tourisme obligatoire</li>
+            <li><strong>Assurance santé :</strong> Obligatoire (attestation via carte Visa)</li>
+            <li><strong>Vélo :</strong> Carton de transport, entretien et pièces de rechange recommandés</li>
+            <li><strong>Niveau :</strong> Cyclistes confirmés (étapes jusqu'à 125 km, dénivelés Sierra & Topes de Collantes)</li>
+          </ul>
+        </div>
+        <div class="pratique-item">
+          <h4>💵 Sur place</h4>
+          <ul>
+            <li><strong>Monnaie :</strong> Pesos cubains (CUP) – change en banque/Cadeca</li>
+            <li><strong>Prises :</strong> Américaine (double plat) 110/220 V – adaptateur recommandé</li>
+            <li><strong>Sécurité :</strong> Cuba = pays le plus sécuritaire d'Amérique latine</li>
+            <li><strong>Ambassade :</strong> Calle 14 n°312, Miramar (Playa), La Havane</li>
+          </ul>
+        </div>
+        <div class="pratique-item">
+          <h4>🍽️ Repas & Ambiance</h4>
+          <ul>
+            <li>Tous les déjeuners pris ensemble</li>
+            <li>Soirées libres sauf 3 (soirée cubaine, despedida, journée paysanne)</li>
+            <li>Petit groupe · programme validé à l'unanimité</li>
+            <li>Immersion totale chez l'habitant (matrimonial/twin)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="carte-section">
+      <h2 class="section-title">Votre itinéraire sur la carte</h2>
+      <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+        De Santiago de Cuba à La Havane, en passant par la Sierra Maestra, Trinidad et Matanzas : cliquez sur chaque point doré pour découvrir les étapes de votre aventure.
+      </p>
+      <div id="map"></div>
+      <div style="text-align: center; margin-top: 20px;">
+        <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
+      </div>
+    </section>
+
+    <section style="text-align: center; padding-bottom: 20px;">
+      <h2 style="margin-bottom: 16px;">¡Vamos a pedalear por Cuba!</h2>
+      <p style="margin-bottom: 32px; color: var(--text-light);">Bon coup de pédale sur les routes des Caraïbes · Santiago · Trinidad · La Havane · 1 007 km</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p style="font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 8px;">VPD Voyages</p>
+      <p>Votre travel planner spécialisé en Espagne et Amérique latine.</p>
+      <p style="margin-top: 16px;">
+        <a href="https://vpdvoyages.com">Retour à l'accueil</a> · 
+        <a href="https://vpdvoyages.com/mentions-legales.html">Mentions légales</a>
+      </p>
     </div>
-  </div>
+  </footer>
 
-  <!-- petites images additionnelles (Guardalavaca, cavalier, etc) en bas -->
-  <div style="display:flex; gap:6px; padding:0.5rem 1.2rem 0; flex-wrap:wrap; justify-content:center;">
-    <img src="images/Guardalavaca.jpg" alt="Guardalavaca" style="width:30%; border-radius:40px; aspect-ratio:1/1; object-fit:cover;">
-    <img src="images/cavalier_cheval_voiture_ancienne_campagne.jpg" alt="cavalier cheval" style="width:30%; border-radius:40px; aspect-ratio:1/1; object-fit:cover;">
-    <img src="images/auto-velo.JPG" alt="auto vélo" style="width:30%; border-radius:40px; aspect-ratio:1/1; object-fit:cover;">
-  </div>
-  <div style="text-align:center; font-size:0.6rem; color:#7a7166; padding:0.8rem 1rem;">Photos : dossier images/ · Cuba à vélo · Santiago → La Havane</div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-</div>
+  <script>
+    const map = L.map('map').setView([21.5, -78.5], 7);
+
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+    }).addTo(map);
+
+    const etapes = [
+      { nom: "Santiago de Cuba", coords: [20.0247, -75.8219], desc: "Départ · Capitale culturelle de l'Est" },
+      { nom: "Bayamo", coords: [20.3792, -76.6433], desc: "Étape 5 · Sierra Maestra" },
+      { nom: "Holguín", coords: [20.8872, -75.2431], desc: "Étape 6 · Transfert vers le Centre" },
+      { nom: "Sancti Spíritus", coords: [21.9297, -79.4428], desc: "Centre historique · Transfert" },
+      { nom: "Trinidad", coords: [21.8000, -79.9833], desc: "Étape 8 · Ville UNESCO" },
+      { nom: "Santa Clara", coords: [22.4000, -79.9667], desc: "Vers Cascajal & Matanzas" },
+      { nom: "Matanzas", coords: [23.0411, -81.5775], desc: "Étape 11 · Porte de La Havane" },
+      { nom: "La Havane", coords: [23.1136, -82.3666], desc: "Arrivée · Malecón · Vieille Havane" }
+    ];
+
+    const iconeTango = L.divIcon({
+        className: 'custom-icon',
+        html: '<div style="background-color: #D4A017; width: 16px; height: 16px; border-radius: 50%; border: 3px solid #FFFFFF; box-shadow: 0 0 0 3px #8B1E1E, 0 4px 8px rgba(0,0,0,0.5);"></div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11]
+    });
+
+    const marqueurs = [];
+    etapes.forEach((etape, index) => {
+      const marker = L.marker(etape.coords, {icon: iconeTango}).addTo(map);
+      marker.bindPopup(`<b style="font-family: 'Playfair Display', serif; color: #8B1E1E; font-size: 1.1rem;">${index + 1}. ${etape.nom}</b><br><span style="color: #4A5568; font-size: 0.9rem;">${etape.desc}</span>`);
+      marqueurs.push(marker);
+    });
+
+    const trace = etapes.map(e => e.coords);
+    
+    L.polyline(trace, {
+        color: '#FFFFFF', 
+        weight: 8, 
+        opacity: 0.9,
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    L.polyline(trace, {
+        color: '#8B1E1E', 
+        weight: 4, 
+        opacity: 1, 
+        dashArray: '10, 8',
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    function resetMap() {
+      map.setView([21.5, -78.5], 7);
+    }
+
+    const groupe = L.featureGroup(marqueurs);
+    map.fitBounds(groupe.getBounds().pad(0.2));
+  </script>
+
 </body>
 </html>
