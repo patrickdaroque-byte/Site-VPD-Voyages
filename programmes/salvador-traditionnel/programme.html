@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- OPTIMISATION SEO -->
+  <title>Salvador · Voyage traditionnel 16 jours | San Salvador, Suchitoto, Volcans & Maya | VPD Voyages</title>
+  <meta name="description" content="Voyage authentique de 16 jours au Salvador : San Salvador, Ruta de las Flores, volcans, sites mayas UNESCO, Suchitoto et San Miguel. Immersion culturelle et slow travel. Devis gratuit avec VPD Voyages.">
+  
+  <!-- POLICES D'ÉCRITURE -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS LEAFLET POUR LA CARTE -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <style>
+    :root {
+      --primary: #8B1E1E;
+      --primary-dark: #6B1515;
+      --accent: #D4A017;
+      --text: #2D3748;
+      --text-light: #4A5568;
+      --bg: #FAFAFA;
+      --white: #FFFFFF;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --radius: 8px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background-color: var(--bg); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1.3; }
+    a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+    a:hover { color: var(--primary); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    .hero {
+      position: relative;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/volcan-santa-ana.jpg') center/cover no-repeat;
+      color: var(--white);
+      padding: 120px 0 80px;
+      text-align: center;
+    }
+    .hero h1 { color: var(--white); font-size: 3.2rem; margin-bottom: 16px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero .subtitle { font-size: 1.4rem; font-weight: 300; opacity: 0.95; margin-bottom: 32px; font-style: italic; }
+    .btn { display: inline-block; background-color: var(--accent); color: var(--primary-dark); padding: 16px 36px; border-radius: 50px; font-weight: 600; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); color: var(--primary-dark); }
+
+    section { padding: 60px 0; }
+    .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; position: relative; }
+    .section-title::after { content: ''; display: block; width: 60px; height: 3px; background-color: var(--accent); margin: 16px auto 0; }
+
+    .intro { background-color: var(--white); text-align: center; max-width: 800px; margin: -40px auto 0; padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); position: relative; z-index: 10; }
+    .intro p { font-size: 1.1rem; color: var(--text-light); }
+    .intro .highlight { color: var(--primary); font-weight: 600; }
+
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
+    .card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border-top: 4px solid var(--accent); transition: transform 0.3s ease; }
+    .card:hover { transform: translateY(-5px); }
+    .card img { width: 100%; height: 220px; object-fit: cover; }
+    .card-content { padding: 24px; }
+    .card h3 { font-size: 1.4rem; margin-bottom: 16px; }
+    .card ul { list-style: none; padding-left: 0; }
+    .card ul li { padding: 6px 0; color: var(--text-light); position: relative; padding-left: 20px; }
+    .card ul li::before { content: '•'; color: var(--primary); font-weight: bold; position: absolute; left: 0; }
+
+    .pause-visuelle { position: relative; height: 400px; background-size: cover; background-position: center; background-attachment: fixed; border-radius: var(--radius); overflow: hidden; margin: 40px 0; }
+    .pause-naturelle::before { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)); }
+    .pause-visuelle .caption { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--white); text-align: center; padding: 40px; }
+    .pause-visuelle .caption h2 { color: var(--white); font-size: 2.5rem; margin-bottom: 16px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
+    .pause-visuelle .caption p { font-size: 1.2rem; max-width: 600px; font-style: italic; text-shadow: 1px 1px 4px rgba(0,0,0,0.5); }
+    @media (max-width: 768px) { .pause-visuelle { background-attachment: scroll; height: 300px; } .pause-visuelle .caption h2 { font-size: 1.8rem; } }
+
+    .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 30px; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background-color: #E2E8F0; }
+    .timeline-phase { margin-bottom: 40px; position: relative; }
+    .timeline-phase h3 { background-color: var(--primary); color: var(--white); display: inline-block; padding: 8px 20px; border-radius: 50px; font-size: 1.1rem; margin-bottom: 20px; font-family: 'Inter', sans-serif; font-weight: 600; }
+    .timeline-item { background: var(--white); padding: 20px 24px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 16px; position: relative; }
+    .timeline-item::before { content: ''; position: absolute; left: -36px; top: 24px; width: 15px; height: 15px; background-color: var(--accent); border-radius: 50%; border: 3px solid var(--white); }
+    .timeline-item .days { font-size: 0.85rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .timeline-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
+    .timeline-item p { font-size: 0.95rem; color: var(--text-light); margin: 0; }
+
+    .carte-section { background-color: var(--white); border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow); margin-top: 20px; }
+    #map { width: 100%; height: 500px; border-radius: 8px; z-index: 1; }
+    .custom-icon { background: transparent !important; border: none !important; }
+
+    .pratiques { background-color: #F8FAFC; border-radius: var(--radius); padding: 40px; margin-top: 40px; }
+    .pratiques h3 { margin-bottom: 20px; }
+    .pratiques-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .pratique-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--primary); }
+    .pratique-item p, .pratique-item ul { font-size: 0.95rem; color: var(--text-light); margin: 0; }
+    .pratique-item ul { padding-left: 20px; }
+
+    footer { background-color: var(--primary-dark); color: var(--white); text-align: center; padding: 40px 0; margin-top: 60px; }
+    footer p { opacity: 0.8; font-size: 0.9rem; }
+    footer a { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .intro { margin: 20px; padding: 24px; }
+      .timeline { padding-left: 20px; }
+      .timeline-item::before { left: -26px; width: 12px; height: 12px; }
+      #map { height: 350px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Voyage authentique · 16 jours · Slow travel</p>
+      <h1>Salvador · L'âme de l'Amérique centrale</h1>
+      <p class="subtitle">San Salvador · Ruta de las Flores · Volcans · Mayas · Suchitoto</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <section class="intro">
+      <h2 style="margin-bottom: 20px;">16 jours au rythme du Salvador</h2>
+      <p>
+        Loin des circuits rapides, ce voyage de 16 jours vous offre le luxe de la lenteur. Du <span class="highlight">volcan Santa Ana</span> aux <span class="highlight">ruines mayas de Tazumal</span>, des villages colorés de la <span class="highlight">Ruta de las Flores</span> à la quiétude coloniale de <span class="highlight">Suchitoto</span>, découvrez un pays chaleureux, fier de ses traditions et encore préservé du tourisme de masse.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="section-title">Le voyage en un coup d'œil</h2>
+      <div class="grid-4">
+        
+        <div class="card">
+          <img src="images/san-salvador.jpg" alt="San Salvador, capitale">
+          <div class="card-content">
+            <h3>🏛️ San Salvador</h3>
+            <ul>
+              <li>Cathédrale métropolitaine</li>
+              <li>Mercado Central & pupusas</li>
+              <li>Musée de la Parole (MUPI)</li>
+              <li>Quartiers bohèmes</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/ruta-flores.jpg" alt="Ruta de las Flores">
+          <div class="card-content">
+            <h3>🌸 Ruta de las Flores</h3>
+            <ul>
+              <li>Villages colorés : Ataco, Juayúa</li>
+              <li>Feria gastronomique</li>
+              <li>Plantations de café</li>
+              <li>Artisanat et murales</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/volcan-santa-ana.jpg" alt="Volcan Santa Ana">
+          <div class="card-content">
+            <h3>🌋 Volcans & Lacs</h3>
+            <ul>
+              <li>Volcan Santa Ana (Ilamatepec)</li>
+              <li>Lac de cratère turquoise</li>
+              <li>Lago de Coatepeque</li>
+              <li>Paysages à couper le souffle</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/joya-ceren.jpg" alt="Joya de Cerén UNESCO">
+          <div class="card-content">
+            <h3>🏺 Héritage Maya</h3>
+            <ul>
+              <li>Joya de Cerén (UNESCO)</li>
+              <li>« Pompéi des Amériques »</li>
+              <li>Tazumal & San Andrés</li>
+              <li>Peintures rupestres de Cacaopera</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/suchitoto.jpg" alt="Suchitoto, village colonial">
+          <div class="card-content">
+            <h3>🎨 Suchitoto</h3>
+            <ul>
+              <li>Perle coloniale du nord</li>
+              <li>Église Santa Lucía</li>
+              <li>Lac Suchitlán</li>
+              <li>Galeries d'art & artisanat</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/san-miguel.jpg" alt="San Miguel, l'Est salvadorien">
+          <div class="card-content">
+            <h3>🌾 L'Est authentique</h3>
+            <ul>
+              <li>San Miguel & sa cathédrale</li>
+              <li>Mercado de Oriente</li>
+              <li>Culture lenca</li>
+              <li>Traditions de l'Est</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PAUSE VISUELLE 1 : LAGO DE COATEPEQUE -->
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/lago-coatepeque.jpg');">
+      <div class="caption">
+        <h2>Lago de Coatepeque</h2>
+        <p>Lac de cratère aux eaux turquoise, niché entre les volcans. L'un des plus beaux lacs d'Amérique centrale, idéal pour la contemplation et la baignade.</p>
+      </div>
+    </div>
+
+    <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
+      <h2 class="section-title">Votre itinéraire jour par jour</h2>
+      
+      <div class="timeline">
+        
+        <div class="timeline-phase">
+          <h3>Semaine 1 : San Salvador & l'Ouest volcanique</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Jour 1</div>
+            <h4>Arrivée à San Salvador</h4>
+            <p>Accueil à l'aéroport international Monseñor Óscar Arnulfo Romero. Transfert et installation. Dîner de bienvenue autour de pupusas, le plat national.</p>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="days">Jour 2</div>
+            <h4>San Salvador historique</h4>
+            <p>Visite de la Cathédrale métropolitaine (tombe de Mgr Romero), du Palacio Nacional et du Mercado Central. Après-midi au Musée de la Parole et de l'Image (MUPI) pour comprendre l'histoire récente du pays.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 3</div>
+            <h4>Artisanat & culture</h4>
+            <p>Musée d'Art du Salvador (MARTE) et Mercado de Artesanías pour découvrir le travail des artisans locaux. Après-midi libre pour explorer les cafés bohèmes de la ville.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 4</div>
+            <h4>Route vers l'Ouest : Nahuizalco & Juayúa</h4>
+            <p>Départ sur la Ruta de las Flores. Arrêt à Nahuizalco, célèbre pour son artisanat en fibre naturelle et son marché nocturne. Continuation vers Juayúa et sa célèbre église noire. Feria gastronomique le week-end.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 5</div>
+            <h4>Concepción de Ataco & Café</h4>
+            <p>Découverte de Concepción de Ataco, village connu pour ses murales colorés et son artisanat. Visite d'une finca cafetière : de la cerise à la tasse, dégustation de l'un des meilleurs cafés d'Amérique centrale.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 6</div>
+            <h4>Volcan Santa Ana (Ilamatepec)</h4>
+            <p>Randonnée matinale au sommet du volcan Santa Ana (2 381 m). Découverte du magnifique lac de cratère aux eaux vert émeraude. Vues à 360° sur la région. Retour et soirée libre.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 7</div>
+            <h4>Lago de Coatepeque</h4>
+            <p>Journée de détente au bord du Lago de Coatepeque, l'un des plus beaux lacs de cratère du pays. Baignade, kayak ou simple lecture face au volcan. Ambiance paisible et ressourçante.</p>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <h3>Semaine 2 : Mayas, Suchitoto & l'Est authentique</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Jour 8</div>
+            <h4>Joya de Cerén & Tazumal</h4>
+            <p>Matinée au site UNESCO de Joya de Cerén, un village maya enseveli par les cendres volcaniques vers 600 ap. J.-C. (le « Pompéi des Amériques »). Après-midi : site de Tazumal, la plus grande pyramide maya du Salvador.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 9</div>
+            <h4>Route vers Suchitoto</h4>
+            <p>Transfert vers le nord et installation à Suchitoto, joyau colonial perché au-dessus du lac Suchitlán. Balade dans les ruelles pavées, église Santa Lucía du XVIIIe siècle et galeries d'art.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 10</div>
+            <h4>Lac Suchitlán & Artisanat</h4>
+            <p>Balade en bateau sur le lac Suchitlán, observation des oiseaux (dont le martin-pêcheur à collier). Après-midi : atelier d'initiation à l'artisanat local (poterie, tissage ou peinture sur soie).</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 11</div>
+            <h4>Forêt de nuages : Montecristo</h4>
+            <p>Excursion au Parc National Montecristo, forêt de nuages à la frontière du Guatemala et du Honduras. Randonnée parmi les orchidées, les fougères géantes et une biodiversité exceptionnelle.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 12</div>
+            <h4>Traversée vers l'Est</h4>
+            <p>Route panoramique vers l'Est du pays. Découverte des paysages ruraux, des plantations de canne à sucre et arrêt dans un village traditionnel pour un déjeuner typique (yuca frita, pollo campero).</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 13</div>
+            <h4>San Miguel, capitale de l'Est</h4>
+            <p>Découverte de San Miguel, ville vibrante et commerçante. Visite de la Catedral de San Miguel et immersion dans le gigantesque Mercado de Oriente. Culture et traditions différentes de l'Ouest.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 14</div>
+            <h4>Perquín & Cacaopera</h4>
+            <p>Route vers les montagnes de l'Est. Visite du Museo de la Revolución à Perquín (histoire du conflit). À Cacaopera, découverte des peintures rupestres laissées par le peuple Lenca il y a des siècles.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 15</div>
+            <h4>Retour à San Salvador</h4>
+            <p>Retour progressif vers la capitale. Dernière soirée, dîner d'adieu dans un restaurant traditionnel. Échange sur les ressentis du voyage.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 16</div>
+            <h4>Départ</h4>
+            <p>Petit-déjeuner. Transfert à l'aéroport Monseñor Óscar Arnulfo Romero. Vol retour avec des souvenirs plein les yeux et le goût du café salvadorien.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAUSE VISUELLE 2 : SUCHITOTO -->
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/lac-suchitlan.jpg');">
+      <div class="caption">
+        <h2>Suchitoto et le lac Suchitlán</h2>
+        <p>Ancienne capitale culturelle du Salvador, Suchitoto offre une atmosphère bohème et artistique unique, surplombant un lac immense riche en biodiversité.</p>
+      </div>
+    </div>
+
+    <section class="pratiques">
+      <h2 class="section-title">Gastronomie salvadorienne</h2>
+      <div class="pratiques-grid">
+        <div class="pratique-item">
+          <img src="images/pupusas.jpg" alt="Pupusas, plat national" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+          <h4>🫓 Pupusas</h4>
+          <p>Plat national : galettes de maïs farcies (queso, frijoles, chicharrón, loroco). À déguster avec curtido (chou fermenté) et salsa de tomate.</p>
+        </div>
+        <div class="pratique-item">
+          <img src="images/cafe-salvador.jpg" alt="Café de spécialité salvadorien" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+          <h4>☕ Café de spécialité</h4>
+          <p>Le Salvador produit l'un des meilleurs cafés d'Amérique centrale (Pacas, Bourbon). Dégustation dans les fincas de la Ruta de las Flores.</p>
+        </div>
+        <div class="pratique-item">
+          <img src="images/yuca.jpg" alt="Yuca frita, plat traditionnel" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+          <h4>🥘 Plats traditionnels</h4>
+          <p>Yuca frita con chicharrón, sopa de pata, tamales, pan con pavo, atol de elote (bouillie de maïs sucrée).</p>
+        </div>
+        <div class="pratique-item">
+          <img src="images/horchata.jpg" alt="Horchata salvadorienne" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+          <h4>🍹 Boissons</h4>
+          <p>Horchata salvadorienne (sésame, cacao, lait), tamarindo, ensalada (boisson aux fruits), bière Pilsener locale.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pratiques">
+      <h2 class="section-title">Artisanat & Traditions</h2>
+      <div class="pratiques-grid">
+        <div class="pratique-item">
+          <img src="images/artisanat-fibre.jpg" alt="Artisanat en fibre naturelle" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+          <h4>🧺 Artisanat en fibre</h4>
+          <p>Nahuizalco est célèbre pour son artisanat en fibre naturelle (hamacs, paniers, nattes). Travail transmis de génération en génération.</p>
+        </div>
+        <div class="pratique-item">
+          <img src="images/murales-ataco.jpg" alt="Murales colorés de Concepción de Ataco" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+          <h4>🎨 Murales & street art</h4>
+          <p>Concepción de Ataco est réputée pour ses murales colorés racontant l'histoire et la culture locale.</p>
+        </div>
+        <div class="pratique-item">
+          <img src="images/poterie-locale.jpg" alt="Poterie traditionnelle salvadorienne" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+          <h4>🏺 Poterie traditionnelle</h4>
+          <p>Techniques ancestrales de poterie, notamment à Suchitoto et dans les villages de l'Est.</p>
+        </div>
+        <div class="pratique-item">
+          <img src="images/tissage-traditionnel.jpg" alt="Tissage traditionnel" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+          <h4>🧵 Tissage & textiles</h4>
+          <p>Tissage traditionnel sur métier à tisser, peinture sur soie et broderies artisanales.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pratiques">
+      <h2 class="section-title">Avant le départ & sur place</h2>
+      <div class="pratiques-grid">
+        <div class="pratique-item">
+          <h4>🛂 Formalités</h4>
+          <ul>
+            <li><strong>Passeport :</strong> Valable 6 mois après retour</li>
+            <li><strong>Visa :</strong> Aucun visa pour les Français (90 jours)</li>
+            <li><strong>Taxe de sortie :</strong> 32 $US (généralement incluse dans le billet)</li>
+            <li><strong>Assurance :</strong> Fortement recommandée</li>
+          </ul>
+        </div>
+        <div class="pratique-item">
+          <h4>💵 Monnaie</h4>
+          <ul>
+            <li><strong>Dollar US :</strong> Monnaie officielle depuis 2001</li>
+            <li><strong>Bitcoin :</strong> Monnaie légale depuis 2021 (premier pays au monde)</li>
+            <li><strong>Cartes :</strong> Acceptées dans les villes, prévoir du cash pour les marchés et villages</li>
+            <li><strong>Pourboires :</strong> 10% appréciés dans les restaurants</li>
+          </ul>
+        </div>
+        <div class="pratique-item">
+          <h4>🌡️ Climat & Équipement</h4>
+          <ul>
+            <li><strong>Climat :</strong> Tropical, saison sèche (nov-avril) idéale</li>
+            <li><strong>Températures :</strong> 25-30°C en plaine, plus frais en altitude (Santa Ana, Montecristo)</li>
+            <li><strong>Équipement :</strong> Chaussures de marche, crème solaire, répulsif, veste légère pour les volcans</li>
+          </ul>
+        </div>
+        <div class="pratique-item">
+          <h4>🔒 Sécurité</h4>
+          <ul>
+            <li>Le Salvador a considérablement amélioré sa sécurité ces dernières années</li>
+            <li>Éviter les quartiers sensibles de San Salvador la nuit</li>
+            <li>Ne pas exposer de bijoux ou objets de valeur</li>
+            <li>Privilégier les transports organisés ou privés</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="carte-section">
+      <h2 class="section-title">Votre itinéraire sur la carte</h2>
+      <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+        De San Salvador à San Miguel, en passant par la Ruta de las Flores, Suchitoto et les sites mayas : cliquez sur chaque point doré pour découvrir les étapes de votre voyage.
+      </p>
+      <div id="map"></div>
+      <div style="text-align: center; margin-top: 20px;">
+        <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
+      </div>
+    </section>
+
+    <section style="text-align: center; padding-bottom: 20px;">
+      <h2 style="margin-bottom: 16px;">Bon séjour au Salvador !</h2>
+      <p style="margin-bottom: 32px; color: var(--text-light);">16 jours d'immersion authentique · Slow travel · Culture & Nature</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p style="font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 8px;">VPD Voyages</p>
+      <p>Votre travel planner spécialisé en Espagne et Amérique latine.</p>
+      <p style="margin-top: 16px;">
+        <a href="https://vpdvoyages.com">Retour à l'accueil</a> · 
+        <a href="https://vpdvoyages.com/mentions-legales.html">Mentions légales</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <script>
+    const map = L.map('map').setView([13.7, -88.9], 8);
+
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+    }).addTo(map);
+
+    const etapes = [
+      { nom: "San Salvador", coords: [13.6929, -89.2182], desc: "Capitale · Cathédrale · Marchés · Histoire" },
+      { nom: "Ruta de las Flores", coords: [13.8500, -89.7833], desc: "Juayúa · Ataco · Café · Artisanat" },
+      { nom: "Volcan Santa Ana", coords: [13.8500, -89.6333], desc: "Ilamatepec · Lac de cratère · 2 381 m" },
+      { nom: "Lago de Coatepeque", coords: [13.8667, -89.5667], desc: "Lac de cratère turquoise · Détente" },
+      { nom: "Joya de Cerén", coords: [13.9333, -89.4833], desc: "Site maya UNESCO · Pompéi des Amériques" },
+      { nom: "Suchitoto", coords: [13.9500, -89.2333], desc: "Ville coloniale · Lac Suchitlán · Art" },
+      { nom: "Montecristo", coords: [14.4167, -89.9167], desc: "Forêt de nuages · Biodiversité" },
+      { nom: "San Miguel", coords: [13.4833, -88.1833], desc: "Capitale de l'Est · Cathédrale · Marché" }
+    ];
+
+    const iconeTango = L.divIcon({
+        className: 'custom-icon',
+        html: '<div style="background-color: #D4A017; width: 16px; height: 16px; border-radius: 50%; border: 3px solid #FFFFFF; box-shadow: 0 0 0 3px #8B1E1E, 0 4px 8px rgba(0,0,0,0.5);"></div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11]
+    });
+
+    const marqueurs = [];
+    etapes.forEach((etape, index) => {
+      const marker = L.marker(etape.coords, {icon: iconeTango}).addTo(map);
+      marker.bindPopup(`<b style="font-family: 'Playfair Display', serif; color: #8B1E1E; font-size: 1.1rem;">${index + 1}. ${etape.nom}</b><br><span style="color: #4A5568; font-size: 0.9rem;">${etape.desc}</span>`);
+      marqueurs.push(marker);
+    });
+
+    const trace = etapes.map(e => e.coords);
+    
+    L.polyline(trace, {
+        color: '#FFFFFF', 
+        weight: 8, 
+        opacity: 0.9,
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    L.polyline(trace, {
+        color: '#8B1E1E', 
+        weight: 4, 
+        opacity: 1, 
+        dashArray: '10, 8',
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    function resetMap() {
+      map.setView([13.7, -88.9], 8);
+    }
+
+    const groupe = L.featureGroup(marqueurs);
+    map.fitBounds(groupe.getBounds().pad(0.2));
+  </script>
+
+</body>
+</html>

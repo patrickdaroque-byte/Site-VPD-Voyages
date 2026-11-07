@@ -38,6 +38,15 @@
 .form-prog{margin:0 0 6px;padding:10px 12px;background:#f0f6ef;border:1px solid #c8d9c7;border-radius:8px;font-size:.86rem;color:var(--muted)}
 .inline-form{scroll-margin-top:8px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+.profile{background:#f0f6ef;border:1px solid #c8d9c7;border-radius:10px;padding:14px;margin:16px 0}
+.profile .inscrits-count{font-size:1.15rem;font-weight:700;margin:0 0 6px;color:var(--ink)}
+.profile .gender-line{margin:0 0 4px;font-size:.95rem;color:#1e4d3a;font-weight:600}
+.profile .age-line{margin:0 0 8px;font-size:.88rem;color:var(--muted)}
+.profile .small{margin:0;font-size:.82rem;color:var(--muted)}
+.country-activity{display:inline-block;margin-top:8px;padding:4px 10px;background:rgba(255,255,255,.92);color:#1a4a35;border-radius:20px;font-size:.78rem;font-weight:700;letter-spacing:.02em;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.country-activity.empty{display:none}
+
 </style></head><body><svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" style="position:absolute;pointer-events:none"><defs><filter id="logo-ink" color-interpolation-filters="sRGB" x="-1%" y="-1%" width="102%" height="102%"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.063 3.576 .361 0 -3.5"/><feComponentTransfer><feFuncA type="gamma" amplitude="1" exponent="0.8" offset="0"/></feComponentTransfer></filter></defs></svg><header class="header"><div class="wrap header-inner"><a class="brand" href="index.html" aria-label="VPDVOYAGES — Accueil"><img src="Images/logo.png" alt="VPDVOYAGES — Patrick Daroque" class="brand-logo" width="220" height="68"></a><button type="button" class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu</button><nav class="nav" id="navigation" aria-label="Navigation principale"><a href="index.html#destinations">Destinations</a><a href="voyage-tango.html" class="nav-feature theme-tango">Tango argentin</a><a href="voyage-solo.html" class="nav-feature theme-solo" aria-current="page">Voyager seul(e)</a><a href="formules.html">Formules</a><a href="avis-clients.html" class="review-link"><span aria-hidden="true">★</span> Avis clients</a><a href="index.html#about">À propos</a><a href="index.html#contact">Contact</a></nav></div></header>
 <main id="contenu">
 <section class="wrap hero"><div class="hero-copy"><a href="index.html">← Retour à l’accueil</a><p class="eyebrow" style="margin-top:20px">En solo ou entre amis · 2 à 5 personnes</p><h1>Voyager seul(e),<br>partager la découverte.</h1><p>Des expériences immersives sur mesure.</p><p>Voyage solo ou entre amis en petit groupe, en formule Sérénité ou Autonomie, pour explorer l’Espagne et l’Amérique latine à votre rythme.</p></div><img class="hero-photo" src="Images/hero-voyage-solo-premium.jpg" alt="Voyage solo ou entre amis en petit groupe" width="700" height="650" fetchpriority="high"><div class="hero-actions"><a class="button" href="#departs">Voir les prochains départs →</a><nav class="country-links" aria-label="Choisir une destination"><a href="#pays-Argentine">Argentine</a><a href="#pays-Colombie">Colombie</a><a href="#pays-Cuba">Cuba</a><a href="#pays-Espagne">Espagne</a><a href="#pays-Uruguay">Uruguay</a></nav></div></section>
@@ -89,14 +98,83 @@ const reduceMotion=()=>!!(window.matchMedia&&window.matchMedia('(prefers-reduced
 function scrollToEl(el){if(!el)return;requestAnimationFrame(()=>el.scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'start'}));}
 function findDepart(pays,sejour){const item=itemFor(pays,sejour),target=voyageKey(pays,item?item.key:sejour);return DEPARTS.find(d=>voyageKey(d.pays,d.sejour)===target)||null;}
 function priceHTML(item,d){const base=baseSerenite(item),count=d?Math.max(CONFIG.min,Math.min(CONFIG.max,d.inscrits)):CONFIG.max,price=tariffForGroup(item,count);return '<div class="form-prix-box"><strong>Budget Sérénité</strong>'+(base?'<span class="price-val">'+eur(price)+' par personne</span><small>Estimation pour '+count+' participant'+(count>1?'s':'')+'.</small><small>'+BASE_TARIFF_NOTE+'</small><small>5 participants : tarif de référence · 4 : +5 % · 3 : +10 % · 2 : +20 %.</small>':'Tarif sur demande.<small>Le tarif sera précisé dans votre devis personnalisé.</small>')+'<small>Vous réservez et payez directement les prestataires, avec mon aide. Le budget détaillé distingue les prestations et mes honoraires.</small></div>'; }
-function statusText(d){if(d.inscrits>=CONFIG.max)return 'Groupe complet';if(d.inscrits>=CONFIG.min){const places=CONFIG.max-d.inscrits;return 'Départ confirmé — '+places+' place'+(places>1?'s':'')+' libre'+(places>1?'s':'')+'';}return 'Recherche un deuxième voyageur';}
-function profileHTML(d){return '<div class="profile"><p><strong>'+d.inscrits+' inscrit'+(d.inscrits>1?'s':'')+' / '+CONFIG.max+'</strong></p><p>Profil'+(d.inscrits>1?'s':'')+' : '+esc(d.profil||'Non renseigné')+'</p><p class="small">Vous n’avez pas besoin d’avoir le même profil.</p>'+(d.dateLimite?'<p class="small">Date limite d’inscription : '+esc(d.dateLimite)+'</p>':'')+'</div>';}
+function parseProfil(text){
+  if(!text) return {h:0,f:0,ages:[]};
+  const t = String(text).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  let h = 0, f = 0;
+  // Compte les hommes
+  const mH = t.match(/(\d+)\s*hommes?/g) || [];
+  mH.forEach(m => { const n = parseInt(m,10); if(!isNaN(n)) h += n; });
+  // Compte les femmes
+  const mF = t.match(/(\d+)\s*femmes?/g) || [];
+  mF.forEach(m => { const n = parseInt(m,10); if(!isNaN(n)) f += n; });
+  // Récupère tous les âges (nombres entre 18 et 99)
+  const ages = (t.match(/\b(\d{2})\b/g) || []).map(Number).filter(a => a >= 18 && a <= 99);
+  return {h, f, ages};
+}
+
+function statusText(d){
+  if(d.inscrits >= CONFIG.max) return 'Groupe complet';
+  if(d.inscrits >= CONFIG.min){
+    const places = CONFIG.max - d.inscrits;
+    return 'Départ confirmé — ' + places + ' place' + (places > 1 ? 's' : '') + ' libre' + (places > 1 ? 's' : '');
+  }
+  return 'Recherche un deuxième voyageur';
+}
+
+function profileHTML(d){
+  const p = parseProfil(d.profil);
+  const total = d.inscrits;
+  // Ligne genre claire
+  let genderParts = [];
+  if(p.h > 0) genderParts.push(p.h + ' homme' + (p.h > 1 ? 's' : ''));
+  if(p.f > 0) genderParts.push(p.f + ' femme' + (p.f > 1 ? 's' : ''));
+  const genderLine = genderParts.length ? genderParts.join(' · ') : (d.profil ? esc(d.profil) : 'Profil non précisé');
+  // Fourchette d'âge
+  let ageLine = '';
+  if(p.ages.length){
+    const minA = Math.min(...p.ages);
+    const maxA = Math.max(...p.ages);
+    ageLine = minA === maxA ? minA + ' ans' : minA + ' – ' + maxA + ' ans';
+  }
+  return '<div class="profile">' +
+    '<p class="inscrits-count">' + total + ' inscrit' + (total > 1 ? 's' : '') + ' / ' + CONFIG.max + '</p>' +
+    '<p class="gender-line">' + genderLine + '</p>' +
+    (ageLine ? '<p class="age-line">' + ageLine + '</p>' : '') +
+    '<p class="small">Vous n’avez pas besoin d’avoir le même profil.</p>' +
+    (d.dateLimite ? '<p class="small">Date limite d’inscription : ' + esc(d.dateLimite) + '</p>' : '') +
+  '</div>';
+}
+
 function actionButton(pays,sejour,d){const full=d&&d.inscrits>=CONFIG.max,text=full?'Groupe complet':d?'Rejoindre ce départ':'Lancer ce séjour →';return '<button type="button" class="button voyage-button'+(d&&d.inscrits>=CONFIG.min?' green':'')+'" data-pays="'+esc(pays)+'" data-sejour="'+esc(sejour)+'" aria-expanded="false"'+(full?' disabled':'')+'>'+text+'</button>';}
+
+function countryActivity(pays){
+  if(loadStatus !== 'ready') return '';
+  const deps = DEPARTS.filter(d => d.pays === pays && d.inscrits > 0);
+  if(!deps.length) return '';
+  const totalInscrits = deps.reduce((s,d) => s + d.inscrits, 0);
+  const nbDeparts = deps.length;
+  return '<span class="country-activity">' + nbDeparts + ' départ' + (nbDeparts > 1 ? 's' : '') + ' · ' + totalInscrits + ' inscrit' + (totalInscrits > 1 ? 's' : '') + '</span>';
+}
+
 function renderCatalogue(){
-document.getElementById('pays-sections').innerHTML=PAYS.map(pays=>{const items=CATALOGUE.filter(item=>item.pays===pays);return '<details class="country-card" id="pays-'+esc(pays)+'"><summary><img class="country-cover" src="'+imageURL(COUVERTURES[pays])+'" alt="" loading="lazy"><span class="country-shade" aria-hidden="true"></span><span class="country-title"><h3>'+esc(pays)+'</h3><span>'+(pays==='Espagne'?'Escapades de 4 jours':'Séjours et découvertes')+'</span></span><span class="country-action">Voir les '+items.length+' séjours ⌄</span></summary><div class="country-body">'+items.map(item=>'<article class="stay" data-pays="'+esc(item.pays)+'" data-sejour="'+esc(item.key)+'"><img class="stay-image" src="'+imageURL(item.image)+'" alt="" width="115" height="115" loading="lazy"><div class="stay-body"><h4>'+esc(item.title)+'</h4><p class="stay-price">'+(baseSerenite(item)?'Sérénité : <strong>'+eur(baseSerenite(item))+'</strong> / personne':'<strong>Tarif sur demande</strong>')+'</p><div class="stay-status">Choisissez ce séjour pour proposer vos dates.</div><div class="stay-action">'+actionsHTML(item.pays,item.key,null)+'</div></div></article>').join('')+'</div></details>';}).join('');
+document.getElementById('pays-sections').innerHTML=PAYS.map(pays=>{const items=CATALOGUE.filter(item=>item.pays===pays);return '<details class="country-card" id="pays-'+esc(pays)+'"><summary><img class="country-cover" src="'+imageURL(COUVERTURES[pays])+'" alt="" loading="lazy"><span class="country-shade" aria-hidden="true"></span><span class="country-title"><h3>'+esc(pays)+'</h3><span>'+(pays==='Espagne'?'Escapades de 4 jours':'Séjours et découvertes')+'</span>'+countryActivity(pays)+'</span><span class="country-action">Voir les '+items.length+' séjours ⌄</span></summary><div class="country-body">'+items.map(item=>'<article class="stay" data-pays="'+esc(item.pays)+'" data-sejour="'+esc(item.key)+'"><img class="stay-image" src="'+imageURL(item.image)+'" alt="" width="115" height="115" loading="lazy"><div class="stay-body"><h4>'+esc(item.title)+'</h4><p class="stay-price">'+(baseSerenite(item)?'Sérénité : <strong>'+eur(baseSerenite(item))+'</strong> / personne':'<strong>Tarif sur demande</strong>')+'</p><div class="stay-status">Choisissez ce séjour pour proposer vos dates.</div><div class="stay-action">'+actionsHTML(item.pays,item.key,null)+'</div></div></article>').join('')+'</div></details>';}).join('');
 document.getElementById('tarifs-body').innerHTML=CATALOGUE.map(item=>'<tr><td>'+esc(item.pays)+'</td><th scope="row">'+esc(item.title)+'</th><td class="price">'+(item.autonomie?eur(item.autonomie):'Sur demande')+'</td><td class="price">'+(baseSerenite(item)?eur(baseSerenite(item)):'Tarif sur demande')+'</td></tr>').join('');
 }
-function updateCatalogue(){document.querySelectorAll('.stay').forEach(card=>{const d=loadStatus==='ready'?findDepart(card.dataset.pays,card.dataset.sejour):null,active=d&&d.inscrits>0?d:null,slot=card.querySelector('.stay-status');if(active){slot.innerHTML='<p class="status'+(active.inscrits>=CONFIG.min?' confirmed':'')+'">'+esc(statusText(active))+'</p>'+profileHTML(active);}else if(loadStatus==='loading'){slot.textContent='Vérification des départs — 15 secondes maximum.';}else if(loadStatus==='error'){slot.textContent='Proposez vos dates pour lancer votre voyage.';}else{slot.textContent='Aucun inscrit pour le moment. Lancez ce séjour !';}card.querySelector('.stay-action').innerHTML=actionsHTML(card.dataset.pays,card.dataset.sejour,active);});}
+function updateCatalogue(){
+  // Met à jour les badges d'activité sur les cartes pays
+  document.querySelectorAll('details.country-card').forEach(card=>{
+    const pays = card.id.replace('pays-','');
+    const title = card.querySelector('.country-title');
+    if(!title) return;
+    let badge = title.querySelector('.country-activity');
+    const htmlBadge = countryActivity(pays);
+    if(htmlBadge){
+      if(badge){ badge.outerHTML = htmlBadge; }
+      else { title.insertAdjacentHTML('beforeend', htmlBadge); }
+    } else if(badge){ badge.remove(); }
+  });
+  document.querySelectorAll('.stay').forEach(card=>{const d=loadStatus==='ready'?findDepart(card.dataset.pays,card.dataset.sejour):null,active=d&&d.inscrits>0?d:null,slot=card.querySelector('.stay-status');if(active){slot.innerHTML='<p class="status'+(active.inscrits>=CONFIG.min?' confirmed':'')+'">'+esc(statusText(active))+'</p>'+profileHTML(active);}else if(loadStatus==='loading'){slot.textContent='Vérification des départs — 15 secondes maximum.';}else if(loadStatus==='error'){slot.textContent='Proposez vos dates pour lancer votre voyage.';}else{slot.textContent='Aucun inscrit pour le moment. Lancez ce séjour !';}card.querySelector('.stay-action').innerHTML=actionsHTML(card.dataset.pays,card.dataset.sejour,active);});}
 function departHTML(d){const item=itemFor(d.pays,d.sejour);return '<article class="depart-card"><div class="depart-top">'+(item?'<img src="'+imageURL(item.image)+'" alt="" width="90" height="100" loading="lazy">':'')+'<div><span class="small">'+esc(d.pays)+'</span><h4>'+esc(item?item.title:d.sejour)+'</h4><p class="status'+(d.inscrits>=CONFIG.min?' confirmed':'')+'">'+esc(statusText(d))+'</p></div></div>'+profileHTML(d)+priceHTML(item,d)+'<div class="depart-action">'+actionsHTML(d.pays,d.sejour,d)+'</div></article>';}
 function renderDepartures(){
 const root=document.getElementById('vpd-solo');const inscritsLink=document.getElementById('inscrits-link');if(inscritsLink){inscritsLink.href=(loadStatus==='ready'&&DEPARTS.some(d=>d.inscrits>0))?'#vpd-solo':'#pays-sections';}root.setAttribute('aria-busy',String(loadStatus==='loading'));
