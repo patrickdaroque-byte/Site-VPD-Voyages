@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- OPTIMISATION SEO -->
+  <title>Argentine · Tango comme Thérapie | Buenos Aires & Mendoza | VPD Voyages</title>
+  <meta name="description" content="Voyage bien-être en Argentine : Tango comme thérapie à Buenos Aires et immersion dans les vignobles de Mendoza. Se reconnecter à soi par la danse et la nature. Devis gratuit avec VPD Voyages.">
+  
+  <!-- POLICES D'ÉCRITURE -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS LEAFLET POUR LA CARTE -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <style>
+    :root {
+      --primary: #8B1E1E;
+      --primary-dark: #6B1515;
+      --accent: #D4A017;
+      --text: #2D3748;
+      --text-light: #4A5568;
+      --bg: #FAFAFA;
+      --white: #FFFFFF;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --radius: 8px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background-color: var(--bg); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1.3; }
+    a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+    a:hover { color: var(--primary); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    .hero {
+      position: relative;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/hero-tango-therapie.jpg') center/cover no-repeat;
+      color: var(--white);
+      padding: 120px 0 80px;
+      text-align: center;
+    }
+    .hero h1 { color: var(--white); font-size: 3.2rem; margin-bottom: 16px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero .subtitle { font-size: 1.4rem; font-weight: 300; opacity: 0.95; margin-bottom: 32px; font-style: italic; }
+    .btn { display: inline-block; background-color: var(--accent); color: var(--primary-dark); padding: 16px 36px; border-radius: 50px; font-weight: 600; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); color: var(--primary-dark); }
+
+    section { padding: 60px 0; }
+    .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; position: relative; }
+    .section-title::after { content: ''; display: block; width: 60px; height: 3px; background-color: var(--accent); margin: 16px auto 0; }
+
+    .intro { background-color: var(--white); text-align: center; max-width: 800px; margin: -40px auto 0; padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); position: relative; z-index: 10; }
+    .intro p { font-size: 1.1rem; color: var(--text-light); }
+    .intro .highlight { color: var(--primary); font-weight: 600; }
+
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
+    .card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border-top: 4px solid var(--accent); transition: transform 0.3s ease; }
+    .card:hover { transform: translateY(-5px); }
+    .card img { width: 100%; height: 220px; object-fit: cover; }
+    .card-content { padding: 24px; }
+    .card h3 { font-size: 1.4rem; margin-bottom: 16px; }
+    .card ul { list-style: none; padding-left: 0; }
+    .card ul li { padding: 6px 0; color: var(--text-light); position: relative; padding-left: 20px; }
+    .card ul li::before { content: '•'; color: var(--primary); font-weight: bold; position: absolute; left: 0; }
+
+    .pause-visuelle { position: relative; height: 400px; background-size: cover; background-position: center; background-attachment: fixed; border-radius: var(--radius); overflow: hidden; margin: 40px 0; }
+    .pause-naturelle::before { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)); }
+    .pause-visuelle .caption { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--white); text-align: center; padding: 40px; }
+    .pause-visuelle .caption h2 { color: var(--white); font-size: 2.5rem; margin-bottom: 16px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
+    .pause-visuelle .caption p { font-size: 1.2rem; max-width: 600px; font-style: italic; text-shadow: 1px 1px 4px rgba(0,0,0,0.5); }
+    @media (max-width: 768px) { .pause-visuelle { background-attachment: scroll; height: 300px; } .pause-visuelle .caption h2 { font-size: 1.8rem; } }
+
+    .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 30px; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background-color: #E2E8F0; }
+    .timeline-phase { margin-bottom: 40px; position: relative; }
+    .timeline-phase h3 { background-color: var(--primary); color: var(--white); display: inline-block; padding: 8px 20px; border-radius: 50px; font-size: 1.1rem; margin-bottom: 20px; font-family: 'Inter', sans-serif; font-weight: 600; }
+    .timeline-item { background: var(--white); padding: 20px 24px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 16px; position: relative; }
+    .timeline-item::before { content: ''; position: absolute; left: -36px; top: 24px; width: 15px; height: 15px; background-color: var(--accent); border-radius: 50%; border: 3px solid var(--white); }
+    .timeline-item .days { font-size: 0.85rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .timeline-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
+    .timeline-item p { font-size: 0.95rem; color: var(--text-light); margin: 0; }
+
+    .carte-section { background-color: var(--white); border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow); margin-top: 20px; }
+    #map { width: 100%; height: 500px; border-radius: 8px; z-index: 1; }
+    .custom-icon { background: transparent !important; border: none !important; }
+
+    .pratiques { background-color: #F8FAFC; border-radius: var(--radius); padding: 40px; margin-top: 40px; }
+    .pratiques h3 { margin-bottom: 20px; }
+    .pratiques-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .pratique-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--primary); }
+    .pratique-item p, .pratique-item ul { font-size: 0.95rem; color: var(--text-light); margin: 0; }
+    .pratique-item ul { padding-left: 20px; }
+
+    .finalisation-note {
+      background-color: #FFF8E1;
+      border-left: 4px solid var(--accent);
+      padding: 20px 24px;
+      border-radius: 8px;
+      margin: 40px auto;
+      max-width: 800px;
+      color: #5D4037;
+    }
+
+    footer { background-color: var(--primary-dark); color: var(--white); text-align: center; padding: 40px 0; margin-top: 60px; }
+    footer p { opacity: 0.8; font-size: 0.9rem; }
+    footer a { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .intro { margin: 20px; padding: 24px; }
+      .timeline { padding-left: 20px; }
+      .timeline-item::before { left: -26px; width: 12px; height: 12px; }
+      #map { height: 350px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Voyage bien-être · Slow travel · 10 jours</p>
+      <h1>Argentine · Tango comme Thérapie</h1>
+      <p class="subtitle">Buenos Aires & Mendoza · Se reconnecter à soi par la danse</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <section class="intro">
+      <h2 style="margin-bottom: 20px;">Danser pour se reconnecter à soi</h2>
+      <p>
+        Ce voyage propose une approche différente du tango : non seulement comme danse, mais comme <span class="highlight">chemin de bien-être et d'expression</span>. 
+        À Buenos Aires, vous participerez à des cours et milongas dans une ambiance intime et bienveillante. Puis direction Mendoza pour prolonger l'expérience au milieu des vignobles et des Andes. Un voyage lent, sensible et ressourçant, entre émotion et paysages.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="section-title">Le voyage en un coup d'œil</h2>
+      <div class="grid-4">
+        
+        <div class="card">
+          <img src="images/abrazo-tango.jpg" alt="L'abrazo, l'étreinte du tango">
+          <div class="card-content">
+            <h3>🧠 Approche thérapeutique</h3>
+            <ul>
+              <li>Tango comme outil d'expression</li>
+              <li>Lâcher-prise et connexion à soi</li>
+              <li>Ateliers émotions & mouvement</li>
+              <li>Bienveillance et non-jugement</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/milonga-intime.jpg" alt="Milonga intime à Buenos Aires">
+          <div class="card-content">
+            <h3>💃 Buenos Aires intime</h3>
+            <ul>
+              <li>Cours avec professeurs spécialisés</li>
+              <li>Milongas de quartier authentiques</li>
+              <li>Ambiance douce et accueillante</li>
+              <li>Loin des scènes touristiques</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/mendoza-vignoble-calme.jpg" alt="Vignobles calmes de Mendoza">
+          <div class="card-content">
+            <h3>🍷 Mendoza & Vignobles</h3>
+            <ul>
+              <li>Immersion dans les bodegas</li>
+              <li>Dégustation consciente de Malbec</li>
+              <li>Rythme lent et contemplation</li>
+              <li>Paysages viticoles apaisants</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/andes-mendoza.jpg" alt="Les Andes à Mendoza">
+          <div class="card-content">
+            <h3>🏔️ Les Andes</h3>
+            <ul>
+              <li>Respiration et altitude</li>
+              <li>Silence des montagnes</li>
+              <li>Panoramas à couper le souffle</li>
+              <li>Énergie et ressourcement</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/meditation-yoga.jpg" alt="Méditation et bien-être">
+          <div class="card-content">
+            <h3>🧘 Rythme & Bien-être</h3>
+            <ul>
+              <li>Slow travel et temps pour soi</li>
+              <li>Sessions de respiration / yoga</li>
+              <li>Écriture expressive</li>
+              <li>Attention portée au corps</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/cercle-partage.jpg" alt="Cercle de partage">
+          <div class="card-content">
+            <h3>🤝 Rencontres authentiques</h3>
+            <ul>
+              <li>Petit groupe intimiste</li>
+              <li>Partage et écoute</li>
+              <li>Expériences sensibles</li>
+              <li>Création de liens profonds</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PAUSE VISUELLE 1 : L'ABRAZO -->
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/pause-abrazo.jpg');">
+      <div class="caption">
+        <h2>L'Abrazo : au cœur du tango</h2>
+        <p>Bien plus qu'un pas de danse, l'étreinte du tango est un espace de confiance, d'écoute et de reconnexion à soi et à l'autre.</p>
+      </div>
+    </div>
+
+    <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
+      <h2 class="section-title">Votre itinéraire jour par jour</h2>
+      
+      <div class="timeline">
+        
+        <div class="timeline-phase">
+          <h3>Buenos Aires · L'écoute du corps et de l'autre</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Jour 1</div>
+            <h4>Arrivée & Installation douce</h4>
+            <p>Accueil à l'aéroport d'Ezeiza. Installation dans un hébergement calme à Palermo ou San Telmo. Temps libre pour s'acclimater, se reposer et prendre le pouls de la ville en douceur.</p>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="days">Jour 2</div>
+            <h4>Atelier "Tango & Émotions"</h4>
+            <p>Premier atelier centré sur l'abrazo (l'étreinte). Apprendre à écouter son corps, à lâcher prise et à entrer en connexion avec l'autre sans parole. Après-midi libre pour flâner.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 3</div>
+            <h4>Milonga intime & Écriture</h4>
+            <p>Matinée d'écriture expressive ou journal de bord. Après-midi : visite douce d'un quartier (Recoleta ou San Telmo). Soirée : immersion dans une milonga de quartier, ambiance chaleureuse et bienveillante.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 4</div>
+            <h4>Journée de respiration</h4>
+            <p>Excursion au Delta du Tigre ou dans une réserve naturelle. Balade en bateau, silence, observation de la nature. Une journée pour laisser le mental se reposer et le corps respirer.</p>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <h3>Mendoza · La reconnexion à la nature</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Jour 5</div>
+            <h4>Route vers Mendoza</h4>
+            <p>Vol ou bus-cama vers Mendoza. Installation dans une bodega-hôtel ou un hébergement au calme, entouré de vignes. Soirée de partage en petit groupe.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 6</div>
+            <h4>Vignoble & Méditation</h4>
+            <p>Matinée : méditation guidée au milieu des vignes. Après-midi : visite d'une bodega artisanale et dégustation consciente de Malbec. Apprendre à savourer l'instant présent.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 7</div>
+            <h4>Les Andes & le silence</h4>
+            <p>Excursion vers la Cordillère des Andes. Pont de l'Inca ou Las Leñas. Face à l'immensité des montagnes, expérience de silence et de contemplation. Pique-nique au grand air.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 8</div>
+            <h4>Atelier "Tango & Nature"</h4>
+            <p>Danser en plein air, au milieu des oliviers ou des vignes. Un atelier unique pour fusionner le mouvement du tango avec l'énergie de la nature. Temps libre l'après-midi.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 9</div>
+            <h4>Temps libre & Soins</h4>
+            <p>Journée entièrement libre. Possibilité de soins (spa, thermalisme), de massage, ou simplement de repos. Chacun suit son propre rythme pour intégrer l'expérience.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 10</div>
+            <h4>Clôture & Retour</h4>
+            <p>Cercle de partage matinal pour exprimer ses ressentis. Déjeuner d'adieu. Transfert à l'aéroport de Mendoza et vol retour, avec le corps apaisé et l'esprit éclairci.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAUSE VISUELLE 2 : MENDOZA -->
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/pause-mendoza.jpg');">
+      <div class="caption">
+        <h2>Mendoza, terre de sérénité</h2>
+        <p>Entre vignobles à perte de vue et sommets andins, Mendoza offre le cadre parfait pour ralentir, contempler et se retrouver.</p>
+      </div>
+    </div>
+
+    <div class="finalisation-note">
+      <h3 style="color: var(--primary); margin-bottom: 12px; font-family: 'Playfair Display', serif;">📝 Voyage en cours de finalisation</h3>
+      <p>Ce programme est encore en cours d'élaboration. Les détails exacts (durée définitive, intervenants, hébergements précis, tarifs) seront ajustés selon vos envies et vos dates. <strong>Vous souhaitez être informé(e) en priorité ou l'adapter à vos envies ?</strong></p>
+    </div>
+
+    <section class="pratiques">
+      <h2 class="section-title">Formules & État d'esprit</h2>
+      <div class="pratiques-grid">
+        <div class="pratique-item">
+          <h4>🎒 Formule Autonomie</h4>
+          <ul>
+            <li>Hébergements sélectionnés pour leur calme</li>
+            <li>Ateliers tango-thérapie en petits groupes</li>
+            <li>Road-book "slow travel" et adresses bien-être</li>
+            <li>Assistance à distance 24h/24</li>
+          </ul>
+        </div>
+        <div class="pratique-item">
+          <h4>✨ Formule Sérénité</h4>
+          <ul>
+            <li>Tout le programme Autonomie</li>
+            <li>Accompagnement par un guide francophone</li>
+            <li>Facilitation des cercles de partage</li>
+            <li>Transferts privés et logistique simplifiée</li>
+          </ul>
+        </div>
+        <div class="pratique-item">
+          <h4>🧘 État d'esprit</h4>
+          <ul>
+            <li>Aucun prérequis en danse nécessaire</li>
+            <li>Ouverture d'esprit et bienveillance</li>
+            <li>Respect du rythme de chacun</li>
+            <li>Goût pour l'introspection et le partage</li>
+          </ul>
+        </div>
+        <div class="pratique-item">
+          <h4>🎒 Équipement</h4>
+          <ul>
+            <li><strong>Tenue :</strong> Vêtements confortables pour danser</li>
+            <li><strong>Carnet :</strong> Pour l'écriture expressive</li>
+            <li><strong>Chaussures :</strong> Souples pour la danse et la marche</li>
+            <li><strong>Esprit :</strong> Prêt à lâcher prise !</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="carte-section">
+      <h2 class="section-title">Votre itinéraire sur la carte</h2>
+      <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+        De Buenos Aires à Mendoza, en passant par le Delta du Tigre et les Andes : cliquez sur chaque point doré pour découvrir les étapes de votre voyage.
+      </p>
+      <div id="map"></div>
+      <div style="text-align: center; margin-top: 20px;">
+        <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
+      </div>
+    </section>
+
+    <section style="text-align: center; padding-bottom: 20px;">
+      <h2 style="margin-bottom: 16px;">Bon voyage intérieur en Argentine !</h2>
+      <p style="margin-bottom: 32px; color: var(--text-light);">Tango · Bien-être · Vignobles · Andes · Se reconnecter à soi</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p style="font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 8px;">VPD Voyages</p>
+      <p>Votre travel planner spécialisé en Espagne et Amérique latine.</p>
+      <p style="margin-top: 16px;">
+        <a href="https://vpdvoyages.com">Retour à l'accueil</a> · 
+        <a href="https://vpdvoyages.com/mentions-legales.html">Mentions légales</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <script>
+    const map = L.map('map').setView([-34.5, -62.0], 5);
+
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+    }).addTo(map);
+
+    const etapes = [
+      { nom: "Buenos Aires", coords: [-34.6037, -58.3816], desc: "Ateliers tango · Milongas intimes · Palermo / San Telmo" },
+      { nom: "Delta du Tigre", coords: [-34.4264, -58.5794], desc: "Nature · Respiration · Silence" },
+      { nom: "Mendoza", coords: [-32.8895, -68.8458], desc: "Vignobles · Bodegas · Méditation" },
+      { nom: "Vallée de Uco", coords: [-33.7000, -69.3000], desc: "Paysages viticoles · Danse en plein air" },
+      { nom: "Andes / Pont de l'Inca", coords: [-32.8333, -69.9000], desc: "Altitude · Contemplation · Énergie" }
+    ];
+
+    const iconeTango = L.divIcon({
+        className: 'custom-icon',
+        html: '<div style="background-color: #D4A017; width: 16px; height: 16px; border-radius: 50%; border: 3px solid #FFFFFF; box-shadow: 0 0 0 3px #8B1E1E, 0 4px 8px rgba(0,0,0,0.5);"></div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11]
+    });
+
+    const marqueurs = [];
+    etapes.forEach((etape, index) => {
+      const marker = L.marker(etape.coords, {icon: iconeTango}).addTo(map);
+      marker.bindPopup(`<b style="font-family: 'Playfair Display', serif; color: #8B1E1E; font-size: 1.1rem;">${index + 1}. ${etape.nom}</b><br><span style="color: #4A5568; font-size: 0.9rem;">${etape.desc}</span>`);
+      marqueurs.push(marker);
+    });
+
+    const trace = etapes.map(e => e.coords);
+    
+    L.polyline(trace, {
+        color: '#FFFFFF', 
+        weight: 8, 
+        opacity: 0.9,
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    L.polyline(trace, {
+        color: '#8B1E1E', 
+        weight: 4, 
+        opacity: 1, 
+        dashArray: '10, 8',
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    function resetMap() {
+      map.setView([-34.5, -62.0], 5);
+    }
+
+    const groupe = L.featureGroup(marqueurs);
+    map.fitBounds(groupe.getBounds().pad(0.2));
+  </script>
+
+</body>
+</html>
