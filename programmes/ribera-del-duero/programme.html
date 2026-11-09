@@ -7,7 +7,8 @@
   <!-- OPTIMISATION SEO -->
   <title>Ribera del Duero · Escapade 4 jours | Aranda, Peñafiel & Lerma | VPD Voyages</title>
   <meta name="description" content="Escapade en Ribera del Duero en 4 jours : Aranda de Duero, Peñafiel, Lerma, forteresse de Gormaz. Vins d'exception, patrimoine médiéval et gastronomie castillane. Devis gratuit avec VPD Voyages.">
-  
+  <meta name="theme-color" content="#173e58"/>
+
   <!-- POLICES D'ÉCRITURE -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,24 +19,73 @@
 
   <style>
     :root {
+      --ink: #173447;
+      --muted: #52636b;
+      --blue: #173e58;
       --primary: #8B1E1E;
       --primary-dark: #6B1515;
       --accent: #D4A017;
+      --accent-index: #b85132;
       --text: #2D3748;
       --text-light: #4A5568;
       --bg: #FAFAFA;
+      --paper: #faf9f6;
+      --line: #dce2df;
       --white: #FFFFFF;
       --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
       --radius: 8px;
+      --header-height: 82px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
     body { font-family: 'Inter', sans-serif; color: var(--text); background-color: var(--bg); line-height: 1.7; -webkit-font-smoothing: antialiased; }
     h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1.3; }
     a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
     a:hover { color: var(--primary); }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .wrap { width: min(1180px, calc(100% - 64px)); margin: auto; }
+    .skip { position: absolute; left: 15px; top: -100px; background: white; padding: 12px; z-index: 100; }
+    .skip:focus { top: 10px; }
 
+    /* --- STYLES HEADER INDEX --- */
+    .header { background: rgba(250,249,246,.98); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; }
+    .header .wrap { width: min(1320px, calc(100% - 48px)); }
+    .header-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 26px; }
+    .brand { text-decoration: none; line-height: 1.2; white-space: nowrap; }
+    .brand-logo { display: block; width: 220px; height: 68px; object-fit: contain; filter: url(#logo-ink); background: transparent; }
+    .menu-toggle { display: none; background: none; border: 1px solid var(--line); border-radius: 8px; padding: 9px 13px; font: inherit; color: var(--ink); cursor: pointer; }
+    .nav { display: flex; align-items: center; gap: 14px; }
+    .nav a { text-decoration: none; font-size: .85rem; font-weight: 550; white-space: nowrap; }
+    .nav a:hover { color: var(--accent-index); }
+    .nav a.nav-primary { font-weight: 700; color: var(--blue); position: relative; }
+    .nav a.nav-primary::after { content: ""; position: absolute; left: 0; right: 0; bottom: -7px; height: 2px; background: var(--accent-index); border-radius: 2px; transform: scaleX(.4); transform-origin: left; transition: transform .2s; }
+    .nav a.nav-primary:hover, .nav a.nav-primary:focus-visible { color: var(--accent-index); }
+    .nav a.nav-primary:hover::after, .nav a.nav-primary:focus-visible::after { transform: scaleX(1); }
+    .nav .nav-feature { padding: 9px 12px; border-radius: 8px; border: 1px solid; }
+    .nav a.theme-tango { background: #EDF4FF; color: #24549A; border-color: #A9BFDF; }
+    .nav a.theme-solo { background: #EDF6F0; color: #286044; border-color: #A5C4AF; }
+    .nav a.theme-tango:hover { background: #DFEAFC; color: #24549A; border-color: #7E9FCB; }
+    .nav a.theme-solo:hover { background: #DEEEE3; color: #286044; border-color: #7BA68A; }
+    .review-link span { color: #ac791c; margin-right: 3px; }
+
+    /* RESPONSIVE HEADER INDEX */
+    @media (min-width: 1101px) { .nav a.nav-primary { font-size: .95rem; } .nav { gap: 18px; } }
+    @media (max-width: 1100px) { .nav { gap: 9px; } .nav a { font-size: .77rem; } .nav .nav-feature { padding: 8px; } .brand-logo { width: 175px; } .header-inner { gap: 16px; } }
+    @media (min-width: 781px) and (max-width: 940px) { .header-inner { flex-wrap: wrap; justify-content: center; padding-bottom: 10px; gap: 2px; } .nav { justify-content: center; width: 100%; gap: 14px; } .brand-logo { height: 56px; } .nav a { font-size: .8rem; } }
+    @media (max-width: 780px) {
+      .wrap { width: calc(100% - 40px); }
+      .header-inner { min-height: 72px; flex-wrap: wrap; gap: 0; }
+      .brand-logo { height: 62px; width: 205px; }
+      .menu-toggle { display: block; }
+      .nav { display: none; flex-basis: 100%; padding: 20px 0; align-items: stretch; gap: 0; }
+      .nav.is-open { display: flex; flex-direction: column; }
+      .nav a { padding: 11px 0; font-size: 1rem; border-top: 1px solid var(--line); }
+      .nav a.nav-primary::after { display: none; }
+      .nav .nav-feature { margin: 5px 0; padding: 12px; }
+    }
+
+    /* --- PAGE PROGRAMME STYLES --- */
     .hero {
       position: relative;
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/Vignobles_Ribera.jpg') center/cover no-repeat;
@@ -109,310 +159,345 @@
 </head>
 <body>
 
-  <header class="hero">
-    <div class="container">
-      <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Escapade en petit groupe · 4 jours · Castille-et-León</p>
-      <h1>Ribera del Duero · Vins d'exception</h1>
-      <p class="subtitle">Aranda de Duero · Peñafiel · Lerma · Gormaz</p>
-      <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
+  <!-- SVG MASQUÉ POUR LE LOGO -->
+  <svg aria-hidden="true" height="0" style="position:absolute;pointer-events:none" width="0" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter color-interpolation-filters="sRGB" height="102%" id="logo-ink" width="102%" x="-1%" y="-1%">
+        <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.063 3.576 .361 0 -3.5"></feColorMatrix>
+        <feComponentTransfer><feFuncA amplitude="1" exponent="0.8" offset="0" type="gamma"></feFuncA></feComponentTransfer>
+      </filter>
+    </defs>
+  </svg>
+
+  <a class="skip" href="#contenu">Aller au contenu</a>
+
+  <!-- HEADER IDENTIQUE À INDEX.HTML -->
+  <header class="header">
+    <div class="wrap header-inner">
+      <a aria-label="VPD Voyages — Accueil" class="brand" href="index.html#accueil">
+        <img alt="VPDVOYAGES — Patrick Daroque" class="brand-logo" height="68" src="https://vpdvoyages.com/Images/logo.png" width="220"/>
+      </a>
+      <button aria-controls="navigation" aria-expanded="false" class="menu-toggle">Menu</button>
+      <nav aria-label="Navigation principale" class="nav" id="navigation">
+        <a class="nav-primary" href="index.html#destinations">Destinations</a>
+        <a class="nav-primary" href="formules.html">Formules</a>
+        <a class="nav-feature theme-solo" href="https://vpdvoyages.com/voyage-solo.html">Voyager seul(e)</a>
+        <a class="nav-feature theme-tango" href="https://vpdvoyages.com/voyage-tango.html">Tango argentin</a>
+        <a class="review-link" href="avis-clients.html"><span aria-hidden="true">★</span> Avis clients</a>
+        <a href="index.html#about">À propos</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
-  <main class="container">
-    
-    <section class="intro">
-      <h2 style="margin-bottom: 20px;">Une histoire millénaire au cœur de l'Espagne</h2>
-      <p>
-        Plongez au cœur de la <span class="highlight">Ribera del Duero</span>, l'une des régions viticoles les plus prestigieuses d'Espagne, avec Aranda de Duero comme point de départ. 
-        Découvrez des bodegas et dégustez les vins rouges emblématiques de la région, flânez dans des villes et villages historiques de Lerma à Peñafiel, explorez les caves souterraines d'Aranda et savourez une cuisine castillane généreuse.
-      </p>
-    </section>
+  <main id="contenu">
 
-    <section>
-      <h2 class="section-title">Le voyage en un coup d'œil</h2>
-      <div class="grid-4">
-        
-        <div class="card">
-          <img src="images/Lerma_Palais_Ducal.jpg" alt="Palais Ducal de Lerma">
-          <div class="card-content">
-            <h3>🏛️ Lerma</h3>
-            <ul>
-              <li>Cité ducale du XVIIe siècle</li>
-              <li>Palais Ducal dominant la Plaza Mayor</li>
-              <li>Architecture Renaissance</li>
-              <li>Patrimoine historique exceptionnel</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/eglise-aranda.jpg" alt="Église d'Aranda de Duero">
-          <div class="card-content">
-            <h3>🍷 Aranda de Duero</h3>
-            <ul>
-              <li>Capitale de la Ribera del Duero</li>
-              <li>Caves souterraines du XVe siècle</li>
-              <li>Patrimoine architectural remarquable</li>
-              <li>Dégustations théâtralisées</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/gormaz.jpg" alt="Forteresse de Gormaz">
-          <div class="card-content">
-            <h3>🏰 Forteresse de Gormaz</h3>
-            <ul>
-              <li>Construite vers 756 par l'émir Abd ar-Rahman Ier</li>
-              <li>390 mètres de long, 28 tours</li>
-              <li>Plus grande forteresse musulmane d'Europe</li>
-              <li>Vue panoramique sur la vallée</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/penafiel.jpeg" alt="Château de Peñafiel">
-          <div class="card-content">
-            <h3>🏰 Château de Peñafiel</h3>
-            <ul>
-              <li>Château du Xe siècle</li>
-              <li>Musée provincial du vin</li>
-              <li>Bodega Protos dans les entrailles</li>
-              <li>Place du Coso depuis 1443</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/Lechazo_Agneau_Lait.jpg" alt="Lechazo, agneau de lait">
-          <div class="card-content">
-            <h3>🍽️ Gastronomie castillane</h3>
-            <ul>
-              <li>Lechazo (agneau de lait) au four à bois</li>
-              <li>Morcilla de Burgos</li>
-              <li>Côte de bœuf grillée</li>
-              <li>Tapeo rue Isilla</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/comedor-sagar.jpg" alt="Cidrerie basque à Astigarraga">
-          <div class="card-content">
-            <h3>🍏 Cidrerie basque</h3>
-            <ul>
-              <li>Sagardoa, le cidre basque</li>
-              <li>Rituel du txotx</li>
-              <li>Menu traditionnel : morue, steak, fromage</li>
-              <li>Ambiance conviviale à Astigarraga</li>
-            </ul>
-          </div>
-        </div>
-
+    <header class="hero">
+      <div class="container">
+        <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Escapade en petit groupe · 4 jours · Castille-et-León</p>
+        <h1>Ribera del Duero · Vins d'exception</h1>
+        <p class="subtitle">Aranda de Duero · Peñafiel · Lerma · Gormaz</p>
+        <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
       </div>
-    </section>
+    </header>
 
-    <!-- PAUSE VISUELLE 1 : VIGNOBLE DU DUERO -->
-    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/vigne-duero.jpg');">
-      <div class="caption">
-        <h2>Les vignes dorées de la Ribera</h2>
-        <p>Le Tempranillo, cépage roi de la Ribera del Duero, représente 90% du vignoble. Pingus et Vega Sicilia portent haut les couleurs de l'appellation.</p>
-      </div>
-    </div>
-
-    <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
-      <h2 class="section-title">Votre itinéraire jour par jour</h2>
+    <div class="container">
       
-      <div class="timeline">
+      <section class="intro">
+        <h2 style="margin-bottom: 20px;">Une histoire millénaire au cœur de l'Espagne</h2>
+        <p>
+          Plongez au cœur de la <span class="highlight">Ribera del Duero</span>, l'une des régions viticoles les plus prestigieuses d'Espagne, avec Aranda de Duero comme point de départ. 
+          Découvrez des bodegas et dégustez les vins rouges emblématiques de la région, flânez dans des villes et villages historiques de Lerma à Peñafiel, explorez les caves souterraines d'Aranda et savourez une cuisine castillane généreuse.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="section-title">Le voyage en un coup d'œil</h2>
+        <div class="grid-4">
+          
+          <div class="card">
+            <img src="images/Lerma_Palais_Ducal.jpg" alt="Palais Ducal de Lerma">
+            <div class="card-content">
+              <h3>🏛️ Lerma</h3>
+              <ul>
+                <li>Cité ducale du XVIIe siècle</li>
+                <li>Palais Ducal dominant la Plaza Mayor</li>
+                <li>Architecture Renaissance</li>
+                <li>Patrimoine historique exceptionnel</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="images/eglise-aranda.jpg" alt="Église d'Aranda de Duero">
+            <div class="card-content">
+              <h3>🍷 Aranda de Duero</h3>
+              <ul>
+                <li>Capitale de la Ribera del Duero</li>
+                <li>Caves souterraines du XVe siècle</li>
+                <li>Patrimoine architectural remarquable</li>
+                <li>Dégustations théâtralisées</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="images/gormaz.jpg" alt="Forteresse de Gormaz">
+            <div class="card-content">
+              <h3>🏰 Forteresse de Gormaz</h3>
+              <ul>
+                <li>Construite vers 756 par l'émir Abd ar-Rahman Ier</li>
+                <li>390 mètres de long, 28 tours</li>
+                <li>Plus grande forteresse musulmane d'Europe</li>
+                <li>Vue panoramique sur la vallée</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="images/penafiel.jpeg" alt="Château de Peñafiel">
+            <div class="card-content">
+              <h3>🏰 Château de Peñafiel</h3>
+              <ul>
+                <li>Château du Xe siècle</li>
+                <li>Musée provincial du vin</li>
+                <li>Bodega Protos dans les entrailles</li>
+                <li>Place du Coso depuis 1443</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="images/Lechazo_Agneau_Lait.jpg" alt="Lechazo, agneau de lait">
+            <div class="card-content">
+              <h3>🍽️ Gastronomie castillane</h3>
+              <ul>
+                <li>Lechazo (agneau de lait) au four à bois</li>
+                <li>Morcilla de Burgos</li>
+                <li>Côte de bœuf grillée</li>
+                <li>Tapeo rue Isilla</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="images/comedor-sagar.jpg" alt="Cidrerie basque à Astigarraga">
+            <div class="card-content">
+              <h3>🍏 Cidrerie basque</h3>
+              <ul>
+                <li>Sagardoa, le cidre basque</li>
+                <li>Rituel du txotx</li>
+                <li>Menu traditionnel : morue, steak, fromage</li>
+                <li>Ambiance conviviale à Astigarraga</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- PAUSE VISUELLE 1 : VIGNOBLE DU DUERO -->
+      <div class="pause-visuelle pause-naturelle" style="background-image: url('images/vigne-duero.jpg');">
+        <div class="caption">
+          <h2>Les vignes dorées de la Ribera</h2>
+          <p>Le Tempranillo, cépage roi de la Ribera del Duero, représente 90% du vignoble. Pingus et Vega Sicilia portent haut les couleurs de l'appellation.</p>
+        </div>
+      </div>
+
+      <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
+        <h2 class="section-title">Votre itinéraire jour par jour</h2>
         
-        <div class="timeline-phase">
-          <h3>Jour 1 · Arrivée à Lerma</h3>
+        <div class="timeline">
           
-          <div class="timeline-item">
-            <div class="days">Matin</div>
-            <h4>Route vers Lerma</h4>
-            <p>Départ vers la Castille-et-León. Arrivée dans la cité ducale de Lerma, joyau de la Renaissance espagnole.</p>
-          </div>
-          
-          <div class="timeline-item">
-            <div class="days">Midi</div>
-            <h4>Déjeuner à Lerma</h4>
-            <p>Déjeuner dans un restaurant typique de la région, au cœur de la Plaza Mayor dominée par le Palais Ducal.</p>
+          <div class="timeline-phase">
+            <h3>Jour 1 · Arrivée à Lerma</h3>
+            
+            <div class="timeline-item">
+              <div class="days">Matin</div>
+              <h4>Route vers Lerma</h4>
+              <p>Départ vers la Castille-et-León. Arrivée dans la cité ducale de Lerma, joyau de la Renaissance espagnole.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="days">Midi</div>
+              <h4>Déjeuner à Lerma</h4>
+              <p>Déjeuner dans un restaurant typique de la région, au cœur de la Plaza Mayor dominée par le Palais Ducal.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Après-midi</div>
+              <h4>Visite de la cité ducale</h4>
+              <p>Lerma prend son essor au XVIIe siècle sous l'impulsion du duc Francisco Gómez de Sandoval y Rojas. Son Palais Ducal domine la Plaza Mayor. Découverte de l'architecture Renaissance et du patrimoine historique.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Soir</div>
+              <h4>Arrivée à Aranda de Duero</h4>
+              <p>Installation à l'hôtel en fin d'après-midi. Soirée libre pour une première découverte de la ville et de ses caves souterraines.</p>
+            </div>
           </div>
 
-          <div class="timeline-item">
-            <div class="days">Après-midi</div>
-            <h4>Visite de la cité ducale</h4>
-            <p>Lerma prend son essor au XVIIe siècle sous l'impulsion du duc Francisco Gómez de Sandoval y Rojas. Son Palais Ducal domine la Plaza Mayor. Découverte de l'architecture Renaissance et du patrimoine historique.</p>
+          <div class="timeline-phase">
+            <h3>Jour 2 · Aranda & Gormaz</h3>
+            
+            <div class="timeline-item">
+              <div class="days">Matin</div>
+              <h4>Vieille ville d'Aranda</h4>
+              <p>Découverte du patrimoine architectural remarquable d'Aranda de Duero : église Santa María la Real, Plaza Mayor et réseau exceptionnel de caves souterraines.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Midi</div>
+              <h4>Cave du XVe siècle</h4>
+              <p>Visite d'une cave souterraine du XVe siècle, suivie d'une dégustation théâtralisée de Ribera del Duero, fromages et jambons locaux. Une immersion dans l'histoire viticole de la région.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Après-midi</div>
+              <h4>Forteresse de Gormaz</h4>
+              <p>Construite vers l'an 756 par l'émir Abd ar-Rahman Ier de Cordoue, la forteresse de Gormaz s'étire sur environ 390 mètres et conserve encore 28 tours. La plus grande forteresse musulmane d'Europe.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Soir</div>
+              <h4>Dîner restaurant typique</h4>
+              <p>Dîner dans un restaurant typique de la région : lechazo au four à bois, morcilla de Burgos et vins de la Ribera.</p>
+            </div>
           </div>
 
-          <div class="timeline-item">
-            <div class="days">Soir</div>
-            <h4>Arrivée à Aranda de Duero</h4>
-            <p>Installation à l'hôtel en fin d'après-midi. Soirée libre pour une première découverte de la ville et de ses caves souterraines.</p>
+          <div class="timeline-phase">
+            <h3>Jour 3 · Peñafiel & Ribera</h3>
+            
+            <div class="timeline-item">
+              <div class="days">Matin</div>
+              <h4>Château de Peñafiel</h4>
+              <p>Dans les entrailles du château se trouve un labyrinthe de galeries où le vin de la Bodega Protos est entreposé et conservé. La Place du Coso accueille des festivités depuis 1443.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Midi</div>
+              <h4>Bodegas Protos</h4>
+              <p>Visite et dégustation à la Bodega Protos, l'une des maisons emblématiques de la Ribera del Duero. Le Tempranillo, cépage roi, représente 90% du vignoble.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Après-midi</div>
+              <h4>Circuit dans la Ribera</h4>
+              <p>Découverte des villages viticoles : Pesquera, Valbuena, Quintanilla, Roa. Paysages de vignes à perte de vue et dégustations dans les bodegas.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Soir</div>
+              <h4>Tapeo rue Isilla</h4>
+              <p>Soirée tapas dans la célèbre rue Isilla d'Aranda de Duero, l'une des rues les plus animées pour le tapeo. Dégustation de spécialités locales accompagnées de vins de la Ribera.</p>
+            </div>
+          </div>
+
+          <div class="timeline-phase">
+            <h3>Jour 4 · Cidrerie basque & retour</h3>
+            
+            <div class="timeline-item">
+              <div class="days">Matin</div>
+              <h4>Départ d'Aranda</h4>
+              <p>Départ en début de matinée pour une halte gourmande au Pays Basque.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Midi</div>
+              <h4>Cidrerie à Astigarraga</h4>
+              <p>Le cidre, ou sagardoa, appartient à l'histoire du Pays Basque. Dégustation de la sidra naturelle directement au tonneau selon le rituel du « txotx ». Menu traditionnel : omelette de morue, steak de bœuf, fromage de brebis et noix. Une touche conviviale et authentique pour clore l'escapade.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Après-midi</div>
+              <h4>Route du retour</h4>
+              <p>Route du retour avec les images de la Ribera del Duero en tête et le goût du Tempranillo sur les lèvres.</p>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="timeline-phase">
-          <h3>Jour 2 · Aranda & Gormaz</h3>
-          
-          <div class="timeline-item">
-            <div class="days">Matin</div>
-            <h4>Vieille ville d'Aranda</h4>
-            <p>Découverte du patrimoine architectural remarquable d'Aranda de Duero : église Santa María la Real, Plaza Mayor et réseau exceptionnel de caves souterraines.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Midi</div>
-            <h4>Cave du XVe siècle</h4>
-            <p>Visite d'une cave souterraine du XVe siècle, suivie d'une dégustation théâtralisée de Ribera del Duero, fromages et jambons locaux. Une immersion dans l'histoire viticole de la région.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Après-midi</div>
-            <h4>Forteresse de Gormaz</h4>
-            <p>Construite vers l'an 756 par l'émir Abd ar-Rahman Ier de Cordoue, la forteresse de Gormaz s'étire sur environ 390 mètres et conserve encore 28 tours. La plus grande forteresse musulmane d'Europe.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Soir</div>
-            <h4>Dîner restaurant typique</h4>
-            <p>Dîner dans un restaurant typique de la région : lechazo au four à bois, morcilla de Burgos et vins de la Ribera.</p>
-          </div>
-        </div>
-
-        <div class="timeline-phase">
-          <h3>Jour 3 · Peñafiel & Ribera</h3>
-          
-          <div class="timeline-item">
-            <div class="days">Matin</div>
-            <h4>Château de Peñafiel</h4>
-            <p>Dans les entrailles du château se trouve un labyrinthe de galeries où le vin de la Bodega Protos est entreposé et conservé. La Place du Coso accueille des festivités depuis 1443.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Midi</div>
-            <h4>Bodegas Protos</h4>
-            <p>Visite et dégustation à la Bodega Protos, l'une des maisons emblématiques de la Ribera del Duero. Le Tempranillo, cépage roi, représente 90% du vignoble.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Après-midi</div>
-            <h4>Circuit dans la Ribera</h4>
-            <p>Découverte des villages viticoles : Pesquera, Valbuena, Quintanilla, Roa. Paysages de vignes à perte de vue et dégustations dans les bodegas.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Soir</div>
-            <h4>Tapeo rue Isilla</h4>
-            <p>Soirée tapas dans la célèbre rue Isilla d'Aranda de Duero, l'une des rues les plus animées pour le tapeo. Dégustation de spécialités locales accompagnées de vins de la Ribera.</p>
-          </div>
-        </div>
-
-        <div class="timeline-phase">
-          <h3>Jour 4 · Cidrerie basque & retour</h3>
-          
-          <div class="timeline-item">
-            <div class="days">Matin</div>
-            <h4>Départ d'Aranda</h4>
-            <p>Départ en début de matinée pour une halte gourmande au Pays Basque.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Midi</div>
-            <h4>Cidrerie à Astigarraga</h4>
-            <p>Le cidre, ou sagardoa, appartient à l'histoire du Pays Basque. Dégustation de la sidra naturelle directement au tonneau selon le rituel du « txotx ». Menu traditionnel : omelette de morue, steak de bœuf, fromage de brebis et noix. Une touche conviviale et authentique pour clore l'escapade.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Après-midi</div>
-            <h4>Route du retour</h4>
-            <p>Route du retour avec les images de la Ribera del Duero en tête et le goût du Tempranillo sur les lèvres.</p>
-          </div>
+      <!-- PAUSE VISUELLE 2 : TXOTX SIDRA -->
+      <div class="pause-visuelle pause-naturelle" style="background-image: url('images/txox-sidra.jpeg');">
+        <div class="caption">
+          <h2>Le rituel du Txotx</h2>
+          <p>À Astigarraga, on déguste la sidra naturelle directement au tonneau. Un rituel convivial et authentique, parfait point d'orgue avant le retour.</p>
         </div>
       </div>
-    </section>
 
-    <!-- PAUSE VISUELLE 2 : TXOTX SIDRA -->
-    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/txox-sidra.jpeg');">
-      <div class="caption">
-        <h2>Le rituel du Txotx</h2>
-        <p>À Astigarraga, on déguste la sidra naturelle directement au tonneau. Un rituel convivial et authentique, parfait point d'orgue avant le retour.</p>
-      </div>
+      <section class="pratiques">
+        <h2 class="section-title">Gastronomie castillane</h2>
+        <div class="pratiques-grid">
+          <div class="pratique-item">
+            <img src="images/Lechazo_Agneau_Lait.jpg" alt="Lechazo, agneau de lait" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+            <h4>🍖 Lechazo</h4>
+            <p>Agneau de lait cuit au four à bois. Le plat emblématique de la Castille, tendre et savoureux.</p>
+          </div>
+          <div class="pratique-item">
+            <img src="images/morcilla.jpg" alt="Morcilla de Burgos" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+            <h4>🩸 Morcilla de Burgos</h4>
+            <p>Boudin noir traditionnel aux céréales, spécialité de Burgos. À déguster grillée ou en tapeo.</p>
+          </div>
+          <div class="pratique-item">
+            <img src="images/Cote_de_Boeuf.jpg" alt="Côte de bœuf grillée" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+            <h4>🥩 Côte de bœuf</h4>
+            <p>Viande de qualité grillée sur la braise, accompagnée de piquillos et de vins de la Ribera.</p>
+          </div>
+          <div class="pratique-item">
+            <img src="images/rue-isilla.jpeg" alt="Rue Isilla d'Aranda de Duero" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+            <h4>🍷 Tapeo rue Isilla</h4>
+            <p>La rue la plus animée d'Aranda pour le tapeo. Bars traditionnels et spécialités locales.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="pratiques">
+        <h2 class="section-title">L'esprit du voyage</h2>
+        <div class="pratiques-grid">
+          <div class="pratique-item">
+            <h4>🍷 Vins d'exception</h4>
+            <p>Ribera del Duero · Tempranillo · Bodegas Protos · Pingus · Vega Sicilia</p>
+          </div>
+          <div class="pratique-item">
+            <h4>🏛️ Patrimoine médiéval</h4>
+            <p>Lerma · Aranda de Duero · Peñafiel · Forteresse de Gormaz</p>
+          </div>
+          <div class="pratique-item">
+            <h4>🍽️ Gastronomie castillane</h4>
+            <p>Lechazo · Morcilla · Tapeo · Cidrerie basque</p>
+          </div>
+          <div class="pratique-item">
+            <h4>✨ La philosophie VPDVOYAGES</h4>
+            <ul>
+              <li><strong>Sélection :</strong> Des étapes qui ont du sens dans le rythme global</li>
+              <li><strong>Équilibre :</strong> Vins + patrimoine + gastronomie + villages</li>
+              <li><strong>Personnalisation :</strong> Le programme évolue selon vos envies</li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top: 24px; text-align: center; font-style: italic; color: var(--text-light);">
+          La Ribera del Duero, avec ses vignes dorées à l'infini, ses caves ancestrales et son art de vivre authentique, offre une échappée riche en saveurs et en émotions.
+        </p>
+      </section>
+
+      <section class="carte-section">
+        <h2 class="section-title">Votre itinéraire sur la carte</h2>
+        <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+          De Lerma à Astigarraga, en passant par Aranda de Duero, Gormaz et Peñafiel : cliquez sur chaque point doré pour découvrir les étapes de votre escapade.
+        </p>
+        <div id="map"></div>
+        <div style="text-align: center; margin-top: 20px;">
+          <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
+        </div>
+      </section>
+
+      <section style="text-align: center; padding-bottom: 20px;">
+        <h2 style="margin-bottom: 16px;">Bon séjour en Ribera del Duero !</h2>
+        <p style="margin-bottom: 32px; color: var(--text-light);">Vivez l'Espagne autrement… Escapade de 4 jours · Castille-et-León</p>
+        <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
+      </section>
+
     </div>
-
-    <section class="pratiques">
-      <h2 class="section-title">Gastronomie castillane</h2>
-      <div class="pratiques-grid">
-        <div class="pratique-item">
-          <img src="images/Lechazo_Agneau_Lait.jpg" alt="Lechazo, agneau de lait" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
-          <h4>🍖 Lechazo</h4>
-          <p>Agneau de lait cuit au four à bois. Le plat emblématique de la Castille, tendre et savoureux.</p>
-        </div>
-        <div class="pratique-item">
-          <img src="images/morcilla.jpg" alt="Morcilla de Burgos" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
-          <h4>🩸 Morcilla de Burgos</h4>
-          <p>Boudin noir traditionnel aux céréales, spécialité de Burgos. À déguster grillée ou en tapeo.</p>
-        </div>
-        <div class="pratique-item">
-          <img src="images/Cote_de_Boeuf.jpg" alt="Côte de bœuf grillée" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
-          <h4>🥩 Côte de bœuf</h4>
-          <p>Viande de qualité grillée sur la braise, accompagnée de piquillos et de vins de la Ribera.</p>
-        </div>
-        <div class="pratique-item">
-          <img src="images/rue-isilla.jpeg" alt="Rue Isilla d'Aranda de Duero" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
-          <h4>🍷 Tapeo rue Isilla</h4>
-          <p>La rue la plus animée d'Aranda pour le tapeo. Bars traditionnels et spécialités locales.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="pratiques">
-      <h2 class="section-title">L'esprit du voyage</h2>
-      <div class="pratiques-grid">
-        <div class="pratique-item">
-          <h4>🍷 Vins d'exception</h4>
-          <p>Ribera del Duero · Tempranillo · Bodegas Protos · Pingus · Vega Sicilia</p>
-        </div>
-        <div class="pratique-item">
-          <h4>🏛️ Patrimoine médiéval</h4>
-          <p>Lerma · Aranda de Duero · Peñafiel · Forteresse de Gormaz</p>
-        </div>
-        <div class="pratique-item">
-          <h4>🍽️ Gastronomie castillane</h4>
-          <p>Lechazo · Morcilla · Tapeo · Cidrerie basque</p>
-        </div>
-        <div class="pratique-item">
-          <h4>✨ La philosophie VPDVOYAGES</h4>
-          <ul>
-            <li><strong>Sélection :</strong> Des étapes qui ont du sens dans le rythme global</li>
-            <li><strong>Équilibre :</strong> Vins + patrimoine + gastronomie + villages</li>
-            <li><strong>Personnalisation :</strong> Le programme évolue selon vos envies</li>
-          </ul>
-        </div>
-      </div>
-      <p style="margin-top: 24px; text-align: center; font-style: italic; color: var(--text-light);">
-        La Ribera del Duero, avec ses vignes dorées à l'infini, ses caves ancestrales et son art de vivre authentique, offre une échappée riche en saveurs et en émotions.
-      </p>
-    </section>
-
-    <section class="carte-section">
-      <h2 class="section-title">Votre itinéraire sur la carte</h2>
-      <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
-        De Lerma à Astigarraga, en passant par Aranda de Duero, Gormaz et Peñafiel : cliquez sur chaque point doré pour découvrir les étapes de votre escapade.
-      </p>
-      <div id="map"></div>
-      <div style="text-align: center; margin-top: 20px;">
-        <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
-      </div>
-    </section>
-
-    <section style="text-align: center; padding-bottom: 20px;">
-      <h2 style="margin-bottom: 16px;">Bon séjour en Ribera del Duero !</h2>
-      <p style="margin-bottom: 32px; color: var(--text-light);">Vivez l'Espagne autrement… Escapade de 4 jours · Castille-et-León</p>
-      <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
-    </section>
 
   </main>
 
@@ -426,6 +511,40 @@
       </p>
     </div>
   </footer>
+
+  <!-- SCRIPT DU MENU HEADER -->
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#navigation');
+    
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('is-open', open);
+    });
+
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('is-open');
+    }));
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        toggle.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+        toggle.focus();
+      }
+    });
+
+    const headerElement = document.querySelector('.header');
+    function updateHeaderHeight() {
+      const height = headerElement.getBoundingClientRect().height;
+      document.documentElement.style.setProperty('--header-height', height + 'px');
+      document.documentElement.style.scrollPaddingTop = (height + 12) + 'px';
+    }
+    new ResizeObserver(updateHeaderHeight).observe(headerElement);
+    updateHeaderHeight();
+  </script>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 

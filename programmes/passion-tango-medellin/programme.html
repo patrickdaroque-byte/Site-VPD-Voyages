@@ -7,7 +7,8 @@
   <!-- OPTIMISATION SEO -->
   <title>Festival Tango Medellín 2027 | Voyage Colombie sur mesure | VPD Voyages</title>
   <meta name="description" content="Vivez le Festitango Medellín 2027 en petit groupe. 16 jours : Bogotá, Guatapé, Comuna 13 et milongas. Itinéraire sur mesure. Devis gratuit avec VPD Voyages.">
-  
+  <meta name="theme-color" content="#173e58"/>
+
   <!-- POLICES D'ÉCRITURE -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,21 +18,28 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
   <style>
-    /* --- VARIABLES & RESET (Thème Tango) --- */
+    /* --- VARIABLES & RESET --- */
     :root {
+      --ink: #173447;
+      --muted: #52636b;
+      --blue: #173e58;
       --primary: #8B1E1E; /* Rouge Tango */
       --primary-dark: #6B1515;
       --accent: #D4A017; /* Or */
+      --accent-index: #b85132;
       --text: #2D3748;
       --text-light: #4A5568;
       --bg: #FAFAFA;
+      --paper: #faf9f6;
+      --line: #dce2df;
       --white: #FFFFFF;
       --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
       --radius: 8px;
+      --header-height: 82px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text);
@@ -53,6 +61,46 @@
       max-width: 1100px;
       margin: 0 auto;
       padding: 0 24px;
+    }
+    .wrap { width: min(1180px, calc(100% - 64px)); margin: auto; }
+    .skip { position: absolute; left: 15px; top: -100px; background: white; padding: 12px; z-index: 100; }
+    .skip:focus { top: 10px; }
+
+    /* --- STYLES HEADER INDEX --- */
+    .header { background: rgba(250,249,246,.98); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; }
+    .header .wrap { width: min(1320px, calc(100% - 48px)); }
+    .header-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 26px; }
+    .brand { text-decoration: none; line-height: 1.2; white-space: nowrap; }
+    .brand-logo { display: block; width: 220px; height: 68px; object-fit: contain; filter: url(#logo-ink); background: transparent; }
+    .menu-toggle { display: none; background: none; border: 1px solid var(--line); border-radius: 8px; padding: 9px 13px; font: inherit; color: var(--ink); cursor: pointer; }
+    .nav { display: flex; align-items: center; gap: 14px; }
+    .nav a { text-decoration: none; font-size: .85rem; font-weight: 550; white-space: nowrap; }
+    .nav a:hover { color: var(--accent-index); }
+    .nav a.nav-primary { font-weight: 700; color: var(--blue); position: relative; }
+    .nav a.nav-primary::after { content: ""; position: absolute; left: 0; right: 0; bottom: -7px; height: 2px; background: var(--accent-index); border-radius: 2px; transform: scaleX(.4); transform-origin: left; transition: transform .2s; }
+    .nav a.nav-primary:hover, .nav a.nav-primary:focus-visible { color: var(--accent-index); }
+    .nav a.nav-primary:hover::after, .nav a.nav-primary:focus-visible::after { transform: scaleX(1); }
+    .nav .nav-feature { padding: 9px 12px; border-radius: 8px; border: 1px solid; }
+    .nav a.theme-tango { background: #EDF4FF; color: #24549A; border-color: #A9BFDF; }
+    .nav a.theme-solo { background: #EDF6F0; color: #286044; border-color: #A5C4AF; }
+    .nav a.theme-tango:hover { background: #DFEAFC; color: #24549A; border-color: #7E9FCB; }
+    .nav a.theme-solo:hover { background: #DEEEE3; color: #286044; border-color: #7BA68A; }
+    .review-link span { color: #ac791c; margin-right: 3px; }
+
+    /* RESPONSIVE HEADER INDEX */
+    @media (min-width: 1101px) { .nav a.nav-primary { font-size: .95rem; } .nav { gap: 18px; } }
+    @media (max-width: 1100px) { .nav { gap: 9px; } .nav a { font-size: .77rem; } .nav .nav-feature { padding: 8px; } .brand-logo { width: 175px; } .header-inner { gap: 16px; } }
+    @media (min-width: 781px) and (max-width: 940px) { .header-inner { flex-wrap: wrap; justify-content: center; padding-bottom: 10px; gap: 2px; } .nav { justify-content: center; width: 100%; gap: 14px; } .brand-logo { height: 56px; } .nav a { font-size: .8rem; } }
+    @media (max-width: 780px) {
+      .wrap { width: calc(100% - 40px); }
+      .header-inner { min-height: 72px; flex-wrap: wrap; gap: 0; }
+      .brand-logo { height: 62px; width: 205px; }
+      .menu-toggle { display: block; }
+      .nav { display: none; flex-basis: 100%; padding: 20px 0; align-items: stretch; gap: 0; }
+      .nav.is-open { display: flex; flex-direction: column; }
+      .nav a { padding: 11px 0; font-size: 1rem; border-top: 1px solid var(--line); }
+      .nav a.nav-primary::after { display: none; }
+      .nav .nav-feature { margin: 5px 0; padding: 12px; }
     }
 
     /* --- HERO SECTION --- */
@@ -335,233 +383,268 @@
 </head>
 <body>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="container">
-      <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Idée voyage en petit groupe · 16 jours / 15 nuits</p>
-      <h1>Colombie · Festitango Medellín 2027</h1>
-      <p class="subtitle">Tango & Printemps éternel</p>
-      <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
+  <!-- SVG MASQUÉ POUR LE LOGO -->
+  <svg aria-hidden="true" height="0" style="position:absolute;pointer-events:none" width="0" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter color-interpolation-filters="sRGB" height="102%" id="logo-ink" width="102%" x="-1%" y="-1%">
+        <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.063 3.576 .361 0 -3.5"></feColorMatrix>
+        <feComponentTransfer><feFuncA amplitude="1" exponent="0.8" offset="0" type="gamma"></feFuncA></feComponentTransfer>
+      </filter>
+    </defs>
+  </svg>
+
+  <a class="skip" href="#contenu">Aller au contenu</a>
+
+  <!-- HEADER IDENTIQUE À INDEX.HTML -->
+  <header class="header">
+    <div class="wrap header-inner">
+      <a aria-label="VPD Voyages — Accueil" class="brand" href="index.html#accueil">
+        <img alt="VPDVOYAGES — Patrick Daroque" class="brand-logo" height="68" src="https://vpdvoyages.com/Images/logo.png" width="220"/>
+      </a>
+      <button aria-controls="navigation" aria-expanded="false" class="menu-toggle">Menu</button>
+      <nav aria-label="Navigation principale" class="nav" id="navigation">
+        <a class="nav-primary" href="index.html#destinations">Destinations</a>
+        <a class="nav-primary" href="formules.html">Formules</a>
+        <a class="nav-feature theme-solo" href="https://vpdvoyages.com/voyage-solo.html">Voyager seul(e)</a>
+        <a class="nav-feature theme-tango" href="https://vpdvoyages.com/voyage-tango.html">Tango argentin</a>
+        <a class="review-link" href="avis-clients.html"><span aria-hidden="true">★</span> Avis clients</a>
+        <a href="index.html#about">À propos</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
-  <main class="container">
-    
-    <!-- INTRODUCTION -->
-    <section class="intro">
-      <h2 style="margin-bottom: 20px;">Gardel, Tango et découvertes colombiennes</h2>
-      <p>
-        Vivez une expérience unique au <span class="highlight">Festival International de Tango de Medellín</span>, l'un des plus prestigieux d'Amérique latine. 
-        Medellín n'est pas une ville de tango par hasard : c'est ici que <strong>Carlos Gardel</strong>, la légende du tango, a trouvé la mort en 1935, 
-        faisant de cette ville le sanctuaire de sa mémoire et le berceau du tango colombien.
-      </p>
-    </section>
+  <main id="contenu">
 
-    <!-- LES RÉGIONS VISITÉES (GRID AVEC 5 PHOTOS) -->
-    <section>
-      <h2 class="section-title">Les régions visitées</h2>
-      <div class="grid-4">
-        
-        <!-- Carte 1 : Le Festival -->
-        <div class="card">
-          <img src="images/festival.jpg" alt="Milongas et spectacles au Festival de Tango de Medellín">
-          <div class="card-content">
-            <h3>💃 Le Festival</h3>
-            <ul>
-              <li>Milongas sous les étoiles</li>
-              <li>Cours avec maestros internationaux</li>
-              <li>Spectacles de haut niveau & Tangovia</li>
-              <li>Inauguration & Despedida</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Carte 2 : Bogotá -->
-        <div class="card">
-          <img src="images/bogota.jpg" alt="Quartier colonial de la Candelaria à Bogotá">
-          <div class="card-content">
-            <h3>🏛️ Bogotá & les Andes</h3>
-            <ul>
-              <li>Quartier colonial de la Candelaria</li>
-              <li>Musée de l'Or (trésors précolombiens)</li>
-              <li>Mirador de Monserrate (3 152 m)</li>
-              <li>Cathédrale de Sel de Zipaquirá</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Carte 3 : Medellín -->
-        <div class="card">
-          <img src="images/medellin.jpg" alt="Vue sur Medellín la ville du printemps éternel">
-          <div class="card-content">
-            <h3>🌸 Medellín innovante</h3>
-            <ul>
-              <li>Musée d'Antioquia & Place Botero</li>
-              <li>Metrocable & Comuna 13</li>
-              <li>Musée de la Mémoire</li>
-              <li>Parc Arví & nature</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Carte 4 : Guatapé -->
-        <div class="card">
-          <img src="images/guatape.jpg" alt="Vue panoramique depuis la Piedra del Peñol à Guatapé">
-          <div class="card-content">
-            <h3>🏞️ Guatapé</h3>
-            <ul>
-              <li>Piedra del Peñol (740 marches)</li>
-              <li>Panorama exceptionnel sur le lac</li>
-              <li>Village aux façades colorées</li>
-              <li>Zócalos peints traditionnels</li>
-            </ul>
-          </div>
-        </div>
-
+    <!-- HERO -->
+    <header class="hero">
+      <div class="container">
+        <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Idée voyage en petit groupe · 16 jours / 15 nuits</p>
+        <h1>Colombie · Festitango Medellín 2027</h1>
+        <p class="subtitle">Tango & Printemps éternel</p>
+        <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
       </div>
-    </section>
+    </header>
 
-    <!-- 🌟 PAUSE VISUELLE 1 : Couple de tango -->
-    <div class="pause-visuelle" style="background-image: url('images/couple-tango.jpg');">
-      <div class="caption">
-        <h2>L'âme du tango à Medellín</h2>
-        <p>Danser au cœur de la ville qui a vu naître le tango colombien, là où Gardel a laissé son empreinte éternelle.</p>
-      </div>
-    </div>
-
-    <!-- PROGRAMME DÉTAILLÉ (TIMELINE) -->
-    <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
-      <h2 class="section-title">Votre itinéraire jour par jour</h2>
+    <div class="container">
       
-      <div class="timeline">
-        <!-- SEMAINE 1 -->
-        <div class="timeline-phase">
-          <h3>1re semaine : Bogotá & Début du Festival</h3>
+      <!-- INTRODUCTION -->
+      <section class="intro">
+        <h2 style="margin-bottom: 20px;">Gardel, Tango et découvertes colombiennes</h2>
+        <p>
+          Vivez une expérience unique au <span class="highlight">Festival International de Tango de Medellín</span>, l'un des plus prestigieux d'Amérique latine. 
+          Medellín n'est pas une ville de tango par hasard : c'est ici que <strong>Carlos Gardel</strong>, la légende du tango, a trouvé la mort en 1935, 
+          faisant de cette ville le sanctuaire de sa mémoire et le berceau du tango colombien.
+        </p>
+      </section>
+
+      <!-- LES RÉGIONS VISITÉES (GRID AVEC 4 PHOTOS) -->
+      <section>
+        <h2 class="section-title">Les régions visitées</h2>
+        <div class="grid-4">
           
-          <div class="timeline-item">
-            <div class="days">Jours 1 & 2</div>
-            <h4>Arrivée à Bogotá</h4>
-            <p>Formalités d'arrivée et première découverte à votre rythme du quartier historique de la Candelaria.</p>
-          </div>
-          
-          <div class="timeline-item">
-            <div class="days">Jour 3</div>
-            <h4>Cœur culturel de Bogotá</h4>
-            <p>Visite du célèbre Musée de l'Or et montée au Mirador de Monserrate pour une vue panoramique vertigineuse.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jour 4</div>
-            <h4>Excursion à Zipaquirá</h4>
-            <p>Découverte de la spectaculaire Cathédrale de Sel, architecture souterraine et lumière mystique.</p>
+          <!-- Carte 1 : Le Festival -->
+          <div class="card">
+            <img src="images/festival.jpg" alt="Milongas et spectacles au Festival de Tango de Medellín">
+            <div class="card-content">
+              <h3>💃 Le Festival</h3>
+              <ul>
+                <li>Milongas sous les étoiles</li>
+                <li>Cours avec maestros internationaux</li>
+                <li>Spectacles de haut niveau & Tangovia</li>
+                <li>Inauguration & Despedida</li>
+              </ul>
+            </div>
           </div>
 
-          <div class="timeline-item">
-            <div class="days">Jour 5</div>
-            <h4>Légende de l'Eldorado</h4>
-            <p>Direction la lagune sacrée de Guatavita et repas champêtre près de la « Maison folle » (La Casa Loca).</p>
+          <!-- Carte 2 : Bogotá -->
+          <div class="card">
+            <img src="images/bogota.jpg" alt="Quartier colonial de la Candelaria à Bogotá">
+            <div class="card-content">
+              <h3>🏛️ Bogotá & les Andes</h3>
+              <ul>
+                <li>Quartier colonial de la Candelaria</li>
+                <li>Musée de l'Or (trésors précolombiens)</li>
+                <li>Mirador de Monserrate (3 152 m)</li>
+                <li>Cathédrale de Sel de Zipaquirá</li>
+              </ul>
+            </div>
           </div>
 
-          <div class="timeline-item">
-            <div class="days">Jour 6</div>
-            <h4>Quartier El Paraíso</h4>
-            <p>Visite guidée de ce quartier emblématique pour comprendre les contrastes et la richesse de la capitale.</p>
+          <!-- Carte 3 : Medellín -->
+          <div class="card">
+            <img src="images/medellin.jpg" alt="Vue sur Medellín la ville du printemps éternel">
+            <div class="card-content">
+              <h3>🌸 Medellín innovante</h3>
+              <ul>
+                <li>Musée d'Antioquia & Place Botero</li>
+                <li>Metrocable & Comuna 13</li>
+                <li>Musée de la Mémoire</li>
+                <li>Parc Arví & nature</li>
+              </ul>
+            </div>
           </div>
 
-          <div class="timeline-item">
-            <div class="days">Jour 7</div>
-            <h4>Cap sur Medellín</h4>
-            <p>Vol intérieur Bogotá → Medellín. En soirée : Inauguration officielle du Festitango.</p>
+          <!-- Carte 4 : Guatapé -->
+          <div class="card">
+            <img src="images/guatape.jpg" alt="Vue panoramique depuis la Piedra del Peñol à Guatapé">
+            <div class="card-content">
+              <h3>🏞️ Guatapé</h3>
+              <ul>
+                <li>Piedra del Peñol (740 marches)</li>
+                <li>Panorama exceptionnel sur le lac</li>
+                <li>Village aux façades colorées</li>
+                <li>Zócalos peints traditionnels</li>
+              </ul>
+            </div>
           </div>
+
         </div>
+      </section>
 
-        <!-- SEMAINE 2 -->
-        <div class="timeline-phase">
-          <h3>2e semaine : Festival, Guatapé & Retour</h3>
-          
-          <div class="timeline-item">
-            <div class="days">Jours 8, 9 & 10</div>
-            <h4>Immersion au Festitango</h4>
-            <p>Milongas, spectacles de haut niveau, cours avec des maestros et ambiance de la Tangovia.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jour 11</div>
-            <h4>L'art à Medellín</h4>
-            <p>Découverte du Musée d'Antioquia et de l'emblématique Place Botero.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jour 12</div>
-            <h4>Transformation urbaine</h4>
-            <p>Trajet en Metrocable, visite de la Comuna 13, du Musée de la Mémoire et du Parc Arví.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jour 13</div>
-            <h4>Excursion à Guatapé</h4>
-            <p>Ascension des 740 marches de la Piedra del Peñol et balade dans le village aux zócalos colorés.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jour 14</div>
-            <h4>Despedida</h4>
-            <p>Dernières milongas et cérémonie de clôture du Festival.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jours 15 & 16</div>
-            <h4>Retour</h4>
-            <p>Vol Medellín → Bogotá, puis vol international de retour vers la France.</p>
-          </div>
+      <!-- 🌟 PAUSE VISUELLE 1 : Couple de tango -->
+      <div class="pause-visuelle" style="background-image: url('images/couple-tango.jpg');">
+        <div class="caption">
+          <h2>L'âme du tango à Medellín</h2>
+          <p>Danser au cœur de la ville qui a vu naître le tango colombien, là où Gardel a laissé son empreinte éternelle.</p>
         </div>
       </div>
-    </section>
 
-    <!-- 🌟 PAUSE VISUELLE 2 : Gardel -->
-    <div class="pause-visuelle" style="background-image: url('images/gardel.jpg');">
-      <div class="caption">
-        <h2>Sur les pas de Carlos Gardel</h2>
-        <p>Medellín, ville d'adoption du plus grand tanguero de tous les temps. Un pèlerinage pour les amoureux du tango.</p>
+      <!-- PROGRAMME DÉTAILLÉ (TIMELINE) -->
+      <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
+        <h2 class="section-title">Votre itinéraire jour par jour</h2>
+        
+        <div class="timeline">
+          <!-- SEMAINE 1 -->
+          <div class="timeline-phase">
+            <h3>1re semaine : Bogotá & Début du Festival</h3>
+            
+            <div class="timeline-item">
+              <div class="days">Jours 1 & 2</div>
+              <h4>Arrivée à Bogotá</h4>
+              <p>Formalités d'arrivée et première découverte à votre rythme du quartier historique de la Candelaria.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="days">Jour 3</div>
+              <h4>Cœur culturel de Bogotá</h4>
+              <p>Visite du célèbre Musée de l'Or et montée au Mirador de Monserrate pour une vue panoramique vertigineuse.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 4</div>
+              <h4>Excursion à Zipaquirá</h4>
+              <p>Découverte de la spectaculaire Cathédrale de Sel, architecture souterraine et lumière mystique.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 5</div>
+              <h4>Légende de l'Eldorado</h4>
+              <p>Direction la lagune sacrée de Guatavita et repas champêtre près de la « Maison folle » (La Casa Loca).</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 6</div>
+              <h4>Quartier El Paraíso</h4>
+              <p>Visite guidée de ce quartier emblématique pour comprendre les contrastes et la richesse de la capitale.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 7</div>
+              <h4>Cap sur Medellín</h4>
+              <p>Vol intérieur Bogotá → Medellín. En soirée : Inauguration officielle du Festitango.</p>
+            </div>
+          </div>
+
+          <!-- SEMAINE 2 -->
+          <div class="timeline-phase">
+            <h3>2e semaine : Festival, Guatapé & Retour</h3>
+            
+            <div class="timeline-item">
+              <div class="days">Jours 8, 9 & 10</div>
+              <h4>Immersion au Festitango</h4>
+              <p>Milongas, spectacles de haut niveau, cours avec des maestros et ambiance de la Tangovia.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 11</div>
+              <h4>L'art à Medellín</h4>
+              <p>Découverte du Musée d'Antioquia et de l'emblématique Place Botero.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 12</div>
+              <h4>Transformation urbaine</h4>
+              <p>Trajet en Metrocable, visite de la Comuna 13, du Musée de la Mémoire et du Parc Arví.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 13</div>
+              <h4>Excursion à Guatapé</h4>
+              <p>Ascension des 740 marches de la Piedra del Peñol et balade dans le village aux zócalos colorés.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 14</div>
+              <h4>Despedida</h4>
+              <p>Dernières milongas et cérémonie de clôture du Festival.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jours 15 & 16</div>
+              <h4>Retour</h4>
+              <p>Vol Medellín → Bogotá, puis vol international de retour vers la France.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 🌟 PAUSE VISUELLE 2 : Gardel -->
+      <div class="pause-visuelle" style="background-image: url('images/gardel.jpg');">
+        <div class="caption">
+          <h2>Sur les pas de Carlos Gardel</h2>
+          <p>Medellín, ville d'adoption du plus grand tanguero de tous les temps. Un pèlerinage pour les amoureux du tango.</p>
+        </div>
       </div>
+
+      <!-- 🗺️ CARTE INTERACTIVE -->
+      <section class="carte-section">
+        <h2 class="section-title">Votre itinéraire sur la carte</h2>
+        <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+          Cliquez sur chaque point doré pour découvrir les étapes de votre voyage. La ligne rouge trace votre parcours à travers les Andes colombiennes, sur les traces du tango.
+        </p>
+        <div id="map"></div>
+        <div style="text-align: center; margin-top: 20px;">
+          <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
+        </div>
+      </section>
+
+      <!-- SÉCURITÉ -->
+      <section class="security">
+        <h3>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          Voyagez l'esprit tranquille : Zones sécurisées
+        </h3>
+        <p style="margin-bottom: 20px; color: #2F855A;">
+          Si certains endroits de Colombie restent à éviter, <strong>toutes les zones visitées lors de ce voyage sont parfaitement sûres pour les touristes</strong>. Nous appliquons les règles de bon sens suivantes :
+        </p>
+        <ul>
+          <li>Ne pas marcher seul(e) tard le soir dans les rues désertes.</li>
+          <li>Faire appeler un taxi (Cabify / Uber) par votre hôtel.</li>
+          <li>Éviter les attitudes ostentatoires (bijoux, argent visible).</li>
+          <li>Utiliser les distributeurs uniquement en journée, dans des lieux fréquentés.</li>
+          <li>Redoubler de vigilance contre les pickpockets dans les transports en commun.</li>
+        </ul>
+      </section>
+
+      <!-- CTA FINAL -->
+      <section style="text-align: center; padding-bottom: 20px;">
+        <h2 style="margin-bottom: 16px;">Prêt à danser à Medellín ?</h2>
+        <p style="margin-bottom: 32px; color: var(--text-light);">Construisons ensemble votre itinéraire sur mesure pour le Festitango 2027.</p>
+        <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
+      </section>
+
     </div>
-
-    <!-- 🗺️ CARTE INTERACTIVE -->
-    <section class="carte-section">
-      <h2 class="section-title">Votre itinéraire sur la carte</h2>
-      <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
-        Cliquez sur chaque point doré pour découvrir les étapes de votre voyage. La ligne rouge trace votre parcours à travers les Andes colombiennes, sur les traces du tango.
-      </p>
-      <div id="map"></div>
-      <div style="text-align: center; margin-top: 20px;">
-        <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
-      </div>
-    </section>
-
-    <!-- SÉCURITÉ -->
-    <section class="security">
-      <h3>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-        Voyagez l'esprit tranquille : Zones sécurisées
-      </h3>
-      <p style="margin-bottom: 20px; color: #2F855A;">
-        Si certains endroits de Colombie restent à éviter, <strong>toutes les zones visitées lors de ce voyage sont parfaitement sûres pour les touristes</strong>. Nous appliquons les règles de bon sens suivantes :
-      </p>
-      <ul>
-        <li>Ne pas marcher seul(e) tard le soir dans les rues désertes.</li>
-        <li>Faire appeler un taxi (Cabify / Uber) par votre hôtel.</li>
-        <li>Éviter les attitudes ostentatoires (bijoux, argent visible).</li>
-        <li>Utiliser les distributeurs uniquement en journée, dans des lieux fréquentés.</li>
-        <li>Redoubler de vigilance contre les pickpockets dans les transports en commun.</li>
-      </ul>
-    </section>
-
-    <!-- CTA FINAL -->
-    <section style="text-align: center; padding-bottom: 20px;">
-      <h2 style="margin-bottom: 16px;">Prêt à danser à Medellín ?</h2>
-      <p style="margin-bottom: 32px; color: var(--text-light);">Construisons ensemble votre itinéraire sur mesure pour le Festitango 2027.</p>
-      <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
-    </section>
 
   </main>
 
@@ -576,6 +659,40 @@
       </p>
     </div>
   </footer>
+
+  <!-- SCRIPT DU MENU HEADER -->
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#navigation');
+    
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('is-open', open);
+    });
+
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('is-open');
+    }));
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        toggle.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+        toggle.focus();
+      }
+    });
+
+    const headerElement = document.querySelector('.header');
+    function updateHeaderHeight() {
+      const height = headerElement.getBoundingClientRect().height;
+      document.documentElement.style.setProperty('--header-height', height + 'px');
+      document.documentElement.style.scrollPaddingTop = (height + 12) + 'px';
+    }
+    new ResizeObserver(updateHeaderHeight).observe(headerElement);
+    updateHeaderHeight();
+  </script>
 
   <!-- SCRIPT LEAFLET POUR LA CARTE -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>

@@ -7,7 +7,8 @@
   <!-- OPTIMISATION SEO -->
   <title>Salamanque · Escapade 4 jours & Route des Reines | Castille-et-León | VPD Voyages</title>
   <meta name="description" content="Escapade à Salamanque en 4 jours : Plaza Mayor, Université, Cathédrale, Route des Reines (Tordesillas, Medina del Campo), vins de Rueda. Devis gratuit avec VPD Voyages.">
-  
+  <meta name="theme-color" content="#173e58"/>
+
   <!-- POLICES D'ÉCRITURE -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,24 +19,73 @@
 
   <style>
     :root {
+      --ink: #173447;
+      --muted: #52636b;
+      --blue: #173e58;
       --primary: #8B1E1E;
       --primary-dark: #6B1515;
       --accent: #D4A017;
+      --accent-index: #b85132;
       --text: #2D3748;
       --text-light: #4A5568;
       --bg: #FAFAFA;
+      --paper: #faf9f6;
+      --line: #dce2df;
       --white: #FFFFFF;
       --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
       --radius: 8px;
+      --header-height: 82px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
     body { font-family: 'Inter', sans-serif; color: var(--text); background-color: var(--bg); line-height: 1.7; -webkit-font-smoothing: antialiased; }
     h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1.3; }
     a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
     a:hover { color: var(--primary); }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .wrap { width: min(1180px, calc(100% - 64px)); margin: auto; }
+    .skip { position: absolute; left: 15px; top: -100px; background: white; padding: 12px; z-index: 100; }
+    .skip:focus { top: 10px; }
 
+    /* --- STYLES HEADER INDEX --- */
+    .header { background: rgba(250,249,246,.98); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; }
+    .header .wrap { width: min(1320px, calc(100% - 48px)); }
+    .header-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 26px; }
+    .brand { text-decoration: none; line-height: 1.2; white-space: nowrap; }
+    .brand-logo { display: block; width: 220px; height: 68px; object-fit: contain; filter: url(#logo-ink); background: transparent; }
+    .menu-toggle { display: none; background: none; border: 1px solid var(--line); border-radius: 8px; padding: 9px 13px; font: inherit; color: var(--ink); cursor: pointer; }
+    .nav { display: flex; align-items: center; gap: 14px; }
+    .nav a { text-decoration: none; font-size: .85rem; font-weight: 550; white-space: nowrap; }
+    .nav a:hover { color: var(--accent-index); }
+    .nav a.nav-primary { font-weight: 700; color: var(--blue); position: relative; }
+    .nav a.nav-primary::after { content: ""; position: absolute; left: 0; right: 0; bottom: -7px; height: 2px; background: var(--accent-index); border-radius: 2px; transform: scaleX(.4); transform-origin: left; transition: transform .2s; }
+    .nav a.nav-primary:hover, .nav a.nav-primary:focus-visible { color: var(--accent-index); }
+    .nav a.nav-primary:hover::after, .nav a.nav-primary:focus-visible::after { transform: scaleX(1); }
+    .nav .nav-feature { padding: 9px 12px; border-radius: 8px; border: 1px solid; }
+    .nav a.theme-tango { background: #EDF4FF; color: #24549A; border-color: #A9BFDF; }
+    .nav a.theme-solo { background: #EDF6F0; color: #286044; border-color: #A5C4AF; }
+    .nav a.theme-tango:hover { background: #DFEAFC; color: #24549A; border-color: #7E9FCB; }
+    .nav a.theme-solo:hover { background: #DEEEE3; color: #286044; border-color: #7BA68A; }
+    .review-link span { color: #ac791c; margin-right: 3px; }
+
+    /* RESPONSIVE HEADER INDEX */
+    @media (min-width: 1101px) { .nav a.nav-primary { font-size: .95rem; } .nav { gap: 18px; } }
+    @media (max-width: 1100px) { .nav { gap: 9px; } .nav a { font-size: .77rem; } .nav .nav-feature { padding: 8px; } .brand-logo { width: 175px; } .header-inner { gap: 16px; } }
+    @media (min-width: 781px) and (max-width: 940px) { .header-inner { flex-wrap: wrap; justify-content: center; padding-bottom: 10px; gap: 2px; } .nav { justify-content: center; width: 100%; gap: 14px; } .brand-logo { height: 56px; } .nav a { font-size: .8rem; } }
+    @media (max-width: 780px) {
+      .wrap { width: calc(100% - 40px); }
+      .header-inner { min-height: 72px; flex-wrap: wrap; gap: 0; }
+      .brand-logo { height: 62px; width: 205px; }
+      .menu-toggle { display: block; }
+      .nav { display: none; flex-basis: 100%; padding: 20px 0; align-items: stretch; gap: 0; }
+      .nav.is-open { display: flex; flex-direction: column; }
+      .nav a { padding: 11px 0; font-size: 1rem; border-top: 1px solid var(--line); }
+      .nav a.nav-primary::after { display: none; }
+      .nav .nav-feature { margin: 5px 0; padding: 12px; }
+    }
+
+    /* --- PAGE PROGRAMME STYLES --- */
     .hero {
       position: relative;
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/isabel.jpg') center/cover no-repeat;
@@ -109,304 +159,339 @@
 </head>
 <body>
 
-  <header class="hero">
-    <div class="container">
-      <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Escapade en petit groupe · 4 jours · Castille-et-León</p>
-      <h1>Salamanque · La Route des Reines</h1>
-      <p class="subtitle">Joyau doré de Castille · Tordesillas · Medina del Campo · Vins de Rueda</p>
-      <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
+  <!-- SVG MASQUÉ POUR LE LOGO -->
+  <svg aria-hidden="true" height="0" style="position:absolute;pointer-events:none" width="0" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter color-interpolation-filters="sRGB" height="102%" id="logo-ink" width="102%" x="-1%" y="-1%">
+        <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.063 3.576 .361 0 -3.5"></feColorMatrix>
+        <feComponentTransfer><feFuncA amplitude="1" exponent="0.8" offset="0" type="gamma"></feFuncA></feComponentTransfer>
+      </filter>
+    </defs>
+  </svg>
+
+  <a class="skip" href="#contenu">Aller au contenu</a>
+
+  <!-- HEADER IDENTIQUE À INDEX.HTML -->
+  <header class="header">
+    <div class="wrap header-inner">
+      <a aria-label="VPD Voyages — Accueil" class="brand" href="index.html#accueil">
+        <img alt="VPDVOYAGES — Patrick Daroque" class="brand-logo" height="68" src="https://vpdvoyages.com/Images/logo.png" width="220"/>
+      </a>
+      <button aria-controls="navigation" aria-expanded="false" class="menu-toggle">Menu</button>
+      <nav aria-label="Navigation principale" class="nav" id="navigation">
+        <a class="nav-primary" href="index.html#destinations">Destinations</a>
+        <a class="nav-primary" href="formules.html">Formules</a>
+        <a class="nav-feature theme-solo" href="https://vpdvoyages.com/voyage-solo.html">Voyager seul(e)</a>
+        <a class="nav-feature theme-tango" href="https://vpdvoyages.com/voyage-tango.html">Tango argentin</a>
+        <a class="review-link" href="avis-clients.html"><span aria-hidden="true">★</span> Avis clients</a>
+        <a href="index.html#about">À propos</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
-  <main class="container">
-    
-    <section class="intro">
-      <h2 style="margin-bottom: 20px;">Une escapade au cœur de la Castille dorée</h2>
-      <p>
-        Plongez au cœur d'une ville universitaire unique, où la pierre dorée des monuments se mêle à l'énergie étudiante et aux traditions castillanes. 
-        Une escapade de 4 jours pour savourer l'histoire, l'architecture et la gastronomie de cette cité intemporelle, sur les traces d'<span class="highlight">Isabelle de Castille</span> et des grandes reines qui ont façonné l'Espagne.
-      </p>
-    </section>
+  <main id="contenu">
 
-    <section>
-      <h2 class="section-title">Le voyage en un coup d'œil</h2>
-      <div class="grid-4">
-        
-        <div class="card">
-          <img src="images/plaza-mayor.JPG" alt="Plaza Mayor de Salamanque">
-          <div class="card-content">
-            <h3>🏛️ Plaza Mayor</h3>
-            <ul>
-              <li>L'une des plus belles places d'Espagne</li>
-              <li>Baroque castillan du XVIIIe siècle</li>
-              <li>Pierre dorée de Villamayor</li>
-              <li>Cœur vivant de la ville</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/Sceau_Universite_Salamanque.png" alt="Université de Salamanque">
-          <div class="card-content">
-            <h3>🎓 Université</h3>
-            <ul>
-              <li>La plus ancienne d'Espagne (1218)</li>
-              <li>La grenouille légendaire à dénicher</li>
-              <li>Patrimoine UNESCO</li>
-              <li>Énergie étudiante unique</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/catedral-salamanca.jpeg" alt="Cathédrale de Salamanque">
-          <div class="card-content">
-            <h3>⛪ Cathédrale</h3>
-            <ul>
-              <li>Deux édifices majestueux imbriqués</li>
-              <li>Cathédrale Vieille (romane)</li>
-              <li>Cathédrale Nouvelle (gothique)</li>
-              <li>Astronaute caché sur la façade</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/Casa_de_las_Conchas_Salamanque.png" alt="Casa de las Conchas">
-          <div class="card-content">
-            <h3>🐚 Casa de las Conchas</h3>
-            <ul>
-              <li>Façade unique ornée de 300 coquillages</li>
-              <li>Ordre de Santiago</li>
-              <li>Bibliothèque publique aujourd'hui</li>
-              <li>Perle architecturale</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/traite tordesillas.jpeg" alt="Traité de Tordesillas">
-          <div class="card-content">
-            <h3>👑 Tordesillas</h3>
-            <ul>
-              <li>Traité de 1494 (partage du monde)</li>
-              <li>Monastère royal Santa Clara</li>
-              <li>Résidence des reines de Castille</li>
-              <li>Patrimoine castillan</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/Castillo-de-la-Mota.jpg" alt="Château de la Mota à Medina del Campo">
-          <div class="card-content">
-            <h3>🏰 Medina del Campo</h3>
-            <ul>
-              <li>Château de la Mota</li>
-              <li>Isabelle la Catholique y vécut</li>
-              <li>Grandes foires médiévales</li>
-              <li>Vins de Rueda à proximité</li>
-            </ul>
-          </div>
-        </div>
-
+    <header class="hero">
+      <div class="container">
+        <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Escapade en petit groupe · 4 jours · Castille-et-León</p>
+        <h1>Salamanque · La Route des Reines</h1>
+        <p class="subtitle">Joyau doré de Castille · Tordesillas · Medina del Campo · Vins de Rueda</p>
+        <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
       </div>
-    </section>
+    </header>
 
-    <!-- PAUSE VISUELLE 1 : SALAMANQUE DORÉE -->
-    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/Rues_Salamanque_ou_Palencia.png');">
-      <div class="caption">
-        <h2>La pierre dorée de Salamanque</h2>
-        <p>La pierre de Villamayor baigne la ville d'une lumière dorée unique, surtout au coucher du soleil. Une cité classée UNESCO depuis 1988.</p>
-      </div>
-    </div>
-
-    <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
-      <h2 class="section-title">Votre itinéraire jour par jour</h2>
+    <div class="container">
       
-      <div class="timeline">
+      <section class="intro">
+        <h2 style="margin-bottom: 20px;">Une escapade au cœur de la Castille dorée</h2>
+        <p>
+          Plongez au cœur d'une ville universitaire unique, où la pierre dorée des monuments se mêle à l'énergie étudiante et aux traditions castillanes. 
+          Une escapade de 4 jours pour savourer l'histoire, l'architecture et la gastronomie de cette cité intemporelle, sur les traces d'<span class="highlight">Isabelle de Castille</span> et des grandes reines qui ont façonné l'Espagne.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="section-title">Le voyage en un coup d'œil</h2>
+        <div class="grid-4">
+          
+          <div class="card">
+            <img src="images/plaza-mayor.JPG" alt="Plaza Mayor de Salamanque">
+            <div class="card-content">
+              <h3>🏛️ Plaza Mayor</h3>
+              <ul>
+                <li>L'une des plus belles places d'Espagne</li>
+                <li>Baroque castillan du XVIIIe siècle</li>
+                <li>Pierre dorée de Villamayor</li>
+                <li>Cœur vivant de la ville</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="images/Sceau_Universite_Salamanque.png" alt="Université de Salamanque">
+            <div class="card-content">
+              <h3>🎓 Université</h3>
+              <ul>
+                <li>La plus ancienne d'Espagne (1218)</li>
+                <li>La grenouille légendaire à dénicher</li>
+                <li>Patrimoine UNESCO</li>
+                <li>Énergie étudiante unique</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="images/catedral-salamanca.jpeg" alt="Cathédrale de Salamanque">
+            <div class="card-content">
+              <h3>⛪ Cathédrale</h3>
+              <ul>
+                <li>Deux édifices majestueux imbriqués</li>
+                <li>Cathédrale Vieille (romane)</li>
+                <li>Cathédrale Nouvelle (gothique)</li>
+                <li>Astronaute caché sur la façade</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="images/Casa_de_las_Conchas_Salamanque.png" alt="Casa de las Conchas">
+            <div class="card-content">
+              <h3>🐚 Casa de las Conchas</h3>
+              <ul>
+                <li>Façade unique ornée de 300 coquillages</li>
+                <li>Ordre de Santiago</li>
+                <li>Bibliothèque publique aujourd'hui</li>
+                <li>Perle architecturale</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="images/traite tordesillas.jpeg" alt="Traité de Tordesillas">
+            <div class="card-content">
+              <h3>👑 Tordesillas</h3>
+              <ul>
+                <li>Traité de 1494 (partage du monde)</li>
+                <li>Monastère royal Santa Clara</li>
+                <li>Résidence des reines de Castille</li>
+                <li>Patrimoine castillan</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="images/Castillo-de-la-Mota.jpg" alt="Château de la Mota à Medina del Campo">
+            <div class="card-content">
+              <h3>🏰 Medina del Campo</h3>
+              <ul>
+                <li>Château de la Mota</li>
+                <li>Isabelle la Catholique y vécut</li>
+                <li>Grandes foires médiévales</li>
+                <li>Vins de Rueda à proximité</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- PAUSE VISUELLE 1 : SALAMANQUE DORÉE -->
+      <div class="pause-visuelle pause-naturelle" style="background-image: url('images/Rues_Salamanque_ou_Palencia.png');">
+        <div class="caption">
+          <h2>La pierre dorée de Salamanque</h2>
+          <p>La pierre de Villamayor baigne la ville d'une lumière dorée unique, surtout au coucher du soleil. Une cité classée UNESCO depuis 1988.</p>
+        </div>
+      </div>
+
+      <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
+        <h2 class="section-title">Votre itinéraire jour par jour</h2>
         
-        <div class="timeline-phase">
-          <h3>Jour 1 · En route vers Salamanque</h3>
+        <div class="timeline">
           
-          <div class="timeline-item">
-            <div class="days">Matin</div>
-            <h4>Départ matinal</h4>
-            <p>Route vers la Castille-et-León à travers les vastes paysages castillans, notamment Burgos et ses terres historiques.</p>
-          </div>
-          
-          <div class="timeline-item">
-            <div class="days">Midi</div>
-            <h4>Arrêt déjeuner à Palencia</h4>
-            <p>Découverte de cette cité historique au riche patrimoine religieux : cathédrale gothique, ruelles authentiques et ambiance locale pour une première immersion castillane.</p>
+          <div class="timeline-phase">
+            <h3>Jour 1 · En route vers Salamanque</h3>
+            
+            <div class="timeline-item">
+              <div class="days">Matin</div>
+              <h4>Départ matinal</h4>
+              <p>Route vers la Castille-et-León à travers les vastes paysages castillans, notamment Burgos et ses terres historiques.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="days">Midi</div>
+              <h4>Arrêt déjeuner à Palencia</h4>
+              <p>Découverte de cette cité historique au riche patrimoine religieux : cathédrale gothique, ruelles authentiques et ambiance locale pour une première immersion castillane.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Après-midi</div>
+              <h4>Arrivée à Salamanque</h4>
+              <p>Installation à l'hôtel et première balade sur la Plaza Mayor, baignée de la célèbre lumière dorée de la pierre de Villamayor. Soirée libre pour une première immersion dans l'ambiance étudiante.</p>
+            </div>
           </div>
 
-          <div class="timeline-item">
-            <div class="days">Après-midi</div>
-            <h4>Arrivée à Salamanque</h4>
-            <p>Installation à l'hôtel et première balade sur la Plaza Mayor, baignée de la célèbre lumière dorée de la pierre de Villamayor. Soirée libre pour une première immersion dans l'ambiance étudiante.</p>
+          <div class="timeline-phase">
+            <h3>Jour 2 · Salamanque découverte</h3>
+            
+            <div class="timeline-item">
+              <div class="days">Matin</div>
+              <h4>Plaza Mayor & rues historiques</h4>
+              <p>La Plaza Mayor, cœur baroque et vivant de la ville, puis flânerie dans les rues historiques pavées. Découverte de la Casa de las Conchas et de sa façade unique ornée de 300 coquillages de l'Ordre de Santiago.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Midi</div>
+              <h4>Déjeuner castillan</h4>
+              <p>Déjeuner dans un restaurant typique : hornazo castillan, jamón ibérico et vins de Rueda (verdejo).</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Après-midi</div>
+              <h4>Université & Cathédrale</h4>
+              <p>Visite de l'Université (la plus ancienne d'Espagne, fondée en 1218) : cherchez la fameuse grenouille sculptée sur la façade, porte-bonheur des étudiants. Puis découverte des deux cathédrales imbriquées : la Vieille (romane, XIIe) et la Nouvelle (gothique, XVIe). Cherchez l'astronaute caché sur la façade !</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Soir</div>
+              <h4>Soirée tapas en centre-ville</h4>
+              <p>Les tavernes du centre s'animent de l'énergie étudiante et de l'ambiance conviviale propre à Salamanque. Dégustation de tapas et de vins locaux.</p>
+            </div>
+          </div>
+
+          <div class="timeline-phase">
+            <h3>Jour 3 · Route des Reines</h3>
+            
+            <div class="timeline-item">
+              <div class="days">Matin</div>
+              <h4>Tordesillas</h4>
+              <p>Route vers Tordesillas, résidence historique des reines de Castille. Découverte du Monastère royal Santa Clara, où fut signé en 1494 le célèbre Traité de Tordesillas partageant le monde entre l'Espagne et le Portugal. Une étape majeure de l'histoire espagnole.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Midi</div>
+              <h4>Medina del Campo</h4>
+              <p>Déjeuner à Medina del Campo, ville des grandes foires médiévales. Visite du château de la Mota, où vécut Isabelle la Catholique. Panorama sur la Castille depuis la forteresse.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Après-midi</div>
+              <h4>Madrigal de las Altas Torres & Rueda</h4>
+              <p>Madrigal de las Altas Torres, village natal d'Isabelle la Catholique. Puis direction la région viticole de Rueda pour une dégustation de vins locaux : le verdejo, cépage blanc emblématique de l'appellation.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Soir</div>
+              <h4>Ambiance étudiante le soir</h4>
+              <p>Retour à Salamanque pour une dernière soirée dans l'ambiance vibrante des tavernes universitaires.</p>
+            </div>
+          </div>
+
+          <div class="timeline-phase">
+            <h3>Jour 4 · Retour & dernière pause</h3>
+            
+            <div class="timeline-item">
+              <div class="days">Matin</div>
+              <h4>Matinée libre à Salamanque</h4>
+              <p>Dernier café sur la Plaza Mayor. Temps libre pour une ultime flânerie, derniers achats ou visite complémentaire selon vos envies.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Midi</div>
+              <h4>Déjeuner à Puras de Villafranca</h4>
+              <p>Le trajet du retour s'interrompt pour un déjeuner convivial à Puras de Villafranca (Burgos), belle étape pour clôturer l'escapade dans un cadre castillan authentique.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Après-midi</div>
+              <h4>Route du retour</h4>
+              <p>Route du retour avec les images de la Castille dorée en tête et le goût du hornazo sur les lèvres.</p>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="timeline-phase">
-          <h3>Jour 2 · Salamanque découverte</h3>
-          
-          <div class="timeline-item">
-            <div class="days">Matin</div>
-            <h4>Plaza Mayor & rues historiques</h4>
-            <p>La Plaza Mayor, cœur baroque et vivant de la ville, puis flânerie dans les rues historiques pavées. Découverte de la Casa de las Conchas et de sa façade unique ornée de 300 coquillages de l'Ordre de Santiago.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Midi</div>
-            <h4>Déjeuner castillan</h4>
-            <p>Déjeuner dans un restaurant typique : hornazo castillan, jamón ibérico et vins de Rueda (verdejo).</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Après-midi</div>
-            <h4>Université & Cathédrale</h4>
-            <p>Visite de l'Université (la plus ancienne d'Espagne, fondée en 1218) : cherchez la fameuse grenouille sculptée sur la façade, porte-bonheur des étudiants. Puis découverte des deux cathédrales imbriquées : la Vieille (romane, XIIe) et la Nouvelle (gothique, XVIe). Cherchez l'astronaute caché sur la façade !</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Soir</div>
-            <h4>Soirée tapas en centre-ville</h4>
-            <p>Les tavernes du centre s'animent de l'énergie étudiante et de l'ambiance conviviale propre à Salamanque. Dégustation de tapas et de vins locaux.</p>
-          </div>
-        </div>
-
-        <div class="timeline-phase">
-          <h3>Jour 3 · Route des Reines</h3>
-          
-          <div class="timeline-item">
-            <div class="days">Matin</div>
-            <h4>Tordesillas</h4>
-            <p>Route vers Tordesillas, résidence historique des reines de Castille. Découverte du Monastère royal Santa Clara, où fut signé en 1494 le célèbre Traité de Tordesillas partageant le monde entre l'Espagne et le Portugal. Une étape majeure de l'histoire espagnole.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Midi</div>
-            <h4>Medina del Campo</h4>
-            <p>Déjeuner à Medina del Campo, ville des grandes foires médiévales. Visite du château de la Mota, où vécut Isabelle la Catholique. Panorama sur la Castille depuis la forteresse.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Après-midi</div>
-            <h4>Madrigal de las Altas Torres & Rueda</h4>
-            <p>Madrigal de las Altas Torres, village natal d'Isabelle la Catholique. Puis direction la région viticole de Rueda pour une dégustation de vins locaux : le verdejo, cépage blanc emblématique de l'appellation.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Soir</div>
-            <h4>Ambiance étudiante le soir</h4>
-            <p>Retour à Salamanque pour une dernière soirée dans l'ambiance vibrante des tavernes universitaires.</p>
-          </div>
-        </div>
-
-        <div class="timeline-phase">
-          <h3>Jour 4 · Retour & dernière pause</h3>
-          
-          <div class="timeline-item">
-            <div class="days">Matin</div>
-            <h4>Matinée libre à Salamanque</h4>
-            <p>Dernier café sur la Plaza Mayor. Temps libre pour une ultime flânerie, derniers achats ou visite complémentaire selon vos envies.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Midi</div>
-            <h4>Déjeuner à Puras de Villafranca</h4>
-            <p>Le trajet du retour s'interrompt pour un déjeuner convivial à Puras de Villafranca (Burgos), belle étape pour clôturer l'escapade dans un cadre castillan authentique.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Après-midi</div>
-            <h4>Route du retour</h4>
-            <p>Route du retour avec les images de la Castille dorée en tête et le goût du hornazo sur les lèvres.</p>
-          </div>
+      <!-- PAUSE VISUELLE 2 : ROUTE DES REINES -->
+      <div class="pause-visuelle pause-naturelle" style="background-image: url('images/Isabelle_catile_crown.jpg');">
+        <div class="caption">
+          <h2>La Route des Reines</h2>
+          <p>Sur les pas d'Isabelle de Castille, de Tordesillas à Medina del Campo. L'histoire des Rois Catholiques, Isabelle et Ferdinand, qui unifièrent l'Espagne.</p>
         </div>
       </div>
-    </section>
 
-    <!-- PAUSE VISUELLE 2 : ROUTE DES REINES -->
-    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/Isabelle_catile_crown.jpg');">
-      <div class="caption">
-        <h2>La Route des Reines</h2>
-        <p>Sur les pas d'Isabelle de Castille, de Tordesillas à Medina del Campo. L'histoire des Rois Catholiques, Isabelle et Ferdinand, qui unifièrent l'Espagne.</p>
-      </div>
+      <section class="pratiques">
+        <h2 class="section-title">Gastronomie castillane</h2>
+        <div class="pratiques-grid">
+          <div class="pratique-item">
+            <img src="images/bodega-farina.webp" alt="Bodega Farina à Salamanque" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+            <h4>🍷 Vins de Rueda</h4>
+            <p>Le verdejo, cépage blanc emblématique de Rueda. Vins frais, aromatiques, parfaits avec la gastronomie castillane.</p>
+          </div>
+          <div class="pratique-item">
+            <img src="images/typicka-spanelska-snidane-tostada-con-jamon.webp" alt="Petit-déjeuner à Salamanque" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+            <h4>🍞 Petit-déjeuner salmantin</h4>
+            <p>Pain grillé, tomate, jambon ibérique et café. Le réveil castillan par excellence.</p>
+          </div>
+          <div class="pratique-item">
+            <img src="images/puras-restaurant.png" alt="Restaurant à Puras de Villafranca" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+            <h4>🍽️ Cuisine castillane</h4>
+            <p>Hornazo, jamón ibérico, cochon de lait, agneau rôti. Une gastronomie généreuse et authentique.</p>
+          </div>
+          <div class="pratique-item">
+            <img src="images/Ruta-vino-rueda-3.jpeg" alt="Route des vins de Rueda" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+            <h4>🍇 Route des vins</h4>
+            <p>Dégustation dans les bodegas de Rueda. Verdejo et tempranillo, les cépages rois de la région.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="pratiques">
+        <h2 class="section-title">L'esprit du voyage</h2>
+        <div class="pratiques-grid">
+          <div class="pratique-item">
+            <h4>🏛️ Patrimoine UNESCO</h4>
+            <p>Salamanque · Université · Cathédrale · Casa de las Conchas</p>
+          </div>
+          <div class="pratique-item">
+            <h4>👑 Histoire royale</h4>
+            <p>Tordesillas · Medina del Campo · Isabelle la Catholique · Rois Catholiques</p>
+          </div>
+          <div class="pratique-item">
+            <h4>🍷 Vins de Rueda</h4>
+            <p>Verdejo · Bodegas · Dégustations · Terroir castillan</p>
+          </div>
+          <div class="pratique-item">
+            <h4>✨ La philosophie VPDVOYAGES</h4>
+            <ul>
+              <li><strong>Sélection :</strong> Des étapes qui ont du sens dans le rythme global</li>
+              <li><strong>Équilibre :</strong> Culture + histoire + gastronomie + vins</li>
+              <li><strong>Personnalisation :</strong> Le programme évolue selon vos envies</li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top: 24px; text-align: center; font-style: italic; color: var(--text-light);">
+          Salamanque, avec sa pierre dorée, son université millénaire et sa Route des Reines, offre une escapade riche en histoire, en beauté et en saveurs castillanes.
+        </p>
+      </section>
+
+      <section class="carte-section">
+        <h2 class="section-title">Votre itinéraire sur la carte</h2>
+        <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+          De Palencia à Puras de Villafranca, en passant par Salamanque, Tordesillas et Medina del Campo : cliquez sur chaque point doré pour découvrir les étapes de votre escapade.
+        </p>
+        <div id="map"></div>
+        <div style="text-align: center; margin-top: 20px;">
+          <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
+        </div>
+      </section>
+
+      <section style="text-align: center; padding-bottom: 20px;">
+        <h2 style="margin-bottom: 16px;">Bon séjour à Salamanque !</h2>
+        <p style="margin-bottom: 32px; color: var(--text-light);">Venez partager cette escapade au cœur de la Castille dorée · 4 jours · Route des Reines</p>
+        <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
+      </section>
+
     </div>
-
-    <section class="pratiques">
-      <h2 class="section-title">Gastronomie castillane</h2>
-      <div class="pratiques-grid">
-        <div class="pratique-item">
-          <img src="images/bodega-farina.webp" alt="Bodega Farina à Salamanque" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
-          <h4>🍷 Vins de Rueda</h4>
-          <p>Le verdejo, cépage blanc emblématique de Rueda. Vins frais, aromatiques, parfaits avec la gastronomie castillane.</p>
-        </div>
-        <div class="pratique-item">
-          <img src="images/typicka-spanelska-snidane-tostada-con-jamon.webp" alt="Petit-déjeuner à Salamanque" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
-          <h4>🍞 Petit-déjeuner salmantin</h4>
-          <p>Pain grillé, tomate, jambon ibérique et café. Le réveil castillan par excellence.</p>
-        </div>
-        <div class="pratique-item">
-          <img src="images/puras-restaurant.png" alt="Restaurant à Puras de Villafranca" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
-          <h4>🍽️ Cuisine castillane</h4>
-          <p>Hornazo, jamón ibérico, cochon de lait, agneau rôti. Une gastronomie généreuse et authentique.</p>
-        </div>
-        <div class="pratique-item">
-          <img src="images/Ruta-vino-rueda-3.jpeg" alt="Route des vins de Rueda" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
-          <h4>🍇 Route des vins</h4>
-          <p>Dégustation dans les bodegas de Rueda. Verdejo et tempranillo, les cépages rois de la région.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="pratiques">
-      <h2 class="section-title">L'esprit du voyage</h2>
-      <div class="pratiques-grid">
-        <div class="pratique-item">
-          <h4>🏛️ Patrimoine UNESCO</h4>
-          <p>Salamanque · Université · Cathédrale · Casa de las Conchas</p>
-        </div>
-        <div class="pratique-item">
-          <h4>👑 Histoire royale</h4>
-          <p>Tordesillas · Medina del Campo · Isabelle la Catholique · Rois Catholiques</p>
-        </div>
-        <div class="pratique-item">
-          <h4>🍷 Vins de Rueda</h4>
-          <p>Verdejo · Bodegas · Dégustations · Terroir castillan</p>
-        </div>
-        <div class="pratique-item">
-          <h4>✨ La philosophie VPDVOYAGES</h4>
-          <ul>
-            <li><strong>Sélection :</strong> Des étapes qui ont du sens dans le rythme global</li>
-            <li><strong>Équilibre :</strong> Culture + histoire + gastronomie + vins</li>
-            <li><strong>Personnalisation :</strong> Le programme évolue selon vos envies</li>
-          </ul>
-        </div>
-      </div>
-      <p style="margin-top: 24px; text-align: center; font-style: italic; color: var(--text-light);">
-        Salamanque, avec sa pierre dorée, son université millénaire et sa Route des Reines, offre une escapade riche en histoire, en beauté et en saveurs castillanes.
-      </p>
-    </section>
-
-    <section class="carte-section">
-      <h2 class="section-title">Votre itinéraire sur la carte</h2>
-      <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
-        De Palencia à Puras de Villafranca, en passant par Salamanque, Tordesillas et Medina del Campo : cliquez sur chaque point doré pour découvrir les étapes de votre escapade.
-      </p>
-      <div id="map"></div>
-      <div style="text-align: center; margin-top: 20px;">
-        <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
-      </div>
-    </section>
-
-    <section style="text-align: center; padding-bottom: 20px;">
-      <h2 style="margin-bottom: 16px;">Bon séjour à Salamanque !</h2>
-      <p style="margin-bottom: 32px; color: var(--text-light);">Venez partager cette escapade au cœur de la Castille dorée · 4 jours · Route des Reines</p>
-      <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
-    </section>
 
   </main>
 
@@ -420,6 +505,40 @@
       </p>
     </div>
   </footer>
+
+  <!-- SCRIPT DU MENU HEADER -->
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#navigation');
+    
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('is-open', open);
+    });
+
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('is-open');
+    }));
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        toggle.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+        toggle.focus();
+      }
+    });
+
+    const headerElement = document.querySelector('.header');
+    function updateHeaderHeight() {
+      const height = headerElement.getBoundingClientRect().height;
+      document.documentElement.style.setProperty('--header-height', height + 'px');
+      document.documentElement.style.scrollPaddingTop = (height + 12) + 'px';
+    }
+    new ResizeObserver(updateHeaderHeight).observe(headerElement);
+    updateHeaderHeight();
+  </script>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 

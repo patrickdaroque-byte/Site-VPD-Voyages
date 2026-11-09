@@ -7,7 +7,8 @@
   <!-- OPTIMISATION SEO -->
   <title>Uruguay · Montevideo, Gauchos & Bodegas | VPD Voyages</title>
   <meta name="description" content="Voyage en petit groupe en Uruguay : 17 jours entre Montevideo, estancia gaucho, Punta del Este, bodegas et Colonia del Sacramento UNESCO. Devis gratuit avec VPD Voyages.">
-  
+  <meta name="theme-color" content="#173e58"/>
+
   <!-- POLICES D'ÉCRITURE -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,24 +19,73 @@
 
   <style>
     :root {
+      --ink: #173447;
+      --muted: #52636b;
+      --blue: #173e58;
       --primary: #8B1E1E;
       --primary-dark: #6B1515;
       --accent: #D4A017;
+      --accent-index: #b85132;
       --text: #2D3748;
       --text-light: #4A5568;
       --bg: #FAFAFA;
+      --paper: #faf9f6;
+      --line: #dce2df;
       --white: #FFFFFF;
       --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
       --radius: 8px;
+      --header-height: 82px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
     body { font-family: 'Inter', sans-serif; color: var(--text); background-color: var(--bg); line-height: 1.7; -webkit-font-smoothing: antialiased; }
     h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1.3; }
     a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
     a:hover { color: var(--primary); }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .wrap { width: min(1180px, calc(100% - 64px)); margin: auto; }
+    .skip { position: absolute; left: 15px; top: -100px; background: white; padding: 12px; z-index: 100; }
+    .skip:focus { top: 10px; }
 
+    /* STYLES HEADER INDEX */
+    .header { background: rgba(250,249,246,.98); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; }
+    .header .wrap { width: min(1320px, calc(100% - 48px)); }
+    .header-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 26px; }
+    .brand { text-decoration: none; line-height: 1.2; white-space: nowrap; }
+    .brand-logo { display: block; width: 220px; height: 68px; object-fit: contain; filter: url(#logo-ink); background: transparent; }
+    .menu-toggle { display: none; background: none; border: 1px solid var(--line); border-radius: 8px; padding: 9px 13px; font: inherit; color: var(--ink); cursor: pointer; }
+    .nav { display: flex; align-items: center; gap: 14px; }
+    .nav a { text-decoration: none; font-size: .85rem; font-weight: 550; white-space: nowrap; }
+    .nav a:hover { color: var(--accent-index); }
+    .nav a.nav-primary { font-weight: 700; color: var(--blue); position: relative; }
+    .nav a.nav-primary::after { content: ""; position: absolute; left: 0; right: 0; bottom: -7px; height: 2px; background: var(--accent-index); border-radius: 2px; transform: scaleX(.4); transform-origin: left; transition: transform .2s; }
+    .nav a.nav-primary:hover, .nav a.nav-primary:focus-visible { color: var(--accent-index); }
+    .nav a.nav-primary:hover::after, .nav a.nav-primary:focus-visible::after { transform: scaleX(1); }
+    .nav .nav-feature { padding: 9px 12px; border-radius: 8px; border: 1px solid; }
+    .nav a.theme-tango { background: #EDF4FF; color: #24549A; border-color: #A9BFDF; }
+    .nav a.theme-solo { background: #EDF6F0; color: #286044; border-color: #A5C4AF; }
+    .nav a.theme-tango:hover { background: #DFEAFC; color: #24549A; border-color: #7E9FCB; }
+    .nav a.theme-solo:hover { background: #DEEEE3; color: #286044; border-color: #7BA68A; }
+    .review-link span { color: #ac791c; margin-right: 3px; }
+
+    /* RESPONSIVE HEADER INDEX */
+    @media (min-width: 1101px) { .nav a.nav-primary { font-size: .95rem; } .nav { gap: 18px; } }
+    @media (max-width: 1100px) { .nav { gap: 9px; } .nav a { font-size: .77rem; } .nav .nav-feature { padding: 8px; } .brand-logo { width: 175px; } .header-inner { gap: 16px; } }
+    @media (min-width: 781px) and (max-width: 940px) { .header-inner { flex-wrap: wrap; justify-content: center; padding-bottom: 10px; gap: 2px; } .nav { justify-content: center; width: 100%; gap: 14px; } .brand-logo { height: 56px; } .nav a { font-size: .8rem; } }
+    @media (max-width: 780px) {
+      .wrap { width: calc(100% - 40px); }
+      .header-inner { min-height: 72px; flex-wrap: wrap; gap: 0; }
+      .brand-logo { height: 62px; width: 205px; }
+      .menu-toggle { display: block; }
+      .nav { display: none; flex-basis: 100%; padding: 20px 0; align-items: stretch; gap: 0; }
+      .nav.is-open { display: flex; flex-direction: column; }
+      .nav a { padding: 11px 0; font-size: 1rem; border-top: 1px solid var(--line); }
+      .nav a.nav-primary::after { display: none; }
+      .nav .nav-feature { margin: 5px 0; padding: 12px; }
+    }
+
+    /* PAGE PROGRAMME STYLES */
     .hero {
       position: relative;
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/cerro-batovi-tacuarembo.jpg') center/cover no-repeat;
@@ -109,273 +159,308 @@
 </head>
 <body>
 
-  <header class="hero">
-    <div class="container">
-      <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Idée voyage en petit groupe · 17 jours / 16 nuits</p>
-      <h1>Uruguay · Montevideo, Gauchos & Bodegas</h1>
-      <p class="subtitle">Le plus petit pays d'Amérique du Sud, le plus authentique</p>
-      <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
+  <!-- SVG MASQUÉ POUR LE LOGO -->
+  <svg aria-hidden="true" height="0" style="position:absolute;pointer-events:none" width="0" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter color-interpolation-filters="sRGB" height="102%" id="logo-ink" width="102%" x="-1%" y="-1%">
+        <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.063 3.576 .361 0 -3.5"></feColorMatrix>
+        <feComponentTransfer><feFuncA amplitude="1" exponent="0.8" offset="0" type="gamma"></feFuncA></feComponentTransfer>
+      </filter>
+    </defs>
+  </svg>
+
+  <a class="skip" href="#contenu">Aller au contenu</a>
+
+  <!-- HEADER IDENTIQUE À INDEX.HTML -->
+  <header class="header">
+    <div class="wrap header-inner">
+      <a aria-label="VPD Voyages — Accueil" class="brand" href="index.html#accueil">
+        <img alt="VPDVOYAGES — Patrick Daroque" class="brand-logo" height="68" src="https://vpdvoyages.com/Images/logo.png" width="220"/>
+      </a>
+      <button aria-controls="navigation" aria-expanded="false" class="menu-toggle">Menu</button>
+      <nav aria-label="Navigation principale" class="nav" id="navigation">
+        <a class="nav-primary" href="index.html#destinations">Destinations</a>
+        <a class="nav-primary" href="formules.html">Formules</a>
+        <a class="nav-feature theme-solo" href="https://vpdvoyages.com/voyage-solo.html">Voyager seul(e)</a>
+        <a class="nav-feature theme-tango" href="https://vpdvoyages.com/voyage-tango.html">Tango argentin</a>
+        <a class="review-link" href="avis-clients.html"><span aria-hidden="true">★</span> Avis clients</a>
+        <a href="index.html#about">À propos</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
-  <main class="container">
-    
-    <section class="intro">
-      <h2 style="margin-bottom: 20px;">À la découverte d'un pays authentique</h2>
-      <p>
-        Montevideo et son patrimoine, Punta del Este et ses plages, immersion gaucho en estancia (cheval, asado), bodegas et <span class="highlight">Colonia del Sacramento UNESCO</span>. 
-        Un circuit au cœur de l'Uruguay authentique, entre traditions gauchos, vignobles de Tannat et charme colonial.
-      </p>
-    </section>
+  <main id="contenu">
 
-    <section>
-      <h2 class="section-title">Le voyage en un coup d'œil</h2>
-      <div class="grid-4">
-        
-        <div class="card">
-          <img src="images/palacio-salvo.jpg" alt="Palacio Salvo à Montevideo">
-          <div class="card-content">
-            <h3>🏛️ Montevideo</h3>
-            <ul>
-              <li>Plazas & patrimoine</li>
-              <li>Av. 18 de Julio & Rambla</li>
-              <li>Musée du Tango & Palacio Taranco</li>
-              <li>Marché du Port & Théâtre Solís</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/campo-cheval.jpg" alt="Estancia gaucho en Uruguay">
-          <div class="card-content">
-            <h3>🐴 Estancia gaucho</h3>
-            <ul>
-              <li>Chez Juan - Estancia Panagea</li>
-              <li>Cheval au pas, gestion du bétail</li>
-              <li>Asado au feu de bois</li>
-              <li>Récits sous les étoiles</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/punta-del-este.jpg" alt="Punta del Este, perle balnéaire">
-          <div class="card-content">
-            <h3>🏖️ Punta del Este</h3>
-            <ul>
-              <li>Plages dorées & élégance</li>
-              <li>Casapueblo (Carlos Páez Vilaró)</li>
-              <li>Pain de Sucre & Punta Ballena</li>
-              <li>Couchers de soleil légendaires</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/moizo.jpg" alt="Bodega Moizo à Progreso">
-          <div class="card-content">
-            <h3>🍷 Bodegas & Tannat</h3>
-            <ul>
-              <li>Bodega Moizo (Progreso)</li>
-              <li>Bodega Los Pinos (Nueva Helvecia)</li>
-              <li>Cépage Tannat, originaire de Madiran</li>
-              <li>Dégustations & repas vignoble</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/colonia.jpg" alt="Colonia del Sacramento UNESCO">
-          <div class="card-content">
-            <h3>🏛️ Colonia UNESCO</h3>
-            <ul>
-              <li>Ville coloniale classée UNESCO</li>
-              <li>Ruelles pavées & phare</li>
-              <li>Real de San Carlos</li>
-              <li>Charme intemporel sur le Río de la Plata</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/tacuarembo.jpg" alt="Tacuarembó, terre de Gardel">
-          <div class="card-content">
-            <h3>🎶 Tacuarembó</h3>
-            <ul>
-              <li>Route via Florida & Durazno</li>
-              <li>Paso de los Toros</li>
-              <li>Musée Carlos Gardel</li>
-              <li>Cerro Batoví</li>
-            </ul>
-          </div>
-        </div>
-
+    <header class="hero">
+      <div class="container">
+        <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Idée voyage en petit groupe · 17 jours / 16 nuits</p>
+        <h1>Uruguay · Montevideo, Gauchos & Bodegas</h1>
+        <p class="subtitle">Le plus petit pays d'Amérique du Sud, le plus authentique</p>
+        <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
       </div>
-    </section>
+    </header>
 
-    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/asado02.jpg');">
-      <div class="caption">
-        <h2>L'asado gaucho</h2>
-        <p>3 nuits d'immersion dans l'estancia de Juan : ~1 000 vaches, ~2 000 moutons, centaine de chevaux. Monter comme un gaucho, gérer le bétail, savourer l'asado au feu de bois.</p>
-      </div>
-    </div>
-
-    <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
-      <h2 class="section-title">Votre itinéraire jour par jour</h2>
+    <div class="container">
       
-      <div class="timeline">
+      <section class="intro">
+        <h2 style="margin-bottom: 20px;">À la découverte d'un pays authentique</h2>
+        <p>
+          Montevideo et son patrimoine, Punta del Este et ses plages, immersion gaucho en estancia (cheval, asado), bodegas et <span class="highlight">Colonia del Sacramento UNESCO</span>. 
+          Un circuit au cœur de l'Uruguay authentique, entre traditions gauchos, vignobles de Tannat et charme colonial.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="section-title">Le voyage en un coup d'œil</h2>
+        <div class="grid-4">
+          
+          <div class="card">
+            <img src="images/palacio-salvo.jpg" alt="Palacio Salvo à Montevideo">
+            <div class="card-content">
+              <h3>🏛️ Montevideo</h3>
+              <ul>
+                <li>Plazas & patrimoine</li>
+                <li>Av. 18 de Julio & Rambla</li>
+                <li>Musée du Tango & Palacio Taranco</li>
+                <li>Marché du Port & Théâtre Solís</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="images/campo-cheval.jpg" alt="Estancia gaucho en Uruguay">
+            <div class="card-content">
+              <h3>🐴 Estancia gaucho</h3>
+              <ul>
+                <li>Chez Juan - Estancia Panagea</li>
+                <li>Cheval au pas, gestion du bétail</li>
+                <li>Asado au feu de bois</li>
+                <li>Récits sous les étoiles</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="images/punta-del-este.jpg" alt="Punta del Este, perle balnéaire">
+            <div class="card-content">
+              <h3>🏖️ Punta del Este</h3>
+              <ul>
+                <li>Plages dorées & élégance</li>
+                <li>Casapueblo (Carlos Páez Vilaró)</li>
+                <li>Pain de Sucre & Punta Ballena</li>
+                <li>Couchers de soleil légendaires</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="images/moizo.jpg" alt="Bodega Moizo à Progreso">
+            <div class="card-content">
+              <h3>🍷 Bodegas & Tannat</h3>
+              <ul>
+                <li>Bodega Moizo (Progreso)</li>
+                <li>Bodega Los Pinos (Nueva Helvecia)</li>
+                <li>Cépage Tannat, originaire de Madiran</li>
+                <li>Dégustations & repas vignoble</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="images/colonia.jpg" alt="Colonia del Sacramento UNESCO">
+            <div class="card-content">
+              <h3>🏛️ Colonia UNESCO</h3>
+              <ul>
+                <li>Ville coloniale classée UNESCO</li>
+                <li>Ruelles pavées & phare</li>
+                <li>Real de San Carlos</li>
+                <li>Charme intemporel sur le Río de la Plata</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="images/tacuarembo.jpg" alt="Tacuarembó, terre de Gardel">
+            <div class="card-content">
+              <h3>🎶 Tacuarembó</h3>
+              <ul>
+                <li>Route via Florida & Durazno</li>
+                <li>Paso de los Toros</li>
+                <li>Musée Carlos Gardel</li>
+                <li>Cerro Batoví</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <div class="pause-visuelle pause-naturelle" style="background-image: url('images/asado02.jpg');">
+        <div class="caption">
+          <h2>L'asado gaucho</h2>
+          <p>3 nuits d'immersion dans l'estancia de Juan : ~1 000 vaches, ~2 000 moutons, centaine de chevaux. Monter comme un gaucho, gérer le bétail, savourer l'asado au feu de bois.</p>
+        </div>
+      </div>
+
+      <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
+        <h2 class="section-title">Votre itinéraire jour par jour</h2>
         
-        <div class="timeline-phase">
-          <h3>1ère semaine : Montevideo, Tacuarembó & Estancia</h3>
+        <div class="timeline">
           
-          <div class="timeline-item">
-            <div class="days">Jour 1</div>
-            <h4>Arrivée à Montevideo</h4>
-            <p>Installation à l'hôtel. Première découverte de la capitale uruguayenne.</p>
-          </div>
-          
-          <div class="timeline-item">
-            <div class="days">Jour 2</div>
-            <h4>Montevideo</h4>
-            <p>Formalités. Av. 18 de Julio, Rambla, Palacio Salvo. Découverte du centre-ville et de ses places.</p>
+          <div class="timeline-phase">
+            <h3>1ère semaine : Montevideo, Tacuarembó & Estancia</h3>
+            
+            <div class="timeline-item">
+              <div class="days">Jour 1</div>
+              <h4>Arrivée à Montevideo</h4>
+              <p>Installation à l'hôtel. Première découverte de la capitale uruguayenne.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="days">Jour 2</div>
+              <h4>Montevideo</h4>
+              <p>Formalités. Av. 18 de Julio, Rambla, Palacio Salvo. Découverte du centre-ville et de ses places.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 3</div>
+              <h4>Vieille Ville</h4>
+              <p>Plaza Matriz, Musée du Tango, Palacio Taranco, Plaza Independencia. Immersion dans le patrimoine montévidéen.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 4</div>
+              <h4>Vers Tacuarembó</h4>
+              <p>Route via Florida, Durazno, Paso de los Toros. Musée Carlos Gardel. Arrivée dans la terre natale du tango.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jours 5 à 7</div>
+              <h4>Estancia gaucho</h4>
+              <p>3 nuits d'immersion chez Juan - Estancia Panagea. Participation à la vie du ranch : cheval au pas, gestion du bétail (~1 000 vaches, ~2 000 moutons, centaine de chevaux), asado au feu de bois, récits sous les étoiles.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 8</div>
+              <h4>Vers Punta del Este</h4>
+              <p>Route vers la côte. Installation à Punta del Este, perle balnéaire de l'Uruguay.</p>
+            </div>
           </div>
 
-          <div class="timeline-item">
-            <div class="days">Jour 3</div>
-            <h4>Vieille Ville</h4>
-            <p>Plaza Matriz, Musée du Tango, Palacio Taranco, Plaza Independencia. Immersion dans le patrimoine montévidéen.</p>
-          </div>
+          <div class="timeline-phase">
+            <h3>2ème semaine : Côte, Bodegas & Colonia</h3>
+            
+            <div class="timeline-item">
+              <div class="days">Jour 9</div>
+              <h4>Punta del Este</h4>
+              <p>Pain de Sucre, Casapueblo (Carlos Páez Vilaró), Punta Ballena. Élégance et couchers de soleil sur l'Atlantique.</p>
+            </div>
 
-          <div class="timeline-item">
-            <div class="days">Jour 4</div>
-            <h4>Vers Tacuarembó</h4>
-            <p>Route via Florida, Durazno, Paso de los Toros. Musée Carlos Gardel. Arrivée dans la terre natale du tango.</p>
-          </div>
+            <div class="timeline-item">
+              <div class="days">Jour 10</div>
+              <h4>Côte & plages</h4>
+              <p>El Águila, Villa Argentina. Temps libre plage et détente au bord de l'océan.</p>
+            </div>
 
-          <div class="timeline-item">
-            <div class="days">Jours 5 à 7</div>
-            <h4>Estancia gaucho</h4>
-            <p>3 nuits d'immersion chez Juan - Estancia Panagea. Participation à la vie du ranch : cheval au pas, gestion du bétail (~1 000 vaches, ~2 000 moutons, centaine de chevaux), asado au feu de bois, récits sous les étoiles.</p>
-          </div>
+            <div class="timeline-item">
+              <div class="days">Jour 11</div>
+              <h4>Bodega Moizo</h4>
+              <p>Visite et dégustation à la Bodega Moizo (Progreso). Repas au vignoble. Découverte du Tannat, cépage signature de l'Uruguay.</p>
+            </div>
 
-          <div class="timeline-item">
-            <div class="days">Jour 8</div>
-            <h4>Vers Punta del Este</h4>
-            <p>Route vers la côte. Installation à Punta del Este, perle balnéaire de l'Uruguay.</p>
+            <div class="timeline-item">
+              <div class="days">Jour 12</div>
+              <h4>Vers Colonia</h4>
+              <p>Route vers Colonia via Nueva Helvecia. Côte rioplatense. Installation dans la ville coloniale.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 13</div>
+              <h4>Colonia del Sacramento</h4>
+              <p>Vieille ville UNESCO, Real de San Carlos, Fortaleza. Ruelles pavées et charme intemporel sur le Río de la Plata.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 14</div>
+              <h4>Bodega Los Pinos</h4>
+              <p>Dégustation à la Bodega Los Pinos (Nueva Helvecia). Retour vers Montevideo.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 15</div>
+              <h4>Montevideo - Cerro & Palermo</h4>
+              <p>Forteresse du Cerro avec vue panoramique. Palermo, Parc Rodó, Castillo Pittamiglio.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 16</div>
+              <h4>Montevideo - Marché & Théâtre</h4>
+              <p>Marché du Port, Théâtre Solís, Pocitos / Ramírez. Dernières découvertes et shopping.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 17</div>
+              <h4>Départ</h4>
+              <p>Temps libre. Transfert à l'aéroport Carrasco. Vol retour avec le tango dans le cœur et le Tannat dans les souvenirs.</p>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="timeline-phase">
-          <h3>2ème semaine : Côte, Bodegas & Colonia</h3>
-          
-          <div class="timeline-item">
-            <div class="days">Jour 9</div>
-            <h4>Punta del Este</h4>
-            <p>Pain de Sucre, Casapueblo (Carlos Páez Vilaró), Punta Ballena. Élégance et couchers de soleil sur l'Atlantique.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jour 10</div>
-            <h4>Côte & plages</h4>
-            <p>El Águila, Villa Argentina. Temps libre plage et détente au bord de l'océan.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jour 11</div>
-            <h4>Bodega Moizo</h4>
-            <p>Visite et dégustation à la Bodega Moizo (Progreso). Repas au vignoble. Découverte du Tannat, cépage signature de l'Uruguay.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jour 12</div>
-            <h4>Vers Colonia</h4>
-            <p>Route vers Colonia via Nueva Helvecia. Côte rioplatense. Installation dans la ville coloniale.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jour 13</div>
-            <h4>Colonia del Sacramento</h4>
-            <p>Vieille ville UNESCO, Real de San Carlos, Fortaleza. Ruelles pavées et charme intemporel sur le Río de la Plata.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jour 14</div>
-            <h4>Bodega Los Pinos</h4>
-            <p>Dégustation à la Bodega Los Pinos (Nueva Helvecia). Retour vers Montevideo.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jour 15</div>
-            <h4>Montevideo - Cerro & Palermo</h4>
-            <p>Forteresse du Cerro avec vue panoramique. Palermo, Parc Rodó, Castillo Pittamiglio.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jour 16</div>
-            <h4>Montevideo - Marché & Théâtre</h4>
-            <p>Marché du Port, Théâtre Solís, Pocitos / Ramírez. Dernières découvertes et shopping.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jour 17</div>
-            <h4>Départ</h4>
-            <p>Temps libre. Transfert à l'aéroport Carrasco. Vol retour avec le tango dans le cœur et le Tannat dans les souvenirs.</p>
-          </div>
+      <div class="pause-visuelle pause-naturelle" style="background-image: url('images/casapueblo.webp');">
+        <div class="caption">
+          <h2>Casapueblo à Punta Ballena</h2>
+          <p>Œuvre de Carlos Páez Vilaró, sculptée dans la falaise face à l'Atlantique. Un coucher de soleil légendaire à Punta del Este.</p>
         </div>
       </div>
-    </section>
 
-    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/casapueblo.webp');">
-      <div class="caption">
-        <h2>Casapueblo à Punta Ballena</h2>
-        <p>Œuvre de Carlos Páez Vilaró, sculptée dans la falaise face à l'Atlantique. Un coucher de soleil légendaire à Punta del Este.</p>
-      </div>
+      <section class="pratiques">
+        <h2 class="section-title">Avant le départ & sur place</h2>
+        <div class="pratiques-grid">
+          <div class="pratique-item">
+            <h4>📄 Formalités</h4>
+            <p>Passeport valide 6 mois après le retour. Pas de vaccins obligatoires.</p>
+          </div>
+          <div class="pratique-item">
+            <h4>🗣️ Langue & Décalage</h4>
+            <p>Espagnol. Décalage horaire : -4h ou -5h (pas d'heure d'été en Uruguay).</p>
+          </div>
+          <div class="pratique-item">
+            <h4>💰 Monnaie</h4>
+            <p>Peso uruguayen (UYU). Change aux casas de cambio. Pas à l'aéroport. Coût de la vie ≈ -15 % vs France.</p>
+          </div>
+          <div class="pratique-item">
+            <h4>🎒 Conseils pratiques</h4>
+            <ul>
+              <li><strong>Inclus :</strong> Tous les petits-déjeuners et déjeuners, 3 dîners</li>
+              <li><strong>Wi-Fi :</strong> Partout sauf à l'estancia</li>
+              <li><strong>Chaussures :</strong> Bonnes chaussures pour la ville et l'estancia</li>
+              <li><strong>Prises :</strong> 110/220V, normes UE présentes</li>
+              <li><strong>Répulsif :</strong> Anti-moustiques pour zones humides</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="carte-section">
+        <h2 class="section-title">Votre itinéraire sur la carte</h2>
+        <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+          De Montevideo à Colonia, en passant par l'estancia gaucho et Punta del Este : cliquez sur chaque point doré pour découvrir les étapes de votre voyage.
+        </p>
+        <div id="map"></div>
+        <div style="text-align: center; margin-top: 20px;">
+          <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
+        </div>
+      </section>
+
+      <section style="text-align: center; padding-bottom: 20px;">
+        <h2 style="margin-bottom: 16px;">Bon séjour en Uruguay !</h2>
+        <p style="margin-bottom: 32px; color: var(--text-light);">Le plus petit pays d'Amérique du Sud, le plus authentique. Construisons ensemble votre itinéraire sur mesure de 17 jours.</p>
+        <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
+      </section>
+
     </div>
-
-    <section class="pratiques">
-      <h2 class="section-title">Avant le départ & sur place</h2>
-      <div class="pratiques-grid">
-        <div class="pratique-item">
-          <h4>📄 Formalités</h4>
-          <p>Passeport valide 6 mois après le retour. Pas de vaccins obligatoires.</p>
-        </div>
-        <div class="pratique-item">
-          <h4>🗣️ Langue & Décalage</h4>
-          <p>Espagnol. Décalage horaire : -4h ou -5h (pas d'heure d'été en Uruguay).</p>
-        </div>
-        <div class="pratique-item">
-          <h4>💰 Monnaie</h4>
-          <p>Peso uruguayen (UYU). Change aux casas de cambio. Pas à l'aéroport. Coût de la vie ≈ -15 % vs France.</p>
-        </div>
-        <div class="pratique-item">
-          <h4>🎒 Conseils pratiques</h4>
-          <ul>
-            <li><strong>Inclus :</strong> Tous les petits-déjeuners et déjeuners, 3 dîners</li>
-            <li><strong>Wi-Fi :</strong> Partout sauf à l'estancia</li>
-            <li><strong>Chaussures :</strong> Bonnes chaussures pour la ville et l'estancia</li>
-            <li><strong>Prises :</strong> 110/220V, normes UE présentes</li>
-            <li><strong>Répulsif :</strong> Anti-moustiques pour zones humides</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="carte-section">
-      <h2 class="section-title">Votre itinéraire sur la carte</h2>
-      <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
-        De Montevideo à Colonia, en passant par l'estancia gaucho et Punta del Este : cliquez sur chaque point doré pour découvrir les étapes de votre voyage.
-      </p>
-      <div id="map"></div>
-      <div style="text-align: center; margin-top: 20px;">
-        <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
-      </div>
-    </section>
-
-    <section style="text-align: center; padding-bottom: 20px;">
-      <h2 style="margin-bottom: 16px;">Bon séjour en Uruguay !</h2>
-      <p style="margin-bottom: 32px; color: var(--text-light);">Le plus petit pays d'Amérique du Sud, le plus authentique. Construisons ensemble votre itinéraire sur mesure de 17 jours.</p>
-      <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
-    </section>
 
   </main>
 
@@ -390,6 +475,41 @@
     </div>
   </footer>
 
+  <!-- SCRIPT DU MENU HEADER -->
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#navigation');
+    
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('is-open', open);
+    });
+
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('is-open');
+    }));
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        toggle.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+        toggle.focus();
+      }
+    });
+
+    const headerElement = document.querySelector('.header');
+    function updateHeaderHeight() {
+      const height = headerElement.getBoundingClientRect().height;
+      document.documentElement.style.setProperty('--header-height', height + 'px');
+      document.documentElement.style.scrollPaddingTop = (height + 12) + 'px';
+    }
+    new ResizeObserver(updateHeaderHeight).observe(headerElement);
+    updateHeaderHeight();
+  </script>
+
+  <!-- SCRIPT LEAFLET POUR LA CARTE -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
   <script>
@@ -399,7 +519,6 @@
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
     }).addTo(map);
 
-    // MODIFICATION : Estancia Panagea (n°2) avant Tacuarembó (n°3) + Nueva Helvecia ajoutée (n°7)
     const etapes = [
       { nom: "Montevideo", coords: [-34.9011, -56.1645], desc: "Capitale · Plazas · Rambla · Palacio Salvo" },
       { nom: "Estancia Juan Panagea", coords: [-31.5000, -55.5000], desc: "Immersion gaucho · Cheval · Asado" },

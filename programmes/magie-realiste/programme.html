@@ -332,8 +332,51 @@
       #map { height: 350px; }
     }
   </style>
+
+  <!-- HEADER : mêmes styles que index.html (limités au header pour ne pas toucher au reste de la page) -->
+  <style>
+    .skip{position:absolute;left:15px;top:-100px;background:#fff;color:#173447;padding:12px;z-index:100}
+    .skip:focus{top:10px}
+    .header{--ink:#173447;--muted:#52636b;--blue:#173e58;--accent:#b85132;--line:#dce2df;position:sticky;top:0;z-index:20;background:rgba(250,249,246,.98);border-bottom:1px solid var(--line);color:var(--ink);font:17px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-align:left}
+    .header a,.header button{-webkit-tap-highlight-color:transparent}
+    .header a:focus-visible,.header button:focus-visible{outline:3px solid var(--accent);outline-offset:5px}
+    .header .wrap{width:min(1320px,calc(100% - 48px));margin:auto}
+    .header-inner{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:26px}
+    .brand{text-decoration:none;line-height:1.2;white-space:nowrap}
+    .brand strong{font-size:1.55rem;letter-spacing:.035em}
+    .brand-logo{display:block;max-width:100%;width:220px;height:68px;object-fit:contain;filter:url(#logo-ink);background:transparent}
+    .menu-toggle{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:9px 13px;font:inherit;color:var(--ink);cursor:pointer}
+    .nav{display:flex;align-items:center;gap:14px}
+    .nav a{text-decoration:none;font-size:.85rem;font-weight:550;white-space:nowrap}
+    .nav a:hover{color:var(--accent)}
+    .nav .nav-feature{padding:9px 12px;border-radius:8px;border:1px solid}
+    .review-link span{color:#ac791c;margin-right:3px}
+    .nav a.theme-tango{background:#EDF4FF;color:#24549A;border-color:#A9BFDF}
+    .nav a.theme-solo{background:#EDF6F0;color:#286044;border-color:#A5C4AF}
+    .nav a.theme-tango:hover{background:#DFEAFC;color:#24549A;border-color:#7E9FCB}
+    .nav a.theme-solo:hover{background:#DEEEE3;color:#286044;border-color:#7BA68A}
+    .nav a.theme-tango:focus-visible{outline:3px solid #24549A;outline-offset:4px}
+    .nav a.theme-solo:focus-visible{outline:3px solid #286044;outline-offset:4px}
+    @media(max-width:1050px){.nav{gap:15px}.nav a{font-size:.8rem}}
+    @media(max-width:780px){.header-inner{min-height:78px;flex-wrap:wrap;gap:0}.brand strong{font-size:1.2rem}.menu-toggle{display:block}.nav{display:none;flex-basis:100%;padding:20px 0;align-items:stretch;gap:0}.nav.is-open{display:flex;flex-direction:column}.nav a{padding:11px 0;font-size:1rem;border-top:1px solid var(--line)}}
+    @media(min-width:781px) and (max-height:760px){.header-inner{min-height:70px}.brand-logo{height:60px}}
+    @media(max-width:1100px){.nav{gap:9px}.nav a{font-size:.77rem}.nav .nav-feature{padding:8px}.brand-logo{width:175px}.header-inner{gap:16px}}
+    @media(min-width:781px) and (max-width:940px){.header-inner{flex-wrap:wrap;justify-content:center;padding-bottom:10px;gap:2px}.nav{justify-content:center;width:100%;gap:14px}.brand-logo{height:56px}.nav a{font-size:.8rem}}
+    @media(max-width:780px){.nav .nav-feature{margin:5px 0;padding:12px}.nav a{font-size:1rem}.brand-logo{height:62px;width:205px}.header-inner{min-height:72px}}
+    .nav a.nav-primary{font-weight:700;color:var(--blue);position:relative}
+    .nav a.nav-primary::after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:2px;background:var(--accent);border-radius:2px;transform:scaleX(.4);transform-origin:left;transition:transform .2s}
+    .nav a.nav-primary:hover,.nav a.nav-primary:focus-visible{color:var(--accent)}
+    .nav a.nav-primary:hover::after,.nav a.nav-primary:focus-visible::after{transform:scaleX(1)}
+    @media(min-width:1101px){.nav a.nav-primary{font-size:.95rem}.nav{gap:18px}}
+    @media(max-width:780px){.nav a.nav-primary::after{display:none}.nav a.nav-primary{font-weight:700}}
+    @media(prefers-reduced-motion:reduce){.nav a.nav-primary::after{transition:none}}
+  </style>
 </head>
 <body>
+
+  <svg aria-hidden="true" height="0" style="position:absolute;pointer-events:none" width="0" xmlns="http://www.w3.org/2000/svg"><defs><filter color-interpolation-filters="sRGB" height="102%" id="logo-ink" width="102%" x="-1%" y="-1%"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.063 3.576 .361 0 -3.5"></feColorMatrix><feComponentTransfer><feFuncA amplitude="1" exponent="0.8" offset="0" type="gamma"></feFuncA></feComponentTransfer></filter></defs></svg>
+  <a class="skip" href="#contenu">Aller au contenu</a>
+  <header class="header"><div class="wrap header-inner"><a aria-label="VPD Voyages — Accueil" class="brand" href="https://vpdvoyages.com/"><img alt="VPDVOYAGES — Patrick Daroque" class="brand-logo" height="68" src="https://vpdvoyages.com/Images/logo.png" width="220"/></a><button aria-controls="navigation" aria-expanded="false" class="menu-toggle" type="button">Menu</button><nav aria-label="Navigation principale" class="nav" id="navigation"><a class="nav-primary" href="https://vpdvoyages.com/#destinations">Destinations</a><a class="nav-primary" href="https://vpdvoyages.com/formules.html">Formules</a><a class="nav-feature theme-solo" href="https://vpdvoyages.com/voyage-solo.html">Voyager seul(e)</a><a class="nav-feature theme-tango" href="https://vpdvoyages.com/voyage-tango.html">Tango argentin</a><a class="review-link" href="https://vpdvoyages.com/avis-clients.html"><span aria-hidden="true">★</span> Avis clients</a><a href="https://vpdvoyages.com/#about">À propos</a><a href="https://vpdvoyages.com/#contact">Contact</a></nav></div></header>
 
   <!-- HERO -->
   <header class="hero">
@@ -345,7 +388,7 @@
     </div>
   </header>
 
-  <main class="container">
+  <main class="container" id="contenu">
     
     <!-- INTRODUCTION -->
     <section class="intro">
@@ -656,6 +699,16 @@
     // Ajuster la carte pour voir tous les marqueurs au chargement
     const groupe = L.featureGroup(marqueurs);
     map.fitBounds(groupe.getBounds().pad(0.2));
+  </script>
+
+  <!-- Menu mobile du header (identique à index.html) -->
+  <script>
+  (function(){
+    const toggle=document.querySelector('.menu-toggle');const nav=document.querySelector('#navigation');
+    toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));nav.classList.toggle('is-open',open);});
+    nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{toggle.setAttribute('aria-expanded','false');nav.classList.remove('is-open');}));
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&toggle.getAttribute('aria-expanded')==='true'){toggle.setAttribute('aria-expanded','false');nav.classList.remove('is-open');toggle.focus();}});
+  })();
   </script>
 
 </body>

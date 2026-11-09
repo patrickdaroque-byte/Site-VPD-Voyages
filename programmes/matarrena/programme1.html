@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- OPTIMISATION SEO -->
+  <title>Matarraña · La Toscane Espagnole | Escapade 4 jours Bas-Aragon | VPD Voyages</title>
+  <meta name="description" content="Escapade au Matarraña en 4 jours : villages médiévaux, oliveraies, Vía Verde à vélo, Pinell del Brai, Hort Sant Joan, domaine Venta d'Aubert, Valderrobres et Cretas. Devis gratuit avec VPD Voyages.">
+  
+  <!-- POLICES D'ÉCRITURE -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS LEAFLET POUR LA CARTE -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <style>
+    :root {
+      --primary: #8B1E1E;
+      --primary-dark: #6B1515;
+      --accent: #D4A017;
+      --text: #2D3748;
+      --text-light: #4A5568;
+      --bg: #FAFAFA;
+      --white: #FFFFFF;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --radius: 8px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background-color: var(--bg); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1.3; }
+    a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+    a:hover { color: var(--primary); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    .hero {
+      position: relative;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/toscane espagnole.jpg') center/cover no-repeat;
+      color: var(--white);
+      padding: 120px 0 80px;
+      text-align: center;
+    }
+    .hero h1 { color: var(--white); font-size: 3.2rem; margin-bottom: 16px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero .subtitle { font-size: 1.4rem; font-weight: 300; opacity: 0.95; margin-bottom: 32px; font-style: italic; }
+    .btn { display: inline-block; background-color: var(--accent); color: var(--primary-dark); padding: 16px 36px; border-radius: 50px; font-weight: 600; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); color: var(--primary-dark); }
+
+    section { padding: 60px 0; }
+    .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; position: relative; }
+    .section-title::after { content: ''; display: block; width: 60px; height: 3px; background-color: var(--accent); margin: 16px auto 0; }
+
+    .intro { background-color: var(--white); text-align: center; max-width: 800px; margin: -40px auto 0; padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); position: relative; z-index: 10; }
+    .intro p { font-size: 1.1rem; color: var(--text-light); }
+    .intro .highlight { color: var(--primary); font-weight: 600; }
+
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
+    .card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border-top: 4px solid var(--accent); transition: transform 0.3s ease; }
+    .card:hover { transform: translateY(-5px); }
+    .card img { width: 100%; height: 220px; object-fit: cover; }
+    .card-content { padding: 24px; }
+    .card h3 { font-size: 1.4rem; margin-bottom: 16px; }
+    .card ul { list-style: none; padding-left: 0; }
+    .card ul li { padding: 6px 0; color: var(--text-light); position: relative; padding-left: 20px; }
+    .card ul li::before { content: '•'; color: var(--primary); font-weight: bold; position: absolute; left: 0; }
+
+    .pause-visuelle { position: relative; height: 400px; background-size: cover; background-position: center; background-attachment: fixed; border-radius: var(--radius); overflow: hidden; margin: 40px 0; }
+    .pause-naturelle::before { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)); }
+    .pause-visuelle .caption { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--white); text-align: center; padding: 40px; }
+    .pause-visuelle .caption h2 { color: var(--white); font-size: 2.5rem; margin-bottom: 16px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
+    .pause-visuelle .caption p { font-size: 1.2rem; max-width: 600px; font-style: italic; text-shadow: 1px 1px 4px rgba(0,0,0,0.5); }
+    @media (max-width: 768px) { .pause-visuelle { background-attachment: scroll; height: 300px; } .pause-visuelle .caption h2 { font-size: 1.8rem; } }
+
+    .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 30px; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background-color: #E2E8F0; }
+    .timeline-phase { margin-bottom: 40px; position: relative; }
+    .timeline-phase h3 { background-color: var(--primary); color: var(--white); display: inline-block; padding: 8px 20px; border-radius: 50px; font-size: 1.1rem; margin-bottom: 20px; font-family: 'Inter', sans-serif; font-weight: 600; }
+    .timeline-item { background: var(--white); padding: 20px 24px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 16px; position: relative; }
+    .timeline-item::before { content: ''; position: absolute; left: -36px; top: 24px; width: 15px; height: 15px; background-color: var(--accent); border-radius: 50%; border: 3px solid var(--white); }
+    .timeline-item .days { font-size: 0.85rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .timeline-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
+    .timeline-item p { font-size: 0.95rem; color: var(--text-light); margin: 0; }
+
+    .carte-section { background-color: var(--white); border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow); margin-top: 20px; }
+    #map { width: 100%; height: 500px; border-radius: 8px; z-index: 1; }
+    .custom-icon { background: transparent !important; border: none !important; }
+
+    .pratiques { background-color: #F8FAFC; border-radius: var(--radius); padding: 40px; margin-top: 40px; }
+    .pratiques h3 { margin-bottom: 20px; }
+    .pratiques-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .pratique-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--primary); }
+    .pratique-item p, .pratique-item ul { font-size: 0.95rem; color: var(--text-light); margin: 0; }
+    .pratique-item ul { padding-left: 20px; }
+
+    footer { background-color: var(--primary-dark); color: var(--white); text-align: center; padding: 40px 0; margin-top: 60px; }
+    footer p { opacity: 0.8; font-size: 0.9rem; }
+    footer a { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .intro { margin: 20px; padding: 24px; }
+      .timeline { padding-left: 20px; }
+      .timeline-item::before { left: -26px; width: 12px; height: 12px; }
+      #map { height: 350px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Escapade en petit groupe · 4 jours · Bas-Aragon</p>
+      <h1>Matarraña · La Toscane Espagnole</h1>
+      <p class="subtitle">Villages médiévaux, oliveraies & Vía Verde à vélo</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <section class="intro">
+      <h2 style="margin-bottom: 20px;">Une parenthèse ressourçante & authentique</h2>
+      <p>
+        Située dans le Bas-Aragon, la comarque du Matarraña séduit par son rythme paisible et sa nature intacte. 
+        Conçu pour de <span class="highlight">petits groupes (2 à 5 personnes)</span>, ce séjour assure convivialité, flexibilité et partage. 
+        Dégustations d'huile d'olive artisanale, de vins bio locaux et de truffe noire, balades dans le parc naturel du Parrizal de Beceite et villages classés.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="section-title">Le voyage en un coup d'œil</h2>
+      <div class="grid-4">
+        
+        <div class="card">
+          <img src="images/Valderrobres_Chateau.jpg" alt="Château de Valderrobres">
+          <div class="card-content">
+            <h3>🏰 Valderrobres</h3>
+            <ul>
+              <li>Classé parmi les « Plus Beaux Pueblos d'Espagne »</li>
+              <li>Pont gothique du XIVe siècle</li>
+              <li>Château-Palais des évêques de Saragosse</li>
+              <li>Église Santa María, gothique levantin</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/Place_Village_Cretas_ou_Valderrobres.jpg" alt="Place de village médiéval">
+          <div class="card-content">
+            <h3>🏛️ Cretas</h3>
+            <ul>
+              <li>Joyau d'architecture rurale</li>
+              <li>Ruelles pavées en pierre dorée</li>
+              <li>Église fortifiée du XVIe siècle</li>
+              <li>Frontière culturelle Aragon-Catalogne</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/Degustation_Venta_Aubert.jpg" alt="Dégustation au domaine Venta d'Aubert">
+          <div class="card-content">
+            <h3>🍷 Domaine Venta d'Aubert</h3>
+            <ul>
+              <li>Vins biologiques d'exception</li>
+              <li>Visite des chais & terroir bio</li>
+              <li>Parc des sculptures en plein air</li>
+              <li>Cépages traditionnels & savoir-faire</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/velo-viaduc.jpg" alt="Vía Verde à vélo sur le viaduc">
+          <div class="card-content">
+            <h3>🚴 Vía Verde à vélo</h3>
+            <ul>
+              <li>Ancienne voie ferrée du Val de Zafán</li>
+              <li>Piste cyclable panoramique</li>
+              <li>Tunnels et viaducs spectaculaires</li>
+              <li>Profil en descente, accessible à tous</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/Hort_Aubert_Coquelicots.jpg" alt="Coquelicots à l'Hort d'Aubert">
+          <div class="card-content">
+            <h3>🌸 Hort d'Aubert (1789)</h3>
+            <ul>
+              <li>Demeure historique à Cretas</li>
+              <li>Chambres thématiques raffinées</li>
+              <li>Ambiance Provençale, Africaine, Mexicaine</li>
+              <li>Charme & authenticité séculaire</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/Paysage_Oliveraie.jpg" alt="Paysage d'oliveraies du Matarraña">
+          <div class="card-content">
+            <h3>🫒 Terroir & gastronomie</h3>
+            <ul>
+              <li>Huile d'olive extra-vierge AOP</li>
+              <li>Truffe noire de Teruel</li>
+              <li>Jambon Serrano & vins locaux</li>
+              <li>Restaurants choisis avec soin</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PAUSE VISUELLE 1 : VALDERROBRES -->
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/valderrobres.webp');">
+      <div class="caption">
+        <h2>Valderrobres, joyau du Matarraña</h2>
+        <p>Pont gothique du XIVe siècle, château-palais des évêques de Saragosse et eaux turquoise du Matarraña. Classé parmi les « Plus Beaux Pueblos d'Espagne ».</p>
+      </div>
+    </div>
+
+    <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
+      <h2 class="section-title">Votre itinéraire jour par jour</h2>
+      
+      <div class="timeline">
+        
+        <div class="timeline-phase">
+          <h3>Jour 1 · Trajet aller · Alcañiz</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Matin</div>
+            <h4>Départ</h4>
+            <p>Route vers le Matarraña avec une halte découverte à Alcañiz, capitale du Bas-Aragon.</p>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="days">Midi</div>
+            <h4>Alcañiz</h4>
+            <p>Visite du Château des Calatravos, imposante forteresse médiévale du XIIe siècle dominant la vallée, abritant de majestueuses peintures murales gothiques. Découverte de la Plaza España, de l'Hôtel de Ville Renaissance et de la collégiale Santa María la Mayor.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Après-midi</div>
+            <h4>Installation à Cretas</h4>
+            <p>Arrivée à l'Hort d'Aubert, demeure historique de 1789 basée à Cretas. Chambres thématiques raffinées : ambiance Provençale, Africaine, Mexicaine ou Hindoue. Dîner libre dans un restaurant local.</p>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <h3>Jour 2 · Valderrobres & Venta d'Aubert</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Matin</div>
+            <h4>Valderrobres</h4>
+            <p>Visite de Valderrobres, classé parmi les « Plus Beaux Pueblos d'Espagne » : pont gothique du XIVe siècle franchissant les eaux turquoise du Matarraña, château-palais gothique des évêques de Saragosse, église Santa María chef-d'œuvre du gothique levantin.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Midi</div>
+            <h4>Déjeuner à Valderrobres</h4>
+            <p>Déjeuner dans un restaurant typique de Valderrobres.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Après-midi</div>
+            <h4>Domaine Venta d'Aubert</h4>
+            <p>Visite et dégustation au domaine viticole biologique Venta d'Aubert, niché dans la vallée de Cretas. Découverte des chais, du terroir bio et dégustation commentée des cuvées. Parc des sculptures : parcours poétique en plein air s'interrogeant sur la disparition et la reconstruction du monde.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Soir</div>
+            <h4>Dîner à Cretas</h4>
+            <p>Dîner au Centro Cultural de Cretas, restaurant typique de la région.</p>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <h3>Jour 3 · Vía Verde à vélo & villages</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Matin</div>
+            <h4>Départ sur la Vía Verde</h4>
+            <p>L'ancienne voie ferrée du Val de Zafán a été transformée en une somptueuse piste cyclable panoramique à travers tunnels et viaducs. Profil en descente, itinéraire accessible à tous les niveaux sans effort excessif. Vélos électriques (VAE) disponibles en option pour un confort absolu.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Midi</div>
+            <h4>Pique-nique</h4>
+            <p>Pique-nique au cœur de la nature, entre tunnels et viaducs spectaculaires.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Après-midi</div>
+            <h4>Hort Sant Joan & Pinell del Brai</h4>
+            <p>Découverte d'Hort Sant Joan, havre de paix entre oliveraies et vignes, puis visite de Pinell del Brai, village viticole authentique aux ruelles médiévales préservées. Deux perles du territoire à ne pas manquer.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Soir</div>
+            <h4>Dîner convivial</h4>
+            <p>Dîner à l'Hort d'Aubert : soirée auberge espagnole conviviale dans le cadre historique de la demeure.</p>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <h3>Jour 4 · Cretas & retour</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Matin</div>
+            <h4>Matinée libre à Cretas</h4>
+            <p>Temps libre pour explorer le village : ruelles pavées en pierre dorée, église fortifiée du XVIe siècle, place du village. Dernière flânerie dans ce joyau d'architecture rurale situé à la frontière culturelle entre l'Aragon et la Catalogne.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Midi</div>
+            <h4>Déjeuner</h4>
+            <p>Déjeuner dans un restaurant local avant de reprendre la route.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Après-midi</div>
+            <h4>Route retour</h4>
+            <p>Route du retour avec une dernière pause gourmande. Les images du Matarraña en tête et le goût des saveurs aragonaises sur les lèvres.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARTE TERROIR : PHOTO GASTRONOMIE -->
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/gastronomie.jpeg');">
+      <div class="caption">
+        <h2>Les saveurs du Matarraña</h2>
+        <p>Huile d'olive extra-vierge AOP, truffe noire de Teruel, jambon Serrano et vins locaux à chaque étape gourmande.</p>
+      </div>
+    </div>
+
+    <section class="pratiques">
+      <h2 class="section-title">L'esprit du voyage</h2>
+      <div class="pratiques-grid">
+        <div class="pratique-item">
+          <h4>🏛️ Patrimoine</h4>
+          <p>Valderrobres · Cretas · Alcañiz · Château des Calatravos · Pont gothique</p>
+        </div>
+        <div class="pratique-item">
+          <h4>🍷 Terroir & gastronomie</h4>
+          <p>Venta d'Aubert · Huile d'olive AOP · Truffe noire · Vins bio · Jambon Serrano</p>
+        </div>
+        <div class="pratique-item">
+          <h4>🚴 Nature & activités</h4>
+          <p>Vía Verde à vélo · Parrizal de Beceite · Oliveraies · Vignobles · Hort Sant Joan · Pinell del Brai</p>
+        </div>
+        <div class="pratique-item">
+          <h4>✨ La philosophie VPDVOYAGES</h4>
+          <ul>
+            <li><strong>Sélection :</strong> Des étapes qui ont du sens dans le rythme global</li>
+            <li><strong>Équilibre :</strong> Culture + gastronomie + nature + activités douces</li>
+            <li><strong>Personnalisation :</strong> Le programme évolue selon vos envies</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top: 24px; text-align: center; font-style: italic; color: var(--text-light);">
+        Matarraña, avec son mélange unique de villages médiévaux, d'oliveraies séculaires et de gorges secrètes, promet une escapade authentique et ressourçante.
+      </p>
+    </section>
+
+    <section class="carte-section">
+      <h2 class="section-title">Votre itinéraire sur la carte</h2>
+      <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+        D'Alcañiz à Cretas, en passant par Valderrobres, le domaine Venta d'Aubert, Hort Sant Joan et Pinell del Brai : cliquez sur chaque point doré pour découvrir les étapes de votre escapade.
+      </p>
+      <div id="map"></div>
+      <div style="text-align: center; margin-top: 20px;">
+        <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
+      </div>
+    </section>
+
+    <section style="text-align: center; padding-bottom: 20px;">
+      <h2 style="margin-bottom: 16px;">Bon séjour au Matarraña !</h2>
+      <p style="margin-bottom: 32px; color: var(--text-light);">La Toscane Espagnole · Escapade de 4 jours · Bas-Aragon</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p style="font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 8px;">VPD Voyages</p>
+      <p>Votre travel planner spécialisé en Espagne et Amérique latine.</p>
+      <p style="margin-top: 16px;">
+        <a href="https://vpdvoyages.com">Retour à l'accueil</a> · 
+        <a href="https://vpdvoyages.com/mentions-legales.html">Mentions légales</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <script>
+    const map = L.map('map').setView([40.95, 0.15], 10);
+
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+    }).addTo(map);
+
+    // ORDRE MODIFIÉ : Alcañiz → Valderrobres → Cretas → Venta d'Aubert → Hort Sant Joan → Pinell del Brai
+    // Beceite et Arnes supprimés
+    const etapes = [
+      { nom: "Alcañiz", coords: [41.0500, -0.1333], desc: "Capitale du Bas-Aragon · Château des Calatravos" },
+      { nom: "Valderrobres", coords: [40.8833, 0.1167], desc: "Plus Beaux Pueblos d'Espagne · Pont gothique" },
+      { nom: "Cretas", coords: [40.9667, 0.1667], desc: "Joyau d'architecture rurale · Hort d'Aubert" },
+      { nom: "Venta d'Aubert", coords: [40.9500, 0.1800], desc: "Domaine viticole bio · Parc des sculptures" },
+      { nom: "Hort Sant Joan", coords: [40.9500, 0.3500], desc: "Havre de paix · Oliveraies & vignes" },
+      { nom: "Pinell del Brai", coords: [40.9833, 0.3833], desc: "Village viticole authentique · Ruelles médiévales" }
+    ];
+
+    const iconeTango = L.divIcon({
+        className: 'custom-icon',
+        html: '<div style="background-color: #D4A017; width: 16px; height: 16px; border-radius: 50%; border: 3px solid #FFFFFF; box-shadow: 0 0 0 3px #8B1E1E, 0 4px 8px rgba(0,0,0,0.5);"></div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11]
+    });
+
+    const marqueurs = [];
+    etapes.forEach((etape, index) => {
+      const marker = L.marker(etape.coords, {icon: iconeTango}).addTo(map);
+      marker.bindPopup(`<b style="font-family: 'Playfair Display', serif; color: #8B1E1E; font-size: 1.1rem;">${index + 1}. ${etape.nom}</b><br><span style="color: #4A5568; font-size: 0.9rem;">${etape.desc}</span>`);
+      marqueurs.push(marker);
+    });
+
+    const trace = etapes.map(e => e.coords);
+    
+    L.polyline(trace, {
+        color: '#FFFFFF', 
+        weight: 8, 
+        opacity: 0.9,
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    L.polyline(trace, {
+        color: '#8B1E1E', 
+        weight: 4, 
+        opacity: 1, 
+        dashArray: '10, 8',
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    function resetMap() {
+      map.setView([40.95, 0.15], 10);
+    }
+
+    const groupe = L.featureGroup(marqueurs);
+    map.fitBounds(groupe.getBounds().pad(0.2));
+  </script>
+
+</body>
+</html>

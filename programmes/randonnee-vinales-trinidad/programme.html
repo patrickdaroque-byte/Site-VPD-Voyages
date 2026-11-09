@@ -7,7 +7,8 @@
   <!-- OPTIMISATION SEO -->
   <title>Cuba · Randonnée Viñales & Escambray | Mogotes, Cascade Caburní, Baie des Cochons | VPD Voyages</title>
   <meta name="description" content="Voyage randonnée à Cuba : Viñales UNESCO, massif de l'Escambray, cascade Caburní, Baie des Cochons, Trinidad. 16 jours d'immersion nature et culturelle. Devis gratuit avec VPD Voyages.">
-  
+  <meta name="theme-color" content="#173e58"/>
+
   <!-- POLICES D'ÉCRITURE -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,24 +19,73 @@
 
   <style>
     :root {
+      --ink: #173447;
+      --muted: #52636b;
+      --blue: #173e58;
       --primary: #8B1E1E;
       --primary-dark: #6B1515;
       --accent: #D4A017;
+      --accent-index: #b85132;
       --text: #2D3748;
       --text-light: #4A5568;
       --bg: #FAFAFA;
+      --paper: #faf9f6;
+      --line: #dce2df;
       --white: #FFFFFF;
       --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
       --radius: 8px;
+      --header-height: 82px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
     body { font-family: 'Inter', sans-serif; color: var(--text); background-color: var(--bg); line-height: 1.7; -webkit-font-smoothing: antialiased; }
     h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1.3; }
     a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
     a:hover { color: var(--primary); }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .wrap { width: min(1180px, calc(100% - 64px)); margin: auto; }
+    .skip { position: absolute; left: 15px; top: -100px; background: white; padding: 12px; z-index: 100; }
+    .skip:focus { top: 10px; }
 
+    /* --- STYLES HEADER INDEX --- */
+    .header { background: rgba(250,249,246,.98); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; }
+    .header .wrap { width: min(1320px, calc(100% - 48px)); }
+    .header-inner { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 26px; }
+    .brand { text-decoration: none; line-height: 1.2; white-space: nowrap; }
+    .brand-logo { display: block; width: 220px; height: 68px; object-fit: contain; filter: url(#logo-ink); background: transparent; }
+    .menu-toggle { display: none; background: none; border: 1px solid var(--line); border-radius: 8px; padding: 9px 13px; font: inherit; color: var(--ink); cursor: pointer; }
+    .nav { display: flex; align-items: center; gap: 14px; }
+    .nav a { text-decoration: none; font-size: .85rem; font-weight: 550; white-space: nowrap; }
+    .nav a:hover { color: var(--accent-index); }
+    .nav a.nav-primary { font-weight: 700; color: var(--blue); position: relative; }
+    .nav a.nav-primary::after { content: ""; position: absolute; left: 0; right: 0; bottom: -7px; height: 2px; background: var(--accent-index); border-radius: 2px; transform: scaleX(.4); transform-origin: left; transition: transform .2s; }
+    .nav a.nav-primary:hover, .nav a.nav-primary:focus-visible { color: var(--accent-index); }
+    .nav a.nav-primary:hover::after, .nav a.nav-primary:focus-visible::after { transform: scaleX(1); }
+    .nav .nav-feature { padding: 9px 12px; border-radius: 8px; border: 1px solid; }
+    .nav a.theme-tango { background: #EDF4FF; color: #24549A; border-color: #A9BFDF; }
+    .nav a.theme-solo { background: #EDF6F0; color: #286044; border-color: #A5C4AF; }
+    .nav a.theme-tango:hover { background: #DFEAFC; color: #24549A; border-color: #7E9FCB; }
+    .nav a.theme-solo:hover { background: #DEEEE3; color: #286044; border-color: #7BA68A; }
+    .review-link span { color: #ac791c; margin-right: 3px; }
+
+    /* RESPONSIVE HEADER INDEX */
+    @media (min-width: 1101px) { .nav a.nav-primary { font-size: .95rem; } .nav { gap: 18px; } }
+    @media (max-width: 1100px) { .nav { gap: 9px; } .nav a { font-size: .77rem; } .nav .nav-feature { padding: 8px; } .brand-logo { width: 175px; } .header-inner { gap: 16px; } }
+    @media (min-width: 781px) and (max-width: 940px) { .header-inner { flex-wrap: wrap; justify-content: center; padding-bottom: 10px; gap: 2px; } .nav { justify-content: center; width: 100%; gap: 14px; } .brand-logo { height: 56px; } .nav a { font-size: .8rem; } }
+    @media (max-width: 780px) {
+      .wrap { width: calc(100% - 40px); }
+      .header-inner { min-height: 72px; flex-wrap: wrap; gap: 0; }
+      .brand-logo { height: 62px; width: 205px; }
+      .menu-toggle { display: block; }
+      .nav { display: none; flex-basis: 100%; padding: 20px 0; align-items: stretch; gap: 0; }
+      .nav.is-open { display: flex; flex-direction: column; }
+      .nav a { padding: 11px 0; font-size: 1rem; border-top: 1px solid var(--line); }
+      .nav a.nav-primary::after { display: none; }
+      .nav .nav-feature { margin: 5px 0; padding: 12px; }
+    }
+
+    /* --- PAGE PROGRAMME STYLES --- */
     .hero {
       position: relative;
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/vallee-de-vinales.jpg') center/cover no-repeat;
@@ -109,353 +159,388 @@
 </head>
 <body>
 
-  <header class="hero">
-    <div class="container">
-      <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Idée voyage en petit groupe · 16 jours · Randonnée facile à moyenne</p>
-      <h1>Cuba · Randonnée Viñales & Escambray</h1>
-      <p class="subtitle">Mogotes · Cascade Caburní · Baie des Cochons · Trinidad</p>
-      <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
+  <!-- SVG MASQUÉ POUR LE LOGO -->
+  <svg aria-hidden="true" height="0" style="position:absolute;pointer-events:none" width="0" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter color-interpolation-filters="sRGB" height="102%" id="logo-ink" width="102%" x="-1%" y="-1%">
+        <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.063 3.576 .361 0 -3.5"></feColorMatrix>
+        <feComponentTransfer><feFuncA amplitude="1" exponent="0.8" offset="0" type="gamma"></feFuncA></feComponentTransfer>
+      </filter>
+    </defs>
+  </svg>
+
+  <a class="skip" href="#contenu">Aller au contenu</a>
+
+  <!-- HEADER IDENTIQUE À INDEX.HTML -->
+  <header class="header">
+    <div class="wrap header-inner">
+      <a aria-label="VPD Voyages — Accueil" class="brand" href="index.html#accueil">
+        <img alt="VPDVOYAGES — Patrick Daroque" class="brand-logo" height="68" src="https://vpdvoyages.com/Images/logo.png" width="220"/>
+      </a>
+      <button aria-controls="navigation" aria-expanded="false" class="menu-toggle">Menu</button>
+      <nav aria-label="Navigation principale" class="nav" id="navigation">
+        <a class="nav-primary" href="index.html#destinations">Destinations</a>
+        <a class="nav-primary" href="formules.html">Formules</a>
+        <a class="nav-feature theme-solo" href="https://vpdvoyages.com/voyage-solo.html">Voyager seul(e)</a>
+        <a class="nav-feature theme-tango" href="https://vpdvoyages.com/voyage-tango.html">Tango argentin</a>
+        <a class="review-link" href="avis-clients.html"><span aria-hidden="true">★</span> Avis clients</a>
+        <a href="index.html#about">À propos</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
-  <main class="container">
-    
-    <section class="intro">
-      <h2 style="margin-bottom: 20px;">Cuba… en randonnée !</h2>
-      <p>
-        Randonnées de 4 à 8 heures, difficulté facile à moyenne. À <span class="highlight">Viñales</span> : mogotes calcaires, plantations de tabac, grottes et rencontres avec les guajiros. À <span class="highlight">Trinidad</span> : dans le massif de l'Escambray jusqu'à 1 100 m, cascade Caburní, journée paysanne et Baie des Cochons. Immersion nature et culturelle.
-      </p>
-    </section>
+  <main id="contenu">
 
-    <section>
-      <h2 class="section-title">Le voyage en un coup d'œil</h2>
-      <div class="grid-4">
-        
-        <div class="card">
-          <img src="images/vallee-de-vinales.jpg" alt="Vallée de Viñales et ses mogotes">
-          <div class="card-content">
-            <h3>🌿 Viñales UNESCO</h3>
-            <ul>
-              <li>Vallée classée UNESCO</li>
-              <li>Mogotes calcaires spectaculaires</li>
-              <li>Plantations de tabac</li>
-              <li>Rencontres avec les guajiros</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/el-nicho-sierra-de-escambray.jpg" alt="Sierra de l'Escambray">
-          <div class="card-content">
-            <h3>🏔️ Escambray & Topes de Collantes</h3>
-            <ul>
-              <li>Massif au-dessus de Trinidad</li>
-              <li>Sentiers ombragés jusqu'à 1 100 m</li>
-              <li>Cascade Caburní</li>
-              <li>Panoramas sur la ville coloniale</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/plage.JPG" alt="Plage de la Baie des Cochons">
-          <div class="card-content">
-            <h3>🏝️ Baie des Cochons</h3>
-            <ul>
-              <li>Ciénaga de Zapata</li>
-              <li>Playa Larga & Caleta Buena</li>
-              <li>Grottes inondées</li>
-              <li>Nature et histoire</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/trinidad_toits_clocher_montagnes.jpg" alt="Trinidad, ville coloniale">
-          <div class="card-content">
-            <h3>🏛️ Trinidad UNESCO</h3>
-            <ul>
-              <li>Ville coloniale préservée</li>
-              <li>Plaza Mayor & Casa de la Trova</li>
-              <li>Valle de los Ingenios</li>
-              <li>Patrimoine mondial</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/roulage_cigare_artisanal_mains.jpg" alt="Roulage artisanal de cigare">
-          <div class="card-content">
-            <h3>🚬 Tabac & Cigares</h3>
-            <ul>
-              <li>Champs de tabac à Viñales</li>
-              <li>Roulage artisanal</li>
-              <li>Ferme agro-écologique</li>
-              <li>Café paysan</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images/groupe_musique_rue_trinidad.jpg" alt="Musiciens de rue à Trinidad">
-          <div class="card-content">
-            <h3>🎶 Culture & Musique</h3>
-            <ul>
-              <li>Musiciens de rue à Trinidad</li>
-              <li>Son, rumba, salsa</li>
-              <li>Ambiance festive</li>
-              <li>Traditions vivantes</li>
-            </ul>
-          </div>
-        </div>
-
+    <header class="hero">
+      <div class="container">
+        <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Idée voyage en petit groupe · 16 jours · Randonnée facile à moyenne</p>
+        <h1>Cuba · Randonnée Viñales & Escambray</h1>
+        <p class="subtitle">Mogotes · Cascade Caburní · Baie des Cochons · Trinidad</p>
+        <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
       </div>
-    </section>
+    </header>
 
-    <!-- PAUSE VISUELLE 1 : RANDONNÉE -->
-    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/Circuit-rando.jpg');">
-      <div class="caption">
-        <h2>Les sentiers de Cuba</h2>
-        <p>Facile à moyenne, 4 à 8 heures de marche. Vallée des mogotes, grottes, crêtes et cascades : chaque pas révèle la beauté brute de l'île.</p>
-      </div>
-    </div>
-
-    <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
-      <h2 class="section-title">Les massifs</h2>
+    <div class="container">
       
-      <div class="grid-4" style="margin-top: 0;">
-        <div class="card">
-          <img src="images/vallee-de-vinales.jpg" alt="Sierra de los Órganos - Viñales">
-          <div class="card-content">
-            <h3>Sierra de los Órganos · Viñales</h3>
-            <p>Vallée UNESCO, mogotes calcaires, sentiers à travers tabac et terre rouge. Grottes (Cueva del Indio, Santo Tomás). Rencontres guajiros et café paysan.</p>
+      <section class="intro">
+        <h2 style="margin-bottom: 20px;">Cuba… en randonnée !</h2>
+        <p>
+          Randonnées de 4 à 8 heures, difficulté facile à moyenne. À <span class="highlight">Viñales</span> : mogotes calcaires, plantations de tabac, grottes et rencontres avec les guajiros. À <span class="highlight">Trinidad</span> : dans le massif de l'Escambray jusqu'à 1 100 m, cascade Caburní, journée paysanne et Baie des Cochons. Immersion nature et culturelle.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="section-title">Le voyage en un coup d'œil</h2>
+        <div class="grid-4">
+          
+          <div class="card">
+            <img src="images/vallee-de-vinales.jpg" alt="Vallée de Viñales et ses mogotes">
+            <div class="card-content">
+              <h3>🌿 Viñales UNESCO</h3>
+              <ul>
+                <li>Vallée classée UNESCO</li>
+                <li>Mogotes calcaires spectaculaires</li>
+                <li>Plantations de tabac</li>
+                <li>Rencontres avec les guajiros</li>
+              </ul>
+            </div>
           </div>
+
+          <div class="card">
+            <img src="images/el-nicho-sierra-de-escambray.jpg" alt="Sierra de l'Escambray">
+            <div class="card-content">
+              <h3>🏔️ Escambray & Topes de Collantes</h3>
+              <ul>
+                <li>Massif au-dessus de Trinidad</li>
+                <li>Sentiers ombragés jusqu'à 1 100 m</li>
+                <li>Cascade Caburní</li>
+                <li>Panoramas sur la ville coloniale</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="images/plage.JPG" alt="Plage de la Baie des Cochons">
+            <div class="card-content">
+              <h3>🏝️ Baie des Cochons</h3>
+              <ul>
+                <li>Ciénaga de Zapata</li>
+                <li>Playa Larga & Caleta Buena</li>
+                <li>Grottes inondées</li>
+                <li>Nature et histoire</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="images/trinidad_toits_clocher_montagnes.jpg" alt="Trinidad, ville coloniale">
+            <div class="card-content">
+              <h3>🏛️ Trinidad UNESCO</h3>
+              <ul>
+                <li>Ville coloniale préservée</li>
+                <li>Plaza Mayor & Casa de la Trova</li>
+                <li>Valle de los Ingenios</li>
+                <li>Patrimoine mondial</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="images/roulage_cigare_artisanal_mains.jpg" alt="Roulage artisanal de cigare">
+            <div class="card-content">
+              <h3>🚬 Tabac & Cigares</h3>
+              <ul>
+                <li>Champs de tabac à Viñales</li>
+                <li>Roulage artisanal</li>
+                <li>Ferme agro-écologique</li>
+                <li>Café paysan</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="images/groupe_musique_rue_trinidad.jpg" alt="Musiciens de rue à Trinidad">
+            <div class="card-content">
+              <h3>🎶 Culture & Musique</h3>
+              <ul>
+                <li>Musiciens de rue à Trinidad</li>
+                <li>Son, rumba, salsa</li>
+                <li>Ambiance festive</li>
+                <li>Traditions vivantes</li>
+              </ul>
+            </div>
+          </div>
+
         </div>
-        <div class="card">
-          <img src="images/trek-escambray.jpg" alt="Escambray - Topes de Collantes">
-          <div class="card-content">
-            <h3>Escambray · Topes de Collantes</h3>
-            <p>Massif au-dessus de Trinidad. Sentiers ombragés jusqu'à 1 100 m. Cascade Caburní, panoramas sur la ville coloniale et la mer des Caraïbes.</p>
-          </div>
+      </section>
+
+      <!-- PAUSE VISUELLE 1 : RANDONNÉE -->
+      <div class="pause-visuelle pause-naturelle" style="background-image: url('images/Circuit-rando.jpg');">
+        <div class="caption">
+          <h2>Les sentiers de Cuba</h2>
+          <p>Facile à moyenne, 4 à 8 heures de marche. Vallée des mogotes, grottes, crêtes et cascades : chaque pas révèle la beauté brute de l'île.</p>
         </div>
       </div>
-    </section>
 
-    <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
-      <h2 class="section-title">Votre itinéraire jour par jour</h2>
-      
-      <div class="timeline">
+      <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
+        <h2 class="section-title">Les massifs</h2>
         
-        <div class="timeline-phase">
-          <h3>1ère semaine – La Havane & Viñales</h3>
-          
-          <div class="timeline-item">
-            <div class="days">Jour 1</div>
-            <h4>Vol vers Cuba</h4>
-            <p>Départ vers La Havane. Vol international.</p>
+        <div class="grid-4" style="margin-top: 0;">
+          <div class="card">
+            <img src="images/vallee-de-vinales.jpg" alt="Sierra de los Órganos - Viñales">
+            <div class="card-content">
+              <h3>Sierra de los Órganos · Viñales</h3>
+              <p>Vallée UNESCO, mogotes calcaires, sentiers à travers tabac et terre rouge. Grottes (Cueva del Indio, Santo Tomás). Rencontres guajiros et café paysan.</p>
+            </div>
           </div>
-          
-          <div class="timeline-item">
-            <div class="days">Jour 2</div>
-            <h4>Arrivée Havane</h4>
-            <p>Installation Vedado/Malecón. Briefing randonnée et première immersion dans la capitale.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jour 3</div>
-            <h4>Vieille Havane</h4>
-            <p>Visite guidée : Capitole, Plazas. Temps libre pour explorer la Vieille Havane classée UNESCO.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jour 4</div>
-            <h4>Route Viñales · 1er sentier mogotes</h4>
-            <p>Route vers Viñales. Premier sentier dans les mogotes, plantations de tabac. Nuit en casa particular.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jour 5</div>
-            <h4>Rando vallée 4-6 h</h4>
-            <p>Randonnée dans la vallée de Viñales. Cueva del Indio. Café guajiro chez l'habitant.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jour 6</div>
-            <h4>Grottes & crêtes</h4>
-            <p>Santo Tomás ou crête mogotes. 6-7 h de randonnée. Panoramas spectaculaires sur la vallée.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jour 7</div>
-            <h4>Ferme agro-écologique</h4>
-            <p>Rando douce 3-4 h. Rencontre avec les guajiros. Soirée locale à Viñales.</p>
-          </div>
-
-          <div class="timeline-item">
-            <div class="days">Jour 8</div>
-            <h4>Retour Havane</h4>
-            <p>Dernier sentier. Retour à La Havane. Repos libre.</p>
+          <div class="card">
+            <img src="images/trek-escambray.jpg" alt="Escambray - Topes de Collantes">
+            <div class="card-content">
+              <h3>Escambray · Topes de Collantes</h3>
+              <p>Massif au-dessus de Trinidad. Sentiers ombragés jusqu'à 1 100 m. Cascade Caburní, panoramas sur la ville coloniale et la mer des Caraïbes.</p>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="timeline-phase">
-          <h3>2ème semaine – Baie des Cochons, Trinidad & Escambray</h3>
+      <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
+        <h2 class="section-title">Votre itinéraire jour par jour</h2>
+        
+        <div class="timeline">
           
-          <div class="timeline-item">
-            <div class="days">Jour 9</div>
-            <h4>Route sud · Grottes & Cueva de los Peces</h4>
-            <p>Route vers le sud. Grottes inondées, Cueva de los Peces. Piscine naturelle de Caleta Buena.</p>
+          <div class="timeline-phase">
+            <h3>1ère semaine – La Havane & Viñales</h3>
+            
+            <div class="timeline-item">
+              <div class="days">Jour 1</div>
+              <h4>Vol vers Cuba</h4>
+              <p>Départ vers La Havane. Vol international.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="days">Jour 2</div>
+              <h4>Arrivée Havane</h4>
+              <p>Installation Vedado/Malecón. Briefing randonnée et première immersion dans la capitale.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 3</div>
+              <h4>Vieille Havane</h4>
+              <p>Visite guidée : Capitole, Plazas. Temps libre pour explorer la Vieille Havane classée UNESCO.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 4</div>
+              <h4>Route Viñales · 1er sentier mogotes</h4>
+              <p>Route vers Viñales. Premier sentier dans les mogotes, plantations de tabac. Nuit en casa particular.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 5</div>
+              <h4>Rando vallée 4-6 h</h4>
+              <p>Randonnée dans la vallée de Viñales. Cueva del Indio. Café guajiro chez l'habitant.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 6</div>
+              <h4>Grottes & crêtes</h4>
+              <p>Santo Tomás ou crête mogotes. 6-7 h de randonnée. Panoramas spectaculaires sur la vallée.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 7</div>
+              <h4>Ferme agro-écologique</h4>
+              <p>Rando douce 3-4 h. Rencontre avec les guajiros. Soirée locale à Viñales.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jour 8</div>
+              <h4>Retour Havane</h4>
+              <p>Dernier sentier. Retour à La Havane. Repos libre.</p>
+            </div>
           </div>
 
-          <div class="timeline-item">
-            <div class="days">Jour 10</div>
-            <h4>Playa Larga · Baie des Cochons</h4>
-            <p>Matin plage. Histoire locale de la Baie des Cochons. Route vers Trinidad.</p>
-          </div>
+          <div class="timeline-phase">
+            <h3>2ème semaine – Baie des Cochons, Trinidad & Escambray</h3>
+            
+            <div class="timeline-item">
+              <div class="days">Jour 9</div>
+              <h4>Route sud · Grottes & Cueva de los Peces</h4>
+              <p>Route vers le sud. Grottes inondées, Cueva de los Peces. Piscine naturelle de Caleta Buena.</p>
+            </div>
 
-          <div class="timeline-item">
-            <div class="days">Jour 11</div>
-            <h4>Trinidad UNESCO</h4>
-            <p>Plaza Mayor, Casa de la Trova. Découverte de la ville coloniale la mieux préservée de Cuba.</p>
-          </div>
+            <div class="timeline-item">
+              <div class="days">Jour 10</div>
+              <h4>Playa Larga · Baie des Cochons</h4>
+              <p>Matin plage. Histoire locale de la Baie des Cochons. Route vers Trinidad.</p>
+            </div>
 
-          <div class="timeline-item">
-            <div class="days">Jour 12</div>
-            <h4>Journée paysanne</h4>
-            <p>Valle de los Ingenios · Manaca Iznaga. Déjeuner guajiro, balade à cheval ou baignade en rivière.</p>
-          </div>
+            <div class="timeline-item">
+              <div class="days">Jour 11</div>
+              <h4>Trinidad UNESCO</h4>
+              <p>Plaza Mayor, Casa de la Trova. Découverte de la ville coloniale la mieux préservée de Cuba.</p>
+            </div>
 
-          <div class="timeline-item">
-            <div class="days">Jour 13</div>
-            <h4>Escambray · Cascade Caburní</h4>
-            <p>Topes de Collantes. Rando 6-8 h jusqu'à 1 100 m. Cascade Caburní. Panoramas sur Trinidad et la mer.</p>
-          </div>
+            <div class="timeline-item">
+              <div class="days">Jour 12</div>
+              <h4>Journée paysanne</h4>
+              <p>Valle de los Ingenios · Manaca Iznaga. Déjeuner guajiro, balade à cheval ou baignade en rivière.</p>
+            </div>
 
-          <div class="timeline-item">
-            <div class="days">Jour 14</div>
-            <h4>2e rando Escambray</h4>
-            <p>Sentier alternatif. 4-6 h. Forêt et belvédères. Retour à Trinidad.</p>
-          </div>
+            <div class="timeline-item">
+              <div class="days">Jour 13</div>
+              <h4>Escambray · Cascade Caburní</h4>
+              <p>Topes de Collantes. Rando 6-8 h jusqu'à 1 100 m. Cascade Caburní. Panoramas sur Trinidad et la mer.</p>
+            </div>
 
-          <div class="timeline-item">
-            <div class="days">Jours 15-16</div>
-            <h4>Playa Ancón ou Havane · Vol retour</h4>
-            <p>Temps libre. Playa Ancón sur la mer des Caraïbes ou retour à La Havane. Vol retour.</p>
+            <div class="timeline-item">
+              <div class="days">Jour 14</div>
+              <h4>2e rando Escambray</h4>
+              <p>Sentier alternatif. 4-6 h. Forêt et belvédères. Retour à Trinidad.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="days">Jours 15-16</div>
+              <h4>Playa Ancón ou Havane · Vol retour</h4>
+              <p>Temps libre. Playa Ancón sur la mer des Caraïbes ou retour à La Havane. Vol retour.</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- PAUSE VISUELLE 2 : TRINIDAD -->
-    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/trinidad_toits_clocher_montagnes.jpg');">
-      <div class="caption">
-        <h2>Trinidad, joyau colonial</h2>
-        <p>Ruelles pavées, façades pastel et clochers : la ville coloniale la mieux préservée de Cuba, classée UNESCO depuis 1988.</p>
+      <!-- PAUSE VISUELLE 2 : TRINIDAD -->
+      <div class="pause-visuelle pause-naturelle" style="background-image: url('images/trinidad_toits_clocher_montagnes.jpg');">
+        <div class="caption">
+          <h2>Trinidad, joyau colonial</h2>
+          <p>Ruelles pavées, façades pastel et clochers : la ville coloniale la mieux préservée de Cuba, classée UNESCO depuis 1988.</p>
+        </div>
       </div>
+
+      <section class="pratiques">
+        <h2 class="section-title">Les randonnées</h2>
+        <div class="pratiques-grid">
+          <div class="pratique-item">
+            <h4>🌿 Vallée des mogotes Viñales</h4>
+            <p>4-6 h · Tabac, terre rouge, vues panoramiques sur les mogotes calcaires.</p>
+          </div>
+          <div class="pratique-item">
+            <h4>🕳️ Cueva del Indio / Santo Tomás</h4>
+            <p>3-5 h · Grottes et sentiers ombragés dans la Sierra de los Órganos.</p>
+          </div>
+          <div class="pratique-item">
+            <h4>⛰️ Crêtes de mogotes Viñales</h4>
+            <p>6-7 h · Moyen · Panoramas à 360° sur la vallée.</p>
+          </div>
+          <div class="pratique-item">
+            <h4>💧 Cascade Caburní</h4>
+            <p>6-8 h · Escambray · Jusqu'à 1 100 m d'altitude.</p>
+          </div>
+          <div class="pratique-item">
+            <h4>🌳 Sentiers Topes de Collantes</h4>
+            <p>4-6 h · Forêt et belvédères de l'Escambray.</p>
+          </div>
+          <div class="pratique-item">
+            <h4>🏞️ Vallée de los Ingenios</h4>
+            <p>Journée paysanne · Tour Iznaga, guajiros, chevaux.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="pratiques">
+        <h2 class="section-title">Expériences</h2>
+        <div class="pratiques-grid">
+          <div class="pratique-item">
+            <h4>🌊 Baie des Cochons</h4>
+            <p>Playa Larga et Caleta Buena. Grottes inondées, Cueva de los Peces, piscine naturelle. Nature, baignade et un peu d'histoire.</p>
+          </div>
+          <div class="pratique-item">
+            <h4>🐴 Journée paysanne</h4>
+            <p>Valle de los Ingenios – Manaca Iznaga. Tour de guet, déjeuner guajiro (cochon de lait), balade à cheval ou baignade en rivière. Rencontre authentique avec le monde rural cubain.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="pratiques">
+        <h2 class="section-title">Avant le départ & pratique randonnée</h2>
+        <div class="pratiques-grid">
+          <div class="pratique-item">
+            <h4>🛂 Formalités</h4>
+            <ul>
+              <li><strong>Passeport :</strong> Valable 6 mois après retour, numérisation + photocopie</li>
+              <li><strong>Carte de tourisme :</strong> Visa obligatoire avant le départ</li>
+              <li><strong>D'Viajeros :</strong> Formulaire numérique avant l'arrivée</li>
+              <li><strong>Assurance santé :</strong> Obligatoire (attestation via carte Visa) – 155 000 €</li>
+            </ul>
+          </div>
+          <div class="pratique-item">
+            <h4>🎒 Équipement randonnée</h4>
+            <ul>
+              <li><strong>Chaussures :</strong> Bonnes chaussures de marche (pavés + sentiers)</li>
+              <li><strong>Sac à dos :</strong> Léger : eau (1,5-2 L), protection soleil, répulsif, en-cas</li>
+              <li><strong>Vêtements :</strong> Léger, respirant, couche de pluie, chapeau, maillot</li>
+              <li><strong>Niveau :</strong> Facile à moyen · Dénivelé modéré (Escambray jusqu'à 1 100 m)</li>
+            </ul>
+          </div>
+          <div class="pratique-item">
+            <h4>💵 Monnaie & Budget</h4>
+            <ul>
+              <li><strong>Pesos cubains (CUP) :</strong> Change banque/Cadeca</li>
+              <li><strong>Restaurant :</strong> 10-35 €</li>
+              <li><strong>Cocktail (mojito) :</strong> ~4 €</li>
+              <li><strong>Conseil :</strong> Ne jamais changer à l'aéroport</li>
+            </ul>
+          </div>
+          <div class="pratique-item">
+            <h4>🔒 Sécurité</h4>
+            <ul>
+              <li>Cuba très sécuritaire · Règles de bon sens</li>
+              <li>Copie passeport toujours en poche</li>
+              <li>Éviter de marcher seul le soir</li>
+              <li>Décliner poliment les « jineteros »</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="carte-section">
+        <h2 class="section-title">Votre itinéraire sur la carte</h2>
+        <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+          De La Havane à Trinidad, en passant par Viñales, la Baie des Cochons et l'Escambray : cliquez sur chaque point doré pour découvrir les étapes de votre aventure cubaine.
+        </p>
+        <div id="map"></div>
+        <div style="text-align: center; margin-top: 20px;">
+          <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
+        </div>
+      </section>
+
+      <section style="text-align: center; padding-bottom: 20px;">
+        <h2 style="margin-bottom: 16px;">Cuba… en randonnée !</h2>
+        <p style="margin-bottom: 32px; color: var(--text-light);">Mogotes · Escambray · Baie des Cochons · Viñales · Trinidad · Facile à moyenne</p>
+        <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
+      </section>
+
     </div>
-
-    <section class="pratiques">
-      <h2 class="section-title">Les randonnées</h2>
-      <div class="pratiques-grid">
-        <div class="pratique-item">
-          <h4>🌿 Vallée des mogotes Viñales</h4>
-          <p>4-6 h · Tabac, terre rouge, vues panoramiques sur les mogotes calcaires.</p>
-        </div>
-        <div class="pratique-item">
-          <h4>🕳️ Cueva del Indio / Santo Tomás</h4>
-          <p>3-5 h · Grottes et sentiers ombragés dans la Sierra de los Órganos.</p>
-        </div>
-        <div class="pratique-item">
-          <h4>⛰️ Crêtes de mogotes Viñales</h4>
-          <p>6-7 h · Moyen · Panoramas à 360° sur la vallée.</p>
-        </div>
-        <div class="pratique-item">
-          <h4>💧 Cascade Caburní</h4>
-          <p>6-8 h · Escambray · Jusqu'à 1 100 m d'altitude.</p>
-        </div>
-        <div class="pratique-item">
-          <h4>🌳 Sentiers Topes de Collantes</h4>
-          <p>4-6 h · Forêt et belvédères de l'Escambray.</p>
-        </div>
-        <div class="pratique-item">
-          <h4>🏞️ Vallée de los Ingenios</h4>
-          <p>Journée paysanne · Tour Iznaga, guajiros, chevaux.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="pratiques">
-      <h2 class="section-title">Expériences</h2>
-      <div class="pratiques-grid">
-        <div class="pratique-item">
-          <h4>🌊 Baie des Cochons</h4>
-          <p>Playa Larga et Caleta Buena. Grottes inondées, Cueva de los Peces, piscine naturelle. Nature, baignade et un peu d'histoire.</p>
-        </div>
-        <div class="pratique-item">
-          <h4>🐴 Journée paysanne</h4>
-          <p>Valle de los Ingenios – Manaca Iznaga. Tour de guet, déjeuner guajiro (cochon de lait), balade à cheval ou baignade en rivière. Rencontre authentique avec le monde rural cubain.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="pratiques">
-      <h2 class="section-title">Avant le départ & pratique randonnée</h2>
-      <div class="pratiques-grid">
-        <div class="pratique-item">
-          <h4>🛂 Formalités</h4>
-          <ul>
-            <li><strong>Passeport :</strong> Valable 6 mois après retour, numérisation + photocopie</li>
-            <li><strong>Carte de tourisme :</strong> Visa obligatoire avant le départ</li>
-            <li><strong>D'Viajeros :</strong> Formulaire numérique avant l'arrivée</li>
-            <li><strong>Assurance santé :</strong> Obligatoire (attestation via carte Visa) – 155 000 €</li>
-          </ul>
-        </div>
-        <div class="pratique-item">
-          <h4>🎒 Équipement randonnée</h4>
-          <ul>
-            <li><strong>Chaussures :</strong> Bonnes chaussures de marche (pavés + sentiers)</li>
-            <li><strong>Sac à dos :</strong> Léger : eau (1,5-2 L), protection soleil, répulsif, en-cas</li>
-            <li><strong>Vêtements :</strong> Léger, respirant, couche de pluie, chapeau, maillot</li>
-            <li><strong>Niveau :</strong> Facile à moyen · Dénivelé modéré (Escambray jusqu'à 1 100 m)</li>
-          </ul>
-        </div>
-        <div class="pratique-item">
-          <h4>💵 Monnaie & Budget</h4>
-          <ul>
-            <li><strong>Pesos cubains (CUP) :</strong> Change banque/Cadeca</li>
-            <li><strong>Restaurant :</strong> 10-35 €</li>
-            <li><strong>Cocktail (mojito) :</strong> ~4 €</li>
-            <li><strong>Conseil :</strong> Ne jamais changer à l'aéroport</li>
-          </ul>
-        </div>
-        <div class="pratique-item">
-          <h4>🔒 Sécurité</h4>
-          <ul>
-            <li>Cuba très sécuritaire · Règles de bon sens</li>
-            <li>Copie passeport toujours en poche</li>
-            <li>Éviter de marcher seul le soir</li>
-            <li>Décliner poliment les « jineteros »</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="carte-section">
-      <h2 class="section-title">Votre itinéraire sur la carte</h2>
-      <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
-        De La Havane à Trinidad, en passant par Viñales, la Baie des Cochons et l'Escambray : cliquez sur chaque point doré pour découvrir les étapes de votre aventure cubaine.
-      </p>
-      <div id="map"></div>
-      <div style="text-align: center; margin-top: 20px;">
-        <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
-      </div>
-    </section>
-
-    <section style="text-align: center; padding-bottom: 20px;">
-      <h2 style="margin-bottom: 16px;">Cuba… en randonnée !</h2>
-      <p style="margin-bottom: 32px; color: var(--text-light);">Mogotes · Escambray · Baie des Cochons · Viñales · Trinidad · Facile à moyenne</p>
-      <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
-    </section>
 
   </main>
 
@@ -469,6 +554,40 @@
       </p>
     </div>
   </footer>
+
+  <!-- SCRIPT DU MENU HEADER -->
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#navigation');
+    
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('is-open', open);
+    });
+
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('is-open');
+    }));
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        toggle.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+        toggle.focus();
+      }
+    });
+
+    const headerElement = document.querySelector('.header');
+    function updateHeaderHeight() {
+      const height = headerElement.getBoundingClientRect().height;
+      document.documentElement.style.setProperty('--header-height', height + 'px');
+      document.documentElement.style.scrollPaddingTop = (height + 12) + 'px';
+    }
+    new ResizeObserver(updateHeaderHeight).observe(headerElement);
+    updateHeaderHeight();
+  </script>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 

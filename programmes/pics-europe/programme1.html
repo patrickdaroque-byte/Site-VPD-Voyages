@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- OPTIMISATION SEO -->
+  <title>Pics d'Europe · Escapade 4 jours Asturies & Cantabrie | VPD Voyages</title>
+  <meta name="description" content="Escapade aux Pics d'Europe en 4 jours : Cangas de Onís, Covadonga, Ribadesella, Comillas. Montagne, patrimoine, mer Cantabrique et gastronomie asturienne. Devis gratuit avec VPD Voyages.">
+  
+  <!-- POLICES D'ÉCRITURE -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS LEAFLET POUR LA CARTE -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <style>
+    :root {
+      --primary: #8B1E1E;
+      --primary-dark: #6B1515;
+      --accent: #D4A017;
+      --text: #2D3748;
+      --text-light: #4A5568;
+      --bg: #FAFAFA;
+      --white: #FFFFFF;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --radius: 8px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background-color: var(--bg); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1.3; }
+    a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+    a:hover { color: var(--primary); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    .hero {
+      position: relative;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/Naranjo-de-Bulnes.jpg') center/cover no-repeat;
+      color: var(--white);
+      padding: 120px 0 80px;
+      text-align: center;
+    }
+    .hero h1 { color: var(--white); font-size: 3.2rem; margin-bottom: 16px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero .subtitle { font-size: 1.4rem; font-weight: 300; opacity: 0.95; margin-bottom: 32px; font-style: italic; }
+    .btn { display: inline-block; background-color: var(--accent); color: var(--primary-dark); padding: 16px 36px; border-radius: 50px; font-weight: 600; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); color: var(--primary-dark); }
+
+    section { padding: 60px 0; }
+    .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; position: relative; }
+    .section-title::after { content: ''; display: block; width: 60px; height: 3px; background-color: var(--accent); margin: 16px auto 0; }
+
+    .intro { background-color: var(--white); text-align: center; max-width: 800px; margin: -40px auto 0; padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); position: relative; z-index: 10; }
+    .intro p { font-size: 1.1rem; color: var(--text-light); }
+    .intro .highlight { color: var(--primary); font-weight: 600; }
+
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
+    .card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border-top: 4px solid var(--accent); transition: transform 0.3s ease; }
+    .card:hover { transform: translateY(-5px); }
+    .card img { width: 100%; height: 220px; object-fit: cover; }
+    .card-content { padding: 24px; }
+    .card h3 { font-size: 1.4rem; margin-bottom: 16px; }
+    .card ul { list-style: none; padding-left: 0; }
+    .card ul li { padding: 6px 0; color: var(--text-light); position: relative; padding-left: 20px; }
+    .card ul li::before { content: '•'; color: var(--primary); font-weight: bold; position: absolute; left: 0; }
+
+    .pause-visuelle { position: relative; height: 400px; background-size: cover; background-position: center; background-attachment: fixed; border-radius: var(--radius); overflow: hidden; margin: 40px 0; }
+    .pause-naturelle::before { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)); }
+    .pause-visuelle .caption { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--white); text-align: center; padding: 40px; }
+    .pause-visuelle .caption h2 { color: var(--white); font-size: 2.5rem; margin-bottom: 16px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
+    .pause-visuelle .caption p { font-size: 1.2rem; max-width: 600px; font-style: italic; text-shadow: 1px 1px 4px rgba(0,0,0,0.5); }
+    @media (max-width: 768px) { .pause-visuelle { background-attachment: scroll; height: 300px; } .pause-visuelle .caption h2 { font-size: 1.8rem; } }
+
+    .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 30px; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background-color: #E2E8F0; }
+    .timeline-phase { margin-bottom: 40px; position: relative; }
+    .timeline-phase h3 { background-color: var(--primary); color: var(--white); display: inline-block; padding: 8px 20px; border-radius: 50px; font-size: 1.1rem; margin-bottom: 20px; font-family: 'Inter', sans-serif; font-weight: 600; }
+    .timeline-item { background: var(--white); padding: 20px 24px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 16px; position: relative; }
+    .timeline-item::before { content: ''; position: absolute; left: -36px; top: 24px; width: 15px; height: 15px; background-color: var(--accent); border-radius: 50%; border: 3px solid var(--white); }
+    .timeline-item .days { font-size: 0.85rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .timeline-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
+    .timeline-item p { font-size: 0.95rem; color: var(--text-light); margin: 0; }
+
+    .carte-section { background-color: var(--white); border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow); margin-top: 20px; }
+    #map { width: 100%; height: 500px; border-radius: 8px; z-index: 1; }
+    .custom-icon { background: transparent !important; border: none !important; }
+
+    .pratiques { background-color: #F8FAFC; border-radius: var(--radius); padding: 40px; margin-top: 40px; }
+    .pratiques h3 { margin-bottom: 20px; }
+    .pratiques-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .pratique-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--primary); }
+    .pratique-item p, .pratique-item ul { font-size: 0.95rem; color: var(--text-light); margin: 0; }
+    .pratique-item ul { padding-left: 20px; }
+
+    footer { background-color: var(--primary-dark); color: var(--white); text-align: center; padding: 40px 0; margin-top: 60px; }
+    footer p { opacity: 0.8; font-size: 0.9rem; }
+    footer a { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .intro { margin: 20px; padding: 24px; }
+      .timeline { padding-left: 20px; }
+      .timeline-item::before { left: -26px; width: 12px; height: 12px; }
+      #map { height: 350px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Escapade en petit groupe · 4 jours · Asturies & Cantabrie</p>
+      <h1>Pics d'Europe · De la Cantabrie aux Asturies</h1>
+      <p class="subtitle">Cangas de Onís · Covadonga · Ribadesella · Comillas</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <section class="intro">
+      <h2 style="margin-bottom: 20px;">Une parenthèse entre montagnes, patrimoine et gastronomie</h2>
+      <p>
+        4 jours pour découvrir les grands paysages des Pics d'Europe et l'âme asturienne. Niché au cœur des Asturies, <span class="highlight">Cangas de Onís</span> est la porte d'entrée des Pics d'Europe. Ancienne capitale du Royaume des Asturies, la ville mêle patrimoine, traditions et nature.
+        À quelques kilomètres, Covadonga et ses lacs alpins offrent un décor spectaculaire, tandis que les villages côtiers de Ribadesella et San Vicente de la Barquera apportent une autre facette du voyage.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="section-title">Le voyage en un coup d'œil</h2>
+      <div class="grid-4">
+        
+        <div class="card">
+          <img src="images/Santilla-de-mar.jpeg" alt="Santillana del Mar, village médiéval">
+          <div class="card-content">
+            <h3>🏛️ Santillana del Mar</h3>
+            <ul>
+              <li>Village médiéval emblématique</li>
+              <li>Ruelles pavées et maisons traditionnelles</li>
+              <li>Collégiale Santa Juliana</li>
+              <li>Atmosphère intemporelle</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/Pont_Romain_Cangas_de_Onis.jpg" alt="Pont romain de Cangas de Onís">
+          <div class="card-content">
+            <h3>🌉 Cangas de Onís</h3>
+            <ul>
+              <li>Pont romain du VIIIe siècle</li>
+              <li>Chapelle Sainte-Croix</li>
+              <li>Ancienne capitale du Royaume</li>
+              <li>Porte des Pics d'Europe</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/Sainte_Grotte_Covadonga.jpg" alt="Sanctuaire de Covadonga">
+          <div class="card-content">
+            <h3>⛪ Covadonga</h3>
+            <ul>
+              <li>Sanctuaire de la Sainte Grotte</li>
+              <li>Basilique néo-romane</li>
+              <li>Histoire fondatrice des Asturies</li>
+              <li>Roi Pelayo et la Reconquista</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CARTE CIDRE & FROMAGE (remplace Lacs de Covadonga) -->
+        <div class="card">
+          <img src="images/cidere-asturien.jpg" alt="Cidre asturien et fromages de montagne">
+          <div class="card-content">
+            <h3>🍺 Cidre & Fromages</h3>
+            <ul>
+              <li>Cidre asturien versé de très haut</li>
+              <li>Rituel de l'escanciado</li>
+              <li>Cabrales & Gamonéu AOP</li>
+              <li>Fromageries artisanales de montagne</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/Villa_Rosario_Ribadesella.jpg" alt="Ribadesella, village côtier">
+          <div class="card-content">
+            <h3>🌊 Ribadesella</h3>
+            <ul>
+              <li>Village des Indianos</li>
+              <li>Port et façade maritime</li>
+              <li>Plages et promenades</li>
+              <li>Ambiance côtière authentique</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/comillas.jpg" alt="Comillas, village balnéaire">
+          <div class="card-content">
+            <h3>🎨 Comillas</h3>
+            <ul>
+              <li>Capricho de Gaudí</li>
+              <li>Patrimoine architectural</li>
+              <li>Village balnéaire élégant</li>
+              <li>Université pontificale</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PAUSE VISUELLE 1 : NARANJO DE BULNES -->
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/Naranjo-de-Bulnes.jpg');">
+      <div class="caption">
+        <h2>Le Naranjo de Bulnes</h2>
+        <p>Le Picu Urriellu, symbole des Pics d'Europe. 2 519 mètres de calcaire vertical, un défi pour les alpinistes du monde entier.</p>
+      </div>
+    </div>
+
+    <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
+      <h2 class="section-title">Votre itinéraire jour par jour</h2>
+      
+      <div class="timeline">
+        
+        <div class="timeline-phase">
+          <h3>Jour 1 · Santillana → Cangas</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Matin</div>
+            <h4>Santillana del Mar</h4>
+            <p>Balade dans l'un des villages emblématiques de Cantabrie : ruelles pavées, maisons traditionnelles en pierre et atmosphère médiévale préservée. La collégiale Santa Juliana et ses cloîtres romans.</p>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="days">Midi</div>
+            <h4>Déjeuner cantabrique</h4>
+            <p>Cocido montañés, morue sur lit de pisto et douceur finale : une première immersion gourmande dans les saveurs du Nord.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Après-midi</div>
+            <h4>Arrivée à Cangas de Onís</h4>
+            <p>Découverte du pont romain du VIIIe siècle, de la chapelle Sainte-Croix suspendue au-dessus de la rivière et de l'église de l'Assomption. Hébergement à l'hôtel rural de Labra, cadre montagneux authentique.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Soir</div>
+            <h4>Soirée asturienne</h4>
+            <p>Tapas, produits locaux et cidre asturien versé de très haut. Une première soirée au rythme des Asturies.</p>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <h3>Jour 2 · Covadonga</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Matin</div>
+            <h4>Le Sanctuaire de Covadonga</h4>
+            <p>La Sainte Grotte, la Basilique néo-romane et la statue du Roi Pelayo racontent l'histoire fondatrice des Asturies. Lieu de pèlerinage majeur depuis le VIIIe siècle.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Midi</div>
+            <h4>Les lacs de Covadonga</h4>
+            <p>Enol et Ercina : des lacs alpins au cœur d'un décor spectaculaire, propice à la randonnée. Panoramas sur le Naranjo de Bulnes.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Après-midi</div>
+            <h4>Fromagerie artisanale</h4>
+            <p>Découverte d'un savoir-faire local et des fromages de montagne, dont le Gamonéu AOP. Dégustation et rencontre avec les producteurs.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Soir</div>
+            <h4>Dîner à Cangas</h4>
+            <p>Retour à Cangas de Onís pour un dîner dans un restaurant traditionnel asturien.</p>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <h3>Jour 3 · Mer & montagne</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Matin</div>
+            <h4>Mirador del Fitu</h4>
+            <p>La Sierra del Sueve et un panorama exceptionnel ouvrent cette journée. Vue à 360° sur la mer Cantabrique et les Pics d'Europe.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Midi</div>
+            <h4>Ribadesella</h4>
+            <p>Le visage marin des Asturies : balade dans le port, déjeuner face à l'atmosphère côtière. C'est le village des célèbres Indianos, ces Asturiens partis faire fortune en Amérique.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Après-midi</div>
+            <h4>Arenas de Cabrales</h4>
+            <p>Retour vers la montagne et les paysages des Picos avant une soirée libre. Découverte du village et de ses environs.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Soir</div>
+            <h4>Soirée libre</h4>
+            <p>Temps libre pour profiter de l'hôtel rural ou explorer les environs.</p>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <h3>Jour 4 · San Vicente & Comillas</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Matin</div>
+            <h4>San Vicente de la Barquera</h4>
+            <p>Balade dans le port et le long de la ría, puis déjeuner avant de poursuivre la route. Village de pêcheurs authentique avec son château et son église gothique.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Midi</div>
+            <h4>Comillas</h4>
+            <p>Une étape patrimoniale avec le célèbre Capricho de Gaudí, villa d'inspiration orientale construite en 1883. Université pontificale et palais de Sobrellano.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Après-midi</div>
+            <h4>Route du retour</h4>
+            <p>Route du retour avec les images des Pics d'Europe en tête et le goût de la fabada sur les lèvres.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAUSE VISUELLE 2 : LAC ENOL -->
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/lac enol.jpg');">
+      <div class="caption">
+        <h2>Les lacs de Covadonga</h2>
+        <p>Enol et Ercina, deux joyaux alpins nichés à 1 100 m d'altitude. Un décor de carte postale au cœur du parc national des Pics d'Europe.</p>
+      </div>
+    </div>
+
+    <section class="pratiques">
+      <h2 class="section-title">Gastronomie asturienne</h2>
+      <div class="pratiques-grid">
+        <div class="pratique-item">
+          <img src="images/fabada.jpg" alt="Fabada asturienne" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+          <h4>🍲 Fabada</h4>
+          <p>Ragoût de haricots blancs, chorizo, morcilla et jarret de porc. Le plat réconfortant par excellence.</p>
+        </div>
+        <div class="pratique-item">
+          <img src="images/cachopo.jpg" alt="Cachopo asturien" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+          <h4>🥩 Cachopo</h4>
+          <p>Deux escalopes de veau farcies de jambon et de fromage, panées et frites. Spécialité d'Oviedo.</p>
+        </div>
+        <div class="pratique-item">
+          <img src="images/fromages.jpg" alt="Fromages asturiens" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+          <h4>🧀 Fromages AOP</h4>
+          <p>Cabrales, Gamonéu, Afuega'l Pitu. Les fromages bleus et à pâte molle des montagnes asturiennes.</p>
+        </div>
+        <div class="pratique-item">
+          <img src="images/cidere-asturien.jpg" alt="Cidre asturien" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+          <h4>🍺 Cidre asturien</h4>
+          <p>Versé de très haut pour l'oxygéner. Boisson emblématique des Asturies, à accompagner de tapas.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pratiques">
+      <h2 class="section-title">L'esprit du voyage</h2>
+      <div class="pratiques-grid">
+        <div class="pratique-item">
+          <h4>🏔️ Montagne</h4>
+          <p>Pics d'Europe · Covadonga · Lacs d'Enol & Ercina · Naranjo de Bulnes</p>
+        </div>
+        <div class="pratique-item">
+          <h4>🌊 Mer Cantabrique</h4>
+          <p>Ribadesella · San Vicente · Comillas · Rías et ports de pêche</p>
+        </div>
+        <div class="pratique-item">
+          <h4>🏛️ Patrimoine</h4>
+          <p>Santillana del Mar · Cangas de Onís · Capricho de Gaudí</p>
+        </div>
+        <div class="pratique-item">
+          <h4>✨ La philosophie VPDVOYAGES</h4>
+          <ul>
+            <li><strong>Sélection :</strong> Des étapes qui ont du sens dans le rythme global</li>
+            <li><strong>Équilibre :</strong> Montagne + mer + patrimoine + gastronomie</li>
+            <li><strong>Personnalisation :</strong> Le programme évolue selon vos envies</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top: 24px; text-align: center; font-style: italic; color: var(--text-light);">
+        Des paysages grandioses, une culture forte et une gastronomie généreuse. Un voyage pensé pour prendre le temps de découvrir les Asturies.
+      </p>
+    </section>
+
+    <section class="carte-section">
+      <h2 class="section-title">Votre itinéraire sur la carte</h2>
+      <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+        De Santillana del Mar à Comillas, en passant par Cangas de Onís, Covadonga et Ribadesella : cliquez sur chaque point doré pour découvrir les étapes de votre escapade.
+      </p>
+      <div id="map"></div>
+      <div style="text-align: center; margin-top: 20px;">
+        <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
+      </div>
+    </section>
+
+    <section style="text-align: center; padding-bottom: 20px;">
+      <h2 style="margin-bottom: 16px;">Bon séjour aux Pics d'Europe !</h2>
+      <p style="margin-bottom: 32px; color: var(--text-light);">Escapade de 4 jours · Asturies & Cantabrie · Montagne, patrimoine, mer et gastronomie</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p style="font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 8px;">VPD Voyages</p>
+      <p>Votre travel planner spécialisé en Espagne et Amérique latine.</p>
+      <p style="margin-top: 16px;">
+        <a href="https://vpdvoyages.com">Retour à l'accueil</a> · 
+        <a href="https://vpdvoyages.com/mentions-legales.html">Mentions légales</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <script>
+    const map = L.map('map').setView([43.35, -4.7], 9);
+
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+    }).addTo(map);
+
+    const etapes = [
+      { nom: "Santillana del Mar", coords: [43.3833, -4.1000], desc: "Village médiéval · Collégiale Santa Juliana" },
+      { nom: "Cangas de Onís", coords: [43.3500, -5.1333], desc: "Pont romain · Chapelle Sainte-Croix · Porte des Pics" },
+      { nom: "Covadonga", coords: [43.3167, -5.0833], desc: "Sanctuaire · Lacs d'Enol & Ercina" },
+      { nom: "Ribadesella", coords: [43.4667, -5.0667], desc: "Village des Indianos · Port · Plages" },
+      { nom: "San Vicente de la Barquera", coords: [43.3833, -4.4000], desc: "Port de pêche · Château · Ría" },
+      { nom: "Comillas", coords: [43.3833, -4.2833], desc: "Capricho de Gaudí · Université pontificale" }
+    ];
+
+    const iconeTango = L.divIcon({
+        className: 'custom-icon',
+        html: '<div style="background-color: #D4A017; width: 16px; height: 16px; border-radius: 50%; border: 3px solid #FFFFFF; box-shadow: 0 0 0 3px #8B1E1E, 0 4px 8px rgba(0,0,0,0.5);"></div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11]
+    });
+
+    const marqueurs = [];
+    etapes.forEach((etape, index) => {
+      const marker = L.marker(etape.coords, {icon: iconeTango}).addTo(map);
+      marker.bindPopup(`<b style="font-family: 'Playfair Display', serif; color: #8B1E1E; font-size: 1.1rem;">${index + 1}. ${etape.nom}</b><br><span style="color: #4A5568; font-size: 0.9rem;">${etape.desc}</span>`);
+      marqueurs.push(marker);
+    });
+
+    const trace = etapes.map(e => e.coords);
+    
+    L.polyline(trace, {
+        color: '#FFFFFF', 
+        weight: 8, 
+        opacity: 0.9,
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    L.polyline(trace, {
+        color: '#8B1E1E', 
+        weight: 4, 
+        opacity: 1, 
+        dashArray: '10, 8',
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    function resetMap() {
+      map.setView([43.35, -4.7], 9);
+    }
+
+    const groupe = L.featureGroup(marqueurs);
+    map.fitBounds(groupe.getBounds().pad(0.2));
+  </script>
+
+</body>
+</html>

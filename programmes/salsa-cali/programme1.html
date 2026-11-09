@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- OPTIMISATION SEO -->
+  <title>Salsa à Cali – Colombie | Festival Mundial de Salsa | VPD Voyages</title>
+  <meta name="description" content="Vivez le Festival Mundial de Salsa à Cali en petit groupe. 16 jours : Bogotá, cours de salsa, excursions (Popayán, finca cafetière) et immersion salsera. Devis gratuit avec VPD Voyages.">
+  
+  <!-- POLICES D'ÉCRITURE -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS LEAFLET POUR LA CARTE -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <style>
+    :root {
+      --primary: #D9381E;
+      --primary-dark: #B82A15;
+      --accent: #FFB800;
+      --text: #2D3748;
+      --text-light: #4A5568;
+      --bg: #FAFAFA;
+      --white: #FFFFFF;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --radius: 8px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background-color: var(--bg); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1.3; }
+    a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+    a:hover { color: var(--primary); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* HERO AVEC PHOTO */
+    .hero {
+      position: relative;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/hero.jpg') center/cover no-repeat;
+      color: var(--white);
+      padding: 120px 0 80px;
+      text-align: center;
+    }
+    .hero h1 { color: var(--white); font-size: 3.2rem; margin-bottom: 16px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero .subtitle { font-size: 1.4rem; font-weight: 300; opacity: 0.95; margin-bottom: 32px; font-style: italic; }
+    .btn { display: inline-block; background-color: var(--accent); color: var(--primary-dark); padding: 16px 36px; border-radius: 50px; font-weight: 600; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); color: var(--primary-dark); }
+
+    section { padding: 60px 0; }
+    .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; position: relative; }
+    .section-title::after { content: ''; display: block; width: 60px; height: 3px; background-color: var(--accent); margin: 16px auto 0; }
+
+    .intro { background-color: var(--white); text-align: center; max-width: 800px; margin: -40px auto 0; padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); position: relative; z-index: 10; }
+    .intro p { font-size: 1.1rem; color: var(--text-light); }
+    .intro .highlight { color: var(--primary); font-weight: 600; }
+
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
+    .card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border-top: 4px solid var(--accent); transition: transform 0.3s ease; }
+    .card:hover { transform: translateY(-5px); }
+    .card img { width: 100%; height: 220px; object-fit: cover; }
+    .card-content { padding: 24px; }
+    .card h3 { font-size: 1.4rem; margin-bottom: 16px; }
+    .card ul { list-style: none; padding-left: 0; }
+    .card ul li { padding: 6px 0; color: var(--text-light); position: relative; padding-left: 20px; }
+    .card ul li::before { content: '•'; color: var(--primary); font-weight: bold; position: absolute; left: 0; }
+
+    /* PAUSES VISUELLES */
+    .pause-visuelle { position: relative; height: 400px; background-size: cover; background-position: center; background-attachment: fixed; border-radius: var(--radius); overflow: hidden; margin: 40px 0; }
+    .pause-visuelle::before { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(184, 42, 21, 0.5), rgba(184, 42, 21, 0.5)); }
+    .pause-naturelle::before { background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)); }
+    
+    .pause-visuelle .caption { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--white); text-align: center; padding: 40px; }
+    .pause-visuelle .caption h2 { color: var(--white); font-size: 2.5rem; margin-bottom: 16px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
+    .pause-visuelle .caption p { font-size: 1.2rem; max-width: 600px; font-style: italic; text-shadow: 1px 1px 4px rgba(0,0,0,0.5); }
+    @media (max-width: 768px) { .pause-visuelle { background-attachment: scroll; height: 300px; } .pause-visuelle .caption h2 { font-size: 1.8rem; } }
+
+    .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 30px; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background-color: #E2E8F0; }
+    .timeline-phase { margin-bottom: 40px; position: relative; }
+    .timeline-phase h3 { background-color: var(--primary); color: var(--white); display: inline-block; padding: 8px 20px; border-radius: 50px; font-size: 1.1rem; margin-bottom: 20px; font-family: 'Inter', sans-serif; font-weight: 600; }
+    .timeline-item { background: var(--white); padding: 20px 24px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 16px; position: relative; }
+    .timeline-item::before { content: ''; position: absolute; left: -36px; top: 24px; width: 15px; height: 15px; background-color: var(--accent); border-radius: 50%; border: 3px solid var(--white); }
+    .timeline-item .days { font-size: 0.85rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .timeline-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
+    .timeline-item p { font-size: 0.95rem; color: var(--text-light); margin: 0; }
+
+    .carte-section { background-color: var(--white); border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow); margin-top: 20px; }
+    #map { width: 100%; height: 500px; border-radius: 8px; z-index: 1; }
+    .custom-icon { background: transparent !important; border: none !important; }
+
+    footer { background-color: var(--primary-dark); color: var(--white); text-align: center; padding: 40px 0; margin-top: 60px; }
+    footer p { opacity: 0.8; font-size: 0.9rem; }
+    footer a { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .intro { margin: 20px; padding: 24px; }
+      .timeline { padding-left: 20px; }
+      .timeline-item::before { left: -26px; width: 12px; height: 12px; }
+      #map { height: 350px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO AVEC PHOTO hero.jpg -->
+  <header class="hero">
+    <div class="container">
+      <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Idée voyage en petit groupe · 16 jours / 15 nuits</p>
+      <h1>Colombie · Salsa à Cali 2027</h1>
+      <p class="subtitle">De Bogotá à Cali · Festival Mundial de Salsa</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <section class="intro">
+      <h2 style="margin-bottom: 20px;">De Bogotá à Cali, un voyage au rythme de la salsa</h2>
+      <p>
+        Ce séjour de 16 jours combine la richesse culturelle de <span class="highlight">Bogotá</span> et l'énergie vibrante de <span class="highlight">Cali</span>, capitale mondiale de la salsa. 
+        Après une immersion dans les trésors andins (Cathédrale de Sel, Musée de l'Or, Monserrate), vous rejoignez Cali pour le <strong>Festival Mundial de Salsa</strong>. 
+        Cours avec des professeurs locaux, soirées dans les clubs mythiques, et deux excursions exceptionnelles : la ville blanche de <strong>Popayán</strong> et une <strong>finca cafetière</strong> traditionnelle.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="section-title">Les temps forts de votre séjour</h2>
+      <div class="grid-4">
+        
+        <div class="card">
+          <img src="images/festival-salsa.jpg" alt="Festival Mundial de Salsa à Cali">
+          <div class="card-content">
+            <h3>🎵 Festival Mundial</h3>
+            <ul>
+              <li>Concerts des meilleurs orchestres</li>
+              <li>Compétitions internationales</li>
+              <li>Spectacles de salsa sur scène</li>
+              <li>Ambiance festive garantie</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/couple-salsa.jpg" alt="Cours de salsa à Cali">
+          <div class="card-content">
+            <h3>💃 Cours de salsa</h3>
+            <ul>
+              <li>Professeurs locaux expérimentés</li>
+              <li>Tous niveaux bienvenus</li>
+              <li>Technique et style caleño</li>
+              <li>Pratique immédiate en soirée</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/bogota.jpg" alt="Quartier colonial de la Candelaria à Bogotá">
+          <div class="card-content">
+            <h3>🏛️ Bogotá culturelle</h3>
+            <ul>
+              <li>Quartier colonial de la Candelaria</li>
+              <li>Musée de l'Or (trésors précolombiens)</li>
+              <li>Mirador de Monserrate (3 152 m)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/popayan.jpg" alt="Popayán la ville blanche">
+          <div class="card-content">
+            <h3>🏛️ Popayán la Blanche</h3>
+            <ul>
+              <li>Ville coloniale classée UNESCO</li>
+              <li>Églises baroques et ruelles pavées</li>
+              <li>Gastronomie caucana</li>
+              <li>Ambiance religieuse et culturelle</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/cafe-dagua.jpg" alt="Finca cafetière traditionnelle près de Cali">
+          <div class="card-content">
+            <h3>☕ Finca cafetière</h3>
+            <ul>
+              <li>Visite d'une hacienda traditionnelle</li>
+              <li>Découverte du processus de production</li>
+              <li>Dégustation de café colombien</li>
+              <li>Immersion dans la culture caféière</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/catedralsal.jpeg" alt="Cathédrale de Sel de Zipaquirá">
+          <div class="card-content">
+            <h3>⛪ Cathédrale de Sel</h3>
+            <ul>
+              <li>Merveille architecturale souterraine</li>
+              <li>Excursion à Zipaquirá</li>
+              <li>Lumière mystique et spiritualité</li>
+              <li>Site unique au monde</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 🌟 PAUSE VISUELLE 1 : COULEURS NATURELLES (salsa-calena.jpg) -->
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/salsa-calena.jpg');">
+      <div class="caption">
+        <h2>Vivez la salsa caleña</h2>
+        <p>À Cali, la salsa n'est pas qu'une danse, c'est un mode de vie. Laissez-vous emporter par le rythme endiablé de la capitale mondiale de la salsa.</p>
+      </div>
+    </div>
+
+    <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
+      <h2 class="section-title">Votre itinéraire jour par jour</h2>
+      
+      <div class="timeline">
+        
+        <div class="timeline-phase">
+          <h3>Semaine 1 : Bogotá, capitale andine</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Jours 1 & 2</div>
+            <h4>Arrivée à Bogotá</h4>
+            <p>Formalités d'arrivée et première découverte à votre rythme du quartier historique de la Candelaria, ses rues pavées et ses maisons coloniales colorées.</p>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="days">Jour 3</div>
+            <h4>Cœur culturel de Bogotá</h4>
+            <p>Visite du célèbre Musée de l'Or (plus de 30 000 pièces précolombiennes) et montée au Mirador de Monserrate (3 152 m) pour une vue panoramique vertigineuse sur la ville.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 4</div>
+            <h4>La Cathédrale de Sel</h4>
+            <p>Excursion à Zipaquirá pour découvrir cette merveille architecturale souterraine, taillée à même le sel. Lumière mystique et spiritualité unique au monde.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 5</div>
+            <h4>Légende de l'Eldorado</h4>
+            <p>Direction la lagune sacrée de Guatavita, berceau de la légende de l'Eldorado. Repas champêtre près de la « Maison folle » (La Casa Loca) et retour à Bogotá.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 6</div>
+            <h4>Cap sur Cali</h4>
+            <p>Vol intérieur Bogotá → Cali (1h15). Installation à l'hôtel dans le quartier de Granada ou San Antonio. Première soirée libre pour découvrir l'ambiance caleña.</p>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <h3>Semaine 2 : Festival Mundial de Salsa</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Jour 7</div>
+            <h4>Ouverture du Festival Mundial</h4>
+            <p>Cérémonie d'ouverture du Festival Mundial de Salsa. Grand concert inaugural avec des orchestres internationaux. L'ambiance festive envahit toute la ville de Cali.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 8</div>
+            <h4>Compétitions et spectacles</h4>
+            <p>Journée dédiée aux compétitions de salsa (solo, couple, groupes) et spectacles sur scène. Cours collectifs avec des maestros reconnus. Soirée : concerts et bals jusqu'au matin.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 9</div>
+            <h4>Découverte de Cali & premiers pas de salsa</h4>
+            <p>Visite guidée du centre-ville : Plaza de Cayzedo, Parc des Perroquets, quartier bohème de San Antonio. Après-midi : premier cours de salsa avec professeurs locaux. Soirée : initiation aux clubs de Juanchaco.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 10</div>
+            <h4>Le cœur du Festival</h4>
+            <p>Journée intense au cœur du Festival : ateliers avec des maestros reconnus, démonstrations et grandes soirées de gala avec les meilleurs orchestres de salsa du monde.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 11</div>
+            <h4>Perfectionnement salsa & Musée de la Salsa</h4>
+            <p>Cours avancés de salsa caleña (style rapide et technique). Visite du Musée de la Salsa pour comprendre les racines du rythme. Soirée libre pour pratiquer dans les salons recommandés.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 12</div>
+            <h4>Clôture du Festival & Juanchaco</h4>
+            <p>Grande soirée de clôture du Festival Mundial. Retour dans le quartier de Juanchaco pour une soirée légendaire dans les clubs mythiques de la salsa populaire caleña.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 13</div>
+            <h4>Immersion à Llanogrande</h4>
+            <p>Journée dédiée aux quartiers emblématiques de la salsa : visite des salons mythiques (Tin Tin Deo, La Topa Tolondra). Cours sur place et déjeuner typique. Soirée : immersion totale dans l'ambiance salsera authentique.</p>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <h3>Semaine 3 : Excursions autour de Cali</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Jour 14</div>
+            <h4>Excursion : Popayán la Blanche</h4>
+            <p>Journée dans la capitale religieuse de la Colombie, célèbre pour son architecture coloniale immaculée classée UNESCO. Ruelles pavées, églises baroques et gastronomie caucana. Retour à Cali en fin de journée (3h de route).</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 15</div>
+            <h4>Excursion : Finca cafetière traditionnelle</h4>
+            <p>Demi-journée : visite d'une finca cafetière traditionnelle près de Cali (1h de route vers Dagua), découverte de la culture du café colombien, du processus de production et dégustation. Après-midi libre à Cali pour derniers achats ou détente.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 16</div>
+            <h4>Départ</h4>
+            <p>Petit-déjeuner et transfert à l'aéroport Alfonso Bonilla Aragón. Vol de retour avec des étoiles plein les yeux et la salsa dans le cœur.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🌟 PAUSE VISUELLE 2 : COULEURS NATURELLES (cali.jpg) -->
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/cali.jpg');">
+      <div class="caption">
+        <h2>Cali, ville de fête et de passion</h2>
+        <p>Entre montagnes verdoyantes et rues animées, Cali vous offre une expérience unique où musique, danse et joie de vivre se rencontrent.</p>
+      </div>
+    </div>
+
+    <section class="carte-section">
+      <h2 class="section-title">Votre itinéraire sur la carte</h2>
+      <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+        De Bogotá à Cali, en passant par Popayán et les environs : cliquez sur chaque point doré pour découvrir les étapes de votre voyage.
+      </p>
+      <div id="map"></div>
+      <div style="text-align: center; margin-top: 20px;">
+        <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
+      </div>
+    </section>
+
+    <section style="text-align: center; padding-bottom: 20px;">
+      <h2 style="margin-bottom: 16px;">Prêt à danser la salsa caleña ?</h2>
+      <p style="margin-bottom: 32px; color: var(--text-light);">Construisons ensemble votre séjour sur mesure de 16 jours pour le Festival Mundial de Salsa 2027.</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p style="font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 8px;">VPD Voyages</p>
+      <p>Votre travel planner spécialisé en Espagne et Amérique latine.</p>
+      <p style="margin-top: 16px;">
+        <a href="https://vpdvoyages.com">Retour à l'accueil</a> · 
+        <a href="https://vpdvoyages.com/mentions-legales.html">Mentions légales</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LEAFLET POUR LA CARTE -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <script>
+    const map = L.map('map').setView([4.0, -75.5], 7);
+
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+    }).addTo(map);
+
+    const etapes = [
+      { nom: "Bogotá", coords: [4.7110, -74.0721], desc: "Arrivée · Candelaria · Musée de l'Or" },
+      { nom: "Zipaquirá", coords: [5.0167, -74.0000], desc: "Cathédrale de Sel" },
+      { nom: "Guatavita", coords: [4.9333, -73.8333], desc: "Lagune sacrée de l'Eldorado" },
+      { nom: "Cali", coords: [3.4516, -76.5320], desc: "Capitale mondiale de la salsa · Festival Mundial" },
+      { nom: "Popayán", coords: [2.4419, -76.6063], desc: "Ville blanche coloniale UNESCO" },
+      { nom: "Finca cafetière (Dagua)", coords: [3.6500, -76.7500], desc: "Hacienda caféière traditionnelle" }
+    ];
+
+    const iconeSalsa = L.divIcon({
+        className: 'custom-icon',
+        html: '<div style="background-color: #FFB800; width: 16px; height: 16px; border-radius: 50%; border: 3px solid #FFFFFF; box-shadow: 0 0 0 3px #D9381E, 0 4px 8px rgba(0,0,0,0.5);"></div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11]
+    });
+
+    const marqueurs = [];
+    etapes.forEach((etape, index) => {
+      const marker = L.marker(etape.coords, {icon: iconeSalsa}).addTo(map);
+      marker.bindPopup(`<b style="font-family: 'Playfair Display', serif; color: #D9381E; font-size: 1.1rem;">${index + 1}. ${etape.nom}</b><br><span style="color: #4A5568; font-size: 0.9rem;">${etape.desc}</span>`);
+      marqueurs.push(marker);
+    });
+
+    const trace = etapes.map(e => e.coords);
+    L.polyline(trace, { color: '#FFFFFF', weight: 8, opacity: 0.9, lineCap: 'round', lineJoin: 'round' }).addTo(map);
+    L.polyline(trace, { color: '#D9381E', weight: 4, opacity: 1, dashArray: '10, 8', lineCap: 'round', lineJoin: 'round' }).addTo(map);
+
+    function resetMap() { map.setView([4.0, -75.5], 7); }
+    const groupe = L.featureGroup(marqueurs);
+    map.fitBounds(groupe.getBounds().pad(0.2));
+  </script>
+
+</body>
+</html>

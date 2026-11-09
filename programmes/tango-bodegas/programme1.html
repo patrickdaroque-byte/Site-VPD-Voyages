@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- OPTIMISATION SEO -->
+  <title>Argentine · Tango & Bodegas | Buenos Aires, Pampa & Mendoza | VPD Voyages</title>
+  <meta name="description" content="Voyage en petit groupe en Argentine : 18 jours entre Buenos Aires, la Pampa et Mendoza. Stage de tango, asado traditionnel et vignobles de Malbec. Devis gratuit avec VPD Voyages.">
+  
+  <!-- POLICES D'ÉCRITURE -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS LEAFLET POUR LA CARTE -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <style>
+    :root {
+      --primary: #8B1E1E;
+      --primary-dark: #6B1515;
+      --accent: #D4A017;
+      --text: #2D3748;
+      --text-light: #4A5568;
+      --bg: #FAFAFA;
+      --white: #FFFFFF;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --radius: 8px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background-color: var(--bg); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1.3; }
+    a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+    a:hover { color: var(--primary); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    .hero {
+      position: relative;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/hero.jpg') center/cover no-repeat;
+      color: var(--white);
+      padding: 120px 0 80px;
+      text-align: center;
+    }
+    .hero h1 { color: var(--white); font-size: 3.2rem; margin-bottom: 16px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero .subtitle { font-size: 1.4rem; font-weight: 300; opacity: 0.95; margin-bottom: 32px; font-style: italic; }
+    .btn { display: inline-block; background-color: var(--accent); color: var(--primary-dark); padding: 16px 36px; border-radius: 50px; font-weight: 600; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); color: var(--primary-dark); }
+
+    section { padding: 60px 0; }
+    .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; position: relative; }
+    .section-title::after { content: ''; display: block; width: 60px; height: 3px; background-color: var(--accent); margin: 16px auto 0; }
+
+    .intro { background-color: var(--white); text-align: center; max-width: 800px; margin: -40px auto 0; padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); position: relative; z-index: 10; }
+    .intro p { font-size: 1.1rem; color: var(--text-light); }
+    .intro .highlight { color: var(--primary); font-weight: 600; }
+
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
+    .card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border-top: 4px solid var(--accent); transition: transform 0.3s ease; }
+    .card:hover { transform: translateY(-5px); }
+    .card img { width: 100%; height: 220px; object-fit: cover; }
+    .card-content { padding: 24px; }
+    .card h3 { font-size: 1.4rem; margin-bottom: 16px; }
+    .card ul { list-style: none; padding-left: 0; }
+    .card ul li { padding: 6px 0; color: var(--text-light); position: relative; padding-left: 20px; }
+    .card ul li::before { content: '•'; color: var(--primary); font-weight: bold; position: absolute; left: 0; }
+
+    .pause-visuelle { position: relative; height: 400px; background-size: cover; background-position: center; background-attachment: fixed; border-radius: var(--radius); overflow: hidden; margin: 40px 0; }
+    .pause-naturelle::before { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)); }
+    .pause-visuelle .caption { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--white); text-align: center; padding: 40px; }
+    .pause-visuelle .caption h2 { color: var(--white); font-size: 2.5rem; margin-bottom: 16px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
+    .pause-visuelle .caption p { font-size: 1.2rem; max-width: 600px; font-style: italic; text-shadow: 1px 1px 4px rgba(0,0,0,0.5); }
+    @media (max-width: 768px) { .pause-visuelle { background-attachment: scroll; height: 300px; } .pause-visuelle .caption h2 { font-size: 1.8rem; } }
+
+    .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 30px; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background-color: #E2E8F0; }
+    .timeline-phase { margin-bottom: 40px; position: relative; }
+    .timeline-phase h3 { background-color: var(--primary); color: var(--white); display: inline-block; padding: 8px 20px; border-radius: 50px; font-size: 1.1rem; margin-bottom: 20px; font-family: 'Inter', sans-serif; font-weight: 600; }
+    .timeline-item { background: var(--white); padding: 20px 24px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 16px; position: relative; }
+    .timeline-item::before { content: ''; position: absolute; left: -36px; top: 24px; width: 15px; height: 15px; background-color: var(--accent); border-radius: 50%; border: 3px solid var(--white); }
+    .timeline-item .days { font-size: 0.85rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .timeline-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
+    .timeline-item p { font-size: 0.95rem; color: var(--text-light); margin: 0; }
+
+    .carte-section { background-color: var(--white); border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow); margin-top: 20px; }
+    #map { width: 100%; height: 500px; border-radius: 8px; z-index: 1; }
+    .custom-icon { background: transparent !important; border: none !important; }
+
+    .pratiques { background-color: #F8FAFC; border-radius: var(--radius); padding: 40px; margin-top: 40px; }
+    .pratiques h3 { margin-bottom: 20px; }
+    .pratiques-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .pratique-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--primary); }
+    .pratique-item p, .pratique-item ul { font-size: 0.95rem; color: var(--text-light); margin: 0; }
+    .pratique-item ul { padding-left: 20px; }
+
+    footer { background-color: var(--primary-dark); color: var(--white); text-align: center; padding: 40px 0; margin-top: 60px; }
+    footer p { opacity: 0.8; font-size: 0.9rem; }
+    footer a { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .intro { margin: 20px; padding: 24px; }
+      .timeline { padding-left: 20px; }
+      .timeline-item::before { left: -26px; width: 12px; height: 12px; }
+      #map { height: 350px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Idée voyage en petit groupe · 18 jours / 17 nuits</p>
+      <h1>Argentine · Tango & Bodegas</h1>
+      <p class="subtitle">Buenos Aires, Pampa & Mendoza</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <section class="intro">
+      <h2 style="margin-bottom: 20px;">18 jours au cœur de l'Amérique latine</h2>
+      <p>
+        Direction l'Argentine pour un circuit qui marie <span class="highlight">passion et authenticité</span> : 18 jours entre les milongas historiques de Buenos Aires, le grand air de la Pampa et les vignobles réputés de Mendoza, au pied de la Cordillère des Andes.
+        Ce circuit combine culture, gastronomie et nature pour une expérience inoubliable, entre spectacles de tango authentiques, dégustations de Malbecs d'exception et paysages époustouflants.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="section-title">Le voyage en un coup d'œil</h2>
+      <div class="grid-4">
+        
+        <div class="card">
+          <img src="images/photo02.jpg" alt="Buenos Aires, capitale du tango">
+          <div class="card-content">
+            <h3>🏛️ Buenos Aires</h3>
+            <ul>
+              <li>La ville qui a vu naître le tango</li>
+              <li>Microcentro animé et milongas légendaires</li>
+              <li>San Telmo, Recoleta, La Boca</li>
+              <li>Quartiers historiques et théâtres</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/couple tango.jpg" alt="Stage de tango argentin">
+          <div class="card-content">
+            <h3>💃 Le tango argentin</h3>
+            <ul>
+              <li>Stage de 10h avec professeurs locaux</li>
+              <li>Milongas chaque soir</li>
+              <li>Perfectionnement et improvisation</li>
+              <li>Ambiance authentique porteña</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/pampa.jpg" alt="La Pampa argentine">
+          <div class="card-content">
+            <h3>🐎 La Pampa</h3>
+            <ul>
+              <li>Estancias, chevaux et traditions gauchos</li>
+              <li>Grandes plaines argentines</li>
+              <li>Asado traditionnel au cœur de la campagne</li>
+              <li>Soirée tango pour clore la journée</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/trapiche.jpg" alt="Vignobles de Mendoza et Cordillère des Andes">
+          <div class="card-content">
+            <h3>🏔️ Mendoza & les Andes</h3>
+            <ul>
+              <li>Capitale du vin argentin</li>
+              <li>Bodegas renommées et Malbec d'exception</li>
+              <li>Sommets andins et Aconcagua (6 962 m)</li>
+              <li>Pont de l'Inca (2 700 m)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/tigre.jpg" alt="Delta du Tigre">
+          <div class="card-content">
+            <h3>🌊 Delta du Tigre</h3>
+            <ul>
+              <li>Labyrinthe de canaux paisibles</li>
+              <li>Villas centenaires sur pilotis</li>
+              <li>Balade en bateau-bus</li>
+              <li>Parenthèse nature à 1h de Buenos Aires</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/beso.jpg" alt="Milonga El Beso à Buenos Aires">
+          <div class="card-content">
+            <h3>🎶 Les Milongas</h3>
+            <ul>
+              <li>Lundi Gricel · Mardi La Catedral</li>
+              <li>Mercredi La Villa Malcolm</li>
+              <li>Jeudi Maldita Milonga · Vendredi Salon Marabú</li>
+              <li>Samedi Sunderland · Dimanche El Beso</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/asado.jpg');">
+      <div class="caption">
+        <h2>L'asado, art de vivre argentin</h2>
+        <p>Une journée dans la Pampa, près de General Belgrano : troupeaux, chevaux, traditions gauchos et grillade traditionnelle au cœur des grandes plaines.</p>
+      </div>
+    </div>
+
+    <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
+      <h2 class="section-title">Votre itinéraire jour par jour</h2>
+      
+      <div class="timeline">
+        
+        <div class="timeline-phase">
+          <h3>1ère semaine : Buenos Aires & Pampa</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Jours 1 & 2</div>
+            <h4>Arrivée à Buenos Aires</h4>
+            <p>Installation au Microcentro. Première immersion dans la culture argentine : 9 de Julio, Congrès, Plaza de Mayo, Av. de Mayo, Edificio Barolo. Pause au Café Tortoni et dîner-spectacle de tango.</p>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="days">Jour 3</div>
+            <h4>Début du stage de tango</h4>
+            <p>Stage de 10h avec professeurs locaux. Soirée : première milonga (Le Club Gricel). Découverte des quartiers de San Telmo et La Boca.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 4</div>
+            <h4>Recoleta et Abasto</h4>
+            <p>Parque San Martín, Cimetière de la Recoleta, librairie El Ateneo. Quartier de l'Abasto : Musée Carlos Gardel. Soirée milonga (La Catedral, Le Viejo Correo).</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 5</div>
+            <h4>La Boca & Puerto Madero</h4>
+            <p>Av. Almirante Brown, Casa Amarilla, Caminito, Stade Bombonera. Après-midi : Réserve naturelle Costanera Sur, Frégate Sarmiento. Soirée milonga (Maldita Milonga).</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 6</div>
+            <h4>Excursion dans la Pampa</h4>
+            <p>À 170 km de Buenos Aires, près de General Belgrano : estancia, troupeaux, chevaux et traditions gauchos. Authentique asado traditionnel. Soirée tango pour clore la journée.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 7</div>
+            <h4>Delta du Tigre</h4>
+            <p>À une heure de Buenos Aires : canaux paisibles, villas centenaires, balade en bateau-bus. Après-midi libre. Soirée milonga (Salon Marabú).</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 8</div>
+            <h4>Dernière journée à Buenos Aires</h4>
+            <p>Palermo, Plaza Serrano, boutiques et parcs. Journée libre pour explorer à son rythme. Soirée milonga (Le Club Sunderland).</p>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <h3>2ème semaine : Mendoza & les Andes</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Jour 9</div>
+            <h4>Route vers Mendoza</h4>
+            <p>Cap sur l'Ouest et la Cordillère des Andes : 1 049 km par la mythique Nationale 7, en autocar longue distance tout confort lit-suite. Traversée de nuit de l'immensité argentine.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 10</div>
+            <h4>Arrivée à Mendoza</h4>
+            <p>Installation en hôtel centre-ville. Il fait bon flâner dans les rues de Mendoza, où le soleil brille 320 jours par an. Visite de la ville et première bodega.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 11</div>
+            <h4>Patrimoine viticole</h4>
+            <p>Musée du Vin, Bodega La Rural, puis dégustation chez Trapiche, l'une des maisons emblématiques de la région. Le Malbec, cépage français d'origine, a trouvé à Mendoza son terroir de prédilection.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 12</div>
+            <h4>Journée libre à Mendoza</h4>
+            <p>Temps libre pour prolonger la découverte : bodegas supplémentaires, shopping d'artisanat, ou détente en ville. Déjeuner pris ensemble.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 13</div>
+            <h4>Excursion vers l'Aconcagua</h4>
+            <p>Direction la Cordillère, jusqu'à la frontière du Chili. L'Aconcagua (6 962 m), plus haut sommet des Amériques. Pont de l'Inca (2 700 m). Soirée milonga « Au Café Soul » avec l'association Ana y Luis Tango.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 14</div>
+            <h4>Retour vers Buenos Aires</h4>
+            <p>Traversée retour par la Nationale 7. Arrivée à Buenos Aires en soirée.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jours 15 à 17</div>
+            <h4>Buenos Aires & despedida</h4>
+            <p>Dernières découvertes, shopping, milongas d'adieu. Soirée de despedida avec le groupe.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 18</div>
+            <h4>Retour en France</h4>
+            <p>Petit-déjeuner et transfert à l'aéroport. Vol international de retour avec le tango dans le cœur et le Malbec dans les souvenirs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/tigre01.jpg');">
+      <div class="caption">
+        <h2>Les temples du tango à Buenos Aires</h2>
+        <p>Lundi Gricel · Mardi La Catedral · Mercredi La Villa Malcolm · Jeudi Maldita Milonga · Vendredi Salon Marabú · Samedi Sunderland · Dimanche El Beso</p>
+      </div>
+    </div>
+
+    <section class="pratiques">
+      <h2 class="section-title">Avant le départ & sur place</h2>
+      <div class="pratiques-grid">
+        <div class="pratique-item">
+          <h4>📄 Formalités</h4>
+          <p>Aucun visa n'est nécessaire pour un séjour touristique. Prévoir une photocopie du passeport.</p>
+        </div>
+        <div class="pratique-item">
+          <h4>🗣️ Langue & Décalage</h4>
+          <p>Espagnol. Décalage horaire : -5h par rapport à Paris.</p>
+        </div>
+        <div class="pratique-item">
+          <h4>💰 Monnaie</h4>
+          <p>Peso argentin (ARS). Taux indicatif : 1 € = 1 706 ARS. Conseil : ne jamais changer à l'aéroport. Utiliser Western Union, les « cuevas » ou casas de cambio.</p>
+        </div>
+        <div class="pratique-item">
+          <h4>🎒 Conseils pratiques</h4>
+          <ul>
+            <li><strong>Métro :</strong> 5h-22h (lun-sam), 8h-minuit (dim)</li>
+            <li><strong>Prises :</strong> Norme européenne, 220 V</li>
+            <li><strong>Chaussures :</strong> Bonnes chaussures de ville + chaussures de tango</li>
+            <li><strong>Sac léger :</strong> Sac à dos pour Mendoza (appareil photo, caméscope)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="carte-section">
+      <h2 class="section-title">Votre itinéraire sur la carte</h2>
+      <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+        De Buenos Aires à Mendoza, en passant par la Pampa et la Cordillère : cliquez sur chaque point doré pour découvrir les étapes de votre voyage.
+      </p>
+      <div id="map"></div>
+      <div style="text-align: center; margin-top: 20px;">
+        <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
+      </div>
+    </section>
+
+    <section style="text-align: center; padding-bottom: 20px;">
+      <h2 style="margin-bottom: 16px;">Bon séjour au pays du Tango et des Bodegas !</h2>
+      <p style="margin-bottom: 32px; color: var(--text-light);">Construisons ensemble votre itinéraire sur mesure de 18 jours en Argentine.</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p style="font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 8px;">VPD Voyages</p>
+      <p>Votre travel planner spécialisé en Espagne et Amérique latine.</p>
+      <p style="margin-top: 16px;">
+        <a href="https://vpdvoyages.com">Retour à l'accueil</a> · 
+        <a href="https://vpdvoyages.com/mentions-legales.html">Mentions légales</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <script>
+    const map = L.map('map').setView([-36.0, -63.0], 5);
+
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+    }).addTo(map);
+
+    const etapes = [
+      { nom: "Buenos Aires", coords: [-34.6037, -58.3816], desc: "Capitale du Tango · Microcentro · San Telmo" },
+      { nom: "Delta du Tigre", coords: [-34.4264, -58.5794], desc: "Canaux, îles et maisons sur pilotis" },
+      { nom: "Pampa (General Belgrano)", coords: [-35.7667, -59.1667], desc: "Estancia · Asado · Traditions gauchos" },
+      { nom: "Mendoza", coords: [-32.8895, -68.8458], desc: "Capitale du vin · Bodegas · Malbec" },
+      { nom: "Aconcagua", coords: [-32.6532, -70.0109], desc: "Plus haut sommet des Amériques (6 962 m)" }
+    ];
+
+    const iconeTango = L.divIcon({
+        className: 'custom-icon',
+        html: '<div style="background-color: #D4A017; width: 16px; height: 16px; border-radius: 50%; border: 3px solid #FFFFFF; box-shadow: 0 0 0 3px #8B1E1E, 0 4px 8px rgba(0,0,0,0.5);"></div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11]
+    });
+
+    const marqueurs = [];
+    etapes.forEach((etape, index) => {
+      const marker = L.marker(etape.coords, {icon: iconeTango}).addTo(map);
+      marker.bindPopup(`<b style="font-family: 'Playfair Display', serif; color: #8B1E1E; font-size: 1.1rem;">${index + 1}. ${etape.nom}</b><br><span style="color: #4A5568; font-size: 0.9rem;">${etape.desc}</span>`);
+      marqueurs.push(marker);
+    });
+
+    const trace = etapes.map(e => e.coords);
+    
+    L.polyline(trace, {
+        color: '#FFFFFF', 
+        weight: 8, 
+        opacity: 0.9,
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    L.polyline(trace, {
+        color: '#8B1E1E', 
+        weight: 4, 
+        opacity: 1, 
+        dashArray: '10, 8',
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    function resetMap() {
+      map.setView([-36.0, -63.0], 5);
+    }
+
+    const groupe = L.featureGroup(marqueurs);
+    map.fitBounds(groupe.getBounds().pad(0.2));
+  </script>
+
+</body>
+</html>
