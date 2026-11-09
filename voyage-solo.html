@@ -2,7 +2,37 @@
 <html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Voyager seul en petit groupe | VPDVOYAGES</title><meta name="description" content="Voyagez seul ou entre amis en petit groupe de 2 à 5 personnes en Espagne et en Amérique latine avec VPDVOYAGES."><link rel="canonical" href="https://vpdvoyages.com/voyage-solo.html"><meta name="theme-color" content="#faf9f6"><style>
 :root{--ink:#173447;--muted:#52636b;--accent:#b85132;--paper:#faf9f6;--line:#dce2df;--green:#24734a;--header-height:82px}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-height) + 12px)}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit}img{display:block;max-width:100%}button,input,select,textarea{font:inherit}button,a,input,select,textarea,summary{outline-offset:4px}:focus-visible{outline:3px solid var(--accent)}h1,h2,h3,h4,p{margin-top:0}h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;line-height:1.15}h1{font-size:clamp(2.5rem,5vw,4rem);margin-bottom:18px}h2{font-size:clamp(2rem,4vw,3rem)}h3,h4{line-height:1.3}.wrap{width:min(1180px,calc(100% - 40px));margin:auto}.header{font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-.hero{display:grid;grid-template-columns:1fr 1fr;column-gap:35px;row-gap:12px;align-items:center;padding:25px 0}.hero-photo{width:100%;max-height:340px;object-fit:contain;border-radius:18px}.hero p{color:var(--muted)}.eyebrow{font-size:.76rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);font-weight:700}.hero-actions{grid-column:1/-1;align-self:start;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:0;padding:10px 0}
+
+/* --- STRUCTURE DU HERO --- */
+.hero{display:grid;grid-template-columns:1fr 1fr;column-gap:35px;row-gap:12px;align-items:center;padding:25px 0}
+
+/* Nouveau conteneur pour gérer parfaitement les angles arrondis */
+.hero-image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-radius: 24px; /* Arrondi du conteneur */
+    overflow: hidden; /* Coupe ce qui dépasse pour des angles parfaits */
+    box-shadow: 0 15px 35px rgba(23, 52, 71, 0.12); /* Ombre douce pour faire ressortir la photo */
+}
+
+.hero-photo {
+    width: 100%;
+    height: auto;
+    max-height: 340px;
+    object-fit: cover; /* Remplit bien tout l'espace */
+    border-radius: 24px; /* Arrondi de l'image elle-même */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.hero-image-wrapper:hover .hero-photo {
+    transform: scale(1.03); /* Petit effet de zoom au survol */
+}
+
+.hero p{color:var(--muted)}.eyebrow{font-size:.76rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);font-weight:700}.hero-actions{grid-column:1/-1;align-self:start;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:0;padding:10px 0}
+
 .button,.submit-inline{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;border:0;border-radius:7px;background:var(--accent);color:white;font-size:.92rem;font-weight:650;text-decoration:none;cursor:pointer}.button:hover,.submit-inline:hover{background:#963e25}.button.secondary{background:white;border:1px solid #bdc9c7;color:var(--ink)}.button.green{background:#35694d}.button:disabled{opacity:.6;cursor:not-allowed}.country-links{display:flex;gap:8px;flex-wrap:wrap;padding:10px;background:#eceeed;border-radius:26px;width:fit-content;max-width:100%}.country-links a{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:8px 14px 8px 10px;border:1px solid #d9dedc;border-radius:999px;background:#fafafa;color:#173e58;text-decoration:none;font-size:.88rem;font-weight:700;box-shadow:0 3px 10px rgba(23,62,88,.18);transition:transform .15s,box-shadow .15s}.country-links a::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--dot,#ccc);box-shadow:0 0 0 3px #fff}.country-links a:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(23,62,88,.28)}.country-links a:focus-visible{outline:3px solid #b85132;outline-offset:2px}.country-links a[href$="Argentine"]{--dot:#9be3e3}.country-links a[href$="Colombie"]{--dot:#a8e063}.country-links a[href$="Cuba"]{--dot:#ffe94d}.country-links a[href$="Espagne"]{--dot:#ff7a7a}.country-links a[href$="Uruguay"]{--dot:#8fd0e3}
 .section{padding:45px 0}.soft{background:#edf1ed}.section-head{max-width:850px}.section-head p{color:var(--muted)}.intro-note{padding:18px 22px;background:white;border-left:3px solid var(--accent);border-radius:0 13px 13px 0;color:var(--muted);font-size:.9rem;margin:24px 0}.intro-note p{margin:0}
 #departs .section-head{margin-bottom:0}#departs .section-head h2{margin-bottom:16px}#vpd-solo{margin-top:0}#vpd-solo>.load-state,#vpd-solo>.empty-state,#vpd-solo>.error-state,#vpd-solo>.depart-group:first-child,#vpd-solo>.mini-counters{margin-top:0}.depart-head{display:flex;justify-content:space-between;align-items:center;gap:32px}.solo-bubble{position:relative;flex:0 1 330px;display:flex;gap:12px;align-items:flex-start;padding:16px 18px;background:#edf4ff;border:2px solid #a9bfdf;border-radius:20px;color:#24549a;box-shadow:0 8px 22px rgba(36,84,154,.12)}.solo-bubble::before{content:"";position:absolute;left:-10px;top:50%;width:16px;height:16px;background:#edf4ff;border-left:2px solid #a9bfdf;border-bottom:2px solid #a9bfdf;transform:translateY(-50%) rotate(45deg)}.solo-bubble p{margin:0;font-size:.88rem;line-height:1.45}.solo-bubble a{font-weight:700;white-space:nowrap}.solo-bubble-icon{font-size:1.5rem;line-height:1}@media(max-width:860px){.depart-head{flex-direction:column;align-items:stretch;gap:18px}.solo-bubble{flex-basis:auto}.solo-bubble::before{display:none}}.depart-explanation{margin:18px 0 24px;color:var(--muted);font-size:.95rem}
@@ -10,7 +40,22 @@
 .two-col,.three-col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.three-col{grid-template-columns:repeat(3,minmax(0,1fr))}.info-card,.formula{border:1px solid var(--line);border-radius:14px;background:white;padding:24px}.info-card h3,.formula h3{font-size:1.12rem}.info-card p,.formula p{font-size:.92rem;color:var(--muted)}.info-card p:last-child,.formula p:last-child{margin-bottom:0}.depart-group{margin:28px 0}.depart-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.depart-card{background:white;border:1px solid var(--line);border-radius:14px;padding:22px}.depart-top{display:flex;gap:16px;align-items:flex-start}.depart-top img{width:90px;height:100px;object-fit:cover;border-radius:9px}.depart-top h4{font-size:1.1rem;margin:5px 0 12px}.small{font-size:.84rem;color:var(--muted)}.status{font-weight:700;color:#79561d}.status.confirmed{color:var(--green)}.profile{background:#f0f6ef;border:1px solid #c8d9c7;border-radius:10px;padding:14px;margin:16px 0}.profile p{margin:0 0 7px}.profile p:last-child{margin:0}
 .country-card{margin:0 0 22px;background:white;border:1px solid var(--line);border-radius:16px;overflow:hidden}.country-card>summary{position:relative;min-height:170px;padding:25px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px;cursor:pointer;list-style:none;color:white;background:#29434b;overflow:hidden}.country-card>summary::-webkit-details-marker{display:none}.country-cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.country-shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,25,34,.86),rgba(10,25,34,.15))}.country-title,.country-action{position:relative;z-index:1}.country-title h3{margin:0 0 5px;font-size:1.6rem}.country-action{padding:8px 13px;background:var(--paper);color:var(--ink);border-radius:7px;font-size:.85rem}.country-body{padding:20px}.stay{display:flex;gap:18px;padding:18px;margin-bottom:15px;border:1px solid var(--line);border-radius:12px;background:#f8f9f6}.stay:last-child{margin-bottom:0}.stay-image{width:115px;height:115px;object-fit:cover;border-radius:9px}.stay-body{flex:1;min-width:0}.stay h4{margin:0 0 10px;font-size:1.1rem}.stay-status{font-size:.88rem;margin-bottom:12px}.stay-price{margin:0 0 8px;color:#744528;font-size:.92rem}.stay-price strong{font-weight:750}
 .contact-buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px;background:white}table{border-collapse:collapse;width:100%;min-width:650px;font-size:.9rem}th,td{padding:13px 15px;border-bottom:1px solid var(--line);text-align:left}thead{background:#eaf0ed}td.price,th.price{text-align:right;white-space:nowrap}.includes{background:#edf1ed;border-radius:14px;padding:25px;margin:30px 0}.includes ul{display:flex;gap:15px 30px;flex-wrap:wrap;padding-left:20px}.contact-cta{background:#173e58;color:white;text-align:center;border-radius:18px;padding:40px 25px;margin:35px auto 50px}.footer{border-top:1px solid var(--line);padding:28px 0;font-size:.84rem}.footer-links{display:flex;gap:18px;flex-wrap:wrap}[hidden]{display:none!important}
-@media(max-width:720px){.hero{display:flex;flex-direction:column;align-items:stretch;gap:16px;padding:25px 0}.hero-copy{order:1}.hero-actions{order:2;width:100%;flex-direction:column;align-items:stretch;gap:12px;margin:0;padding:0}.country-links{justify-content:flex-start;gap:8px}.hero-photo{order:3;max-height:280px}.two-col,.three-col,.depart-grid{grid-template-columns:1fr}.country-card>summary{align-items:flex-start;justify-content:flex-end;flex-direction:column}.stay{flex-direction:column}.stay-image{width:100%;height:170px}.section{padding:30px 0}}
+
+/* --- MOBILE --- */
+@media(max-width:720px){
+    .hero{display:flex;flex-direction:column;align-items:stretch;gap:16px;padding:25px 0}
+    .hero-copy{order:1}
+    .hero-actions{order:2;width:100%;flex-direction:column;align-items:stretch;gap:12px;margin:0;padding:0}
+    .country-links{justify-content:flex-start;gap:8px}
+    .hero-image-wrapper{order:3;max-height:280px}
+    .hero-photo{max-height:280px}
+    .two-col,.three-col,.depart-grid{grid-template-columns:1fr}
+    .country-card>summary{align-items:flex-start;justify-content:flex-end;flex-direction:column}
+    .stay{flex-direction:column}
+    .stay-image{width:100%;height:170px}
+    .section{padding:30px 0}
+}
+
 @media(max-width:520px){.form-prix-box{padding:13px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 .header{background:rgba(250,249,246,.98);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}.header .wrap{width:min(1320px,calc(100% - 48px))}.header-inner{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:26px}.brand{display:block;flex-shrink:0}.brand-logo{width:220px;height:68px;object-fit:contain;filter:url(#logo-ink);background:transparent}.nav{display:flex;align-items:center;gap:14px}.nav a{text-decoration:none;font-size:.85rem;font-weight:550;white-space:nowrap}.nav a:hover{color:var(--accent)}.nav a[aria-current=page]{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}.nav .nav-feature{padding:9px 12px;border-radius:8px;border:1px solid}.nav a.theme-tango{background:#EDF4FF;color:#24549A;border-color:#A9BFDF}.nav a.theme-solo{background:#EDF6F0;color:#286044;border-color:#A5C4AF}.nav a.theme-tango:hover{background:#DFEAFC;color:#24549A}.nav a.theme-solo:hover{background:#DEEEE3;color:#286044}.review-link span{color:#ac791c;margin-right:3px}.menu-toggle{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:9px 13px;font:inherit;color:var(--ink)}.inline-form{text-align:left;margin:20px 0 0;padding:24px;border:1px solid #ccb9aa;border-radius:12px;background:white;grid-column:1/-1}.inline-form h5{font-size:1.15rem;margin:0 0 18px;color:var(--ink)}.inline-form label{display:block;font-size:.86rem;font-weight:600;margin:12px 0 5px}.inline-form input:not([type=checkbox]),.inline-form select,.inline-form textarea{display:block;width:100%;padding:10px;border:1px solid #bbc7c6;border-radius:6px;background:white;color:var(--ink);font:inherit;font-size:.92rem}.inline-form .chk{display:flex;gap:9px;margin-top:16px;align-items:flex-start}.chk input{margin-top:5px;flex-shrink:0}.inline-form .chk label{margin:0;font-size:.82rem;font-weight:400}.submit-inline{margin-top:18px;width:100%}.res{margin:12px 0 0;font-size:.88rem;color:var(--ink)}.form-prix-box{padding:16px;background:#f5f0e9;border-radius:8px;margin:18px 0;color:var(--muted);font-size:.88rem}.form-prix-box strong{display:block;color:var(--ink)}.price-val{display:block;font-size:1.12rem;color:#744528;font-weight:650;margin:5px 0}.form-prix-box small{display:block;margin-top:8px}.privacy-note{font-size:.78rem!important;color:var(--muted);margin:14px 0 0!important}.privacy-note a{text-underline-offset:3px}
@@ -64,7 +109,25 @@
 @media(max-width:520px){.mini-counters{grid-template-columns:1fr}}
 </style></head><body><svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" style="position:absolute;pointer-events:none"><defs><filter id="logo-ink" color-interpolation-filters="sRGB" x="-1%" y="-1%" width="102%" height="102%"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.063 3.576 .361 0 -3.5"/><feComponentTransfer><feFuncA type="gamma" amplitude="1" exponent="0.8" offset="0"/></feComponentTransfer></filter></defs></svg><header class="header"><div class="wrap header-inner"><a class="brand" href="index.html" aria-label="VPDVOYAGES — Accueil"><img src="Images/logo.png" alt="VPDVOYAGES — Patrick Daroque" class="brand-logo" width="220" height="68"></a><button type="button" class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu</button><nav class="nav" id="navigation" aria-label="Navigation principale"><a href="index.html#destinations">Destinations</a><a href="voyage-tango.html" class="nav-feature theme-tango">Tango argentin</a><a href="voyage-solo.html" class="nav-feature theme-solo" aria-current="page">Voyager seul(e)</a><a href="formules.html">Formules</a><a href="avis-clients.html" class="review-link"><span aria-hidden="true">★</span> Avis clients</a><a href="index.html#about">À propos</a><a href="index.html#contact">Contact</a></nav></div></header>
 <main id="contenu">
-<section class="wrap hero"><div class="hero-copy"><a href="index.html">← Retour à l’accueil</a><p class="eyebrow" style="margin-top:20px">En solo ou entre amis · 2 à 5 personnes</p><h1>Voyager seul(e),<br>partager la découverte.</h1><p>Des expériences immersives sur mesure.</p><p>Voyage solo ou entre amis en petit groupe, en formule Sérénité ou Autonomie, pour explorer l’Espagne et l’Amérique latine à votre rythme.</p></div><img class="hero-photo" src="Images/hero-voyage-solo-premium.jpg" alt="Voyage solo ou entre amis en petit groupe" width="700" height="650" fetchpriority="high"><div class="hero-actions"><a class="button" href="#departs">Voir les prochains départs →</a><nav class="country-links" aria-label="Choisir une destination"><a href="#pays-Argentine">Argentine</a><a href="#pays-Colombie">Colombie</a><a href="#pays-Cuba">Cuba</a><a href="#pays-Espagne">Espagne</a><a href="#pays-Uruguay">Uruguay</a></nav></div></section>
+<section class="wrap hero">
+    <div class="hero-copy">
+        <a href="index.html">← Retour à l’accueil</a>
+        <p class="eyebrow" style="margin-top:20px">En solo ou entre amis · 2 à 5 personnes</p>
+        <h1>Voyager seul(e),<br>partager la découverte.</h1>
+        <p>Des expériences immersives sur mesure.</p>
+        <p>Voyage solo ou entre amis en petit groupe, en formule Sérénité ou Autonomie, pour explorer l’Espagne et l’Amérique latine à votre rythme.</p>
+    </div>
+    <!-- NOUVEAU CONTENEUR POUR L'IMAGE -->
+    <div class="hero-image-wrapper">
+        <img class="hero-photo" src="Images/hero-voyage-solo-premium.jpg" alt="Voyage solo ou entre amis en petit groupe" width="700" height="650" fetchpriority="high">
+    </div>
+    <div class="hero-actions">
+        <a class="button" href="#departs">Voir les prochains départs →</a>
+        <nav class="country-links" aria-label="Choisir une destination">
+            <a href="#pays-Argentine">Argentine</a><a href="#pays-Colombie">Colombie</a><a href="#pays-Cuba">Cuba</a><a href="#pays-Espagne">Espagne</a><a href="#pays-Uruguay">Uruguay</a>
+        </nav>
+    </div>
+</section>
 <section id="departs" class="section soft"><div class="wrap"><div class="depart-head"><div class="section-head"><p class="eyebrow">Partager le voyage</p><h2>Prochains départs<br>en formule Sérénité.</h2></div><aside class="solo-bubble" aria-label="Formule Autonomie"><span class="solo-bubble-icon" aria-hidden="true">✈</span><p>Envie de partir seul(e), sans attendre personne ? La formule Autonomie permet un départ immédiat, sans minimum de voyageurs. <a href="formules.html">Comparer les formules →</a></p></aside></div>
 <div id="vpd-solo" aria-live="polite" aria-busy="false"><div class="error-state"><p>Consultez les départs disponibles ou lancez votre voyage.</p><p><a href="#pays-sections">Découvrir les propositions de séjours →</a></p></div></div>
 <script>
