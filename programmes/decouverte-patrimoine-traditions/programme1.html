@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- OPTIMISATION SEO -->
+  <title>Cuba · Découverte, Patrimoine et Traditions | La Havane, Trinidad, Viñales | VPD Voyages</title>
+  <meta name="description" content="Voyage à Cuba en petit groupe : La Havane, Baie des Cochons, Trinidad UNESCO, Viñales, Santería, Hemingway. 16 jours d'immersion authentique. Devis gratuit avec VPD Voyages.">
+  
+  <!-- POLICES D'ÉCRITURE -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS LEAFLET POUR LA CARTE -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <style>
+    :root {
+      --primary: #8B1E1E;
+      --primary-dark: #6B1515;
+      --accent: #D4A017;
+      --text: #2D3748;
+      --text-light: #4A5568;
+      --bg: #FAFAFA;
+      --white: #FFFFFF;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --radius: 8px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background-color: var(--bg); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary); line-height: 1.3; }
+    a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+    a:hover { color: var(--primary); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    .hero {
+      position: relative;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/groupe_musique_rue_trinidad.jpg') center/cover no-repeat;
+      color: var(--white);
+      padding: 120px 0 80px;
+      text-align: center;
+    }
+    .hero h1 { color: var(--white); font-size: 3.2rem; margin-bottom: 16px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    .hero .subtitle { font-size: 1.4rem; font-weight: 300; opacity: 0.95; margin-bottom: 32px; font-style: italic; }
+    .btn { display: inline-block; background-color: var(--accent); color: var(--primary-dark); padding: 16px 36px; border-radius: 50px; font-weight: 600; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); color: var(--primary-dark); }
+
+    section { padding: 60px 0; }
+    .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; position: relative; }
+    .section-title::after { content: ''; display: block; width: 60px; height: 3px; background-color: var(--accent); margin: 16px auto 0; }
+
+    .intro { background-color: var(--white); text-align: center; max-width: 800px; margin: -40px auto 0; padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); position: relative; z-index: 10; }
+    .intro p { font-size: 1.1rem; color: var(--text-light); }
+    .intro .highlight { color: var(--primary); font-weight: 600; }
+
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
+    .card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border-top: 4px solid var(--accent); transition: transform 0.3s ease; }
+    .card:hover { transform: translateY(-5px); }
+    .card img { width: 100%; height: 220px; object-fit: cover; }
+    .card-content { padding: 24px; }
+    .card h3 { font-size: 1.4rem; margin-bottom: 16px; }
+    .card ul { list-style: none; padding-left: 0; }
+    .card ul li { padding: 6px 0; color: var(--text-light); position: relative; padding-left: 20px; }
+    .card ul li::before { content: '•'; color: var(--primary); font-weight: bold; position: absolute; left: 0; }
+
+    .pause-visuelle { position: relative; height: 400px; background-size: cover; background-position: center; background-attachment: fixed; border-radius: var(--radius); overflow: hidden; margin: 40px 0; }
+    .pause-naturelle::before { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)); }
+    .pause-visuelle .caption { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--white); text-align: center; padding: 40px; }
+    .pause-visuelle .caption h2 { color: var(--white); font-size: 2.5rem; margin-bottom: 16px; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
+    .pause-visuelle .caption p { font-size: 1.2rem; max-width: 600px; font-style: italic; text-shadow: 1px 1px 4px rgba(0,0,0,0.5); }
+    @media (max-width: 768px) { .pause-visuelle { background-attachment: scroll; height: 300px; } .pause-visuelle .caption h2 { font-size: 1.8rem; } }
+
+    .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 30px; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background-color: #E2E8F0; }
+    .timeline-phase { margin-bottom: 40px; position: relative; }
+    .timeline-phase h3 { background-color: var(--primary); color: var(--white); display: inline-block; padding: 8px 20px; border-radius: 50px; font-size: 1.1rem; margin-bottom: 20px; font-family: 'Inter', sans-serif; font-weight: 600; }
+    .timeline-item { background: var(--white); padding: 20px 24px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 16px; position: relative; }
+    .timeline-item::before { content: ''; position: absolute; left: -36px; top: 24px; width: 15px; height: 15px; background-color: var(--accent); border-radius: 50%; border: 3px solid var(--white); }
+    .timeline-item .days { font-size: 0.85rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .timeline-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
+    .timeline-item p { font-size: 0.95rem; color: var(--text-light); margin: 0; }
+
+    .carte-section { background-color: var(--white); border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow); margin-top: 20px; }
+    #map { width: 100%; height: 500px; border-radius: 8px; z-index: 1; }
+    .custom-icon { background: transparent !important; border: none !important; }
+
+    .pratiques { background-color: #F8FAFC; border-radius: var(--radius); padding: 40px; margin-top: 40px; }
+    .pratiques h3 { margin-bottom: 20px; }
+    .pratiques-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .pratique-item h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--primary); }
+    .pratique-item p, .pratique-item ul { font-size: 0.95rem; color: var(--text-light); margin: 0; }
+    .pratique-item ul { padding-left: 20px; }
+
+    footer { background-color: var(--primary-dark); color: var(--white); text-align: center; padding: 40px 0; margin-top: 60px; }
+    footer p { opacity: 0.8; font-size: 0.9rem; }
+    footer a { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .intro { margin: 20px; padding: 24px; }
+      .timeline { padding-left: 20px; }
+      .timeline-item::before { left: -26px; width: 12px; height: 12px; }
+      #map { height: 350px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; opacity: 0.8;">Idée voyage en petit groupe · 16 jours · Perle des Antilles</p>
+      <h1>Cuba · Découverte, Patrimoine & Traditions</h1>
+      <p class="subtitle">La Havane · Trinidad · Viñales · Baie des Cochons</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Demander un devis gratuit</a>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <section class="intro">
+      <h2 style="margin-bottom: 20px;">Plongez dans l'essence de Cuba</h2>
+      <p>
+        16 jours pour découvrir la perle des Antilles : <span class="highlight">La Havane</span> et ses voitures vintage, <span class="highlight">Trinidad</span> joyau colonial UNESCO, la vallée de <span class="highlight">Viñales</span> et ses mogotes, la <span class="highlight">Baie des Cochons</span>. Histoire, musique, danses et rencontres authentiques au rythme de la rumba et du son cubain.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="section-title">Le voyage en un coup d'œil</h2>
+      <div class="grid-4">
+        
+        <div class="card">
+          <img src="images/cuba-habana-vieja.webp" alt="La Havane, Capitole et voitures anciennes">
+          <div class="card-content">
+            <h3>🏛️ La Havane</h3>
+            <ul>
+              <li>Vieille Havane (UNESCO)</li>
+              <li>Le Vedado & Malecón</li>
+              <li>Capitole & Palais des Capitaines</li>
+              <li>Classic cars & ambiance rétro</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/silhouette_couple_danse_coucher_soleil.jpg" alt="Couple dansant au coucher du soleil">
+          <div class="card-content">
+            <h3>💃 Danses cubaines</h3>
+            <ul>
+              <li>Salsa, son, rumba, cha-cha</li>
+              <li>Cours avec professeurs locaux</li>
+              <li>Ambiance rooftop ou salle</li>
+              <li>Pure énergie cubaine</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/trinidad_toits_clocher_montagnes.jpg" alt="Trinidad, toits, clocher et montagnes">
+          <div class="card-content">
+            <h3>🏛️ Trinidad UNESCO</h3>
+            <ul>
+              <li>Ruelles pavées & Plaza Mayor</li>
+              <li>Palacio Cantero</li>
+              <li>Casa de la Trova</li>
+              <li>Valle de los Ingenios</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/plage.JPG" alt="Plage cubaine">
+          <div class="card-content">
+            <h3>🌊 Baie des Cochons</h3>
+            <ul>
+              <li>Ciénaga de Zapata</li>
+              <li>Playa Larga & Santa María</li>
+              <li>Cueva de los Peces</li>
+              <li>Mangroves préservées</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/roulage_cigare_artisanal_mains.jpg" alt="Roulage artisanal de cigare">
+          <div class="card-content">
+            <h3>🚬 Rhum & Tabac</h3>
+            <ul>
+              <li>Viñales & mogotes UNESCO</li>
+              <li>Champs de tabac</li>
+              <li>Musée Havana Club</li>
+              <li>Foire artisanale de San José</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/yeyo-santeria.JPG" alt="Cérémonie de Santería">
+          <div class="card-content">
+            <h3>🥁 Santería & Hemingway</h3>
+            <ul>
+              <li>Cérémonie syncrétique afro-cubaine</li>
+              <li>Finca Vigía & Cojímar</li>
+              <li>Cajón a los Santos</li>
+              <li>Traditions vivantes</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PAUSE VISUELLE 1 : DANSE AU COUCHER DE SOLEIL -->
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/amecuba.jpg');">
+      <div class="caption">
+        <h2>L'âme de Cuba</h2>
+        <p>Entre classic cars, chevaux et campagnes verdoyantes. Chaque kilomètre est une leçon d'histoire, de musique et de résilience.</p>
+      </div>
+    </div>
+
+    <section style="background-color: var(--white); border-radius: var(--radius); padding: 60px 40px; box-shadow: var(--shadow);">
+      <h2 class="section-title">Votre itinéraire jour par jour</h2>
+      
+      <div class="timeline">
+        
+        <div class="timeline-phase">
+          <h3>1ère semaine : La Havane & le Sud</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Jour 1</div>
+            <h4>Arrivée à La Havane</h4>
+            <p>Accueil à l'aéroport, transfert en classic car vers la Vieille Havane. Installation en casa particular. Première immersion dans les ruelles pavées et les places animées.</p>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="days">Jour 2</div>
+            <h4>Le Vedado</h4>
+            <p>Découverte du quartier du Vedado : Musée Napoléonien, Musée des Arts Décoratifs. Déjeuner au restaurant El Balcón. Soirée libre.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 3</div>
+            <h4>Vieille Havane</h4>
+            <p>Le Capitole, la rue Obispo, la Plaza de Armas, le Palais des Capitaines Généraux. Déjeuner au Bodegón Asado. Ambiance coloniale et classic cars.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 4</div>
+            <h4>Visite panoramique & Playas del Este</h4>
+            <p>Place de la Révolution, Bois de La Havane, 5ème avenue. Après-midi détente sur les plages de Tarará et Santa María.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 5</div>
+            <h4>Baie des Cochons</h4>
+            <p>Route vers la Ciénaga de Zapata. Grottes inondées, Cueva de los Peces, piscine naturelle de Caleta Buena. Playa Larga et histoire de 1961.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 6</div>
+            <h4>Cienfuegos & Trinidad</h4>
+            <p>Cienfuegos et Punta Gorda, architecture française. Arrivée à Trinidad, ville coloniale UNESCO. Palacio Cantero, Casa de la Trova.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 7</div>
+            <h4>Vallée de los Ingenios</h4>
+            <p>Tour Iznaga, déjeuner guajiro, balade à cheval et baignade. Retour à Trinidad, Playa Ancón en fin de journée.</p>
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <h3>2ème semaine : Retour, culture & Viñales</h3>
+          
+          <div class="timeline-item">
+            <div class="days">Jour 8</div>
+            <h4>Trinidad & Plaza Mayor</h4>
+            <p>Dernière matinée à Trinidad : Plaza Mayor, artisanat local. Retour vers La Havane en fin de journée.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 9</div>
+            <h4>Soirée cubaine</h4>
+            <p>Retour à La Havane. Soirée cubaine au Capdevila, Rancho Guajimico. Ambiance musicale et festive.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 10</div>
+            <h4>Hemingway & danses latines</h4>
+            <p>Sur les traces d'Ernest Hemingway : Finca Vigía, port de Cojímar. Initiation aux danses latines (salsa, cha-cha, rumba) avec professeurs locaux.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 11</div>
+            <h4>Santería</h4>
+            <p>Immersion dans une véritable cérémonie de Santería à Centro Habana : Cajón a los Santos, Gato Tuerto. Syncrétisme religieux afro-cubain.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 12</div>
+            <h4>Cigares & Viñales</h4>
+            <p>Route vers Viñales. El Pinar de San Luis, champs de tabac, mogotes. Centre Montañez. Dégustation de rhum et cigarros artisanaux.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 13</div>
+            <h4>Viñales</h4>
+            <p>Cueva del Indio ou Santo Tomás, ferme agro-écologique, apéro cocktails. Paysages spectaculaires de mogotes classés UNESCO.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jour 14</div>
+            <h4>Rhum & Art</h4>
+            <p>Musée Havana Club, Foire artisanale de San José, Fábrica de Arte Cubano. Derniers achats et souvenirs.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="days">Jours 15-16</div>
+            <h4>Cimetière Colón & départ</h4>
+            <p>Visite du célèbre Cimetière Colón, l'un des plus beaux du monde. Temps libre, transfert aéroport et vol retour avec la salsa dans les jambes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAUSE VISUELLE 2 : TRINIDAD -->
+    <div class="pause-visuelle pause-naturelle" style="background-image: url('images/trinidad_toits_clocher_montagnes.jpg');">
+      <div class="caption">
+        <h2>Trinidad, joyau colonial</h2>
+        <p>Ruelles pavées, façades pastel et clochers : la ville coloniale la mieux préservée de Cuba, classée UNESCO depuis 1988.</p>
+      </div>
+    </div>
+
+    <section class="pratiques">
+      <h2 class="section-title">Avant le départ & sur place</h2>
+      <div class="pratiques-grid">
+        <div class="pratique-item">
+          <h4>🛂 Formalités</h4>
+          <ul>
+            <li><strong>Passeport :</strong> Valable 6 mois après retour</li>
+            <li><strong>Carte de tourisme :</strong> Visa obligatoire</li>
+            <li><strong>D'Viajeros :</strong> Formulaire numérique avant arrivée</li>
+            <li><strong>Assurance santé :</strong> Obligatoire (attestation Visa)</li>
+          </ul>
+        </div>
+        <div class="pratique-item">
+          <h4>💵 Monnaie & Budget</h4>
+          <ul>
+            <li><strong>Pesos cubains (CUP) :</strong> 1 € ≈ 134 CUP</li>
+            <li><strong>Restaurant :</strong> 10-35 €</li>
+            <li><strong>Cocktail (mojito) :</strong> ~4 €</li>
+            <li><strong>Conseil :</strong> Ne jamais changer à l'aéroport</li>
+          </ul>
+        </div>
+        <div class="pratique-item">
+          <h4>🔒 Sécurité</h4>
+          <ul>
+            <li>Cuba est l'un des pays les plus sûrs d'Amérique latine</li>
+            <li>Éviter de marcher seul le soir dans les rues peu éclairées</li>
+            <li>Décliner poliment les « jineteros »</li>
+            <li>Ne pas acheter de cigares dans la rue (max 50 autorisés)</li>
+          </ul>
+        </div>
+        <div class="pratique-item">
+          <h4>ℹ️ Infos pratiques</h4>
+          <ul>
+            <li><strong>Langue :</strong> Espagnol</li>
+            <li><strong>Décalage :</strong> -6h (12h Paris = 6h Havane)</li>
+            <li><strong>Prises :</strong> Américaines 110V/220V</li>
+            <li><strong>Eau :</strong> Potable et propre à la consommation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="carte-section">
+      <h2 class="section-title">Votre itinéraire sur la carte</h2>
+      <p style="text-align: center; color: var(--text-light); margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+        De La Havane à Viñales, en passant par Trinidad et la Baie des Cochons : cliquez sur chaque point doré pour découvrir les étapes de votre aventure cubaine.
+      </p>
+      <div id="map"></div>
+      <div style="text-align: center; margin-top: 20px;">
+        <button onclick="resetMap()" class="btn" style="padding: 10px 24px; font-size: 0.9rem;">🗺️ Voir tout l'itinéraire</button>
+      </div>
+    </section>
+
+    <section style="text-align: center; padding-bottom: 20px;">
+      <h2 style="margin-bottom: 16px;">¡Azúcar! Bon séjour à Cuba !</h2>
+      <p style="margin-bottom: 32px; color: var(--text-light);">La Havane · Trinidad · Viñales · Baie des Cochons · 16 jours au cœur des Caraïbes</p>
+      <a href="https://vpdvoyages.com/#contact" class="btn">Parlons de votre projet →</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p style="font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 8px;">VPD Voyages</p>
+      <p>Votre travel planner spécialisé en Espagne et Amérique latine.</p>
+      <p style="margin-top: 16px;">
+        <a href="https://vpdvoyages.com">Retour à l'accueil</a> · 
+        <a href="https://vpdvoyages.com/mentions-legales.html">Mentions légales</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <script>
+    const map = L.map('map').setView([22.0, -80.0], 7);
+
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+    }).addTo(map);
+
+    const etapes = [
+      { nom: "La Havane", coords: [23.1136, -82.3666], desc: "Capitale · Vieille Havane · Vedado · Hemingway" },
+      { nom: "Baie des Cochons", coords: [22.3333, -81.2500], desc: "Ciénaga de Zapata · Playa Larga · Mangroves" },
+      { nom: "Cienfuegos", coords: [22.1467, -80.4367], desc: "Punta Gorda · Architecture française" },
+      { nom: "Trinidad", coords: [21.8000, -79.9833], desc: "Ville UNESCO · Valle de los Ingenios" },
+      { nom: "Viñales", coords: [22.6167, -83.7167], desc: "Mogotes · Tabac · Cigares · UNESCO" }
+    ];
+
+    const iconeTango = L.divIcon({
+        className: 'custom-icon',
+        html: '<div style="background-color: #D4A017; width: 16px; height: 16px; border-radius: 50%; border: 3px solid #FFFFFF; box-shadow: 0 0 0 3px #8B1E1E, 0 4px 8px rgba(0,0,0,0.5);"></div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11]
+    });
+
+    const marqueurs = [];
+    etapes.forEach((etape, index) => {
+      const marker = L.marker(etape.coords, {icon: iconeTango}).addTo(map);
+      marker.bindPopup(`<b style="font-family: 'Playfair Display', serif; color: #8B1E1E; font-size: 1.1rem;">${index + 1}. ${etape.nom}</b><br><span style="color: #4A5568; font-size: 0.9rem;">${etape.desc}</span>`);
+      marqueurs.push(marker);
+    });
+
+    const trace = etapes.map(e => e.coords);
+    
+    L.polyline(trace, {
+        color: '#FFFFFF', 
+        weight: 8, 
+        opacity: 0.9,
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    L.polyline(trace, {
+        color: '#8B1E1E', 
+        weight: 4, 
+        opacity: 1, 
+        dashArray: '10, 8',
+        lineCap: 'round',
+        lineJoin: 'round'
+    }).addTo(map);
+
+    function resetMap() {
+      map.setView([22.0, -80.0], 7);
+    }
+
+    const groupe = L.featureGroup(marqueurs);
+    map.fitBounds(groupe.getBounds().pad(0.2));
+  </script>
+
+</body>
+</html>
