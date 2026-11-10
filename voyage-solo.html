@@ -5,9 +5,32 @@
 
 /* --- STRUCTURE DU HERO --- */
 .hero{display:grid;grid-template-columns:1fr 1fr;column-gap:35px;row-gap:12px;align-items:center;padding:25px 0}
-.hero-image-wrapper {display:flex;justify-content:center;align-items:center;width:100%;border-radius:24px;overflow:hidden;box-shadow:0 15px 35px rgba(23, 52, 71, 0.12)}
-.hero-photo {width:100%;height:auto;max-height:340px;object-fit:cover;border-radius:24px;display:block;transition:transform 0.3s ease}
-.hero-image-wrapper:hover .hero-photo {transform:scale(1.03)}
+
+/* Nouveau conteneur pour gérer parfaitement les angles arrondis */
+.hero-image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-radius: 24px; /* Arrondi du conteneur */
+    overflow: hidden; /* Coupe ce qui dépasse pour des angles parfaits */
+    box-shadow: 0 15px 35px rgba(23, 52, 71, 0.12); /* Ombre douce pour faire ressortir la photo */
+}
+
+.hero-photo {
+    width: 100%;
+    height: auto;
+    max-height: 340px;
+    object-fit: cover; /* Remplit bien tout l'espace */
+    border-radius: 24px; /* Arrondi de l'image elle-même */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.hero-image-wrapper:hover .hero-photo {
+    transform: scale(1.03); /* Petit effet de zoom au survol */
+}
+
 .hero p{color:var(--muted)}.eyebrow{font-size:.76rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);font-weight:700}.hero-actions{grid-column:1/-1;align-self:start;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:0;padding:10px 0}
 
 .button,.submit-inline{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 18px;border:0;border-radius:7px;background:var(--accent);color:white;font-size:.92rem;font-weight:650;text-decoration:none;cursor:pointer}.button:hover,.submit-inline:hover{background:#963e25}.button.secondary{background:white;border:1px solid #bdc9c7;color:var(--ink)}.button.green{background:#35694d}.button:disabled{opacity:.6;cursor:not-allowed}.country-links{display:flex;gap:8px;flex-wrap:wrap;padding:10px;background:#eceeed;border-radius:26px;width:fit-content;max-width:100%}.country-links a{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:8px 14px 8px 10px;border:1px solid #d9dedc;border-radius:999px;background:#fafafa;color:#173e58;text-decoration:none;font-size:.88rem;font-weight:700;box-shadow:0 3px 10px rgba(23,62,88,.18);transition:transform .15s,box-shadow .15s}.country-links a::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--dot,#ccc);box-shadow:0 0 0 3px #fff}.country-links a:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(23,62,88,.28)}.country-links a:focus-visible{outline:3px solid #b85132;outline-offset:2px}.country-links a[href$="Argentine"]{--dot:#9be3e3}.country-links a[href$="Colombie"]{--dot:#a8e063}.country-links a[href$="Cuba"]{--dot:#ffe94d}.country-links a[href$="Espagne"]{--dot:#ff7a7a}.country-links a[href$="Uruguay"]{--dot:#8fd0e3}
@@ -69,6 +92,7 @@
 .reassure{flex-basis:100%;margin:2px 0 0;font-size:.8rem;line-height:1.4;color:var(--muted)}
 .form-reassure{margin:0 0 14px;padding:10px 12px;background:#edfdf5;border:1px solid #b7ebcb;border-radius:8px;font-size:.86rem;color:#0b5d49}
 .prog-link{font-size:.88rem;font-weight:650;color:#173e58;text-underline-offset:4px}.prog-link:hover{color:var(--accent)}
+.chk-note{margin:6px 0 0 27px;padding:10px 12px;background:#f0f6ef;border:1px solid #c8d9c7;border-radius:8px;font-size:.82rem;line-height:1.45;color:var(--muted)}.chk-note a{font-weight:650;color:#173e58;text-underline-offset:3px}.chk-note a:hover{color:var(--accent)}
 .form-prog{margin:0 0 6px;padding:10px 12px;background:#f0f6ef;border:1px solid #c8d9c7;border-radius:8px;font-size:.86rem;color:var(--muted)}
 .inline-form{scroll-margin-top:8px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -106,6 +130,7 @@
         <p>Des expériences immersives sur mesure.</p>
         <p>Voyage solo ou entre amis en petit groupe, en formule Sérénité ou Autonomie, pour explorer l’Espagne et l’Amérique latine à votre rythme.</p>
     </div>
+    <!-- NOUVEAU CONTENEUR POUR L'IMAGE -->
     <div class="hero-image-wrapper">
         <img class="hero-photo" src="Images/hero-voyage-solo-premium.jpg" alt="Voyage solo ou entre amis en petit groupe" width="700" height="650" fetchpriority="high">
     </div>
@@ -158,6 +183,7 @@ function itemFor(pays,sejour){return catalogueIndex.get(voyageKey(pays,sejour))|
 const PROGRAMMES={'Argentine|Rio de la Plata - le berceau du Tango':'programmes/rio-de-la-plata/programme.html','Argentine|Tango et Bodegas':'programmes/tango-bodegas/programme.html','Argentine|Buenos Aires et Iguazu':'programmes/ville-et-nature/programme.html','Argentine|Buenos Aires Mendoza et les Andes':'programmes/passion-vin-altitude/programme.html','Colombie|La Magie realiste':'programmes/magie-realiste/programme.html','Colombie|Le Triangle Magique':'programmes/triangle-magique/programme.html','Colombie|Festival de tango Medellin':'programmes/passion-tango-medellin/programme.html','Colombie|Cali - capitale de la salsa':'programmes/salsa-cali/programme.html','Cuba|Decouverte - patrimoine et traditions':'programmes/decouverte-patrimoine-traditions/programme.html','Cuba|Festival de Jazz a La Havane':'programmes/cuba-jazz/programme.html','Cuba|Traversee de l\'ile a velo':'programmes/cuba-a-velo/programme.html','Cuba|Festival de Tango de La Havane':'programmes/cuba-tango/programme.html','Cuba|La Havane entre Salsa et Tango':'programmes/cuba-salsa-tango/programme.html','Cuba|Randonnee a Vinales et Trinidad':'programmes/randonnee-vinales-trinidad/programme.html','Espagne|La Rioja':'programmes/la-rioja/programme.html','Espagne|Ribera del Duero':'programmes/ribera-del-duero/programme.html','Espagne|Valence':'programmes/valencia/programme.html','Espagne|Les Pics d\'Europe':'programmes/pics-europe/programme.html','Espagne|Salamanque':'programmes/salamanque/programme.html','Espagne|Matarrana':'programmes/matarrena/programme.html','Espagne|Bilbao':'programmes/bilbao/programme.html','Espagne|Barcelone':'programmes/barcelone/programme.html','Uruguay|Rio de la Plata - le berceau du Tango':'programmes/rio-de-la-plata/programme.html','Uruguay|Uruguay avec les gauchos':'programmes/montevideo-gauchos-bodegas/programme.html'};
 const PAGES_PAYS={Argentine:'argentine.html',Colombie:'colombie.html',Cuba:'cuba.html',Espagne:'espagne.html',Uruguay:'uruguay.html'};
 function programmeLink(pays,sejour){const item=itemFor(pays,sejour),nom=item?item.pays:pays,direct=item?PROGRAMMES[item.pays+'|'+item.key]:null,url=direct||PAGES_PAYS[nom];if(!url)return '';return '<a class="prog-link" href="'+esc(url)+'" target="_blank" rel="noopener">'+(direct?'Voir le programme détaillé':'Voir les séjours en '+esc(nom))+' ↗<span class="sr-only"> (s’ouvre dans un nouvel onglet)</span></a>';}
+function actionsHTML(pays,sejour,d){return actionButton(pays,sejour,d)+programmeLink(pays,sejour)+(d?'':'<p class="reassure">Sans engagement ni paiement. Je vous recontacte pour échanger sur vos dates et vos envies.</p>');}
 const reduceMotion=()=>!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 function scrollToEl(el){if(!el)return;requestAnimationFrame(()=>el.scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'start'}));}
 function findDepart(pays,sejour){const item=itemFor(pays,sejour),target=voyageKey(pays,item?item.key:sejour);return DEPARTS.find(d=>voyageKey(d.pays,d.sejour)===target)||null;}
@@ -222,9 +248,10 @@ form.innerHTML='<h5>'+(isDepart?'Je m’intéresse à ce départ : ':'Je suis in
 +'<label class="intention-option"><input type="radio" name="intention" value="rejoindre-lancer"> <span>Je souhaite rejoindre ce séjour (demande de devis)</span></label>'
 +'</div>'
 +'<p class="form-reassure">'+(isDepart?'Sans engagement et sans paiement à cette étape. Le départ n’est confirmé qu’avec votre accord sur le tarif personnalisé.':'Sans engagement et sans paiement. Aucun inscrit pour l’instant : vous seriez le premier, et nous construirions le groupe ensemble. Le départ n’est confirmé qu’avec votre accord sur le tarif.')+'</p>'
-+'<p class="form-prog">Envie d’en savoir plus avant de vous décider ? '+programmeLink(pays,sejour)+'</p>'+(isDepart?'':'<label for="saison-'+uid+'">Saison souhaitée<select id="saison-'+uid+'" name="saison"><option value="H">Hiver 2027</option><option value="P" selected>Printemps 2027</option><option value="E">Été 2027</option><option value="A">Automne 2027</option></select></label>')+identity(uid)+'<label for="sexe-'+uid+'">Je suis<select id="sexe-'+uid+'" name="sexe"><option>Une femme</option><option>Un homme</option></select></label><label for="age-'+uid+'">Tranche d’âge<select id="age-'+uid+'" name="age"><option>18-34</option><option>35-49</option><option>50-64</option><option>65 et plus</option></select></label>'+box+(isDepart?'<div class="chk"><input type="checkbox" name="c1" id="c1-'+uid+'" required><label for="c1-'+uid+'">'+(base?'Je confirme avoir pris connaissance du tarif de référence indicatif ('+eur(base)+' par personne pour 5 participants). Mon accord définitif portera sur le tarif confirmé dans le devis personnalisé selon le nombre final de participants.':'Je souhaite être informé(e) du tarif de ce départ en formule Sérénité dès qu’il est calculé. Aucun engagement : j’accepterai ou non le tarif à ce moment-là.')+'</label></div>':'')+'<div class="chk"><input type="checkbox" name="c_relation" id="crel-'+uid+'" required><label for="crel-'+uid+'"><strong>J’accepte le principe d’un voyage en petit groupe et autorise VPDVOYAGES à me mettre en relation avec d’autres participants.</strong> (Obligatoire pour la formule Sérénité ; si vous préférez voyager seul sans contact, optez plutôt pour la <a href="formules.html" target="_blank">formule Autonomie</a>).</label></div>'+'<div class="chk"><input type="checkbox" name="c2" id="c2-'+uid+'" required><label for="c2-'+uid+'">J’accepte que VPDVOYAGES traite mes données personnelles pour le suivi de ma demande.</label></div>'+privacy()+'<button type="submit" class="submit-inline">'+(isDepart?'Je m’inscris sur ce départ':'Envoyer ma demande (sans engagement)')+'</button><p class="res" role="status" aria-live="polite"></p>';
++'<p class="form-prog">Envie d’en savoir plus avant de vous décider ? '+programmeLink(pays,sejour)+'</p>'+(isDepart?'':'<label for="saison-'+uid+'">Saison souhaitée<select id="saison-'+uid+'" name="saison"><option value="H">Hiver 2027</option><option value="P" selected>Printemps 2027</option><option value="E">Été 2027</option><option value="A">Automne 2027</option></select></label>')+identity(uid)+'<label for="sexe-'+uid+'">Je suis<select id="sexe-'+uid+'" name="sexe"><option>Une femme</option><option>Un homme</option></select></label><label for="age-'+uid+'">Tranche d’âge<select id="age-'+uid+'" name="age"><option>18-34</option><option>35-49</option><option>50-64</option><option>65 et plus</option></select></label>'+box+(isDepart?'<div class="chk"><input type="checkbox" name="c1" id="c1-'+uid+'" required><label for="c1-'+uid+'">'+(base?'Je confirme avoir pris connaissance du tarif de référence indicatif ('+eur(base)+' par personne pour 5 participants). Mon accord définitif portera sur le tarif confirmé dans le devis personnalisé selon le nombre final de participants.':'Je souhaite être informé(e) du tarif de ce départ en formule Sérénité dès qu’il est calculé. Aucun engagement : j’accepterai ou non le tarif à ce moment-là.')+'</label></div>':'')+'<div class="chk"><input type="checkbox" name="c2" id="c2-'+uid+'" required><label for="c2-'+uid+'">J’accepte que VPDVOYAGES me mette en relation avec les autres voyageurs intéressés par ce séjour.</label></div><p class="chk-note"><strong>Case obligatoire pour rejoindre un groupe.</strong> La formule Sérénité se voyage en petit groupe de 2 à 5 personnes. Si vous préférez voyager sans contact avec d’autres participants, optez plutôt pour la <a href="formules.html">formule Autonomie</a>.</p>'+privacy()+'<button type="submit" class="submit-inline">'+(isDepart?'Je m’inscris sur ce départ':'Envoyer ma demande (sans engagement)')+'</button><p class="res" role="status" aria-live="polite"></p>';
 
 card.after(form);
+const c2=form.querySelector('[name=c2]');if(c2){const msg='Cette case est nécessaire pour rejoindre un groupe. Pour voyager sans contact avec d’autres participants, choisissez plutôt la formule Autonomie.';c2.addEventListener('invalid',()=>c2.setCustomValidity(msg));c2.addEventListener('change',()=>c2.setCustomValidity(''));}
 button.setAttribute('aria-expanded','true');button.setAttribute('aria-controls',form.id);
 form.addEventListener('submit',event=>{event.preventDefault();if(!form.reportValidity())return;const values=new FormData(form),season=form.querySelector('[name=saison]');sendForm(form,{formule:'Sérénité',pays,sejour,intention:values.get('intention')||'',depart:season?season.options[season.selectedIndex].text:'à définir',tarif_affiche:base?eur(base)+' par personne (tarif de référence 5 participants)':'sur demande',accord_tarif:!isDepart?'sans objet':base?'oui':'non : tarif en cours de calcul, souhaite être informé(e)',prenom:values.get('prenom').trim(),email:values.get('email').trim(),sexe:values.get('sexe'),age:values.get('age'),accord_mise_en_relation:'oui'});});if(!window.matchMedia('(pointer:coarse)').matches)form.querySelector('input').focus({preventScroll:true});scrollToEl(form);
 }
