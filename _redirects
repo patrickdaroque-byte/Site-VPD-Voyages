@@ -1,5 +1,26 @@
 # ==========================================
-# MODE MAINTENANCE
+# REDIRECTIONS 301 - URLs sans .html vers .html
+# ==========================================
+
+# Pages principales
+/colombie           /colombie.html           301!
+/argentine          /argentine.html          301!
+/cuba               /cuba.html               301!
+/espagne            /espagne.html            301!
+/uruguay            /uruguay.html            301!
+/voyage-solo        /voyage-solo.html        301!
+/voyage-tango       /voyage-tango.html       301!
+/formules           /formules.html           301!
+/avis-clients       /avis-clients.html       301!
+/prochainement      /prochainement.html      301!
+/mentions-legales   /mentions-legales.html   301!
+/cgv                /cgv.html                301!
+
+# Programmes (variante sans .html à la fin)
+/programmes/*/programme    /programmes/:splat/programme.html  301!
+
+# ==========================================
+# MODE MAINTENANCE (désactivé)
 # ==========================================
 # Pour ACTIVER : supprime le # ci-dessous
 # Pour DÉSACTIVER : ajoute un # ci-dessous
