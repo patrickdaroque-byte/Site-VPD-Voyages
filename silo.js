@@ -66,21 +66,29 @@ document.addEventListener("DOMContentLoaded", function() {
     const current = data[dest];
     if (!current) return;
 
-    let html = `<nav aria-label="Navigation du séjour" style="margin: 3rem 0 2rem 0; padding: 1.5rem; background: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef; font-family: sans-serif;">`;
-    html += `<div style="font-size: 0.9rem; color: #52636b; margin-bottom: 1rem;">`;
+    // --- CONSTRUCTION DU CARTOUCHE CENTRÉ ---
+    let html = `<nav aria-label="Navigation du séjour" style="max-width: 800px; margin: 4rem auto 3rem auto; padding: 2.5rem 2rem; background: #f8f9fa; border-radius: 12px; border: 1px solid #e9ecef; text-align: center; font-family: sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">`;
+    
+    // Fil d'Ariane (discret, en haut)
+    html += `<div style="font-size: 0.85rem; color: #52636b; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.5px;">`;
     html += `<a href="../../index.html" style="color: #52636b; text-decoration: none;">Accueil</a> &rsaquo; `;
     html += `<a href="${current.parent}" style="color: #52636b; text-decoration: none;">${current.name}</a> &rsaquo; `;
     html += `<span style="color: #173447; font-weight: bold;">Ce séjour</span></div>`;
     
-    html += `<h4 style="margin: 0 0 1rem 0; color: #173447; font-size: 1.1rem;">Voir aussi en ${current.name} :</h4>`;
-    html += `<ul style="list-style: none; padding: 0; margin: 0 0 1.5rem 0; display: flex; flex-wrap: wrap; gap: 0.6rem 1.8rem;">`;
+    // Titre
+    html += `<h4 style="margin: 0 0 1.5rem 0; color: #173447; font-size: 1.25rem; font-weight: 600;">Voir aussi en ${current.name} :</h4>`;
+    
+    // Liens (centrés et regroupés)
+    html += `<ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2rem;">`;
     
     current.links.forEach(link => {
-        html += `<li><a href="${link.url}" style="color: #b85132; text-decoration: none;">&rarr; ${link.name}</a></li>`;
+        html += `<li><a href="${link.url}" style="color: #b85132; text-decoration: none; font-weight: 500; font-size: 1rem;">&rarr; ${link.name}</a></li>`;
     });
     
     html += `</ul>`;
-    html += `<div style="font-size: 0.9rem;"><a href="../../voyage-solo.html" style="color: #173e58; text-decoration: underline;">&larr; Voir tous les voyages en petit groupe</a></div>`;
+    
+    // Lien de retour global (souligné, en bas)
+    html += `<div style="font-size: 0.95rem; margin-top: 1rem;"><a href="../../voyage-solo.html" style="color: #173e58; text-decoration: none; border-bottom: 1px solid #173e58; padding-bottom: 2px;">&larr; Voir tous les voyages en petit groupe</a></div>`;
     html += `</nav>`;
 
     container.innerHTML = html;
