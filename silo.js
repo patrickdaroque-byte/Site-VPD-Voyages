@@ -68,7 +68,8 @@ document.addEventListener("DOMContentLoaded", function() {
             preposition: 'en',
             parent: '../../uruguay.html',
             links: [
-                { name: 'Montevideo et Gauchos', url: '../montevideo-gauchos-bodegas/programme.html' }
+                { name: 'Montevideo et Gauchos', url: '../montevideo-gauchos-bodegas/programme.html' },
+                { name: 'Río de la Plata', url: '../rio-de-la-plata/programme.html' }
             ]
         }
     };
