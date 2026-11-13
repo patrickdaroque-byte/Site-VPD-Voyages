@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
     html += `<span style="color: #173447; font-weight: bold;">Ce séjour</span></div>`;
     
     html += `<h4 style="margin: 0 0 1rem 0; color: #173447; font-size: 1.1rem;">Voir aussi en ${current.name} :</h4>`;
-    html += `<ul style="list-style: none; padding: 0; margin: 0 0 1.5rem 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.8rem;">`;
+    html += `<ul style="list-style: none; padding: 0; margin: 0 0 1.5rem 0; display: flex; flex-wrap: wrap; gap: 0.6rem 1.8rem;">`;minmax(220px, 1fr)); gap: 0.8rem;">`;
     
     current.links.forEach(link => {
         html += `<li><a href="${link.url}" style="color: #b85132; text-decoration: none;">&rarr; ${link.name}</a></li>`;
