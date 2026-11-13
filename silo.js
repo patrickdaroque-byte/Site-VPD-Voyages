@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const dest = container.getAttribute('data-dest');
     if (!dest) return;
 
-    // Détection automatique de la page courante
     const currentPath = window.location.pathname;
     const parts = currentPath.split('/').filter(Boolean);
     const currentSlug = parts.length >= 2 ? parts[parts.length - 2] : '';
@@ -13,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const data = {
         'argentine': {
             name: 'Argentine',
+            preposition: 'en',
             parent: '../../argentine.html',
             links: [
                 { name: 'Río de la Plata', url: '../rio-de-la-plata/programme.html' },
@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
         },
         'colombie': {
             name: 'Colombie',
+            preposition: 'en',
             parent: '../../colombie.html',
             links: [
                 { name: 'Le Triangle magique', url: '../triangle-magique/programme.html' },
@@ -35,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
         },
         'cuba': {
             name: 'Cuba',
+            preposition: 'à', // CORRECTION ICI
             parent: '../../cuba.html',
             links: [
                 { name: 'Découverte et patrimoine', url: '../decouverte-patrimoine-traditions/programme.html' },
@@ -48,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
         },
         'espagne': {
             name: 'Espagne',
+            preposition: 'en',
             parent: '../../espagne.html',
             links: [
                 { name: 'La Rioja', url: '../la-rioja/programme.html' },
@@ -62,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
         },
         'uruguay': {
             name: 'Uruguay',
+            preposition: 'en',
             parent: '../../uruguay.html',
             links: [
                 { name: 'Montevideo et Gauchos', url: '../montevideo-gauchos-bodegas/programme.html' }
@@ -80,15 +84,13 @@ document.addEventListener("DOMContentLoaded", function() {
     html += `<a href="${current.parent}" style="color: #52636b; text-decoration: none;">${current.name}</a> &rsaquo; `;
     html += `<span style="color: #173447; font-weight: bold;">Ce séjour</span></div>`;
     
-    html += `<h4 style="margin: 0 0 2rem 0; color: #173447; font-size: 1.25rem; font-weight: 600;">Voir aussi en ${current.name} :</h4>`;
+    // CORRECTION ICI : Utilisation de la préposition
+    html += `<h4 style="margin: 0 0 2rem 0; color: #173447; font-size: 1.25rem; font-weight: 600;">Voir aussi ${current.preposition} ${current.name} :</h4>`;
     
     html += `<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 2rem;">`;
     current.links.forEach(link => {
-        // CORRECTION : on filtre les ".." pour obtenir le vrai slug du lien
         const linkParts = link.url.split('/').filter(p => p !== '..' && p !== '.');
-        const linkSlug = linkParts[0]; // ex: 'passion-vin-altitude'
-        
-        // Exclure le lien vers la page courante
+        const linkSlug = linkParts[0];
         if (linkSlug === currentSlug) return;
         
         html += `<a href="${link.url}" style="display: inline-block; padding: 10px 20px; background-color: #ffffff; border: 1px solid #b85132; color: #b85132; border-radius: 50px; text-decoration: none; font-weight: 500; font-size: 0.95rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">${link.name}</a>`;
