@@ -1,226 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- PAGE D'ACCUEIL -->
+  <!-- PAGE D'ACCUEIL (Unique, pas de index.html pour éviter le doublon) -->
   <url>
     <loc>https://vpdvoyages.com/</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- PAGES PRINCIPALES & THÉMATIQUES -->
-  <url>
-    <loc>https://vpdvoyages.com/prochainement.html</loc>
-    <lastmod>2026-11-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/voyage-solo.html</loc>
-    <lastmod>2026-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/voyage-tango.html</loc>
-    <lastmod>2026-11-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/formules.html</loc>
-    <lastmod>2026-11-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/avis-clients.html</loc>
-    <lastmod>2026-11-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- PAGES DESTINATIONS -->
-  <url>
-    <loc>https://vpdvoyages.com/colombie.html</loc>
-    <lastmod>2026-11-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/argentine.html</loc>
-    <lastmod>2026-11-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/uruguay.html</loc>
-    <lastmod>2026-11-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/cuba.html</loc>
-    <lastmod>2026-11-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/espagne.html</loc>
-    <lastmod>2026-11-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- PROGRAMMES COLOMBIE -->
-  <url>
-    <loc>https://vpdvoyages.com/programmes/triangle-magique/programme.html</loc>
-    <lastmod>2026-11-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/programmes/magie-realiste/programme.html</loc>
-    <lastmod>2026-11-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/programmes/passion-tango-medellin/programme.html</loc>
-    <lastmod>2026-11-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/programmes/salsa-cali/programme.html</loc>
-    <lastmod>2026-11-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
+  <!-- PAGES PRINCIPALES & DESTINATIONS -->
+  <url><loc>https://vpdvoyages.com/voyage-solo.html</loc><lastmod>2026-11-12</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vpdvoyages.com/voyage-tango.html</loc><lastmod>2026-11-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/formules.html</loc><lastmod>2026-11-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/avis-clients.html</loc><lastmod>2026-11-12</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://vpdvoyages.com/prochainement.html</loc><lastmod>2026-11-12</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  
+  <url><loc>https://vpdvoyages.com/argentine.html</loc><lastmod>2026-11-12</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vpdvoyages.com/colombie.html</loc><lastmod>2026-11-12</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vpdvoyages.com/cuba.html</loc><lastmod>2026-11-12</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vpdvoyages.com/espagne.html</loc><lastmod>2026-11-12</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://vpdvoyages.com/uruguay.html</loc><lastmod>2026-11-12</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
 
   <!-- PROGRAMMES ARGENTINE -->
-  <url>
-    <loc>https://vpdvoyages.com/programmes/rio-de-la-plata/programme.html</loc>
-    <lastmod>2026-11-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/programmes/tango-bodegas/programme.html</loc>
-    <lastmod>2026-11-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/programmes/ville-et-nature/programme.html</loc>
-    <lastmod>2026-11-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/programmes/passion-vin-altitude/programme.html</loc>
-    <lastmod>2026-11-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <url><loc>https://vpdvoyages.com/programmes/rio-de-la-plata/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/tango-bodegas/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/ville-et-nature/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/passion-vin-altitude/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/argentine-authentique/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
 
-  <!-- PROGRAMMES URUGUAY -->
-  <url>
-    <loc>https://vpdvoyages.com/programmes/montevideo-gauchos-bodegas/programme.html</loc>
-    <lastmod>2026-11-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <!-- PROGRAMMES COLOMBIE -->
+  <url><loc>https://vpdvoyages.com/programmes/triangle-magique/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/magie-realiste/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/passion-tango-medellin/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/salsa-cali/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
 
   <!-- PROGRAMMES CUBA -->
-  <url>
-    <loc>https://vpdvoyages.com/programmes/decouverte-patrimoine-traditions/programme.html</loc>
-    <lastmod>2026-11-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/programmes/cuba-a-velo/programme.html</loc>
-    <lastmod>2026-11-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/programmes/randonnee-vinales-trinidad/programme.html</loc>
-    <lastmod>2026-11-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/programmes/stage-photo-havane-trinidad/programme.html</loc>
-    <lastmod>2026-11-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <url><loc>https://vpdvoyages.com/programmes/decouverte-patrimoine-traditions/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/cuba-jazz/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/cuba-salsa-tango/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/cuba-tango/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/cuba-a-velo/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/randonnee-vinales-trinidad/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/stage-photo-havane-trinidad/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
 
   <!-- PROGRAMMES ESPAGNE -->
-  <url>
-    <loc>https://vpdvoyages.com/programmes/la-rioja/programme.html</loc>
-    <lastmod>2026-11-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/programmes/ribera-del-duero/programme.html</loc>
-    <lastmod>2026-11-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/programmes/valencia/programme.html</loc>
-    <lastmod>2026-11-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/programmes/pics-europe/programme.html</loc>
-    <lastmod>2026-11-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/programmes/salamanque/programme.html</loc>
-    <lastmod>2026-11-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/programmes/matarrena/programme.html</loc>
-    <lastmod>2026-11-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/programmes/bilbao/programme.html</loc>
-    <lastmod>2026-11-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/programmes/barcelone/programme.html</loc>
-    <lastmod>2026-11-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <url><loc>https://vpdvoyages.com/programmes/la-rioja/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/ribera-del-duero/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/valencia/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/pics-europe/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/salamanque/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/matarrena/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/bilbao/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/barcelone/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+
+  <!-- PROGRAMMES URUGUAY & DIVERS -->
+  <url><loc>https://vpdvoyages.com/programmes/montevideo-gauchos-bodegas/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/tango-therapie/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
+  <url><loc>https://vpdvoyages.com/programmes/salvador-traditionnel/programme.html</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority></url>
 
   <!-- PAGES LÉGALES -->
-  <url>
-    <loc>https://vpdvoyages.com/mentions-legales.html</loc>
-    <lastmod>2026-11-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://vpdvoyages.com/cgv.html</loc>
-    <lastmod>2026-11-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
+  <url><loc>https://vpdvoyages.com/mentions-legales.html</loc><lastmod>2026-11-12</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://vpdvoyages.com/cgv.html</loc><lastmod>2026-11-12</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
