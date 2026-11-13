@@ -5,6 +5,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const dest = container.getAttribute('data-dest');
     if (!dest) return;
 
+    // Détection automatique de la page courante pour l'exclure des liens
+    const currentPath = window.location.pathname; // ex: /programmes/passion-vin-altitude/programme.html
+    const parts = currentPath.split('/').filter(Boolean);
+    const currentSlug = parts.length >= 2 ? parts[parts.length - 2] : ''; // ex: 'passion-vin-altitude'
+
     const data = {
         'argentine': {
             name: 'Argentine',
@@ -14,7 +19,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 { name: 'Tango et Bodegas', url: '../tango-bodegas/programme.html' },
                 { name: 'Ville et Nature', url: '../ville-et-nature/programme.html' },
                 { name: 'Buenos Aires, Mendoza et les Andes', url: '../passion-vin-altitude/programme.html' },
-                { name: 'Argentine authentique', url: '../argentine-authentique/programme.html' }
+                { name: 'Argentine authentique', url: '../argentine-authentique/programme.html' },
+                { name: 'Tango-thérapie', url: '../tango-therapie/programme.html' }
             ]
         },
         'colombie': {
@@ -67,27 +73,25 @@ document.addEventListener("DOMContentLoaded", function() {
     if (!current) return;
 
     // --- CONSTRUCTION DU CARTOUCHE CENTRÉ AVEC BULLES ---
-    // Fond gris plus soutenu (#e9ecef) et ombre plus marquée
     let html = `<nav aria-label="Navigation du séjour" style="max-width: 800px; margin: 4rem auto 3rem auto; padding: 2.5rem 2rem; background: #e9ecef; border-radius: 12px; border: 1px solid #ced4da; text-align: center; font-family: sans-serif; box-shadow: 0 8px 24px rgba(0,0,0,0.06);">`;
     
-    // Fil d'Ariane (discret, en haut)
     html += `<div style="font-size: 0.85rem; color: #52636b; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.5px;">`;
     html += `<a href="../../index.html" style="color: #52636b; text-decoration: none;">Accueil</a> &rsaquo; `;
     html += `<a href="${current.parent}" style="color: #52636b; text-decoration: none;">${current.name}</a> &rsaquo; `;
     html += `<span style="color: #173447; font-weight: bold;">Ce séjour</span></div>`;
     
-    // Titre
     html += `<h4 style="margin: 0 0 2rem 0; color: #173447; font-size: 1.25rem; font-weight: 600;">Voir aussi en ${current.name} :</h4>`;
     
-    // BULLES (Boutons cliquables)
     html += `<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 2rem;">`;
     current.links.forEach(link => {
-        // Bulle blanche, bordure et texte Terracotta (#b85132) pour inciter au clic
+        // Exclure automatiquement le lien vers la page courante
+        const linkSlug = link.url.split('/').filter(Boolean)[0]; // ex: 'passion-vin-altitude'
+        if (linkSlug === currentSlug) return; // on saute ce lien
+        
         html += `<a href="${link.url}" style="display: inline-block; padding: 10px 20px; background-color: #ffffff; border: 1px solid #b85132; color: #b85132; border-radius: 50px; text-decoration: none; font-weight: 500; font-size: 0.95rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">${link.name}</a>`;
     });
     html += `</div>`;
     
-    // Lien de retour global (souligné, en bas)
     html += `<div style="font-size: 0.95rem; margin-top: 1rem;"><a href="../../voyage-solo.html" style="color: #173e58; text-decoration: none; border-bottom: 1px solid #173e58; padding-bottom: 2px;">&larr; Voir tous les voyages en petit groupe</a></div>`;
     html += `</nav>`;
 
