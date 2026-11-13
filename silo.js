@@ -66,8 +66,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const current = data[dest];
     if (!current) return;
 
-    // --- CONSTRUCTION DU CARTOUCHE CENTRÉ ---
-    let html = `<nav aria-label="Navigation du séjour" style="max-width: 800px; margin: 4rem auto 3rem auto; padding: 2.5rem 2rem; background: #f8f9fa; border-radius: 12px; border: 1px solid #e9ecef; text-align: center; font-family: sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">`;
+    // --- CONSTRUCTION DU CARTOUCHE CENTRÉ AVEC BULLES ---
+    // Fond gris plus soutenu (#e9ecef) et ombre plus marquée
+    let html = `<nav aria-label="Navigation du séjour" style="max-width: 800px; margin: 4rem auto 3rem auto; padding: 2.5rem 2rem; background: #e9ecef; border-radius: 12px; border: 1px solid #ced4da; text-align: center; font-family: sans-serif; box-shadow: 0 8px 24px rgba(0,0,0,0.06);">`;
     
     // Fil d'Ariane (discret, en haut)
     html += `<div style="font-size: 0.85rem; color: #52636b; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.5px;">`;
@@ -76,16 +77,15 @@ document.addEventListener("DOMContentLoaded", function() {
     html += `<span style="color: #173447; font-weight: bold;">Ce séjour</span></div>`;
     
     // Titre
-    html += `<h4 style="margin: 0 0 1.5rem 0; color: #173447; font-size: 1.25rem; font-weight: 600;">Voir aussi en ${current.name} :</h4>`;
+    html += `<h4 style="margin: 0 0 2rem 0; color: #173447; font-size: 1.25rem; font-weight: 600;">Voir aussi en ${current.name} :</h4>`;
     
-    // Liens (centrés et regroupés)
-    html += `<ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2rem;">`;
-    
+    // BULLES (Boutons cliquables)
+    html += `<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 2rem;">`;
     current.links.forEach(link => {
-        html += `<li><a href="${link.url}" style="color: #b85132; text-decoration: none; font-weight: 500; font-size: 1rem;">&rarr; ${link.name}</a></li>`;
+        // Bulle blanche, bordure et texte Terracotta (#b85132) pour inciter au clic
+        html += `<a href="${link.url}" style="display: inline-block; padding: 10px 20px; background-color: #ffffff; border: 1px solid #b85132; color: #b85132; border-radius: 50px; text-decoration: none; font-weight: 500; font-size: 0.95rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">${link.name}</a>`;
     });
-    
-    html += `</ul>`;
+    html += `</div>`;
     
     // Lien de retour global (souligné, en bas)
     html += `<div style="font-size: 0.95rem; margin-top: 1rem;"><a href="../../voyage-solo.html" style="color: #173e58; text-decoration: none; border-bottom: 1px solid #173e58; padding-bottom: 2px;">&larr; Voir tous les voyages en petit groupe</a></div>`;
