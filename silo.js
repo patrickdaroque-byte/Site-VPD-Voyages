@@ -2,11 +2,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const container = document.getElementById('silo-nav');
     if (!container) return;
 
-    // On lit la destination directement depuis l'attribut data-dest du HTML
     const dest = container.getAttribute('data-dest');
     if (!dest) return;
 
-    // Base de données des liens (basée strictement sur votre sitemap)
     const data = {
         'argentine': {
             name: 'Argentine',
@@ -68,7 +66,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const current = data[dest];
     if (!current) return;
 
-    // Construction du bloc HTML
     let html = `<nav aria-label="Navigation du séjour" style="margin: 3rem 0 2rem 0; padding: 1.5rem; background: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef; font-family: sans-serif;">`;
     html += `<div style="font-size: 0.9rem; color: #52636b; margin-bottom: 1rem;">`;
     html += `<a href="../../index.html" style="color: #52636b; text-decoration: none;">Accueil</a> &rsaquo; `;
@@ -76,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
     html += `<span style="color: #173447; font-weight: bold;">Ce séjour</span></div>`;
     
     html += `<h4 style="margin: 0 0 1rem 0; color: #173447; font-size: 1.1rem;">Voir aussi en ${current.name} :</h4>`;
-    html += `<ul style="list-style: none; padding: 0; margin: 0 0 1.5rem 0; display: flex; flex-wrap: wrap; gap: 0.6rem 1.8rem;">`;minmax(220px, 1fr)); gap: 0.8rem;">`;
+    html += `<ul style="list-style: none; padding: 0; margin: 0 0 1.5rem 0; display: flex; flex-wrap: wrap; gap: 0.6rem 1.8rem;">`;
     
     current.links.forEach(link => {
         html += `<li><a href="${link.url}" style="color: #b85132; text-decoration: none;">&rarr; ${link.name}</a></li>`;
