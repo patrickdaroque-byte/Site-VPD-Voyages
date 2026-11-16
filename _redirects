@@ -15,6 +15,7 @@
 /prochainement      /prochainement.html      301!
 /mentions-legales   /mentions-legales.html   301!
 /cgv                /cgv.html                301!
+/partenaires        /partenaires.html        301!
 
 # Programmes (variante sans .html à la fin)
 /programmes/*/programme    /programmes/:splat/programme.html  301!
